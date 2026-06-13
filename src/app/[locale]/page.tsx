@@ -1,5 +1,6 @@
 export default function Home() {
   console.log('hello');
+  console.log('تسنسنسنسن');
 
   return (
     <>
