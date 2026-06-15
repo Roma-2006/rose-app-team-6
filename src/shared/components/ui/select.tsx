@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import { Select as SelectPrimitive } from '@base-ui/react/select';
-
 import { cn } from '@/shared/lib/utils/tailwind-cn';
 import { ChevronDownIcon, CheckIcon, ChevronUpIcon } from 'lucide-react';
 
@@ -21,17 +20,20 @@ function SelectValue({ className, ...props }: SelectPrimitive.Value.Props) {
 function SelectTrigger({
   className,
   size = 'default',
+  error,
   children,
   ...props
 }: SelectPrimitive.Trigger.Props & {
   size?: 'sm' | 'default';
+  error?: boolean;
 }) {
   return (
     <SelectPrimitive.Trigger
       data-slot="select-trigger"
       data-size={size}
+      aria-invalid={error}
       className={cn(
-        "flex w-full h-12  px-4 items-center justify-between rounded-md gap-1.5 bg-white border border-zinc-300  text-sm text-zinc-500  whitespace-nowrap transition-[color,box-shadow,background-color] outline-none focus:border-maroon-600  focus:ring-maroon-600/30 disabled:cursor-not-allowed disabled:bg-zinc-100 disabled:text-zinc-500 aria-invalid:border-red-600 aria-invalid:ring-red-600 data-placeholder:text-zinc-500  data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-1.5 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 hover:border-zinc-400",
+        "flex w-full h-12 px-4 items-center justify-between rounded-md gap-1.5 bg-white border border-zinc-300 text-sm text-zinc-500 whitespace-nowrap transition-[color,box-shadow,background-color] outline-none focus:border-maroon-600 focus:ring-maroon-600/30 disabled:cursor-not-allowed disabled:bg-zinc-100 disabled:text-zinc-500 aria-invalid:border-red-600 aria-invalid:ring-red-600 data-placeholder:text-zinc-500 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-1.5 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 hover:border-zinc-400",
         className
       )}
       {...props}
@@ -101,7 +103,8 @@ function SelectItem({ className, children, ...props }: SelectPrimitive.Item.Prop
     <SelectPrimitive.Item
       data-slot="select-item"
       className={cn(
-        "relative flex w-full cursor-default items-center gap-2.5 rounded-2xl py-2 pr-8 pl-3 text-sm font-medium outline-hidden select-none focus:bg-accent focus:text-accent-foreground not-data-[variant=destructive]:focus:**:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 *:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2",
+        'relative flex w-full cursor-default items-center gap-2.5 rounded-2xl py-2 pe-8 ps-3 text-sm font-medium outline-hidden select-none focus:bg-accent focus:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50',
+        'dark:focus:bg-zinc-800 dark:text-zinc-100',
         className
       )}
       {...props}
@@ -111,7 +114,7 @@ function SelectItem({ className, children, ...props }: SelectPrimitive.Item.Prop
       </SelectPrimitive.ItemText>
       <SelectPrimitive.ItemIndicator
         render={
-          <span className="pointer-events-none absolute right-2 flex size-4 items-center justify-center" />
+          <span className="pointer-events-none absolute end-2 flex size-4 items-center justify-center" />
         }
       >
         <CheckIcon className="pointer-events-none" />
@@ -169,9 +172,44 @@ function SelectScrollDownButton({
 function SelectError({ message }: { message?: string }) {
   if (!message) return null;
   return (
-    <p className="text-xs text-destructive mt-1.5 px-1 animate-in fade-in-0 slide-in-from-top-1">
+    <p className="text-xs text-destructive mt-1.5 px-1 animate-in fade-in-0 slide-in-from-top-1 text-red-600">
       {message}
     </p>
+  );
+}
+
+function SelectField({
+  label,
+  options,
+  value,
+  onValueChange,
+  placeholder,
+  error,
+}: {
+  label?: string;
+  options: { label: string; value: string }[];
+  value?: string | null;
+  onValueChange?: (value: string | null) => void;
+  placeholder?: string;
+  error?: string;
+}) {
+  return (
+    <div className="space-y-1.5">
+      {label && <label className="text-sm font-medium px-1">{label}</label>}
+      <Select value={value ?? undefined} onValueChange={onValueChange}>
+        <SelectTrigger error={!!error}>
+          <SelectValue placeholder={placeholder} />
+        </SelectTrigger>
+        <SelectContent>
+          {options.map((opt) => (
+            <SelectItem key={opt.value} value={opt.value}>
+              {opt.label}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+      {error && <SelectError message={error} />}
+    </div>
   );
 }
 
@@ -186,4 +224,5 @@ export {
   SelectTrigger,
   SelectValue,
   SelectError,
+  SelectField,
 };

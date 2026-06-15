@@ -3,6 +3,8 @@
 import * as React from 'react';
 import { Combobox as ComboboxPrimitive } from '@base-ui/react';
 
+import { useComboboxLogic } from '@/shared/hooks/use-combobox';
+
 import { cn } from '@/shared/lib/utils/tailwind-cn';
 import { Button } from '@/shared/components/ui/button';
 import {
@@ -80,11 +82,12 @@ function ComboboxInput({
   showTrigger = true,
   showClear = false,
   error,
+
   ...props
 }: ComboboxPrimitive.Input.Props & {
   showTrigger?: boolean;
   showClear?: boolean;
-  error: boolean;
+  error?: boolean;
 }) {
   return (
     <InputGroup className={cn('w-auto', className)}>
@@ -165,7 +168,8 @@ function ComboboxItem({ className, children, ...props }: ComboboxPrimitive.Item.
     <ComboboxPrimitive.Item
       data-slot="combobox-item"
       className={cn(
-        "relative flex w-full cursor-default items-center gap-2.5 rounded-2xl py-2 pr-8 pl-3 text-sm font-medium outline-hidden select-none data-highlighted:bg-accent data-highlighted:text-accent-foreground not-data-[variant=destructive]:data-highlighted:**:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        'relative flex w-full cursor-default items-center gap-2.5 rounded-2xl py-2 pe-8 ps-3 text-sm font-medium outline-hidden select-none data-highlighted:bg-accent data-highlighted:text-accent-foreground',
+        'dark:data-highlighted:bg-zinc-800',
         className
       )}
       {...props}
@@ -173,7 +177,7 @@ function ComboboxItem({ className, children, ...props }: ComboboxPrimitive.Item.
       {children}
       <ComboboxPrimitive.ItemIndicator
         render={
-          <span className="pointer-events-none absolute right-2 flex size-4 items-center justify-center" />
+          <span className="pointer-events-none absolute end-2 flex size-4 items-center justify-center" />
         }
       >
         <CheckIcon className="pointer-events-none" />
@@ -286,6 +290,69 @@ function useComboboxAnchor() {
   return React.useRef<HTMLDivElement | null>(null);
 }
 
+export function ComboboxField({
+  label,
+  options,
+  value,
+  onValueChange,
+  placeholder,
+  error,
+}: {
+  label?: string;
+  options: { label: string; value: string }[];
+  value?: string;
+  onValueChange?: (value: string | null) => void;
+  placeholder?: string;
+  error?: string;
+}) {
+  const {
+    query,
+    setQuery,
+    filteredOptions,
+    isLoading,
+    isEmpty,
+    handleValueChange,
+    handleKeyDown,
+    isOpen,
+    setIsOpen,
+  } = useComboboxLogic({
+    options,
+    onValueChange,
+  });
+
+  return (
+    <div className="space-y-1.5">
+      {label && <label className="text-sm font-medium px-1">{label}</label>}
+      <Combobox
+        value={value}
+        onValueChange={handleValueChange}
+        open={isOpen}
+        onOpenChange={setIsOpen}
+        inputValue={query}
+        onInputValueChange={setQuery}
+      >
+        <ComboboxInput placeholder={placeholder} error={!!error} onKeyDown={handleKeyDown} />
+        <ComboboxContent>
+          {isLoading ? (
+            <ComboboxLoading>Loading...</ComboboxLoading>
+          ) : (
+            <>
+              <ComboboxList>
+                {filteredOptions.map((opt) => (
+                  <ComboboxItem key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </ComboboxItem>
+                ))}
+              </ComboboxList>
+              {isEmpty && <ComboboxEmpty>No results found</ComboboxEmpty>}
+            </>
+          )}
+        </ComboboxContent>
+      </Combobox>
+      {error && <ComboboxError message={error} />}
+    </div>
+  );
+}
 export {
   Combobox,
   ComboboxInput,
@@ -304,4 +371,5 @@ export {
   ComboboxValue,
   useComboboxAnchor,
   ComboboxError,
+  ComboboxLoading,
 };
