@@ -1,4 +1,5 @@
-import LanguageSwitcher from '@/components/LanguageSwitcher';
+import CustomInput from '@/shared/components/global/custom-input';
+import LanguageSwitcher from '@/shared/components/global/LanguageSwitcher';
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -26,6 +27,7 @@ export default async function Home({ params }: PageProps) {
           <span className="uppercase text-indigo-600 font-bold">{locale}</span>
         </div>
       </div>
+      <CustomInput id="input-id" label="input label " variant="defualt" />
     </main>
   );
 }
