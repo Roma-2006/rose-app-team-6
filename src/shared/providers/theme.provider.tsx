@@ -2,15 +2,9 @@
 
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
 
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  return (
-    <NextThemesProvider
-      attribute="class"
-      defaultTheme="light"
-      enableSystem={false}
-      storageKey="rose-theme"
-    >
-      {children}
-    </NextThemesProvider>
-  );
+export function ThemeProvider({
+  children,
+  ...props
+}: { children: React.ReactNode } & React.ComponentProps<typeof NextThemesProvider>) {
+  return <NextThemesProvider {...props}>{children}</NextThemesProvider>;
 }
