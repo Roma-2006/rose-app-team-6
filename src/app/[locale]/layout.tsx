@@ -47,9 +47,9 @@ export default async function RootLayout({
       </Script>
       </head> */}
 
-      <body>
-        className=
-        {`${sarabun.variable} ${tajawal.variable} ${locale === 'ar' ? 'font-arabic' : 'font-sans'}`}
+      <body
+        className={`${sarabun.variable} ${tajawal.variable} ${locale === 'ar' ? 'font-arabic' : 'font-sans'}`}
+      >
         <NextIntlClientProvider>
           <ThemeProvider>{children}</ThemeProvider>
         </NextIntlClientProvider>
