@@ -2,14 +2,40 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #27272A;
+  --primary : var(--color-maroon-600);
+  --primary-hover: var(--color-maroon-700);
+  --secondary : var(--color-maroon-50);
+  --secondary-hover: var(--color-maroon-100);
+  --card-bg: var(--color-zinc-50);
+  --disabled: var(--color-zinc-300);
+  --error: var(--color-red-600);
+  --success: var(--color-emerald-700);
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --primary : var(--color-soft-pink-300);
+  --primary-hover: var(--color-soft-pink-400);
+  --secondary : var(--color-zinc-700);
+  --secondary-hover: var(--color-zinc-600);
+  --card-bg: var(--color-zinc-600);
+  --disabled: var(--color-zinc-700);
+
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  /* --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono); */
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-secondary: var(--secondary);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-card-bg: var(--card-bg);
+  --color-disabled: var(--disabled);
+  --color-error: var(--error);
+  --color-success: var(--success);
 
   /* Fonts */
 
@@ -43,12 +69,12 @@
   --color-maroon-950: #20090c;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
   background: var(--background);
