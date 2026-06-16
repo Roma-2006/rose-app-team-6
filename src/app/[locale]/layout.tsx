@@ -2,10 +2,10 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import QueryProvider from '@/components/providers/QueryProvider';
 
 import { Sarabun, Tajawal } from 'next/font/google';
 import { ThemeProvider } from '@/shared/providers/theme.provider';
+import QueryProvider from '@/shared/providers/query.provider';
 // import Script from 'next/script';
 
 export const sarabun = Sarabun({

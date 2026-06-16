@@ -1,4 +1,4 @@
-import LanguageSwitcher from '@/components/LanguageSwitcher';
+import LanguageSwitcher from '@/shared/components/LanguageSwitcher';
 import { ThemeToggle } from '@/shared/components/theme';
 
 interface PageProps {
