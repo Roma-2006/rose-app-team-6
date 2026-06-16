@@ -1,6 +1,9 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
+  /* Fonts */
+  --font-sans: var(--font-sarabun);
+
   /* Base */
   --background: #ffffff;
   --foreground: #27272a;
@@ -52,9 +55,6 @@
 }
 
 .dark {
-  /* Fonts */
-  --font-sans: var(--font-sarabun);
-
   /* Base */
   --background: #0a0a0a;
   --foreground: #ededed;
@@ -75,8 +75,8 @@
   --accent-foreground: var(--color-magenta-950);
 
   /* Surfaces */
-  --card-bg: var(--color-zinc-600);
-  --border: var(--color-zinc-700);
+  --card-bg: var(--color-zinc-700);
+  --border: var(--color-zinc-800);
   --input: var(--color-zinc-900);
   --ring: var(--color-soft-pink-400);
 
@@ -147,9 +147,8 @@
   --color-info-hover: var(--info-hover);
   --color-info-foreground: var(--info-foreground);
 
-
   /* Soft Pink */
-  --color-soft-pink-50:  #fff1f5;
+  --color-soft-pink-50: #fff1f5;
   --color-soft-pink-100: #ffe0e7;
   --color-soft-pink-200: #ffc2d0;
   --color-soft-pink-300: #ffa3b9;
@@ -162,7 +161,7 @@
   --color-soft-pink-950: #590414;
 
   /* Maroon */
-  --color-maroon-50:  #fbeaea;
+  --color-maroon-50: #fbeaea;
   --color-maroon-100: #f3c5c7;
   --color-maroon-200: #ea9fa2;
   --color-maroon-300: #e07a7d;
@@ -175,7 +174,7 @@
   --color-maroon-950: #20090c;
 
   /* Magenta — vivid pink/fuchsia row from the palette */
-  --color-magenta-50:  #fff0f8;
+  --color-magenta-50: #fff0f8;
   --color-magenta-100: #ffd6ec;
   --color-magenta-200: #ffaddc;
   --color-magenta-300: #ff84cb;
@@ -196,145 +195,4 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
-}
-.dark {
-  /* Base */
-  --background: #0a0a0a;
-  --foreground: #ededed;
-
-  /* Primary */
-  --primary: var(--color-soft-pink-300);
-  --primary-hover: var(--color-soft-pink-400);
-  --primary-foreground: var(--color-maroon-950);
-
-  /* Secondary */
-  --secondary: var(--color-zinc-700);
-  --secondary-hover: var(--color-zinc-600);
-  --secondary-foreground: var(--color-zinc-50);
-
-  /* Accent */
-  --accent: var(--color-magenta-400);
-  --accent-hover: var(--color-magenta-300);
-  --accent-foreground: var(--color-magenta-950);
-
-  /* Surfaces */
-  --card-bg: var(--color-zinc-600);
-  --border: var(--color-zinc-700);
-  --input: var(--color-zinc-900);
-  --ring: var(--color-soft-pink-400);
-
-  /* Muted */
-  --muted: var(--color-zinc-800);
-  --muted-foreground: var(--color-zinc-400);
-
-  /* Disabled */
-  --disabled: var(--color-zinc-700);
-
-  /* Status */
-  --error: var(--color-red-500);
-  --error-hover: var(--color-red-400);
-  --error-foreground: #ffffff;
-
-  --success: var(--color-emerald-600);
-  --success-hover: var(--color-emerald-500);
-  --success-foreground: #ffffff;
-
-  --warning: var(--color-yellow-400);
-  --warning-hover: var(--color-yellow-300);
-  --warning-foreground: var(--color-yellow-950);
-
-  --info: var(--color-blue-500);
-  --info-hover: var(--color-blue-400);
-  --info-foreground: #ffffff;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-
-  --color-primary: var(--primary);
-  --color-primary-hover: var(--primary-hover);
-  --color-primary-foreground: var(--primary-foreground);
-
-  --color-secondary: var(--secondary);
-  --color-secondary-hover: var(--secondary-hover);
-  --color-secondary-foreground: var(--secondary-foreground);
-
-  --color-accent: var(--accent);
-  --color-accent-hover: var(--accent-hover);
-  --color-accent-foreground: var(--accent-foreground);
-
-  --color-card-bg: var(--card-bg);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-
-  --color-disabled: var(--disabled);
-
-  --color-error: var(--error);
-  --color-error-hover: var(--error-hover);
-  --color-error-foreground: var(--error-foreground);
-
-  --color-success: var(--success);
-  --color-success-hover: var(--success-hover);
-  --color-success-foreground: var(--success-foreground);
-
-  --color-warning: var(--warning);
-  --color-warning-hover: var(--warning-hover);
-  --color-warning-foreground: var(--warning-foreground);
-
-  --color-info: var(--info);
-  --color-info-hover: var(--info-hover);
-  --color-info-foreground: var(--info-foreground);
-
-  /* Fonts */
-  --font-sans: var(--font-sarabun);
-  --font-arabic: var(--font-tajawal);
-
-  /* Soft Pink */
-  --color-soft-pink-50:  #fff1f5;
-  --color-soft-pink-100: #ffe0e7;
-  --color-soft-pink-200: #ffc2d0;
-  --color-soft-pink-300: #ffa3b9;
-  --color-soft-pink-400: #ff85a2;
-  --color-soft-pink-500: #ff668b;
-  --color-soft-pink-600: #e65073;
-  --color-soft-pink-700: #cc3a5b;
-  --color-soft-pink-800: #b32443;
-  --color-soft-pink-900: #99102c;
-  --color-soft-pink-950: #590414;
-
-  /* Maroon */
-  --color-maroon-50:  #fbeaea;
-  --color-maroon-100: #f3c5c7;
-  --color-maroon-200: #ea9fa2;
-  --color-maroon-300: #e07a7d;
-  --color-maroon-400: #d75458;
-  --color-maroon-500: #cd2e33;
-  --color-maroon-600: #a6252a;
-  --color-maroon-700: #741c21;
-  --color-maroon-800: #501419;
-  --color-maroon-900: #2c0c10;
-  --color-maroon-950: #20090c;
-
-  /* Magenta — vivid pink/fuchsia row from the palette */
-  --color-magenta-50:  #fff0f8;
-  --color-magenta-100: #ffd6ec;
-  --color-magenta-200: #ffaddc;
-  --color-magenta-300: #ff84cb;
-  --color-magenta-400: #ff5bba;
-  --color-magenta-500: #f82ba9;
-  --color-magenta-600: #d0198f;
-  --color-magenta-700: #a41173;
-  --color-magenta-800: #790a55;
-  --color-magenta-900: #52043a;
-  --color-magenta-950: #340021;
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
 }
