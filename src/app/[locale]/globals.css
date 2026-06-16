@@ -76,6 +76,8 @@
   --height-17:17px;
   --width-37: 37px;
   --width-327: 327px;
+    --radius-min: 1px;
+
 }
 
 :root {

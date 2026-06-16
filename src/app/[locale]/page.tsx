@@ -27,7 +27,17 @@ export default async function Home({ params }: PageProps) {
           <span className="uppercase text-indigo-600 font-bold">{locale}</span>
         </div>
       </div>
-      <CustomInput id="input-id" label="input label " variant="defualt" />
+      <CustomInput
+        id="input-id"
+        label="input label "
+        variant="number"
+        disabled={false}
+        placeholder="placeholder
+      "
+        min={0}
+        max={100}
+        step={1}
+      />
     </main>
   );
 }
