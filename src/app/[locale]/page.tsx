@@ -4,7 +4,7 @@ interface PageProps {
   params: Promise<{ locale: string }>;
 }
 
-//husky test
+//husky test-2
 
 export default async function Home({ params }: PageProps) {
   const { locale } = await params;
