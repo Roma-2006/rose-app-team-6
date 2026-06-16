@@ -25,15 +25,6 @@ export const metadata: Metadata = {
   description: 'Rose application built with Next.js',
 };
 
-// const themeScript = `(function(){
-//   try {
-//     var stored = localStorage.getItem('rose-theme');
-//     var prefersDark = window.matchMedia('(prefers-color-scheme:dark)').matches;
-//     var isDark = stored === 'dark' || (!stored && prefersDark);
-//     document.documentElement.classList.toggle('dark', isDark);
-//   } catch(e){}
-// })()`;
-
 export default async function RootLayout({
   children,
   params,
@@ -45,7 +36,12 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'} suppressHydrationWarning>
+    <html
+      lang={locale}
+      dir={locale === 'ar' ? 'rtl' : 'ltr'}
+      suppressHydrationWarning
+      className={`${sarabun.variable} ${tajawal.variable}`}
+    >
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ThemeProvider
