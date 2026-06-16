@@ -1,4 +1,4 @@
-import LanguageSwitcher from '@/components/LanguageSwitcher';
+import LanguageSwitcher from '@/shared/components/LanguageSwitcher';
 
 interface PageProps {
   params: Promise<{ locale: string }>;
