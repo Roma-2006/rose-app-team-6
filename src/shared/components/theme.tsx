@@ -18,11 +18,20 @@ export function ThemeToggle() {
   const isMounted = useIsMounted();
   const { resolvedTheme, setTheme } = useTheme();
 
+  const themeHandler = (newTheme: string) => {
+    setTheme(newTheme);
+
+    document.cookie = `theme=${newTheme}; path=/; max-age=31536000`;
+  };
+
   if (!isMounted) return null;
 
   return (
     <button
-      onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+      onClick={() => {
+        const newTheme = resolvedTheme === 'dark' ? 'light' : 'dark';
+        themeHandler(newTheme);
+      }}
       className="flex items-center gap-2 rounded-md border px-3 py-1.5 text-sm font-medium transition-colors text-primary hover:bg-primary hover hover:text-primary-foreground "
     >
       {resolvedTheme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
