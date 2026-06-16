@@ -1,8 +1,8 @@
 'use client';
 
 import * as React from 'react';
+import { useMemo, useId, useRef, useEffect } from 'react';
 import { cn } from '@/shared/lib/utils/tailwind-cn';
-import { useTextarea } from '@/shared/hooks/use-textarea';
 import { TextareaProps } from '@/shared/types/components';
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
@@ -11,40 +11,71 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       className,
       error,
       showCount,
+      autoResize = true,
       maxLength,
       value,
       onChange,
+      label,
       charCountText = '{current}/{max}',
       ...props
     },
-    ref
+    forwardedRef
   ) => {
-    const errorId = React.useId();
+    const errorId = useId();
+    const innerRef = useRef<HTMLTextAreaElement>(null);
 
-    const { formattedCharCount, isLimitReached } = useTextarea({
-      value,
-      maxLength,
-      charCountText,
-    });
+    React.useImperativeHandle(forwardedRef, () => innerRef.current!);
+
+    const adjustHeight = () => {
+      if (autoResize && innerRef.current) {
+        const textarea = innerRef.current;
+        textarea.style.height = 'auto';
+        textarea.style.height = `${textarea.scrollHeight}px`;
+      }
+    };
+
+    useEffect(() => {
+      adjustHeight();
+    }, [value, autoResize]);
+
+    const currentLength = useMemo(() => (value ? String(value).length : 0), [value]);
+    const isLimitReached = !!maxLength && currentLength >= maxLength;
+
+    const formattedCharCount = useMemo(() => {
+      if (!maxLength) return '';
+      return charCountText
+        .replace('{current}', currentLength.toString())
+        .replace('{max}', maxLength.toString());
+    }, [charCountText, currentLength, maxLength]);
 
     return (
-      <div className="w-full space-y-1.5 text-start">
+      <div className="w-full space-y-1.5 text-start" dir="auto">
+        {label && (
+          <label className="text-sm font-medium px-1 text-zinc-700 dark:text-zinc-300">
+            {label}
+          </label>
+        )}
+
         <textarea
-          ref={ref}
-          data-slot="textarea"
+          ref={innerRef}
+          value={value}
+          maxLength={maxLength}
           aria-invalid={!!error}
           aria-describedby={error ? errorId : undefined}
-          maxLength={maxLength}
-          value={value}
-          onChange={onChange}
+          onChange={(e) => {
+            onChange?.(e);
+            adjustHeight();
+          }}
           className={cn(
-            'flex field-sizing-content h-38 min-h-16 w-full resize-none rounded-lg border border-zinc-300 bg-white px-4 py-3 text-base text-zinc-800 transition-all outline-none placeholder:text-zinc-400 disabled:cursor-not-allowed disabled:bg-zinc-100 md:text-sm hover:border-zinc-400 focus-visible:border-maroon-600  focus-visible:ring-maroon-600/10 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100 dark:placeholder:text-zinc-400 dark:disabled:bg-zinc-900 aria-invalid:border-red-600  aria-invalid:focus-visible:border-red-600',
+            'flex min-h-[80px] w-full rounded-lg border border-zinc-300 bg-white px-4 py-3 text-base text-zinc-800 transition-all outline-none md:text-sm dark:border-zinc-800 dark:bg-zinc-700 dark:text-zinc-50 dark:placeholder:text-zinc-400 hover:border-zinc-400 focus-visible:border-maroon-600 focus-visible:ring-2 focus-visible:ring-maroon-600/10 disabled:cursor-not-allowed disabled:bg-zinc-100 dark:disabled:bg-zinc-900',
+            autoResize ? 'resize-none overflow-hidden' : 'resize-y',
+            error && 'border-red-600 focus-visible:border-red-600 focus-visible:ring-red-600/10',
             className
           )}
           {...props}
         />
 
-        <div className="flex justify-between items-start ps-1 pe-1">
+        <div className="flex justify-between items-start px-1 min-h-[20px]">
           {error ? (
             <p
               id={errorId}
@@ -59,8 +90,8 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           {showCount && maxLength && (
             <span
               className={cn(
-                'text-xs transition-colors',
-                isLimitReached ? 'text-red-600 font-bold' : 'text-zinc-500'
+                'text-xs transition-colors tabular-nums',
+                isLimitReached ? 'text-red-600 font-bold' : 'text-zinc-500 dark:text-zinc-400'
               )}
             >
               {formattedCharCount}
@@ -73,4 +104,5 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
 );
 
 Textarea.displayName = 'Textarea';
+
 export { Textarea };

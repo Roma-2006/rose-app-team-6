@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import { Combobox as ComboboxPrimitive } from '@base-ui/react';
-
-import { useComboboxLogic } from '@/shared/hooks/use-combobox';
+import { useState, useMemo, useCallback, useRef } from 'react';
+import { ComboboxProps } from '@/shared/types/components';
 
 import { cn } from '@/shared/lib/utils/tailwind-cn';
 import { Button } from '@/shared/components/ui/button';
@@ -17,35 +17,49 @@ import { ChevronDownIcon, XIcon, CheckIcon } from 'lucide-react';
 
 const Combobox = ComboboxPrimitive.Root;
 
-function ComboboxValue({ ...props }: ComboboxPrimitive.Value.Props) {
-  return <ComboboxPrimitive.Value data-slot="combobox-value" {...props} />;
-}
+// function ComboboxValue({ ...props }: ComboboxPrimitive.Value.Props) {
+//   return <ComboboxPrimitive.Value data-slot="combobox-value" {...props} />;
+// }
 
-function ComboboxError({ message }: { message?: string }) {
-  if (!message) return null;
-  return (
-    <p className="text-xs text-destructive mt-1.5 px-1 animate-in fade-in-0 slide-in-from-top-1">
-      {message}
-    </p>
-  );
-}
+// function ComboboxError({ message }: { message?: string }) {
+//   if (!message) return null;
+//   return (
+//     <p className="text-xs text-destructive mt-1.5 px-1">
+//       {message}
+//     </p>
+//   );
+// }
 
-function ComboboxLoading({
-  className,
-  children = 'Loading...',
-  ...props
-}: React.ComponentProps<'div'>) {
+// function ComboboxLoading({
+//   className,
+//   children = 'Loading...',
+//   ...props
+// }: React.ComponentProps<'div'>) {
+//   return (
+//     <div
+//       className={cn(
+//         'flex items-center justify-center py-6 text-sm text-muted-foreground gap-2',
+//         className
+//       )}
+//       {...props}
+//     >
+//       <div className="size-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+//       {children}
+//     </div>
+//   );
+// }
+
+function ComboboxCounter({ current, max }: { current: number; max: number }) {
+  const isLimitReached = current >= max;
   return (
-    <div
+    <span
       className={cn(
-        'flex items-center justify-center py-6 text-sm text-muted-foreground gap-2',
-        className
+        'text-[10px] font-medium tabular-nums select-none',
+        isLimitReached ? 'text-destructive' : 'text-muted-foreground/70'
       )}
-      {...props}
     >
-      <div className="size-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
-      {children}
-    </div>
+      {current}/{max}
+    </span>
   );
 }
 
@@ -88,6 +102,7 @@ function ComboboxInput({
   showTrigger?: boolean;
   showClear?: boolean;
   error?: boolean;
+  maxLength?: number;
 }) {
   return (
     <InputGroup className={cn('w-auto', className)}>
@@ -297,44 +312,87 @@ export function ComboboxField({
   onValueChange,
   placeholder,
   error,
-}: {
-  label?: string;
-  options: { label: string; value: string }[];
-  value?: string;
-  onValueChange?: (value: string | null) => void;
-  placeholder?: string;
-  error?: string;
-}) {
-  const {
-    query,
-    setQuery,
-    filteredOptions,
-    isLoading,
-    isEmpty,
-    handleValueChange,
-    handleKeyDown,
-    isOpen,
-    setIsOpen,
-  } = useComboboxLogic({
-    options,
-    onValueChange,
-  });
+  maxLength,
+  showCounter,
+}: ComboboxProps) {
+  const [query, setQuery] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+
+  const filteredOptions = useMemo(() => {
+    if (!query) return options;
+    return options.filter((option) => option.label.toLowerCase().includes(query.toLowerCase()));
+  }, [query, options]);
+
+  const handleQueryChange = useCallback(
+    (newQuery: string) => {
+      if (maxLength && newQuery.length > maxLength) return;
+
+      setQuery(newQuery);
+
+      if (timerRef.current) clearTimeout(timerRef.current);
+
+      if (newQuery) {
+        setIsLoading(true);
+        timerRef.current = setTimeout(() => setIsLoading(false), 400); //simulated
+      } else {
+        setIsLoading(false);
+      }
+    },
+    [maxLength]
+  );
+
+  const handleValueChange = useCallback(
+    (val: string | null) => {
+      onValueChange?.(val);
+      setQuery('');
+      setIsOpen(false);
+      if (timerRef.current) clearTimeout(timerRef.current);
+      setIsLoading(false);
+    },
+    [onValueChange]
+  );
+
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      setIsOpen(false);
+      setQuery('');
+      setIsLoading(false);
+    }
+  }, []);
+
+  const isEmpty = query !== '' && filteredOptions.length === 0 && !isLoading;
 
   return (
     <div className="space-y-1.5">
-      {label && <label className="text-sm font-medium px-1">{label}</label>}
+      <div className="flex items-center justify-between px-1">
+        {label && <label className="text-sm font-medium">{label}</label>}
+
+        {showCounter && maxLength && <ComboboxCounter current={query.length} max={maxLength} />}
+      </div>
+
       <Combobox
         value={value}
         onValueChange={handleValueChange}
         open={isOpen}
         onOpenChange={setIsOpen}
         inputValue={query}
-        onInputValueChange={setQuery}
+        onInputValueChange={handleQueryChange}
       >
-        <ComboboxInput placeholder={placeholder} error={!!error} onKeyDown={handleKeyDown} />
+        <ComboboxInput
+          placeholder={placeholder}
+          error={!!error}
+          onKeyDown={handleKeyDown}
+          maxLength={maxLength}
+        />
+
         <ComboboxContent>
           {isLoading ? (
-            <ComboboxLoading>Loading...</ComboboxLoading>
+            <div className="flex items-center justify-center py-6 text-sm text-muted-foreground gap-2">
+              <div className="size-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+              Loading...
+            </div>
           ) : (
             <>
               <ComboboxList>
@@ -344,15 +402,22 @@ export function ComboboxField({
                   </ComboboxItem>
                 ))}
               </ComboboxList>
-              {isEmpty && <ComboboxEmpty>No results found</ComboboxEmpty>}
+
+              {isEmpty && (
+                <div className="flex w-full justify-center py-4 text-center text-sm text-muted-foreground">
+                  No results found
+                </div>
+              )}
             </>
           )}
         </ComboboxContent>
       </Combobox>
-      {error && <ComboboxError message={error} />}
+
+      {error && <p className="text-xs text-destructive mt-1.5 px-1">{error}</p>}
     </div>
   );
 }
+
 export {
   Combobox,
   ComboboxInput,
@@ -368,8 +433,5 @@ export {
   ComboboxChip,
   ComboboxChipsInput,
   ComboboxTrigger,
-  ComboboxValue,
   useComboboxAnchor,
-  ComboboxError,
-  ComboboxLoading,
 };

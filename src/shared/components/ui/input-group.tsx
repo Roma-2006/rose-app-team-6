@@ -14,7 +14,7 @@ function InputGroup({ className, ...props }: React.ComponentProps<'div'>) {
       data-slot="input-group"
       role="group"
       className={cn(
-        'group/input-group relative flex h-12  w-full min-w-0 items-center rounded-md border border-zinc-300 bg-white transition-all outline-none focus-within:border-maroon-600 focus-within:ring-maroon-600 hover:border-zinc-400 has-[[data-slot][aria-invalid=true]]:border-red-600 has-[[data-slot][aria-invalid=true]]:ring-red-600/20 in-data-[slot=combobox-content]:focus-within:border-inherit in-data-[slot=combobox-content]:focus-within:ring-0 has-data-[align=block-end]:rounded-3xl has-data-[align=block-start]:rounded-3xl has-[textarea]:rounded-2xl has-[>textarea]:h-auto disabled:cursor-not-allowed disabled:bg-zinc-100 disabled:text-zinc-500',
+        'group/input-group relative flex h-12  w-full min-w-0 items-center rounded-md border border-zinc-300 bg-white transition-all outline-none focus-within:border-maroon-600 focus-within:ring-maroon-600 hover:border-zinc-400 has-[[data-slot][aria-invalid=true]]:border-red-600 has-[[data-slot][aria-invalid=true]]:ring-red-600/20 in-data-[slot=combobox-content]:focus-within:border-inherit in-data-[slot=combobox-content]:focus-within:ring-0 has-data-[align=block-end]:rounded-3xl has-data-[align=block-start]:rounded-3xl has-[textarea]:rounded-2xl has-[>textarea]:h-auto disabled:cursor-not-allowed disabled:bg-zinc-100 disabled:text-zinc-500 dark:border-zinc-800 dark:bg-zinc-700 dark:text-zinc-50 dark:placeholder:text-zinc-400',
 
         className
       )}
@@ -102,7 +102,7 @@ function InputGroupText({ className, ...props }: React.ComponentProps<'span'>) {
   return (
     <span
       className={cn(
-        'group/input-group relative flex h-12  w-full min-w-0 items-center rounded-md border border-zinc-300 bg-white transition-all outline-none focus-within:border-maroon-600  focus-within:ring-maroon-600 hover:border-zinc-400 has-[[data-slot][aria-invalid=true]]:border-destructive has-[[data-slot][aria-invalid=true]]:ring-2 has-[[data-slot][aria-invalid=true]]:ring-destructive/20 in-data-[slot=combobox-content]:focus-within:border-inherit in-data-[slot=combobox-content]:focus-within:ring-0 has-data-[align=block-end]:rounded-3xl has-data-[align=block-start]:rounded-3xl has-[textarea]:rounded-2xl has-[>textarea]:h-auto'
+        'group/input-group relative text- flex h-12  w-full min-w-0 items-center rounded-md border border-zinc-300 bg-white transition-all outline-none focus-within:border-maroon-600  focus-within:ring-maroon-600 hover:border-zinc-400 has-[[data-slot][aria-invalid=true]]:border-destructive has-[[data-slot][aria-invalid=true]]:ring-2 has-[[data-slot][aria-invalid=true]]:ring-destructive/20 in-data-[slot=combobox-content]:focus-within:border-inherit in-data-[slot=combobox-content]:focus-within:ring-0 has-data-[align=block-end]:rounded-3xl has-data-[align=block-start]:rounded-3xl has-[textarea]:rounded-2xl has-[>textarea]:h-auto'
       )}
       {...props}
     />

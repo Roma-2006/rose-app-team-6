@@ -7,19 +7,20 @@ export interface SelectOption {
 }
 
 export interface ComboboxProps {
-  options: { label: string; value: string }[];
+  options: SelectOption[];
   value?: string;
   onValueChange?: (value: string | null) => void;
   onChange?: (value: string | null) => void;
   placeholder?: string;
   error?: string;
   label?: string;
+  maxLength?: number;
+  showCounter?: boolean;
 }
-
 export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   error?: string;
-  showCount?: boolean;
-  maxLength?: number;
-  charCountText?: string;
   label?: string;
+  showCount?: boolean;
+  autoResize?: boolean;
+  charCountText?: string;
 }

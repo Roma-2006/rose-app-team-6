@@ -33,7 +33,7 @@ function SelectTrigger({
       data-size={size}
       aria-invalid={error}
       className={cn(
-        "flex w-full h-12 px-4 items-center justify-between rounded-md gap-1.5 bg-white border border-zinc-300 text-sm text-zinc-500 whitespace-nowrap transition-[color,box-shadow,background-color] outline-none focus:border-maroon-600 focus:ring-maroon-600/30 disabled:cursor-not-allowed disabled:bg-zinc-100 disabled:text-zinc-500 aria-invalid:border-red-600 aria-invalid:ring-red-600 data-placeholder:text-zinc-500 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-1.5 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 hover:border-zinc-400",
+        "flex w-full h-12 px-4 py-3 items-center justify-between rounded-md gap-1.5 bg-white border border-zinc-300 text-sm text-zinc-500 whitespace-nowrap transition-[color,box-shadow,background-color] outline-none focus:border-maroon-600 focus:ring-maroon-600/30 disabled:cursor-not-allowed disabled:bg-zinc-100 disabled:text-zinc-500 aria-invalid:border-red-600 aria-invalid:ring-red-600 data-placeholder:text-zinc-500 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-1.5 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-700 dark:text-zinc-50 dark:placeholder:text-zinc-400",
         className
       )}
       {...props}
