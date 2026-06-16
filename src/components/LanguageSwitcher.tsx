@@ -19,7 +19,7 @@ export default function LanguageSwitcher() {
   return (
     <button
       onClick={toggleLanguage}
-      className="px-4 py-2 bg-primary hover:bg-primary-hover text-white font-medium rounded-xl shadow-sm transition-all text-sm active:scale-95"
+      className="px-4 py-2 bg-primary hover:bg-primary-hover text-primary-foreground font-medium rounded-xl shadow-sm transition-all text-sm active:scale-95"
     >
       {locale === 'ar' ? 'Switch to English 🇬🇧' : 'التغيير إلى العربية 🇪🇬'}
     </button>

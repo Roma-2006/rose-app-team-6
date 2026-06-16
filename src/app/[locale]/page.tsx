@@ -14,7 +14,7 @@ export default async function Home({ params }: PageProps) {
     <main className="bg-background min-h-screen flex flex-col items-center justify-center p-6 text-center">
       <div className="bg-card-bg p-8 rounded-2xl shadow-sm border border-card-bg max-w-md w-full flex flex-col items-center">
         {/* Language Switcher */}
-        <div className="mb-6 w-full flex justify-end">
+        <div className="mb-6 w-full flex justify-end gap-2">
           <LanguageSwitcher />
           <ThemeToggle />
         </div>
@@ -23,7 +23,7 @@ export default async function Home({ params }: PageProps) {
           {locale === 'ar' ? 'مرحباً بك في تطبيق روز' : 'Welcome to Rose App'}
         </h1>
 
-        <div className="inline-flex items-center gap-2 px-4 py-2 bg-card-bg rounded-full text-sm font-medium text-secondary">
+        <div className="inline-flex items-center gap-2 px-4 py-2 bg-card-bg rounded-full text-sm font-medium text-foreground">
           <span>Active Locale:</span>
           <span className="uppercase text-primary font-bold">{locale}</span>
         </div>
