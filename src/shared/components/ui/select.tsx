@@ -33,7 +33,7 @@ function SelectTrigger({
       data-size={size}
       aria-invalid={error}
       className={cn(
-        "flex w-full h-12 px-4 py-3 items-center justify-between rounded-md gap-1.5 bg-white border border-zinc-300 text-sm text-zinc-500 whitespace-nowrap transition-[color,box-shadow,background-color] outline-none focus:border-maroon-600 focus:ring-maroon-600/30 disabled:cursor-not-allowed disabled:bg-zinc-100 disabled:text-zinc-500 aria-invalid:border-red-600 aria-invalid:ring-red-600 data-placeholder:text-zinc-500 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-1.5 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-700 dark:text-zinc-50 dark:placeholder:text-zinc-400",
+        "flex w-full h-12 px-4 py-3 items-center justify-between rounded-md gap-1.5 bg-background border border-border text-sm text-muted-foreground whitespace-nowrap transition-[color,box-shadow,background-color] outline-none focus:border-primary focus:ring-primary/30 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground aria-invalid:border-error aria-invalid:ring-error data-placeholder:text-muted-foreground data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-1.5 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 hover:border-muted-foreground dark:border-border dark:bg-secondary dark:text-secondary-foreground dark:placeholder:text-muted-foreground",
         className
       )}
       {...props}
@@ -74,7 +74,7 @@ function SelectContent({
           data-slot="select-content"
           data-align-trigger={alignItemWithTrigger}
           className={cn(
-            'relative isolate z-50 max-h-(--available-height) w-(--anchor-width) min-w-36 origin-(--transform-origin) overflow-x-hidden overflow-y-auto rounded-3xl bg-popover text-popover-foreground shadow-lg ring-1 ring-foreground/5 duration-100 data-[align-trigger=true]:animate-none data-[side=bottom]:slide-in-from-top-2 data-[side=inline-end]:slide-in-from-left-2 data-[side=inline-start]:slide-in-from-right-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 dark:ring-foreground/10 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95',
+            'relative isolate z-50 max-h-(--available-height) w-(--anchor-width) min-w-36 origin-(--transform-origin) overflow-x-hidden overflow-y-auto rounded-3xl bg-background text-popover-foreground shadow-lg ring-1 ring-foreground/5 duration-100 data-[align-trigger=true]:animate-none data-[side=bottom]:slide-in-from-top-2 data-[side=inline-end]:slide-in-from-left-2 data-[side=inline-start]:slide-in-from-right-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 dark:ring-foreground/10 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95',
             className
           )}
           {...props}
@@ -103,8 +103,7 @@ function SelectItem({ className, children, ...props }: SelectPrimitive.Item.Prop
     <SelectPrimitive.Item
       data-slot="select-item"
       className={cn(
-        'relative flex w-full cursor-default items-center gap-2.5 rounded-2xl py-2 pe-8 ps-3 text-sm font-medium outline-hidden select-none focus:bg-accent focus:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50',
-        'dark:focus:bg-zinc-800 dark:text-zinc-100',
+        'relative flex w-full cursor-default items-center gap-2.5 rounded-2xl py-2 pe-8 ps-3 text-sm font-medium outline-hidden select-none focus:bg-muted focus:text-foreground data-disabled:pointer-events-none data-disabled:opacity-50',
         className
       )}
       {...props}
@@ -172,7 +171,7 @@ function SelectScrollDownButton({
 function SelectError({ message }: { message?: string }) {
   if (!message) return null;
   return (
-    <p className="text-xs text-destructive mt-1.5 px-1 animate-in fade-in-0 slide-in-from-top-1 text-red-600">
+    <p className="text-xs text-error mt-1.5 px-1 animate-in fade-in-0 slide-in-from-top-1">
       {message}
     </p>
   );
@@ -195,7 +194,7 @@ function SelectField({
 }) {
   return (
     <div className="space-y-1.5">
-      {label && <label className="text-sm font-medium px-1">{label}</label>}
+      {label && <label className="text-sm text-foreground font-medium px-1">{label}</label>}
       <Select value={value ?? undefined} onValueChange={onValueChange}>
         <SelectTrigger error={!!error}>
           <SelectValue placeholder={placeholder} />

@@ -1,5 +1,3 @@
-// @/shared/components/ui/forms-logic/types.ts
-
 export interface SelectOption {
   value: string;
   label: string;
