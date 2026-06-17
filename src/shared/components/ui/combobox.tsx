@@ -13,13 +13,9 @@ import {
   InputGroupButton,
   InputGroupInput,
 } from '@/shared/components/ui/input-group';
-import { ChevronDownIcon, XIcon, CheckIcon } from 'lucide-react';
+import { ChevronDownIcon, XIcon, CheckIcon, Loader2 } from 'lucide-react';
 
 const Combobox = ComboboxPrimitive.Root;
-
-// function ComboboxValue({ ...props }: ComboboxPrimitive.Value.Props) {
-//   return <ComboboxPrimitive.Value data-slot="combobox-value" {...props} />;
-// }
 
 function ComboboxError({ message }: { message?: string }) {
   if (!message) return null;
@@ -29,25 +25,6 @@ function ComboboxError({ message }: { message?: string }) {
     </p>
   );
 }
-
-// function ComboboxLoading({
-//   className,
-//   children = 'Loading...',
-//   ...props
-// }: React.ComponentProps<'div'>) {
-//   return (
-//     <div
-//       className={cn(
-//         'flex items-center justify-center py-6 text-sm text-muted-foreground gap-2',
-//         className
-//       )}
-//       {...props}
-//     >
-//       <div className="size-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
-//       {children}
-//     </div>
-//   );
-// }
 
 function ComboboxCounter({ current, max }: { current: number; max: number }) {
   const isLimitReached = current >= max;
@@ -314,42 +291,47 @@ export function ComboboxField({
   error,
   maxLength,
   showCounter,
-}: ComboboxProps) {
+  isAsync = false,
+  onSearch,
+  loading: externalLoading,
+}: ComboboxProps & {
+  isAsync?: boolean;
+  onSearch?: (q: string) => Promise<void>;
+  loading?: boolean;
+}) {
   const [query, setQuery] = useState('');
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const [internalLoading, setInternalLoading] = useState(false);
 
-  const filteredOptions = useMemo(() => {
-    if (!query) return options;
-    return options.filter((option) => option.label.toLowerCase().includes(query.toLowerCase()));
-  }, [query, options]);
+  const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const isLoading = externalLoading ?? internalLoading;
 
   const handleQueryChange = useCallback(
     (newQuery: string) => {
       if (maxLength && newQuery.length > maxLength) return;
-
       setQuery(newQuery);
 
-      if (timerRef.current) clearTimeout(timerRef.current);
+      if (isAsync && onSearch) {
+        if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
 
-      if (newQuery) {
-        setIsLoading(true);
-        timerRef.current = setTimeout(() => setIsLoading(false), 400); //simulated
-      } else {
-        setIsLoading(false);
+        setInternalLoading(true);
+        debounceTimerRef.current = setTimeout(async () => {
+          try {
+            await onSearch(newQuery);
+          } finally {
+            setInternalLoading(false);
+          }
+        }, 500);
       }
     },
-    [maxLength]
+    [isAsync, onSearch, maxLength]
   );
 
   const handleValueChange = useCallback(
     (val: string | null) => {
       onValueChange?.(val);
-      setQuery('');
       setIsOpen(false);
-      if (timerRef.current) clearTimeout(timerRef.current);
-      setIsLoading(false);
     },
     [onValueChange]
   );
@@ -357,18 +339,19 @@ export function ComboboxField({
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
       setIsOpen(false);
-      setQuery('');
-      setIsLoading(false);
     }
   }, []);
+  const displayedOptions = useMemo(() => {
+    if (!query.trim()) return options;
 
-  const isEmpty = query !== '' && filteredOptions.length === 0 && !isLoading;
+    return options.filter((opt) => opt.label.toLowerCase().includes(query.toLowerCase()));
+  }, [options, query]);
 
+  const isEmpty = query.trim() !== '' && displayedOptions.length === 0;
   return (
     <div className="space-y-1.5">
       <div className="flex items-center justify-between px-1">
         {label && <label className="text-sm text-foreground font-medium">{label}</label>}
-
         {showCounter && maxLength && <ComboboxCounter current={query.length} max={maxLength} />}
       </div>
 
@@ -388,35 +371,38 @@ export function ComboboxField({
         />
 
         <ComboboxContent>
-          {isLoading ? (
-            <div className="flex items-center justify-center py-6 text-sm text-muted-foreground gap-2">
-              <div className="size-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
-              Loading...
-            </div>
-          ) : (
-            <>
-              <ComboboxList>
-                {filteredOptions.map((opt) => (
-                  <ComboboxItem key={opt.value} value={opt.value}>
-                    {opt.label}
-                  </ComboboxItem>
-                ))}
-              </ComboboxList>
+          <ComboboxList>
+            {isLoading && displayedOptions.length === 0 && (
+              <div className="flex flex-col items-center justify-center py-10 text-sm text-muted-foreground gap-3">
+                <Loader2 className="size-5 animate-spin text-primary" />
+                <span>Searching Rose App...</span>
+              </div>
+            )}
 
-              {isEmpty && (
-                <div className="flex w-full justify-center py-4 text-center text-sm text-muted-foreground">
-                  No results found
-                </div>
-              )}
-            </>
-          )}
+            {displayedOptions.map((opt) => (
+              <ComboboxItem key={opt.value} value={opt.value}>
+                {opt.label}
+              </ComboboxItem>
+            ))}
+
+            {isEmpty && !isLoading && (
+              <div className="py-8 text-center text-sm text-muted-foreground animate-in fade-in-50">
+                No results found for &ldquo;{query}&rdquo;
+              </div>
+            )}
+
+            {isEmpty && isLoading && (
+              <div className="flex items-center justify-center py-4">
+                <Loader2 className="size-4 animate-spin text-muted-foreground" />
+              </div>
+            )}
+          </ComboboxList>
         </ComboboxContent>
       </Combobox>
       {error && <ComboboxError message={error} />}
     </div>
   );
 }
-
 export {
   Combobox,
   ComboboxInput,

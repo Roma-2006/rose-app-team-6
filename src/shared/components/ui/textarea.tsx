@@ -3,7 +3,14 @@
 import * as React from 'react';
 import { useMemo, useId, useRef, useEffect } from 'react';
 import { cn } from '@/shared/lib/utils/tailwind-cn';
-import { TextareaProps } from '@/shared/types/components';
+
+interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+  error?: string;
+  label?: string;
+  showCount?: boolean;
+  autoResize?: boolean;
+  charCountText?: string;
+}
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   (
