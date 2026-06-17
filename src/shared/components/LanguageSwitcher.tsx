@@ -9,10 +9,8 @@ export default function LanguageSwitcher() {
   const pathname = usePathname();
 
   const toggleLanguage = () => {
-    // إذا كانت اللغة الحالية عربي يحول لإنجليزي والعكس
     const nextLocale = locale === 'ar' ? 'en' : 'ar';
 
-    // يغير اللغة مع الحفاظ على نفس الصفحة التي يقف عليها المستخدم
     router.replace(pathname, { locale: nextLocale });
   };
 
