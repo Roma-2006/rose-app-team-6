@@ -1,28 +1,43 @@
 import type { Metadata } from 'next';
-import './globals.css';
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
-import QueryProvider from '@/shared/providers/QueryProvider';
+import { hasLocale, NextIntlClientProvider } from 'next-intl';
+import QueryProvider from '@/shared/providers/react-query.provider';
+import { notFound } from 'next/navigation';
+import { routing } from '@/i18n/routing';
+import { LocaleLayoutProps } from '@/shared/lib/types/locale-layout-props';
+import { getTranslations } from 'next-intl/server';
 
-export const metadata: Metadata = {
-  title: 'Rose App',
-  description: 'Rose application built with Next.js',
-};
+// export const metadata: Metadata = {
+//   title: 'Rose App',
+//   description: 'Rose application built with Next.js',
+// };
 
-export default async function RootLayout({
-  children,
+export async function generateMetadata({
   params,
-}: Readonly<{
-  children: React.ReactNode;
-  params: Promise<{ locale: string }>;
-}>) {
-  const { locale } = await params;
-  const messages = await getMessages();
+}: {
+  params: LocaleLayoutProps['params'];
+}): Promise<Metadata> {
+  const paramsResult = await params;
+  const locale = paramsResult.locale;
+  const t = await getTranslations({ locale });
+  const title = t('app-title');
+  return {
+    title,
+  };
+}
 
+export async function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
+  const paramsResult = await params;
+  const locale = paramsResult.locale;
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
   return (
     <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <body>
-        <NextIntlClientProvider locale={locale} messages={messages}>
+        <NextIntlClientProvider locale={locale}>
           <QueryProvider>{children}</QueryProvider>
         </NextIntlClientProvider>
       </body>
