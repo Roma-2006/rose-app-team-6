@@ -1,15 +1,25 @@
 'use client';
 
-import { useSyncExternalStore } from 'react';
+import { useEffect, useSyncExternalStore } from 'react';
 import { useTheme } from 'next-themes';
 import { useLocale } from 'next-intl';
-import { Moon, Sun } from 'lucide-react';
+import { Moon, Sun, Monitor, LucideIcon } from 'lucide-react';
 
-const LABELS = {
-  ar: { dark: 'داكن', light: 'فاتح' },
-  en: { dark: 'Dark', light: 'Light' },
-} as const;
-type Locale = keyof typeof LABELS;
+type Locale = 'ar' | 'en';
+type ThemeOption = 'light' | 'system' | 'dark';
+
+const LABELS: Record<Locale, Record<ThemeOption, string>> = {
+  ar: { light: 'فاتح', system: 'تلقائي', dark: 'داكن' },
+  en: { light: 'Light', system: 'System', dark: 'Dark' },
+};
+
+const ICONS: Record<ThemeOption, LucideIcon> = {
+  light: Sun,
+  system: Monitor,
+  dark: Moon,
+};
+
+const THEME_OPTIONS: ThemeOption[] = ['light', 'system', 'dark'];
 
 const subscribe = () => () => {};
 
@@ -23,27 +33,42 @@ function useIsMounted() {
 
 export function ThemeToggle() {
   const isMounted = useIsMounted();
-  const { resolvedTheme, setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
   const locale = useLocale() as Locale;
 
-  const themeHandler = (newTheme: string) => {
-    setTheme(newTheme);
-
-    document.cookie = `theme=${newTheme}; path=/; max-age=31536000`;
-  };
+  useEffect(() => {
+    if (theme) {
+      document.cookie = `theme=${theme}; path=/; max-age=31536000`;
+    }
+  }, [theme]);
 
   if (!isMounted) return null;
 
+  const activeTheme = (theme ?? 'system') as ThemeOption;
+
   return (
-    <button
-      onClick={() => {
-        const newTheme = resolvedTheme === 'dark' ? 'light' : 'dark';
-        themeHandler(newTheme);
-      }}
-      className="flex items-center gap-2 rounded-md border px-3 py-1.5 text-sm font-medium transition-colors text-primary hover:bg-primary hover hover:text-primary-foreground "
+    <div
+      role="group"
+      aria-label={LABELS[locale].system}
+      className="inline-flex items-center gap-1 rounded-full border border-border-soft bg-bg-plain p-1"
     >
-      {resolvedTheme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
-      <span>{resolvedTheme === 'dark' ? LABELS[locale].light : LABELS[locale].dark}</span>
-    </button>
+      {THEME_OPTIONS.map((option) => {
+        const Icon = ICONS[option];
+        return (
+          <button
+            key={option}
+            onClick={() => setTheme(option)}
+            aria-pressed={activeTheme === option}
+            aria-label={LABELS[locale][option]}
+            className={[
+              'flex items-center rounded-full p-3 text-text-plain transition-colors',
+              activeTheme === option ? 'bg-bg-muted' : '',
+            ].join(' ')}
+          >
+            <Icon size={24} />
+          </button>
+        );
+      })}
+    </div>
   );
 }

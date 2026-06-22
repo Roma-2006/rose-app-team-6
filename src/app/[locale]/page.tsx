@@ -18,26 +18,26 @@ export default async function Home({ params }: PageProps) {
     { id: '2', label: 'hello' },
   ];
   return (
-    <>
-      <main className="bg-background min-h-screen flex flex-col items-center justify-center p-6 text-center">
-        <div className=" p-8 rounded-2xl shadow-sm border border-card-bg max-w-md w-full flex flex-col items-center">
-          {/* Language Switcher */}
-          <div className="mb-6 w-full flex justify-end gap-2">
-            <LanguageSwitcher />
-            <ThemeToggle />
-          </div>
-          <BaseButton variant="ghost" />
-          <BaseBadge variant="default" />
-          <BaseCheckbox list={list} />
-          <h1 className="text-3xl font-extrabold text-primary mb-2 tracking-tight">
-            {locale === 'ar' ? 'مرحباً بك في تطبيق روز' : 'Welcome to Rose App'}
-          </h1>
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-card-bg rounded-full text-sm font-medium text-foreground">
-            <span>Active Locale:</span>
-            <span className="uppercase text-primary font-bold">{locale}</span>
-          </div>
+    <main className="bg-bg-plain min-h-screen flex flex-col items-center justify-center p-6 text-center">
+      <div className="bg-bg-plain p-8 shadow-subtle-lg border border-border-primary radius-lg max-w-md w-full flex flex-col items-center">
+        {/* Language Switcher */}
+        <BaseButton variant="ghost" />
+        <BaseBadge variant="default" />
+        <BaseCheckbox list={list} />
+        <div className="mb-6 w-full flex justify-end gap-2">
+          <LanguageSwitcher />
+          <ThemeToggle />
         </div>
-      </main>
-    </>
+
+        <h1 className="text-3xl font-extrabold text-text-primary mb-2 tracking-tight">
+          {locale === 'ar' ? 'مرحباً بك في تطبيق روز' : 'Welcome to Rose App'}
+        </h1>
+
+        <div className="inline-flex items-center gap-2 px-4 py-2 bg-bg-secondary-faint rounded-full shadow-shadow-subtle-lg text-sm font-medium text-foreground">
+          <span>Active Locale:</span>
+          <span className="uppercase text-text-primary font-bold">{locale}</span>
+        </div>
+      </div>
+    </main>
   );
 }
