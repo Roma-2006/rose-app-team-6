@@ -48,10 +48,10 @@
 
   /* Text ----------------------------------------------------------------------------*/
   --text-plain: var(--color-zinc-800);
-  --text-subtle: var(--color-zinc-50);
-  --text-muted: var(--color-zinc-100);
-  --text-soft: var(--color-zinc-200);
-  --text-default: var(--color-zinc-500);
+  --text-subtle: var(--color-zinc-300);
+  --text-muted: var(--color-zinc-400);
+  --text-soft: var(--color-zinc-500);
+  --text-default: var(--color-zinc-600);
   --text-inverse: var(--color-white);
 
   /* Primary */
@@ -87,41 +87,41 @@
 
   /* Border ----------------------------------------------------------------------------*/
   --border-plain: var(--color-zinc-800);
-  --border-subtle: var(--color-zinc-50);
-  --border-muted: var(--color-zinc-100);
-  --border-soft: var(--color-zinc-200);
-  --border-default: var(--color-zinc-500);
+  --border-subtle: var(--color-zinc-100);
+  --border-muted: var(--color-zinc-200);
+  --border-soft: var(--color-zinc-300);
+  --border-default: var(--color-zinc-400);
   --border-inverse: var(--color-white);
 
  /* Primary */
-  --text-primary: var(--color-maroon-800);
-  --text-primary-faint: var(--color-maroon-100);
-  --text-primary-fade: var(--color-maroon-50);
+  --border-primary: var(--color-maroon-800);
+  --border-primary-faint: var(--color-maroon-100);
+  --border-primary-fade: var(--color-maroon-50);
 
   /* info */
-  --text-info: var(--color-blue-600);
-  --text-info-faint: var(--color-blue-100);
-  --text-info-fade: var(--color-blue-50);
+  --border-info: var(--color-blue-600);
+  --border-info-faint: var(--color-blue-100);
+  --border-info-fade: var(--color-blue-50);
 
   /* secondary */
-  --text-secondary: var(--color-soft-pink-400);
-  --text-secondary-faint: var(--color-soft-pink-100);
-  --text-secondary-fade: var(--color-soft-pink-50);
+  --border-secondary: var(--color-soft-pink-400);
+  --border-secondary-faint: var(--color-soft-pink-100);
+  --border-secondary-fade: var(--color-soft-pink-50);
 
   /* success */
-  --text-success: var(--color-emerald-500);
-  --text-success-faint: var(--color-emerald-100);
-  --text-success-fade: var(--color-emerald-50);
+  --border-success: var(--color-emerald-500);
+  --border-success-faint: var(--color-emerald-100);
+  --border-success-fade: var(--color-emerald-50);
 
   /* warning */
-  --text-warning: var(--color-yellow-400);
-  --text-warning-faint: var(--color-yellow-100);
-  --text-warning-fade: var(--color-yellow-50);
+  --border-warning: var(--color-yellow-400);
+  --border-warning-faint: var(--color-yellow-100);
+  --border-warning-fade: var(--color-yellow-50);
 
   /* danger */
-  --text-danger: var(--color-red-600);
-  --text-danger-faint: var(--color-red-100);
-  --text-danger-fade: var(--color-red-50);
+  --border-danger: var(--color-red-600);
+  --border-danger-faint: var(--color-red-100);
+  --border-danger-fade: var(--color-red-50);
 
   /* Shadows -----------------------------------------------------------------------------*/
 
@@ -297,6 +297,7 @@
 
   /* Primary */
   --color-bg-primary: var(--bg-primary);
+  --color-bg-primary-saturated: var(--bg-primary-saturated);
   --color-bg-primary-faint: var(--bg-primary-faint);
   --color-bg-primary-fade: var(--bg-primary-fade);
 
@@ -429,7 +430,7 @@
 
   /* shadows -------------------------------------------------------------------------------- */
 
-  --shadow-subtle-sm : : var(--app-shadow-subtle-sm);
+  --shadow-subtle-sm : var(--app-shadow-subtle-sm);
   --shadow-subtle : var(--app-shadow-subtle);
   --shadow-subtle-lg : var(--app-shadow-subtle-lg);
 
