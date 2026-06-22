@@ -1,5 +1,5 @@
-'use client';
-import Basebutton from '@/shared/components/custom-ui/Basebutton';
+import BaseBadge from '@/shared/components/custom-ui/BaseBadge';
+import BaseButton from '@/shared/components/custom-ui/BaseButton';
 import { BaseCheckbox } from '@/shared/components/custom-ui/BaseCheckbox';
 import LanguageSwitcher from '@/shared/components/LanguageSwitcher';
 import { ThemeToggle } from '@/shared/components/theme';
@@ -12,19 +12,23 @@ interface PageProps {
 
 export default async function Home({ params }: PageProps) {
   const { locale } = await params;
-  const handleLog = () => console.log('Hello Rowidaa');
+  // const handleLog = () => console.log('Hello Rowidaa');
+  const list = [
+    { id: '1', label: 'hi' },
+    { id: '2', label: 'hello' },
+  ];
   return (
     <>
-      <Basebutton handleClick={handleLog} />
-      <BaseCheckbox />
       <main className="bg-background min-h-screen flex flex-col items-center justify-center p-6 text-center">
-        <div className="bg-card-bg p-8 rounded-2xl shadow-sm border border-card-bg max-w-md w-full flex flex-col items-center">
+        <div className=" p-8 rounded-2xl shadow-sm border border-card-bg max-w-md w-full flex flex-col items-center">
           {/* Language Switcher */}
           <div className="mb-6 w-full flex justify-end gap-2">
             <LanguageSwitcher />
             <ThemeToggle />
           </div>
-
+          <BaseButton variant="ghost" />
+          <BaseBadge variant="default" />
+          <BaseCheckbox list={list} />
           <h1 className="text-3xl font-extrabold text-primary mb-2 tracking-tight">
             {locale === 'ar' ? 'مرحباً بك في تطبيق روز' : 'Welcome to Rose App'}
           </h1>

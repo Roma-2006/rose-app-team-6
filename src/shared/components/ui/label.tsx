@@ -14,7 +14,7 @@ function Label({
       data-slot="label"
       className={cn(
         'flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50',
-        variant === 'checkbox' && 'font-normal text-zinc-800 font-inter dark:text-zinc-50',
+        variant === 'checkbox' && 'font-normal text-subtle-foreground',
         className
       )}
       {...props}

@@ -9,22 +9,28 @@
   /* Base */
   --background: #ffffff;
   --foreground: #27272a;
-
+  /* default */
+  --default:var(--color-maroon-700);
   /* Primary — brand maroon */
   --primary: var(--color-maroon-600);
   --primary-hover: var(--color-maroon-700);
   --primary-foreground: #ffffff;
-
+  /* focus */
+  /* --focus-shadow: 0 0 0 3px #741C2140; */
   /* Secondary — soft maroon tint */
   --secondary: var(--color-maroon-50);
   --secondary-hover: var(--color-maroon-100);
-  --secondary-foreground: var(--color-maroon-700);
+  --secondary-foreground: var(--color-maroon-600);
 
   /* Accent — vivid magenta, for highlights, badges, secondary CTAs */
   --accent: var(--color-magenta-500);
   --accent-hover: var(--color-magenta-600);
   --accent-foreground: #ffffff;
-
+  /* subtle */
+  --subtle:var(--color-zinc-50);
+  --subtle-border:var(--color-zinc-400);
+  --subtle-foreground:var(--color-zinc-800);
+  --subtle-hover:var(--color-zinc-100);
   /* Surfaces */
   --card-bg: var(--color-zinc-50);
   --border: var(--color-zinc-200);
@@ -33,10 +39,17 @@
 
   /* Muted */
   --muted: var(--color-zinc-100);
-  --muted-foreground: var(--color-zinc-500);
-
+  --muted-foreground: var(--color-zinc-400);
+  --muted-border:var(--color-zinc-300);
+  /* ring */
+  --ring:var(--color-zinc-400);
   /* Disabled */
   --disabled: var(--color-zinc-300);
+  --disabled-foreground: var(--color-zinc-500);
+  /* outline */
+  --outline-bg:var(--background);
+  --outline:var(--color-maroon-600);
+  --outline-hover:var(--color-maroon-50);
 
   /* Status */
   --error: var(--color-red-600);
@@ -58,24 +71,31 @@
 
 .dark {
   /* Base */
-  --background: #0a0a0a;
+  --background:#27272A;
   --foreground: #ededed;
-
+  /* default */
+  --default:var(--color-soft-pink-300);
   /* Primary */
   --primary: var(--color-soft-pink-300);
   --primary-hover: var(--color-soft-pink-400);
-  --primary-foreground: var(--color-maroon-950);
+  --primary-foreground: var(--background);
+
+  /* focus */
+  /* --focus-shadow: 0 0 0 3px #FF85A240; */
 
   /* Secondary */
   --secondary: var(--color-zinc-700);
   --secondary-hover: var(--color-zinc-600);
-  --secondary-foreground: var(--color-zinc-50);
+  --secondary-foreground: var(--color-soft-pink-300);
 
   /* Accent */
   --accent: var(--color-magenta-400);
   --accent-hover: var(--color-magenta-300);
   --accent-foreground: var(--color-magenta-950);
-
+  /* outline */
+  --outline-bg:var(--color-zinc-800);
+  --outline:var(--color-soft-pink-300);
+  --outline-hover:var(--color-zinc-700);
   /* Surfaces */
   --card-bg: var(--color-zinc-700);
   --border: var(--color-zinc-800);
@@ -84,15 +104,21 @@
 
   /* Muted */
   --muted: var(--color-zinc-800);
-  --muted-foreground: var(--color-zinc-400);
+  --muted-foreground: var(--color-zinc-600);
+  --muted-border:var(--color-zinc-600);
 
   /* Disabled */
   --disabled: var(--color-zinc-700);
-
+  --disabled-foreground: var(--color-zinc-600);
+  /* subtle */
+  --subtle:var(--color-zinc-800);
+  --subtle-border:var(--color-zinc-500);
+  --subtle-foreground:var(--color-zinc-50);
+  --subtle-hover:var(--color-zinc-700);
   /* Status */
   --error: var(--color-red-500);
-  --error-hover: var(--color-red-400);
-  --error-foreground: #ffffff;
+  --error-hover: var(--color-red-600);
+  --error-foreground: var(--color-zinc-50);
 
   --success: var(--color-emerald-600);
   --success-hover: var(--color-emerald-500);
@@ -111,6 +137,9 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
+  /* default */
+  --color-default:var(--default);
+
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
   --color-primary-foreground: var(--primary-foreground);
@@ -118,11 +147,11 @@
   --color-secondary: var(--secondary);
   --color-secondary-hover: var(--secondary-hover);
   --color-secondary-foreground: var(--secondary-foreground);
-
+  /* focus */
+  /* --color-focus-shadow:var(--focus-shadow); */
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
   --color-accent-foreground: var(--accent-foreground);
-
   --color-card-bg: var(--card-bg);
   --color-border: var(--border);
   --color-input: var(--input);
@@ -130,8 +159,20 @@
 
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
+  --color-muted-border:var(--muted-border);
 
   --color-disabled: var(--disabled);
+  --color-disabled-foreground: var(--disabled-foreground);
+
+  /* outline */
+  --color-outline:var(--outline);
+  --color-outline-bg:var(--outline-bg);
+  --color-outline-hover:var(--outline-hover);
+  /* subtle */
+  --color-subtle:var(--subtle);
+  --color-subtle-border:var(--subtle-border);
+  --color-subtle-hover:var(--subtle-hover);
+  --color-subtle-foreground:var(--subtle-foreground);
 
   --color-error: var(--error);
   --color-error-hover: var(--error-hover);
@@ -148,7 +189,6 @@
   --color-info: var(--info);
   --color-info-hover: var(--info-hover);
   --color-info-foreground: var(--info-foreground);
-
   /* Soft Pink */
   --color-soft-pink-50: #fff1f5;
   --color-soft-pink-100: #ffe0e7;
@@ -234,6 +274,6 @@ html[dir='rtl'] {
 
 body {
   background: var(--background);
-  color: var(--foreground);
+  /* color: var(--foreground); */
   font-family: var(--font-sans);
 }

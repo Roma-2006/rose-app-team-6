@@ -5,10 +5,10 @@ import { Button } from '../ui/button';
 import { TBaseButtonProps } from '@/shared/types/base-button';
 
 export default function Basebutton({
-  loading = true,
+  loading,
   title = 'check',
   disabled,
-  handleClick,
+  // onClick,
   leftIcon,
   rightIcon,
   variant,
@@ -19,7 +19,7 @@ export default function Basebutton({
       aria-busy={loading}
       aria-label={iconOnly ? title : undefined}
       disabled={disabled || loading}
-      onClick={() => handleClick?.()}
+      // onClick={() => onClick?.()}
       size={iconOnly ? 'icon' : 'custom'}
       variant={variant}
     >
