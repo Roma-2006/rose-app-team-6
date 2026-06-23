@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
-import { hasLocale, NextIntlClientProvider } from 'next-intl';
-import QueryProvider from '@/shared/providers/react-query.provider';
+import { hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { LocaleLayoutProps } from '@/shared/lib/types/locale-layout-props';
 import { getTranslations } from 'next-intl/server';
+import Providers from '@/shared/providers/index';
 
 // export const metadata: Metadata = {
 //   title: 'Rose App',
@@ -37,9 +37,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   return (
     <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <body>
-        <NextIntlClientProvider locale={locale}>
-          <QueryProvider>{children}</QueryProvider>
-        </NextIntlClientProvider>
+        <Providers locale={locale}>{children}</Providers>
       </body>
     </html>
   );
