@@ -149,7 +149,7 @@ export default function CustomInput({
   };
 
   // Label styles Definitions
-  const baseLableStyle = `w-fit h-17 block mb-1.5 text-sm font-medium text-start`;
+  const baseLableStyle = `w-fit h-17 block  text-sm font-medium text-start`;
   const normalLableStyle = `text-zinc-800 dark:text-zinc-50`;
   const errorLableStyle = `text-red-600 dark:text-red-500`;
   const disabledLableStyle = `text-zinc-400 dark:text-zinc-600`;
@@ -179,7 +179,6 @@ export default function CustomInput({
   return (
     <Field.Root
       className={cn('items-start justify-start flex-col w-full max-w-[327px]', className)}
-      orientation="vertical"
       dir={isRtl ? 'rtl' : 'ltr'}
     >
       {label && variant !== 'otp' && (

@@ -31,7 +31,14 @@ export default async function Home({ params }: PageProps) {
         </div>
       </div>
 
-      <CustomInput variant="phone" placeholder="This is an error state" label="Lel" />
+      <CustomInput
+        variant="default"
+        label="input-label"
+        placeholder="placeholder"
+        disabled={false}
+        error={false}
+        id="sm"
+      />
     </main>
   );
 }
