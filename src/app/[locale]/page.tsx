@@ -1,5 +1,5 @@
-import CustomInput from '@/shared/components/global/custom-input';
 import LanguageSwitcher from '@/shared/components/global/LanguageSwitcher';
+import CustomInput from '@/shared/components/ui/custom-input';
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -27,17 +27,8 @@ export default async function Home({ params }: PageProps) {
           <span className="uppercase text-indigo-600 font-bold">{locale}</span>
         </div>
       </div>
-      <CustomInput
-        id="input-id"
-        label="input label "
-        variant="number"
-        disabled={false}
-        placeholder="placeholder
-      "
-        min={0}
-        max={100}
-        step={1}
-      />
+
+      <CustomInput variant="phone" placeholder="This is an error state" label="Lel" />
     </main>
   );
 }
