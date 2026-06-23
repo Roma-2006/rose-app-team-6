@@ -10,9 +10,10 @@ import {
   FieldTitle,
 } from '@/shared/components/ui/field';
 import { Label } from '@/shared/components/ui/label';
+import { TBaseCheckboxProps } from '@/shared/types/base-checkbox';
 import { useEffect, useState } from 'react';
 
-export function BaseCheckbox({ list, error = true, onChange }) {
+export function BaseCheckbox({ list, error, onChange }: TBaseCheckboxProps) {
   const [selected, setSelected] = useState<string[]>([]);
   const toggle = (id: string) => {
     setSelected((prev) => {
@@ -29,6 +30,7 @@ export function BaseCheckbox({ list, error = true, onChange }) {
         {list.map((item) => (
           <Field orientation="horizontal" key={item.id}>
             <Checkbox
+              aria-invalid={error ? true : false}
               id={item.id}
               name={item.id}
               checked={selected.includes(item.id)}
