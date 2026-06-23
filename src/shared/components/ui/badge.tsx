@@ -9,9 +9,9 @@ const badgeVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-primary text-primary-foreground hover:bg-primary-hover ',
-        secondary: 'bg-secondary text-secondary-foreground hover:secondary-hover',
-        subtle: 'bg-secondary-hover ',
+        primary: 'bg-bg-primary text-text-inverse hover:bg-bg-primary-saturated ',
+        secondary: 'bg-bg-secondary-faint text-text-primary hover:bg-bg-secondary-fade',
+        subtle: 'bg-bg-soft text-text-plain hover:bg-bg-muted ',
         destructive:
           'bg-destructive/10 text-destructive focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:focus-visible:ring-destructive/40 [a]:hover:bg-destructive/20',
         outline: 'border-border text-foreground [a]:hover:bg-muted [a]:hover:text-muted-foreground',
@@ -20,22 +20,34 @@ const badgeVariants = cva(
       },
     },
     defaultVariants: {
-      variant: 'default',
+      variant: 'primary',
     },
   }
 );
 
 function Badge({
   className,
-  variant = 'default',
+  variant,
   render,
+  'aria-label': ariaLabel,
+  'aria-live': ariaLive,
+  'aria-hidden': ariaHidden,
   ...props
-}: useRender.ComponentProps<'span'> & VariantProps<typeof badgeVariants>) {
+}: useRender.ComponentProps<'span'> &
+  VariantProps<typeof badgeVariants> & {
+    'aria-label'?: string;
+    'aria-live'?: 'polite' | 'assertive' | 'off';
+    'aria-hidden'?: boolean;
+  }) {
   return useRender({
     defaultTagName: 'span',
     props: mergeProps<'span'>(
       {
         className: cn(badgeVariants({ variant }), className),
+        role: ariaHidden ? 'presentation' : 'status',
+        'aria-label': ariaLabel,
+        'aria-live': ariaLive,
+        'aria-hidden': ariaHidden,
       },
       props
     ),

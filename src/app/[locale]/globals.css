@@ -5,54 +5,6 @@
 :root {
   /* Fonts */
   --font-sans: var(--font-sarabun);
-
-
-  /* Base*/
-  /* --background: #ffffff; */
-  /* --foreground: #27272a; */
-  /* default */
-  /* --default:var(--color-maroon-700); */
-  /* Primary — brand maroon */
-  /* --primary: var(--color-maroon-600); */
-  /* --primary-hover: var(--color-maroon-700); */
-  /* --primary-foreground: #ffffff; */
-  /* focus */
-  /* --focus-shadow: 0 0 0 3px #741C2140; */
-  /* Secondary — soft maroon tint */
-  /* --secondary: var(--color-maroon-50); */
-  /* --secondary-hover: var(--color-maroon-100); */
-  /* --secondary-foreground: var(--color-maroon-600); */
-
-  /* Accent — vivid magenta, for highlights, badges, secondary CTAs */
-  /* --accent: var(--color-magenta-500);
-  --accent-hover: var(--color-magenta-600);
-  --accent-foreground: #ffffff; */
-  /* subtle */
-  /* --subtle:var(--color-zinc-50);
-  --subtle-border:var(--color-zinc-400);
-  --subtle-foreground:var(--color-zinc-800);
-  --subtle-hover:var(--color-zinc-100); */
-  /* Surfaces */
-  /* --card-bg: var(--color-zinc-50);
-  --border: var(--color-zinc-200);
-  --input: #ffffff;
-  --ring: var(--color-maroon-400); */
-
-  /* Muted */
-  /* --muted: var(--color-zinc-100);
-  --muted-foreground: var(--color-zinc-400);
-  --muted-border:var(--color-zinc-300); */
-  /* ring */
-  /* --ring:var(--color-zinc-400); */
-  /* Disabled */
-  /* --disabled: var(--color-zinc-300); */
-  /* --disabled-foreground: var(--color-zinc-500); */
-  /* outline */
-  /* --outline-bg:var(--background); */
-  /* --outline:var(--color-maroon-600); */
-  /* --outline-hover:var(--color-maroon-50); */ */
-
-
   /* Background ------------------------------------------------------------------------*/
   --bg-plain: var(--color-white);
   --bg-subtle: var(--color-zinc-50);
@@ -65,7 +17,7 @@
 
   /* Primary */
   --bg-primary: var(--color-maroon-800);
-  --bg-primary-saturated : var(--color-maroon-700);
+  --bg-primary-saturated: var(--color-maroon-700);
   --bg-primary-faint: var(--color-maroon-100);
   --bg-primary-fade: var(--color-maroon-50);
 
@@ -194,57 +146,6 @@
 }
 
 .dark {
-
-  /* Base */
-  /* --background:#27272A;
-  --foreground: #ededed; */
-  /* default */
-  /* --default:var(--color-soft-pink-300); */
-  /* Primary */
-  /* --primary: var(--color-soft-pink-300);
-  --primary-hover: var(--color-soft-pink-400);
-  --primary-foreground: var(--background); */
-
-  /* focus */
-  /* --focus-shadow: 0 0 0 3px #FF85A240; */
-
-  /* Secondary */
-  /* --secondary: var(--color-zinc-700);
-  --secondary-hover: var(--color-zinc-600);
-  --secondary-foreground: var(--color-soft-pink-300); */
-
-  /* Accent */
-  /* --accent: var(--color-magenta-400);
-  --accent-hover: var(--color-magenta-300);
-  --accent-foreground: var(--color-magenta-950); */
-  /* outline */
-  /* --outline-bg:var(--color-zinc-800);
-  --outline:var(--color-soft-pink-300);
-  --outline-hover:var(--color-zinc-700); */
-  /* Surfaces */
-  /* --card-bg: var(--color-zinc-700);
-  --border: var(--color-zinc-800);
-  --input: var(--color-zinc-900);
-  --ring: var(--color-soft-pink-400); */
-
-  /* Muted */
-  /* --muted: var(--color-zinc-800);
-  --muted-foreground: var(--color-zinc-600);
-  --muted-border:var(--color-zinc-600); */
-
-  /* Disabled */
-  /* --disabled: var(--color-zinc-700);
-  --disabled-foreground: var(--color-zinc-600); */
-  /* subtle */
-  /* --subtle:var(--color-zinc-800);
-  --subtle-border:var(--color-zinc-500);
-  --subtle-foreground:var(--color-zinc-50);
-  --subtle-hover:var(--color-zinc-700); */
-  /* Status */
-  /* --error: var(--color-red-500);
-  --error-hover: var(--color-red-600);
-  --error-foreground: var(--color-zinc-50); */
-
   /* Background --------------------------------------------------------------------*/
   --bg-plain: var(--color-zinc-700);
   --bg-subtle: var(--color-zinc-800);
@@ -396,45 +297,6 @@
   --color-bg-elevated: var(--bg-elevated);
   --color-bg-overlay: var(--bg-overlay);
   --color-foreground: var(--foreground);
-
-
-  /* default */
-  /* --color-default:var(--default); */
-
-  /* --color-primary: var(--primary);
-  --color-primary-hover: var(--primary-hover);
-  --color-primary-foreground: var(--primary-foreground);
-
-  --color-secondary: var(--secondary);
-  --color-secondary-hover: var(--secondary-hover);
-  --color-secondary-foreground: var(--secondary-foreground); */
-  /* focus */
-  /* --color-focus-shadow:var(--focus-shadow); */
-  /* --color-accent: var(--accent);
-  --color-accent-hover: var(--accent-hover);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-card-bg: var(--card-bg);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring); */
-
-  /* --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted-border:var(--muted-border);
-
-  --color-disabled: var(--disabled);
-  --color-disabled-foreground: var(--disabled-foreground); */
-
-  /* outline */
-  /* --color-outline:var(--outline);
-  --color-outline-bg:var(--outline-bg);
-  --color-outline-hover:var(--outline-hover); */
-  /* subtle */
-  /* --color-subtle:var(--subtle);
-  --color-subtle-border:var(--subtle-border);
-  --color-subtle-hover:var(--subtle-hover);
-  --color-subtle-foreground:var(--subtle-foreground); */
-
   /* Primary */
   --color-bg-primary: var(--bg-primary);
   --color-bg-primary-saturated: var(--bg-primary-saturated);
@@ -463,6 +325,7 @@
 
   /* danger */
   --color-bg-danger: var(--bg-danger);
+  --color-bg-danger-saturated: var(--bg-danger-saturated);
   --color-bg-danger-faint: var(--bg-danger-faint);
   --color-bg-danger-fade: var(--bg-danger-fade);
 
@@ -629,14 +492,13 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 
   /* shadows -------------------------------------------------------------------------------- */
+  --shadow-subtle-sm: var(--app-shadow-subtle-sm);
+  --shadow-subtle: var(--app-shadow-subtle);
+  --shadow-subtle-lg: var(--app-shadow-subtle-lg);
 
-  --shadow-subtle-sm : var(--app-shadow-subtle-sm);
-  --shadow-subtle : var(--app-shadow-subtle);
-  --shadow-subtle-lg : var(--app-shadow-subtle-lg);
-
-  --shadow-soft-sm : var(--app-shadow-soft-sm);
-  --shadow-soft : var(--app-shadow-soft);
-  --shadow-soft-lg : var(--app-shadow-soft-lg);
+  --shadow-soft-sm: var(--app-shadow-soft-sm);
+  --shadow-soft: var(--app-shadow-soft);
+  --shadow-soft-lg: var(--app-shadow-soft-lg);
 
   /* Ring ------------------------------------------------------------------------------- */
 
@@ -647,11 +509,12 @@
 @layer utilities {
   /* Ring ------------------------------------------------------------------------------ */
   .ring-default {
-    box-shadow: 0 0 0 var(--ring-width-default) var(--color-ring-default);
+    box-shadow: 0 0 0 var(--ring-width-default) var(--ring-default);
   }
   .ring-danger {
-    box-shadow: 0 0 0 var(--ring-width-default) var(--color-ring-danger);
+    box-shadow: 0 0 0 var(--ring-width-default) var(--ring-danger);
   }
+  
 
   /* Radius ---------------------------------------------------------------------------- */
   .radius-sm {

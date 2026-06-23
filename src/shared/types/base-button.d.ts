@@ -17,5 +17,5 @@ export type TBaseButtonProps = {
     | 'link'
     | null
     | undefined;
-  iconOnly: booolean;
+  iconOnly: boolean;
 };
