@@ -106,14 +106,14 @@ export default function NumberVariant({
   return (
     <div
       className={cn(
-        'relative inline-flex items-center rounded-lg border px-2 py-1 w-full h-9 transition-colors',
+        'relative    inline-flex group items-center rounded-lg border px-2 py-1 w-full h-9 transition-colors',
         isFocused
           ? 'border-border-primary  ring-0'
           : isError
             ? 'border-border-danger'
-            : 'border-border-soft hover:border-border-defaul focus-within:border-border-primary ',
+            : 'border-border-soft hover:border-border-default focus-within:border-border-primary ',
         isDisabled
-          ? 'bg-bg-subtle text-text-muted border-border-subtle cursor-not-allowed pointer-events-none'
+          ? 'bg-bg-subtle text-text-muted border-border-subtle cursor-not-allowed'
           : 'bg-bg-plain'
       )}
     >
@@ -127,7 +127,7 @@ export default function NumberVariant({
         onChange={(e) => handleInputChange(e.target.value)}
         onKeyDown={handleKeyDown}
         className={cn(
-          'w-full min-w-0 bg-transparent outline-none text-base md:text-sm transition-colors',
+          'w-full min-w-0 bg-transparent    outline-none text-base md:text-sm transition-colors',
           isRtl ? 'text-right pl-8 pr-1' : 'text-left pr-8 pl-1',
           isFocused
             ? 'border-border-primary bg-primary-fade ring-0'

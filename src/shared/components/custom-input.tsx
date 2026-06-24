@@ -2,12 +2,12 @@
 import * as React from 'react';
 import { Input as InputPrimitive } from '@base-ui/react/input';
 import { cn } from '@/lib/utils';
-import FileVariant from './file-variant';
 import { Eye, EyeOff, Search, X } from 'lucide-react';
 import { Field } from '@base-ui/react/field';
-import OTPVariant from './otp-variant';
-import NumberVariant from './number-variant';
-import { PhoneVariant } from './phone-variant.';
+import OTPVariant from './ui/otp-variant';
+import NumberVariant from './ui/number-variant';
+import FileVariant from './ui/file-variant';
+import { PhoneVariant } from './ui/phone-variant.';
 
 export type TInputValue = string | number | File[] | FileList | null;
 export type TInputVariant =
@@ -149,7 +149,7 @@ export default function CustomInput({
   };
 
   // Label styles Definitions
-  const baseLableStyle = `w-fit h-17 block  text-sm font-medium text-start`;
+  const baseLableStyle = `w-fit h-fit block  text-sm font-meduim text-start`;
   const normalLableStyle = `text-text-plain `;
   const errorLableStyle = `text-text-danger `;
   const disabledLableStyle = `text-text-muted `;
@@ -173,7 +173,7 @@ export default function CustomInput({
       placeholder:text-text-muted
   `;
   const disableInputStyle = `
-    border-zinc-100
+    border-border-subtle
      bg-bg-subtle text-text-muted 
      placeholder:text-text-subtle
     pointer-events-none cursor-not-allowed
@@ -183,7 +183,7 @@ export default function CustomInput({
 
   return (
     <Field.Root
-      className={cn('items-start justify-start flex-col  w-375', className)}
+      className={cn('items-start justify-start flex-col gap-2  w-375', className)}
       dir={isRtl ? 'rtl' : 'ltr'}
     >
       {label && variant !== 'otp' && (

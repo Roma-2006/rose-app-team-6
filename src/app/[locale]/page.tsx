@@ -1,6 +1,6 @@
 import LanguageSwitcher from '@/shared/components/LanguageSwitcher';
 import { ThemeToggle } from '@/shared/components/theme';
-import CustomInput from '@/shared/components/ui/custom-input';
+import CustomInput from '@/shared/components/custom-input';
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -32,12 +32,13 @@ export default async function Home({ params }: PageProps) {
       </div>
 
       <CustomInput
-        variant="default"
+        variant="number"
         label="input-label"
         placeholder="placeholder"
         disabled={false}
         error={false}
         id="sm"
+        className="mt-4"
       />
     </main>
   );

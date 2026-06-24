@@ -85,7 +85,7 @@ export default function FileVariant({
           : isDragActive
             ? 'border-border-primary bg-bg-primary-fade'
             : isError
-              ? 'border-border-danger bg-bg-danger-fade'
+              ? 'border-border-danger bg-bg-plain'
               : 'border-border-soft hover:border-border-default  bg-bg-plain',
         isDisabled ? '  cursor-not-allowed border-border-subtle bg-bg-subtle text-text-muted' : ''
       )}
@@ -106,7 +106,7 @@ export default function FileVariant({
             onChange?.(updatedFiles);
           }
         }}
-        className="hidden"
+        className="hidden rounded-10"
       />
 
       <div
