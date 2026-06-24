@@ -2,7 +2,6 @@ import { BaseCheckbox } from '@/shared/components/custom-ui/BaseCheckbox';
 import LanguageSwitcher from '@/shared/components/LanguageSwitcher';
 import { ThemeToggle } from '@/shared/components/theme';
 import { Badge } from '@/shared/components/ui/badge';
-import { Button } from '@/shared/components/ui/button';
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -18,13 +17,6 @@ export default async function Home({ params }: PageProps) {
     <main className="bg-bg-plain min-h-screen flex flex-col items-center justify-center p-6 text-center">
       <div className="bg-bg-plain p-8 shadow-subtle-lg border border-border-primary radius-lg max-w-md w-full flex flex-col items-center">
         {/* Language Switcher */}
-        <Button variant="primary" />
-        <Button variant="secondary" />
-        <Button variant="outline" />
-        <Button variant="subtle" />
-        <Button variant="ghost" />
-        <Button variant="destructive" />
-
         <Badge variant="primary">Badge</Badge>
         <Badge variant="secondary">Badge</Badge>
         <Badge variant="subtle">Badge</Badge>

@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
-export type TBaseButtonProps = {
-  loading: boolean;
+export type TButtonProps = {
+  loading?: boolean;
   title: string;
   disabled: boolean;
   handleClick: () => void;
@@ -17,5 +17,5 @@ export type TBaseButtonProps = {
     | 'link'
     | null
     | undefined;
-  iconOnly: boolean;
+  iconOnly?: ReactNode;
 };

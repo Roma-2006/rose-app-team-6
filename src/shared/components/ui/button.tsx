@@ -2,20 +2,21 @@ import { Button as ButtonPrimitive } from '@base-ui/react/button';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@/shared/lib/utils/tailwind-cn';
-import { TBaseButtonProps } from '@/shared/types/base-button';
+import { TButtonProps } from '@/shared/types/button';
 import { LoaderCircle } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 const buttonVariants = cva(
-  "disabled:bg-bg-soft dark:disabled:bg-bg-muted disabled:text-text-muted  group/button inline-flex shrink-0 items-center justify-center   border border-transparent bg-clip-padding text-base rounded-lg font-medium dark:font-semibold dark:text-sm whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/30 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none  aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  "disabled:bg-bg-soft  disabled:text-text-muted disabled:border-none group/button inline-flex shrink-0 items-center justify-center   border border-transparent bg-clip-padding text-base radius-lg font-medium dark:font-semibold dark:text-sm whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/30 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none  aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
     variants: {
       variant: {
         primary: 'bg-bg-primary text-text-inverse  hover:bg-bg-primary-saturated',
         outline:
-          'border border-outline bg-bg-plain text-text-primary hover:bg-bg-primary-fade  aria-expanded:bg-muted aria-expanded:text-foreground ',
+          'border border-border-primary bg-bg-plain text-text-primary hover:bg-bg-primary-fade  aria-expanded:bg-muted aria-expanded:text-foreground ',
         secondary:
-          'bg-bg-primary-fade text-text-primary dark:text-text-plan hover:bg-bg-priamry-faint  aria-expanded:bg-secondary aria-expanded:text-secondary-foreground',
-        subtle: 'bg-muted border border-border-soft text-text-plain hover:bg-subtle-hover ',
+          'bg-bg-primary-fade text-text-primary  hover:bg-bg-primary-faint  aria-expanded:bg-secondary aria-expanded:text-secondary-foreground',
+        subtle: 'bg-bg-muted border border-border-soft text-text-plain hover:bg-bg-soft ',
         ghost:
           ' text-text-plain hover:bg-bg-soft   aria-expanded:bg-muted aria-expanded:text-foreground ',
         destructive: 'bg-bg-danger text-text-inverse hover:bg-bg-danger-saturated',
@@ -45,19 +46,20 @@ function Button({
   className,
   variant,
   loading,
-  title = 'check',
+  title,
   disabled,
   // onClick,
   leftIcon,
   rightIcon,
   iconOnly,
   ...props
-}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants> & TBaseButtonProps) {
+}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants> & TButtonProps) {
+  const t = useTranslations();
   return (
     <ButtonPrimitive
       data-slot="button"
       aria-busy={loading}
-      aria-label={iconOnly ? title : undefined}
+      aria-label={iconOnly ? t(title) : undefined}
       disabled={disabled || loading}
       // onClick={() => onClick?.()}
       // size={iconOnly ? 'icon' : 'custom'}
@@ -65,15 +67,17 @@ function Button({
       className={cn(buttonVariants({ variant, size: iconOnly ? 'icon' : 'custom', className }))}
       {...props}
     >
-      {loading ? (
+      {loading && iconOnly ? (
+        <LoaderCircle className="animate-spin" size={18} />
+      ) : loading ? (
         <>
-          Loading
+          {t('button.loading')}
           <LoaderCircle className="animate-spin" size={18} />
         </>
       ) : (
         <>
           {leftIcon}
-          {iconOnly ? iconOnly : title}
+          {iconOnly ? iconOnly : t(title)}
           {rightIcon}
         </>
       )}

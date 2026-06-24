@@ -1,5 +1,15 @@
 {
   "HomePage": {
     "title": "Welcome to Rose App"
+  },
+  "button": {
+    "loading": "Loading...",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "confirm": "Confirm"
   }
+
 }
+
