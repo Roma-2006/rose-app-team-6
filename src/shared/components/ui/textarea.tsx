@@ -45,7 +45,6 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           />
           {showCount && maxLength && (
             <div className="mt-1 text-right text-xs text-muted-foreground">
-              {/* استخدام الترجمة مع Variables */}
               {t('charCount', { current: count, max: maxLength })}
             </div>
           )}
