@@ -48,7 +48,7 @@ function Button({
   loading,
   title,
   disabled,
-  // onClick,
+  onClick,
   leftIcon,
   rightIcon,
   iconOnly,
@@ -61,9 +61,7 @@ function Button({
       aria-busy={loading}
       aria-label={iconOnly ? t(title) : undefined}
       disabled={disabled || loading}
-      // onClick={() => onClick?.()}
-      // size={iconOnly ? 'icon' : 'custom'}
-      // variant={variant}
+      onClick={onClick}
       className={cn(buttonVariants({ variant, size: iconOnly ? 'icon' : 'custom', className }))}
       {...props}
     >
@@ -81,10 +79,6 @@ function Button({
           {rightIcon}
         </>
       )}
-      {/* {!loading && leftIcon}
-      {loading ? 'Loading' : title}
-      {loading && <LoaderCircle className="animate-spin" size={18} />}
-      {!loading && rightIcon} */}
     </ButtonPrimitive>
   );
 }

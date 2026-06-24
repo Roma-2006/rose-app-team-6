@@ -4,7 +4,7 @@ export type TButtonProps = {
   loading?: boolean;
   title: string;
   disabled: boolean;
-  handleClick: () => void;
+  onClick: () => void;
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
   variant:
