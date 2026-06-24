@@ -8,6 +8,7 @@ import OTPVariant from './ui/otp-variant';
 import NumberVariant from './ui/number-variant';
 import FileVariant from './ui/file-variant';
 import { PhoneVariant } from './ui/phone-variant.';
+import { useTranslations } from 'next-intl';
 
 export type TInputValue = string | number | File[] | FileList | null;
 export type TInputVariant =
@@ -65,6 +66,7 @@ export default function CustomInput({
   const [hasSearchValue, setHasSearchValue] = React.useState<boolean>(!!defaultValue);
   const [resetKey, setResetKey] = React.useState<number>(0);
   const internalRef = React.useRef<HTMLInputElement | null>(null);
+  const t = useTranslations('HomePage');
 
   // Handle input changes for number and search variants
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -106,15 +108,40 @@ export default function CustomInput({
     return 'text';
   };
 
+  const safeTranslate = (key: string | undefined): string => {
+    if (!key) return '';
+    try {
+      if (typeof t.has === 'function' && !t.has(key)) {
+        return key;
+      }
+      return t(key);
+    } catch {
+      return key;
+    }
+  };
   // Compute placeholder
+
   let computedPlaceholder = placeholder;
   if (placeholder === ' ' || placeholder === '') {
     if (variant === 'search') {
-      computedPlaceholder = 'Search...';
+      try {
+        computedPlaceholder =
+          typeof t.has === 'function' && t.has('searchPlaceholder')
+            ? t('searchPlaceholder')
+            : 'Search...';
+      } catch {
+        computedPlaceholder = 'Search...';
+      }
     } else if (variant === 'password') {
       computedPlaceholder = '*********';
     }
+  } else {
+    computedPlaceholder = placeholder ? safeTranslate(placeholder) : placeholder;
   }
+
+  const translatedLabel = label ? safeTranslate(label) : label;
+
+  const translatedErrorMessage = errorMessage ? safeTranslate(errorMessage) : errorMessage;
 
   // Handle clearing search input
   const handleClearSearch = () => {
@@ -183,12 +210,12 @@ export default function CustomInput({
 
   return (
     <Field.Root
-      className={cn('items-start justify-start flex-col gap-2  w-375', className)}
+      className={cn('items-start justify-start flex-col gap-2  m-w-375 ', className)}
       dir={isRtl ? 'rtl' : 'ltr'}
     >
       {label && variant !== 'otp' && (
         <Field.Label htmlFor={id} className={`${baseLableStyle} ${labeltStyle}`}>
-          {label}
+          {translatedLabel}
         </Field.Label>
       )}
 
@@ -222,7 +249,7 @@ export default function CustomInput({
             step={step}
             data-slot="input"
             className={cn(
-              'h-9 w-full min-w-0 rounded-lg border px-3 py-1.5 text-base transition-colors outline-none md:text-sm',
+              'h-9  min-w-0 rounded-lg border px-3 py-1.5 text-base transition-colors outline-none md:text-sm',
               'focus-visible:outline-none focus-visible:ring-0',
               variant === 'search' && (isRtl ? 'pr-9 pl-9' : 'pl-9 pr-9'),
               variant === 'password' && (isRtl ? 'pl-9' : 'pr-9'),
@@ -307,12 +334,9 @@ export default function CustomInput({
         )}
       </div>
 
-      {/* Render the dynamic validation error layout tracking */}
-      {/* {isError && errorMessage && (
-        <p className="mt-1.5 text-xs text-text-danger  text-start">
-          {errorMessage}
-        </p>
-      )} */}
+      {isError && translatedErrorMessage && (
+        <p className="mt-1.5 text-xs text-text-danger  text-start">{translatedErrorMessage}</p>
+      )}
     </Field.Root>
   );
 }

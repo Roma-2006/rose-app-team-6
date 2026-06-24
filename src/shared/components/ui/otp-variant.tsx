@@ -72,7 +72,7 @@ export default function OTPVariant({
         )}
         {...props}
         render={({ slots }: { slots: SlotProps[] }) => (
-          <div className="flex items-center gap-1.5 w-full justify-between relative">
+          <div className="flex  items-center gap-1.5 w-full justify-between relative">
             {slots.map((slot, index) => {
               const isActive = slot.isActive; // حالة الـ Focus للخانة النشطة
               const isHovered = hoveredIndex === index; // حالة الـ Hover الفردية لهذه الخانة فقط
