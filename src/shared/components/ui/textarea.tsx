@@ -1,112 +1,59 @@
-'use client';
+import { useTranslations } from 'next-intl';
+import React from 'react';
+import { cn } from "@/lib/utils/tailwind-cn"
 
-import * as React from 'react';
-import { useMemo, useId, useRef, useEffect } from 'react';
-import { cn } from '@/shared/lib/utils/tailwind-cn';
 
-interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
-  error?: string;
-  label?: string;
+interface TextareaProps extends React.ComponentProps<"textarea"> {
   showCount?: boolean;
-  autoResize?: boolean;
-  charCountText?: string;
+  maxLength?: number;
+  error?: string; 
 }
 
-const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
-  (
-    {
-      className,
-      error,
-      showCount,
-      autoResize = true,
-      maxLength,
-      value,
-      onChange,
-      label,
-      charCountText = '{current}/{max}',
-      ...props
-    },
-    forwardedRef
-  ) => {
-    const errorId = useId();
-    const innerRef = useRef<HTMLTextAreaElement>(null);
+export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
+  ({ className, showCount, maxLength, error, value, onChange, ...props }, ref) => {
+    const [count, setCount] = React.useState(0);
+    const t = useTranslations('common.textarea');
 
-    React.useImperativeHandle(forwardedRef, () => innerRef.current!);
-
-    const adjustHeight = () => {
-      if (autoResize && innerRef.current) {
-        const textarea = innerRef.current;
-        textarea.style.height = 'auto';
-        textarea.style.height = `${textarea.scrollHeight}px`;
-      }
+    const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+      setCount(e.target.value.length);
+      if (onChange) onChange(e);
     };
 
-    useEffect(() => {
-      adjustHeight();
-    }, [value, autoResize]);
-
-    const currentLength = useMemo(() => (value ? String(value).length : 0), [value]);
-    const isLimitReached = !!maxLength && currentLength >= maxLength;
-
-    const formattedCharCount = useMemo(() => {
-      if (!maxLength) return '';
-      return charCountText
-        .replace('{current}', currentLength.toString())
-        .replace('{max}', maxLength.toString());
-    }, [charCountText, currentLength, maxLength]);
-
     return (
-      <div className="w-full space-y-1.5 text-start" dir="auto">
-        {label && (
-          <label className="text-sm text-foreground font-medium px-1 text-foreground">
-            {label}
-          </label>
-        )}
+      <div className="flex flex-col gap-1.5 w-full">
+        <div className="relative w-full">
+          <textarea
+            ref={ref}
+             value={value}
+            maxLength={maxLength}
+            onChange={handleChange}
+            aria-invalid={!!error}
+            className={cn(
+              "field-sizing-content min-h-24 w-full resize-none rounded-lg border border-border-soft bg-bg-plain px-3 py-3 text-sm outline-none transition-all",
+              "hover:border-border-default"
+              ,"focus-visible:border-border-primary focus-visible:ring-3 focus-visible:ring-ring-default",
+              "aria-invalid:border-border-danger aria-invalid:ring-3 aria-invalid:ring-ring-danger",
+              "disabled:bg-bg-muted disabled:text-text-muted  disabled:cursor-not-allowed",
+              "dark:bg-bg-plain dark:text-text-plain dark:placeholder:text-text-muted dark:hover:border-border-default"
+              ,"dark:focus-visible:border-border-primary dark:focus-visible:ring-ring-default",
+              "dark:aria-invalid:border-border-danger dark:aria-invalid:ring-3 dark:aria-invalid:ring-ring-danger",
 
-        <textarea
-          ref={innerRef}
-          value={value}
-          maxLength={maxLength}
-          aria-invalid={!!error}
-          aria-describedby={error ? errorId : undefined}
-          onChange={(e) => {
-            onChange?.(e);
-            adjustHeight();
-          }}
-          className={cn(
-            'flex min-h-[80px] w-full rounded-lg border border-border bg-background px-4 py-3 text-base text-foreground transition-all outline-none md:text-sm dark:border-border dark:bg-background dark:text-foreground dark:placeholder:text-muted-foreground hover:border-muted-foreground focus-visible:border-primary focus-visible:ring-primary/10 disabled:cursor-not-allowed disabled:bg-muted dark:disabled:bg-muted',
-            autoResize ? 'resize-none overflow-hidden' : 'resize-y',
-            error && 'border-error focus-visible:border-error ',
-            className
-          )}
-          {...props}
-        />
 
-        <div className="flex justify-between items-start px-1 min-h-[20px]">
-          {error ? (
-            <p id={errorId} className="text-xs text-error animate-in fade-in-0 slide-in-from-top-1">
-              {error}
-            </p>
-          ) : (
-            <div />
-          )}
-
+              className
+            )}
+            {...props}
+          />
           {showCount && maxLength && (
-            <span
-              className={cn(
-                'text-xs transition-colors tabular-nums',
-                isLimitReached ? 'text-error font-bold' : 'text-muted-foreground'
-              )}
-            >
-              {formattedCharCount}
-            </span>
+            <div className="mt-1 text-right text-xs text-muted-foreground">
+              {/* استخدام الترجمة مع Variables */}
+              {t('charCount', { current: count, max: maxLength })}
+            </div>
           )}
         </div>
+      
+   {error && <p className="text-text-danger text-xs">{error}</p>}
+        
       </div>
     );
   }
 );
-
-Textarea.displayName = 'Textarea';
-
-export { Textarea };

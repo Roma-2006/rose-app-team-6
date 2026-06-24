@@ -8,5 +8,5 @@ export const formComponentsSchema = z.object({
   textareaField: z
     .string()
     .min(10, 'Please enter at least 10 characters')
-    .max(199, 'Maximum 200 characters allowed'),
+    .max(200, 'Maximum 200 characters allowed'),
 });

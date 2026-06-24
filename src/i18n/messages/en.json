@@ -1,5 +1,16 @@
 {
   "HomePage": {
     "title": "Welcome to Rose App"
-  }
+  },
+   "common": {
+    "select": {
+      "placeholder": "Select an option",
+      "noOptions": "No options found",
+      "search": "Search..."
+    },
+  
+    "textarea": {
+      "charCount": "{current}/{max} characters"
+    }
+}
 }
