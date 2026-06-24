@@ -150,9 +150,9 @@ export default function CustomInput({
 
   // Label styles Definitions
   const baseLableStyle = `w-fit h-17 block  text-sm font-medium text-start`;
-  const normalLableStyle = `text-zinc-800 dark:text-zinc-50`;
-  const errorLableStyle = `text-red-600 dark:text-red-500`;
-  const disabledLableStyle = `text-zinc-400 dark:text-zinc-600`;
+  const normalLableStyle = `text-text-plain `;
+  const errorLableStyle = `text-text-danger `;
+  const disabledLableStyle = `text-text-muted `;
   const labeltStyle = isDisabled
     ? disabledLableStyle
     : isError
@@ -161,24 +161,29 @@ export default function CustomInput({
 
   // Input styles Definitions
   const normalInputStyle = `
-    border-zinc-300 text-zinc-800 bg-white hover:border-zinc-400 placeholder:text-zinc-400
-    focus-visible:border-maroon-600 dark:text-zinc-50 dark:hover:border-zinc-500 
-    dark:bg-zinc-700 dark:placeholder:text-zinc-400 dark:border-zinc-600 dark:focus-visible:border-soft-pink-400 
+    text-text-plain 
+    border-border-soft
+     bg-bg-plain hover:border-border-default
+      placeholder:text-text-muted
+   focus-visible:border-border-primary  
   `;
   const errorInputStyle = ` 
-    border-red-600 bg-white text-zinc-800 placeholder:text-zinc-400
-    dark:text-zinc-50 dark:bg-zinc-700 dark:border-red-500 focus-visible:border-red-600
+    border-border-danger bg-bg-plain
+     text-text-plain
+      placeholder:text-text-muted
   `;
   const disableInputStyle = `
-    border-zinc-100 bg-zinc-100 text-zinc-400 placeholder:text-zinc-400
-    dark:text-zinc-600 dark:bg-zinc-800 dark:border-zinc-700 pointer-events-none cursor-not-allowed
+    border-zinc-100
+     bg-bg-subtle text-text-muted 
+     placeholder:text-text-subtle
+    pointer-events-none cursor-not-allowed
   `;
 
   const inputStyle = isDisabled ? disableInputStyle : isError ? errorInputStyle : normalInputStyle;
 
   return (
     <Field.Root
-      className={cn('items-start justify-start flex-col w-full max-w-[327px]', className)}
+      className={cn('items-start justify-start flex-col  w-375', className)}
       dir={isRtl ? 'rtl' : 'ltr'}
     >
       {label && variant !== 'otp' && (
@@ -192,7 +197,7 @@ export default function CustomInput({
         {variant === 'search' && (
           <Search
             className={cn(
-              'absolute h-4 w-4 text-zinc-400 dark:text-zinc-500 pointer-events-none top-1/2 -translate-y-1/2 z-10',
+              'absolute h-4 w-4 text-text-muted pointer-events-none top-1/2 -translate-y-1/2 z-10',
               isRtl ? 'right-3' : 'left-3'
             )}
             aria-hidden="true"
@@ -278,7 +283,7 @@ export default function CustomInput({
             onClick={handleClearSearch}
             disabled={isDisabled}
             className={cn(
-              'absolute top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 dark:text-zinc-500 dark:hover:text-zinc-300 transition-colors z-10',
+              'absolute top-1/2 -translate-y-1/2 text-text-muted hover:text-text-plain    transition-colors z-10',
               isRtl ? 'left-9' : 'right-9'
             )}
           >
@@ -293,7 +298,7 @@ export default function CustomInput({
             onClick={handleTogglePassword}
             disabled={isDisabled}
             className={cn(
-              'absolute top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 dark:text-zinc-500 dark:hover:text-zinc-300 transition-colors z-10',
+              'absolute top-1/2 -translate-y-1/2 text-text-muted hover:text-text-plain  transition-colors z-10',
               isRtl ? 'left-3' : 'right-3'
             )}
           >
@@ -304,7 +309,7 @@ export default function CustomInput({
 
       {/* Render the dynamic validation error layout tracking */}
       {/* {isError && errorMessage && (
-        <p className="mt-1.5 text-xs text-red-600 dark:text-red-500 text-start">
+        <p className="mt-1.5 text-xs text-text-danger  text-start">
           {errorMessage}
         </p>
       )} */}

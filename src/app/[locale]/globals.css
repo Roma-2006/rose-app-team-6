@@ -442,6 +442,9 @@
 
   --color-ring-default: var(--ring-default);
   --color-ring-danger: var(--ring-danger);
+
+  /* width---------------------------------------------------- */
+--width-375 :375px;
 }
 
 @layer utilities {

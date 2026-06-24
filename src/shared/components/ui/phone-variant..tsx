@@ -63,8 +63,8 @@ const InputComponent = React.forwardRef<
   <Input
     disabled={isDisabled}
     className={cn(
-      'flex-1 w-full h-10 border-0 rounded-l-none rounded-r-md focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-0 focus:outline-none placeholder:text-gray-400/80 bg-transparent px-3',
-      isError && 'border-red-500 focus:border-red-500',
+      'flex-1 w-full h-10 border-0  text-text-plain rounded-l-none rounded-r-md focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-0 focus:outline-none  placeholder:text-text-muted bg-transparent px-3',
+      isError && 'border-border-danger focus:border-border-danger',
       className
     )}
     {...props}
@@ -106,15 +106,14 @@ const CountrySelect = ({
       <PopoverTrigger>
         <div
           className={cn(
-            // 🌟 تم حذف border-r و bg-muted لجعل الخلفية شفافة تماماً وبدون خط فاصل
-            'flex h-10 gap-2 px-3 items-center transition-colors shrink-0 whitespace-nowrap bg-transparent',
+            'flex h-10 text-text-plain gap-2 px-3 items-center transition-colors shrink-0 whitespace-nowrap bg-transparent',
             disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer select-none'
           )}
           style={disabled ? { pointerEvents: 'none' } : undefined}
         >
           <FlagComponent country={selectedCountry} countryName={selectedCountry} />
           {selectedCountry && (
-            <span className="text-xs font-medium text-gray-700">
+            <span className="text-xs font-medium text-text-default">
               {selectedCountry} (+{RPNInput.getCountryCallingCode(selectedCountry)})
             </span>
           )}
@@ -122,7 +121,7 @@ const CountrySelect = ({
         </div>
       </PopoverTrigger>
 
-      <PopoverContent className="w-[300px] p-0">
+      <PopoverContent className="w-375 p-0">
         <Command>
           <CommandInput
             value={searchValue}
@@ -188,9 +187,9 @@ const CountrySelectOption = ({
     <CommandItem className="gap-2" onSelect={handleSelect}>
       <FlagComponent country={country} countryName={countryName} />
       <span className="flex-1 text-sm">{countryName}</span>
-      <span className="text-sm text-foreground/50">{`+${RPNInput.getCountryCallingCode(country)}`}</span>
+      <span className="text-sm text-text-muted">{`+${RPNInput.getCountryCallingCode(country)}`}</span>
       <CheckIcon
-        className={`ml-auto size-4 ${country === selectedCountry ? 'opacity-100' : 'opacity-0'}`}
+        className={`ml-auto size-4 text-text-primary ${country === selectedCountry ? 'opacity-100' : 'opacity-0'}`}
       />
     </CommandItem>
   );
@@ -200,7 +199,7 @@ const FlagComponent = ({ country, countryName }: RPNInput.FlagProps) => {
   const Flag = flags[country];
 
   return (
-    <span className="flex h-4 w-6 overflow-hidden rounded-0 bg-foreground/20 [&_svg:not([class*='size-'])]:size-full">
+    <span className="flex h-4 w-6 overflow-hidden rounded-0 bg-border-subtle [&_svg:not([class*='size-'])]:size-full">
       {Flag && <Flag title={countryName} />}
     </span>
   );

@@ -108,13 +108,13 @@ export default function NumberVariant({
       className={cn(
         'relative inline-flex items-center rounded-lg border px-2 py-1 w-full h-9 transition-colors',
         isFocused
-          ? 'border-maroon-600 dark:border-soft-pink-400 ring-0'
+          ? 'border-border-primary  ring-0'
           : isError
-            ? 'border-red-600'
-            : 'border-zinc-300 hover:border-zinc-400 focus-within:border-maroon-600 dark:focus-within:border-soft-pink-400',
+            ? 'border-border-danger'
+            : 'border-border-soft hover:border-border-defaul focus-within:border-border-primary ',
         isDisabled
-          ? 'bg-zinc-100 text-zinc-400 dark:bg-zinc-800 dark:border-zinc-700 cursor-not-allowed pointer-events-none'
-          : 'bg-white dark:bg-zinc-700'
+          ? 'bg-bg-subtle text-text-muted border-border-subtle cursor-not-allowed pointer-events-none'
+          : 'bg-bg-plain'
       )}
     >
       <input
@@ -122,6 +122,7 @@ export default function NumberVariant({
         inputMode="decimal"
         value={value}
         onFocus={() => !isDisabled && setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
         disabled={isDisabled}
         onChange={(e) => handleInputChange(e.target.value)}
         onKeyDown={handleKeyDown}
@@ -129,10 +130,10 @@ export default function NumberVariant({
           'w-full min-w-0 bg-transparent outline-none text-base md:text-sm transition-colors',
           isRtl ? 'text-right pl-8 pr-1' : 'text-left pr-8 pl-1',
           isFocused
-            ? 'border-maroon-600 dark:border-soft-pink-400 ring-0'
+            ? 'border-border-primary bg-primary-fade ring-0'
             : isDisabled
-              ? 'text-zinc-400 dark:text-zinc-500'
-              : 'text-zinc-900 dark:text-zinc-50'
+              ? 'text-text-muted '
+              : 'text-text-plain '
         )}
       />
       <div
@@ -146,7 +147,7 @@ export default function NumberVariant({
           onClick={() => handleStep('up')}
           disabled={isDisabled || isMaxReached}
           className={cn(
-            'text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors',
+            'text-text-muted hover:text-text-plain  transition-colors',
             (isDisabled || isMaxReached) && 'opacity-30 cursor-not-allowed'
           )}
         >
@@ -157,7 +158,7 @@ export default function NumberVariant({
           onClick={() => handleStep('down')}
           disabled={isDisabled || isMinReached}
           className={cn(
-            'text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors rotate-180',
+            'text-text-muted  hover:text-text-plain  transition-colors rotate-180',
             (isDisabled || isMinReached) && 'opacity-30 cursor-not-allowed'
           )}
         >

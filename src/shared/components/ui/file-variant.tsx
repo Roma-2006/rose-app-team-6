@@ -79,17 +79,15 @@ export default function FileVariant({
         }
       }}
       className={cn(
-        'w-full text-zinc-800 border rounded-10 px-3 py-1.5 outline-none transition-colors cursor-pointer bg-white flex items-center min-h-[38px] select-none flex-row-reverse justify-between gap-3',
+        'w-full text-text-plain border rounded-10 px-3 py-1.5 outline-none transition-colors cursor-pointer bg-bg-plain flex items-center min-h-[38px] select-none flex-row-reverse justify-between gap-3',
         isFocused
-          ? 'border-maroon-600 dark:border-soft-pink-400 ring-0'
+          ? 'border-border-primary  ring-0'
           : isDragActive
-            ? 'border-maroon-600 bg-maroon-50/10'
+            ? 'border-border-primary bg-bg-primary-fade'
             : isError
-              ? 'border-red-600 bg-white'
-              : 'border-zinc-300 hover:border-zinc-400 bg-white dark:bg-zinc-700 dark:border-zinc-600',
-        isDisabled
-          ? 'border-zinc-100 bg-zinc-100 dark:bg-zinc-800 dark:border-zinc-700 cursor-not-allowed text-zinc-400'
-          : ''
+              ? 'border-border-danger bg-bg-danger-fade'
+              : 'border-border-soft hover:border-border-default  bg-bg-plain',
+        isDisabled ? '  cursor-not-allowed border-border-subtle bg-bg-subtle text-text-muted' : ''
       )}
     >
       <input
@@ -113,8 +111,8 @@ export default function FileVariant({
 
       <div
         className={cn(
-          'flex items-center gap-1.5 font-medium text-sm dark:text-soft-pink-400 flex-row-reverse flex-shrink-0',
-          isDisabled ? 'text-zinc-400' : 'text-maroon-600'
+          'flex items-center gap-1.5 font-medium text-sm  flex-row-reverse flex-shrink-0',
+          isDisabled ? 'text-text-muted' : 'text-text-primary'
         )}
       >
         <span>Upload file</span>
@@ -127,7 +125,7 @@ export default function FileVariant({
             dir="ltr"
             className={cn(
               'text-xs font-medium truncate text-left w-full block',
-              isDisabled ? 'text-zinc-400' : 'text-zinc-800 dark:text-zinc-300'
+              isDisabled ? 'text-text-muted' : 'text-text-plain '
             )}
             title={getFilesNameDisplay()}
           >
