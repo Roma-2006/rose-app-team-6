@@ -1,15 +1,14 @@
 import { useTranslations } from 'next-intl';
 import React from 'react';
-import { cn } from "@/lib/utils/tailwind-cn"
+import { cn } from '@/shared/lib/utils/tailwind-cn';
 
-
-interface TextareaProps extends React.ComponentProps<"textarea"> {
+interface TextareaProps extends React.ComponentProps<'textarea'> {
   showCount?: boolean;
   maxLength?: number;
-  error?: string; 
+  error?: string;
 }
 
-export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
+const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   ({ className, showCount, maxLength, error, value, onChange, ...props }, ref) => {
     const [count, setCount] = React.useState(0);
     const t = useTranslations('common.textarea');
@@ -24,20 +23,19 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         <div className="relative w-full">
           <textarea
             ref={ref}
-             value={value}
+            value={value}
             maxLength={maxLength}
             onChange={handleChange}
             aria-invalid={!!error}
             className={cn(
-              "field-sizing-content min-h-24 w-full resize-none rounded-lg border border-border-soft bg-bg-plain px-3 py-3 text-sm outline-none transition-all",
-              "hover:border-border-default"
-              ,"focus-visible:border-border-primary focus-visible:ring-3 focus-visible:ring-ring-default",
-              "aria-invalid:border-border-danger aria-invalid:ring-3 aria-invalid:ring-ring-danger",
-              "disabled:bg-bg-muted disabled:text-text-muted  disabled:cursor-not-allowed",
-              "dark:bg-bg-plain dark:text-text-plain dark:placeholder:text-text-muted dark:hover:border-border-default"
-              ,"dark:focus-visible:border-border-primary dark:focus-visible:ring-ring-default",
-              "dark:aria-invalid:border-border-danger dark:aria-invalid:ring-3 dark:aria-invalid:ring-ring-danger",
-
+              'field-sizing-content min-h-24 w-full resize-none rounded-lg border border-border-soft bg-bg-plain px-3 py-3 text-sm outline-none transition-all',
+              'hover:border-border-default',
+              'focus-visible:border-border-primary focus-visible:ring-3 focus-visible:ring-ring-default',
+              'aria-invalid:border-border-danger aria-invalid:ring-3 aria-invalid:ring-ring-danger',
+              'disabled:bg-bg-muted disabled:text-text-muted  disabled:cursor-not-allowed',
+              'dark:bg-bg-plain dark:text-text-plain dark:placeholder:text-text-muted dark:hover:border-border-default',
+              'dark:focus-visible:border-border-primary dark:focus-visible:ring-ring-default',
+              'dark:aria-invalid:border-border-danger dark:aria-invalid:ring-3 dark:aria-invalid:ring-ring-danger',
 
               className
             )}
@@ -49,10 +47,12 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
             </div>
           )}
         </div>
-      
-   {error && <p className="text-text-danger text-xs">{error}</p>}
-        
+
+        {error && <p className="text-text-danger text-xs">{error}</p>}
       </div>
     );
   }
 );
+Textarea.displayName = 'Textarea';
+
+export { Textarea };
