@@ -13,12 +13,10 @@ const buttonVariants = cva(
       variant: {
         primary: 'bg-bg-primary text-text-inverse  hover:bg-bg-primary-saturated',
         outline:
-          'border border-border-primary bg-bg-plain text-text-primary hover:bg-bg-primary-fade  aria-expanded:bg-muted aria-expanded:text-foreground ',
-        secondary:
-          'bg-bg-primary-fade text-text-primary  hover:bg-bg-primary-faint  aria-expanded:bg-secondary aria-expanded:text-secondary-foreground',
+          'border border-border-primary bg-bg-plain text-text-primary hover:bg-bg-primary-fade ',
+        secondary: 'bg-bg-primary-fade text-text-primary  hover:bg-bg-primary-faint  ',
         subtle: 'bg-bg-muted border border-border-soft text-text-plain hover:bg-bg-soft ',
-        ghost:
-          ' text-text-plain hover:bg-bg-soft   aria-expanded:bg-muted aria-expanded:text-foreground ',
+        ghost: ' text-text-plain hover:bg-bg-soft  ',
         destructive: 'bg-bg-danger text-text-inverse hover:bg-bg-danger-saturated',
         link: 'text-primary underline-offset-4 hover:underline',
       },
