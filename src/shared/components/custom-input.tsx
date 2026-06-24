@@ -249,7 +249,7 @@ export default function CustomInput({
             step={step}
             data-slot="input"
             className={cn(
-              'h-9  min-w-0 rounded-lg border px-3 py-1.5 text-base transition-colors outline-none md:text-sm',
+              'h-9    w-full rounded-lg border px-3 py-1.5 text-base transition-colors outline-none md:text-sm',
               'focus-visible:outline-none focus-visible:ring-0',
               variant === 'search' && (isRtl ? 'pr-9 pl-9' : 'pl-9 pr-9'),
               variant === 'password' && (isRtl ? 'pl-9' : 'pr-9'),
@@ -329,7 +329,7 @@ export default function CustomInput({
               isRtl ? 'left-3' : 'right-3'
             )}
           >
-            {isPasswordVisible ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+            {isPasswordVisible ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
           </button>
         )}
       </div>

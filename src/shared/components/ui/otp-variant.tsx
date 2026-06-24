@@ -34,7 +34,6 @@ export default function OTPVariant({
 
     slots.forEach((slot, index) => {
       const rect = slot.getBoundingClientRect();
-      // التحقق مما إذا كان مؤشر الفأرة يقع تماماً داخل حدود هذه الخانة بمفردها
       if (
         e.clientX >= rect.left &&
         e.clientX <= rect.right &&
