@@ -1,6 +1,7 @@
 import LanguageSwitcher from '@/shared/components/LanguageSwitcher';
 import { ThemeToggle } from '@/shared/components/theme';
 import CustomInput from '@/shared/components/custom-input';
+import { getTranslations } from 'next-intl/server';
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -10,6 +11,7 @@ interface PageProps {
 
 export default async function Home({ params }: PageProps) {
   const { locale } = await params;
+  const t = await getTranslations('HomePage');
 
   return (
     <main className="bg-bg-plain min-h-screen flex flex-col items-center justify-center p-6 text-center">
@@ -32,13 +34,12 @@ export default async function Home({ params }: PageProps) {
       </div>
 
       <CustomInput
-        variant="number"
-        label="input-label"
+        variant="otp"
         placeholder="placeholder"
         disabled={false}
         error={false}
         id="sm"
-        className="mt-4"
+        className="mt-4 w-xl"
       />
     </main>
   );
