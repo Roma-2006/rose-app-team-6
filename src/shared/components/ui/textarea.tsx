@@ -1,5 +1,7 @@
+'use client';
+
+import * as React from 'react';
 import { useTranslations } from 'next-intl';
-import React from 'react';
 import { cn } from '@/shared/lib/utils/tailwind-cn';
 
 interface TextareaProps extends React.ComponentProps<'textarea'> {
@@ -29,25 +31,19 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
             aria-invalid={!!error}
             className={cn(
               'field-sizing-content min-h-24 w-full resize-none rounded-lg border border-border-soft bg-bg-plain px-3 py-3 text-sm outline-none transition-all',
-              'hover:border-border-default',
-              'focus-visible:border-border-primary focus-visible:ring-3 focus-visible:ring-ring-default',
+              'hover:border-border-default focus-visible:border-border-primary focus-visible:ring-3 focus-visible:ring-ring-default',
               'aria-invalid:border-border-danger aria-invalid:ring-3 aria-invalid:ring-ring-danger',
-              'disabled:bg-bg-muted disabled:text-text-muted  disabled:cursor-not-allowed',
-              'dark:bg-bg-plain dark:text-text-plain dark:placeholder:text-text-muted dark:hover:border-border-default',
-              'dark:focus-visible:border-border-primary dark:focus-visible:ring-ring-default',
-              'dark:aria-invalid:border-border-danger dark:aria-invalid:ring-3 dark:aria-invalid:ring-ring-danger',
-
+              'disabled:bg-bg-muted disabled:text-text-muted disabled:cursor-not-allowed placeholder:text-text-muted',
               className
             )}
             {...props}
           />
           {showCount && maxLength && (
-            <div className="mt-1 text-right text-xs text-muted-foreground">
+            <div className="mt-1 text-right text-xs text-text-muted">
               {t('charCount', { current: count, max: maxLength })}
             </div>
           )}
         </div>
-
         {error && <p className="text-text-danger text-xs">{error}</p>}
       </div>
     );

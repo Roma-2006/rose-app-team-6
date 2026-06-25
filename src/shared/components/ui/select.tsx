@@ -2,26 +2,17 @@
 
 import * as React from 'react';
 import { Select as SelectPrimitive } from '@base-ui/react/select';
-
+import { useTranslations } from 'next-intl';
 import { cn } from '@/shared/lib/utils/tailwind-cn';
 import { ChevronDownIcon, ChevronUpIcon } from 'lucide-react';
-
 const Select = SelectPrimitive.Root;
 
-function SelectGroup({ className, ...props }: SelectPrimitive.Group.Props) {
-  return (
-    <SelectPrimitive.Group
-      data-slot="select-group"
-      className={cn('scroll-my-1.5 p-1.5', className)}
-      {...props}
-    />
-  );
-}
-
-function SelectValue({ className, ...props }: SelectPrimitive.Value.Props) {
+function SelectValue({ className, placeholder, ...props }: SelectPrimitive.Value.Props) {
+  const t = useTranslations('common.select');
   return (
     <SelectPrimitive.Value
       data-slot="select-value"
+      placeholder={placeholder ?? t('placeholder')}
       className={cn('flex flex-1 text-left', className)}
       {...props}
     />
@@ -177,7 +168,6 @@ function SelectScrollDownButton({
 export {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
   SelectLabel,
   SelectScrollDownButton,
