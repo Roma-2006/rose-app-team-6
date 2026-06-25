@@ -2,9 +2,9 @@ import { ReactNode } from 'react';
 
 export type TButtonProps = {
   loading?: boolean;
-  title: string;
-  disabled: boolean;
-  onClick: () => void;
+  title?: string;
+  disabled?: boolean;
+  onClick?: () => void;
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
   variant:

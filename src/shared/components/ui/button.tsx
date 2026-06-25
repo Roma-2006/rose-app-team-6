@@ -57,7 +57,7 @@ function Button({
     <ButtonPrimitive
       data-slot="button"
       aria-busy={loading}
-      aria-label={iconOnly ? t(title) : undefined}
+      aria-label={title ? t(title) : undefined}
       disabled={disabled || loading}
       onClick={onClick}
       className={cn(buttonVariants({ variant, size: iconOnly ? 'icon' : 'custom', className }))}
@@ -73,7 +73,7 @@ function Button({
       ) : (
         <>
           {leftIcon}
-          {iconOnly ? iconOnly : t(title)}
+          {!title ? iconOnly : t(title)}
           {rightIcon}
         </>
       )}
