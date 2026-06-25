@@ -5,8 +5,6 @@ interface PageProps {
   params: Promise<{ locale: string }>;
 }
 
-//husky test
-
 export default async function Home({ params }: PageProps) {
   const { locale } = await params;
 
@@ -24,7 +22,7 @@ export default async function Home({ params }: PageProps) {
           {locale === 'ar' ? 'مرحباً بك في تطبيق روز' : 'Welcome to Rose App'}
         </h1>
 
-        <div className="inline-flex items-center gap-2 px-4 py-2 bg-bg-secondary-faint rounded-full shadow-shadow-subtle-lg text-sm font-medium text-foreground">
+        <div className="inline-flex items-center gap-2 px-4 py-2 bg-bg-secondary-faint rounded-full shadow-shadow-subtle-lg text-sm font-medium text-text-primary">
           <span>Active Locale:</span>
           <span className="uppercase text-text-primary font-bold">{locale}</span>
         </div>
