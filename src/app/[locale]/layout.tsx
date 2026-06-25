@@ -6,11 +6,6 @@ import { LocaleLayoutProps } from '@/shared/lib/types/locale-layout-props';
 import { getTranslations } from 'next-intl/server';
 import Providers from '@/shared/providers/index';
 
-// export const metadata: Metadata = {
-//   title: 'Rose App',
-//   description: 'Rose application built with Next.js',
-// };
-
 export async function generateMetadata({
   params,
 }: {
