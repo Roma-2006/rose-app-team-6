@@ -1,10 +1,23 @@
 import type { Metadata } from 'next';
-import { hasLocale } from 'next-intl';
-import { notFound } from 'next/navigation';
-import { routing } from '@/i18n/routing';
+
 import { LocaleLayoutProps } from '@/shared/lib/types/locale-layout-props';
 import { getTranslations } from 'next-intl/server';
-import Providers from '@/shared/providers/index';
+import { routing } from '@/i18n/routing';
+import { hasLocale } from 'next-intl';
+import { notFound } from 'next/navigation';
+import Providers from '@/shared/providers';
+import { Sarabun, Tajawal } from 'next/font/google';
+
+const sarabun = Sarabun({
+  subsets: ['latin'],
+  variable: '--font-sarabun',
+  weight: ['200', '300', '400', '500', '600', '700'],
+});
+const tajawal = Tajawal({
+  subsets: ['latin'],
+  variable: '--font-tajawal',
+  weight: ['200', '300', '400', '500', '700'],
+});
 
 export async function generateMetadata({
   params,
@@ -29,10 +42,18 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
+  const messages = (await import(`@/i18n/messages/${locale}.json`)).default;
   return (
-    <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <html
+      lang={locale}
+      dir={locale === 'ar' ? 'rtl' : 'ltr'}
+      suppressHydrationWarning
+      className={`${sarabun.variable} ${tajawal.variable}`}
+    >
       <body>
-        <Providers locale={locale}>{children}</Providers>
+        <Providers locale={locale} messages={messages}>
+          {children}
+        </Providers>
       </body>
     </html>
   );
