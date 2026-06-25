@@ -50,7 +50,7 @@ export function ThemeToggle() {
     <div
       role="group"
       aria-label={LABELS[locale].system}
-      className="inline-flex items-center gap-1 rounded-full border border-border-soft bg-bg-plain p-1"
+      className="inline-flex items-center gap-1 rounded-full border border-border-soft bg-bg-plain p-1 "
     >
       {THEME_OPTIONS.map((option) => {
         const Icon = ICONS[option];
