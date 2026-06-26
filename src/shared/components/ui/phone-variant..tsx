@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { CheckIcon, ChevronsUpDown } from 'lucide-react';
 import * as RPNInput from 'react-phone-number-input';
-import { useTranslations } from 'next-intl';
 
 import {
   Command,
@@ -34,7 +33,7 @@ const PhoneVariant: React.ForwardRefExoticComponent<PhoneInputProps> = React.for
   return (
     <RPNInput.default
       ref={ref}
-      className={cn('flex', className)}
+      className={cn('flex focus-within:border-border-primary focus-within:ring-0', className)}
       flagComponent={FlagComponent}
       countrySelectComponent={CountrySelect}
       inputComponent={InputComponent}
@@ -60,18 +59,38 @@ PhoneVariant.displayName = 'PhoneVariant';
 const InputComponent = React.forwardRef<
   HTMLInputElement,
   React.ComponentProps<'input'> & { isError?: boolean; isDisabled?: boolean }
->(({ className, isError, isDisabled, ...props }, ref) => (
-  <Input
-    disabled={isDisabled}
-    className={cn(
-      'flex-1 w-full h-10 border-0  text-text-plain rounded-l-none rounded-r-md focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-0 focus:outline-none  placeholder:text-text-muted bg-transparent px-3',
-      isError && 'border-border-danger focus:border-border-danger',
-      className
-    )}
-    {...props}
-    ref={ref}
-  />
-));
+>(({ className, isError, isDisabled, onFocus, onBlur, ...props }, ref) => {
+  const [isFocused, setIsFocused] = React.useState(false);
+
+  const handleFocus: React.FocusEventHandler<HTMLInputElement> = (e) => {
+    setIsFocused(true);
+    onFocus?.(e);
+  };
+
+  const handleBlur: React.FocusEventHandler<HTMLInputElement> = (e) => {
+    setIsFocused(false);
+    onBlur?.(e);
+  };
+
+  return (
+    <Input
+      disabled={isDisabled}
+      className={cn(
+        'flex-1 w-full h-10 border-0    border-border-soft text-text-plain rounded-l-none rounded-r-md focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-0 focus:outline-none  placeholder:text-text-muted bg-transparent px-3',
+        isFocused
+          ? 'border-border-primary bg-primary-fade ring-0'
+          : isError
+            ? 'border-border-danger focus:border-border-danger'
+            : 'border-border-soft hover:border-border-default text-text-plain  bg-bg-plain',
+
+        className
+      )}
+      {...props}
+      ref={ref}
+      onFocus={handleFocus}
+    />
+  );
+});
 InputComponent.displayName = 'InputComponent';
 
 type CountryEntry = { label: string; value: RPNInput.Country | undefined };
@@ -91,7 +110,6 @@ const CountrySelect = ({
   options: countryList,
   onChange,
 }: CountrySelectProps) => {
-  const t = useTranslations('HomePage');
   const scrollAreaRef = React.useRef<HTMLDivElement>(null);
   const [searchValue, setSearchValue] = React.useState('');
   const [isOpen, setIsOpen] = React.useState(false);
@@ -140,11 +158,10 @@ const CountrySelect = ({
                 }
               }, 0);
             }}
-            placeholder={t('searchCountryPlaceholder')}
+            placeholder={'searchCountryPlaceholder'}
           />
           <CommandList>
             <ScrollArea ref={scrollAreaRef} className="h-72">
-              <CommandEmpty>{t('noCountryFound')}</CommandEmpty>
               <CommandGroup>
                 {countryList.map(({ value, label }) =>
                   value ? (
@@ -186,7 +203,7 @@ const CountrySelectOption = ({
   };
 
   return (
-    <CommandItem className="gap-2" onSelect={handleSelect}>
+    <CommandItem className="gap-2 " onSelect={handleSelect}>
       <FlagComponent country={country} countryName={countryName} />
       <span className="flex-1 text-sm">{countryName}</span>
       <span className="text-sm text-text-muted">{`+${RPNInput.getCountryCallingCode(country)}`}</span>

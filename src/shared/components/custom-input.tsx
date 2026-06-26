@@ -2,24 +2,16 @@
 import * as React from 'react';
 import { Input as InputPrimitive } from '@base-ui/react/input';
 import { cn } from '@/lib/utils';
-import { Eye, EyeOff, Search, X } from 'lucide-react';
+import { AlertCircle, Eye, EyeOff, Search, X } from 'lucide-react';
 import { Field } from '@base-ui/react/field';
 import OTPVariant from './ui/otp-variant';
 import NumberVariant from './ui/number-variant';
 import FileVariant from './ui/file-variant';
 import { PhoneVariant } from './ui/phone-variant.';
+import ErrorAlert from './error-alert';
 
 export type TInputValue = string | number | File[] | FileList | null;
-export type TInputVariant =
-  | 'default'
-  | 'number'
-  | 'search'
-  | 'password'
-  | 'otp'
-  | 'file'
-  | 'phone'
-  | 'error'
-  | 'disabled';
+export type TInputVariant = 'default' | 'number' | 'search' | 'password' | 'otp' | 'file' | 'phone';
 
 interface InputProps {
   variant: TInputVariant;
@@ -57,8 +49,8 @@ export default function CustomInput({
   ...props
 }: Omit<React.ComponentProps<'input'>, 'onChange'> & InputProps) {
   // disabled and error states based on props and variant
-  const isDisabled = disabled || variant === 'disabled';
-  const isError = !!errorMessage || variant === 'error' || error;
+  const isDisabled = disabled;
+  const isError = !!errorMessage || error;
 
   // Local states for managing input behavior
   const [isPasswordVisible, setIsPasswordVisible] = React.useState<boolean>(false);
@@ -109,12 +101,12 @@ export default function CustomInput({
   // Compute placeholder
 
   let computedPlaceholder = placeholder;
-  if (variant === 'search') {
-    computedPlaceholder = 'Search...';
-  } else if (variant === 'password') {
-    computedPlaceholder = '*********';
-  } else {
-    computedPlaceholder = placeholder;
+  if (!placeholder || placeholder === ' ' || placeholder === '') {
+    if (variant === 'search') {
+      computedPlaceholder = 'Search...';
+    } else if (variant === 'password') {
+      computedPlaceholder = '*********';
+    }
   }
 
   // Handle clearing search input
@@ -195,7 +187,7 @@ export default function CustomInput({
 
       <div className="relative flex items-center w-full">
         {/* Render the search button */}
-        {variant === 'search' && (
+        {variant === 'search' && !isError && (
           <Search
             className={cn(
               'absolute h-4 w-4 text-text-muted pointer-events-none top-1/2 -translate-y-1/2 z-10',
@@ -278,7 +270,7 @@ export default function CustomInput({
         )}
 
         {/* Render the search clear button */}
-        {variant === 'search' && hasSearchValue && (
+        {variant === 'search' && hasSearchValue && !isError && (
           <button
             type="button"
             onClick={handleClearSearch}
@@ -293,7 +285,7 @@ export default function CustomInput({
         )}
 
         {/* Render the password visibility toggle button */}
-        {variant === 'password' && (
+        {variant === 'password' && !isError && (
           <button
             type="button"
             onClick={handleTogglePassword}
@@ -307,6 +299,7 @@ export default function CustomInput({
           </button>
         )}
       </div>
+      {isError && <ErrorAlert />}
     </Field.Root>
   );
 }

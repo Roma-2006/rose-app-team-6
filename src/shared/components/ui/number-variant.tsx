@@ -121,6 +121,7 @@ export default function NumberVariant({
         type="text"
         inputMode="decimal"
         value={value}
+        placeholder={placeholder}
         onFocus={() => !isDisabled && setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         disabled={isDisabled}
@@ -131,9 +132,10 @@ export default function NumberVariant({
           isRtl ? 'text-right pl-8 pr-1' : 'text-left pr-8 pl-1',
           isFocused
             ? 'border-border-primary bg-primary-fade ring-0'
-            : isDisabled
-              ? 'text-text-muted '
-              : 'text-text-plain '
+            : isError
+              ? 'border-border-danger bg-bg-plain'
+              : 'border-border-soft hover:border-border-default text-text-plain  bg-bg-plain',
+          isDisabled ? 'text-text-muted ' : 'text-text-plain '
         )}
       />
       <div

@@ -86,7 +86,7 @@ export default function FileVariant({
             ? 'border-border-primary bg-bg-primary-fade'
             : isError
               ? 'border-border-danger bg-bg-plain'
-              : 'border-border-soft hover:border-border-default  bg-bg-plain',
+              : 'border-border-soft hover:border-border-default   bg-bg-plain',
         isDisabled ? '  cursor-not-allowed border-border-subtle bg-bg-subtle text-text-muted' : ''
       )}
     >
@@ -106,13 +106,13 @@ export default function FileVariant({
             onChange?.(updatedFiles);
           }
         }}
-        className="hidden rounded-10"
+        className="hidden rounded-10 "
       />
 
       <div
         className={cn(
-          'flex items-center gap-1.5 font-medium text-sm  flex-row-reverse flex-shrink-0',
-          isDisabled ? 'text-text-muted' : 'text-text-primary'
+          'flex items-center icon gap-1.5 font-medium text-sm  flex-row-reverse flex-shrink-0',
+          isDisabled ? 'text-text-muted' : 'text-text-primary/90'
         )}
       >
         <span>Upload file</span>

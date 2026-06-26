@@ -81,7 +81,7 @@ export default function OTPVariant({
                   key={index}
                   data-slot="input-otp-slot-item"
                   className={cn(
-                    'relative flex size-11 items-center justify-center text-base font-medium transition-all outline-none rounded-lg border border-border-subtle bg-bg-plain text-text-plain  pointer-events-none',
+                    'relative flex size-11 items-center border-border-soft justify-center text-base font-medium transition-all outline-none rounded-lg border border-border-subtle bg-bg-plain text-text-plain  pointer-events-none',
 
                     !isDisabled && !isError && isHovered && 'border-border-default ',
 
