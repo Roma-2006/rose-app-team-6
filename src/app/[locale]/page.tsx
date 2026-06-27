@@ -32,7 +32,7 @@ export default async function Home({ params }: PageProps) {
       </div>
 
       <CustomInput
-        variant="search"
+        variant="otp"
         label="label"
         // disabled={true}
         // error={true}
