@@ -32,9 +32,10 @@ export default async function Home({ params }: PageProps) {
       </div>
 
       <CustomInput
-        variant="phone"
+        variant="search"
         label="label"
         // disabled={true}
+        // error={true}
         id="sm"
         className="mt-4 w-sm"
       />

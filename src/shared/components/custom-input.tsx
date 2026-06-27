@@ -2,16 +2,26 @@
 import * as React from 'react';
 import { Input as InputPrimitive } from '@base-ui/react/input';
 import { cn } from '@/lib/utils';
-import { AlertCircle, Eye, EyeOff, Search, X } from 'lucide-react';
+import { Eye, EyeOff, Search, X } from 'lucide-react';
 import { Field } from '@base-ui/react/field';
 import OTPVariant from './ui/otp-variant';
 import NumberVariant from './ui/number-variant';
 import FileVariant from './ui/file-variant';
 import { PhoneVariant } from './ui/phone-variant.';
 import ErrorAlert from './error-alert';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 export type TInputValue = string | number | File[] | FileList | null;
-export type TInputVariant = 'default' | 'number' | 'search' | 'password' | 'otp' | 'file' | 'phone';
+export type TInputVariant =
+  | 'default'
+  | 'number'
+  | 'search'
+  | 'password'
+  | 'otp'
+  | 'file'
+  | 'phone'
+  | 'email';
 
 interface InputProps {
   variant: TInputVariant;
@@ -95,6 +105,7 @@ export default function CustomInput({
     if (variant === 'number') return 'text';
     if (variant === 'search') return 'search';
     if (variant === 'phone') return 'tel';
+    if (variant === 'email') return 'email';
     return 'text';
   };
 
@@ -197,7 +208,7 @@ export default function CustomInput({
             strokeWidth={2}
           />
         )}
-        {/* Render the base input */}
+        {/* Render the defualt  and email variants  */}
 
         {variant !== 'otp' && variant !== 'phone' && variant !== 'file' && variant !== 'number' && (
           <InputPrimitive
@@ -299,6 +310,7 @@ export default function CustomInput({
           </button>
         )}
       </div>
+
       {isError && <ErrorAlert />}
     </Field.Root>
   );

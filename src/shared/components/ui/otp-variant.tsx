@@ -24,11 +24,45 @@ export default function OTPVariant({
   ...props
 }: OTPVariantProps) {
   const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null);
-  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [isFocused, setIsFocused] = React.useState(false);
+  const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
+  const [indicatorStyle, setIndicatorStyle] = React.useState<React.CSSProperties>({ opacity: 0 });
 
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const inputRef = React.useRef<HTMLInputElement>(null);
+
+  // تحديث موقع الإطار الديناميكي ليعبر عن الـ Focus النشط فقط بحركة سلسة
+  const updateIndicator = React.useCallback(() => {
+    if (!containerRef.current || isDisabled || isError || !isFocused || activeIndex === null) {
+      setIndicatorStyle({ opacity: 0 });
+      return;
+    }
+
+    const slots = containerRef.current.querySelectorAll('[data-slot="input-otp-slot-item"]');
+    const targetSlot = slots[activeIndex] as HTMLElement;
+
+    if (targetSlot) {
+      setIndicatorStyle({
+        transform: `translate(${targetSlot.offsetLeft}px, ${targetSlot.offsetTop}px)`,
+        width: `${targetSlot.offsetWidth}px`,
+        height: `${targetSlot.offsetHeight}px`,
+        opacity: 1,
+      });
+    }
+  }, [activeIndex, isFocused, isDisabled, isError]);
+
+  React.useEffect(() => {
+    updateIndicator();
+  }, [updateIndicator]);
+
+  React.useEffect(() => {
+    window.addEventListener('resize', updateIndicator);
+    return () => window.removeEventListener('resize', updateIndicator);
+  }, [updateIndicator]);
+
+  // تتبع الفأرة لتحديد الخانة المحوم فوقها حالياً (بدون تمريرها للإطار المتحرك)
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current || isDisabled) return;
-
     const slots = containerRef.current.querySelectorAll('[data-slot="input-otp-slot-item"]');
     let foundIndex: number | null = null;
 
@@ -43,65 +77,86 @@ export default function OTPVariant({
         foundIndex = index;
       }
     });
-
     setHoveredIndex(foundIndex);
+  };
+
+  const handleContainerClick = () => {
+    if (isDisabled) return;
+    inputRef.current?.focus();
   };
 
   return (
     <div
       ref={containerRef}
-      className="relative w-full"
+      className="relative w-full cursor-text"
       onMouseMove={handleMouseMove}
       onMouseLeave={() => setHoveredIndex(null)}
+      onClick={handleContainerClick}
     >
+      {/* إطار الـ Focus الديناميكي المتحرك - يعمل حصرياً عند الكتابة والتنقل النشط */}
+      {!isDisabled && !isError && isFocused && activeIndex !== null && (
+        <div
+          style={indicatorStyle}
+          className="absolute top-0 left-0 rounded-lg border border-border-primary pointer-events-none transition-all duration-200 ease-out z-10 bg-transparent"
+        />
+      )}
+
       <OTPInput
+        ref={inputRef}
         maxLength={6}
         disabled={isDisabled}
         onChange={onChange}
         defaultValue={defaultValue}
         pattern="^[0-9]*$"
         spellCheck={false}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
         containerClassName={cn(
           'flex items-center gap-2 has-disabled:opacity-50 w-full justify-between',
           containerClassName
         )}
         className={cn(
-          'absolute inset-0 z-20 w-full h-full opacity-0 cursor-text disabled:cursor-not-allowed',
+          'absolute inset-0 z-0 w-full h-full opacity-0 pointer-events-none disabled:cursor-not-allowed placeholder:text-text-muted',
           className
         )}
         {...props}
-        render={({ slots }: { slots: SlotProps[] }) => (
-          <div className="flex  items-center gap-1.5 w-full justify-between relative">
-            {slots.map((slot, index) => {
-              const isActive = slot.isActive; // حالة الـ Focus للخانة النشطة
-              const isHovered = hoveredIndex === index; // حالة الـ Hover الفردية لهذه الخانة فقط
+        render={({ slots }: { slots: SlotProps[] }) => {
+          const currentActive = slots.findIndex((s) => s.isActive);
+          if (currentActive !== activeIndex) {
+            setActiveIndex(currentActive !== -1 ? currentActive : null);
+          }
 
-              return (
-                <div
-                  key={index}
-                  data-slot="input-otp-slot-item"
-                  className={cn(
-                    'relative flex size-11 items-center border-border-soft justify-center text-base font-medium transition-all outline-none rounded-lg border border-border-subtle bg-bg-plain text-text-plain  pointer-events-none',
+          return (
+            <div className="flex items-center gap-1.5 w-full justify-between relative z-0">
+              {slots.map((slot, index) => {
+                const isHovered = hoveredIndex === index;
+                // يظهر إطار الـ hover فقط إذا لم تكن الخانة هي النشطة حالياً لتجنب تداخل الألوان
+                const showStaticHover = isHovered && index !== activeIndex;
 
-                    !isDisabled && !isError && isHovered && 'border-border-default ',
-
-                    !isDisabled && !isError && isActive && 'border-border-primary  z-10',
-
-                    isError && 'border-border-danger text-text-danger',
-                    isDisabled && 'border-border-subtle bg-bg-subtle text-text-muted'
-                  )}
-                >
-                  {slot.char}
-                  {slot.hasFakeCaret && (
-                    <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-                      <div className="h-4 w-px animate-caret-blink bg-bg-primary  duration-1000" />
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        )}
+                return (
+                  <div
+                    key={index}
+                    data-slot="input-otp-slot-item"
+                    className={cn(
+                      'relative flex size-11 items-center justify-center text-base font-medium transition-colors outline-none rounded-lg border border-border-soft bg-bg-plain text-text-plain',
+                      // تطبيق الـ Hover بشكل ثابت وفوري بدون أي أنيميشن انتقال مرئي بين الخانات
+                      !isDisabled && !isError && showStaticHover && 'border-border-default',
+                      isError && 'border-border-danger text-text-danger bg-bg-plain z-20',
+                      isDisabled && 'border-border-subtle bg-bg-subtle text-text-muted opacity-50'
+                    )}
+                  >
+                    {slot.char}
+                    {slot.hasFakeCaret && isFocused && (
+                      <div className="pointer-events-none absolute inset-0 flex items-center justify-center z-20">
+                        <div className="h-4 w-px animate-caret-blink bg-bg-primary duration-1000" />
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          );
+        }}
       />
     </div>
   );
