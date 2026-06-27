@@ -1,40 +1,50 @@
 import type { Metadata } from 'next';
-import './globals.css';
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
 
+import { LocaleLayoutProps } from '@/shared/lib/types/locale-layout-props';
+import { getTranslations } from 'next-intl/server';
+import { routing } from '@/i18n/routing';
+import { hasLocale, NextIntlClientProvider } from 'next-intl';
+import { notFound } from 'next/navigation';
+import Providers from '@/shared/providers';
 import { Sarabun, Tajawal } from 'next/font/google';
-import { ThemeProvider } from '@/shared/providers/theme.provider';
-import QueryProvider from '@/shared/providers/query.provider';
-// import Script from 'next/script';
+import ThemeProvider from '@/shared/providers/providers/theme.provider';
+import QueryProvider from '@/shared/providers/providers/react-query.provider';
 
-export const sarabun = Sarabun({
+const sarabun = Sarabun({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
   variable: '--font-sarabun',
+  weight: ['200', '300', '400', '500', '600', '700'],
 });
-
-export const tajawal = Tajawal({
-  subsets: ['arabic'],
-  weight: ['400', '500', '700', '800'],
+const tajawal = Tajawal({
+  subsets: ['latin'],
   variable: '--font-tajawal',
+  weight: ['200', '300', '400', '500', '700'],
 });
 
-export const metadata: Metadata = {
-  title: 'Rose App',
-  description: 'Rose application built with Next.js',
-};
-
-export default async function RootLayout({
-  children,
+export async function generateMetadata({
   params,
-}: Readonly<{
-  children: React.ReactNode;
-  params: Promise<{ locale: string }>;
-}>) {
-  const { locale } = await params;
-  const messages = await getMessages();
+}: {
+  params: LocaleLayoutProps['params'];
+}): Promise<Metadata> {
+  const paramsResult = await params;
+  const locale = paramsResult.locale;
+  const t = await getTranslations({ locale });
+  const title = t('app-title');
+  return {
+    title,
+  };
+}
 
+export async function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
+  const paramsResult = await params;
+  const locale = paramsResult.locale;
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
+  const messages = (await import(`@/i18n/messages/${locale}.json`)).default;
   return (
     <html
       lang={locale}
@@ -53,6 +63,10 @@ export default async function RootLayout({
             <QueryProvider>{children}</QueryProvider>
           </ThemeProvider>
         </NextIntlClientProvider>
+
+        <Providers locale={locale} messages={messages}>
+          {children}
+        </Providers>
       </body>
     </html>
   );
