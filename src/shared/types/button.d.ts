@@ -1,12 +1,9 @@
 import { ReactNode } from 'react';
 
-export type TButtonProps = {
+export type TBaseButtonProps = {
   loading?: boolean;
-  title?: string;
   disabled?: boolean;
   onClick?: () => void;
-  leftIcon?: ReactNode;
-  rightIcon?: ReactNode;
   variant:
     | 'primary'
     | 'outline'
@@ -17,5 +14,17 @@ export type TButtonProps = {
     | 'link'
     | null
     | undefined;
-  iconOnly?: ReactNode;
 };
+
+export type TTextButton = TBaseButtonProps & {
+  buttonVariant: 'text';
+  title: string;
+  leftIcon?: ReactNode;
+  rightIcon?: ReactNode;
+};
+
+export type TIconButtonProps = TBaseButtonProps & {
+  buttonVariant: 'icon';
+  iconOnly: ReactNode;
+};
+export type TButtonProps = TTextButton | TIconButtonProps;

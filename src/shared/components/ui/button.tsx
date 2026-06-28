@@ -1,11 +1,9 @@
 import { Button as ButtonPrimitive } from '@base-ui/react/button';
 import { cva, type VariantProps } from 'class-variance-authority';
-
 import { cn } from '@/shared/lib/utils/tailwind-cn';
 import { TButtonProps } from '@/shared/types/button';
 import { LoaderCircle } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-
 const buttonVariants = cva(
   "disabled:bg-bg-soft  disabled:text-text-muted disabled:border-none group/button inline-flex shrink-0 items-center justify-center   border border-transparent bg-clip-padding text-base radius-lg font-medium dark:font-semibold dark:text-sm whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/30 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none  aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
@@ -40,41 +38,69 @@ const buttonVariants = cva(
   }
 );
 
-function Button({
-  className,
-  variant,
-  loading,
-  title,
-  disabled,
-  onClick,
-  leftIcon,
-  rightIcon,
-  iconOnly,
-  ...props
-}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants> & TButtonProps) {
+function Button(props: ButtonPrimitive.Props & VariantProps<typeof buttonVariants> & TButtonProps) {
   const t = useTranslations();
+  const isIcon = props.buttonVariant === 'icon';
+  const isText = props.buttonVariant === 'text';
+  const getDomProps = () => {
+    if (isIcon) {
+      const {
+        className,
+        variant,
+        loading,
+        title,
+        disabled,
+        onClick,
+        iconOnly,
+        buttonVariant,
+        ...domProps
+      } = props;
+      return domProps;
+    } else if (isText) {
+      const {
+        className,
+        variant,
+        loading,
+        title,
+        disabled,
+        onClick,
+        leftIcon,
+        rightIcon,
+        buttonVariant,
+        ...domProps
+      } = props;
+      return domProps;
+    }
+  };
   return (
     <ButtonPrimitive
       data-slot="button"
-      aria-busy={loading}
-      aria-label={title ? t(title) : undefined}
-      disabled={disabled || loading}
-      onClick={onClick}
-      className={cn(buttonVariants({ variant, size: iconOnly ? 'icon' : 'custom', className }))}
-      {...props}
+      aria-busy={props.loading}
+      aria-label={props.title ? t(props.title) : undefined}
+      disabled={props.disabled || props.loading}
+      onClick={props.onClick}
+      // buttonVariant={buttonVariant}
+      className={cn(
+        buttonVariants({
+          variant: props.variant,
+          size: isIcon ? 'icon' : 'custom',
+          className: props.className,
+        })
+      )}
+      {...getDomProps()}
     >
-      {loading && iconOnly ? (
+      {props.loading && isIcon ? (
         <LoaderCircle className="animate-spin" size={18} />
-      ) : loading ? (
+      ) : props.loading ? (
         <>
           {t('button.loading')}
           <LoaderCircle className="animate-spin" size={18} />
         </>
       ) : (
         <>
-          {leftIcon}
-          {!title ? iconOnly : t(title)}
-          {rightIcon}
+          {isText && props.leftIcon}
+          {isIcon ? props.iconOnly : t(props.title)}
+          {isText && props.rightIcon}
         </>
       )}
     </ButtonPrimitive>

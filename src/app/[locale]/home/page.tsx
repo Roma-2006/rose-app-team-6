@@ -13,14 +13,19 @@ export default function Page() {
   const handleClick = () => console.log('hello');
   return (
     <>
-      <Button variant="primary" title="button.submit" onClick={() => handleClick()} />
-      <Button variant="secondary" title="button.save" />
-      <Button variant="outline" title="button.loading" loading />
-      <Button variant="subtle" title="button.delete" />
-      <Button variant="ghost" title="button.confirm" />
-      <Button variant="destructive" title="button.cancel" />
-      <Button variant="destructive" iconOnly={<Heart />} />
-      <Button variant="destructive" iconOnly={<Heart />} loading />
+      <Button
+        variant="primary"
+        title="button.submit"
+        onClick={() => handleClick()}
+        buttonVariant="text"
+      />
+      <Button variant="secondary" title="button.save" buttonVariant="text" />
+      <Button variant="outline" title="button.loading" loading buttonVariant="text" />
+      <Button variant="subtle" title="button.delete" buttonVariant="text" />
+      <Button variant="ghost" title="button.confirm" buttonVariant="text" />
+      <Button variant="destructive" title="button.cancel" buttonVariant="text" />
+      <Button variant="destructive" iconOnly={<Heart />} buttonVariant="icon" />
+      <Button variant="destructive" iconOnly={<Heart />} loading buttonVariant="icon" />
       <BaseCheckbox list={list} onChange={(selected) => console.log(selected)} />
     </>
   );
