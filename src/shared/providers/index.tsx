@@ -12,10 +12,10 @@ interface ProvidersProps {
 
 export default function Providers({ children, locale, messages }: ProvidersProps) {
   return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      <NextIntlClientProvider locale={locale} messages={messages}>
+    <NextIntlClientProvider locale={locale} messages={messages}>
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
         <QueryProvider>{children}</QueryProvider>
-      </NextIntlClientProvider>
-    </ThemeProvider>
+      </ThemeProvider>
+    </NextIntlClientProvider>
   );
 }
