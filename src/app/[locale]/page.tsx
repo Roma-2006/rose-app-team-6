@@ -1,37 +1,38 @@
-import { BaseCheckbox } from '@/shared/components/custom-ui/BaseCheckbox';
-import LanguageSwitcher from '@/shared/components/LanguageSwitcher';
-import { ThemeToggle } from '@/shared/components/theme';
 import { Badge } from '@/shared/components/ui/badge';
+import LanguageSwitcher from '@/shared/components/language-switcher';
+import { ThemeToggle } from '@/shared/components/theme';
+import { getTranslations } from 'next-intl/server';
 
 interface PageProps {
-  params: Promise<{ locale: string }>;
+  params: { locale: string };
 }
 
-//husky test
-
 export default async function Home({ params }: PageProps) {
-  const { locale } = await params;
-  // const handleLog = () => console.log('Hello Rowidaa');
+  const { locale } = params;
+
+  const t = await getTranslations();
 
   return (
-    <main className="bg-bg-plain min-h-screen flex flex-col items-center justify-center p-6 text-center">
-      <div className="bg-bg-plain p-8 shadow-subtle-lg border border-border-primary radius-lg max-w-md w-full flex flex-col items-center">
-        {/* Language Switcher */}
-        <Badge variant="primary">Badge</Badge>
-        <Badge variant="secondary">Badge</Badge>
-        <Badge variant="subtle">Badge</Badge>
+    <main className="bg-plain min-h-screen flex flex-col items-center justify-center p-6 text-center">
+      <div className="bg-plain p-8 rounded-2xl shadow-sm border border-slate-100 max-w-md w-full flex flex-col items-center">
+        {/* Header controls */}
         <div className="mb-6 w-full flex justify-end gap-2">
           <LanguageSwitcher />
           <ThemeToggle />
         </div>
 
-        <h1 className="text-3xl font-extrabold text-text-primary mb-2 tracking-tight">
-          {locale === 'ar' ? 'مرحباً بك في تطبيق روز' : 'Welcome to Rose App'}
-        </h1>
+        {/* Badges */}
+        <div className="flex gap-2 mb-4">
+          <Badge variant="primary">Badge</Badge>
+          <Badge variant="secondary">Badge</Badge>
+          <Badge variant="subtle">Badge</Badge>
+        </div>
 
-        <div className="inline-flex items-center gap-2 px-4 py-2 bg-bg-secondary-faint rounded-full shadow-shadow-subtle-lg text-sm font-medium text-foreground">
+        <h1 className="text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">{t('title')}</h1>
+
+        <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 rounded-full text-sm font-medium text-slate-700">
           <span>Active Locale:</span>
-          <span className="uppercase text-text-primary font-bold">{locale}</span>
+          <span className="uppercase text-indigo-600 font-bold">{locale}</span>
         </div>
       </div>
     </main>

@@ -9,5 +9,18 @@
     "save": "حفظ",
     "delete": "حذف",
     "confirm": "تأكيد"
-  }
+   },
+  "common": {
+    "select": {
+      "placeholder": "اختر خياراً",
+      "noOptions": "لا توجد خيارات",
+      "search": "بحث..."
+    },
+    
+    "textarea": {
+      "charCount": "{current}/{max} حرف"
+    }
+  },
+  "app-title": "تطبيق روز",
+  "title": "مرحبا بكم في تطبيق روز"
 }
