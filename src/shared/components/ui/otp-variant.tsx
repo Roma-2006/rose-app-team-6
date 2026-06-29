@@ -31,7 +31,6 @@ export default function OTPVariant({
   const containerRef = React.useRef<HTMLDivElement>(null);
   const inputRef = React.useRef<HTMLInputElement>(null);
 
-  // تحديث موقع الإطار الديناميكي ليعبر عن الـ Focus النشط فقط بحركة سلسة
   const updateIndicator = React.useCallback(() => {
     if (!containerRef.current || isDisabled || isError || !isFocused || activeIndex === null) {
       setIndicatorStyle({ opacity: 0 });
@@ -60,7 +59,6 @@ export default function OTPVariant({
     return () => window.removeEventListener('resize', updateIndicator);
   }, [updateIndicator]);
 
-  // تتبع الفأرة لتحديد الخانة المحوم فوقها حالياً (بدون تمريرها للإطار المتحرك)
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current || isDisabled) return;
     const slots = containerRef.current.querySelectorAll('[data-slot="input-otp-slot-item"]');
@@ -93,7 +91,6 @@ export default function OTPVariant({
       onMouseLeave={() => setHoveredIndex(null)}
       onClick={handleContainerClick}
     >
-      {/* إطار الـ Focus الديناميكي المتحرك - يعمل حصرياً عند الكتابة والتنقل النشط */}
       {!isDisabled && !isError && isFocused && activeIndex !== null && (
         <div
           style={indicatorStyle}
@@ -130,7 +127,6 @@ export default function OTPVariant({
             <div className="flex items-center gap-1.5 w-full justify-between relative z-0">
               {slots.map((slot, index) => {
                 const isHovered = hoveredIndex === index;
-                // يظهر إطار الـ hover فقط إذا لم تكن الخانة هي النشطة حالياً لتجنب تداخل الألوان
                 const showStaticHover = isHovered && index !== activeIndex;
 
                 return (
