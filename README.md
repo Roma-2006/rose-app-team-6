@@ -9,7 +9,7 @@ Before running the project, make sure you have:
 * Node.js 20+
 * npm
 
-## Installation
+##  Installation
 
 Clone the repository:
 
