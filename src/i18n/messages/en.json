@@ -1,7 +1,7 @@
 {
-  
-  "app-title": "Rose App",
-
-  "title": "Welcome to Rose App"
+  "app-title": "Roze App",
+  "auth": {
+    "switchLang": "English",
+    "langLabel": "التحويل إلى الإنجليزية"
+  }
 }
-

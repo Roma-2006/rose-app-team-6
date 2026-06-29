@@ -1,4 +1,9 @@
 {
   "app-title": "تطبيق روز",
-  "title": "مرحبا بكم في تطبيق روز"
+ 
+  "auth": {
+    "switchLang": "العربية",
+    "langLabel": "Switch to Arabic"
+  }
+
 }

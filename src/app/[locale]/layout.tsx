@@ -48,7 +48,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
       lang={locale}
       dir={locale === 'ar' ? 'rtl' : 'ltr'}
       suppressHydrationWarning
-      className={`${sarabun.variable} ${tajawal.variable}`}
+      className={`${sarabun.variable} ${tajawal.variable} `}
     >
       <body>
         <Providers locale={locale} messages={messages}>
