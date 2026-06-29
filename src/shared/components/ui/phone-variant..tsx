@@ -1,10 +1,11 @@
+'use client';
+
 import * as React from 'react';
 import { CheckIcon, ChevronsUpDown } from 'lucide-react';
 import * as RPNInput from 'react-phone-number-input';
 
 import {
   Command,
-  CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
@@ -33,22 +34,25 @@ const PhoneVariant: React.ForwardRefExoticComponent<PhoneInputProps> = React.for
   return (
     <RPNInput.default
       ref={ref}
-      className={cn('flex focus-within:border-border-primary focus-within:ring-0', className)}
+      disabled={isDisabled}
+      className={cn(
+        'flex w-full rounded-lg border transition-colors bg-bg-plain h-11.5 items-center',
+        isError
+          ? 'border-border-danger focus-within:border-border-danger'
+          : 'border-border-soft hover:border-border-default focus-within:border-border-primary focus-within:ring-0',
+        isDisabled && 'cursor-not-allowed border-border-subtle bg-bg-subtle opacity-50',
+        className
+      )}
       flagComponent={FlagComponent}
-      countrySelectComponent={CountrySelect}
-      inputComponent={InputComponent}
+      countrySelectComponent={(selectProps) => (
+        <CountrySelect {...selectProps} disabled={isDisabled} isError={isError} />
+      )}
+      inputComponent={(inputProps) => (
+        <InputComponent {...inputProps} isDisabled={isDisabled} isError={isError} />
+      )}
       smartCaret={false}
       value={value || undefined}
       defaultCountry="EG"
-      /**
-       * Handles the onChange event.
-       *
-       * react-phone-number-input might trigger the onChange event as undefined
-       * when a valid phone number is not entered. To prevent this,
-       * the value is coerced to an empty string.
-       *
-       * @param {E164Number | undefined} value - The entered value
-       */
       onChange={(value) => onChange?.(value || ('' as RPNInput.Value))}
       {...props}
     />
@@ -59,35 +63,16 @@ PhoneVariant.displayName = 'PhoneVariant';
 const InputComponent = React.forwardRef<
   HTMLInputElement,
   React.ComponentProps<'input'> & { isError?: boolean; isDisabled?: boolean }
->(({ className, isError, isDisabled, onFocus, onBlur, ...props }, ref) => {
-  const [isFocused, setIsFocused] = React.useState(false);
-
-  const handleFocus: React.FocusEventHandler<HTMLInputElement> = (e) => {
-    setIsFocused(true);
-    onFocus?.(e);
-  };
-
-  const handleBlur: React.FocusEventHandler<HTMLInputElement> = (e) => {
-    setIsFocused(false);
-    onBlur?.(e);
-  };
-
+>(({ className, isError, isDisabled, ...props }, ref) => {
   return (
     <Input
       disabled={isDisabled}
       className={cn(
-        'flex-1 w-full h-10 border-0    border-border-soft text-text-plain rounded-l-none rounded-r-md focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-0 focus:outline-none  placeholder:text-text-muted bg-transparent px-3',
-        isFocused
-          ? 'border-border-primary bg-primary-fade ring-0'
-          : isError
-            ? 'border-border-danger focus:border-border-danger'
-            : 'border-border-soft hover:border-border-default text-text-plain  bg-bg-plain',
-
+        'flex-1 w-full h-10 border-0 text-text-plain rounded-l-none rounded-r-md focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-0 focus:outline-none placeholder:text-text-muted bg-transparent px-3 outline-none',
         className
       )}
       {...props}
       ref={ref}
-      onFocus={handleFocus}
     />
   );
 });
@@ -119,15 +104,20 @@ const CountrySelect = ({
       open={isOpen}
       modal
       onOpenChange={(open) => {
+        if (disabled) return;
         setIsOpen(open);
         open && setSearchValue('');
       }}
     >
       <PopoverTrigger>
-        <div
+        <span
+          role="button"
+          tabIndex={disabled ? -1 : 0}
           className={cn(
-            'flex h-10 text-text-plain gap-2 px-3 items-center transition-colors shrink-0 whitespace-nowrap bg-transparent',
-            disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer select-none'
+            'flex h-10 text-text-plain gap-2 px-3 items-center transition-colors shrink-0 whitespace-nowrap bg-transparent border-0 border-r border-border-soft outline-none p-0 focus:outline-none rounded-l-lg',
+            disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer select-none',
+            isError && 'text-text-danger',
+            isOpen && 'bg-black/5'
           )}
           style={disabled ? { pointerEvents: 'none' } : undefined}
         >
@@ -138,10 +128,10 @@ const CountrySelect = ({
             </span>
           )}
           <ChevronsUpDown className="size-3.5 opacity-50 shrink-0" />
-        </div>
+        </span>
       </PopoverTrigger>
 
-      <PopoverContent className="w-375 p-0">
+      <PopoverContent className="w-375 p-0" align="start">
         <Command>
           <CommandInput
             value={searchValue}
@@ -158,23 +148,25 @@ const CountrySelect = ({
                 }
               }, 0);
             }}
-            placeholder={'searchCountryPlaceholder'}
+            placeholder={'Search country...'}
           />
           <CommandList>
             <ScrollArea ref={scrollAreaRef} className="h-72">
               <CommandGroup>
-                {countryList.map(({ value, label }) =>
-                  value ? (
-                    <CountrySelectOption
-                      key={value}
-                      country={value}
-                      countryName={label}
-                      selectedCountry={selectedCountry}
-                      onChange={onChange}
-                      onSelectComplete={() => setIsOpen(false)}
-                    />
-                  ) : null
-                )}
+                {countryList
+                  .filter(({ label }) => label.toLowerCase().includes(searchValue.toLowerCase()))
+                  .map(({ value, label }) =>
+                    value ? (
+                      <CountrySelectOption
+                        key={value}
+                        country={value}
+                        countryName={label}
+                        selectedCountry={selectedCountry}
+                        onChange={onChange}
+                        onSelectComplete={() => setIsOpen(false)}
+                      />
+                    ) : null
+                  )}
               </CommandGroup>
             </ScrollArea>
           </CommandList>
@@ -218,7 +210,7 @@ const FlagComponent = ({ country, countryName }: RPNInput.FlagProps) => {
   const Flag = flags[country];
 
   return (
-    <span className="flex h-4 w-6 overflow-hidden rounded-0 bg-border-subtle [&_svg:not([class*='size-'])]:size-full">
+    <span className="flex h-4 w-6 overflow-hidden rounded-sm bg-border-subtle [&_svg:not([class*='size-'])]:size-full">
       {Flag && <Flag title={countryName} />}
     </span>
   );
