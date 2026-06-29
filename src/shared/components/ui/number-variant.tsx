@@ -1,5 +1,4 @@
 'use client';
-
 import { cn } from '@/lib/utils';
 import { Triangle } from 'lucide-react';
 import React from 'react';
@@ -11,162 +10,160 @@ interface NumberVariantProps {
   max?: number;
   step?: number;
   placeholder?: string;
-  defaultValue?: number;
-  onChange?: (value: number | undefined) => void;
+  value?: string | number;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onBlur?: React.FocusEventHandler<HTMLInputElement>;
   isRtl?: boolean;
+  name?: string;
+  id?: string;
 }
 
-export default function NumberVariant({
-  isDisabled = false,
-  isError = false,
-  min,
-  max,
-  placeholder,
-  step = 1,
-  defaultValue,
-  onChange,
-  isRtl = false,
-}: NumberVariantProps): React.JSX.Element {
-  // Store Input Value
+const NumberVariant = React.forwardRef<HTMLInputElement, NumberVariantProps>(
+  (
+    {
+      isDisabled = false,
+      isError = false,
+      min,
+      max,
+      placeholder,
+      step = 1,
+      value,
+      onChange,
+      onBlur,
+      isRtl = false,
+      ...props
+    },
+    ref
+  ) => {
+    // استخدام القيمة القادمة من الـ Form أو العودة للـ state المحلية
+    const [localValue, setLocalValue] = React.useState<string>('');
+    const isControlled = value !== undefined;
+    const displayValue = isControlled ? String(value ?? '') : localValue;
 
-  const [value, setValue] = React.useState<string>(() => {
-    if (defaultValue !== undefined && defaultValue !== null) {
-      return defaultValue.toString();
-    }
-    return '';
-  });
+    const [isFocused, setIsFocused] = React.useState(false);
+    const internalInputRef = React.useRef<HTMLInputElement | null>(null);
+    React.useImperativeHandle(ref, () => internalInputRef.current!);
 
-  const [isFocused, setIsFocused] = React.useState(false);
+    const triggerChange = (nextValue: string) => {
+      if (!isControlled) setLocalValue(nextValue);
 
-  // Handle float numbers
-  const getDecimalPlaces = (num: number): number => {
-    const parts = num.toString().split('.');
-    return parts[1]?.length ?? 0;
-  };
-  // Handle Min and Max limitted
-  const clampValue = (num: number) => {
-    let clamped = num;
-    if (min !== undefined && clamped < min) clamped = min;
-    if (max !== undefined && clamped > max) clamped = max;
-    return clamped;
-  };
-  //
-  const formatValue = (num: number) => {
-    const stepDecimals = getDecimalPlaces(step);
-    const minDecimals = min !== undefined ? getDecimalPlaces(min) : 0;
-    const precision = Math.max(stepDecimals, minDecimals);
-    return parseFloat(num.toFixed(precision)).toString();
-  };
+      if (internalInputRef.current) {
+        const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+          window.HTMLInputElement.prototype,
+          'value'
+        )?.set;
+        nativeInputValueSetter?.call(internalInputRef.current, nextValue);
 
-  // Accept Only (digits, . , -)
-  const handleInputChange = (newValue: string) => {
-    if (isDisabled) return;
-    const sanitized = newValue.replace(/[^0-9.-]/g, '');
-    if ((sanitized.match(/\./g) || []).length > 1) return;
-    if (sanitized.lastIndexOf('-') > 0) return;
-    setValue(sanitized);
+        const event = new Event('input', { bubbles: true });
+        internalInputRef.current.dispatchEvent(event);
+        onChange?.(event as unknown as React.ChangeEvent<HTMLInputElement>);
+      }
+    };
 
-    const parsed = parseFloat(sanitized);
-    if (!Number.isNaN(parsed)) {
-      onChange?.(parsed);
-    } else if (sanitized === '' || sanitized === '-') {
-      onChange?.(undefined);
-    }
-  };
-  // Handle up and down
-  const handleStep = (direction: 'up' | 'down') => {
-    if (isDisabled) return;
-    const startPoint = min !== undefined ? min : 0;
-    const current = value === '' || value === '-' ? startPoint : parseFloat(value);
-    const change = direction === 'up' ? step : -step;
-    const nextValue = current + change;
-    const clamped = clampValue(nextValue);
-    const formatted = formatValue(clamped);
-    setValue(formatted);
-    onChange?.(clamped);
-  };
+    const handleInputChange = (newValue: string) => {
+      if (isDisabled) return;
+      const sanitized = newValue.replace(/[^0-9.-]/g, '');
+      if ((sanitized.match(/\./g) || []).length > 1) return;
+      if (sanitized.lastIndexOf('-') > 0) return;
+      triggerChange(sanitized);
+    };
 
-  // Handle keyboared buttons
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (isDisabled) return;
-    if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      handleStep('up');
-    } else if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      handleStep('down');
-    }
-  };
+    const handleStep = (direction: 'up' | 'down') => {
+      if (isDisabled) return;
+      const current =
+        displayValue === '' || displayValue === '-' ? (min ?? 0) : parseFloat(displayValue);
+      const change = direction === 'up' ? step : -step;
+      let nextValue = current + change;
 
-  // disabled input when it reach to min or max
-  const numericValue = parseFloat(value);
-  const isMinReached = min !== undefined && !Number.isNaN(numericValue) && numericValue <= min;
-  const isMaxReached = max !== undefined && !Number.isNaN(numericValue) && numericValue >= max;
+      if (min !== undefined && nextValue < min) nextValue = min;
+      if (max !== undefined && nextValue > max) nextValue = max;
 
-  return (
-    <div
-      className={cn(
-        'relative    inline-flex group items-center rounded-lg border px-2 py-1 w-full h-9 transition-colors',
-        isFocused
-          ? 'border-border-primary  ring-0'
-          : isError
-            ? 'border-border-danger'
-            : 'border-border-soft hover:border-border-default focus-within:border-border-primary ',
-        isDisabled
-          ? 'bg-bg-subtle text-text-muted border-border-subtle cursor-not-allowed'
-          : 'bg-bg-plain'
-      )}
-    >
-      <input
-        type="text"
-        inputMode="decimal"
-        value={value}
-        placeholder={placeholder}
-        onFocus={() => !isDisabled && setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
-        disabled={isDisabled}
-        onChange={(e) => handleInputChange(e.target.value)}
-        onKeyDown={handleKeyDown}
-        className={cn(
-          'w-full min-w-0 bg-transparent    outline-none text-base md:text-sm transition-colors',
-          isRtl ? 'text-right pl-8 pr-1' : 'text-left pr-8 pl-1',
-          isFocused
-            ? 'border-border-primary bg-primary-fade ring-0'
-            : isError
-              ? 'border-border-danger bg-bg-plain'
-              : 'border-border-soft hover:border-border-default text-text-plain  bg-bg-plain',
-          isDisabled ? 'text-text-muted ' : 'text-text-plain '
-        )}
-      />
+      const stepDecimals = step.toString().split('.')[1]?.length ?? 0;
+      const formatted = parseFloat(nextValue.toFixed(stepDecimals)).toString();
+      triggerChange(formatted);
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (isDisabled) return;
+      if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        handleStep('up');
+      }
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        handleStep('down');
+      }
+    };
+
+    const numericValue = parseFloat(displayValue);
+    const isMinReached = min !== undefined && !Number.isNaN(numericValue) && numericValue <= min;
+    const isMaxReached = max !== undefined && !Number.isNaN(numericValue) && numericValue >= max;
+
+    return (
       <div
         className={cn(
-          'absolute top-1/2 -translate-y-1/2 flex flex-col gap-0.5',
-          isRtl ? 'left-2' : 'right-2'
+          'relative inline-flex items-center rounded-lg border px-2 py-1 w-full h-11.5 transition-colors bg-bg-plain overflow-hidden',
+          isFocused
+            ? 'border-border-primary ring-0 bg-primary-fade'
+            : isError
+              ? 'border-border-danger bg-bg-plain'
+              : 'border-border-soft hover:border-border-default focus-within:border-border-primary',
+          isDisabled && 'bg-bg-subtle text-text-muted border-border-subtle cursor-not-allowed'
         )}
       >
-        <button
-          type="button"
-          onClick={() => handleStep('up')}
-          disabled={isDisabled || isMaxReached}
+        <input
+          type="text"
+          inputMode="decimal"
+          value={displayValue}
+          ref={internalInputRef}
+          onFocus={() => !isDisabled && setIsFocused(true)}
+          onBlur={(e) => {
+            setIsFocused(false);
+            onBlur?.(e);
+          }}
+          disabled={isDisabled}
+          onChange={(e) => handleInputChange(e.target.value)}
+          onKeyDown={handleKeyDown}
+          autoComplete="off"
           className={cn(
-            'text-text-muted hover:text-text-plain  transition-colors',
-            (isDisabled || isMaxReached) && 'opacity-30 cursor-not-allowed'
+            'w-full min-w-0 bg-transparent border-none outline-none text-base md:text-sm text-text-plain focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0',
+            isRtl ? 'text-right pl-8 pr-1' : 'text-left pr-8 pl-1',
+            isDisabled && 'text-text-muted placeholder:text-text-subtle'
+          )}
+          {...props}
+        />
+        <div
+          className={cn(
+            'absolute top-1/2 -translate-y-1/2 flex flex-col gap-0.5 z-10',
+            isRtl ? 'left-2' : 'right-2'
           )}
         >
-          <Triangle className="h-2.5 w-2.5 fill-current" />
-        </button>
-        <button
-          type="button"
-          onClick={() => handleStep('down')}
-          disabled={isDisabled || isMinReached}
-          className={cn(
-            'text-text-muted  hover:text-text-plain  transition-colors rotate-180',
-            (isDisabled || isMinReached) && 'opacity-30 cursor-not-allowed'
-          )}
-        >
-          <Triangle className="h-2.5 w-2.5 fill-current" />
-        </button>
+          <button
+            type="button"
+            onClick={() => handleStep('up')}
+            disabled={isDisabled || isMaxReached}
+            className={cn(
+              'text-text-muted hover:text-text-plain transition-colors',
+              (isDisabled || isMaxReached) && 'opacity-30 cursor-not-allowed'
+            )}
+          >
+            <Triangle className="h-2.5 w-2.5 fill-current" />
+          </button>
+          <button
+            type="button"
+            onClick={() => handleStep('down')}
+            disabled={isDisabled || isMinReached}
+            className={cn(
+              'text-text-muted hover:text-text-plain transition-colors rotate-180',
+              (isDisabled || isMinReached) && 'opacity-30 cursor-not-allowed'
+            )}
+          >
+            <Triangle className="h-2.5 w-2.5 fill-current" />
+          </button>
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
+);
+NumberVariant.displayName = 'NumberVariant';
+export default NumberVariant;
