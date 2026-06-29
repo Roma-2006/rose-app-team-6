@@ -30,12 +30,38 @@ export default async function Home({ params }: PageProps) {
       </div>
 
       <CustomInput
-        variant="otp"
+        variant="number"
         label="label"
         // disabled={true}
         // error={true}
         id="sm"
         className="mt-4 w-sm"
+      />
+
+      <CustomInput
+        variant="phone"
+        label="label"
+        // disabled={true}
+        // error={true}
+        id="sm"
+        className="mt-4 w-sm"
+      />
+      <CustomInput
+        variant="search"
+        label="label"
+        // disabled={true}
+        // error={true}
+        id="sm"
+        className="mt-4 w-sm"
+      />
+      <CustomInput
+        variant="file"
+        label="label"
+        // disabled={true}
+        // error={true}
+        id="sm"
+        className="mt-4 w-sm"
+        accept=".mp3"
       />
     </main>
   );
