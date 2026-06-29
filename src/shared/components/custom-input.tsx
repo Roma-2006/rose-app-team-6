@@ -9,8 +9,6 @@ import NumberVariant from './ui/number-variant';
 import FileVariant from './ui/file-variant';
 import { PhoneVariant } from './ui/phone-variant.';
 import ErrorAlert from './error-alert';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
 
 export type TInputValue = string | number | File[] | FileList | null;
 export type TInputVariant =
@@ -226,7 +224,7 @@ export default function CustomInput({
             step={step}
             data-slot="input"
             className={cn(
-              'h-9    w-full rounded-lg border px-3 py-1.5 text-base transition-colors outline-none md:text-sm',
+              'h-11.5 text-start  w-full rounded-lg border px-3 py-1 text-base transition-colors outline-none md:text-sm',
               'focus-visible:outline-none focus-visible:ring-0',
               variant === 'search' && (isRtl ? 'pr-9 pl-9' : 'pl-9 pr-9'),
               variant === 'password' && (isRtl ? 'pl-9' : 'pr-9'),
@@ -239,18 +237,44 @@ export default function CustomInput({
 
         {/* Render the file input variant */}
         {variant === 'file' && (
-          <FileVariant isError={isError} isDisabled={isDisabled} accept={accept} />
+          <FileVariant
+            isError={isError}
+            isDisabled={isDisabled}
+            accept={accept}
+            id={id}
+            name={props.name}
+            onBlur={props.onBlur}
+            ref={internalRef}
+            onChange={(files: File[]) => {
+              if (onChange) {
+                const syntheticEvent = {
+                  target: {
+                    files: files,
+                    value: files.length > 0 ? files[0].name : '',
+                    name: props.name || id,
+                    id,
+                  },
+                } as unknown as React.ChangeEvent<HTMLInputElement>;
+
+                onChange(syntheticEvent);
+              }
+            }}
+          />
         )}
         {/* Render the Number input variant */}
         {variant === 'number' && (
           <NumberVariant
             isError={isError}
             isDisabled={isDisabled}
+            name={props.name}
             min={min}
             max={max}
             step={step}
-            defaultValue={defaultValue as number}
             placeholder={computedPlaceholder}
+            value={(props.value ?? defaultValue) as string | number | undefined} // إضافة تحويل النوع لحل خطأ TypeScript السابق
+            onChange={onChange}
+            onBlur={props.onBlur}
+            ref={internalRef as React.RefObject<HTMLInputElement>}
           />
         )}
         {/* Render the Phone input variant */}
@@ -266,6 +290,14 @@ export default function CustomInput({
                  md:text-sm
                 ${inputStyle} `}
             placeholder={computedPlaceholder}
+            value={props.value as string}
+            onChange={(val) => {
+              const syntheticEvent = {
+                target: { value: val || '', name: props.name || id, id },
+              } as unknown as React.ChangeEvent<HTMLInputElement>;
+              onChange?.(syntheticEvent);
+            }}
+            onBlur={props.onBlur}
           />
         )}
 
