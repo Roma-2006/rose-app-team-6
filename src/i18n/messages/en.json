@@ -1,7 +1,9 @@
 {
-  
   "app-title": "Rose App",
-
-  "title": "Welcome to Rose App"
+  "title": "Welcome to Rose App",
+  "input-component": {
+    "label": "Full Name",
+    "placeholder": "Enter your name..."
+  },
+  "nice-to-have-you-here": "nice to have you here"
 }
-
