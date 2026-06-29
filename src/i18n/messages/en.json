@@ -1,7 +1,27 @@
 {
+  "HomePage": {
+    "title": "Welcome to Rose App"
+  },
+  "button": {
+    "loading": "Loading...",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "confirm": "Confirm"
+  },
+   "common": {
+    "select": {
+      "placeholder": "Select an option",
+      "noOptions": "No options found",
+      "search": "Search..."
+    },
   
+    "textarea": {
+      "charCount": "{current}/{max} characters"
+    }
+},
   "app-title": "Rose App",
-
   "title": "Welcome to Rose App"
 }
 
