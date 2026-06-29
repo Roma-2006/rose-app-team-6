@@ -4,9 +4,12 @@ import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@/shared/lib/utils/tailwind-cn';
-import { Button } from '@/shared/components/ui/button';
+// import { Button } from '@/shared/components/ui/button';
+import { Button as ButtonPrimitive } from '@base-ui/react/button';
+import { buttonVariants } from '@/shared/components/ui/button';
 import { Input } from '@/shared/components/ui/input';
 import { Textarea } from '@/shared/components/ui/textarea';
+import { TButtonProps } from '@/shared/types/button';
 
 function InputGroup({ className, ...props }: React.ComponentProps<'div'>) {
   return (
@@ -83,16 +86,17 @@ function InputGroupButton({
   variant = 'ghost',
   size = 'xs',
   ...props
-}: Omit<React.ComponentProps<typeof Button>, 'size' | 'type'> &
+}: Omit<React.ComponentProps<typeof ButtonPrimitive>, 'size' | 'type'> &
+  VariantProps<typeof buttonVariants> &
   VariantProps<typeof inputGroupButtonVariants> & {
     type?: 'button' | 'submit' | 'reset';
   }) {
   return (
-    <Button
+    <ButtonPrimitive
       type={type}
-      data-size={size}
-      variant={variant}
-      className={cn(inputGroupButtonVariants({ size }), className)}
+      // data-size={size}
+      // variant={variant}
+      className={cn(buttonVariants({ variant }), inputGroupButtonVariants({ size }), className)}
       {...props}
     />
   );
