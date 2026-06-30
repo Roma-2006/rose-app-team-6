@@ -1,9 +1,55 @@
 {
-  "app-title": "تطبيق روز",
+  "HomePage": {
+    "title": "مرحباً بكم في تطبيق روز"
+  },
+   "button": {
+    "loading": "جاري التحميل...",
+    "submit": "إرسال",
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "delete": "حذف",
+    "confirm": "تأكيد"
+   },
+  "common": {
+    "select": {
+      "placeholder": "اختر خياراً",
+      "noOptions": "لا توجد خيارات",
+      "search": "بحث..."
+    },
+    
+    "textarea": {
+      "charCount": "{current}/{max} حرف"
+    }
+  },
+   "auth-forgotPw": {
  
-  "auth": {
-    "switchLang": "العربية",
-    "langLabel": "Switch to Arabic"
-  }
-
+      "step1": {
+        "title": "نسيت كلمة المرور؟",
+        "subtitle": "لا تقلق، سنرسل لك التعليمات لمساعدتك في إعادة تعيينها.",
+        "emailLabel": "البريد الإلكتروني",
+        "emailPlaceholder": "user@example.com",
+        "continue": "متابعة",
+        "footerText": "ليس لديك حساب بعد؟",
+        "registerLink": "أنشئ حساباً الآن!"
+      },
+      "step3": {
+        "title": "إنشاء كلمة مرور جديدة",
+        "subtitle": "قم بتعيين كلمة مرور قوية لتأمين حسابك.",
+        "passwordLabel": "كلمة المرور",
+        "confirmPasswordLabel": "تأكيد كلمة المرور",
+        "reset": "إعادة تعيين كلمة المرور",
+        "successToast": "تمت إعادة تعيين كلمة المرور بنجاح.",
+        "footerText": "تحتاج مساعدة؟",
+        "contactLink": "تواصل معنا"
+      },
+      "errors": {
+        "noAccount": "لا يوجد حساب مرتبط بهذا البريد الإلكتروني",
+        "passwordMatch": "كلمات المرور غير متطابقة",
+        "passwordOldSame": "كلمة المرور الجديدة يجب أن تختلف عن الحالية",
+        "passwordRequirement": "يجب أن تتكون من 8 أحرف، تشمل حروفاً كبيرة وصغيرة وأرقاماً ورموزاً"
+      }
+    
+  },
+  "app-title": "تطبيق روز",
+  "title": "مرحبا بكم في تطبيق روز"
 }

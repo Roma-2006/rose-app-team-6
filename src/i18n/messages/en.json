@@ -1,7 +1,59 @@
 {
-  "app-title": "Roze App",
-  "auth": {
-    "switchLang": "English",
-    "langLabel": "التحويل إلى الإنجليزية"
-  }
+  "HomePage": {
+    "title": "Welcome to Rose App"
+  },
+  "button": {
+    "loading": "Loading...",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "confirm": "Confirm"
+  },
+   "common": {
+    "select": {
+      "placeholder": "Select an option",
+      "noOptions": "No options found",
+      "search": "Search..."
+    },
+  
+    "textarea": {
+      "charCount": "{current}/{max} characters"
+    }
+},
+
+  "auth-forgotPw": {
+    "step1": {
+      "title": "Forgot Password?",
+      "subtitle": "Worry not, we’ll send you instructions to help you reset it.",
+      "emailLabel": "Email",
+      "emailPlaceholder": "user@example.com",
+      "continue": "Continue",
+      "footerText": "Don’t have an account yet?",
+      "registerLink": "Create one now!"
+    },
+    "step3": {
+      "title": "Create a new password",
+      "subtitle": "Set a strong password to secure your account.",
+      "passwordLabel": "Password",
+      "confirmPasswordLabel": "Confirm Password",
+      "reset": "Reset Password",
+      "successToast": "Your password has been successfully reset.",
+      "footerText": "Need help?",
+      "contactLink": "Contact us"
+    },
+    "errors": {
+      "noAccount": "No account found with this email",
+      "passwordMatch": "Passwords do not match",
+      "passwordOldSame": "New password must differ from current password",
+      "passwordRequirement": "Must be 8+ chars, with uppercase, lowercase, digit, and special char"
+    }
+  },
+
+
+
+  "app-title": "Rose App",
+  "title": "Welcome to Rose App"
+  
 }
+
