@@ -8,12 +8,12 @@ export default function TestLoginPage() {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [result, setResult] = useState<string | null>(null);
+  const [userData, setUserData] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
   const handleLogin = async () => {
     setLoading(true);
-    setResult(null);
+    setUserData(null);
 
     const res = await signIn('credentials', {
       username,
@@ -22,11 +22,11 @@ export default function TestLoginPage() {
     });
 
     if (res?.error) {
-      setResult(`❌ Error: ${res.error}`);
+      setUserData(`❌ Error: ${res.error}`);
     } else if (res?.ok) {
-      setResult('✅ Login successful');
+      setUserData('✅ Login successful');
     } else {
-      setResult('⚠️ Unknown response');
+      setUserData('⚠️ Unknown response');
     }
 
     setLoading(false);
@@ -34,7 +34,7 @@ export default function TestLoginPage() {
 
   const handleLogout = async () => {
     await signOut({ redirect: false });
-    setResult('👋 Logged out');
+    setUserData('👋 Logged out');
   };
 
   return (
@@ -134,11 +134,11 @@ export default function TestLoginPage() {
         </section>
       )}
 
-      {/* ── Result ── */}
-      {result && (
+      {/* ── userData ── */}
+      {userData && (
         <section>
-          <h2>Result</h2>
-          <p style={{ fontSize: 15 }}>{result}</p>
+          <h2>userData</h2>
+          <p style={{ fontSize: 15 }}>{userData}</p>
         </section>
       )}
 
@@ -151,7 +151,7 @@ export default function TestLoginPage() {
             <code style={{ color: 'green' }}>authenticated</code> and session JSON appears
           </li>
           <li>
-            Login with wrong password → result shows{' '}
+            Login with wrong password → userData shows{' '}
             <code style={{ color: 'red' }}>❌ Error</code> from your API message
           </li>
           <li>

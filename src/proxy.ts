@@ -6,7 +6,7 @@ import { routing } from './i18n/routing';
 const intlMiddleware = createMiddleware(routing);
 
 const AUTH_ROUTES = ['/login', '/register', '/forgot-password'];
-const PROTECTED_ROUTES = ['/'];
+const PROTECTED_ROUTES = ['/checkout'];
 
 type Locale = (typeof routing.locales)[number];
 

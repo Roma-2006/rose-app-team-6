@@ -1,7 +1,16 @@
 {
-  
   "app-title": "Rose App",
-
-  "title": "Welcome to Rose App"
+  "title": "Welcome to Rose App",
+  "login": {
+    "schema": {
+      "username": {
+        "invalid": "Invalid Username",
+        "required": "Username is required"
+      },
+      "password": {
+        "invalid": "Invalid Password",
+        "required": "Password is required"
+      }
+    }
+  }
 }
-

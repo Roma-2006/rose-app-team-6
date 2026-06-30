@@ -1,21 +1,12 @@
 import type { NextAuthOptions } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import { login } from '@/features/auth/apis/login.api';
-import { loginSchema } from '@/features/auth/schemes/login.scheme';
-
-/**
- * NextAuth configuration options for the application.
- *
- * Defines the credentials provider, custom pages, and JWT/session callbacks
- * used throughout the authentication flow.
- * 
- */
+import { loginSchema } from '@/features/auth/schemas/login.schema';
+import { getTranslations } from 'next-intl/server';
 
 
 export const authOptions: NextAuthOptions = {
-  
   pages: {
-    /** Redirect unauthenticated users to the login page. */
     signIn: '/login',
   },
   providers: [
@@ -30,18 +21,17 @@ export const authOptions: NextAuthOptions = {
           label: 'Password',
           type: 'password',
         },
-
       },
       /**
-       * Validates the submitted credentials against the API.
+       * Authenticates a user using the Credentials provider.
        *
-       * @param credentials - The raw username and password from the sign-in form.
-       * @returns The authenticated user object, or `null` if authentication fails.
-       * @throws {Error} If validation fails, the API returns an error, or the
-       *                 response payload is missing required fields.
+       * The credentials are validated locally with Zod before calling the API.
        */
       authorize: async (credentials) => {
-        const result = loginSchema.safeParse({
+         const t = await getTranslations('login.schema');
+         console.log("login schema : " , t("username.invalid"))
+
+        const result = loginSchema(t).safeParse({
           username: credentials?.username,
           password: credentials?.password,
         });
@@ -50,7 +40,7 @@ export const authOptions: NextAuthOptions = {
           throw new Error('Invalid username or password');
         }
 
-        console.log(process.env.AUTH_SESSION_MAX_AG)
+        console.log(process.env.AUTH_SESSION_MAX_AG);
 
         const data = await login(result.data);
 
@@ -75,14 +65,8 @@ export const authOptions: NextAuthOptions = {
 
   callbacks: {
     /**
-     * Persists custom fields (`user`, `token`) onto the JWT after sign-in.
-     *
-     * Runs whenever a JWT is created or updated. The `user` object is only
-     * present on the initial sign-in, so fields are written conditionally.
-     *
-     * @param token - The current JWT payload.
-     * @param user  - The user object returned by `authorize` (only on sign-in).
-     * @returns The updated JWT payload.
+     * Persist custom authentication data in the JWT so it survives
+     * across future requests.
      */
     jwt: ({ token, user }) => {
       if (user) {
@@ -93,14 +77,7 @@ export const authOptions: NextAuthOptions = {
     },
 
     /**
-     * Exposes selected JWT fields on the client-side session object.
-     *
-     * Runs whenever a session is checked. Maps `token.user` onto
-     * `session.user` so the client always has access to the current user.
-     *
-     * @param session - The current session object.
-     * @param token   - The decoded JWT payload.
-     * @returns The updated session object.
+     * Make the authenticated user available through the client session.
      */
     session: ({ session, token }) => {
       session.user = token.user;

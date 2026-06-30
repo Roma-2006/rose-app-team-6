@@ -4,11 +4,7 @@ import { Response } from '@/shared/types/api';
 import { LoginFields, LoginResponse } from '../types/auth';
 import { API_ENDPOINTS } from '../constants/endpoints';
 
-
-export const login = async (loginFields: LoginFields) => {
-  // console.log (`URL : ${process.env.NEXT_PUBLIC_API_URL}${API_ENDPOINTS.login}`)
-  // console.log(`Body: ${JSON.stringify(loginFields)}`); 
-
+export const login = async (loginFields: LoginFields): Promise<Response<LoginResponse>> => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${API_ENDPOINTS.login}`, {
     method: 'POST',
     body: JSON.stringify(loginFields),
@@ -18,7 +14,8 @@ export const login = async (loginFields: LoginFields) => {
   });
 
   if (!response.ok) {
-    throw new Error(`Login request failed: ${response.status}`);
+    const error = await response.json();
+    throw new Error(error.message);
   }
 
   const payload: Response<LoginResponse> = await response.json();
