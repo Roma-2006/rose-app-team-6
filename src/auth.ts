@@ -4,7 +4,6 @@ import { login } from '@/features/auth/apis/login.api';
 import { loginSchema } from '@/features/auth/schemas/login.schema';
 import { getTranslations } from 'next-intl/server';
 
-
 export const authOptions: NextAuthOptions = {
   pages: {
     signIn: '/login',
@@ -28,8 +27,7 @@ export const authOptions: NextAuthOptions = {
        * The credentials are validated locally with Zod before calling the API.
        */
       authorize: async (credentials) => {
-         const t = await getTranslations('login.schema');
-         console.log("login schema : " , t("username.invalid"))
+        const t = await getTranslations('login.schema');
 
         const result = loginSchema(t).safeParse({
           username: credentials?.username,
