@@ -1,6 +1,7 @@
 'use client';
 import { cn } from '@/lib/utils';
 import { Triangle } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import React from 'react';
 
 interface NumberVariantProps {
@@ -35,7 +36,8 @@ const NumberVariant = React.forwardRef<HTMLInputElement, NumberVariantProps>(
     },
     ref
   ) => {
-    // استخدام القيمة القادمة من الـ Form أو العودة للـ state المحلية
+    const t = useTranslations('custom-input.phone');
+
     const [localValue, setLocalValue] = React.useState<string>('');
     const isControlled = value !== undefined;
     const displayValue = isControlled ? String(value ?? '') : localValue;
@@ -102,7 +104,9 @@ const NumberVariant = React.forwardRef<HTMLInputElement, NumberVariantProps>(
     return (
       <div
         className={cn(
-          'relative inline-flex items-center rounded-lg border px-2 py-1 w-full h-11.5 transition-colors bg-bg-plain overflow-hidden',
+          'relative inline-flex items-center rounded-lg border py-1 w-full h-11.5 transition-colors bg-bg-plain overflow-hidden',
+          isRtl ? 'ps-6 pe-3' : 'ps-3 pe-6',
+
           isFocused
             ? 'border-border-primary ring-0 bg-primary-fade'
             : isError
@@ -122,20 +126,22 @@ const NumberVariant = React.forwardRef<HTMLInputElement, NumberVariantProps>(
             onBlur?.(e);
           }}
           disabled={isDisabled}
+          placeholder={placeholder}
           onChange={(e) => handleInputChange(e.target.value)}
           onKeyDown={handleKeyDown}
           autoComplete="off"
           className={cn(
-            'w-full min-w-0 bg-transparent border-none outline-none text-base md:text-sm text-text-plain focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0',
-            isRtl ? 'text-right pl-8 pr-1' : 'text-left pr-8 pl-1',
+            'w-full min-w-0 ps-0 pe-2 bg-transparent border-none outline-none text-base md:text-sm text-text-plain focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 text-start',
+            isRtl ? 'ps-2 pe-0' : 'ps-0 pe-2',
+
             isDisabled && 'text-text-muted placeholder:text-text-subtle'
           )}
           {...props}
         />
         <div
           className={cn(
-            'absolute top-1/2 -translate-y-1/2 flex flex-col gap-0.5 z-10',
-            isRtl ? 'left-2' : 'right-2'
+            'absolute top-1/2  -translate-y-1/2 flex flex-col gap-0.5 z-10',
+            isRtl ? 'left-2.5' : 'right-2.5'
           )}
         >
           <button

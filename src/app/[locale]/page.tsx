@@ -18,8 +18,8 @@ interface PageProps {
 
 export default async function Home({ params }: PageProps) {
   const { locale } = await params;
-
   const t = await getTranslations({ locale });
+  const isRtl = locale === 'ar';
 
   return (
     <main className="bg-plain min-h-screen flex flex-col items-center justify-center p-6 text-center">
@@ -55,7 +55,15 @@ export default async function Home({ params }: PageProps) {
         </div>
       </div>
 
-      <CustomInput variant="otp" label="label" id="sm" className="mt-4 w-sm" />
+      <CustomInput
+        className=" w-full max-w-md mt-4"
+        variant="phone"
+        // disabled={true}
+        // error={true}
+        isRtl={isRtl}
+        label={t('custom-input.phone.label')}
+        placeholder={t('custom-input.phone.placeholder')}
+      />
     </main>
   );
 }

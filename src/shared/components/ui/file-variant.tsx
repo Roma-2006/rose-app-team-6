@@ -1,14 +1,18 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { Upload } from 'lucide-react';
 import React from 'react';
 import ErrorAlert from '../error-alert';
+import { useTranslations } from 'next-intl';
+import { Upload } from 'lucide-react';
 
 interface FileVariantProps {
   isDisabled?: boolean;
   isError?: boolean;
   accept?: string;
+  isRtl?: boolean;
+  className?: string;
+  placeholder?: string;
   onChange?: (files: File[]) => void;
   onBlur?: React.FocusEventHandler<HTMLInputElement>;
   name?: string;
@@ -16,7 +20,22 @@ interface FileVariantProps {
 }
 
 const FileVariant = React.forwardRef<HTMLInputElement, FileVariantProps>(
-  ({ isDisabled = false, isError = false, accept, onChange, onBlur, ...props }, ref) => {
+  (
+    {
+      isDisabled = false,
+      isRtl,
+      className,
+      isError = false,
+      accept,
+      placeholder,
+      onChange,
+      onBlur,
+      ...props
+    },
+    ref
+  ) => {
+    const t = useTranslations('custom-input.file');
+
     // Local state to store and display the error from the offending extension
     const [localError, setLocalError] = React.useState<string | null>(null);
 
@@ -136,7 +155,7 @@ const FileVariant = React.forwardRef<HTMLInputElement, FileVariantProps>(
             }
           }}
           className={cn(
-            'w-full h-11.5 text-text-plain border  rounded-lg py-1.5 outline-none transition-colors cursor-pointer bg-bg-plain flex items-center min-h-[38px] select-none flex-row-reverse justify-between gap-3',
+            'w-full px-3 h-11.5 text-text-plain border  rounded-lg py-1.5 outline-none transition-colors cursor-pointer bg-bg-plain flex items-center min-h-[38px] select-none  justify-between gap-3',
             isFocused
               ? 'border-border-primary '
               : isDragActive
@@ -144,7 +163,10 @@ const FileVariant = React.forwardRef<HTMLInputElement, FileVariantProps>(
                 : isError || !!localError
                   ? 'border-border-danger bg-bg-plain'
                   : 'border-border-soft hover:border-border-default bg-bg-plain',
-            isDisabled ? 'cursor-not-allowed border-border-subtle bg-bg-subtle text-text-muted' : ''
+            isDisabled
+              ? 'cursor-not-allowed border-border-subtle bg-bg-subtle text-text-muted'
+              : '',
+            className
           )}
         >
           <input
@@ -185,36 +207,35 @@ const FileVariant = React.forwardRef<HTMLInputElement, FileVariantProps>(
             className="hidden"
           />
 
-          <div
-            className={cn(
-              'flex items-center px-2.5 py-1 gap-1.5 font-medium text-sm flex-row-reverse flex-shrink-0',
-              isDisabled ? 'text-text-muted' : 'text-text-primary/90'
-            )}
-          >
-            <span>Upload file</span>
-            <Upload className="h-4 w-4 shrink-0" />
-          </div>
-
-          {selectedFiles.length > 0 && (
-            <div className="flex items-center gap-1.5 overflow-hidden flex-row w-full justify-start max-w-[70%]">
+          <div className="flex items-center gap-3 flex-row w-full justify-between">
+            <div className="flex-1 min-w-0 pointer-events-none">
               <span
-                dir="ltr"
                 className={cn(
-                  'text-xs font-medium truncate text-left w-full block',
-                  isDisabled ? 'text-text-muted' : 'text-text-plain '
+                  'text-sm font-normal truncate block text-start',
+                  selectedFiles.length === 0 ? 'text-text-muted' : 'text-text-plain'
                 )}
-                title={getFilesNameDisplay()}
+                title={selectedFiles.length > 0 ? getFilesNameDisplay() : 'placeholder'}
               >
-                {getFilesNameDisplay()}
+                {selectedFiles.length > 0 ? getFilesNameDisplay() : 'placeholder'}
               </span>
             </div>
-          )}
+
+            <div
+              className={cn(
+                'flex items-center gap-1.5 font-medium text-sm flex-shrink-0 border-s ps-3 text-text-muted',
+                isDisabled ? 'text-text-muted' : 'text-text-primary/90'
+              )}
+            >
+              <Upload className="h-4 w-4 shrink-0 block" strokeWidth={2} />
+              <span>{t('btn-text') || 'Upload File'}</span>
+            </div>
+          </div>
         </div>
-        {localError && <ErrorAlert errorMessage="file type dont match" />}
+
+        {(localError || isError) && <ErrorAlert errorMessage={localError || ''} isRtl={!!isRtl} />}
       </div>
     );
   }
 );
-
 FileVariant.displayName = 'FileVariant';
 export default FileVariant;

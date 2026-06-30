@@ -9,7 +9,7 @@ import NumberVariant from './ui/number-variant';
 import FileVariant from './ui/file-variant';
 import { PhoneVariant } from './ui/phone-variant.';
 import ErrorAlert from './error-alert';
-
+import { useTranslations, useLocale } from 'next-intl';
 export type TInputValue = string | number | File[] | FileList | null;
 export type TInputVariant =
   | 'default'
@@ -23,6 +23,7 @@ export type TInputVariant =
 
 interface InputProps {
   variant: TInputVariant;
+  subVariant?: string;
   label?: string;
   placeholder?: string;
   disabled?: boolean;
@@ -40,10 +41,11 @@ interface InputProps {
 
 export default function CustomInput({
   variant,
+  subVariant,
   label,
   errorMessage,
-  isRtl = false,
-  placeholder = ' ',
+  isRtl,
+  placeholder,
   disabled = false,
   error = false,
   className = '',
@@ -56,6 +58,32 @@ export default function CustomInput({
   onChange,
   ...props
 }: Omit<React.ComponentProps<'input'>, 'onChange'> & InputProps) {
+  //determine language
+  const locale = useLocale();
+  const computedIsRtl = isRtl !== undefined ? isRtl : locale === 'ar';
+  const t = useTranslations('custom-input');
+
+  let defaultLabel = '';
+  let defaultPlaceholder = '';
+
+  if (variant === 'default' && subVariant) {
+    //first & last name
+    defaultLabel = t(`default.${subVariant}.label`);
+    defaultPlaceholder = t(`default.${subVariant}.placeholder`);
+    // password & confirm password
+  } else if (variant === 'password' && subVariant) {
+    defaultLabel = t(`password.${subVariant}.label`);
+    defaultPlaceholder = t(`password.${subVariant}.placeholder`);
+    // file , phone , number , search & email
+  } else {
+    defaultLabel = t(`${variant}.label`);
+    defaultPlaceholder = t(`${variant}.placeholder`);
+  }
+  // Compute label and placeholder
+
+  const computedLabel = label !== undefined ? label : defaultLabel;
+  const computedPlaceholder = placeholder && placeholder !== ' ' ? placeholder : defaultPlaceholder;
+
   // disabled and error states based on props and variant
   const isDisabled = disabled;
   const isError = !!errorMessage || error;
@@ -107,29 +135,21 @@ export default function CustomInput({
     return 'text';
   };
 
-  // Compute placeholder
-
-  let computedPlaceholder = placeholder;
-  if (!placeholder || placeholder === ' ' || placeholder === '') {
-    if (variant === 'search') {
-      computedPlaceholder = 'Search...';
-    } else if (variant === 'password') {
-      computedPlaceholder = '*********';
-    }
-  }
-
   // Handle clearing search input
   const handleClearSearch = () => {
     if (isDisabled) return;
     setHasSearchValue(false);
-    setResetKey((prev) => prev + 1); // Triggers component re-render to clean default text value
+    setResetKey((prev) => prev + 1);
 
-    // Bubble a synthetic native change event upstream to register the reset clearing
     setTimeout(() => {
       if (internalRef.current) {
         internalRef.current.value = '';
         const event = new Event('input', { bubbles: true });
         internalRef.current.dispatchEvent(event);
+        const syntheticEvent = {
+          target: { value: '', name: props.name || id, id },
+        } as unknown as React.ChangeEvent<HTMLInputElement>;
+        (onChange as React.ChangeEventHandler<HTMLInputElement>)?.(syntheticEvent);
       }
     }, 0);
   };
@@ -186,7 +206,7 @@ export default function CustomInput({
   return (
     <Field.Root
       className={cn('items-start justify-start flex-col gap-2  m-w-375 ', className)}
-      dir={isRtl ? 'rtl' : 'ltr'}
+      dir={computedIsRtl ? 'rtl' : 'ltr'}
     >
       {label && variant !== 'otp' && (
         <Field.Label htmlFor={id} className={`${baseLableStyle} ${labeltStyle}`}>
@@ -200,7 +220,7 @@ export default function CustomInput({
           <Search
             className={cn(
               'absolute h-4 w-4 text-text-muted pointer-events-none top-1/2 -translate-y-1/2 z-10',
-              isRtl ? 'right-3' : 'left-3'
+              computedIsRtl ? 'right-3' : 'left-3'
             )}
             aria-hidden="true"
             strokeWidth={2}
@@ -226,8 +246,10 @@ export default function CustomInput({
             className={cn(
               'h-11.5 text-start  w-full rounded-lg border px-3 py-1 text-base transition-colors outline-none md:text-sm',
               'focus-visible:outline-none focus-visible:ring-0',
-              variant === 'search' && (isRtl ? 'pr-9 pl-9' : 'pl-9 pr-9'),
-              variant === 'password' && (isRtl ? 'pl-9' : 'pr-9'),
+              variant === 'search' && 'ps-9 pe-3',
+              variant === 'password' && 'ps-3 pe-9',
+              variant !== 'search' && variant !== 'password' && 'px-3',
+
               '[&::-webkit-search-decoration]:appearance-none [&::-webkit-search-cancel-button]:appearance-none [&::-webkit-search-results-button]:appearance-none [&::-webkit-search-results-decoration]:appearance-none',
               inputStyle
             )}
@@ -242,6 +264,9 @@ export default function CustomInput({
             isDisabled={isDisabled}
             accept={accept}
             id={id}
+            placeholder={computedPlaceholder}
+            isRtl={computedIsRtl}
+            className={inputStyle}
             name={props.name}
             onBlur={props.onBlur}
             ref={internalRef}
@@ -274,6 +299,7 @@ export default function CustomInput({
             value={(props.value ?? defaultValue) as string | number | undefined} // إضافة تحويل النوع لحل خطأ TypeScript السابق
             onChange={onChange}
             onBlur={props.onBlur}
+            isRtl={computedIsRtl}
             ref={internalRef as React.RefObject<HTMLInputElement>}
           />
         )}
@@ -320,7 +346,7 @@ export default function CustomInput({
             disabled={isDisabled}
             className={cn(
               'absolute top-1/2 -translate-y-1/2 text-text-muted hover:text-text-plain    transition-colors z-10',
-              isRtl ? 'left-9' : 'right-9'
+              computedIsRtl ? 'left-2.5' : 'right-2.5'
             )}
           >
             <X className="h-4 w-4" />
@@ -335,15 +361,13 @@ export default function CustomInput({
             disabled={isDisabled}
             className={cn(
               'absolute top-1/2 -translate-y-1/2 text-text-muted hover:text-text-plain  transition-colors z-10',
-              isRtl ? 'left-3' : 'right-3'
+              computedIsRtl ? 'left-3' : 'right-3'
             )}
           >
             {isPasswordVisible ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
           </button>
         )}
       </div>
-
-      {isError && <ErrorAlert />}
     </Field.Root>
   );
 }

@@ -5,5 +5,25 @@
     "label": "الاسم بالكامل",
     "placeholder": "أدخل اسمك هنا..."
   },
-  "nice-to-have-you-here": "جميل أن يكون لك هنا"
+   "custom-input": {
+    "default":{
+      "first-name" : { "label": "الاسم الأول", "placeholder": "Jonathan" } , 
+      "last-name": {"label" :"الاسم الأخير" , "placeholder" :"Adrian"}
+  },
+    "number": { "label": "الرقم", "placeholder": "0" },
+    "search": { "label": "بحث", "placeholder": "ابحث هنا..." },
+    "password": {
+        "password": {"label": "كلمة المرور", "placeholder": "*********" },
+        "confirm-Password": {"label": "تأكيد كلمة المرور", "placeholder": "*********" }
+  },
+    "file": { 
+      "label": "الملف",
+     "placeholder": "اختر ملف" ,
+      "btn-text": "رفع ملف",
+      "error-type": "صيغة الملف غير مدعومة."
+    },
+    "phone": { "label": "رقم الهاتف", "placeholder": "1012345678" },
+    "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" }
+  },
+  "nice-to-have-you-here": "جميل أنك هنا"
 }

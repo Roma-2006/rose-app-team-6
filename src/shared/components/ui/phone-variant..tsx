@@ -30,13 +30,15 @@ type PhoneInputProps = Omit<React.ComponentProps<'input'>, 'onChange' | 'value' 
 const PhoneVariant: React.ForwardRefExoticComponent<PhoneInputProps> = React.forwardRef<
   React.ElementRef<typeof RPNInput.default>,
   PhoneInputProps
->(({ className, onChange, value, isError, isDisabled, ...props }, ref) => {
+>(({ className, onChange, isRtl, value, isError, isDisabled, ...props }, ref) => {
   return (
     <RPNInput.default
       ref={ref}
       disabled={isDisabled}
       className={cn(
         'flex w-full rounded-lg border transition-colors bg-bg-plain h-11.5 items-center',
+        isRtl ? 'flex-row-reverse' : 'flex-row',
+
         isError
           ? 'border-border-danger focus-within:border-border-danger'
           : 'border-border-soft hover:border-border-default focus-within:border-border-primary focus-within:ring-0',
@@ -45,7 +47,7 @@ const PhoneVariant: React.ForwardRefExoticComponent<PhoneInputProps> = React.for
       )}
       flagComponent={FlagComponent}
       countrySelectComponent={(selectProps) => (
-        <CountrySelect {...selectProps} disabled={isDisabled} isError={isError} />
+        <CountrySelect {...selectProps} isRtl={isRtl} disabled={isDisabled} isError={isError} />
       )}
       inputComponent={(inputProps) => (
         <InputComponent {...inputProps} isDisabled={isDisabled} isError={isError} />
@@ -68,7 +70,7 @@ const InputComponent = React.forwardRef<
     <Input
       disabled={isDisabled}
       className={cn(
-        'flex-1 w-full h-10 border-0 text-text-plain rounded-l-none rounded-r-md focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-0 focus:outline-none placeholder:text-text-muted bg-transparent px-3 outline-none',
+        'flex-1 w-full h-10 border-0 text-text-plain rounded-s-none rounded-e-md focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-0 focus:outline-none placeholder:text-text-muted bg-transparent px-3 outline-none',
         className
       )}
       {...props}
@@ -85,6 +87,7 @@ type CountrySelectProps = {
   isError?: boolean;
   value: RPNInput.Country;
   options: CountryEntry[];
+  isRtl?: boolean;
   onChange: (country: RPNInput.Country) => void;
 };
 
@@ -94,6 +97,7 @@ const CountrySelect = ({
   value: selectedCountry,
   options: countryList,
   onChange,
+  isRtl,
 }: CountrySelectProps) => {
   const scrollAreaRef = React.useRef<HTMLDivElement>(null);
   const [searchValue, setSearchValue] = React.useState('');
@@ -114,7 +118,7 @@ const CountrySelect = ({
           role="button"
           tabIndex={disabled ? -1 : 0}
           className={cn(
-            'flex h-10 text-text-plain gap-2 px-3 items-center transition-colors shrink-0 whitespace-nowrap bg-transparent border-0 border-r border-border-soft outline-none p-0 focus:outline-none rounded-l-lg',
+            'flex h-10 text-text-plain gap-2 px-3 items-center transition-colors shrink-0 whitespace-nowrap bg-transparent border-0 border-e border-border-soft outline-none p-0 focus:outline-none rounded-s-lg',
             disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer select-none',
             isError && 'text-text-danger',
             isOpen && 'bg-black/5'
@@ -132,7 +136,7 @@ const CountrySelect = ({
       </PopoverTrigger>
 
       <PopoverContent className="w-375 p-0" align="start">
-        <Command>
+        <Command dir={isRtl ? 'rtl' : 'ltr'}>
           <CommandInput
             value={searchValue}
             onValueChange={(value) => {
@@ -148,7 +152,7 @@ const CountrySelect = ({
                 }
               }, 0);
             }}
-            placeholder={'Search country...'}
+            placeholder={isRtl ? 'ابحث عن الدولة...' : 'Search country...'}
           />
           <CommandList>
             <ScrollArea ref={scrollAreaRef} className="h-72">
@@ -200,7 +204,7 @@ const CountrySelectOption = ({
       <span className="flex-1 text-sm">{countryName}</span>
       <span className="text-sm text-text-muted">{`+${RPNInput.getCountryCallingCode(country)}`}</span>
       <CheckIcon
-        className={`ml-auto size-4 text-text-primary ${country === selectedCountry ? 'opacity-100' : 'opacity-0'}`}
+        className={`ms-auto size-4 text-text-primary ${country === selectedCountry ? 'opacity-100' : 'opacity-0'}`}
       />
     </CommandItem>
   );
