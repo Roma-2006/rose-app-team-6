@@ -37,7 +37,6 @@ const buttonVariants = cva(
     },
   }
 );
-
 function Button(props: ButtonPrimitive.Props & VariantProps<typeof buttonVariants> & TButtonProps) {
   const t = useTranslations();
   const isIcon = props.buttonVariant === 'icon';
@@ -106,5 +105,4 @@ function Button(props: ButtonPrimitive.Props & VariantProps<typeof buttonVariant
     </ButtonPrimitive>
   );
 }
-
 export { Button, buttonVariants };
