@@ -1,35 +1,40 @@
 'use client';
-import { useTranslations } from 'next-intl';
-import { useForm } from 'react-hook-form';
+
+import { useTranslations, useLocale } from 'next-intl';
+import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { resetPasswordSchema } from '@/features/auth/schemes/reset-password.schema';
 import { resetPasswordAction } from '@/features/auth/apis/forgotpass.api';
 import { Button } from '@/shared/components/ui/button';
-import { Input } from '@/shared/components/ui/input';
-import { useState } from 'react';
-import { Eye, EyeOff } from 'lucide-react';
+import CustomInput from '@/shared/components/custom-input';
+import ErrorAlert from '@/shared/components/error-alert';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { toast } from 'sonner';
 import * as z from 'zod';
+import { useState } from 'react';
 
 type ResetPasswordValues = z.infer<typeof resetPasswordSchema>;
 
 export const ResetPasswordForm = () => {
   const t = useTranslations();
+  const locale = useLocale();
+  const isRtl = locale === 'ar';
   const router = useRouter();
   const searchParams = useSearchParams();
   const token = searchParams.get('token') || '';
 
   const [isLoading, setIsLoading] = useState(false);
-  const [showPass, setShowPass] = useState(false);
-  const [showConfirmPass, setShowConfirmPass] = useState(false);
 
   const {
-    register,
+    control,
     handleSubmit,
     formState: { errors },
   } = useForm<ResetPasswordValues>({
     resolver: zodResolver(resetPasswordSchema),
+    defaultValues: {
+      newPassword: '',
+      confirmPassword: '',
+    },
   });
 
   const onSubmit = async (data: ResetPasswordValues) => {
@@ -70,68 +75,64 @@ export const ResetPasswordForm = () => {
         </p>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         {/* New Password */}
-        <div className="space-y-2">
-          <label className="text-sm font-medium text-text-plain dark:text-text-plain">
-            {t('auth-forgotPw.step3.passwordLabel')}
-          </label>
-          <div className="relative">
-            <Input
-              {...register('newPassword')}
-              type={showPass ? 'text' : 'password'}
-              placeholder="••••••••"
-              aria-invalid={!!errors.newPassword}
-              className="pr-10"
-            />
-            <button
-              type="button"
-              onClick={() => setShowPass(!showPass)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 transition-colors"
-            >
-              {showPass ? <EyeOff size={18} /> : <Eye size={18} />}
-            </button>
-          </div>
-          {errors.newPassword && (
-            <p className="text-red-500 text-xs mt-1">
-              {t(`auth-forgotPw.errors.${errors.newPassword.message}`)}
-            </p>
+        <Controller
+          name="newPassword"
+          control={control}
+          render={({ field, fieldState }) => (
+            <div className="space-y-1">
+              <CustomInput
+                variant="password"
+                label={t('auth-forgotPw.step3.passwordLabel')}
+                placeholder="••••••••"
+                id="newPassword"
+                isRtl={isRtl}
+                error={fieldState.invalid}
+                errorMessage={fieldState.error?.message}
+                {...field}
+              />
+              {fieldState.error && (
+                <ErrorAlert
+                  isRtl={isRtl}
+                  errorMessage={t(`auth-forgotPw.errors.${fieldState.error.message}`)}
+                />
+              )}
+            </div>
           )}
-        </div>
+        />
 
         {/* Confirm Password */}
-        <div className="space-y-2">
-          <label className="text-sm font-medium text-text-plain dark:text-text-plain">
-            {t('auth-forgotPw.step3.confirmPasswordLabel')}
-          </label>
-          <div className="relative">
-            <Input
-              {...register('confirmPassword')}
-              type={showConfirmPass ? 'text' : 'password'}
-              placeholder="••••••••"
-              aria-invalid={!!errors.confirmPassword}
-              className="pr-10"
-            />
-            <button
-              type="button"
-              onClick={() => setShowConfirmPass(!showConfirmPass)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 transition-colors"
-            >
-              {showConfirmPass ? <EyeOff size={18} /> : <Eye size={18} />}
-            </button>
-          </div>
-          {errors.confirmPassword && (
-            <p className="text-red-500 text-xs mt-1">
-              {t(`auth-forgotPw.errors.${errors.confirmPassword.message}`)}
-            </p>
+        <Controller
+          name="confirmPassword"
+          control={control}
+          render={({ field, fieldState }) => (
+            <div className="space-y-1">
+              <CustomInput
+                variant="password"
+                label={t('auth-forgotPw.step3.confirmPasswordLabel')}
+                placeholder="••••••••"
+                id="confirmPassword"
+                isRtl={isRtl}
+                error={fieldState.invalid}
+                errorMessage={fieldState.error?.message}
+                {...field}
+              />
+              {fieldState.error && (
+                <ErrorAlert
+                  isRtl={isRtl}
+                  errorMessage={t(`auth-forgotPw.errors.${fieldState.error.message}`)}
+                />
+              )}
+            </div>
           )}
-        </div>
+        />
 
         <Button
           type="submit"
           buttonVariant="text"
           variant="primary"
-          title="auth-forgotPw.step3.reset"
+          title={t('auth-forgotPw.step3.reset')}
           loading={isLoading}
           className="w-full h-12 mt-4"
         />

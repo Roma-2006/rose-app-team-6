@@ -1,11 +1,13 @@
 'use client';
-import { useTranslations } from 'next-intl';
-import { useForm } from 'react-hook-form';
+
+import { useTranslations, useLocale } from 'next-intl';
+import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { forgotPasswordSchema } from '@/features/auth/schemes/forgot-password.schema';
 import { forgotPasswordAction } from '@/features/auth/apis/forgotpass.api';
 import { Button } from '@/shared/components/ui/button';
-import { Input } from '@/shared/components/ui/input';
+import CustomInput from '@/shared/components/custom-input';
+import ErrorAlert from '@/shared/components/error-alert';
 import { useState } from 'react';
 import * as z from 'zod';
 import { toast } from 'sonner';
@@ -13,17 +15,22 @@ import Link from 'next/link';
 
 export const ForgotPasswordForm = () => {
   const t = useTranslations();
+  const locale = useLocale();
+  const isRtl = locale === 'ar';
   const [isLoading, setIsLoading] = useState(false);
 
+  type ForgotPasswordValues = z.infer<typeof forgotPasswordSchema>;
+
   const {
-    register,
+    control,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<ForgotPasswordValues>({
     resolver: zodResolver(forgotPasswordSchema),
+    defaultValues: {
+      email: '',
+    },
   });
-
-  type ForgotPasswordValues = z.infer<typeof forgotPasswordSchema>;
 
   const onSubmit = async (data: ForgotPasswordValues) => {
     setIsLoading(true);
@@ -51,37 +58,45 @@ export const ForgotPasswordForm = () => {
           {t('auth-forgotPw.step1.subtitle')}
         </p>
       </div>
+
       <hr className="border-0 border-t border-border-muted dark:border-border-soft mt-2 w-full" />
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 mt-6">
         <div className="space-y-2">
-          <label className="text-sm font-medium text-text-plain dark:text-text-plain transition-colors">
-            {t('auth-forgotPw.step1.emailLabel')}
-          </label>
+          <Controller
+            name="email"
+            control={control}
+            render={({ field, fieldState }) => (
+              <>
+                <CustomInput
+                  variant="email"
+                  label={t('auth-forgotPw.step1.emailLabel')}
+                  placeholder={t('auth-forgotPw.step1.emailPlaceholder')}
+                  id="email"
+                  errorMessage={fieldState.error?.message}
+                  error={fieldState.invalid}
+                  isRtl={isRtl}
+                  {...field}
+                />
 
-          <Input
-            {...register('email')}
-            type="email"
-            placeholder={t('auth-forgotPw.step1.emailPlaceholder')}
-            aria-invalid={!!errors.email}
+                {fieldState.error && (
+                  <ErrorAlert errorMessage={fieldState.error.message} isRtl={isRtl} />
+                )}
+              </>
+            )}
           />
-
-          {errors.email && (
-            <p className="text-red-500 dark:text-red-400 text-xs mt-1">
-              {errors.email.message as string}
-            </p>
-          )}
         </div>
 
         <Button
           type="submit"
           buttonVariant="text"
           variant="primary"
-          title="auth-forgotPw.step1.continue"
+          title={t('auth-forgotPw.step1.continue')}
           loading={isLoading}
           className="w-full h-12 transition-all"
         />
       </form>
+
       <hr className="border-0 border-t border-border-muted dark:border-border-soft mt-9 w-full" />
 
       <div className="mt-8 text-center text-sm">
