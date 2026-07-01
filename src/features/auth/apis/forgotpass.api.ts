@@ -1,6 +1,6 @@
 'use server';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL; // تأكد من وجوده في .env
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export async function forgotPasswordAction(email: string) {
   const response = await fetch(`${API_BASE_URL}/api/auth/forgot-password`, {

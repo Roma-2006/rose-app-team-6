@@ -2,12 +2,12 @@
 import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { forgotPasswordSchema } from '@/features/auth/schemes/auth-schemas';
+import { forgotPasswordSchema } from '@/features/auth/schemes/forgot-password.schema';
 import { forgotPasswordAction } from '@/features/auth/apis/forgotpass.api';
 import { Button } from '@/shared/components/ui/button';
 import { useState } from 'react';
 import * as z from 'zod';
-// import toast from 'react-hot-toast';
+import { toast } from 'sonner';
 import Link from 'next/link';
 
 export const ForgotPasswordForm = () => {
@@ -24,19 +24,19 @@ export const ForgotPasswordForm = () => {
   type ForgotPasswordValues = z.infer<typeof forgotPasswordSchema>;
   const onSubmit = async (data: ForgotPasswordValues) => {
     setIsLoading(true);
-    // try {
-    //   const res = await forgotPasswordAction(data.email);
-    //   if (res.status) {
-    //     toast.success(res.message || "Reset instructions sent");
-    //     // عادة يتم التوجيه لصفحة تأكيد الإيميل أو OTP
-    //   } else {
-    //     toast.error(t('auth-forgotPw.errors.noAccount'));
-    //   }
-    // } catch (err) {
-    //   toast.error("Something went wrong");
-    // } finally {
-    //   setIsLoading(false);
-    // }
+    try {
+      const res = await forgotPasswordAction(data.email);
+      if (res.status) {
+        toast.success(res.message || 'Reset instructions sent');
+        // عادة يتم التوجيه لصفحة تأكيد الإيميل أو OTP
+      } else {
+        toast.error(t('auth-forgotPw.errors.noAccount'));
+      }
+    } catch (err) {
+      toast.error('Something went wrong');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (

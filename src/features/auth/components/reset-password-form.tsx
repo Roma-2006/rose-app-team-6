@@ -1,83 +1,125 @@
-// "use client";
-// import { useTranslations } from 'next-intl';
-// import { useForm } from 'react-hook-form';
-// import { zodResolver } from '@hookform/resolvers/zod';
-// import { resetPasswordSchema } from '@/features/auth/schemes/auth-schemas'
-// import { useState } from 'react';
-// import { Eye, EyeOff } from 'lucide-react';
+'use client';
+import { useTranslations } from 'next-intl';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { resetPasswordSchema } from '@/features/auth/schemes/reset-password.schema';
+import { resetPasswordAction } from '@/features/auth/apis/forgotpass.api';
+import { Button } from '@/shared/components/ui/button';
+import { useState } from 'react';
+import { Eye, EyeOff } from 'lucide-react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { toast } from 'sonner';
+import * as z from 'zod';
 
-// import { Button } from '@/shared/components/ui/button';
+type ResetPasswordValues = z.infer<typeof resetPasswordSchema>;
 
-// export const ResetPasswordForm = () => {
-//   const t = useTranslations('auth.forgotPw');
-//   const [isLoading, setIsLoading] = useState(false);
-//   const [showPassword, setShowPassword] = useState(false);
-//   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+export const ResetPasswordForm = () => {
+  const t = useTranslations();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const token = searchParams.get('token') || '';
 
-//   const { register, handleSubmit, formState: { errors } } = useForm({
-//     resolver: zodResolver(resetPasswordSchema)
-//   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [showPass, setShowPass] = useState(false);
 
-//   const onSubmit = async (data: any) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ResetPasswordValues>({
+    resolver: zodResolver(resetPasswordSchema),
+  });
 
-//     setIsLoading(false);
-//   };
+  const onSubmit = async (data: ResetPasswordValues) => {
+    if (!token) {
+      toast.error('Invalid or missing token');
+      return;
+    }
 
-//   return (
-//     <div className="w-full">
-//       <div className="mb-8">
-//         <h1 className="text-[28px] font-bold text-zinc-900 mb-2">{t('step3.title')}</h1>
-//         <p className="text-zinc-500 text-sm leading-relaxed">{t('step3.subtitle')}</p>
-//       </div>
+    setIsLoading(true);
+    try {
+      const res = await resetPasswordAction({
+        token,
+        newPassword: data.newPassword,
+        confirmPassword: data.confirmPassword,
+      });
 
-//       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-//         <div className="space-y-2">
-//           <label className="text-sm font-medium text-zinc-700">{t('step3.passwordLabel')}</label>
-//           <div className="relative">
-//             <input
-//               {...register("password")}
-//               type={showPassword ? "text" : "password"}
-//               className="w-full px-4 py-3 rounded-lg border border-zinc-200"
-//             />
-//             <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400">
-//               {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-//             </button>
-//           </div>
-//           {errors.password && <p className="text-destructive text-xs">{t(`errors.${errors.password.message}`)}</p>}
-//         </div>
+      if (res.status) {
+        toast.success(t('auth-forgotPw.step3.successToast'));
+        router.push('/login');
+      } else {
+        toast.error(res.message);
+      }
+    } catch (err) {
+      toast.error('Failed to reset password');
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-//         <div className="space-y-2">
-//           <label className="text-sm font-medium text-zinc-700">{t('step3.confirmPasswordLabel')}</label>
-//           <div className="relative">
-//             <input
-//               {...register("confirmPassword")}
-//               type={showConfirmPassword ? "text" : "password"}
-//               className="w-full px-4 py-3 rounded-lg border border-zinc-200"
-//             />
-//             <button type="button" onClick={() => setShowConfirmPassword(!showConfirmPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400">
-//               {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-//             </button>
-//           </div>
-//           {errors.confirmPassword && <p className="text-destructive text-xs">{t(`errors.${errors.confirmPassword.message}`)}</p>}
-//         </div>
+  return (
+    <div className="w-full">
+      <div className="mb-8">
+        <h1 className="text-[28px] font-bold text-zinc-900 mb-2">
+          {t('auth-forgotPw.step3.title')}
+        </h1>
+        <p className="text-zinc-500 text-sm leading-relaxed">{t('auth-forgotPw.step3.subtitle')}</p>
+      </div>
 
-//         {/* استخدام الـ Button الخاص بك */}
-//         <Button
-//           type="submit"
-//           buttonVariant="text"
-//           variant="primary"
-//           title="auth.forgotPw.step3.reset" // Key الترجمة
-//           loading={isLoading}
-//           className="w-full h-12 mt-4"
-//         />
-//       </form>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        {/* New Password - تم تغيير الاسم هنا */}
+        <div className="space-y-2 relative">
+          <label className="text-sm font-medium text-zinc-700">
+            {t('auth-forgotPw.step3.passwordLabel')}
+          </label>
+          <div className="relative">
+            <input
+              {...register('newPassword')} // تم التغيير من password إلى newPassword
+              type={showPass ? 'text' : 'password'}
+              className="w-full px-4 py-3 rounded-lg border border-zinc-200 outline-none"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPass(!showPass)}
+              className="absolute right-3 top-3 text-zinc-400"
+            >
+              {showPass ? <EyeOff size={18} /> : <Eye size={18} />}
+            </button>
+          </div>
+          {/* تم التغيير من errors.password إلى errors.newPassword */}
+          {errors.newPassword && (
+            <p className="text-red-500 text-xs mt-1">
+              {t(`auth-forgotPw.errors.${errors.newPassword.message}`)}
+            </p>
+          )}
+        </div>
 
-//       <div className="mt-8 text-center text-sm">
-//         <span className="text-zinc-500">{t('step3.footerText')} </span>
-//         <button className="text-text-primary font-bold hover:underline">
-//           {t('step3.contactLink')}
-//         </button>
-//       </div>
-//     </div>
-//   );
-// };
+        {/* Confirm Password */}
+        <div className="space-y-2">
+          <label className="text-sm font-medium text-zinc-700">
+            {t('auth-forgotPw.step3.confirmPasswordLabel')}
+          </label>
+          <input
+            {...register('confirmPassword')}
+            type="password"
+            className="w-full px-4 py-3 rounded-lg border border-zinc-200 outline-none"
+          />
+          {errors.confirmPassword && (
+            <p className="text-red-500 text-xs mt-1">
+              {t(`auth-forgotPw.errors.${errors.confirmPassword.message}`)}
+            </p>
+          )}
+        </div>
+
+        <Button
+          type="submit"
+          buttonVariant="text"
+          variant="primary"
+          title="auth-forgotPw.step3.reset"
+          loading={isLoading}
+          className="w-full h-12 mt-4 bg-[#a62626]"
+        />
+      </form>
+    </div>
+  );
+};

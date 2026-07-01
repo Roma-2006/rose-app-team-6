@@ -497,6 +497,13 @@
 
   /* Ring ------------------------------------------------------------------------------- */
 
+  --color-ring-default: var(--ring-default);
+  --color-ring-danger: var(--ring-danger);
+
+  /* width---------------------------------------------------- */
+--width-375 :375px;
+  /* radiues---------------------------------------------------- */
+  --radius-10:10px 
   --color-col-ring-default: var(--col-ring-default);
   --color-col-ring-danger: var(--col-ring-danger);
 }
