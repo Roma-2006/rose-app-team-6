@@ -22,7 +22,9 @@ export const ForgotPasswordForm = () => {
   } = useForm({
     resolver: zodResolver(forgotPasswordSchema),
   });
+
   type ForgotPasswordValues = z.infer<typeof forgotPasswordSchema>;
+
   const onSubmit = async (data: ForgotPasswordValues) => {
     setIsLoading(true);
     try {
@@ -40,22 +42,22 @@ export const ForgotPasswordForm = () => {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full max-w-md mx-auto">
       <div className="mb-8">
-        <h1 className="text-[28px] font-bold text-text-plain  mb-2">
+        <h1 className="text-[28px] font-bold text-text-plain dark:text-text-plain mb-2 transition-colors">
           {t('auth-forgotPw.step1.title')}
         </h1>
-        <p className="font-normal text-sm text-text-plain leading-relaxed">
+        <p className="text-text-plain dark:text-text-plain text-sm font-normal leading-relaxed transition-colors">
           {t('auth-forgotPw.step1.subtitle')}
         </p>
-        <hr className="border-t border-border-muted dark:border-border-soft mt-4 w-full" />
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div className="space-y-2">
-          <label className="text-sm font-medium text-text-plain ">
+          <label className="text-sm font-medium text-text-plain dark:text-text-plain transition-colors">
             {t('auth-forgotPw.step1.emailLabel')}
           </label>
+
           <Input
             {...register('email')}
             type="email"
@@ -64,22 +66,30 @@ export const ForgotPasswordForm = () => {
           />
 
           {errors.email && (
-            <p className="text-red-500 text-xs mt-1">{errors.email.message as string}</p>
+            <p className="text-red-500 dark:text-red-400 text-xs mt-1">
+              {errors.email.message as string}
+            </p>
           )}
         </div>
+
         <Button
           type="submit"
           buttonVariant="text"
           variant="primary"
           title="auth-forgotPw.step1.continue"
           loading={isLoading}
-          className="w-full h-12 "
+          className="w-full h-12 transition-all"
         />
       </form>
-      <hr className="border-0 border-t border-border-muted dark:border-border-soft mt-4 w-full" />
+
       <div className="mt-8 text-center text-sm">
-        <span className="text-text-plain  ">{t('auth-forgotPw.step1.footerText')} </span>
-        <Link href="/register" className="text-text-primary font-bold hover:underline">
+        <span className="text-text-plain dark:text-text-plain">
+          {t('auth-forgotPw.step1.footerText')}{' '}
+        </span>
+        <Link
+          href="/register"
+          className="text-text-primary dark:text-text-primary font-bold hover:underline transition-colors"
+        >
           {t('auth-forgotPw.step1.registerLink')}
         </Link>
       </div>

@@ -62,16 +62,18 @@ export const ResetPasswordForm = () => {
   return (
     <div className="w-full">
       <div className="mb-8">
-        <h1 className="text-[28px] font-bold text-zinc-900 mb-2">
+        <h1 className="text-[28px] font-bold text-text-plain dark:text-text-plain mb-2">
           {t('auth-forgotPw.step3.title')}
         </h1>
-        <p className="text-zinc-500 text-sm leading-relaxed">{t('auth-forgotPw.step3.subtitle')}</p>
+        <p className="text-text-plain dark:text-text-plain text-sm font-normal leading-relaxed">
+          {t('auth-forgotPw.step3.subtitle')}
+        </p>
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         {/* New Password */}
         <div className="space-y-2">
-          <label className="text-sm font-medium text-zinc-700">
+          <label className="text-sm font-medium text-text-plain dark:text-text-plain">
             {t('auth-forgotPw.step3.passwordLabel')}
           </label>
           <div className="relative">
@@ -80,7 +82,7 @@ export const ResetPasswordForm = () => {
               type={showPass ? 'text' : 'password'}
               placeholder="••••••••"
               aria-invalid={!!errors.newPassword}
-              className="pr-10" // إضافة padding جهة اليمين لكي لا يغطي النص الأيقونة
+              className="pr-10"
             />
             <button
               type="button"
@@ -99,13 +101,13 @@ export const ResetPasswordForm = () => {
 
         {/* Confirm Password */}
         <div className="space-y-2">
-          <label className="text-sm font-medium text-zinc-700">
+          <label className="text-sm font-medium text-text-plain dark:text-text-plain">
             {t('auth-forgotPw.step3.confirmPasswordLabel')}
           </label>
           <div className="relative">
             <Input
               {...register('confirmPassword')}
-              type={showConfirmPass ? 'text' : 'password'} // جعل النوع ديناميكي أيضاً
+              type={showConfirmPass ? 'text' : 'password'}
               placeholder="••••••••"
               aria-invalid={!!errors.confirmPassword}
               className="pr-10"
