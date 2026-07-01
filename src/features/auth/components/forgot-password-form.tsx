@@ -51,8 +51,9 @@ export const ForgotPasswordForm = () => {
           {t('auth-forgotPw.step1.subtitle')}
         </p>
       </div>
+      <hr className="border-0 border-t border-border-muted dark:border-border-soft mt-2 w-full" />
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 mt-6">
         <div className="space-y-2">
           <label className="text-sm font-medium text-text-plain dark:text-text-plain transition-colors">
             {t('auth-forgotPw.step1.emailLabel')}
@@ -81,6 +82,7 @@ export const ForgotPasswordForm = () => {
           className="w-full h-12 transition-all"
         />
       </form>
+      <hr className="border-0 border-t border-border-muted dark:border-border-soft mt-9 w-full" />
 
       <div className="mt-8 text-center text-sm">
         <span className="text-text-plain dark:text-text-plain">
