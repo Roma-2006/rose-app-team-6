@@ -4,10 +4,8 @@ import Image from 'next/image';
 export default function AuthLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <main className="min-h-screen bg-zinc-800 grid lg:grid-cols-[1fr_1.1fr]">
-      {/* 2. وضع الـ Toaster هنا ليكون متاحاً في كل صفحات الـ Auth */}
-
       {/* Form Panel */}
-      <section className="flex items-center justify-center bg-background px-10">
+      <section className="flex items-center justify-centbackgroundground px-10">
         <div className="w-full max-w-md rounded-xl bg-card p-8">
           {/* Language Switcher */}
           <div className="flex justify-end">

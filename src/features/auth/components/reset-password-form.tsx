@@ -5,6 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { resetPasswordSchema } from '@/features/auth/schemes/reset-password.schema';
 import { resetPasswordAction } from '@/features/auth/apis/forgotpass.api';
 import { Button } from '@/shared/components/ui/button';
+import { Input } from '@/shared/components/ui/input';
 import { useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -21,6 +22,7 @@ export const ResetPasswordForm = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [showPass, setShowPass] = useState(false);
+  const [showConfirmPass, setShowConfirmPass] = useState(false);
 
   const {
     register,
@@ -67,26 +69,27 @@ export const ResetPasswordForm = () => {
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        {/* New Password - تم تغيير الاسم هنا */}
-        <div className="space-y-2 relative">
+        {/* New Password */}
+        <div className="space-y-2">
           <label className="text-sm font-medium text-zinc-700">
             {t('auth-forgotPw.step3.passwordLabel')}
           </label>
           <div className="relative">
-            <input
-              {...register('newPassword')} // تم التغيير من password إلى newPassword
+            <Input
+              {...register('newPassword')}
               type={showPass ? 'text' : 'password'}
-              className="w-full px-4 py-3 rounded-lg border border-zinc-200 outline-none"
+              placeholder="••••••••"
+              aria-invalid={!!errors.newPassword}
+              className="pr-10" // إضافة padding جهة اليمين لكي لا يغطي النص الأيقونة
             />
             <button
               type="button"
               onClick={() => setShowPass(!showPass)}
-              className="absolute right-3 top-3 text-zinc-400"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 transition-colors"
             >
               {showPass ? <EyeOff size={18} /> : <Eye size={18} />}
             </button>
           </div>
-          {/* تم التغيير من errors.password إلى errors.newPassword */}
           {errors.newPassword && (
             <p className="text-red-500 text-xs mt-1">
               {t(`auth-forgotPw.errors.${errors.newPassword.message}`)}
@@ -99,11 +102,22 @@ export const ResetPasswordForm = () => {
           <label className="text-sm font-medium text-zinc-700">
             {t('auth-forgotPw.step3.confirmPasswordLabel')}
           </label>
-          <input
-            {...register('confirmPassword')}
-            type="password"
-            className="w-full px-4 py-3 rounded-lg border border-zinc-200 outline-none"
-          />
+          <div className="relative">
+            <Input
+              {...register('confirmPassword')}
+              type={showConfirmPass ? 'text' : 'password'} // جعل النوع ديناميكي أيضاً
+              placeholder="••••••••"
+              aria-invalid={!!errors.confirmPassword}
+              className="pr-10"
+            />
+            <button
+              type="button"
+              onClick={() => setShowConfirmPass(!showConfirmPass)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 transition-colors"
+            >
+              {showConfirmPass ? <EyeOff size={18} /> : <Eye size={18} />}
+            </button>
+          </div>
           {errors.confirmPassword && (
             <p className="text-red-500 text-xs mt-1">
               {t(`auth-forgotPw.errors.${errors.confirmPassword.message}`)}
@@ -117,7 +131,7 @@ export const ResetPasswordForm = () => {
           variant="primary"
           title="auth-forgotPw.step3.reset"
           loading={isLoading}
-          className="w-full h-12 mt-4 bg-[#a62626]"
+          className="w-full h-12 mt-4"
         />
       </form>
     </div>
