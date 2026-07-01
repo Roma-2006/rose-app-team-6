@@ -48,6 +48,7 @@ export const ForgotPasswordForm = () => {
         <p className="font-normal text-sm text-text-plain dark:text-text-plain leading-relaxed">
           {t('auth-forgotPw.step1.subtitle')}
         </p>
+        <hr className="border-t border-border-muted dark:border-border-soft mt-4 w-full" />
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -75,10 +76,13 @@ export const ForgotPasswordForm = () => {
           className="w-full h-12 "
         />
       </form>
-
+      <hr className="border-0 border-t border-border-muted dark:border-border-soft mt-4 w-full" />
       <div className="mt-8 text-center text-sm">
         <span className="text-text-plain  ">{t('auth-forgotPw.step1.footerText')} </span>
-        <Link href="/register" className="text-[#a62626] font-bold hover:underline">
+        <Link
+          href="/register"
+          className="text-text-primary dark:text-text-primary font-bold hover:underline"
+        >
           {t('auth-forgotPw.step1.registerLink')}
         </Link>
       </div>
