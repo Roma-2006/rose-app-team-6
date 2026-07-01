@@ -1,3 +1,4 @@
+import { Badge } from '@/shared/components/ui/badge';
 import LanguageSwitcher from '@/shared/components/language-switcher';
 import { ThemeToggle } from '@/shared/components/theme';
 import CustomInput from '@/shared/components/custom-input';
@@ -13,7 +14,7 @@ import {
 import { User } from 'lucide-react';
 
 interface PageProps {
-  params: Promise<{ locale: string }>;
+  params: { locale: string };
 }
 
 export default async function Home({ params }: PageProps) {
@@ -28,6 +29,13 @@ export default async function Home({ params }: PageProps) {
         <div className="mb-6 w-full flex justify-end gap-2">
           <LanguageSwitcher />
           <ThemeToggle />
+        </div>
+
+        {/* Badges */}
+        <div className="flex gap-2 mb-4">
+          <Badge variant="primary">Badge</Badge>
+          <Badge variant="secondary">Badge</Badge>
+          <Badge variant="subtle">Badge</Badge>
         </div>
 
         {/* Input Group */}

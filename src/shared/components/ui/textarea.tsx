@@ -1,18 +1,54 @@
+'use client';
+
 import * as React from 'react';
+import { useTranslations } from 'next-intl';
+import { cn } from '@/shared/lib/utils/tailwind-cn';
 
-import { cn } from '@/lib/utils';
-
-function Textarea({ className, ...props }: React.ComponentProps<'textarea'>) {
-  return (
-    <textarea
-      data-slot="textarea"
-      className={cn(
-        'flex field-sizing-content min-h-16 w-full rounded-lg border border-input bg-transparent px-2.5 py-2 text-base transition-colors outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40',
-        className
-      )}
-      {...props}
-    />
-  );
+interface TextareaProps extends React.ComponentProps<'textarea'> {
+  showCount?: boolean;
+  maxLength?: number;
+  error?: string;
 }
+
+const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
+  ({ className, showCount, maxLength, error, value, onChange, ...props }, ref) => {
+    const [count, setCount] = React.useState(0);
+    const t = useTranslations('common.textarea');
+
+    const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+      setCount(e.target.value.length);
+      if (onChange) onChange(e);
+    };
+
+    return (
+      <div className="flex flex-col gap-1.5 w-full">
+        <div className="relative w-full">
+          <textarea
+            ref={ref}
+            value={value}
+            maxLength={maxLength}
+            onChange={handleChange}
+            aria-invalid={!!error}
+            className={cn(
+              'field-sizing-content min-h-24 w-full resize-none rounded-lg border border-border-soft bg-bg-plain px-3 py-3 text-sm outline-none transition-all',
+              'hover:border-border-default focus-visible:border-border-primary focus-visible:ring-3 focus-visible:ring-ring-default',
+              'aria-invalid:border-border-danger aria-invalid:ring-3 aria-invalid:ring-ring-danger',
+              'disabled:bg-bg-muted disabled:text-text-muted disabled:cursor-not-allowed placeholder:text-text-muted',
+              className
+            )}
+            {...props}
+          />
+          {showCount && maxLength && (
+            <div className="mt-1 text-right text-xs text-text-muted">
+              {t('charCount', { current: count, max: maxLength })}
+            </div>
+          )}
+        </div>
+        {error && <p className="text-text-danger text-xs">{error}</p>}
+      </div>
+    );
+  }
+);
+Textarea.displayName = 'Textarea';
 
 export { Textarea };

@@ -1,6 +1,28 @@
 {
-  "app-title": "Rose App",
-  "title": "Welcome to Rose App",
+  "HomePage": {
+    "title": "Welcome to Rose App"
+  },
+  "button": {
+    "loading": "Loading...",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "confirm": "Confirm"
+  },
+   "common": {
+    "select": {
+      "placeholder": "Select an option",
+      "noOptions": "No options found",
+      "search": "Search..."
+    },
+  
+    "textarea": {
+      "charCount": "{current}/{max} characters"
+    },
+
+
+
    "input-component": {
     "label": "Full Name",
     "placeholder": "Enter your name..."
@@ -27,4 +49,4 @@
     "email": { "label": "Email", "placeholder": "user@example.com" }
   },
   "nice-to-have-you-here": "nice to have you here"
-}
+}}
