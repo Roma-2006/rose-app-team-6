@@ -53,9 +53,10 @@
 
 
   "app-title": "Rose App",
-  "title": "Welcome to Rose App"
-  
-,
+  "auth": {
+    "switchLang": "English",
+    "langLabel": "Switch to Arabic"  
+  },
 
 
 

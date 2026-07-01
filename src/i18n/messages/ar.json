@@ -51,7 +51,10 @@
     
   },
   "app-title": "تطبيق روز",
-  "title": "مرحبا بك في تطبيق روز",
+    "auth": {
+    "switchLang": "العربية",
+     "langLabel": "التحويل إلى الإنجليزية"
+  },
   "input-component": {
     "label": "الاسم بالكامل",
     "placeholder": "أدخل اسمك هنا..."
