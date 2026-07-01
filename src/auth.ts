@@ -38,8 +38,6 @@ export const authOptions: NextAuthOptions = {
           throw new Error('Invalid username or password');
         }
 
-        console.log(process.env.AUTH_SESSION_MAX_AG);
-
         const data = await login(result.data);
 
         if (!data.status) {
