@@ -1,9 +1,7 @@
+import { LocaleLayoutProps } from '@/shared/lib/types/locale-layout-props';
 import { getTranslations } from 'next-intl/server';
-interface PageProps {
-  params: Promise<{ locale: string }>;
-}
 
-export default async function LoginPage({ params }: PageProps) {
+export default async function LoginPage({ params }: LocaleLayoutProps) {
   const { locale } = await params;
   const t = await getTranslations({ locale });
   return (
