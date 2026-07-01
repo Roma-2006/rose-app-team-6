@@ -21,12 +21,12 @@
       "charCount": "{current}/{max} characters"
     },
 
-
-
+    "app-title": "Rose App",
    "input-component": {
     "label": "Full Name",
     "placeholder": "Enter your name..."
-  },
+  }
+},
   "custom-input": {
     "default":{
     "first-name" : { "label": "First name", "placeholder": "Jonathan" } , 
@@ -46,7 +46,29 @@
   
   },
     "phone": { "label": "Phone", "placeholder": "1012345678" },
-    "email": { "label": "Email", "placeholder": "user@example.com" }
-  },
-  "nice-to-have-you-here": "nice to have you here"
-}}
+    "email": { "label": "Email", "placeholder": "user@example.com" },
+    "nice-to-have-you-here": "nice to have you here"
+},
+  "app-title": "Roze App",
+  "auth": {
+    "switchLang": "English",
+    "langLabel": "Switch to Arabic",
+    "register":{
+      "title":"Become part of our family!",
+      "first-name":"First Name",
+      "last-name":"Last Name",
+      "email":"Email",
+      "phone":"Phone",
+      "gender":"Gender",
+      "male":"Male",
+      "female":"Female",
+      "password":"Password",
+      "confirm-password":"Confirm Password",
+      "button":"Create Account",
+      "email-inUse":"Email already in use",
+      "success":"Account created successfully",
+      "have-account": "Already have an account?",
+      "login": "Login"
+    }
+  }
+}

@@ -45,9 +45,29 @@
       "error-type": "صيغة الملف غير مدعومة."
     },
     "phone": { "label": "رقم الهاتف", "placeholder": "1012345678" },
-    "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" }
+    "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" },
+    "nice-to-have-you-here": "جميل أنك هنا"
   },
-  "nice-to-have-you-here": "جميل أنك هنا"
+  "auth": {
+    "switchLang": "العربية",
+    "langLabel": "التحويل إلى الإنجليزية",
+    "register":{
+      "title":"انضم إلى عائلتنا!",
+      "first-name":"الاسم الاول",
+      "last-name":"اسم العائله",
+      "email":"البريد الإلكتروني",
+      "phone":"رقم الهاتف",
+      "gender":"الجنس",
+      "male":"ذكر",
+      "female":"أنثى",
+      "password":"كلمة المرور",
+      "confirm-password":"تأكيد كلمة المرور",
+      "button":"إنشاء حساب",
+      "email-inUse":"البريد الإلكتروني مستخدم بالفعل",
+      "success":"تم إنشاء الحساب بنجاح",
+      "have-account": "هل لديك حساب بالفعل؟",
+      "login": "تسجيل الدخول"
+    }
+  }
+
 }
-
-
