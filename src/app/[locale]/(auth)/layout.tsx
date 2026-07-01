@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function AuthLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <main className="min-h-screen bg-bg-inverse grid lg:grid-cols-[1fr_1.1fr]">
+    <main className="min-h-screen bg-bg-plain grid lg:grid-cols-[1fr_1.1fr]">
       {/* Form Panel */}
       <section className="flex items-center justify-center bg-background px-10">
         <div className="w-full max-w-md rounded-xl bg-card p-8">
