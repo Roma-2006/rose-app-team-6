@@ -1,9 +1,7 @@
 'use client';
 //////// font inter
 import * as React from 'react';
-
 import { cn } from '@/shared/lib/utils/tailwind-cn';
-
 function Label({
   className,
   variant = 'default',
@@ -21,5 +19,4 @@ function Label({
     />
   );
 }
-
 export { Label };

@@ -21,6 +21,65 @@
       "charCount": "{current}/{max} حرف"
     }
   },
+   "auth-forgotPw": {
+ 
+      "step1": {
+        "title": "نسيت كلمة المرور؟",
+        "subtitle": "لا تقلق، سنرسل لك التعليمات لمساعدتك في إعادة تعيينها.",
+        "emailLabel": "البريد الإلكتروني",
+        "emailPlaceholder": "user@example.com",
+        "continue": "متابعة",
+        "footerText": "ليس لديك حساب بعد؟",
+        "registerLink": "أنشئ حساباً الآن!"
+      },
+      "step3": {
+        "title": "إنشاء كلمة مرور جديدة",
+        "subtitle": "قم بتعيين كلمة مرور قوية لتأمين حسابك.",
+        "passwordLabel": "كلمة المرور",
+        "confirmPasswordLabel": "تأكيد كلمة المرور",
+        "reset": "إعادة تعيين كلمة المرور",
+        "successToast": "تمت إعادة تعيين كلمة المرور بنجاح.",
+        "footerText": "تحتاج مساعدة؟",
+        "contactLink": "تواصل معنا"
+      },
+      "errors": {
+        "noAccount": "لا يوجد حساب مرتبط بهذا البريد الإلكتروني",
+        "passwordMatch": "كلمات المرور غير متطابقة",
+        "passwordOldSame": "كلمة المرور الجديدة يجب أن تختلف عن الحالية",
+        "passwordRequirement": "يجب أن تتكون من 8 أحرف، تشمل حروفاً كبيرة وصغيرة وأرقاماً ورموزاً"
+      }
+    
+  },
   "app-title": "تطبيق روز",
-  "title": "مرحبا بكم في تطبيق روز"
+    "auth": {
+    "switchLang": "العربية",
+     "langLabel": "التحويل إلى الإنجليزية"
+  },
+  "input-component": {
+    "label": "الاسم بالكامل",
+    "placeholder": "أدخل اسمك هنا..."
+  },
+   "custom-input": {
+    "default":{
+      "first-name" : { "label": "الاسم الأول", "placeholder": "Jonathan" } , 
+      "last-name": {"label" :"الاسم الأخير" , "placeholder" :"Adrian"}
+  },
+    "number": { "label": "الرقم", "placeholder": "0" },
+    "search": { "label": "بحث", "placeholder": "ابحث هنا..." },
+    "password": {
+        "password": {"label": "كلمة المرور", "placeholder": "*********" },
+        "confirm-Password": {"label": "تأكيد كلمة المرور", "placeholder": "*********" }
+  },
+    "file": { 
+      "label": "الملف",
+     "placeholder": "اختر ملف" ,
+      "btn-text": "رفع ملف",
+      "error-type": "صيغة الملف غير مدعومة."
+    },
+    "phone": { "label": "رقم الهاتف", "placeholder": "1012345678" },
+    "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" }
+  },
+  "nice-to-have-you-here": "جميل أنك هنا"
 }
+
+
