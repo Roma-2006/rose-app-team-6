@@ -2,16 +2,7 @@
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export async function forgotPasswordAction(email: string) {
-  const response = await fetch(`${API_BASE_URL}/api/auth/forgot-password`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email }),
-  });
-  return response.json();
-}
-
-export async function resetPasswordAction(data: {
+export async function resetPassword(data: {
   token: string;
   newPassword: string;
   confirmPassword: string;
@@ -21,5 +12,10 @@ export async function resetPasswordAction(data: {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
   });
+
+  if (!response.ok) {
+    throw new Error(`Reset password request failed: ${response.status}`);
+  }
+
   return response.json();
 }

@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Combobox as ComboboxPrimitive } from '@base-ui/react';
 
 import { cn } from '@/shared/lib/utils/tailwind-cn';
-import { Button } from '@/shared/components/ui/button';
+
 import {
   InputGroup,
   InputGroupAddon,
