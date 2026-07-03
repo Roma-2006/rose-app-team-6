@@ -1,83 +1,95 @@
-// "use client";
+'use client';
 
-// import { LOGIN_SCHEMA } from "@/features/auth/schemas/login.schema";
-// import { zodResolver } from "@hookform/resolvers/zod";
-// import { Controller, useForm } from "react-hook-form";
-// import * as z from "zod";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Controller, useForm } from 'react-hook-form';
+import { TLoginData } from '@/features/auth/types/login';
+import { LOGIN_SCHEMA } from '@/features/auth/schemas/login.schema';
+import UseLogin from '@/features/auth/hooks/use-login';
+import { FieldGroup } from '@/shared/components/ui/field';
+import CustomInput from '@/shared/components/custom-input';
+import ErrorAlert from '@/shared/components/error-alert';
+import { useTranslations } from 'next-intl';
+import { Button } from '@/shared/components/ui/button';
+import { BaseCheckbox } from '@/shared/components/custom-ui/BaseCheckbox';
+import { Link } from '@/i18n/navigation';
 
-// type FormValues = z.infer<typeof LOGIN_SCHEMA>;
+export default function LoginForm() {
+  const form = useForm<TLoginData>({
+    resolver: zodResolver(LOGIN_SCHEMA((key) => key)),
+    defaultValues: {
+      username: '',
+      password: '',
+    },
+  });
+  const t = useTranslations('login');
 
-// export default function LoginForm() {
-//   const form = useForm<FormValues>({
-//     resolver: zodResolver(LOGIN_SCHEMA),
-//     defaultValues: {
-//       username: "",
-//       password: "",
-//     },
-//   });
+  const { login, isPending, error } = UseLogin();
 
-//   const { login, isPending ,error } = useLogin();
+  const onSubmit = (data: TLoginData) => {
+    login(data);
+  };
 
-//   const onSubmit = (data: FormValues) => {
-//     login(data);
-//   };
+  return (
+    <form onSubmit={form.handleSubmit(onSubmit)} className="w-full max-w-96  mb-14 flex flex-col">
+      <FieldGroup>
+        <Controller
+          name="username"
+          control={form.control}
+          render={({ field, fieldState }) => (
+            <CustomInput
+              {...field}
+              variant="default"
+              subVariant="username"
+              id="username"
+              autoComplete="username"
+              className="mb-4"
+              errorMessage={fieldState.error?.message}
+            />
+          )}
+        />
 
-//   return (
-//     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 mt-8">
-//       <FieldGroup>
-//         <Controller
-//           name="username"
-//           control={form.control}
-//           render={({ field, fieldState }) => (
-//             <Field className="w-full" data-invalid={fieldState.invalid}>
-//               <FieldLabel>Username</FieldLabel>
+        <div className="relative">
+          <Controller
+            name="password"
+            control={form.control}
+            render={({ field, fieldState }) => (
+              <CustomInput
+                {...field}
+                variant="password"
+                subVariant="password"
+                id="password"
+                autoComplete="current-password"
+                errorMessage={fieldState.error?.message}
+                className="mb-2.5"
+              />
+            )}
+          />
 
-//               <Input
-//                 {...field}
-//                 placeholder="Ahmed"
-//                 autoComplete="username"
-//               />
+          <div className="flex justify-end mb-2.5">
+            <Link href="/forget-password" className="text-sm font-semibold text-text-primary ">
+              {t('forgot-password')}
+            </Link>
+          </div>
+        </div>
 
-//               {fieldState.invalid && (
-//                 <FieldError errors={[fieldState.error]} />
-//               )}
-//             </Field>
-//           )}
-//         />
+        {error && <ErrorAlert errorMessage={error || 'Something went wrong'} />}
+      </FieldGroup>
 
-//         <Controller
-//           name="password"
-//           control={form.control}
-//           render={({ field, fieldState }) => (
-//             <Field data-invalid={fieldState.invalid}>
-//               <FieldLabel>Password</FieldLabel>
+      <BaseCheckbox
+        onChange={function (isChecked: boolean): void {
+          throw new Error('Function not implemented.');
+        }}
+        list={[{ id: 'remember-me', label: t('remember-me') }]}
+      />
 
-//               <InputGroup>
-//                 <PasswordField
-//                   {...field}
-//                   id="password"
-//                   autoComplete="current-password"
-//                 />
-//               </InputGroup>
-//               {fieldState.invalid && (
-//                 <FieldError errors={[fieldState.error]} />
-//               )}
-//               <Link
-//                 href="/forget-password"
-//                 className="flex justify-end text-sm font-medium text-blue-600"
-//               >
-//                 Forgot password?
-//               </Link>
-
-//             </Field>
-//           )}
-//         />
-//         {error && (
-//   <ErrorAlert message={error || "Something went wrong"} />
-// )}
-//       </FieldGroup>
-
-//       <RegisterButton variant="submit" isPending={isPending} />
-//     </form>
-//   );
-// }
+      <Button
+        type="submit"
+        variant="primary"
+        className="mt-9 w-full"
+        title="login.submit-btn"
+        buttonVariant="text"
+        loading={isPending}
+      />
+    </form>
+  );
+}

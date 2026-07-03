@@ -1,9 +1,7 @@
-// 'use client';
-
 // import { useState } from 'react';
 // import { signIn, signOut, useSession } from 'next-auth/react';
 
-// export default function TestLoginPage() {
+// export default function TestLoginPage(isRtl: boolean) {
 //   const { data: session, status } = useSession();
 
 //   const [username, setUsername] = useState('');
@@ -171,3 +169,25 @@
 //     </div>
 //   );
 // }
+
+import LoginForm from './_components/login-form';
+import { Link } from '@/i18n/navigation';
+
+export default function LoginPage() {
+  return (
+    <main>
+      <LoginForm />
+
+      <div className=" flex justify-center w-full max-w-96 gap-1">
+        <p className=" text-sm font-medium text-zinc-800 pt-0.5 ">Don’t have an account yet?</p>
+        <span>
+          {' '}
+          <Link className="text-sm font-bold text-text-primary " href="/register">
+            {' '}
+            Create one now!
+          </Link>
+        </span>
+      </div>
+    </main>
+  );
+}

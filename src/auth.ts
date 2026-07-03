@@ -1,7 +1,7 @@
 import type { NextAuthOptions } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import { login } from '@/features/auth/apis/login.api';
-import { loginSchema } from '@/features/auth/schemas/login.schema';
+import { LOGIN_SCHEMA } from '@/features/auth/schemas/login.schema';
 import { getTranslations } from 'next-intl/server';
 
 export const authOptions: NextAuthOptions = {
@@ -29,7 +29,7 @@ export const authOptions: NextAuthOptions = {
       authorize: async (credentials) => {
         const t = await getTranslations('login.schema');
 
-        const result = loginSchema(t).safeParse({
+        const result = LOGIN_SCHEMA(t).safeParse({
           username: credentials?.username,
           password: credentials?.password,
         });
