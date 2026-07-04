@@ -62,7 +62,8 @@
    "custom-input": {
     "default":{
       "first-name" : { "label": "الاسم الأول", "placeholder": "Jonathan" } , 
-      "last-name": {"label" :"الاسم الأخير" , "placeholder" :"Adrian"}
+      "last-name": {"label" :"الاسم الأخير" , "placeholder" :"Adrian"} ,
+      "username": {"label" :" اسم المسخدم" , "placeholder" :"Jonathan"}
   },
     "number": { "label": "الرقم", "placeholder": "0" },
     "search": { "label": "بحث", "placeholder": "ابحث هنا..." },
@@ -79,7 +80,35 @@
     "phone": { "label": "رقم الهاتف", "placeholder": "1012345678" },
     "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" }
   },
-  "nice-to-have-you-here": "جميل أنك هنا"
+  "nice-to-have-you-here": "جميل أنك هنا",
+
+
+  
+  
+  "login": {
+    "schema": {
+      "username": {
+        "invalid": " اسم المستخدم غير صالح",
+        "required": "اسم المستخدم مطلوب"
+      },
+      "password": {
+        "invalid": "كلمة المرور غير صالحة",
+        "required": "كلمة المرور مطلوبة",
+         "uppercase": "يجب أن تحتوي كلمة المرور على حرف كبير",
+        "lowercase": "يجب أن تحتوي كلمة المرور على حرف صغير",
+        "number": "يجب أن تحتوي كلمة المرور على رقم",
+        "special": "يجب أن تحتوي كلمة المرور على حرف خاص"
+      
+      }
+    } ,
+    "forgot-password": "نسيت كلمة المرور؟",
+     "no-account": "ليس لديك حساب؟",
+     "register" : "إنشاء حساب",
+
+    "submit-btn": "تسجيل الدخول",
+    "loading": "جاري الدخول...",
+     "remember-me": "تذكرني"
+
+ 
+  }
 }
-
-

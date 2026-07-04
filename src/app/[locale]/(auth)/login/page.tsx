@@ -1,23 +1,22 @@
-import { LocaleLayoutProps } from '@/shared/lib/types/locale-layout-props';
+import LoginForm from '@/features/auth/components/login-form';
+import { Link } from '@/i18n/navigation';
 import { getTranslations } from 'next-intl/server';
 
-export default async function LoginPage({ params }: LocaleLayoutProps) {
-  const { locale } = await params;
-  const t = await getTranslations({ locale });
+export default async function LoginPage() {
+  const tLogin = await getTranslations('login');
+
   return (
-    <>
-      <div>
-        {/* <h1 className="text-3xl font-bold">{t('login-page')}</h1> */}
-        <div className="space-y-6">
-          <div className="h-8 w-40 rounded bg-bg-muted" />
+    <main>
+      <LoginForm />
 
-          <div className="h-12 rounded bg-bg-muted" />
-
-          <div className="h-12 rounded bg-bg-muted" />
-
-          <div className="h-10 rounded bg-bg-muted" />
-        </div>
+      <div className=" flex justify-center w-full max-w-96 gap-1">
+        <p className=" text-sm font-medium text-zinc-800 pt-0.5 "> {tLogin('no-account')} </p>
+        <span>
+          <Link className="text-sm font-bold text-text-primary " href="/register">
+            {tLogin('register')}
+          </Link>
+        </span>
       </div>
-    </>
+    </main>
   );
 }
