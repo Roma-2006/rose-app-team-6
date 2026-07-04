@@ -1,52 +1,14 @@
 'use client';
 
-import { useTranslations, useLocale } from 'next-intl';
-import { useForm, Controller } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { forgotPasswordSchema } from '@/features/auth/schemes/forgot-password.schema';
-import { forgotPassword } from '@/features/auth/apis/forgot-password.api';
-import { Button } from '@/shared/components/ui/button';
-import CustomInput from '@/shared/components/custom-input';
-import ErrorAlert from '@/shared/components/error-alert';
-import { useState } from 'react';
-import * as z from 'zod';
-import { toast } from 'sonner';
+import { Controller } from 'react-hook-form';
 import Link from 'next/link';
 
+import { useForgotPasswordForm } from '@/features/auth/hooks/use-forgot-password-form';
+import { Button } from '@/shared/components/ui/button';
+import CustomInput from '@/shared/components/custom-input';
+
 export const ForgotPasswordForm = () => {
-  const t = useTranslations();
-  const locale = useLocale();
-  const isRtl = locale === 'ar';
-  const [isLoading, setIsLoading] = useState(false);
-
-  type ForgotPasswordValues = z.infer<typeof forgotPasswordSchema>;
-
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<ForgotPasswordValues>({
-    resolver: zodResolver(forgotPasswordSchema),
-    defaultValues: {
-      email: '',
-    },
-  });
-
-  const onSubmit = async (data: ForgotPasswordValues) => {
-    setIsLoading(true);
-    try {
-      const res = await forgotPassword(data.email);
-      if (res.status) {
-        toast.success(res.message || 'Reset instructions sent');
-      } else {
-        toast.error(t('auth-forgotPw.errors.noAccount'));
-      }
-    } catch (err) {
-      toast.error('Something went wrong');
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const { t, isRtl, isLoading, control, handleSubmit, onSubmit } = useForgotPasswordForm();
 
   return (
     <div className="w-full max-w-md mx-auto">
@@ -78,10 +40,6 @@ export const ForgotPasswordForm = () => {
                   isRtl={isRtl}
                   {...field}
                 />
-
-                {fieldState.error && (
-                  <ErrorAlert errorMessage={fieldState.error.message} isRtl={isRtl} />
-                )}
               </>
             )}
           />

@@ -19,17 +19,35 @@
     "textarea": {
       "charCount": "{current}/{max} characters"
     }
-},
-
+  },
   "auth-forgotPw": {
     "step1": {
       "title": "Forgot Password?",
       "subtitle": "Worry not, we’ll send you instructions to help you reset it.",
       "emailLabel": "Email",
       "emailPlaceholder": "user@example.com",
-      "continue": "Continue",
+      "continue": "Next",
       "footerText": "Don’t have an account yet?",
-      "registerLink": "Create one now!"
+      "registerLink": "Create one now!",
+      "emailRequired": "Email is required",
+      "errors": {
+        "somethingWentWrong": "Something went wrong"
+      }
+    },
+    "step2": {
+      "title": "Password Reset Sent",
+      "description": "If an account exists for this email, we've sent a password reset link.",
+      "descriptionPrefix": "We have sent a password reset link to:",
+      "instruction1": "Please check your inbox and follow the instructions to reset your password.",
+      "instruction2": "If you don’t see the email within a few minutes, check your spam or junk folder.",
+   
+      "needHelp": "Need help?",
+      "contactUs": "Contact us",
+      "back": "Back",
+      "resend": "Request a new link",
+      "resending": "Resending...",
+      "resendToast": "New reset link requested",
+      "successToast": "Reset instructions sent"
     },
     "step3": {
       "title": "Create a new password",
@@ -41,25 +59,18 @@
       "footerText": "Need help?",
       "contactLink": "Contact us"
     },
-    "errors": {
-      "noAccount": "No account found with this email",
-      "passwordMatch": "Passwords do not match",
-      "passwordOldSame": "New password must differ from current password",
-      "passwordRequirement": "Must be 8+ chars, with uppercase, lowercase, digit, and special char"
-    }
+ "errors": {
+  "noAccount": "No account found with this email",
+  "fieldRequired": "This field is required", 
+  "passwordInvalid": "Must be 8+ chars, with uppercase, lowercase, digit, and special char",
+  "passwordMatch": "Passwords do not match",
+  "invalidEmail": "Invalid email format"
+}
   },
-
-
-
   "app-title": "Rose App",
   "auth": {
     "switchLang": "English",
-    "langLabel": "Switch to Arabic"  
-  },
-
-
-
-   "input-component": {
+    "langLabel": "Switch to Arabic"
   },
   "input-component": {
     "label": "Full Name",
@@ -67,16 +78,36 @@
   },
   "custom-input": {
     "default": {
-      "first-name": { "label": "First name", "placeholder": "Jonathan" },
-      "last-name": { "label": "Last name", "placeholder": "Adrian" } ,
-     "username": {"label" : "UserName" , "placeholder" :"Jonathan"}
-
+      "first-name": {
+        "label": "First name",
+        "placeholder": "Jonathan"
+      },
+      "last-name": {
+        "label": "Last name",
+        "placeholder": "Adrian"
+      },
+      "username": {
+        "label": "UserName",
+        "placeholder": "Jonathan"
+      }
     },
-    "number": { "label": "Number", "placeholder": "0" },
-    "search": { "label": "Search", "placeholder": "Search..." },
+    "number": {
+      "label": "Number",
+      "placeholder": "0"
+    },
+    "search": {
+      "label": "Search",
+      "placeholder": "Search..."
+    },
     "password": {
-      "password": { "label": "Password", "placeholder": "*********" },
-      "confirm-Password": { "label": "Confirm Password", "placeholder": "*********" }
+      "password": {
+        "label": "Password",
+        "placeholder": "*********"
+      },
+      "confirm-Password": {
+        "label": "Confirm Password",
+        "placeholder": "*********"
+      }
     },
     "file": {
       "label": "File",
@@ -84,13 +115,17 @@
       "btn-text": "Upload File",
       "error-type": "File type not accepted."
     },
-    "phone": { "label": "Phone", "placeholder": "1012345678" },
-    "email": { "label": "Email", "placeholder": "user@example.com" }
+    "phone": {
+      "label": "Phone",
+      "placeholder": "1012345678"
+    },
+    "email": {
+      "label": "Email",
+      "placeholder": "user@example.com"
+    }
   },
   "nice-to-have-you-here": "nice to have you here",
-  "app-title": "Rose App",
   "title": "Welcome to Rose App",
-  
   "login": {
     "schema": {
       "username": {
@@ -104,15 +139,14 @@
         "lowercase": "Password must contain a lowercase letter",
         "number": "Password must contain a number",
         "special": "Password must contain a special character"
-      
       }
     },
-
     "forgot-password": "Forgot Password ?",
-     "no-account": "Don't have an account?",
+    "no-account": "Don't have an account?",
     "submit-btn": "Login",
-     "register" : "Create one now!",
+    "register": "Create one now!",
     "loading": "Logging in...",
-     "remember-me": "Remember me"
+    "remember-me": "Remember me"
   }
 }
+
