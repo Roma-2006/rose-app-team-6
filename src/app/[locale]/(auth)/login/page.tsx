@@ -1,5 +1,4 @@
-import UseLogin from '@/features/auth/hooks/use-login';
-import LoginForm from './_components/login-form';
+import LoginForm from '@/features/auth/components/login-form';
 import { Link } from '@/i18n/navigation';
 import { getTranslations } from 'next-intl/server';
 
