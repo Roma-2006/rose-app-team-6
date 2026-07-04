@@ -30,16 +30,23 @@ export const useForgotPasswordForm = () => {
   });
 
   const onSubmit: SubmitHandler<ForgotPasswordValues> = async (data) => {
+    console.log('Form Submitted with data:', data);
     setIsLoading(true);
     try {
       const res = await forgotPassword(data.email);
-      if (res.status) {
-        toast.success(res.message || t('auth-forgotPw.step2.successToast'));
-        router.push(`/password-reset-sent?email=${encodeURIComponent(data.email)}`);
+      console.log('Full API Response:', res);
+
+      const ok = Boolean(res?.status === true || res?.success === true || res?.code === 0);
+
+      if (res && ok) {
+        console.log('Redirecting...');
+        router.push(`/${locale}/password-reset-sent?email=${encodeURIComponent(data.email)}`);
       } else {
-        toast.error(t('auth-forgotPw.errors.noAccount'));
+        console.error('API returned failure:', res);
+        toast.error(res?.message || t('auth-forgotPw.errors.noAccount'));
       }
     } catch (err) {
+      console.error('Catch block error:', err);
       toast.error(t('auth-forgotPw.step1.errors.somethingWentWrong'));
     } finally {
       setIsLoading(false);

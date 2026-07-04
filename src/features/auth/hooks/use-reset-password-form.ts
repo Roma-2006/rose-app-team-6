@@ -35,26 +35,28 @@ export const useResetPasswordForm = () => {
 
   const onSubmit: SubmitHandler<ResetPasswordValues> = async (data) => {
     if (!token) {
-      toast.error('Invalid or missing token');
+      toast.error('Token is missing! Please open the link from your email correctly.');
       return;
     }
 
     setIsLoading(true);
     try {
       const res = await resetPassword({
-        token,
+        token: token,
         newPassword: data.newPassword,
         confirmPassword: data.confirmPassword,
       });
 
-      if (res.status) {
+      console.log('Server response:', res);
+
+      if (res.status === true || res.code === 0) {
         toast.success(t('auth-forgotPw.step3.successToast'));
         router.push('/login');
       } else {
-        toast.error(res.message);
+        toast.error(res.message || 'Failed to reset password');
       }
-    } catch (err) {
-      toast.error('Failed to reset password');
+    } catch {
+      toast.error('Server connection error');
     } finally {
       setIsLoading(false);
     }

@@ -1,3 +1,4 @@
+import { Toaster } from 'sonner';
 import './globals.css';
 
 export default async function RootLayout({
@@ -7,3 +8,4 @@ export default async function RootLayout({
 }>) {
   return children;
 }
+<Toaster />;

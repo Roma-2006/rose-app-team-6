@@ -49,7 +49,7 @@ export const ForgotPasswordForm = () => {
           type="submit"
           buttonVariant="text"
           variant="primary"
-          title={t('auth-forgotPw.step1.continue')}
+          title="auth-forgotPw.step1.continue"
           loading={isLoading}
           className="w-full h-12 transition-all"
         />
