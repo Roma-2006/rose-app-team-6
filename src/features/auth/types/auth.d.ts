@@ -1,14 +1,13 @@
-
-import { User } from "./user";
-import { z } from "zod";
-import { loginSchema } from "../schemas/login.schema";
+import { User } from './user';
+import { z } from 'zod';
+import { LOGIN_SCHEMA } from '../schemas/login.schema';
 
 //Login
-export type LoginFields = z.infer<ReturnType<typeof loginSchema>>;
 
+export type TLoginData = z.infer<typeof LOGIN_SCHEMA>;
 
 // API response types
-export interface LoginResponse  {
-    user: User;
-    token: string;
+export interface LoginResponse {
+  user: User;
+  token: string;
 }

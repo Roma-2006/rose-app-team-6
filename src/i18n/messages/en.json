@@ -67,8 +67,10 @@
       }
     },
 
-    "forgot-password": "  Forgot Password ?",
-    "submit-btn": " Login",
+    "forgot-password": "Forgot Password ?",
+     "no-account": "Don't have an account?",
+    "submit-btn": "Login",
+     "register" : "Create one now!",
     "loading": "Logging in...",
      "remember-me": "Remember me"
   }

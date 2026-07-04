@@ -7,18 +7,20 @@ export const LOGIN_SCHEMA = (t: Translate) =>
   z
     .object({
       username: z
-        .string(t('username.invalid'))
-        .nonempty(t('username.required'))
-        .min(3, t('username.required'))
-        .max(20, t('username.invalid'))
-        .regex(/^[a-zA-Z0-9]+$/, t('username.invalid')),
+        .string({ message: t('schema.username.required') })
+        .min(1, { message: t('schema.username.required') })
+        .min(3, { message: t('schema.username.invalid') })
+        .max(20, { message: t('schema.username.invalid') }),
+
       password: z
-        .string(t('password.invalid'))
-        .nonempty(t('password.required'))
-        .min(8, t('password.required'))
-        .regex(/[A-Z]/, t('password.uppercase'))
-        .regex(/[a-z]/, t('password.lowercase'))
-        .regex(/[0-9]/, t('password.number'))
-        .regex(/[@$!%*?&]/, t('password.special')),
+        .string({ message: t('schema.password.required') })
+        .min(1, { message: t('schema.password.required') })
+        .min(8, { message: t('schema.password.required') })
+        .regex(/[A-Z]/, { message: t('schema.password.uppercase') })
+        .regex(/[a-z]/, { message: t('schema.password.lowercase') })
+        .regex(/[0-9]/, { message: t('schema.password.number') })
+        .regex(/[@$!%*?&]/, { message: t('schema.password.special') }),
+
+      rememberMe: z.boolean().optional(),
     })
     .strict();

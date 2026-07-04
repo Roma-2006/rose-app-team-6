@@ -70,6 +70,9 @@
       }
     } ,
     "forgot-password": "نسيت كلمة المرور؟",
+     "no-account": "ليس لديك حساب؟",
+     "register" : "إنشاء حساب",
+
     "submit-btn": "تسجيل الدخول",
     "loading": "جاري الدخول...",
      "remember-me": "تذكرني"

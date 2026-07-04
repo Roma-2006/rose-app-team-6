@@ -1,4 +1,4 @@
-import { USER_ROLES , USER_GENDER} from "../constants/user.constants";
+import { USER_ROLES, USER_GENDER } from '../constants/user.constants';
 
 /**
  * A union of all valid user role string literals derived from {@link USER_ROLES}.
@@ -14,26 +14,28 @@ export type UserGender = (typeof USER_GENDER)[keyof typeof USER_GENDER];
  * Represents an authenticated user in the system.
  */
 export interface User {
-    /** Unique identifier for the user. */
-    id: string;
-    /** The user's login username. */
-    username: string;
-    /** The user's email address. */
-    email: string ;
-    /** The user's phone number, or `null` if not provided. */
-    phone: string | null;
-    /** The user's first name. */
-    firstName: string;
-    /** The user's last name. */
-    lastName: string;
-    /** The user's gender */
-    gender : UserGender;
-    /** The user's photo, or `null` if not provided */
-    photo : string | null;
-    /** Whether the user has verified their email address. */
-    emailVerified: boolean;
-    /** Whether the user has verified their phone number. */
-    phoneVerified: boolean;
-    /** The user's assigned role, controlling access permissions. */
-    role: UserRole;
+  /** Unique identifier for the user. */
+  id: string;
+  /** The user's login username. */
+  username: string;
+  /** The user's email address. */
+  email: string;
+  /** The user's phone number, or `null` if not provided. */
+  phone: string | null;
+  /** The user's first name. */
+  firstName: string;
+  /** The user's last name. */
+  lastName: string;
+  /** The user's gender */
+  gender: UserGender;
+  /** The user's photo, or `null` if not provided */
+  photo: string | null;
+  /** Whether the user has verified their email address. */
+  emailVerified: boolean;
+  /** Whether the user has verified their phone number. */
+  phoneVerified: boolean;
+
+  /** The user's assigned role, controlling access permissions. */
+  role: UserRole;
+  rememberMe?: boolean;
 }
