@@ -4,33 +4,27 @@ import { useTranslations, useLocale } from 'next-intl';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { forgotPasswordSchema } from '@/features/auth/schemes/forgot-password.schema';
-import { useForgotPassword } from '@/features/auth/hooks/useForgotPassword';
+import { forgotPassword } from '@/features/auth/apis/forgot-password.api';
 import { Button } from '@/shared/components/ui/button';
 import CustomInput from '@/shared/components/custom-input';
 import ErrorAlert from '@/shared/components/error-alert';
 import { useState } from 'react';
 import * as z from 'zod';
+import { toast } from 'sonner';
 import Link from 'next/link';
 
-export const ForgotPasswordForm = ({
-  onSuccess = () => undefined,
-}: {
-  onSuccess?: (email: string) => void;
-}) => {
+export const ForgotPasswordForm = () => {
   const t = useTranslations();
   const locale = useLocale();
   const isRtl = locale === 'ar';
   const [isLoading, setIsLoading] = useState(false);
 
-  const forgotPasswordMutation = useForgotPassword();
-
   type ForgotPasswordValues = z.infer<typeof forgotPasswordSchema>;
 
   const {
-    setError,
     control,
     handleSubmit,
-    formState: { errors: _errors },
+    formState: { errors },
   } = useForm<ForgotPasswordValues>({
     resolver: zodResolver(forgotPasswordSchema),
     defaultValues: {
@@ -41,25 +35,14 @@ export const ForgotPasswordForm = ({
   const onSubmit = async (data: ForgotPasswordValues) => {
     setIsLoading(true);
     try {
-      const res = await forgotPasswordMutation.mutateAsync(data.email);
-      if (res?.status) {
-        onSuccess(data.email);
+      const res = await forgotPassword(data.email);
+      if (res.status) {
+        toast.success(res.message || 'Reset instructions sent');
+      } else {
+        toast.error(t('auth-forgotPw.errors.noAccount'));
       }
     } catch (err) {
-      type ApiErrorLike = {
-        message?: string;
-        response?: {
-          message?: string;
-        };
-      };
-
-      const apiMessage: string | undefined =
-        err instanceof Error
-          ? err.message
-          : ((err as ApiErrorLike)?.message ?? (err as ApiErrorLike)?.response?.message);
-      if (apiMessage?.toLowerCase?.().includes('no account')) {
-        setError('email', { message: 'noAccount' });
-      }
+      toast.error('Something went wrong');
     } finally {
       setIsLoading(false);
     }
@@ -76,7 +59,7 @@ export const ForgotPasswordForm = ({
         </p>
       </div>
 
-      <hr className="border-0 border-t border-border-muted  mt-2 w-full" />
+      <hr className="border-0 border-t border-border-muted dark:border-border-soft mt-2 w-full" />
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 mt-6">
         <div className="space-y-2">
@@ -90,21 +73,14 @@ export const ForgotPasswordForm = ({
                   label={t('auth-forgotPw.step1.emailLabel')}
                   placeholder={t('auth-forgotPw.step1.emailPlaceholder')}
                   id="email"
-                  errorMessage={
-                    fieldState.error?.message
-                      ? t(`auth-forgotPw.errors.${fieldState.error.message}`)
-                      : undefined
-                  }
+                  errorMessage={fieldState.error?.message}
                   error={fieldState.invalid}
                   isRtl={isRtl}
                   {...field}
                 />
 
                 {fieldState.error && (
-                  <ErrorAlert
-                    errorMessage={t(`auth-forgotPw.errors.${fieldState.error.message}`)}
-                    isRtl={isRtl}
-                  />
+                  <ErrorAlert errorMessage={fieldState.error.message} isRtl={isRtl} />
                 )}
               </>
             )}

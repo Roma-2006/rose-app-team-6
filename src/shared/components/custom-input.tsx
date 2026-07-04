@@ -156,16 +156,18 @@ export default function CustomInput({
 
   // Handle toggling password visibility
   const handleTogglePassword = () => {
-    if (!internalRef.current) return;
-    const start = internalRef.current.selectionStart;
-    const end = internalRef.current.selectionEnd;
+    const input = internalRef.current;
+    const start = input?.selectionStart;
+    const end = input?.selectionEnd;
 
     setIsPasswordVisible((prev) => !prev);
 
     setTimeout(() => {
-      if (internalRef.current) {
-        internalRef.current.focus();
-        internalRef.current.setSelectionRange(start, end);
+      const nextInput = internalRef.current;
+      if (!nextInput) return;
+      nextInput.focus();
+      if (start != null && end != null) {
+        nextInput.setSelectionRange(start, end);
       }
     }, 0);
   };

@@ -1,16 +1,15 @@
 'use client';
 
 import { useTranslations, useLocale } from 'next-intl';
-import { toast } from 'sonner';
-
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { resetPasswordSchema } from '@/features/auth/schemes/reset-password.schema';
-import { useResetPassword } from '@/features/auth/hooks/useResetPassword';
+import { resetPassword } from '@/features/auth/apis/reset-password.api';
 import { Button } from '@/shared/components/ui/button';
 import CustomInput from '@/shared/components/custom-input';
 import ErrorAlert from '@/shared/components/error-alert';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { toast } from 'sonner';
 import * as z from 'zod';
 import { useState } from 'react';
 
@@ -26,16 +25,10 @@ export const ResetPasswordForm = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  if (!token) {
-    router.push('/forgot-password');
-  }
-
-  const resetPasswordMutation = useResetPassword();
-
   const {
     control,
     handleSubmit,
-    formState: { errors: _errors },
+    formState: { errors },
   } = useForm<ResetPasswordValues>({
     resolver: zodResolver(resetPasswordSchema),
     defaultValues: {
@@ -46,50 +39,26 @@ export const ResetPasswordForm = () => {
 
   const onSubmit = async (data: ResetPasswordValues) => {
     if (!token) {
+      toast.error('Invalid or missing token');
       return;
     }
 
     setIsLoading(true);
     try {
-      const res = await resetPasswordMutation.mutateAsync({
+      const res = await resetPassword({
         token,
         newPassword: data.newPassword,
         confirmPassword: data.confirmPassword,
       });
 
-      if (res?.status) {
+      if (res.status) {
         toast.success(t('auth-forgotPw.step3.successToast'));
         router.push('/login');
-        return;
+      } else {
+        toast.error(res.message);
       }
     } catch (err) {
-      type ApiErrorLike = {
-        message?: string;
-        response?: {
-          message?: string;
-        };
-      };
-
-      const apiMessage: string | undefined =
-        err instanceof Error
-          ? err.message
-          : ((err as ApiErrorLike)?.message ?? (err as ApiErrorLike)?.response?.message);
-      if (!apiMessage) return;
-
-      // Map backend error codes/messages into inline field errors
-      // Expected: passwordOldSame
-      if (apiMessage.toLowerCase?.().includes('old')) {
-        // Conservative mapping: treat as "passwordOldSame"
-        control.setError('newPassword', { message: 'passwordOldSame' });
-      }
-
-      // Fallback mapping to existing zod error keys
-      if (apiMessage === 'passwordRequirement') {
-        control.setError('newPassword', { message: 'passwordRequirement' });
-      }
-      if (apiMessage === 'passwordMatch') {
-        control.setError('confirmPassword', { message: 'passwordMatch' });
-      }
+      toast.error('Failed to reset password');
     } finally {
       setIsLoading(false);
     }
