@@ -1,4 +1,3 @@
-// test
 import LanguageSwitcher from '@/shared/components/language-switcher';
 import { ThemeToggle } from '@/shared/components/theme';
 import { getTranslations } from 'next-intl/server';
