@@ -74,4 +74,10 @@
     "loading": "Logging in...",
      "remember-me": "Remember me"
   }
+,
+  "app-title": "Roze App",
+  "auth": {
+    "switchLang": "English",
+    "langLabel": "Switch to Arabic"
+  }
 }

@@ -134,8 +134,7 @@ export default function OTPVariant({
                     key={index}
                     data-slot="input-otp-slot-item"
                     className={cn(
-                      'relative flex size-11 items-center justify-center text-base font-medium transition-colors outline-none rounded-lg border border-border-soft bg-bg-plain text-text-plain',
-                      // تطبيق الـ Hover بشكل ثابت وفوري بدون أي أنيميشن انتقال مرئي بين الخانات
+                      'relative flex size-11 items-center justify-center text-base font-medium transition-colors outline-none radius-lg border border-border-soft bg-bg-plain text-text-plain',
                       !isDisabled && !isError && showStaticHover && 'border-border-default',
                       isError && 'border-border-danger text-text-danger bg-bg-plain z-20',
                       isDisabled && 'border-border-subtle bg-bg-subtle text-text-muted opacity-50'
