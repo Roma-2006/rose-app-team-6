@@ -1,29 +1,43 @@
 {
-  "HomePage": {
-    "title": "مرحباً بكم في تطبيق روز"
-  },
-   "button": {
+  "app-title": "تطبيق روز",
+  "button": {
     "loading": "جاري التحميل...",
     "submit": "إرسال",
     "cancel": "إلغاء",
     "save": "حفظ",
     "delete": "حذف",
     "confirm": "تأكيد"
- 
-   },
+  },
   "common": {
     "select": {
       "placeholder": "اختر خياراً",
       "noOptions": "لا توجد خيارات",
       "search": "بحث..."
     },
-    
     "textarea": {
       "charCount": "{current}/{max} حرف"
     }
   },
-   "auth-forgotPw": {
- 
+  "auth": {
+    "switchLang": "العربية",
+    "langLabel": "التحويل إلى الإنجليزية",
+    "welcome-auth": {
+      "login-title": "مرحبًا بعودتك!",
+      "register-title": "كن جزءًا من عائلتنا!"
+    },
+    "login": {
+      "schema": {
+        "username": {
+          "invalid": "اسم المستخدم غير صالح",
+          "required": "اسم المستخدم مطلوب"
+        },
+        "password": {
+          "invalid": "كلمة المرور غير صالحة",
+          "required": "كلمة المرور مطلوبة"
+        }
+      }
+    },
+    "auth-forgotPw": {
       "step1": {
         "title": "نسيت كلمة المرور؟",
         "subtitle": "لا تقلق، سنرسل لك التعليمات لمساعدتك في إعادة تعيينها.",
@@ -48,64 +62,65 @@
         "passwordMatch": "كلمات المرور غير متطابقة",
         "passwordOldSame": "كلمة المرور الجديدة يجب أن تختلف عن الحالية",
         "passwordRequirement": "يجب أن تتكون من 8 أحرف، تشمل حروفاً كبيرة وصغيرة وأرقاماً ورموزاً"
-      }},
- 
-
-
-  "welcome-auth": {
-    "login-title": "مرحبًا بعودتك!",
-    "register-title": "كن جزءًا من عائلتنا!"
-  },
-    
-    "otp": {
-      "title": "أدخل رمز التحقق",
-      "subtitle": "أرسلنا رمزاً إلى {email}",
-      "resend": "أرسل رمزاً جديداً",
-      "resendTimer": "أعد الإرسال خلال {s} ثانية",
-      "invalid": "رمز التحقق غير صحيح",
-      "expired": "انتهت صلاحية الرمز. يرجى طلب رمز جديد.",
-      "verify": "تحقق",
-       "Edit": "تعديل",
-       "Need-help": "تحتاج مساعده ؟",
+      }
+    },
+    "auth-register": {
+      "step1": {
+        "emailLabel": "البريد الإلكتروني",
+        "emailPlaceholder": "user@example.com",
+        "continue": "متابعة",
+        "footerText": "هل لديك حساب بالفعل؟ ",
+        "registerLink": "سجل الدخول !"
+      },
+      "otp": {
+        "title": "انشاء حساب ",
+        "subtitle-1": "أدخل رمز التحقق",
+        "subtitle-2": "أرسلنا رمزاً إلى {email}",
+        "resend": "أرسل رمزاً جديداً",
+        "resendTimer": "أعد الإرسال خلال {s} ثانية",
+        "invalid": "رمز التحقق غير صحيح",
+        "expired": "انتهت صلاحية الرمز. يرجى طلب رمز جديد.",
+        "verify": "تحقق",
+        "Edit": "تعديل",
+        "Need-help": "تحتاج مساعده ؟",
         "Contact-us": "تواصل معنا"
+      },
+      "errors": {
+        "noAccount": "لا يوجد حساب مرتبط بهذا البريد الإلكتروني"
+      }
     },
     "passwordResetSent": {
-  "title": "تم إرسال رابط إعادة تعيين كلمة المرور",
-  "subtitle": "لقد أرسلنا رابط إعادة تعيين كلمة المرور إلى:",
-  "message1": "يرجى التحقق من صندوق الوارد واتباع التعليمات لإعادة تعيين كلمة المرور.",
-  "message2": "إذا لم تجد الرسالة خلال بضع دقائق، فتحقق من مجلد الرسائل غير المرغوب فيها.",
-  "needHelp": "تحتاج إلى مساعدة؟",
-  "contact": "تواصل معنا",
-  "toast-description": "تم إرسال رمز التحقق الجديد إلى بريدك الإلكتروني"
-},
-  "app-title": "تطبيق روز",
-    "auth": {
-    "switchLang": "العربية",
-     "langLabel": "التحويل إلى الإنجليزية"
+      "title": "تم إرسال رابط إعادة تعيين كلمة المرور",
+      "subtitle": "لقد أرسلنا رابط إعادة تعيين كلمة المرور إلى:",
+      "message1": "يرجى التحقق من صندوق الوارد واتباع التعليمات لإعادة تعيين كلمة المرور.",
+      "message2": "إذا لم تجد الرسالة خلال بضع دقائق، فتحقق من مجلد الرسائل غير المرغوب فيها.",
+      "needHelp": "تحتاج إلى مساعدة؟",
+      "contact": "تواصل معنا",
+      "toast-description": "تم إرسال رمز التحقق الجديد إلى بريدك الإلكتروني"
+    }
   },
   "input-component": {
     "label": "الاسم بالكامل",
     "placeholder": "أدخل اسمك هنا..."
   },
-   "custom-input": {
-    "default":{
-      "first-name" : { "label": "الاسم الأول", "placeholder": "Jonathan" } , 
-      "last-name": {"label" :"الاسم الأخير" , "placeholder" :"Adrian"}
-  },
+  "custom-input": {
+    "default": {
+      "first-name": { "label": "الاسم الأول", "placeholder": "Jonathan" },
+      "last-name": { "label": "الاسم الأخير", "placeholder": "Adrian" }
+    },
     "number": { "label": "الرقم", "placeholder": "0" },
     "search": { "label": "بحث", "placeholder": "ابحث هنا..." },
     "password": {
-        "password": {"label": "كلمة المرور", "placeholder": "*********" },
-        "confirm-Password": {"label": "تأكيد كلمة المرور", "placeholder": "*********" }
-  },
-    "file": { 
+      "password": { "label": "كلمة المرور", "placeholder": "*********" },
+      "confirm-Password": { "label": "تأكيد كلمة المرور", "placeholder": "*********" }
+    },
+    "file": {
       "label": "الملف",
-     "placeholder": "اختر ملف" ,
+      "placeholder": "اختر ملف",
       "btn-text": "رفع ملف",
       "error-type": "صيغة الملف غير مدعومة."
     },
     "phone": { "label": "رقم الهاتف", "placeholder": "1012345678" },
     "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" }
-  },
-  "nice-to-have-you-here": "جميل أنك هنا"
+  }
 }

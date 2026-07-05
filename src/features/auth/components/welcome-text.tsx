@@ -17,7 +17,7 @@ export default function WelcomeText() {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
-  const t = useTranslations('welcome-auth');
+  const t = useTranslations('auth.welcome-auth');
 
   useEffect(() => {
     const handle = requestAnimationFrame(() => {
@@ -28,8 +28,8 @@ export default function WelcomeText() {
 
   if (!mounted) return null;
 
-  const isLogin = pathname.endsWith('/login');
-  const isRegister = pathname.endsWith('/otp');
+  const isLogin = pathname.includes('/login');
+  const isRegister = pathname.includes('/register');
 
   if (!isLogin && !isRegister) return null;
 
@@ -38,7 +38,7 @@ export default function WelcomeText() {
       className={`
         ${cormorant.className}
         text-center
-        text-5xl
+        text-4xl
         italic
         font-medium
         mt-12

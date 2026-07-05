@@ -58,7 +58,7 @@ export const ResetPasswordForm = () => {
       });
 
       if (res?.status) {
-        toast.success(t('auth-forgotPw.step3.successToast'));
+        toast.success(t('auth.auth-forgotPw.step3.successToast'));
         router.push('/login');
         return;
       }
@@ -99,10 +99,10 @@ export const ResetPasswordForm = () => {
     <div className="w-full">
       <div className="mb-8">
         <h1 className="text-[28px] font-bold text-text-plain dark:text-text-plain mb-2">
-          {t('auth-forgotPw.step3.title')}
+          {t('auth.auth-forgotPw.step3.title')}
         </h1>
         <p className="text-text-plain dark:text-text-plain text-sm font-normal leading-relaxed">
-          {t('auth-forgotPw.step3.subtitle')}
+          {t('auth.auth-forgotPw.step3.subtitle')}
         </p>
       </div>
 
@@ -115,7 +115,7 @@ export const ResetPasswordForm = () => {
             <div className="space-y-1">
               <CustomInput
                 variant="password"
-                label={t('auth-forgotPw.step3.passwordLabel')}
+                label={t('auth.auth-forgotPw.step3.passwordLabel')}
                 placeholder="••••••••"
                 id="newPassword"
                 isRtl={isRtl}
@@ -126,7 +126,7 @@ export const ResetPasswordForm = () => {
               {fieldState.error && (
                 <ErrorAlert
                   isRtl={isRtl}
-                  errorMessage={t(`auth-forgotPw.errors.${fieldState.error.message}`)}
+                  errorMessage={t(`auth.auth-forgotPw.errors.${fieldState.error.message}`)}
                 />
               )}
             </div>
@@ -141,7 +141,7 @@ export const ResetPasswordForm = () => {
             <div className="space-y-1">
               <CustomInput
                 variant="password"
-                label={t('auth-forgotPw.step3.confirmPasswordLabel')}
+                label={t('auth.auth-forgotPw.step3.confirmPasswordLabel')}
                 placeholder="••••••••"
                 id="confirmPassword"
                 isRtl={isRtl}
@@ -152,7 +152,7 @@ export const ResetPasswordForm = () => {
               {fieldState.error && (
                 <ErrorAlert
                   isRtl={isRtl}
-                  errorMessage={t(`auth-forgotPw.errors.${fieldState.error.message}`)}
+                  errorMessage={t(`auth.auth-forgotPw.errors.${fieldState.error.message}`)}
                 />
               )}
             </div>
@@ -163,7 +163,7 @@ export const ResetPasswordForm = () => {
           type="submit"
           buttonVariant="text"
           variant="primary"
-          title={t('auth-forgotPw.step3.reset')}
+          title={t('auth.auth-forgotPw.step3.reset')}
           loading={isLoading}
           className="w-full h-12 mt-4"
         />

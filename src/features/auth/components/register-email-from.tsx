@@ -3,8 +3,8 @@
 import { useTranslations, useLocale } from 'next-intl';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { forgotPasswordSchema } from '@/features/auth/schemes/forgot-password.schema';
-import { useForgotPassword } from '@/features/auth/hooks/useForgotPassword';
+import { RegisterEmailSchema } from '@/features/auth/schemes/register-email.schema';
+
 import { Button } from '@/shared/components/ui/button';
 import CustomInput from '@/shared/components/custom-input';
 import ErrorAlert from '@/shared/components/error-alert';
@@ -12,8 +12,9 @@ import { useState } from 'react';
 import * as z from 'zod';
 import Link from 'next/link';
 import { useRouter } from '@/i18n/navigation';
+import { useRegisterEmail } from '../hooks/useRegisterEmail';
 
-export const ForgotPasswordForm = () => {
+export const RegisterEmailForm = () => {
   const t = useTranslations();
   const locale = useLocale();
   const isRtl = locale === 'ar';
@@ -22,25 +23,25 @@ export const ForgotPasswordForm = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const forgotPasswordMutation = useForgotPassword();
+  const registerEmailMutation = useRegisterEmail();
 
-  type ForgotPasswordValues = z.infer<typeof forgotPasswordSchema>;
+  type RegisterEmailValues = z.infer<typeof RegisterEmailSchema>;
 
-  const { setError, control, handleSubmit } = useForm<ForgotPasswordValues>({
-    resolver: zodResolver(forgotPasswordSchema),
+  const { setError, control, handleSubmit } = useForm<RegisterEmailValues>({
+    resolver: zodResolver(RegisterEmailSchema),
     defaultValues: {
       email: '',
     },
   });
 
-  const onSubmit = async (data: ForgotPasswordValues) => {
+  const onSubmit = async (data: RegisterEmailValues) => {
     setIsLoading(true);
 
     try {
-      const res = await forgotPasswordMutation.mutateAsync(data.email);
+      const res = await registerEmailMutation.mutateAsync(data.email);
 
       if (res?.status) {
-        router.push(`/password-reset-sent?email=${encodeURIComponent(data.email)}`);
+        router.push(`/register/otp?email=${encodeURIComponent(email.value)}`);
       }
     } catch (err) {
       type ApiErrorLike = {
@@ -67,16 +68,6 @@ export const ForgotPasswordForm = () => {
 
   return (
     <div className="w-full max-w-md mx-auto">
-      <div className="mb-2">
-        <h1 className="text-[28px] font-bold text-text-plain dark:text-text-plain mb-2 transition-colors">
-          {t('auth.auth-forgotPw.step1.title')}
-        </h1>
-
-        <p className="text-text-plain dark:text-text-plain text-sm font-normal leading-relaxed transition-colors">
-          {t('auth.auth-forgotPw.step1.subtitle')}
-        </p>
-      </div>
-
       <hr className=" w-full border-0 border-t border-border-muted dark:border-border-soft" />
       <form onSubmit={handleSubmit(onSubmit)} className="mt-6 space-y-6">
         <div className="space-y-2">
@@ -88,12 +79,12 @@ export const ForgotPasswordForm = () => {
                 <CustomInput
                   id="email"
                   variant="email"
-                  label={t('auth.auth-forgotPw.step1.emailLabel')}
-                  placeholder={t('auth.auth-forgotPw.step1.emailPlaceholder')}
+                  label={t('auth.auth-register.step1.emailLabel')}
+                  placeholder={t('auth.auth-register.step1.emailPlaceholder')}
                   error={fieldState.invalid}
                   errorMessage={
                     fieldState.error?.message
-                      ? t(`auth.auth-forgotPw.errors.${fieldState.error.message}`)
+                      ? t(`auth-register.errors.${fieldState.error.message}`)
                       : undefined
                   }
                   isRtl={isRtl}
@@ -102,7 +93,7 @@ export const ForgotPasswordForm = () => {
 
                 {fieldState.error && (
                   <ErrorAlert
-                    errorMessage={t(`auth.auth-forgotPw.errors.${fieldState.error.message}`)}
+                    errorMessage={t(`auth-register.errors.${fieldState.error.message}`)}
                     isRtl={isRtl}
                   />
                 )}
@@ -125,14 +116,14 @@ export const ForgotPasswordForm = () => {
 
       <div className="mt-8 text-center text-sm">
         <span className="text-text-plain dark:text-text-plain">
-          {t('auth.auth-forgotPw.step1.footerText')}{' '}
+          {t('auth.auth-register.step1.footerText')}{' '}
         </span>
 
         <Link
-          href="/register"
+          href="/login"
           className="font-bold text-text-primary transition-colors hover:underline dark:text-text-primary"
         >
-          {t('auth.auth-forgotPw.step1.registerLink')}
+          {t('auth.auth-register.step1.registerLink')}
         </Link>
       </div>
     </div>

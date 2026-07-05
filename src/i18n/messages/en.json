@@ -1,8 +1,5 @@
 {
-  "HomePage": {
-    "title": "Welcome to Rose App"
-  },
- 
+  "app-title": "Rose App",
   "button": {
     "loading": "Loading...",
     "submit": "Submit",
@@ -10,110 +7,120 @@
     "save": "Save",
     "delete": "Delete",
     "confirm": "Confirm"
-  
   },
-   "common": {
+  "common": {
     "select": {
       "placeholder": "Select an option",
       "noOptions": "No options found",
       "search": "Search..."
     },
-  
     "textarea": {
       "charCount": "{current}/{max} characters"
     }
-},
-
-  "auth-forgotPw": {
-    "step1": {
-      "title": "Forgot Password?",
-      "subtitle": "Worry not, we’ll send you instructions to help you reset it.",
-      "emailLabel": "Email",
-      "emailPlaceholder": "user@example.com",
-      "continue": "Continue",
-      "footerText": "Don’t have an account yet?",
-      "registerLink": "Create one now!"
-    },
-    "step3": {
-      "title": "Create a new password",
-      "subtitle": "Set a strong password to secure your account.",
-      "passwordLabel": "Password",
-      "confirmPasswordLabel": "Confirm Password",
-      "reset": "Reset Password",
-      "successToast": "Your password has been successfully reset.",
-      "footerText": "Need help?",
-      "contactLink": "Contact us"
-    },
-    "errors": {
-      "noAccount": "No account found with this email",
-      "passwordMatch": "Passwords do not match",
-      "passwordOldSame": "New password must differ from current password",
-      "passwordRequirement": "Must be 8+ chars, with uppercase, lowercase, digit, and special char"
-    }
   },
-  
-  "welcome-auth": {
-    "login-title": "Welcome back!",
-    "register-title": "Become part of our family!"
-  },
-
-
-    "otp": {
-      "title": "Enter Verification Code",
-      "subtitle": "We have sent a 6-digit code to{email}",
-      "resend": "Send a new code",
-      "resendTimer": "Resend in {s}s",
-      "invalid": "Invalid OTP code",
-      "expired": "Code expired. Please request a new one.",
-      "verify": "Verify OTP",
-      "Edit": "Edit",
-       "Need-help": "Need help ?",
-        "Contact-us": " Contact us"
-    },
-    "passwordResetSent": {
-  "title": "Password Reset Sent",
-  "subtitle": "We have sent a password reset link to:",
-  "message1": "Please check your inbox and follow the instructions to reset your password.",
-  "message2": "If you don't see the email within a few minutes, check your spam or junk folder.",
-  "needHelp": "Need help?",
-  "contact": "Contact us",
-   "toast-description": "A new OTP code has been sent to your email"
-},
-
-
-
-  "app-title": "Rose App",
   "auth": {
     "switchLang": "English",
-    "langLabel": "Switch to Arabic"  
+    "langLabel": "Switch to Arabic",
+    "welcome-auth": {
+      "login-title": "Welcome back!",
+      "register-title": "Become part of our family!"
+    },
+    "login": {
+      "schema": {
+        "username": {
+          "invalid": "Invalid Username",
+          "required": "Username is required"
+        },
+        "password": {
+          "invalid": "Invalid Password",
+          "required": "Password is required"
+        }
+      }
+    },
+    "auth-forgotPw": {
+      "step1": {
+        "title": "Forgot Password?",
+        "subtitle": "Worry not, we’ll send you instructions to help you reset it.",
+        "emailLabel": "Email",
+        "emailPlaceholder": "user@example.com",
+        "continue": "Continue",
+        "footerText": "Don’t have an account yet?",
+        "registerLink": "Create one now!"
+      },
+      "step3": {
+        "title": "Create a new password",
+        "subtitle": "Set a strong password to secure your account.",
+        "passwordLabel": "Password",
+        "confirmPasswordLabel": "Confirm Password",
+        "reset": "Reset Password",
+        "successToast": "Your password has been successfully reset.",
+        "footerText": "Need help?",
+        "contactLink": "Contact us"
+      },
+      "errors": {
+        "noAccount": "No account found with this email",
+        "passwordMatch": "Passwords do not match",
+        "passwordOldSame": "New password must differ from current password",
+        "passwordRequirement": "Must be 8+ chars, with uppercase, lowercase, digit, and special char"
+      }
+    },
+    "auth-register": {
+      "step1": {
+        "emailLabel": "Email",
+        "emailPlaceholder": "user@example.com",
+        "continue": "Continue",
+        "footerText": "Already have an account?",
+        "registerLink": "Login!"
+      },
+      "otp": {
+        "title": "Create Account",
+        "subtitle-1": "Enter Verification Code",
+        "subtitle-2": "We have sent a 6-digit code to {email}",
+        "resend": "Send a new code",
+        "resendTimer": "Resend in {s}s",
+        "invalid": "Invalid OTP code",
+        "expired": "Code expired. Please request a new one.",
+        "verify": "Verify OTP",
+        "Edit": "Edit",
+        "Need-help": "Need help ?",
+        "Contact-us": " Contact us"
+      },
+      "errors": {
+        "noAccount": "No account found with this email"
+      }
+    },
+    "passwordResetSent": {
+      "title": "Password Reset Sent",
+      "subtitle": "We have sent a password reset link to:",
+      "message1": "Please check your inbox and follow the instructions to reset your password.",
+      "message2": "If you don't see the email within a few minutes, check your spam or junk folder.",
+      "needHelp": "Need help?",
+      "contact": "Contact us",
+      "toast-description": "A new OTP code has been sent to your email"
+    }
   },
-
-
-
-   "input-component": {
+  "input-component": {
     "label": "Full Name",
     "placeholder": "Enter your name..."
   },
   "custom-input": {
-    "default":{
-    "first-name" : { "label": "First name", "placeholder": "Jonathan" } , 
-    "last-name": {"label" :"Last name" , "placeholder" :"Adrian"}
-  
-  },
+    "default": {
+      "first-name": { "label": "First name", "placeholder": "Jonathan" },
+      "last-name": { "label": "Last name", "placeholder": "Adrian" }
+    },
     "number": { "label": "Number", "placeholder": "0" },
     "search": { "label": "Search", "placeholder": "Search..." },
-  "password": {
-       "password": {"label": "Password", "placeholder": "*********" },
-     "confirm-Password": {"label": "Confirm Password", "placeholder": "*********" }
-  },
-    "file": { "label": "File", 
-    "placeholder": " Upload file" ,
-    "btn-text": "Upload File",
-  "error-type": "File type not accepted."
-  
-  },
+    "password": {
+      "password": { "label": "Password", "placeholder": "*********" },
+      "confirm-Password": { "label": "Confirm Password", "placeholder": "*********" }
+    },
+    "file": {
+      "label": "File",
+      "placeholder": " Upload file",
+      "btn-text": "Upload File",
+      "error-type": "File type not accepted."
+    },
     "phone": { "label": "Phone", "placeholder": "1012345678" },
     "email": { "label": "Email", "placeholder": "user@example.com" }
-  },
-  "nice-to-have-you-here": "nice to have you here"
+  }
 }

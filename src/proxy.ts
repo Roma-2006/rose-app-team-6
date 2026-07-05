@@ -6,7 +6,7 @@ import { routing } from './i18n/routing';
 const intlMiddleware = createMiddleware(routing);
 
 const AUTH_ROUTES = ['/login', '/register', '/forgot-password'];
-const PROTECTED_ROUTES = ['/'];
+const PROTECTED_ROUTES = ['/checkout'];
 
 type Locale = (typeof routing.locales)[number];
 
@@ -46,9 +46,7 @@ export default async function middleware(req: NextRequest) {
   // Guest → redirect away from protected routes, preserve returnUrl
   if (!isLoggedIn && isProtectedRoute) {
     const returnUrl = encodeURIComponent(pathname + search);
-    return NextResponse.redirect(
-      new URL(`/${locale}/login?returnUrl=${returnUrl}`, req.url)
-    );
+    return NextResponse.redirect(new URL(`/${locale}/login?returnUrl=${returnUrl}`, req.url));
   }
 
   return intlMiddleware(req);
