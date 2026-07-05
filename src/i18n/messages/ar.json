@@ -58,6 +58,7 @@
       "email":"البريد الإلكتروني",
       "phone":"رقم الهاتف",
       "gender":"الجنس",
+      "gender-placeholder":"اختر الجنس",
       "male":"ذكر",
       "female":"أنثى",
       "password":"كلمة المرور",

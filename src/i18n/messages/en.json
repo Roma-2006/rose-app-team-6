@@ -60,6 +60,7 @@
       "email":"Email",
       "phone":"Phone",
       "gender":"Gender",
+      "gender-placeholder":"Select gender",
       "male":"Male",
       "female":"Female",
       "password":"Password",

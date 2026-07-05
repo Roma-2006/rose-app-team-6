@@ -209,7 +209,10 @@ export default function CustomInput({
       dir={computedIsRtl ? 'rtl' : 'ltr'}
     >
       {label && variant !== 'otp' && (
-        <Field.Label htmlFor={id} className={`${baseLableStyle} ${labeltStyle}`}>
+        <Field.Label
+          htmlFor={id}
+          className={`${baseLableStyle} ${labeltStyle} inline-block mb-2.5`}
+        >
           {label}
         </Field.Label>
       )}
@@ -244,7 +247,7 @@ export default function CustomInput({
             step={step}
             data-slot="input"
             className={cn(
-              'h-11.5 text-start  w-full rounded-lg border px-3 py-1 text-base transition-colors outline-none md:text-sm',
+              'h-11.5 text-start  w-full  border px-3 py-1 text-base transition-colors outline-none md:text-sm radius-xl',
               'focus-visible:outline-none focus-visible:ring-0',
               variant === 'search' && 'ps-9 pe-3',
               variant === 'password' && 'ps-3 pe-9',
@@ -311,7 +314,7 @@ export default function CustomInput({
             isDisabled={isDisabled}
             className={`  focus-visible:outline-none
                focus-visible:ring-0h-9 w-full min-w-0 
-               rounded-lg border px-3 py-1.5
+               radius-xl border px-3 py-1.5
                 text-base transition-colors outline-none
                  md:text-sm
                 ${inputStyle} `}
