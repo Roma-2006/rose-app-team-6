@@ -40,6 +40,9 @@ export const useForgotPasswordForm = () => {
 
       if (res && ok) {
         console.log('Redirecting...');
+
+        sessionStorage.setItem('show-password-reset-toast', 'true');
+
         router.push(`/${locale}/password-reset-sent?email=${encodeURIComponent(data.email)}`);
       } else {
         console.error('API returned failure:', res);

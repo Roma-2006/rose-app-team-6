@@ -17,8 +17,6 @@ export const PasswordResetSent = () => {
 
   const emailFromUrl = searchParams.get('email');
 
-  // FIX: Use a "Lazy Initializer" function inside useState.
-  // This runs once on mount and avoids the need for setEmail in useEffect.
   const [storedEmail] = useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('last_reset_email') || '';
@@ -27,21 +25,19 @@ export const PasswordResetSent = () => {
   });
 
   const [isResending, setIsResending] = useState(false);
-  const hasShownToast = useRef(false);
 
-  // Derive the email: URL param takes priority, then the lazy-loaded localStorage
   const email = emailFromUrl || storedEmail;
 
   useEffect(() => {
-    // 1. Sync URL email to LocalStorage (Side effect only, no setState)
     if (emailFromUrl) {
       localStorage.setItem('last_reset_email', emailFromUrl);
     }
 
-    // 2. Show toast (Side effect only, no setState)
-    if (!hasShownToast.current) {
+    const shouldShowToast = sessionStorage.getItem('show-password-reset-toast');
+
+    if (shouldShowToast === 'true') {
       toast.success(t('auth-forgotPw.step2.resendToast'));
-      hasShownToast.current = true;
+      sessionStorage.removeItem('show-password-reset-toast');
     }
   }, [emailFromUrl, t]);
 
