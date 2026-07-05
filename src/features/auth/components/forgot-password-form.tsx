@@ -11,27 +11,22 @@ import ErrorAlert from '@/shared/components/error-alert';
 import { useState } from 'react';
 import * as z from 'zod';
 import Link from 'next/link';
+import { useRouter } from '@/i18n/navigation';
 
-export const ForgotPasswordForm = ({
-  onSuccess = () => undefined,
-}: {
-  onSuccess?: (email: string) => void;
-}) => {
+export const ForgotPasswordForm = () => {
   const t = useTranslations();
   const locale = useLocale();
   const isRtl = locale === 'ar';
+
+  const router = useRouter();
+
   const [isLoading, setIsLoading] = useState(false);
 
   const forgotPasswordMutation = useForgotPassword();
 
   type ForgotPasswordValues = z.infer<typeof forgotPasswordSchema>;
 
-  const {
-    setError,
-    control,
-    handleSubmit,
-    formState: { errors: _errors },
-  } = useForm<ForgotPasswordValues>({
+  const { setError, control, handleSubmit } = useForm<ForgotPasswordValues>({
     resolver: zodResolver(forgotPasswordSchema),
     defaultValues: {
       email: '',
@@ -40,10 +35,12 @@ export const ForgotPasswordForm = ({
 
   const onSubmit = async (data: ForgotPasswordValues) => {
     setIsLoading(true);
+
     try {
       const res = await forgotPasswordMutation.mutateAsync(data.email);
+      console.log(res);
       if (res?.status) {
-        onSuccess(data.email);
+        router.push(`/password-reset-sent?email=${encodeURIComponent(data.email)}`);
       }
     } catch (err) {
       type ApiErrorLike = {
@@ -53,12 +50,15 @@ export const ForgotPasswordForm = ({
         };
       };
 
-      const apiMessage: string | undefined =
+      const apiMessage =
         err instanceof Error
           ? err.message
           : ((err as ApiErrorLike)?.message ?? (err as ApiErrorLike)?.response?.message);
-      if (apiMessage?.toLowerCase?.().includes('no account')) {
-        setError('email', { message: 'noAccount' });
+
+      if (apiMessage?.toLowerCase().includes('no account')) {
+        setError('email', {
+          message: 'noAccount',
+        });
       }
     } finally {
       setIsLoading(false);
@@ -67,18 +67,18 @@ export const ForgotPasswordForm = ({
 
   return (
     <div className="w-full max-w-md mx-auto">
-      <div className="mb-8">
+      <div className="mb-2">
         <h1 className="text-[28px] font-bold text-text-plain dark:text-text-plain mb-2 transition-colors">
           {t('auth-forgotPw.step1.title')}
         </h1>
+
         <p className="text-text-plain dark:text-text-plain text-sm font-normal leading-relaxed transition-colors">
           {t('auth-forgotPw.step1.subtitle')}
         </p>
       </div>
 
-      <hr className="border-0 border-t border-border-muted  mt-2 w-full" />
-
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 mt-6">
+      <hr className=" w-full border-0 border-t border-border-muted dark:border-border-soft" />
+      <form onSubmit={handleSubmit(onSubmit)} className="mt-6 space-y-6">
         <div className="space-y-2">
           <Controller
             name="email"
@@ -86,16 +86,16 @@ export const ForgotPasswordForm = ({
             render={({ field, fieldState }) => (
               <>
                 <CustomInput
+                  id="email"
                   variant="email"
                   label={t('auth-forgotPw.step1.emailLabel')}
                   placeholder={t('auth-forgotPw.step1.emailPlaceholder')}
-                  id="email"
+                  error={fieldState.invalid}
                   errorMessage={
                     fieldState.error?.message
                       ? t(`auth-forgotPw.errors.${fieldState.error.message}`)
                       : undefined
                   }
-                  error={fieldState.invalid}
                   isRtl={isRtl}
                   {...field}
                 />
@@ -115,21 +115,22 @@ export const ForgotPasswordForm = ({
           type="submit"
           buttonVariant="text"
           variant="primary"
-          title={t('auth-forgotPw.step1.continue')}
+          title="auth-forgotPw.step1.continue"
           loading={isLoading}
-          className="w-full h-12 transition-all"
+          className="h-12 w-full transition-all"
         />
       </form>
 
-      <hr className="border-0 border-t border-border-muted dark:border-border-soft mt-9 w-full" />
+      <hr className="mt-9 w-full border-0 border-t border-border-muted dark:border-border-soft" />
 
       <div className="mt-8 text-center text-sm">
         <span className="text-text-plain dark:text-text-plain">
           {t('auth-forgotPw.step1.footerText')}{' '}
         </span>
+
         <Link
           href="/register"
-          className="text-text-primary dark:text-text-primary font-bold hover:underline transition-colors"
+          className="font-bold text-text-primary transition-colors hover:underline dark:text-text-primary"
         >
           {t('auth-forgotPw.step1.registerLink')}
         </Link>
