@@ -70,7 +70,7 @@
         "emailPlaceholder": "user@example.com",
         "continue": "متابعة",
         "footerText": "هل لديك حساب بالفعل؟ ",
-        "registerLink": "سجل الدخول !"
+        "registerLink": "سجل الدخول "
       },
       "otp": {
         "title": "انشاء حساب ",
@@ -86,7 +86,7 @@
         "Contact-us": "تواصل معنا"
       },
       "errors": {
-        "noAccount": "لا يوجد حساب مرتبط بهذا البريد الإلكتروني"
+        "noAccount": "يرجى إدخال عنوان بريد إلكتروني صالح"
       }
     },
     "passwordResetSent": {

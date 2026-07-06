@@ -31,11 +31,11 @@ export default function OTPSection({ onResend }: OTPSectionProps) {
   }, [seconds]);
 
   return (
-    <div className="flex flex-col items-center space-y-6 w-full">
-      <p className="text-gray-500 text-sm mb-6">
+    <div className="flex flex-col items-center  w-full">
+      <p className="text-text-plain text-sm  mb-6">
         {t('auth.auth-register.otp.resend')}:
         {seconds > 0 ? (
-          <span className="font-bold text-black ml-1">{seconds}s</span>
+          <span className="font-bold text-text-plain ml-1">{seconds}s</span>
         ) : (
           <button
             onClick={handleResendClick}

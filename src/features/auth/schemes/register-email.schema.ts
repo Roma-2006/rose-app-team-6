@@ -1,5 +1,5 @@
-import { z } from 'zod';
+import * as z from 'zod';
 
 export const RegisterEmailSchema = z.object({
-  email: z.string().email('Invalid email format').min(1, 'Email is required'),
+  email: z.string().min(1, { message: 'noAccount' }).email({ message: 'noAccount' }),
 });

@@ -70,7 +70,7 @@
         "emailPlaceholder": "user@example.com",
         "continue": "Continue",
         "footerText": "Already have an account?",
-        "registerLink": "Login!"
+        "registerLink": "Login"
       },
       "otp": {
         "title": "Create Account",
@@ -80,13 +80,13 @@
         "resendTimer": "Resend in {s}s",
         "invalid": "Invalid OTP code",
         "expired": "Code expired. Please request a new one.",
-        "verify": "Verify OTP",
+        "verify": "Verify Code",
         "Edit": "Edit",
         "Need-help": "Need help ?",
         "Contact-us": " Contact us"
       },
       "errors": {
-        "noAccount": "No account found with this email"
+        "noAccount": "Please enter a valid email address"
       }
     },
     "passwordResetSent": {
