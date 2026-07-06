@@ -1,8 +1,8 @@
 import { useRouter } from '@/i18n/navigation';
 import { useMutation } from '@tanstack/react-query';
 import { TRegisterFields, TRegisterResponse } from '../types/register';
-import { TApiResponce } from '@/shared/types/api';
-import { TUser } from '../types/user';
+import { Response } from '@/shared/types/api';
+import { User } from '../types/user';
 
 export default function useRegister() {
   const router = useRouter();

@@ -122,11 +122,13 @@
     "label": "الاسم بالكامل",
     "placeholder": "أدخل اسمك هنا..."
   },
-  "custom-input": {
-    "default": {
-      "first-name": { "label": "الاسم الأول", "placeholder": "Jonathan" },
-      "last-name": { "label": "الاسم الأخير", "placeholder": "Adrian" }
-    },
+
+   "custom-input": {
+    "default":{
+      "first-name" : { "label": "الاسم الأول", "placeholder": "Jonathan" } , 
+      "last-name": {"label" :"الاسم الأخير" , "placeholder" :"Adrian"} ,
+      "username": {"label" :" اسم المسخدم" , "placeholder" :"Jonathan"}
+  },
     "number": { "label": "الرقم", "placeholder": "0" },
     "search": { "label": "بحث", "placeholder": "ابحث هنا..." },
     "password": {

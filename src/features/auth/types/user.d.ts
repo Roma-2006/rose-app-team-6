@@ -51,4 +51,5 @@ export interface User {
   phoneVerified: boolean;
   /** The user's assigned role, controlling access permissions. */
   role: UserRole;
+  rememberMe?: boolean;
 }

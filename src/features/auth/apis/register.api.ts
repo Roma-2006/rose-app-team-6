@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers';
 import { TRegisterFields, TRegisterResponse } from '../types/register';
-import { TApiResponce } from '@/shared/types/api';
+import { Response } from '@/shared/types/api';
 
 export const register = async (fields: TRegisterFields) => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API}/auth/register`, {
@@ -10,7 +10,7 @@ export const register = async (fields: TRegisterFields) => {
       'Content-Type': 'application/json',
     },
   });
-  const payload: TApiResponce<TRegisterResponse> = await response.json();
+  const payload: Response<TRegisterResponse> = await response.json();
   console.log(payload);
   if (payload.status && payload.payload?.token) {
     const cookiesStore = await cookies();

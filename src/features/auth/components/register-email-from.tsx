@@ -3,7 +3,7 @@
 import { useTranslations, useLocale } from 'next-intl';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { RegisterEmailSchema } from '@/features/auth/schemes/register-email.schema';
+import { RegisterEmailSchema } from '@/features/auth/schemas/register-email.schema';
 
 import { Button } from '@/shared/components/ui/button';
 import CustomInput from '@/shared/components/custom-input';
@@ -41,7 +41,7 @@ export const RegisterEmailForm = () => {
       const res = await registerEmailMutation.mutateAsync(data.email);
 
       if (res?.status) {
-        router.push(`/register/otp?email=${encodeURIComponent(email.value)}`);
+        router.push(`/register/otp?email=${encodeURIComponent(data.email)}`);
       }
     } catch (err) {
       type ApiErrorLike = {

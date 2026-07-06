@@ -128,7 +128,8 @@
   "custom-input": {
     "default": {
       "first-name": { "label": "First name", "placeholder": "Jonathan" },
-      "last-name": { "label": "Last name", "placeholder": "Adrian" }
+      "last-name": { "label": "Last name", "placeholder": "Adrian" } ,
+     "username": {"label" : "UserName" , "placeholder" :"Jonathan"}
     },
     "number": { "label": "Number", "placeholder": "0" },
     "search": { "label": "Search", "placeholder": "Search..." },

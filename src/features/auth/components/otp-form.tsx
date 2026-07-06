@@ -15,7 +15,7 @@ import { maskEmail } from '../utils/mask-email';
 import OTPSection from './otp-timer';
 import Stepper from './stepper';
 import { useForm } from 'react-hook-form';
-import { otpSchema, OtpSchema } from '../schemes/otp.schema';
+import { otpSchema, OtpSchema } from '../schemas/otp.schema';
 
 export function OtpForm() {
   const t = useTranslations();
@@ -68,13 +68,21 @@ export function OtpForm() {
         email,
       });
 
-      setError('');
+      // setError('');
       return true;
     } catch (err) {
       if (err instanceof Error) {
-        setError(err.message);
+        // setError(err.message);
+        setError('otp', {
+          type: 'server',
+          message: err.message,
+        });
       } else {
-        setError(t('auth.auth-register.otp.invalid'));
+        // setError(t('auth.auth-register.otp.invalid'));
+        setError('otp', {
+          type: 'server',
+          message: t('auth.auth-register.otp.invalid'),
+        });
       }
 
       return false;

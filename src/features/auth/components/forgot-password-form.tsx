@@ -3,7 +3,7 @@
 import { useTranslations, useLocale } from 'next-intl';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { forgotPasswordSchema } from '@/features/auth/schemes/forgot-password.schema';
+import { forgotPasswordSchema } from '@/features/auth/schemas/forgot-password.schema';
 import { useForgotPassword } from '@/features/auth/hooks/useForgotPassword';
 import { Button } from '@/shared/components/ui/button';
 import CustomInput from '@/shared/components/custom-input';

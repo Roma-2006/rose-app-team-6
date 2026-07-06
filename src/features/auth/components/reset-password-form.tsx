@@ -5,7 +5,7 @@ import { toast } from 'sonner';
 
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { resetPasswordSchema } from '@/features/auth/schemes/reset-password.schema';
+import { resetPasswordSchema } from '@/features/auth/schemas/reset-password.schema';
 import { useResetPassword } from '@/features/auth/hooks/useResetPassword';
 import { Button } from '@/shared/components/ui/button';
 import CustomInput from '@/shared/components/custom-input';
