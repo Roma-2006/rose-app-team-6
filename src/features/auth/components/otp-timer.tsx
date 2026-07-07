@@ -2,12 +2,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 
-interface OTPSectionProps {
-  onResend: () => Promise<boolean>;
-  onVerify: () => Promise<void>;
-  isLoading: boolean;
-}
-
 const COUNTDOWN_SECONDS = 60;
 
 export default function OTPSection({ onResend }: OTPSectionProps) {

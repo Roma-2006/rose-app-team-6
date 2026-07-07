@@ -72,7 +72,7 @@ export function OtpForm() {
       return true;
     } catch (err) {
       if (err instanceof Error) {
-        setError(err.message);
+        setError('otp', { type: 'server', message: err.message });
       } else {
         setError(t('auth.auth-register.otp.invalid'));
       }

@@ -1,5 +1,5 @@
 import { OtpForm } from '@/features/auth/components/otp-form';
-import { RegisterEmailForm } from '@/features/auth/components/register-email-from';
+import { RegisterEmailForm } from '@/features/auth/components/register-email-form';
 
 interface RegisterPageProps {
   params:
