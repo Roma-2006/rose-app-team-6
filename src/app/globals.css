@@ -3,6 +3,7 @@
 :root {
   /* Fonts */
   --font-sans: var(--font-sarabun);
+
   /* Background ------------------------------------------------------------------------*/
   --bg-plain: var(--color-white);
   --bg-subtle: var(--color-zinc-50);
@@ -45,7 +46,6 @@
   --bg-danger-faint: var(--color-red-100);
   --bg-danger-fade: var(--color-red-50);
 
-
   /* Text ----------------------------------------------------------------------------*/
   --text-plain: var(--color-zinc-800);
   --text-subtle: var(--color-zinc-300);
@@ -55,7 +55,7 @@
   --text-inverse: var(--color-white);
 
   /* Primary */
-  --text-primary: var(--color-maroon-800);
+  --text-primary: var(--color-maroon-600);
   --text-primary-faint: var(--color-maroon-100);
   --text-primary-fade: var(--color-maroon-50);
 
@@ -141,8 +141,8 @@
 
 .dark {
   /* Background --------------------------------------------------------------------*/
-  --bg-plain: var(--color-zinc-700);
-  --bg-subtle: var(--color-zinc-800);
+  --bg-plain: var(--color-zinc-800);
+  --bg-subtle: var(--color-zinc-700);
   --bg-muted: var(--color-zinc-900);
   --bg-soft: var(--color-zinc-700);
   --bg-default: var(--color-zinc-600);
@@ -285,6 +285,7 @@
   --color-bg-inverse: var(--bg-inverse);
   --color-bg-elevated: var(--bg-elevated);
   --color-bg-overlay: var(--bg-overlay);
+
   /* Primary */
   --color-bg-primary: var(--bg-primary);
   --color-bg-primary-saturated: var(--bg-primary-saturated);
@@ -313,10 +314,8 @@
 
   /* danger */
   --color-bg-danger: var(--bg-danger);
-  --color-bg-danger-saturated: var(--bg-danger-saturated);
   --color-bg-danger-faint: var(--bg-danger-faint);
   --color-bg-danger-fade: var(--bg-danger-fade);
-
 
   /* Text ---------------------------------------------------------------------------------*/
   --color-text-plain: var(--text-plain);
@@ -336,11 +335,6 @@
   --color-text-info-faint: var(--text-info-faint);
   --color-text-info-fade: var(--text-info-fade);
 
-
-  /* --color-info: var(--info);
-  --color-info-hover: var(--info-hover);
-  --color-info-foreground: var(--info-foreground);
-*/
   /* secondary */
   --color-text-secondary: var(--text-secondary);
   --color-text-secondary-faint: var(--text-secondary-faint);
@@ -399,7 +393,6 @@
   --color-border-danger-faint: var(--border-danger-faint);
   --color-border-danger-fade: var(--border-danger-fade);
 
-
   /* Soft Pink */
   --color-soft-pink-50: #fff1f5;
   --color-soft-pink-100: #ffe0e7;
@@ -425,68 +418,9 @@
   --color-maroon-800: #501419;
   --color-maroon-900: #2c0c10;
   --color-maroon-950: #20090c;
-/* s */
-  /* Magenta */
-  --color-magenta-50: #fff0f8;
-  --color-magenta-100: #ffd6ec;
-  --color-magenta-200: #ffaddc;
-  --color-magenta-300: #ff84cb;
-  --color-magenta-400: #ff5bba;
-  --color-magenta-500: #f82ba9;
-  --color-magenta-600: #d0198f;
-  --color-magenta-700: #a41173;
-  --color-magenta-800: #790a55;
-  --color-magenta-900: #52043a;
-  --color-magenta-950: #340021;
-  /* radius */
-  /* --radius-10: 10px; */
-
-  --font-heading: var(--font-sans);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
 
   /* shadows -------------------------------------------------------------------------------- */
-  --shadow-subtle-sm: var(--app-shadow-subtle-sm);
-  --shadow-subtle: var(--app-shadow-subtle);
-  --shadow-subtle-lg: var(--app-shadow-subtle-lg);
 
-  --shadow-soft-sm: var(--app-shadow-soft-sm);
-  --shadow-soft: var(--app-shadow-soft);
-  --shadow-soft-lg: var(--app-shadow-soft-lg);
   --shadow-shadow-subtle-sm: var(--app-shadow-subtle-sm);
   --shadow-shadow-subtle: var(--app-shadow-subtle);
   --shadow-subtle-lg: var(--app-shadow-subtle-lg);
@@ -497,41 +431,10 @@
 
   /* Ring ------------------------------------------------------------------------------- */
 
-  --color-ring-default: var(--ring-default);
-  --color-ring-danger: var(--ring-danger);
-
-  /* width---------------------------------------------------- */
---width-375 :375px;
-  /* radiues---------------------------------------------------- */
   --color-col-ring-default: var(--col-ring-default);
   --color-col-ring-danger: var(--col-ring-danger);
 }
 
-@layer utilities {
-  /* Ring ------------------------------------------------------------------------------ */
-  .ring-default {
-    box-shadow: 0 0 0 var(--ring-width-default) var(--ring-default);
-  }
-  .ring-danger {
-    box-shadow: 0 0 0 var(--ring-width-default) var(--ring-danger);
-  }
-  
-
-  /* Radius ---------------------------------------------------------------------------- */
-  .radius-sm {
-    border-radius: 4px;
-  }
-  .radius-base {
-    border-radius: 6px;
-  }
-  .radius-lg {
-    border-radius: 8px;
-  }
-  .radius-xl {
-    border-radius: 10px;
-  }
-
-}
 @utility ring-default {
   box-shadow: 0 0 0 var(--ring-width-default) var(--color-col-ring-default);
 }
@@ -540,11 +443,18 @@
   box-shadow: 0 0 0 var(--ring-width-default) var(--color-col-ring-danger);
 }
 
-@utility radius-sm { border-radius: 4px; }
-@utility radius-base { border-radius: 6px; }
-@utility radius-lg { border-radius: 8px; }
-@utility radius-xl { border-radius: 10px; }
-
+@utility radius-sm {
+  border-radius: 4px;
+}
+@utility radius-base {
+  border-radius: 6px;
+}
+@utility radius-lg {
+  border-radius: 8px;
+}
+@utility radius-xl {
+  border-radius: 10px;
+}
 
 html[dir='rtl'] {
   --font-sans: var(--font-tajawal);

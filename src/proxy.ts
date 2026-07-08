@@ -46,14 +46,12 @@ export default async function middleware(req: NextRequest) {
   // Guest → redirect away from protected routes, preserve returnUrl
   if (!isLoggedIn && isProtectedRoute) {
     const returnUrl = encodeURIComponent(pathname + search);
-    return NextResponse.redirect(
-      new URL(`/${locale}/login?returnUrl=${returnUrl}`, req.url)
-    );
+    return NextResponse.redirect(new URL(`/${locale}/login?returnUrl=${returnUrl}`, req.url));
   }
 
   return intlMiddleware(req);
 }
 
 export const config = {
-  matcher: '/((?!api/auth|_next|_vercel|.*\\..*).*)',
+  matcher: '/((?!api|_next|_vercel|.*\\..*).*)',
 };

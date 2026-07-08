@@ -46,11 +46,12 @@ export default function LoginForm() {
                   {...field}
                   variant="default"
                   disabled={isLoading}
+                  error={fieldState.invalid}
                   subVariant="username"
                   id="username"
                   autoComplete="username"
-                  placeholder={tInput('default.username.placeholder')}
-                  label={tInput('default.username.label')}
+                  placeholder={tInput('default.user-name.placeholder')}
+                  label={tInput('default.user-name.label')}
                   className="mb-4"
                   errorMessage={fieldState.error?.message}
                 />
@@ -67,6 +68,7 @@ export default function LoginForm() {
                     variant="password"
                     subVariant="password"
                     id="password"
+                    error={fieldState.invalid}
                     disabled={isLoading}
                     autoComplete="current-password"
                     placeholder={tInput('password.password.placeholder')}

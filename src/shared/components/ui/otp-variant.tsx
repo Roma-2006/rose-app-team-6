@@ -102,7 +102,15 @@ export default function OTPVariant({
         ref={inputRef}
         maxLength={6}
         disabled={isDisabled}
-        onChange={onChange}
+        onChange={(value) => {
+          onChange?.(value);
+
+          if (value.length < 6) {
+            setActiveIndex(value.length);
+          } else {
+            setActiveIndex(null);
+          }
+        }}
         defaultValue={defaultValue}
         pattern="^[0-9]*$"
         spellCheck={false}
@@ -118,11 +126,6 @@ export default function OTPVariant({
         )}
         {...props}
         render={({ slots }: { slots: SlotProps[] }) => {
-          const currentActive = slots.findIndex((s) => s.isActive);
-          if (currentActive !== activeIndex) {
-            setActiveIndex(currentActive !== -1 ? currentActive : null);
-          }
-
           return (
             <div className="flex items-center gap-1.5 w-full justify-between relative z-0">
               {slots.map((slot, index) => {

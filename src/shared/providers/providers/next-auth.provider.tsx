@@ -1,6 +1,6 @@
-import React from 'react'
-import { SessionProvider } from 'next-auth/react'
-import { Session } from "next-auth";
+import React from 'react';
+import { SessionProvider } from 'next-auth/react';
+import { Session } from 'next-auth';
 
 /**
  * Wraps the application with NextAuth's {@link SessionProvider}, making the
@@ -26,13 +26,9 @@ import { Session } from "next-auth";
 
 interface Props {
   children: React.ReactNode;
-  session: Session | null; 
+  session: Session | null;
 }
 
 export default function NextAuthProvider({ children, session }: Props) {
-    return (
-        <SessionProvider session={session}>
-            {children}
-        </SessionProvider>
-    );
+  return <SessionProvider session={session}>{children}</SessionProvider>;
 }
