@@ -55,7 +55,7 @@
   --text-inverse: var(--color-white);
 
   /* Primary */
-  --text-primary: var(--color-maroon-800);
+  --text-primary: var(--color-maroon-600);
   --text-primary-faint: var(--color-maroon-100);
   --text-primary-fade: var(--color-maroon-50);
 
@@ -141,8 +141,8 @@
 
 .dark {
   /* Background --------------------------------------------------------------------*/
-  --bg-plain: var(--color-zinc-700);
-  --bg-subtle: var(--color-zinc-800);
+  --bg-plain: var(--color-zinc-800);
+  --bg-subtle: var(--color-zinc-700);
   --bg-muted: var(--color-zinc-900);
   --bg-soft: var(--color-zinc-700);
   --bg-default: var(--color-zinc-600);
@@ -220,6 +220,7 @@
   --text-danger-faint: color-mix(in srgb, var(--color-red-500) 50%, transparent);
   --text-danger-fade: color-mix(in srgb, var(--color-red-500) 25%, transparent);
 
+ 
   /* Border ----------------------------------------------------------------------------------*/
   --border-plain: var(--color-zinc-50);
   --border-subtle: var(--color-zinc-700);
@@ -431,12 +432,15 @@
 
   /* Ring ------------------------------------------------------------------------------- */
 
+<<<<<<< HEAD
   --color-ring-default: var(--ring-default);
   --color-ring-danger: var(--ring-danger);
 
   /* width---------------------------------------------------- */
 --width-375 :375px;
   /* radiues---------------------------------------------------- */
+=======
+>>>>>>> 52928f787b361bc9baa3d4c9bac14dc5b41b12ef
   --color-col-ring-default: var(--col-ring-default);
   --color-col-ring-danger: var(--col-ring-danger);
 }

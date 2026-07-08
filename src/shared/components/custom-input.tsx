@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { Input as InputPrimitive } from '@base-ui/react/input';
 import { cn } from '@/lib/utils';
-import { Eye, EyeOff, Search, X } from 'lucide-react';
+import { Asterisk, Eye, EyeOff, Search, X } from 'lucide-react';
 import { Field } from '@base-ui/react/field';
 import OTPVariant from './ui/otp-variant';
 import NumberVariant from './ui/number-variant';
@@ -210,9 +210,17 @@ export default function CustomInput({
       className={cn('items-start justify-start flex-col gap-2  m-w-375 ', className)}
       dir={computedIsRtl ? 'rtl' : 'ltr'}
     >
-      {computedLabel && variant !== 'otp' && (
-        <Field.Label htmlFor={id} className={`${baseLableStyle} ${labeltStyle}`}>
-          {computedLabel}
+      {label && variant !== 'otp' && (
+        <Field.Label
+          htmlFor={id}
+          className={`${baseLableStyle} ${labeltStyle} inline-block mb-2.5`}
+        >
+          {label}
+          {(subVariant === 'first-name' ||
+            subVariant === 'last-name' ||
+            subVariant === 'user-name') && (
+            <Asterisk className="inline-block text-text-danger mb-2" size={12} />
+          )}
         </Field.Label>
       )}
 
@@ -246,7 +254,7 @@ export default function CustomInput({
             step={step}
             data-slot="input"
             className={cn(
-              'h-10 text-start  w-full radius-lg border px-3 py-1 text-base transition-colors outline-none md:text-sm',
+              'h-11.5 text-start  w-full  border px-3 py-1 text-base transition-colors outline-none md:text-sm radius-xl',
               'focus-visible:outline-none focus-visible:ring-0',
               variant === 'search' && 'ps-9 pe-3',
               variant === 'password' && 'ps-3 pe-9',
@@ -313,7 +321,7 @@ export default function CustomInput({
             isDisabled={isDisabled}
             className={`  focus-visible:outline-none
                focus-visible:ring-0h-9 w-full min-w-0 
-               rounded-lg border px-3 py-1.5
+               radius-xl border px-3 py-1.5
                 text-base transition-colors outline-none
                  md:text-sm
                 ${inputStyle} `}

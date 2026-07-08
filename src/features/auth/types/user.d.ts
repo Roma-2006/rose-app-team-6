@@ -1,3 +1,18 @@
+//mkarar
+
+export type TUser = {
+  id: string;
+  username: string;
+  email: string;
+  phone?: sting;
+  firstName: string;
+  lastName: string;
+  gender: 'FEMALE' | 'MALE';
+  emailVerified: boolean;
+  phoneVerified: boolean;
+  role: 'USER';
+  createdAt: string;
+};
 import { USER_ROLES, USER_GENDER } from '../constants/user.constants';
 
 /**
@@ -34,7 +49,6 @@ export interface User {
   emailVerified: boolean;
   /** Whether the user has verified their phone number. */
   phoneVerified: boolean;
-
   /** The user's assigned role, controlling access permissions. */
   role: UserRole;
   rememberMe?: boolean;

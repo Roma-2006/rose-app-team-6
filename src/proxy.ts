@@ -53,5 +53,5 @@ export default async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: '/((?!api/auth|_next|_vercel|.*\\..*).*)',
+  matcher: '/((?!api|_next|_vercel|.*\\..*).*)',
 };

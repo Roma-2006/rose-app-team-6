@@ -32,7 +32,7 @@ function SelectTrigger({
       data-slot="select-trigger"
       data-size={size}
       className={cn(
-        'group flex  w-fit items-center  text-text-plain justify-between gap-1.5 rounded-lg border border-border-soft bg-bg-plain px-3 py-2 text-sm whitespace-nowrap transition-[color,box-shadow,background-color] outline-none  disabled:cursor-not-allowed disabled:opacity-50 ',
+        'group flex  w-fit items-center  text-text-plain justify-between gap-1.5 radius-xl w-full border border-border-soft bg-bg-plain px-3 py-2 text-sm whitespace-nowrap transition-[color,box-shadow,background-color] outline-none  disabled:cursor-not-allowed disabled:opacity-50 ',
         'aria-invalid:border-border-danger aria-invalid:ring-3 aria-invalid:ring-ring-danger',
         ' data-placeholder:text-text-muted data-[size=default]:h-12 data-[size=sm]:h-9 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-1.5',
         'dark:bg-bg-plain dark:data-placeholder:text-text-muted dark:text-text-plain',
