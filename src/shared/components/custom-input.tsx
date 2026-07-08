@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { Input as InputPrimitive } from '@base-ui/react/input';
 import { cn } from '@/lib/utils';
-import { Eye, EyeOff, Search, X } from 'lucide-react';
+import { Asterisk, Eye, EyeOff, Search, X } from 'lucide-react';
 import { Field } from '@base-ui/react/field';
 import OTPVariant from './ui/otp-variant';
 import NumberVariant from './ui/number-variant';
@@ -216,6 +216,11 @@ export default function CustomInput({
           className={`${baseLableStyle} ${labeltStyle} inline-block mb-2.5`}
         >
           {label}
+          {(subVariant === 'first-name' ||
+            subVariant === 'last-name' ||
+            subVariant === 'user-name') && (
+            <Asterisk className="inline-block text-text-danger mb-2" size={12} />
+          )}
         </Field.Label>
       )}
 

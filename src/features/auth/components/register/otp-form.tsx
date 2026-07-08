@@ -9,13 +9,13 @@ import { useRouter } from '@/i18n/navigation';
 import { Button } from '@/shared/components/ui/button';
 import OTPVariant from '@/shared/components/ui/otp-variant';
 
-import { confirmEmailVerification } from '../apis/confirm-email-verification.api';
-import { sendEmailVerification } from '../apis/send-email-verification.api';
-import { maskEmail } from '../utils/mask-email';
+import { confirmEmailVerification } from '../../apis/confirm-email-verification.api';
+import { sendEmailVerification } from '../../apis/send-email-verification.api';
+import { maskEmail } from '../../utils/mask-email';
 import OTPSection from './otp-timer';
 import Stepper from './stepper';
 import { useForm } from 'react-hook-form';
-import { otpSchema, OtpSchema } from '../schemas/otp.schema';
+import { otpSchema, OtpSchema } from '../../schemas/otp.schema';
 
 export function OtpForm() {
   const t = useTranslations();
@@ -50,7 +50,7 @@ export function OtpForm() {
         code: otp,
       });
 
-      router.push(`/register/user-info?email=${email}`);
+      router.push(`/register/user-info?email=${encodeURIComponent(email)}`);
     } catch (err) {
       setError('otp', {
         type: 'server',
@@ -96,7 +96,7 @@ export function OtpForm() {
 
       {/* Title */}
       <div className="mb-3">
-        <h1 className="text-[30px] font-bold text-zinc-800">{t('auth.auth-register.otp.title')}</h1>
+        <h1 className="text-[30px] font-bold text-zinc-800">{t('auth.auth-register.title')}</h1>
 
         <h2 className="text-[20px] font-bold text-text-plain">
           {t('auth.auth-register.otp.subtitle-1')}
@@ -141,7 +141,7 @@ export function OtpForm() {
         type="button"
         buttonVariant="text"
         variant="primary"
-        title="verify"
+        title="auth.auth-register.otp.verify"
         className="h-12 w-full"
         onClick={handleSubmit(onSubmit)}
         disabled={loading}
@@ -151,10 +151,10 @@ export function OtpForm() {
 
       {/* Footer */}
       <div className="text-center text-sm">
-        <span className="text-text-plain">{t('auth.auth-register.otp.Need-help')} </span>
+        <span className="text-text-plain">{t('auth.auth-register.need-help')} </span>
 
         <Link href="/contact" className="font-semibold text-text-primary hover:underline">
-          {t('auth.auth-register.otp.Contact-us')}
+          {t('auth.auth-register.contact-us')}
         </Link>
       </div>
     </div>

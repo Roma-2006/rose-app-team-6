@@ -6,7 +6,8 @@
     "cancel": "إلغاء",
     "save": "حفظ",
     "delete": "حذف",
-    "confirm": "تأكيد"
+    "confirm": "تأكيد",
+    "next":"التالى"
   },
   "common": {
     "select": {
@@ -66,6 +67,9 @@
       }
     },
     "auth-register": {
+      "title":"إنشاء حساب",
+      "need-help": "تحتاج مساعده ؟",
+      "contact-us": "تواصل معنا",
       "step1": {
         "emailLabel": "البريد الإلكتروني",
         "emailPlaceholder": "user@example.com",
@@ -82,30 +86,34 @@
         "invalid": "رمز التحقق غير صحيح",
         "expired": "انتهت صلاحية الرمز. يرجى طلب رمز جديد.",
         "verify": "تحقق",
-        "Edit": "تعديل",
-        "Need-help": "تحتاج مساعده ؟",
-        "Contact-us": "تواصل معنا"
+        "Edit": "تعديل"
       },
       "user-info":{
-        "title":"انضم إلى عائلتنا!",
+        "sub-title":"أخبرنا المزيد عن نفسك",
+        "user-info-sub-title":"بعض التفاصيل للبدء.",
         "first-name":"الاسم الاول",
         "last-name":"اسم العائله",
+        "user-name":"اسم المستخدم",
         "email":"البريد الإلكتروني",
         "phone":"رقم الهاتف",
         "gender":"الجنس",
         "gender-placeholder":"اختر الجنس",
         "male":"ذكر",
-        "female":"أنثى",
+        "female":"أنثى"
+      },
+      "create-password":{
+        "sub-title":"أنشئ كلمة مرور قوية",
+        "create-password-sub-title":"اختر كلمة مرور آمنة لحماية حسابك",
         "password":"كلمة المرور",
         "confirm-password":"تأكيد كلمة المرور",
         "button":"إنشاء حساب",
-        "email-inUse":"البريد الإلكتروني مستخدم بالفعل",
+        "email-in-use":"البريد الإلكتروني مستخدم بالفعل",
         "success":"تم إنشاء الحساب بنجاح",
         "have-account": "هل لديك حساب بالفعل؟",
         "login": "تسجيل الدخول"
       },
       "errors": {
-        "noAccount": "لا يوجد حساب مرتبط بهذا البريد الإلكتروني"
+        "noAccount": "يرجى إدخال عنوان بريد إلكتروني صالح"
       }
     },
     "passwordResetSent": {
@@ -127,7 +135,7 @@
     "default":{
       "first-name" : { "label": "الاسم الأول", "placeholder": "Jonathan" } , 
       "last-name": {"label" :"الاسم الأخير" , "placeholder" :"Adrian"} ,
-      "username": {"label" :" اسم المسخدم" , "placeholder" :"Jonathan"}
+      "user-name": {"label" :" اسم المسخدم" , "placeholder" :"Jonathan"}
   },
     "number": { "label": "الرقم", "placeholder": "0" },
     "search": { "label": "بحث", "placeholder": "ابحث هنا..." },

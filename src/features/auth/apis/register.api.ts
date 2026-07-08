@@ -3,7 +3,7 @@ import { TRegisterFields, TRegisterResponse } from '../types/register';
 import { Response } from '@/shared/types/api';
 
 export const register = async (fields: TRegisterFields) => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API}/auth/register`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/register`, {
     method: 'POST',
     body: JSON.stringify(fields),
     headers: {
@@ -19,7 +19,7 @@ export const register = async (fields: TRegisterFields) => {
       sameSite: 'lax',
       expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
     });
-    return { user: payload.payload.user };
+    return { status: payload.status, user: payload.payload.user };
   }
   if (!payload.status) {
     return { status: payload.status, message: payload.message, errors: payload.errors };

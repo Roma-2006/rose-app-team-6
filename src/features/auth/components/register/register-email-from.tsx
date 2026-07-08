@@ -12,7 +12,7 @@ import { useState } from 'react';
 import * as z from 'zod';
 import Link from 'next/link';
 import { useRouter } from '@/i18n/navigation';
-import { useRegisterEmail } from '../hooks/useRegisterEmail';
+import { useRegisterEmail } from '../../hooks/useRegisterEmail';
 
 export const RegisterEmailForm = () => {
   const t = useTranslations();
@@ -68,8 +68,8 @@ export const RegisterEmailForm = () => {
 
   return (
     <div className="w-full max-w-md mx-auto">
-      <hr className=" w-full border-0 border-t border-border-muted dark:border-border-soft" />
-      <form onSubmit={handleSubmit(onSubmit)} className="mt-6 space-y-6">
+      {/* <hr className=" w-full border-0 border-t border-border-muted dark:border-border-soft" /> */}
+      <form onSubmit={handleSubmit(onSubmit)} className=" space-y-6">
         <div className="space-y-2">
           <Controller
             name="email"
