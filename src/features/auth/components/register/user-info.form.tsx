@@ -25,8 +25,8 @@ export default function UserInfoForm() {
   const email = searchParams.get('email');
   console.log(email, 'email');
   //mutation
-  const getStoredErrors: ValidationError = () => {
-    if (typeof window === 'undefined') return undefined;
+  const getStoredErrors = (): ValidationError[] => {
+    if (typeof window === 'undefined') return [];
     const storedError = sessionStorage.getItem('register-error');
     if (storedError && storedError !== 'undefined') {
       // sessionStorage.removeItem('register-error');
