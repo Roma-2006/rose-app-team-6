@@ -2,14 +2,14 @@
 import * as React from 'react';
 import { Input as InputPrimitive } from '@base-ui/react/input';
 import { cn } from '@/lib/utils';
-import { Eye, EyeOff, Search, X } from 'lucide-react';
+import { Asterisk, Eye, EyeOff, Search, X } from 'lucide-react';
 import { Field } from '@base-ui/react/field';
 import OTPVariant from './ui/otp-variant';
 import NumberVariant from './ui/number-variant';
 import FileVariant from './ui/file-variant';
 import { PhoneVariant } from './ui/phone-variant.';
-import ErrorAlert from './error-alert';
 import { useTranslations, useLocale } from 'next-intl';
+import ErrorAlert from './error-alert';
 export type TInputValue = string | number | File[] | FileList | null;
 export type TInputVariant =
   | 'default'
@@ -155,7 +155,9 @@ export default function CustomInput({
   };
 
   // Handle toggling password visibility
-  const handleTogglePassword = () => {
+  const handleTogglePassword = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (!internalRef.current) return;
     const start = internalRef.current.selectionStart;
     const end = internalRef.current.selectionEnd;
@@ -209,12 +211,20 @@ export default function CustomInput({
       dir={computedIsRtl ? 'rtl' : 'ltr'}
     >
       {label && variant !== 'otp' && (
-        <Field.Label htmlFor={id} className={`${baseLableStyle} ${labeltStyle}`}>
+        <Field.Label
+          htmlFor={id}
+          className={`${baseLableStyle} ${labeltStyle} inline-block mb-2.5`}
+        >
           {label}
+          {(subVariant === 'first-name' ||
+            subVariant === 'last-name' ||
+            subVariant === 'user-name') && (
+            <Asterisk className="inline-block text-text-danger mb-2" size={12} />
+          )}
         </Field.Label>
       )}
 
-      <div className="relative flex items-center w-full">
+      <div className="relative flex items-center w-full isolate">
         {/* Render the search button */}
         {variant === 'search' && !isError && (
           <Search
@@ -244,7 +254,7 @@ export default function CustomInput({
             step={step}
             data-slot="input"
             className={cn(
-              'h-11.5 text-start  w-full rounded-lg border px-3 py-1 text-base transition-colors outline-none md:text-sm',
+              'h-11.5 text-start  w-full  border px-3 py-1 text-base transition-colors outline-none md:text-sm radius-xl',
               'focus-visible:outline-none focus-visible:ring-0',
               variant === 'search' && 'ps-9 pe-3',
               variant === 'password' && 'ps-3 pe-9',
@@ -311,7 +321,7 @@ export default function CustomInput({
             isDisabled={isDisabled}
             className={`  focus-visible:outline-none
                focus-visible:ring-0h-9 w-full min-w-0 
-               rounded-lg border px-3 py-1.5
+               radius-xl border px-3 py-1.5
                 text-base transition-colors outline-none
                  md:text-sm
                 ${inputStyle} `}
@@ -357,17 +367,24 @@ export default function CustomInput({
         {variant === 'password' && !isError && (
           <button
             type="button"
+            onMouseDown={(e) => e.preventDefault()}
             onClick={handleTogglePassword}
             disabled={isDisabled}
             className={cn(
-              'absolute top-1/2 -translate-y-1/2 text-text-muted hover:text-text-plain  transition-colors z-10',
+              'absolute top-1/2 -translate-y-1/2 text-text-muted hover:text-text-plain  transition-colors z-30 pointer-events-auto block select-none',
               computedIsRtl ? 'left-3' : 'right-3'
             )}
+            style={{ contentVisibility: 'auto' }}
           >
-            {isPasswordVisible ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
+            {isPasswordVisible ? (
+              <Eye size={16} className="pointer-events-none" />
+            ) : (
+              <EyeOff size={16} className="pointer-events-none" />
+            )}
           </button>
         )}
       </div>
+      {errorMessage && <ErrorAlert errorMessage={errorMessage} isRtl={computedIsRtl} />}
     </Field.Root>
   );
 }

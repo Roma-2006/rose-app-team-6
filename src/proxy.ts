@@ -6,7 +6,9 @@ import { routing } from './i18n/routing';
 const intlMiddleware = createMiddleware(routing);
 
 const AUTH_ROUTES = ['/login', '/register', '/forgot-password'];
-const PROTECTED_ROUTES = ['/checkout'];
+const PROTECTED_ROUTES = ['/'];
+
+const REGISTER_STEP_ROUTES = ['/register/otp', '/register/user-info', '/register/create-password'];
 
 type Locale = (typeof routing.locales)[number];
 
@@ -37,6 +39,9 @@ export default async function middleware(req: NextRequest) {
 
   const isAuthRoute = AUTH_ROUTES.some((r) => bare === r || bare.startsWith(r + '/'));
   const isProtectedRoute = PROTECTED_ROUTES.some((r) => bare === r || bare.startsWith(r + '/'));
+  const isRegisterStepRoute = REGISTER_STEP_ROUTES.some(
+    (r) => bare === r || bare.startsWith(r + '/')
+  );
 
   // Logged-in user → redirect away from auth pages
   if (isLoggedIn && isAuthRoute) {
@@ -47,6 +52,15 @@ export default async function middleware(req: NextRequest) {
   if (!isLoggedIn && isProtectedRoute) {
     const returnUrl = encodeURIComponent(pathname + search);
     return NextResponse.redirect(new URL(`/${locale}/login?returnUrl=${returnUrl}`, req.url));
+  }
+
+  // منع الدخول المباشر لخطوات التسجيل من غير ما يكون عدى الخطوة اللي قبلها
+  if (isRegisterStepRoute) {
+    const registerEmail = req.cookies.get('register-email')?.value;
+    console.log(req.cookies.getAll().map((c) => c.name));
+    if (!registerEmail) {
+      return NextResponse.redirect(new URL(`/${locale}/register`, req.url));
+    }
   }
 
   return intlMiddleware(req);

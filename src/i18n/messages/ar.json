@@ -6,7 +6,8 @@
     "cancel": "إلغاء",
     "save": "حفظ",
     "delete": "حذف",
-    "confirm": "تأكيد"
+    "confirm": "تأكيد",
+    "next":"التالى"
   },
   "common": {
     "select": {
@@ -18,6 +19,7 @@
       "charCount": "{current}/{max} حرف"
     }
   },
+  "title": "مرحبا بك في تطبيق روز",
   "auth": {
     "switchLang": "العربية",
     "langLabel": "التحويل إلى الإنجليزية",
@@ -65,6 +67,9 @@
       }
     },
     "auth-register": {
+      "title":"إنشاء حساب",
+      "need-help": "تحتاج مساعده ؟",
+      "contact-us": "تواصل معنا",
       "step1": {
         "emailLabel": "البريد الإلكتروني",
         "emailPlaceholder": "user@example.com",
@@ -77,13 +82,36 @@
         "subtitle-1": "أدخل رمز التحقق",
         "subtitle-2": "أرسلنا رمزاً إلى {email}",
         "resend": "أرسل رمزاً جديداً",
+        "resend-2": "اعاده ارسال ",
         "resendTimer": "أعد الإرسال خلال {s} ثانية",
         "invalid": "رمز التحقق غير صحيح",
         "expired": "انتهت صلاحية الرمز. يرجى طلب رمز جديد.",
         "verify": "تحقق",
-        "Edit": "تعديل",
-        "Need-help": "تحتاج مساعده ؟",
-        "Contact-us": "تواصل معنا"
+        "Edit": "تعديل"
+      },
+      "user-info":{
+        "sub-title":"أخبرنا المزيد عن نفسك",
+        "user-info-sub-title":"بعض التفاصيل للبدء.",
+        "first-name":"الاسم الاول",
+        "last-name":"اسم العائله",
+        "user-name":"اسم المستخدم",
+        "email":"البريد الإلكتروني",
+        "phone":"رقم الهاتف",
+        "gender":"الجنس",
+        "gender-placeholder":"اختر الجنس",
+        "male":"ذكر",
+        "female":"أنثى"
+      },
+      "create-password":{
+        "sub-title":"أنشئ كلمة مرور قوية",
+        "create-password-sub-title":"اختر كلمة مرور آمنة لحماية حسابك",
+        "password":"كلمة المرور",
+        "confirm-password":"تأكيد كلمة المرور",
+        "button":"إنشاء حساب",
+        "email-in-use":"البريد الإلكتروني مستخدم بالفعل",
+        "success":"تم إنشاء الحساب بنجاح",
+        "have-account": "هل لديك حساب بالفعل؟",
+        "login": "تسجيل الدخول"
       },
       "errors": {
         "noAccount": "يرجى إدخال عنوان بريد إلكتروني صالح"
@@ -103,11 +131,13 @@
     "label": "الاسم بالكامل",
     "placeholder": "أدخل اسمك هنا..."
   },
-  "custom-input": {
-    "default": {
-      "first-name": { "label": "الاسم الأول", "placeholder": "Jonathan" },
-      "last-name": { "label": "الاسم الأخير", "placeholder": "Adrian" }
-    },
+
+   "custom-input": {
+    "default":{
+      "first-name" : { "label": "الاسم الأول", "placeholder": "Jonathan" } , 
+      "last-name": {"label" :"الاسم الأخير" , "placeholder" :"Adrian"} ,
+      "user-name": {"label" :" اسم المسخدم" , "placeholder" :"Jonathan"}
+  },
     "number": { "label": "الرقم", "placeholder": "0" },
     "search": { "label": "بحث", "placeholder": "ابحث هنا..." },
     "password": {
@@ -121,6 +151,7 @@
       "error-type": "صيغة الملف غير مدعومة."
     },
     "phone": { "label": "رقم الهاتف", "placeholder": "1012345678" },
-    "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" }
+    "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" },
+    "nice-to-have-you-here": "جميل أنك هنا"
   }
 }

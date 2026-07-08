@@ -1,12 +1,7 @@
 'use server';
 
-const API_BASE_URL = 'https://rose-app.elevate-bootcamp.cloud/api';
-export interface sendEmailVerificationRequest {
-  email: string;
-}
-
-export async function sendEmailVerification(data: sendEmailVerificationRequest) {
-  const res = await fetch(`${API_BASE_URL}/auth/send-email-verification`, {
+export async function sendEmailVerification(data: EmailProps) {
+  const res = await fetch(`${process.env.API_BASE_URL}/auth/send-email-verification`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -15,7 +10,7 @@ export async function sendEmailVerification(data: sendEmailVerificationRequest) 
   });
 
   const result = await res.json();
-
+  console.log(result);
   if (!res.ok) {
     throw new Error(result.message || 'Email verification failed');
   }

@@ -50,7 +50,7 @@ function ComboboxTrigger({ className, children, ...props }: ComboboxPrimitive.Tr
   return (
     <ComboboxPrimitive.Trigger
       className={cn(
-        'group flex h-12 w-full items-center justify-between gap-2 rounded-lg border border-border-soft bg-bg-plain px-4 py-2 text-sm transition-all outline-none',
+        'group flex h-12 w-full items-center justify-between gap-2 radius-xl border border-border-soft bg-bg-plain px-4 py-2 text-sm transition-all outline-none',
         'focus:ring-0',
         'data-placeholder:text-text-muted',
         'dark:data-placeholder:text-text-muted',

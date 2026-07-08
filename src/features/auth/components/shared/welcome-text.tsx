@@ -41,9 +41,13 @@ export default function WelcomeText() {
         text-4xl
         italic
         font-medium
-        mt-12
-        mb-10
+        mt-10
+        mb-6
+        pb-4
         transition-colors
+        border-b
+        border-border-muted
+
         ${resolvedTheme === 'dark' ? 'text-text-primary-faint' : 'text-text-primary'}
       `}
     >

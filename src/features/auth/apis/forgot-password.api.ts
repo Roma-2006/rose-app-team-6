@@ -1,9 +1,7 @@
 'use server';
 
-const API_BASE_URL = 'https://rose-app.elevate-bootcamp.cloud/api';
-
 export async function forgotPassword(email: string) {
-  const response = await fetch(`${API_BASE_URL}/auth/forgot-password`, {
+  const response = await fetch(`${process.env.API_BASE_URLL}/auth/forgot-password`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email }),

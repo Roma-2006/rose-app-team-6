@@ -1,14 +1,9 @@
 'use server';
 
-const API_BASE_URL = 'https://rose-app.elevate-bootcamp.cloud/api';
-
-export interface ConfirmEmailVerificationRequest {
-  email: string;
-  code: string;
-}
+import { ConfirmEmailVerificationRequest } from '../types/confirm-email-verification';
 
 export async function confirmEmailVerification(data: ConfirmEmailVerificationRequest) {
-  const response = await fetch(`${API_BASE_URL}/auth/confirm-email-verification`, {
+  const response = await fetch(`${process.env.API_BASE_URL}/auth/confirm-email-verification`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

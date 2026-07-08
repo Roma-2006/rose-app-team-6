@@ -1,0 +1,3 @@
+type EmailProps = {
+  email: string;
+};
