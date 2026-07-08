@@ -10,7 +10,7 @@ import * as z from 'zod';
 
 import { resetPassword } from '@/features/auth/apis/reset-password.api';
 
-import { resetPasswordSchema } from '@/features/auth/schemes/reset-password.schema';
+import { resetPasswordSchema } from '@/features/auth/schemas/reset-password.schema';
 
 export type ResetPasswordValues = z.infer<typeof resetPasswordSchema>;
 
@@ -47,16 +47,21 @@ export const useResetPasswordForm = () => {
         confirmPassword: data.confirmPassword,
       });
 
-      console.log('Server response:', res);
+      console.log('[reset-password] response:', res);
 
-      if (res.status === true || res.code === 0) {
+      const success =
+        res?.status === true || res?.code === 0 || res?.code === '0' || res?.success === true;
+
+      if (success) {
         toast.success(t('auth-forgotPw.step3.successToast'));
-        router.push('/login');
+        router.push(`/${locale}/(auth)/login`);
       } else {
-        toast.error(res.message || 'Failed to reset password');
+        toast.error(
+          res?.message || t('auth-forgotPw.step3.reset') + ` (debug: ${JSON.stringify(res)})`
+        );
       }
     } catch {
-      toast.error('Server connection error');
+      toast.error(t('auth-forgotPw.errors.somethingWentWrong'));
     } finally {
       setIsLoading(false);
     }

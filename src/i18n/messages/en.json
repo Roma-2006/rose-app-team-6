@@ -77,54 +77,30 @@
     "placeholder": "Enter your name..."
   },
   "custom-input": {
-    "default": {
-      "first-name": {
-        "label": "First name",
-        "placeholder": "Jonathan"
-      },
-      "last-name": {
-        "label": "Last name",
-        "placeholder": "Adrian"
-      },
-      "username": {
-        "label": "UserName",
-        "placeholder": "Jonathan"
-      }
-    },
-    "number": {
-      "label": "Number",
-      "placeholder": "0"
-    },
-    "search": {
-      "label": "Search",
-      "placeholder": "Search..."
-    },
-    "password": {
-      "password": {
-        "label": "Password",
-        "placeholder": "*********"
-      },
-      "confirm-Password": {
-        "label": "Confirm Password",
-        "placeholder": "*********"
-      }
-    },
-    "file": {
-      "label": "File",
-      "placeholder": " Upload file",
-      "btn-text": "Upload File",
-      "error-type": "File type not accepted."
-    },
-    "phone": {
-      "label": "Phone",
-      "placeholder": "1012345678"
-    },
-    "email": {
-      "label": "Email",
-      "placeholder": "user@example.com"
-    }
+    "default":{
+    "first-name" : { "label": "First name", "placeholder": "Jonathan" } , 
+    "last-name": {"label" :"Last name" , "placeholder" :"Adrian"}
+  
+  },
+    "number": { "label": "Number", "placeholder": "0" },
+    "search": { "label": "Search", "placeholder": "Search..." },
+"password": {
+  "label": "Password",
+  "placeholder": "*********"
+
+
+  },
+    "file": { "label": "File", 
+    "placeholder": " Upload file" ,
+    "btn-text": "Upload File",
+  "error-type": "File type not accepted."
+  
+  },
+    "phone": { "label": "Phone", "placeholder": "1012345678" },
+    "email": { "label": "Email", "placeholder": "user@example.com" }
   },
   "nice-to-have-you-here": "nice to have you here",
+
   "title": "Welcome to Rose App",
   "login": {
     "schema": {

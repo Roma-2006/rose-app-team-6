@@ -9,7 +9,7 @@ import { toast } from 'sonner';
 import * as z from 'zod';
 
 import { forgotPassword } from '@/features/auth/apis/forgot-password.api';
-import { forgotPasswordSchema } from '@/features/auth/schemes/forgot-password.schema';
+import { forgotPasswordSchema } from '@/features/auth/schemas/forgot-password.schema';
 
 export type ForgotPasswordValues = z.infer<typeof forgotPasswordSchema>;
 

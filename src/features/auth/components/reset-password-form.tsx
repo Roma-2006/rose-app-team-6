@@ -65,7 +65,7 @@ export const ResetPasswordForm = () => {
           type="submit"
           buttonVariant="text"
           variant="primary"
-          title={t('auth-forgotPw.step3.reset')}
+          title="auth-forgotPw.step3.reset"
           loading={isLoading}
           className="w-full h-12 mt-4"
         />

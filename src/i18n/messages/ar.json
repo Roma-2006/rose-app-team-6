@@ -2,110 +2,117 @@
   "HomePage": {
     "title": "مرحباً بكم في تطبيق روز"
   },
-   "button": {
+  "button": {
     "loading": "جاري التحميل...",
     "submit": "إرسال",
     "cancel": "إلغاء",
     "save": "حفظ",
     "delete": "حذف",
     "confirm": "تأكيد"
-   },
+  },
   "common": {
     "select": {
       "placeholder": "اختر خياراً",
       "noOptions": "لا توجد خيارات",
       "search": "بحث..."
     },
-    
     "textarea": {
       "charCount": "{current}/{max} حرف"
     }
   },
-   "auth-forgotPw": {
- 
-      "step1": {
-        "title": "نسيت كلمة المرور؟",
-        "subtitle": "لا تقلق، سنرسل لك التعليمات لمساعدتك في إعادة تعيينها.",
-        "emailLabel": "البريد الإلكتروني",
-        "emailPlaceholder": "user@example.com",
-        "emailRequired": "البريد الإلكتروني مطلوب",
-        "continue": "متابعة",
-        "footerText": "ليس لديك حساب بعد؟",
-        "registerLink": "أنشئ حساباً الآن!"
-      },
-    
-"step2": {
-  "title": "تم إرسال طلب إعادة التعيين",
-  "description": "إذا كان هناك حساب مرتبط بعنوان البريد الإلكتروني هذا، فقد أرسلنا رابطًا لإعادة تعيين كلمة المرور.",
-  "descriptionPrefix": "لقد أرسلنا رابط إعادة تعيين كلمة المرور إلى:",
-  "instruction1": "تحقق من صندوق الوارد.",
-  "instruction2": "تحقق من مجلد الرسائل غير المرغوب فيها (Spam).",
-  "instruction3": "تواصل معنا.",
-  "needHelp": "هل تحتاج إلى مساعدة؟",
-  "contactUs": "تواصل معنا",
-  "back": "رجوع",
-  "resend": "طلب رابط جديد",
-  "resending": "جارٍ طلب رابط جديد...",
-  "resendToast": "تم طلب رابط جديد لإعادة تعيين كلمة المرور",
-  "successToast": "تم إرسال تعليمات إعادة تعيين كلمة المرور"
-},
-
-
-
-      "step3": {
-        "title": "إنشاء كلمة مرور جديدة",
-        "subtitle": "قم بتعيين كلمة مرور قوية لتأمين حسابك.",
-        "passwordLabel": "كلمة المرور",
-        "confirmPasswordLabel": "تأكيد كلمة المرور",
-        "reset": "إعادة تعيين كلمة المرور",
-        "successToast": "تمت إعادة تعيين كلمة المرور بنجاح.",
-        "footerText": "تحتاج مساعدة؟",
-        "contactLink": "تواصل معنا"
-      },
+  "auth-forgotPw": {
+    "step1": {
+      "title": "نسيت كلمة المرور؟",
+      "subtitle": "لا تقلق، سنرسل لك التعليمات لمساعدتك في إعادة تعيينها.",
+      "emailLabel": "البريد الإلكتروني",
+      "emailPlaceholder": "user@example.com",
+      "emailRequired": "البريد الإلكتروني مطلوب",
+      "continue": "متابعة",
+      "footerText": "ليس لديك حساب بعد؟",
+      "registerLink": "أنشئ حساباً الآن!"
+    },
+    "step2": {
+      "title": "تم إرسال طلب إعادة التعيين",
+      "description": "إذا كان هناك حساب مرتبط بعنوان البريد الإلكتروني هذا، فقد أرسلنا رابطًا لإعادة تعيين كلمة المرور.",
+      "descriptionPrefix": "لقد أرسلنا رابط إعادة تعيين كلمة المرور إلى:",
+      "instruction1": "تحقق من صندوق الوارد.",
+      "instruction2": "تحقق من مجلد الرسائل غير المرغوب فيها (Spam).",
+      "instruction3": "تواصل معنا.",
+      "needHelp": "هل تحتاج إلى مساعدة؟",
+      "contactUs": "تواصل معنا",
+      "back": "رجوع",
+      "resend": "طلب رابط جديد",
+      "resending": "جارٍ طلب رابط جديد...",
+      "resendToast": "تم طلب رابط جديد لإعادة تعيين كلمة المرور",
+      "successToast": "تم إرسال تعليمات إعادة تعيين كلمة المرور"
+    },
+    "step3": {
+      "title": "إنشاء كلمة مرور جديدة",
+      "subtitle": "قم بتعيين كلمة مرور قوية لتأمين حسابك.",
+      "passwordLabel": "كلمة المرور",
+      "confirmPasswordLabel": "تأكيد كلمة المرور",
+      "reset": "إعادة تعيين كلمة المرور",
+      "successToast": "تمت إعادة تعيين كلمة المرور بنجاح.",
+      "footerText": "تحتاج مساعدة؟",
+      "contactLink": "تواصل معنا"
+    },
     "errors": {
-  "noAccount": "لم يتم العثور على حساب بهذا البريد الإلكتروني",
-  "fieldRequired": "هذا الحقل مطلوب",
-  "passwordInvalid": "يجب أن تتكون من 8 أحرف على الأقل، وتتضمن حرفاً كبيراً، حرفاً صغيراً، رقماً، ورمزاً خاصاً",
-  "passwordMatch": "كلمات المرور غير متطابقة",
-  "invalidEmail": "صيغة البريد الإلكتروني غير صحيحة"
-}
-    
+      "noAccount": "لم يتم العثور على حساب بهذا البريد الإلكتروني",
+      "fieldRequired": "هذا الحقل مطلوب",
+      "passwordInvalid": "يجب أن تتكون من 8 أحرف على الأقل، وتتضمن حرفاً كبيراً، حرفاً صغيراً، رقماً، ورمزاً خاصاً",
+      "passwordMatch": "كلمات المرور غير متطابقة",
+      "invalidEmail": "صيغة البريد الإلكتروني غير صحيحة"
+    }
   },
   "app-title": "تطبيق روز",
-    "auth": {
+  "auth": {
     "switchLang": "العربية",
-     "langLabel": "التحويل إلى الإنجليزية"
+    "langLabel": "التحويل إلى الإنجليزية"
   },
+  "title": "مرحبا بكم في تطبيق روز",
   "input-component": {
     "label": "الاسم بالكامل",
     "placeholder": "أدخل اسمك هنا..."
   },
-   "custom-input": {
-    "default":{
-      "first-name" : { "label": "الاسم الأول", "placeholder": "Jonathan" } , 
-      "last-name": {"label" :"الاسم الأخير" , "placeholder" :"Adrian"} ,
-      "username": {"label" :" اسم المسخدم" , "placeholder" :"Jonathan"}
-  },
-    "number": { "label": "الرقم", "placeholder": "0" },
-    "search": { "label": "بحث", "placeholder": "ابحث هنا..." },
+  "custom-input": {
+    "default": {
+      "first-name": {
+        "label": "الاسم الأول",
+        "placeholder": "Jonathan"
+      },
+      "last-name": {
+        "label": "الاسم الأخير",
+        "placeholder": "Adrian"
+      }
+    },
+    "number": {
+      "label": "الرقم",
+      "placeholder": "0"
+    },
+    "search": {
+      "label": "بحث",
+      "placeholder": "ابحث هنا..."
+    },
     "password": {
-        "password": {"label": "كلمة المرور", "placeholder": "*********" },
-        "confirm-Password": {"label": "تأكيد كلمة المرور", "placeholder": "*********" }
-  },
-    "file": { 
+      "label": "كلمة المرور",
+      "placeholder": "*********"
+    },
+    "file": {
       "label": "الملف",
-     "placeholder": "اختر ملف" ,
+      "placeholder": "اختر ملف",
       "btn-text": "رفع ملف",
       "error-type": "صيغة الملف غير مدعومة."
     },
-    "phone": { "label": "رقم الهاتف", "placeholder": "1012345678" },
-    "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" }
+    "phone": {
+      "label": "رقم الهاتف",
+      "placeholder": "1012345678"
+    },
+    "email": {
+      "label": "البريد الإلكتروني",
+      "placeholder": "user@example.com"
+    }
   },
   "nice-to-have-you-here": "جميل أنك هنا",
-
-
-  
-  
   "login": {
     "schema": {
       "username": {
@@ -115,21 +122,18 @@
       "password": {
         "invalid": "كلمة المرور غير صالحة",
         "required": "كلمة المرور مطلوبة",
-         "uppercase": "يجب أن تحتوي كلمة المرور على حرف كبير",
+        "uppercase": "يجب أن تحتوي كلمة المرور على حرف كبير",
         "lowercase": "يجب أن تحتوي كلمة المرور على حرف صغير",
         "number": "يجب أن تحتوي كلمة المرور على رقم",
         "special": "يجب أن تحتوي كلمة المرور على حرف خاص"
-      
       }
-    } ,
+    },
     "forgot-password": "نسيت كلمة المرور؟",
-     "no-account": "ليس لديك حساب؟",
-     "register" : "إنشاء حساب",
-
+    "noAccount": "ليس لديك حساب؟",
+    "register": "إنشاء حساب",
     "submit-btn": "تسجيل الدخول",
     "loading": "جاري الدخول...",
-     "remember-me": "تذكرني"
-
- 
+    "remember-me": "تذكرني"
   }
 }
+
