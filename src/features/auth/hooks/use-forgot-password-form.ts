@@ -13,54 +13,38 @@ import { forgotPasswordSchema } from '@/features/auth/schemas/forgot-password.sc
 
 export type ForgotPasswordValues = z.infer<typeof forgotPasswordSchema>;
 
-export const useForgotPasswordForm = () => {
+export const useForgotPasswordForm = (onSuccess?: (email: string) => void) => {
   const t = useTranslations();
   const locale = useLocale();
   const router = useRouter();
-
-  const isRtl = locale === 'ar';
-
   const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<ForgotPasswordValues>({
     resolver: zodResolver(forgotPasswordSchema),
-    defaultValues: {
-      email: '',
-    },
+    defaultValues: { email: '' },
   });
 
   const onSubmit: SubmitHandler<ForgotPasswordValues> = async (data) => {
-    console.log('Form Submitted with data:', data);
     setIsLoading(true);
     try {
       const res = await forgotPassword(data.email);
-      console.log('Full API Response:', res);
-
       const ok = Boolean(res?.status === true || res?.success === true || res?.code === 0);
 
       if (res && ok) {
-        console.log('Redirecting...');
-
-        sessionStorage.setItem('show-password-reset-toast', 'true');
-
-        router.push(`/${locale}/password-reset-sent?email=${encodeURIComponent(data.email)}`);
+        if (onSuccess) {
+          onSuccess(data.email);
+        } else {
+          router.push(`/${locale}/password-reset-sent?email=${encodeURIComponent(data.email)}`);
+        }
       } else {
-        console.error('API returned failure:', res);
         toast.error(res?.message || t('auth-forgotPw.errors.noAccount'));
       }
     } catch (err) {
-      console.error('Catch block error:', err);
-      toast.error(t('auth-forgotPw.step1.errors.somethingWentWrong'));
+      toast.error(t('auth-forgotPw.errors.somethingWentWrong'));
     } finally {
       setIsLoading(false);
     }
   };
 
-  return {
-    t,
-    isRtl,
-    isLoading,
-    ...form,
-    onSubmit,
-  };
+  return { t, isRtl: locale === 'ar', isLoading, ...form, onSubmit };
 };
