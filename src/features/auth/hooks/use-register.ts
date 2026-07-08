@@ -24,6 +24,7 @@ export default function useRegister() {
     onSuccess: (data, variables) => {
       console.log(data, 'successRegister');
       sessionStorage.removeItem(`register-user-info-${variables.email}`);
+      sessionStorage.removeItem('register-error');
       toast.success(t('success'));
       router.push('/login');
     },

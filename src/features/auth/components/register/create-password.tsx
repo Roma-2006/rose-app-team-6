@@ -2,8 +2,8 @@
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import RegisterSubtitle from './register-subtitle';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { creatPasswordSchema } from '../../schemas/creat-password.schema';
-import { TCreatPasswordFields } from '../../types/register';
+import { createPasswordSchema } from '../../schemas/create-password.schema';
+import { TCreatePasswordFields } from '../../types/register';
 import useRegister from '../../hooks/use-register';
 import CustomInput from '@/shared/components/custom-input';
 import { useTranslations } from 'next-intl';
@@ -29,8 +29,8 @@ export default function CreatePassword() {
   const confirmPasswordError = errors?.find((err) => err.path === 'confirmPassword')?.message;
   console.log(generalError);
   //form
-  const form = useForm<TCreatPasswordFields>({
-    resolver: zodResolver(creatPasswordSchema),
+  const form = useForm<TCreatePasswordFields>({
+    resolver: zodResolver(createPasswordSchema),
     mode: 'onChange',
     defaultValues: {
       password: '',
@@ -38,7 +38,7 @@ export default function CreatePassword() {
     },
   });
   //function
-  const onSubmit: SubmitHandler<TCreatPasswordFields> = (values) => {
+  const onSubmit: SubmitHandler<TCreatePasswordFields> = (values) => {
     console.log({ ...userInfo, ...values });
     register({ ...userInfo, email: userInfo.email?.toLowerCase(), ...values });
   };

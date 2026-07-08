@@ -1,6 +1,6 @@
-import { creatPasswordSchema } from '../schemas/creat-password.schema';
 import { UserInfoSchema } from '../schemas/user-info.schema';
 import { TUser } from './user';
+import { createPasswordSchema } from './../schemas/create-password.schema';
 
 export type TUserInfoFields = z.infer<typeof UserInfoSchema>;
 
@@ -19,4 +19,4 @@ export type RegisterSubtitleProps = {
 };
 
 //creatPassword
-export type TCreatPasswordFields = z.infer<typeof creatPasswordSchema>;
+export type TCreatePasswordFields = z.infer<typeof createPasswordSchema>;
