@@ -9,7 +9,6 @@ import { toast } from 'sonner';
 import * as z from 'zod';
 
 import { resetPassword } from '@/features/auth/apis/reset-password.api';
-
 import { resetPasswordSchema } from '@/features/auth/schemas/reset-password.schema';
 
 export type ResetPasswordValues = z.infer<typeof resetPasswordSchema>;
@@ -34,34 +33,23 @@ export const useResetPasswordForm = () => {
   });
 
   const onSubmit: SubmitHandler<ResetPasswordValues> = async (data) => {
-    if (!token) {
-      toast.error('Token is missing! Please open the link from your email correctly.');
-      return;
-    }
-
     setIsLoading(true);
+
     try {
       const res = await resetPassword({
-        token: token,
+        token,
         newPassword: data.newPassword,
         confirmPassword: data.confirmPassword,
       });
 
-      console.log('[reset-password] response:', res);
-
-      const success =
-        res?.status === true || res?.code === 0 || res?.code === '0' || res?.success === true;
-
-      if (success) {
-        toast.success(t('auth-forgotPw.step3.successToast'));
-        router.push(`/${locale}/(auth)/login`);
+      if (res.status) {
+        toast.success(t('auth.auth-forgotPw.step3.successToast'));
+        router.push('/login');
       } else {
-        toast.error(
-          res?.message || t('auth-forgotPw.step3.reset') + ` (debug: ${JSON.stringify(res)})`
-        );
+        toast.error(res.message || t('auth.auth-forgotPw.step3.resetFailed'));
       }
     } catch {
-      toast.error(t('auth-forgotPw.errors.somethingWentWrong'));
+      toast.error(t('auth.auth-forgotPw.errors.somethingWentWrong'));
     } finally {
       setIsLoading(false);
     }

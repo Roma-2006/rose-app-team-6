@@ -1,20 +1,19 @@
-export async function resetPassword(data: {
-  token: string;
-  newPassword: string;
-  confirmPassword: string;
-}) {
-  const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+'use server';
 
-  const finalUrl = `${API_BASE_URL}/auth/reset-password`;
-
-  const response = await fetch(finalUrl, {
+export async function resetPassword(data: ResetPasswordRequest) {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/reset-password`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Accept: 'application/json',
     },
     body: JSON.stringify(data),
   });
 
-  return await response.json();
+  const result = await response.json();
+
+  if (!response.ok) {
+    throw new Error(result.message || 'Reset password failed');
+  }
+
+  return result;
 }

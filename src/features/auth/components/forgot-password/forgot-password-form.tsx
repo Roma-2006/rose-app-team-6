@@ -1,6 +1,6 @@
 'use client';
 import { Controller } from 'react-hook-form';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { useForgotPasswordForm } from '@/features/auth/hooks/use-forgot-password-form';
 import { Button } from '@/shared/components/ui/button';
 import CustomInput from '@/shared/components/custom-input';
@@ -15,7 +15,7 @@ export const ForgotPasswordForm = ({ onSuccess }: ForgotPasswordFormProps) => {
   return (
     <div className="w-full max-w-md mx-auto">
       <div className="mb-2">
-        <h1 className="text-[28px] font-bold text-text-plain dark:text-text-plain mb-2">
+        <h1 className="text-3xl font-bold text-text-plain dark:text-text-plain mb-2">
           {t('auth.auth-forgotPw.step1.title')}
         </h1>
         <p className="text-text-plain text-sm font-normal">
@@ -25,7 +25,6 @@ export const ForgotPasswordForm = ({ onSuccess }: ForgotPasswordFormProps) => {
 
       <hr className="border-0 border-t border-border-muted dark:border-border-soft w-full" />
 
-      {/* استخدمي onSubmit القادمة من الـ hook مباشرة */}
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 mt-4">
         <div className="space-y-2">
           <Controller

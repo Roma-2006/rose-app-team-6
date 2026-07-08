@@ -12,10 +12,10 @@ export const ResetPasswordForm = () => {
   return (
     <div className="w-full">
       <div className="mb-8">
-        <h1 className="text-[28px] font-bold text-text-plain dark:text-text-plain mb-2">
+        <h1 className="text-3xl font-bold text-text-plain dark:text-text-plain mb-2">
           {t('auth.auth-forgotPw.step3.title')}
         </h1>
-        <p className="text-text-plain dark:text-text-plain text-sm font-normal leading-relaxed">
+        <p className="text-text-plain dark:text-text-plain text-sm font-normal ">
           {t('auth.auth-forgotPw.step3.subtitle')}
         </p>
       </div>

@@ -28,19 +28,18 @@ export const useForgotPasswordForm = (onSuccess?: (email: string) => void) => {
     setIsLoading(true);
     try {
       const res = await forgotPassword(data.email);
-      const ok = Boolean(res?.status === true || res?.success === true || res?.code === 0);
 
-      if (res && ok) {
+      if (res.status) {
         if (onSuccess) {
           onSuccess(data.email);
         } else {
           router.push(`/${locale}/password-reset-sent?email=${encodeURIComponent(data.email)}`);
         }
       } else {
-        toast.error(res?.message || t('auth-forgotPw.errors.noAccount'));
+        toast.error(res?.message || t('auth.auth-forgotPw.errors.noAccount'));
       }
     } catch (err) {
-      toast.error(t('auth-forgotPw.errors.somethingWentWrong'));
+      toast.error(t('auth.auth-forgotPw.errors.somethingWentWrong'));
     } finally {
       setIsLoading(false);
     }
