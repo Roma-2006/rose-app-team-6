@@ -2,13 +2,13 @@
 
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { useState } from 'react';
-import { TLoginData } from '../types/login';
+import { TLoginData } from '../types/auth';
 import { useRouter } from '@/i18n/navigation';
 
 export default function useLogin() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const { data: session, status, update } = useSession();
+  const { data: session, status } = useSession();
   const router = useRouter();
 
   const handleLogin = async (data: TLoginData) => {
@@ -31,11 +31,9 @@ export default function useLogin() {
       if (result?.ok) {
         const callbackUrl = new URLSearchParams(window.location.search).get('callbackUrl') || '/';
 
-        await update();
+        router.refresh();
 
         router.push(callbackUrl);
-
-        router.refresh();
       }
     } catch (error1) {
       setError((error1 as Error).message);
@@ -53,7 +51,7 @@ export default function useLogin() {
 
       router.refresh();
     } catch (err) {
-      setError((err as Error).message);
+      setError(err instanceof Error ? err.message : 'An unknown error occurred');
     } finally {
       setIsLoading(false);
     }

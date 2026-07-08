@@ -17,7 +17,7 @@ export default function LoginForm() {
   const tLogin = useTranslations('login');
   const tInput = useTranslations('custom-input');
   const form = useForm<TLoginData>({
-    resolver: zodResolver(LOGIN_SCHEMA((key) => tLogin(key))),
+    resolver: zodResolver(LOGIN_SCHEMA(tLogin)),
     defaultValues: {
       username: '',
       password: '',
@@ -36,10 +36,7 @@ export default function LoginForm() {
       {status === 'authenticated' && session && null}
 
       {status !== 'authenticated' && (
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="w-full max-w-96  mb-14 flex flex-col"
-        >
+        <form onSubmit={form.handleSubmit(onSubmit)} className="w-full h-full mb-14 flex flex-col">
           <FieldGroup>
             <Controller
               name="username"

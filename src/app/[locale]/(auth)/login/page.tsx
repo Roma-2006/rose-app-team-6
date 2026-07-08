@@ -4,9 +4,8 @@ import { getTranslations } from 'next-intl/server';
 
 export default async function LoginPage() {
   const tLogin = await getTranslations('login');
-
   return (
-    <main>
+    <main className="flex flex-col items-center justify-center max-h-95.5 max-w-102">
       <LoginForm />
 
       <div className=" flex justify-center w-full max-w-96 gap-1">

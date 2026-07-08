@@ -5,7 +5,15 @@ import { LoginResponse, TLoginData } from '../types/auth';
 import { API_ENDPOINTS } from '../constants/endpoints';
 
 export const login = async (loginFields: TLoginData): Promise<Response<LoginResponse>> => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${API_ENDPOINTS.login}`, {
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'https://elevate-bootcamp.cloud';
+  const cleanUrl = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
+  const endpoint = API_ENDPOINTS.login.startsWith('/')
+    ? API_ENDPOINTS.login
+    : `/${API_ENDPOINTS.login}`;
+  const finalUrl = `${cleanUrl}${endpoint}`;
+
+  const response = await fetch(`${finalUrl}`, {
+    // const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${API_ENDPOINTS.login}`, {
     method: 'POST',
     body: JSON.stringify(loginFields),
     headers: {
