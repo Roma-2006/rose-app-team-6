@@ -91,6 +91,7 @@ export function OtpForm() {
 
   return (
     <div className="mx-auto w-full max-w-md">
+      <hr className=" mb-7 border-border-muted " />
       {/* Stepper */}
       <Stepper currentStep={2} />
 
@@ -98,7 +99,7 @@ export function OtpForm() {
       <div className="mb-3">
         <h1 className="text-[30px] font-bold text-zinc-800">{t('auth.auth-register.title')}</h1>
 
-        <h2 className="text-[20px] font-bold text-text-plain">
+        <h2 className="text-[20px] font-bold text-text-primary">
           {t('auth.auth-register.otp.subtitle-1')}
         </h2>
 
@@ -113,7 +114,7 @@ export function OtpForm() {
         </p>
       </div>
 
-      <hr className="border-border-muted" />
+      <hr className=" mb-7 border-border-muted " />
 
       {/* OTP */}
       <div className="my-10 flex flex-col items-center">
@@ -132,7 +133,7 @@ export function OtpForm() {
       </div>
 
       {/* Resend */}
-      <div className="mb-10 flex justify-end">
+      <div className="mb-2 flex justify-end">
         <OTPSection onResend={handleResendEmail} />
       </div>
 
@@ -147,7 +148,7 @@ export function OtpForm() {
         disabled={loading}
       />
 
-      <hr className="my-8 border-border-muted" />
+      <hr className="mb-7  border-border-muted" />
 
       {/* Footer */}
       <div className="text-center text-sm">

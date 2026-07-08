@@ -94,7 +94,7 @@
         "emailPlaceholder": "user@example.com",
         "continue": "Continue",
         "footerText": "Already have an account?",
-        "registerLink": "Login!"
+        "registerLink": "Login"
       },
       "otp": {
         "subtitle-1": "Enter Verification Code",

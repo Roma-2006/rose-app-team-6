@@ -12,7 +12,7 @@ import { useState } from 'react';
 import * as z from 'zod';
 import Link from 'next/link';
 import { useRouter } from '@/i18n/navigation';
-import { useRegisterEmail } from '../../hooks/useRegisterEmail';
+import { useRegisterEmail } from '../hooks/useRegisterEmail';
 
 export const RegisterEmailForm = () => {
   const t = useTranslations('auth.auth-register');
