@@ -13,6 +13,7 @@ import * as z from 'zod';
 import Link from 'next/link';
 import { useRouter } from '@/i18n/navigation';
 import { useRegisterEmail } from '../../hooks/useRegisterEmail';
+import { advanceRegistrationStep } from '../../lib/registeration-progress';
 
 export const RegisterEmailForm = () => {
   const t = useTranslations();
@@ -41,7 +42,11 @@ export const RegisterEmailForm = () => {
       const res = await registerEmailMutation.mutateAsync(data.email);
 
       if (res?.status) {
-        router.push(`/register/otp?email=${encodeURIComponent(data.email)}`);
+        await advanceRegistrationStep(data.email, 'otp');
+        router.push({
+          pathname: '/register/otp',
+          query: { email: data.email },
+        });
       }
     } catch (err) {
       type ApiErrorLike = {

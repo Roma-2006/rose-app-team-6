@@ -1,4 +1,6 @@
 'use server';
+import { advanceRegistrationStep } from '@/features/auth/lib/registeration-progress';
+
 export interface ConfirmEmailVerificationRequest {
   email: string;
   code: string;
@@ -21,6 +23,8 @@ export async function confirmEmailVerification(data: ConfirmEmailVerificationReq
   if (!response.ok) {
     throw new Error(result.message || 'OTP verification failed');
   }
+
+  await advanceRegistrationStep(data.email, 'user-info');
 
   return result;
 }
