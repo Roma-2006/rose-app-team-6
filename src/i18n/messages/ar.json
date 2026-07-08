@@ -1,11 +1,5 @@
 {
-<<<<<<< HEAD
-  "HomePage": {
-    "title": "مرحباً بكم في تطبيق روز"
-  },
-=======
   "app-title": "تطبيق روز",
->>>>>>> 52928f787b361bc9baa3d4c9bac14dc5b41b12ef
   "button": {
     "loading": "جاري التحميل...",
     "submit": "إرسال",

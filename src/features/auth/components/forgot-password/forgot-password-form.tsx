@@ -32,6 +32,7 @@ export const ForgotPasswordForm = () => {
             render={({ field, fieldState }) => (
               <>
                 <CustomInput
+                  variant={'number'}
                   id="email"
                   errorMessage={fieldState.error?.message}
                   error={fieldState.invalid}
