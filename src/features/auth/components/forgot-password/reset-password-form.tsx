@@ -28,13 +28,15 @@ export const ResetPasswordForm = () => {
           render={({ field, fieldState }) => (
             <CustomInput
               variant="password"
-              label={t('auth-forgotPw.step3.passwordLabel')}
+              label={t('auth.auth-forgotPw.step3.passwordLabel')}
               placeholder="••••••••"
               id="newPassword"
               isRtl={isRtl}
               error={fieldState.invalid}
               errorMessage={
-                fieldState.error ? t(`auth-forgotPw.errors.${fieldState.error.message}`) : undefined
+                fieldState.error
+                  ? t(`auth.auth-forgotPw.errors.${fieldState.error.message}`)
+                  : undefined
               }
               {...field}
             />
@@ -48,13 +50,15 @@ export const ResetPasswordForm = () => {
           render={({ field, fieldState }) => (
             <CustomInput
               variant="password"
-              label={t('auth-forgotPw.step3.confirmPasswordLabel')}
+              label={t('auth.auth-forgotPw.step3.confirmPasswordLabel')}
               placeholder="••••••••"
               id="confirmPassword"
               isRtl={isRtl}
               error={fieldState.invalid}
               errorMessage={
-                fieldState.error ? t(`auth-forgotPw.errors.${fieldState.error.message}`) : undefined
+                fieldState.error
+                  ? t(`auth.auth-forgotPw.errors.${fieldState.error.message}`)
+                  : undefined
               }
               {...field}
             />
@@ -65,7 +69,7 @@ export const ResetPasswordForm = () => {
           type="submit"
           buttonVariant="text"
           variant="primary"
-          title="auth-forgotPw.step3.reset"
+          title="auth.auth-forgotPw.step3.reset"
           loading={isLoading}
           className="w-full h-12 mt-4"
         />
