@@ -13,6 +13,7 @@ import * as z from 'zod';
 import Link from 'next/link';
 import { useRouter } from '@/i18n/navigation';
 import { useRegisterEmail } from '../../hooks/useRegisterEmail';
+import { advanceRegistrationStep } from '../../lib/registeration-progress';
 
 export const RegisterEmailForm = () => {
   const t = useTranslations('auth.auth-register');
@@ -38,9 +39,11 @@ export const RegisterEmailForm = () => {
     try {
       const res = await registerEmailMutation.mutateAsync(data.email);
       if (res?.status) {
-        await saveRegisterEmail(data.email);
-
-        router.push('/register/otp');
+        await advanceRegistrationStep(data.email, 'otp');
+        router.push({
+          pathname: '/register/otp',
+          query: { email: data.email },
+        });
       }
     } catch (err) {
       type ApiErrorLike = {

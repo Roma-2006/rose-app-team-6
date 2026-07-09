@@ -1,5 +1,5 @@
 import { OtpForm } from '@/features/auth/components/register/otp-form';
-import { RegisterEmailForm } from '@/features/auth/components/register/register-email-from';
+import { RegisterEmailForm } from '@/features/auth/components/register/register-email-form';
 import CreatePassword from '@/features/auth/components/register/create-password';
 import UserInfoForm from '@/features/auth/components/register/user-info.form';
 import { cookies } from 'next/headers';

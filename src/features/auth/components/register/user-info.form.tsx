@@ -51,7 +51,7 @@ export default function UserInfoForm({ email }: EmailProps) {
     },
   });
   //function
-  const onSubmit: SubmitHandler<TUserInfoFields> = (values) => {
+  const onSubmit: SubmitHandler<TUserInfoFields> = async (values) => {
     if (!email) return;
 
     router.push(`/register/create-password`);
