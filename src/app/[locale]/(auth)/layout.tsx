@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import ThemeSeparator from '@/features/auth/components/theme-separator';
-import WelcomeText from '@/features/auth/components/welcome-text';
+import ThemeSeparator from '@/features/auth/components/shared/theme-separator';
+import WelcomeText from '@/features/auth/components/shared/welcome-text';
 import { LanguageSwitcherAuth } from '@/features/auth/components/language-switcher-auth';
 export default function AuthLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
@@ -14,10 +14,10 @@ export default function AuthLayout({ children }: Readonly<{ children: React.Reac
           </div>
           {/* Top Separator */}
           <ThemeSeparator />
-          {/* ---------------------------------------------------- */}
+
           {/*welcome text*/}
           <WelcomeText />
-          {/* ---------------------------------------------------- */}
+
           <div className=" flex items-center">{children}</div>
           {/* Bottom Separator */}
           <ThemeSeparator />
