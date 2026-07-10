@@ -56,8 +56,8 @@ export default function UserInfoForm() {
   });
   //function
   const onSubmit: SubmitHandler<TUserInfoFields> = (values) => {
+    console.log(values, 'v');
     if (!email) return;
-    console.log(values);
     const userInfo = { ...values, email: email, gender: values.gender.toUpperCase() };
     console.log(userInfo, 'userInfo');
     sessionStorage.setItem(`register-user-info-${email}`, JSON.stringify(userInfo));
@@ -77,6 +77,7 @@ export default function UserInfoForm() {
           ? data.gender.charAt(0).toUpperCase() + data.gender.slice(1).toLowerCase()
           : '',
       });
+      form.trigger();
     }
     // const storedError = sessionStorage.getItem('register-error');
     // if (storedError && storedError !== 'undefined') {
@@ -199,8 +200,7 @@ export default function UserInfoForm() {
           rightIcon={isRtl ? <ArrowLeft /> : <ArrowRight />}
           buttonVariant="text"
           type="submit"
-          // loading={isPending}
-          // disabled={isPending || !form.formState.isValid}
+          disabled={(form.formState.isSubmitted && !form.formState.isValid) || !email}
         />
         <AuthFooter
           question="auth-register.need-help"
