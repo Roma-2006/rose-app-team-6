@@ -53,9 +53,6 @@ export function OtpForm({ email }: EmailProps) {
       await saveRegisterEmail(email);
 
       router.push('/register/user-info');
-      console.log(router);
-
-      console.log('After push');
     } catch (err) {
       setError('otp', {
         type: 'server',

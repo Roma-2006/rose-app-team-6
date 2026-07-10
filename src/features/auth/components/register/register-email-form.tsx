@@ -38,11 +38,13 @@ export const RegisterEmailForm = () => {
     setIsLoading(true);
     try {
       const res = await registerEmailMutation.mutateAsync(data.email);
+
       if (res?.status) {
         await advanceRegistrationStep(data.email, 'otp');
+        await saveRegisterEmail(data.email);
+
         router.push({
           pathname: '/register/otp',
-          query: { email: data.email },
         });
       }
     } catch (err) {

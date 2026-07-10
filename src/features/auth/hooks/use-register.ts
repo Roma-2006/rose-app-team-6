@@ -17,12 +17,11 @@ export default function useRegister() {
         },
       });
       const payload = await response.json();
-      console.log(payload);
+
       if (payload && !payload.status) throw payload.errors ? payload.errors : payload.message;
       return payload;
     },
     onSuccess: (data, variables) => {
-      console.log(data, 'successRegister');
       sessionStorage.removeItem(`register-user-info-${variables.email}`);
       sessionStorage.removeItem('register-error');
       toast.success(t('success'));
@@ -41,7 +40,7 @@ export default function useRegister() {
             router.push(`/register/user-info?email=${encodeURIComponent(variables.email)}`);
           }
         }
-        console.log(data, 'errorRegister');
+
         sessionStorage.setItem('register-error', JSON.stringify(data));
       }
     },

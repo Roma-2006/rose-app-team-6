@@ -12,7 +12,7 @@ export const register = async (fields: TRegisterFields) => {
     },
   });
   const payload: Response<TRegisterResponse> = await response.json();
-  console.log(payload);
+
   if (payload.status && payload.payload?.token) {
     const cookiesStore = await cookies();
     cookiesStore.set('token', payload.payload.token, {

@@ -8,6 +8,7 @@ export default async function RegisterPage(props: RegisterPageProps) {
   const resolvedParams = 'then' in props.params ? await props.params : props.params;
 
   const cookieStore = await cookies();
+
   const email = cookieStore.get('register-email')?.value ?? '';
 
   const steps = resolvedParams?.register || [];

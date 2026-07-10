@@ -10,7 +10,7 @@ export async function sendEmailVerification(data: EmailProps) {
   });
 
   const result = await res.json();
-  console.log(result);
+
   if (!res.ok) {
     throw new Error(result.message || 'Email verification failed');
   }
