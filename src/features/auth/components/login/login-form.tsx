@@ -92,15 +92,11 @@ export default function LoginForm() {
           <Controller
             name="rememberMe"
             control={form.control}
-            render={({ field }) => (
+            render={({ field, fieldState }) => (
               <BaseCheckbox
-                onChange={(isChecked: boolean) => {
-                  if (field.value !== isChecked) {
-                    setTimeout(() => {
-                      field.onChange(isChecked);
-                    }, 0);
-                  }
-                }}
+                value={field.value}
+                onChange={field.onChange}
+                error={fieldState.error?.message}
                 list={[{ id: 'remember-me', label: tLogin('remember-me') }]}
               />
             )}

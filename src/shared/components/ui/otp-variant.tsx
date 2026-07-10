@@ -117,7 +117,7 @@ export default function OTPVariant({
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         containerClassName={cn(
-          'flex items-center gap-2 has-disabled:opacity-50 w-full justify-between',
+          'flex items-center gap-2 has-disabled:opacity-50 w-full justify-center',
           containerClassName
         )}
         className={cn(
@@ -127,7 +127,7 @@ export default function OTPVariant({
         {...props}
         render={({ slots }: { slots: SlotProps[] }) => {
           return (
-            <div className="flex items-center gap-1.5 w-full justify-between relative z-0">
+            <div className="flex items-center gap-2 w-full justify-center relative z-0">
               {slots.map((slot, index) => {
                 const isHovered = hoveredIndex === index;
                 const showStaticHover = isHovered && index !== activeIndex;
