@@ -29,10 +29,15 @@ export default function useLogin() {
       }
 
       if (result?.ok) {
-        const callbackUrl = new URLSearchParams(window.location.search).get('callbackUrl') || '/';
+        let callbackUrl = new URLSearchParams(window.location.search).get('callbackUrl') || '/';
+
+        // Strip the localized prefix (e.g., '/en/', '/ar/') if it exists at the start of the string
+        // This prevents the localized router from generating paths like '/en/en/dashboard'
+        if (callbackUrl.match(/^\/[a-z]{2}(\/|$)/)) {
+          callbackUrl = callbackUrl.replace(/^\/[a-z]{2}/, '') || '/';
+        }
 
         router.refresh();
-
         router.push(callbackUrl);
       }
     } catch (error1) {

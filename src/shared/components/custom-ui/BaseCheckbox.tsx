@@ -11,7 +11,6 @@ import {
 } from '@/shared/components/ui/field';
 import { Label } from '@/shared/components/ui/label';
 import { TBaseCheckboxProps } from '@/shared/types/base-checkbox';
-import { useEffect, useState } from 'react';
 
 export function BaseCheckbox({ list, error, value, onChange }: TBaseCheckboxProps) {
   // State to manage selected checkboxes
@@ -32,14 +31,6 @@ export function BaseCheckbox({ list, error, value, onChange }: TBaseCheckboxProp
       onChange(updatedValue);
     }
   };
-  // const toggle = (id: string) => {
-  //   setSelected((prev) => {
-  //     const isChecked = prev.includes(id);
-  //     const updated = isChecked ? prev.filter((i) => i !== id) : [...prev, id];
-  //     onChange(!isChecked);
-  //     return updated;
-  //   });
-  // };
 
   return (
     <div>

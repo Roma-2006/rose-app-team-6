@@ -22,7 +22,6 @@
       "charCount": "{current}/{max} حرف"
     }
   },
-  "app-title": "تطبيق روز",
 
   "title": "مرحبا بك في تطبيق روز",
   "auth": {
@@ -159,7 +158,7 @@
     "default": {
       "first-name": { "label": "الاسم الأول", "placeholder": "Jonathan" },
       "last-name": { "label": "الاسم الأخير", "placeholder": "Adrian" },
-      "user-name": { "label": " اسم المسخدم", "placeholder": "Jonathan" }
+      "username": { "label": " اسم المسخدم", "placeholder": "Jonathan" }
     },
     "number": { "label": "الرقم", "placeholder": "0" },
     "search": { "label": "بحث", "placeholder": "ابحث هنا..." },
@@ -176,7 +175,6 @@
     "phone": { "label": "رقم الهاتف", "placeholder": "1012345678" },
     "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" }
   },
-  "nice-to-have-you-here": "جميل أنك هنا",
   "login": {
     "username": {
       "invalid": " اسم المستخدم غير صالح",
@@ -194,6 +192,8 @@
     "loading": "جاري الدخول...",
     "remember-me": "تذكرني"
   },
+    "nice-to-have-you-here": "جميل أنك هنا" ,
+
   "auth": {
     "switchLang": "العربية",
     "langLabel": "التحويل إلى الإنجليزية",
@@ -262,7 +262,5 @@
       "contact": "تواصل معنا",
       "toast-description": "تم إرسال رمز التحقق الجديد إلى بريدك الإلكتروني"
     }
-  },
-  "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" },
-  "nice-to-have-you-here": "جميل أنك هنا"
-}
+  }}
+
