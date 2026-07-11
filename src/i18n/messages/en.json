@@ -180,7 +180,8 @@
       "invalid": "Incorrect Password",
       "required": "Password is required"
     },
-    "forgot-password": "Forgot Password ?",
+    "invalidCredentials" : "Invalid username or password",
+    "forgot-password": "Forgot Password?",
     "no-account": "Don't have an account?",
     "register": "Create one now!",
     "submit-btn": "Login",
