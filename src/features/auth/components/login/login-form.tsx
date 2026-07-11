@@ -33,8 +33,6 @@ export default function LoginForm() {
 
   return (
     <>
-      {status === 'authenticated' && session && null}
-
       {status !== 'authenticated' && (
         <form onSubmit={form.handleSubmit(onSubmit)} className="w-full h-full mb-14 flex flex-col">
           <FieldGroup>
@@ -80,7 +78,7 @@ export default function LoginForm() {
               />
 
               <div className="flex justify-end mb-2.5">
-                <Link href="/forget-password" className="text-sm font-semibold text-text-primary ">
+                <Link href="forgot-password" className="text-sm font-semibold text-text-primary ">
                   {tLogin('forgot-password')}
                 </Link>
               </div>

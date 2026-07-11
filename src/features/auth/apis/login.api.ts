@@ -4,7 +4,6 @@ import { Response } from '@/shared/types/api';
 import { LoginResponse, TLoginData } from '../types/auth';
 import { API_ENDPOINTS } from '../constants/endpoints';
 
-// الفحص في جذر الملف يضمن إيقاف النظام فوراً عند التشغيل أو البناء بدلاً من الفشل الصامت
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 if (!baseUrl) {
   throw new Error(
@@ -12,17 +11,15 @@ if (!baseUrl) {
   );
 }
 
-export const login = async (loginFields: TLoginData): Promise<Response<LoginResponse>> => {
-  // 1. تنظيف نهاية الـ baseUrl من أي سلاش زائدة (ينتج عنها: https://elevate-bootcamp.cloud)
+type TLoginPayload = Omit<TLoginData, 'rememberMe'>;
+
+export const login = async (loginFields: TLoginPayload): Promise<Response<LoginResponse>> => {
   const cleanUrl = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
 
-  // 2. التأكد من وجود سلاش في بداية الـ endpoint (ينتج عنها: /auth/login)
   const endpoint = API_ENDPOINTS.login.startsWith('/')
     ? API_ENDPOINTS.login
     : `/${API_ENDPOINTS.login}`;
 
-  // 3. دمج الرابط النهائي بشكل سليم تماماً ليصبح:
-  // https://elevate-bootcamp.cloud/auth/login
   const finalUrl = `${cleanUrl}${endpoint}`;
 
   const response = await fetch(finalUrl, {
