@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-  ],
+, "src/app/[locale]/(auth)/register/page.tsxc"  ],
   "exclude": ["node_modules"]
 }
