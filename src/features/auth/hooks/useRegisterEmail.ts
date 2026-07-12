@@ -1,10 +1,10 @@
 'use client';
 
 import { useMutation } from '@tanstack/react-query';
-import { registerEmail } from '@/features/auth/apis/register-email.api';
+import { sendEmailVerification } from '@/features/auth/apis/send-email-verification.api';
 
 export function useRegisterEmail() {
   return useMutation({
-    mutationFn: (email: string) => registerEmail(email),
+    mutationFn: (email: string) => sendEmailVerification({ email }),
   });
 }

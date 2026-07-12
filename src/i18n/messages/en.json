@@ -102,6 +102,7 @@
         "subtitle-1": "Enter Verification Code",
         "subtitle-2": "We have sent a 6-digit code to {email}",
         "resend": "Send a new code",
+         "resend-2": "resend",
         "resendTimer": "Resend in {s}s",
         "invalid": "Invalid OTP code",
         "expired": "Code expired. Please request a new one.",
@@ -138,16 +139,7 @@
         "email-in-use":"Email already in use",
         "success":"Account created successfully",
         "have-account": "Already have an account?",
-        "login": "Login",
-        "errors":{
-          "password-min-length": "Password must be at least 8 characters.",
-          "password-uppercase": "Password must contain at least one uppercase letter.",
-          "password-lowercase": "Password must contain at least one lowercase letter.",
-          "password-number": "Password must contain at least one number.",
-          "password-special": "Password must contain at least one special character.",
-          "confirm-password": "Confirm Password is required.",
-          "passwords-do-not-match": "Passwords do not match."
-        }
+        "login": "Login"
       },
       "errors": {
         "noAccount": "Please enter a valid email address"

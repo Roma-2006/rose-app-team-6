@@ -1,3 +1,4 @@
-interface OTPSectionProps {
+type OTPSectionProps = {
   onResend: () => Promise<boolean>;
-}
+  onDisableVerify: () => void;
+};

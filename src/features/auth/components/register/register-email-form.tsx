@@ -7,12 +7,13 @@ import { RegisterEmailSchema } from '@/features/auth/schemas/register-email.sche
 
 import { Button } from '@/shared/components/ui/button';
 import CustomInput from '@/shared/components/custom-input';
-import ErrorAlert from '@/shared/components/error-alert';
+import { saveRegisterEmail } from '../../actions/register-step.action';
 import { useState } from 'react';
 import * as z from 'zod';
 import Link from 'next/link';
 import { useRouter } from '@/i18n/navigation';
-import { useRegisterEmail } from '../hooks/useRegisterEmail';
+import { useRegisterEmail } from '../../hooks/useRegisterEmail';
+import { advanceRegistrationStep } from '../../lib/registeration-progress';
 
 export const RegisterEmailForm = () => {
   const t = useTranslations('auth.auth-register');
@@ -27,7 +28,7 @@ export const RegisterEmailForm = () => {
   const { control, handleSubmit, setError } = useForm<RegisterEmailValues>({
     resolver: zodResolver(RegisterEmailSchema),
     mode: 'onTouched',
-    reValidateMode: 'onTouched',
+    reValidateMode: 'onChange',
     defaultValues: {
       email: '',
     },
@@ -39,7 +40,12 @@ export const RegisterEmailForm = () => {
       const res = await registerEmailMutation.mutateAsync(data.email);
 
       if (res?.status) {
-        router.push(`/register/otp?email=${encodeURIComponent(data.email)}`);
+        await advanceRegistrationStep(data.email, 'otp');
+        await saveRegisterEmail(data.email);
+
+        router.push({
+          pathname: '/register/otp',
+        });
       }
     } catch (err) {
       type ApiErrorLike = {
@@ -70,8 +76,7 @@ export const RegisterEmailForm = () => {
 
   return (
     <div className="w-full max-w-md mx-auto">
-      <hr className="w-full border-0 border-t border-border-muted dark:border-border-soft" />
-      <form onSubmit={handleSubmit(onSubmit)} className="mt-6 space-y-6">
+      <form onSubmit={handleSubmit(onSubmit)} className=" space-y-6">
         <div className="space-y-2">
           <Controller
             name="email"
@@ -94,10 +99,6 @@ export const RegisterEmailForm = () => {
                     isRtl={isRtl}
                     {...field}
                   />
-
-                  {fieldState.error && (
-                    <ErrorAlert errorMessage={translatedMessage ?? ''} isRtl={isRtl} />
-                  )}
                 </>
               );
             }}

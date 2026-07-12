@@ -54,7 +54,7 @@ export default function Stepper({ currentStep }: StepperProps) {
 
                   <span
                     className={`text-[14px] font-bold scale-80 ${
-                      isCompletedOrCurrent ? 'text-text-secondary-fade' : 'text-text-primary'
+                      isCompletedOrCurrent ? 'text-white' : 'text-text-primary'
                     }`}
                   >
                     {formatStepNumber(step)}

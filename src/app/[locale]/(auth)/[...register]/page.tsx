@@ -1,24 +1,17 @@
 import { OtpForm } from '@/features/auth/components/register/otp-form';
-import { RegisterEmailForm } from '@/features/auth/components/register-email-form';
-import UserInfoForm from '@/features/auth/components/register/user-info.form';
+import { RegisterEmailForm } from '@/features/auth/components/register/register-email-form';
 import CreatePassword from '@/features/auth/components/register/create-password';
-
-interface RegisterPageProps {
-  params:
-    | Promise<{
-        register: string[];
-      }>
-    | {
-        register: string[];
-      };
-}
+import UserInfoForm from '@/features/auth/components/register/user-info.form';
+import { cookies } from 'next/headers';
 
 export default async function RegisterPage(props: RegisterPageProps) {
   const resolvedParams = 'then' in props.params ? await props.params : props.params;
 
+  const cookieStore = await cookies();
+
+  const email = cookieStore.get('register-email')?.value ?? '';
+
   const steps = resolvedParams?.register || [];
-  console.log(resolvedParams);
-  console.log(steps);
 
   // 1.register
 
@@ -28,12 +21,12 @@ export default async function RegisterPage(props: RegisterPageProps) {
 
   // 2.register/otp
   if (steps[0] === 'otp' || (steps[0] === 'register' && steps[1] === 'otp')) {
-    return <OtpForm />;
+    return <OtpForm email={email} />;
   }
 
   // 3./register/userInfo
   if (steps[0] === 'user-info' || (steps[0] === 'register' && steps[1] === 'user-info')) {
-    return <UserInfoForm />;
+    return <UserInfoForm email={email} />;
   }
   // 4./register/create-password
   if (
