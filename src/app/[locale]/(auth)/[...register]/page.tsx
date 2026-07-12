@@ -1,8 +1,17 @@
-import { OtpForm } from '@/features/auth/components/register/otp-form';
-import { RegisterEmailForm } from '@/features/auth/components/register/register-email-form';
 import CreatePassword from '@/features/auth/components/register/create-password';
 import UserInfoForm from '@/features/auth/components/register/user-info.form';
-import { cookies } from 'next/headers';
+import { OtpForm } from '@/features/auth/components/register/otp-form';
+import { RegisterEmailForm } from '@/features/auth/components/register/register-email-from';
+
+interface RegisterPageProps {
+  params:
+    | Promise<{
+        register: string[];
+      }>
+    | {
+        register: string[];
+      };
+}
 
 export default async function RegisterPage(props: RegisterPageProps) {
   const resolvedParams = 'then' in props.params ? await props.params : props.params;

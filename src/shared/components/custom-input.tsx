@@ -210,7 +210,7 @@ export default function CustomInput({
       className={cn('items-start justify-start flex-col gap-2  m-w-375 ', className)}
       dir={computedIsRtl ? 'rtl' : 'ltr'}
     >
-      {label && variant !== 'otp' && (
+      {computedLabel && variant !== 'otp' && (
         <Field.Label
           htmlFor={id}
           className={`${baseLableStyle} ${labeltStyle} inline-block mb-2.5`}
