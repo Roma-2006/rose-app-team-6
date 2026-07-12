@@ -60,7 +60,7 @@ export const ForgotPasswordForm = ({ onSuccess }: ForgotPasswordFormProps) => {
           {t('auth.auth-forgotPw.step1.footerText')}{' '}
         </span>
         <Link
-          href="/register"
+          href="register"
           className="text-text-primary dark:text-text-primary font-bold hover:underline transition-colors"
         >
           {t('auth.auth-forgotPw.step1.registerLink')}

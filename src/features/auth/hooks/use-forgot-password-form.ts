@@ -37,7 +37,7 @@ export const useForgotPasswordForm = (onSuccess?: (email: string) => void) => {
       } else {
         toast.error(res?.message || t('auth.auth-forgotPw.errors.noAccount'));
       }
-    } catch (err) {
+    } catch {
       toast.error(t('auth.auth-forgotPw.errors.somethingWentWrong'));
     } finally {
       setIsLoading(false);
