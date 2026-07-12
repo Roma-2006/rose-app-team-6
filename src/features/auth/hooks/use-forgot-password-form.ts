@@ -29,13 +29,10 @@ export const useForgotPasswordForm = (onSuccess?: (email: string) => void) => {
       const redirectUrl = `${window.location.origin}/${locale}/reset-password`;
 
       const res = await forgotPassword(data.email, redirectUrl);
-
       if (res.status) {
         toast.success(t('auth.auth-forgotPw.step2.resendToast'));
 
-        if (onSuccess) {
-          onSuccess(data.email);
-        }
+        onSuccess?.(data.email);
       } else {
         toast.error(res?.message || t('auth.auth-forgotPw.errors.noAccount'));
       }
