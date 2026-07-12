@@ -62,9 +62,9 @@ export const PasswordResetSent = ({ email, onBack }: PasswordResetSentProps) => 
       <hr className="my-8 border-0 border-t border-border-muted dark:border-border-soft" />
 
       <div className="text-center">
-        <span className="text-text-muted">{t('auth.auth-forgotPw.step2.needHelp')} </span>
+        <span className="text-text-plain">{t('auth.auth-forgotPw.step2.needHelp')} </span>
         <Link
-          href={`/${locale}/contact`}
+          href="contact"
           className="text-text-primary font-bold hover:underline transition-colors"
         >
           {t('auth.auth-forgotPw.step2.contactUs')}

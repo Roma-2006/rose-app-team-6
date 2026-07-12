@@ -154,7 +154,7 @@
     "placeholder": "أدخل اسمك هنا..."
   },
 
-  "custom-input": {
+    "custom-input": {
     "default": {
       "first-name": { "label": "الاسم الأول", "placeholder": "Jonathan" },
       "last-name": { "label": "الاسم الأخير", "placeholder": "Adrian" },
@@ -163,6 +163,8 @@
     "number": { "label": "الرقم", "placeholder": "0" },
     "search": { "label": "بحث", "placeholder": "ابحث هنا..." },
     "password": {
+      "label": "كلمة المرور",
+      "placeholder": "*********",
       "password": { "label": "كلمة المرور", "placeholder": "*********" },
       "confirm-Password": { "label": "تأكيد كلمة المرور", "placeholder": "*********" }
     },

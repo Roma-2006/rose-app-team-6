@@ -15,7 +15,7 @@ export const ForgotPasswordForm = ({ onSuccess }: ForgotPasswordFormProps) => {
   return (
     <div className="w-full max-w-md mx-auto">
       <div className="mb-2">
-        <h1 className="text-3xl font-bold text-text-plain dark:text-text-plain mb-2">
+        <h1 className="text-3xl font-bold text-text-plain  mb-2">
           {t('auth.auth-forgotPw.step1.title')}
         </h1>
         <p className="text-text-plain text-sm font-normal">
