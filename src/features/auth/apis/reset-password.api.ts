@@ -1,11 +1,21 @@
-export async function resetPassword(data: {
+type ResetPasswordPayload = {
   token: string;
   newPassword: string;
   confirmPassword: string;
-}) {
-  const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+};
 
-  const finalUrl = `${API_BASE_URL}/auth/reset-password`;
+type ResetPasswordResponse = {
+  status: boolean;
+  code?: number;
+  message?: string;
+  payload?: unknown;
+};
+
+export async function resetPassword(data: ResetPasswordPayload): Promise<ResetPasswordResponse> {
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
+
+  // NEXT_PUBLIC_API_URL already includes /api prefix.
+  const finalUrl = `${apiBaseUrl}/api/auth/reset-password`;
 
   const response = await fetch(finalUrl, {
     method: 'POST',
@@ -16,5 +26,5 @@ export async function resetPassword(data: {
     body: JSON.stringify(data),
   });
 
-  return await response.json();
+  return (await response.json()) as ResetPasswordResponse;
 }

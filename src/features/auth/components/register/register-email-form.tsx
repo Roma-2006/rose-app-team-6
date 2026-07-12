@@ -7,28 +7,28 @@ import { RegisterEmailSchema } from '@/features/auth/schemas/register-email.sche
 
 import { Button } from '@/shared/components/ui/button';
 import CustomInput from '@/shared/components/custom-input';
-import { saveRegisterEmail } from '../../actions/register-step.action';
+import ErrorAlert from '@/shared/components/error-alert';
 import { useState } from 'react';
 import * as z from 'zod';
 import Link from 'next/link';
 import { useRouter } from '@/i18n/navigation';
 import { useRegisterEmail } from '../../hooks/useRegisterEmail';
-import { advanceRegistrationStep } from '../../lib/registeration-progress';
 
 export const RegisterEmailForm = () => {
-  const t = useTranslations('auth.auth-register');
+  const t = useTranslations();
   const locale = useLocale();
   const isRtl = locale === 'ar';
+
   const router = useRouter();
+
   const [isLoading, setIsLoading] = useState(false);
 
   const registerEmailMutation = useRegisterEmail();
+
   type RegisterEmailValues = z.infer<typeof RegisterEmailSchema>;
 
-  const { control, handleSubmit, setError } = useForm<RegisterEmailValues>({
+  const { setError, control, handleSubmit } = useForm<RegisterEmailValues>({
     resolver: zodResolver(RegisterEmailSchema),
-    mode: 'onTouched',
-    reValidateMode: 'onChange',
     defaultValues: {
       email: '',
     },
@@ -36,36 +36,28 @@ export const RegisterEmailForm = () => {
 
   const onSubmit = async (data: RegisterEmailValues) => {
     setIsLoading(true);
+
     try {
       const res = await registerEmailMutation.mutateAsync(data.email);
 
       if (res?.status) {
-        await advanceRegistrationStep(data.email, 'otp');
-        await saveRegisterEmail(data.email);
-
-        router.push({
-          pathname: '/register/otp',
-        });
+        router.push(`/register/otp?email=${encodeURIComponent(data.email)}`);
       }
     } catch (err) {
       type ApiErrorLike = {
         message?: string;
-        response?: { message?: string };
+        response?: {
+          message?: string;
+        };
       };
 
       const apiMessage =
         err instanceof Error
           ? err.message
-          : ((err as ApiErrorLike)?.response?.message ?? (err as ApiErrorLike)?.message ?? '');
+          : ((err as ApiErrorLike)?.message ?? (err as ApiErrorLike)?.response?.message);
 
-      if (apiMessage?.toLowerCase().includes('no account') || apiMessage?.includes('حساب')) {
+      if (apiMessage?.toLowerCase().includes('no account')) {
         setError('email', {
-          type: 'server',
-          message: 'noAccount',
-        });
-      } else {
-        setError('email', {
-          type: 'server',
           message: 'noAccount',
         });
       }
@@ -76,32 +68,37 @@ export const RegisterEmailForm = () => {
 
   return (
     <div className="w-full max-w-md mx-auto">
+      {/* <hr className=" w-full border-0 border-t border-border-muted dark:border-border-soft" /> */}
       <form onSubmit={handleSubmit(onSubmit)} className=" space-y-6">
         <div className="space-y-2">
           <Controller
             name="email"
             control={control}
-            render={({ field, fieldState }) => {
-              const errorMessageKey = fieldState.error?.message;
-              const translatedMessage = errorMessageKey
-                ? t(`errors.${errorMessageKey}`)
-                : undefined;
+            render={({ field, fieldState }) => (
+              <>
+                <CustomInput
+                  id="email"
+                  variant="email"
+                  label={t('auth.auth-register.step1.emailLabel')}
+                  placeholder={t('auth.auth-register.step1.emailPlaceholder')}
+                  error={fieldState.invalid}
+                  errorMessage={
+                    fieldState.error?.message
+                      ? t(`auth-register.errors.${fieldState.error.message}`)
+                      : undefined
+                  }
+                  isRtl={isRtl}
+                  {...field}
+                />
 
-              return (
-                <>
-                  <CustomInput
-                    id="email"
-                    variant="email"
-                    label={t('step1.emailLabel')}
-                    placeholder={t('step1.emailPlaceholder')}
-                    error={fieldState.invalid}
-                    errorMessage={translatedMessage}
+                {fieldState.error && (
+                  <ErrorAlert
+                    errorMessage={t(`auth-register.errors.${fieldState.error.message}`)}
                     isRtl={isRtl}
-                    {...field}
                   />
-                </>
-              );
-            }}
+                )}
+              </>
+            )}
           />
         </div>
 
@@ -109,7 +106,7 @@ export const RegisterEmailForm = () => {
           type="submit"
           buttonVariant="text"
           variant="primary"
-          title="auth.auth-register.step1.continue"
+          title="auth.auth-forgotPw.step1.continue"
           loading={isLoading}
           className="h-12 w-full transition-all"
         />
@@ -118,13 +115,15 @@ export const RegisterEmailForm = () => {
       <hr className="mt-9 w-full border-0 border-t border-border-muted dark:border-border-soft" />
 
       <div className="mt-8 text-center text-sm">
-        <span className="text-text-plain dark:text-text-plain">{t('step1.footerText')} </span>
+        <span className="text-text-plain dark:text-text-plain">
+          {t('auth.auth-register.step1.footerText')}{' '}
+        </span>
 
         <Link
           href="/login"
           className="font-bold text-text-primary transition-colors hover:underline dark:text-text-primary"
         >
-          {t('step1.registerLink')}
+          {t('auth.auth-register.step1.registerLink')}
         </Link>
       </div>
     </div>

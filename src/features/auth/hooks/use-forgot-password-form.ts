@@ -33,7 +33,7 @@ export const useForgotPasswordForm = (onSuccess?: (email: string) => void) => {
         if (onSuccess) {
           onSuccess(data.email);
         } else {
-          router.push(`/${locale}/password-reset-sent?email=${encodeURIComponent(data.email)}`);
+          router.push(`/${locale}/forgot-password`);
         }
       } else {
         toast.error(res?.message || t('auth.auth-forgotPw.errors.noAccount'));
