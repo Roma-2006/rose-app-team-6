@@ -8,8 +8,6 @@ export async function forgotPassword(email: string) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email }),
   });
-
-  console.log(response);
   if (!response.ok) {
     throw new Error(`Forgot password request failed: ${response.status}`);
   }

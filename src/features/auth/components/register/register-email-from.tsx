@@ -68,7 +68,6 @@ export const RegisterEmailForm = () => {
 
   return (
     <div className="w-full max-w-md mx-auto">
-      {/* <hr className=" w-full border-0 border-t border-border-muted dark:border-border-soft" /> */}
       <form onSubmit={handleSubmit(onSubmit)} className=" space-y-6">
         <div className="space-y-2">
           <Controller
