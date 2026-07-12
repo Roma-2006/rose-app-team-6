@@ -99,7 +99,7 @@ export default function CreatePassword() {
           buttonVariant="text"
           type="submit"
           loading={isPending}
-          disabled={isPending || !form.formState.isValid}
+          disabled={isPending || (form.formState.isSubmitted && !form.formState.isValid)}
         />
         {/* {generalError && <p className="text-text-danger my-1">{generalError}</p>} */}
         <AuthError beError={generalError} />
