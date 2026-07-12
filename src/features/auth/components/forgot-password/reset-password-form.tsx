@@ -6,12 +6,9 @@ import { useResetPasswordForm } from '@/features/auth/hooks/use-reset-password-f
 import { Button } from '@/shared/components/ui/button';
 import CustomInput from '@/shared/components/custom-input';
 import { Link } from '@/i18n/navigation';
-import { useLocale } from 'use-intl/react';
 
 export const ResetPasswordForm = () => {
   const { t, isRtl, isLoading, control, handleSubmit, onSubmit } = useResetPasswordForm();
-
-  const locale = useLocale();
 
   return (
     <div className="w-full">
@@ -82,7 +79,7 @@ export const ResetPasswordForm = () => {
         <div className="text-center">
           <span className="text-text-plain ">{t('auth.auth-forgotPw.step2.needHelp')} </span>
           <Link
-            href="contact"
+            href="/contact"
             className="text-text-primary font-bold hover:underline transition-colors"
           >
             {t('auth.auth-forgotPw.step2.contactUs')}

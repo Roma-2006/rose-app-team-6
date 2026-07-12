@@ -9,7 +9,7 @@ export const forgotPassword = async (email: string, redirectUrl: string) => {
     });
 
     return await response.json();
-  } catch (error) {
+  } catch {
     return { status: false, message: 'Connection error' };
   }
 };

@@ -36,7 +36,11 @@ export const ForgotPasswordForm = ({ onSuccess }: ForgotPasswordFormProps) => {
                 label={t('auth.auth-forgotPw.step1.emailLabel')}
                 placeholder={t('auth.auth-forgotPw.step1.emailPlaceholder')}
                 id="email"
-                errorMessage={fieldState.error?.message}
+                errorMessage={
+                  fieldState.error
+                    ? t(`auth.auth-forgotPw.errors.${fieldState.error.message}`)
+                    : undefined
+                }
                 error={fieldState.invalid}
                 isRtl={isRtl}
                 {...field}
@@ -60,7 +64,7 @@ export const ForgotPasswordForm = ({ onSuccess }: ForgotPasswordFormProps) => {
           {t('auth.auth-forgotPw.step1.footerText')}{' '}
         </span>
         <Link
-          href="register"
+          href="/register"
           className="text-text-primary dark:text-text-primary font-bold hover:underline transition-colors"
         >
           {t('auth.auth-forgotPw.step1.registerLink')}

@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { ForgotPasswordForm } from '@/features/auth/components/forgot-password/forgot-password-form';
-import { PasswordResetSent } from '@/features/auth/components/forgot-password/password-reset-sent'; // تأكد من المسار
+import { PasswordResetSent } from '@/features/auth/components/forgot-password/password-reset-sent';
 
 export default function ForgotPasswordPage() {
   const [step, setStep] = useState(1);

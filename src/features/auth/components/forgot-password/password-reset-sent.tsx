@@ -16,8 +16,8 @@ export const PasswordResetSent = ({ email, onBack }: PasswordResetSentProps) => 
   const t = useTranslations();
   const locale = useLocale();
   const isRtl = locale === 'ar';
-  const hasShownToast = useRef(false);
 
+  const hasShownToast = useRef(false);
   useEffect(() => {
     if (!hasShownToast.current) {
       toast.success(t('auth.auth-forgotPw.step2.resendToast'), {
@@ -64,7 +64,7 @@ export const PasswordResetSent = ({ email, onBack }: PasswordResetSentProps) => 
       <div className="text-center">
         <span className="text-text-plain">{t('auth.auth-forgotPw.step2.needHelp')} </span>
         <Link
-          href="contact"
+          href="/contact"
           className="text-text-primary font-bold hover:underline transition-colors"
         >
           {t('auth.auth-forgotPw.step2.contactUs')}
