@@ -17,16 +17,6 @@ export const PasswordResetSent = ({ email, onBack }: PasswordResetSentProps) => 
   const locale = useLocale();
   const isRtl = locale === 'ar';
 
-  const hasShownToast = useRef(false);
-  useEffect(() => {
-    if (!hasShownToast.current) {
-      toast.success(t('auth.auth-forgotPw.step2.resendToast'), {
-        position: 'bottom-right',
-      });
-      hasShownToast.current = true;
-    }
-  }, [t]);
-
   return (
     <div>
       <div className="flex items-center gap-3 mb-4">

@@ -31,6 +31,8 @@ export const useForgotPasswordForm = (onSuccess?: (email: string) => void) => {
       const res = await forgotPassword(data.email, redirectUrl);
 
       if (res.status) {
+        toast.success(t('auth.auth-forgotPw.step2.resendToast'));
+
         if (onSuccess) {
           onSuccess(data.email);
         }
