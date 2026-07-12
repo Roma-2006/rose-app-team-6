@@ -34,7 +34,6 @@ export const useResetPasswordForm = () => {
 
   const onSubmit: SubmitHandler<ResetPasswordValues> = async (data) => {
     setIsLoading(true);
-
     try {
       const res = await resetPassword({
         token,
@@ -44,7 +43,7 @@ export const useResetPasswordForm = () => {
 
       if (res.status) {
         toast.success(t('auth.auth-forgotPw.step3.successToast'));
-        router.push('/login');
+        router.push(`/${locale}/login`);
       } else {
         toast.error(res.message || t('auth.auth-forgotPw.step3.resetFailed'));
       }

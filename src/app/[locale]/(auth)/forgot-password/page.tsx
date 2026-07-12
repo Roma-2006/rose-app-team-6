@@ -1,12 +1,5 @@
-// import { ForgetPasswordFlow } from '@/features/auth/components/forgot-password/forget-password-flow';
-
-// export default function ForgotPasswordPage() {
-//   return <ForgetPasswordFlow />;
-// }
-
 'use client';
 import { useState } from 'react';
-// لاحظ تغيير المسارات هنا لتصبح absolute paths باستخدام @
 import { ForgotPasswordForm } from '@/features/auth/components/forgot-password/forgot-password-form';
 import { PasswordResetSent } from '@/features/auth/components/forgot-password/password-reset-sent'; // تأكد من المسار
 

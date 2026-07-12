@@ -17,7 +17,7 @@ export default function LoginForm() {
   const tLogin = useTranslations('login');
   const tInput = useTranslations('custom-input');
   const form = useForm<TLoginData>({
-    resolver: zodResolver(LOGIN_SCHEMA((key) => tLogin(key))),
+    resolver: zodResolver(LOGIN_SCHEMA(tLogin)),
     defaultValues: {
       username: '',
       password: '',
@@ -33,13 +33,8 @@ export default function LoginForm() {
 
   return (
     <>
-      {status === 'authenticated' && session && null}
-
       {status !== 'authenticated' && (
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="w-full max-w-96  mb-14 flex flex-col"
-        >
+        <form onSubmit={form.handleSubmit(onSubmit)} className="w-full h-full mb-14 flex flex-col">
           <FieldGroup>
             <Controller
               name="username"
@@ -49,6 +44,7 @@ export default function LoginForm() {
                   {...field}
                   variant="default"
                   disabled={isLoading}
+                  error={fieldState.invalid}
                   subVariant="username"
                   id="username"
                   autoComplete="username"
@@ -70,6 +66,7 @@ export default function LoginForm() {
                     variant="password"
                     subVariant="password"
                     id="password"
+                    error={fieldState.invalid}
                     disabled={isLoading}
                     autoComplete="current-password"
                     placeholder={tInput('password.password.placeholder')}
@@ -81,7 +78,7 @@ export default function LoginForm() {
               />
 
               <div className="flex justify-end mb-2.5">
-                <Link href="/forget-password" className="text-sm font-semibold text-text-primary ">
+                <Link href="forgot-password" className="text-sm font-semibold text-text-primary ">
                   {tLogin('forgot-password')}
                 </Link>
               </div>
@@ -93,15 +90,11 @@ export default function LoginForm() {
           <Controller
             name="rememberMe"
             control={form.control}
-            render={({ field }) => (
+            render={({ field, fieldState }) => (
               <BaseCheckbox
-                onChange={(isChecked: boolean) => {
-                  if (field.value !== isChecked) {
-                    setTimeout(() => {
-                      field.onChange(isChecked);
-                    }, 0);
-                  }
-                }}
+                value={field.value}
+                onChange={field.onChange}
+                error={fieldState.error?.message}
                 list={[{ id: 'remember-me', label: tLogin('remember-me') }]}
               />
             )}

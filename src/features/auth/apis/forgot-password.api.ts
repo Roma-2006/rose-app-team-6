@@ -1,28 +1,15 @@
-type ForgotPasswordResponse = {
-  status: boolean;
-  code?: number;
-  message?: string;
-  payload?: unknown;
-};
-
-export const forgotPassword = async (email: string) => {
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-  const appBaseUrl = process.env.NEXT_PUBLIC_APP_URL;
-
-  const redirectUrl = appBaseUrl ? `${appBaseUrl}/auth/reset-password` : '/auth/reset-password';
-
+export const forgotPassword = async (email: string, redirectUrl: string) => {
   try {
-    const response = await fetch(`${baseUrl}/api/auth/forgot-password`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/forgot-password`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        email,
-        redirectUrl,
-      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, redirectUrl }),
     });
 
-    return (await response.json()) as ForgotPasswordResponse;
-  } catch {
+    return await response.json();
+  } catch (error) {
     return { status: false, message: 'Connection error' };
   }
 };

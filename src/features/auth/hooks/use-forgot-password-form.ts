@@ -16,7 +16,6 @@ export type ForgotPasswordValues = z.infer<typeof forgotPasswordSchema>;
 export const useForgotPasswordForm = (onSuccess?: (email: string) => void) => {
   const t = useTranslations();
   const locale = useLocale();
-  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<ForgotPasswordValues>({
@@ -27,13 +26,13 @@ export const useForgotPasswordForm = (onSuccess?: (email: string) => void) => {
   const onSubmit: SubmitHandler<ForgotPasswordValues> = async (data) => {
     setIsLoading(true);
     try {
-      const res = await forgotPassword(data.email);
+      const redirectUrl = `${window.location.origin}/${locale}/reset-password`;
+
+      const res = await forgotPassword(data.email, redirectUrl);
 
       if (res.status) {
         if (onSuccess) {
           onSuccess(data.email);
-        } else {
-          router.push(`/${locale}/forgot-password`);
         }
       } else {
         toast.error(res?.message || t('auth.auth-forgotPw.errors.noAccount'));
