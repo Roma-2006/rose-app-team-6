@@ -11,15 +11,14 @@ import { Button } from '@/shared/components/ui/button';
 import { useSearchParams, useRouter } from 'next/navigation';
 import AuthFooter from '../shared/auth-footer';
 import AuthError from '../shared/auth-error';
-import { useEffect } from 'react';
-export default function CreatePassword({ userInfo, setErrors, setUserInfo }: TCreatePasswordProps) {
+export default function CreatePassword() {
   const t = useTranslations('auth.auth-register.create-password');
-  // const searchParams = useSearchParams();
-  // const email = searchParams.get('email');
+  const searchParams = useSearchParams();
+  const email = searchParams.get('email');
   // Restore user information collected in the previous registration step.
-  // const userInfo = JSON.parse(sessionStorage.getItem(`register-user-info-${email}`) || '{}');
+  const userInfo = JSON.parse(sessionStorage.getItem(`register-user-info-${email}`) || '{}');
   //mutation
-  const { mutate: register, error, isPending } = useRegister({ setErrors, setUserInfo });
+  const { mutate: register, error, isPending } = useRegister();
   //errors
   const generalError = typeof error === 'string' ? error : '';
   const errors = Array.isArray(error) ? error : [];

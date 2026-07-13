@@ -16,40 +16,30 @@ import AuthFooter from '../shared/auth-footer';
 import { ValidationError } from '@/shared/types/api';
 import AuthError from '../shared/auth-error';
 
-export default function UserInfoForm({
-  firstNameError,
-  lastNameError,
-  userNameError,
-  genderError,
-  email,
-  setUserInfo,
-  userInfo,
-}: TUserInfoFormProps) {
+export default function UserInfoForm() {
   const t = useTranslations('auth.auth-register');
   const router = useRouter();
   const locale = useLocale();
   const isRtl = locale === 'ar';
-  // const searchParams = useSearchParams();
-  // const email = searchParams.get('email');
+  const searchParams = useSearchParams();
+  const email = searchParams.get('email');
   //mutation
-  // const getStoredErrors = (): ValidationError[] => {
-  //   if (typeof window === 'undefined') return [];
-  //   const storedError = sessionStorage.getItem('register-error');
-  //   if (storedError && storedError !== 'undefined') {
-  //     return JSON.parse(storedError);
-  //   }
-  //   return [];
-  // };
-
-  /////////////////////////////////////////
-  // const [errors] = useState<ValidationError[]>(getStoredErrors);
-  // const genderError = errors?.find((err) => err.path === 'gender')?.message;
-  // const userNameErrors = errors?.find((err) => err.path === 'username');
-  // const userNameError = userNameErrors?.messages
-  //   ? userNameErrors.messages.join(',')
-  //   : userNameErrors?.message;
-  // const lastNameError = errors?.find((err) => err.path === 'lastName')?.message;
-  // const firstNameError = errors?.find((err) => err.path === 'firstName')?.message;
+  const getStoredErrors = (): ValidationError[] => {
+    if (typeof window === 'undefined') return [];
+    const storedError = sessionStorage.getItem('register-error');
+    if (storedError && storedError !== 'undefined') {
+      return JSON.parse(storedError);
+    }
+    return [];
+  };
+  const [errors] = useState<ValidationError[]>(getStoredErrors);
+  const genderError = errors?.find((err) => err.path === 'gender')?.message;
+  const userNameErrors = errors?.find((err) => err.path === 'username');
+  const userNameError = userNameErrors?.messages
+    ? userNameErrors.messages.join(',')
+    : userNameErrors?.message;
+  const lastNameError = errors?.find((err) => err.path === 'lastName')?.message;
+  const firstNameError = errors?.find((err) => err.path === 'firstName')?.message;
   //form
   const form = useForm<TUserInfoFields>({
     resolver: zodResolver(userInfoSchema),
@@ -65,26 +55,24 @@ export default function UserInfoForm({
   //function
   const onSubmit: SubmitHandler<TUserInfoFields> = (values) => {
     if (!email) return;
-    const userDetails = { ...values, email: email, gender: values.gender.toUpperCase() };
+    const userInfo = { ...values, email: email, gender: values.gender.toUpperCase() };
     // Persist user information between registration steps.
     // The flow spans multiple pages and may redirect back after server validation.
-    // sessionStorage.setItem(`register-user-info-${email}`, JSON.stringify(userInfo));
-    setUserInfo(userDetails);
-    // router.push(`/register/create-password?email=${encodeURIComponent(email)}`);
-    router.push('/register/create-password');
+    sessionStorage.setItem(`register-user-info-${email}`, JSON.stringify(userInfo));
+    router.push(`/register/create-password?email=${encodeURIComponent(email)}`);
   };
   useEffect(() => {
     if (!email) return;
-    // const userInfo = sessionStorage.getItem(`register-user-info-${email}`);
+    const userInfo = sessionStorage.getItem(`register-user-info-${email}`);
     if (userInfo) {
-      // const data = JSON.parse(userInfo);
+      const data = JSON.parse(userInfo);
       form.reset({
-        firstName: userInfo.firstName,
-        lastName: userInfo.lastName,
-        username: userInfo.username,
-        phone: userInfo.phone,
-        gender: userInfo.gender
-          ? userInfo.gender.charAt(0).toUpperCase() + userInfo.gender.slice(1).toLowerCase()
+        firstName: data.firstName,
+        lastName: data.lastName,
+        username: data.username,
+        phone: data.phone,
+        gender: data.gender
+          ? data.gender.charAt(0).toUpperCase() + data.gender.slice(1).toLowerCase()
           : '',
       });
       form.trigger();

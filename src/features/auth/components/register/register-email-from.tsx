@@ -36,7 +36,6 @@ export const RegisterEmailForm = () => {
 
   const onSubmit = async (data: RegisterEmailValues) => {
     setIsLoading(true);
-
     try {
       const res = await registerEmailMutation.mutateAsync(data.email);
 
@@ -105,7 +104,7 @@ export const RegisterEmailForm = () => {
           type="submit"
           buttonVariant="text"
           variant="primary"
-          title="auth.auth-forgotPw.step1.continue"
+          title="auth.auth-register.step1.continue"
           loading={isLoading}
           className="h-12 w-full transition-all"
         />

@@ -4,7 +4,7 @@ import { TRegisterFields, TUseRegisterProps } from '../types/register';
 import { toast } from 'sonner';
 import { useTranslations } from 'next-intl';
 
-export default function useRegister({ setErrors, setUserInfo }: TUseRegisterProps) {
+export default function useRegister() {
   const router = useRouter();
   const t = useTranslations('auth.auth-register.create-password');
   return useMutation({
@@ -20,18 +20,15 @@ export default function useRegister({ setErrors, setUserInfo }: TUseRegisterProp
       if (payload && !payload.status) throw payload.errors ? payload.errors : payload.message;
       return payload;
     },
-    onSuccess: (data) => {
-      // sessionStorage.removeItem(`register-user-info-${variables.email}`);
-      // sessionStorage.removeItem('register-error');
-      setErrors([]);
-      setUserInfo({});
+    onSuccess: (data, variables) => {
+      sessionStorage.removeItem(`register-user-info-${variables.email}`);
+      sessionStorage.removeItem('register-error');
       toast.success(t('success'));
       router.push('/login');
     },
     onError: (data) => {
       if (data) {
         if (Array.isArray(data)) {
-          setErrors(data);
           const paths = data.map((err) => err.path);
           if (
             paths?.includes('username') ||
@@ -42,7 +39,7 @@ export default function useRegister({ setErrors, setUserInfo }: TUseRegisterProp
             router.push('/register/user-info');
           }
         }
-        // sessionStorage.setItem('register-error', JSON.stringify(data));
+        sessionStorage.setItem('register-error', JSON.stringify(data));
       }
     },
   });
