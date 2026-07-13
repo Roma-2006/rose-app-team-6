@@ -10,22 +10,26 @@ import SelectGender from '@/shared/components/custom-ui/select-gender';
 import RegisterSubtitle from './register-subtitle';
 import { ArrowRight, ArrowLeft } from 'lucide-react';
 import { userInfoSchema } from '../../schemas/user-info.schema';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import AuthFooter from '../shared/auth-footer';
 import { ValidationError } from '@/shared/types/api';
 import AuthError from '../shared/auth-error';
-import { useRouter } from '@/i18n/navigation';
-export default function UserInfoForm({ email }: EmailProps) {
+
+export default function UserInfoForm() {
   const t = useTranslations('auth.auth-register');
   const router = useRouter();
   const locale = useLocale();
   const isRtl = locale === 'ar';
-
+  const searchParams = useSearchParams();
+  const email = searchParams.get('email');
+  console.log(email, 'email');
   //mutation
   const getStoredErrors = (): ValidationError[] => {
     if (typeof window === 'undefined') return [];
     const storedError = sessionStorage.getItem('register-error');
     if (storedError && storedError !== 'undefined') {
+      // sessionStorage.removeItem('register-error');
       return JSON.parse(storedError);
     }
     return [];
@@ -51,10 +55,13 @@ export default function UserInfoForm({ email }: EmailProps) {
     },
   });
   //function
-  const onSubmit: SubmitHandler<TUserInfoFields> = async (values) => {
+  const onSubmit: SubmitHandler<TUserInfoFields> = (values) => {
+    console.log(values, 'v');
     if (!email) return;
-
-    router.push(`/register/create-password`);
+    const userInfo = { ...values, email: email, gender: values.gender.toUpperCase() };
+    console.log(userInfo, 'userInfo');
+    sessionStorage.setItem(`register-user-info-${email}`, JSON.stringify(userInfo));
+    router.push(`/register/create-password?email=${encodeURIComponent(email)}`);
   };
   useEffect(() => {
     if (!email) return;
@@ -72,8 +79,12 @@ export default function UserInfoForm({ email }: EmailProps) {
       });
       form.trigger();
     }
+    // const storedError = sessionStorage.getItem('register-error');
+    // if (storedError && storedError !== 'undefined') {
+    //   setErrors(JSON.parse(storedError));
+    //   sessionStorage.removeItem('register-error');
+    // }
   }, [form.reset, email]);
-
   return (
     <section className="flex flex-col ">
       <RegisterSubtitle
