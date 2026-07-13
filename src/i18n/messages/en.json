@@ -16,7 +16,8 @@
     "select": {
       "placeholder": "Select an option",
       "noOptions": "No options found",
-      "search": "Search..."
+      "search": "Search...",
+      "somethingWentWrong": "Something went wrong."
     },
     "textarea": {
       "charCount": "{current}/{max} characters"
@@ -88,7 +89,9 @@
         "invalid": "Invalid OTP code",
         "expired": "Code expired. Please request a new one.",
         "verify": "Verify OTP",
-        "Edit": "Edit"
+        "Edit": "Edit",
+        "invalid": "The verification code is incorrect.",
+        "expired": "The verification code has expired."
       },
       "user-info":{
         "sub-title":"Tell us more about you",
@@ -114,9 +117,13 @@
         "have-account": "Already have an account?",
         "login": "Login"
       },
-      "errors": {
-        "noAccount": "Please enter a valid email address"
-      }
+    "errors": {
+  "emailRequired": "Email is required.",
+  "invalidEmail": "Please enter a valid email address.",
+  "noAccount": "No account found with this email.",
+  "emailAlreadyRegistered": "This email is already registered.",
+  "somethingWentWrong": "Something went wrong. Please try again."
+}
 
     },
     "passwordResetSent": {

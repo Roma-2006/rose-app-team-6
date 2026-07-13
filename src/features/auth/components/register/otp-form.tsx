@@ -13,20 +13,19 @@ import { sendEmailVerification } from '../../apis/send-email-verification.api';
 import { maskEmail } from '../../utils/mask-email';
 import OTPSection from './otp-timer';
 import Stepper from './stepper';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import { otpSchema, OtpSchema } from '../../schemas/otp.schema';
 import { saveRegisterEmail } from '../../actions/register-step.action';
 
 export function OtpForm({ email }: EmailProps) {
-  const t = useTranslations('auth.auth-register');
+  const t = useTranslations();
   const router = useRouter();
-  const [canVerify, setCanVerify] = useState(true);
 
   const maskedEmail = maskEmail(email);
 
   const [loading, setLoading] = useState(false);
   const {
-    watch,
+    control,
     setValue,
     setError,
     handleSubmit,
@@ -38,8 +37,10 @@ export function OtpForm({ email }: EmailProps) {
     },
   });
 
-  const otp = watch('otp');
-
+  const otp = useWatch({
+    control,
+    name: 'otp',
+  });
   // Verify OTP
   const onSubmit = async () => {
     setLoading(true);
@@ -49,14 +50,29 @@ export function OtpForm({ email }: EmailProps) {
         email,
         code: otp,
       });
-      setCanVerify(true);
+
       await saveRegisterEmail(email);
 
       router.push('/register/user-info');
     } catch (err) {
+      let message = t('auth.auth-register.otp.invalid');
+
+      if (err instanceof Error) {
+        const status = (err as Error & { status?: number }).status;
+
+        switch (status) {
+          case 400:
+            message = t('auth.auth-register.otp.invalid');
+            break;
+
+          default:
+            message = t('common.select.somethingWentWrong');
+        }
+      }
+
       setError('otp', {
         type: 'server',
-        message: err instanceof Error ? err.message : t('otp.invalid'),
+        message,
       });
     } finally {
       setLoading(false);
@@ -69,7 +85,8 @@ export function OtpForm({ email }: EmailProps) {
       await sendEmailVerification({
         email,
       });
-      setCanVerify(true);
+
+      localStorage.setItem('otp-resend-end-time', (Date.now() + 60 * 1000).toString());
 
       return true;
     } catch (err) {
@@ -81,7 +98,7 @@ export function OtpForm({ email }: EmailProps) {
       } else {
         setError('otp', {
           type: 'server',
-          message: t('otp.invalid'),
+          message: t('auth.auth-register.otp.invalid'),
         });
       }
       return false;
@@ -95,17 +112,19 @@ export function OtpForm({ email }: EmailProps) {
 
       {/* Title */}
       <div className="mb-3">
-        <h1 className="text-[30px] font-bold text-zinc-800">{t('title')}</h1>
+        <h1 className="text-[30px] font-bold text-text-inverse">{t('auth.auth-register.title')}</h1>
 
-        <h2 className="text-[20px] font-bold text-text-primary">{t('otp.subtitle-1')}</h2>
+        <h2 className="text-[20px] font-bold text-text-primary">
+          {t('auth.auth-register.otp.subtitle-1')}
+        </h2>
 
         <p className="mt-2 text-sm text-text-plain">
-          {t('otp.subtitle-2', { email: maskedEmail })}{' '}
+          {t('auth.auth-register.otp.subtitle-2', { email: maskedEmail })}{' '}
           <Link
             href="/register"
-            className="font-medium text-blue-400 hover:underline dark:text-blue-700"
+            className="font-medium text-text-info hover:underline dark:text-blue-700"
           >
-            {t('otp.Edit')}
+            {t('auth.auth-register.otp.Edit')}
           </Link>
         </p>
       </div>
@@ -124,13 +143,13 @@ export function OtpForm({ email }: EmailProps) {
         />
 
         {errors.otp && (
-          <p className="mt-2 text-center text-sm text-red-500">{errors.otp.message}</p>
+          <p className="mt-2 text-center text-sm text-text-danger">{errors.otp.message}</p>
         )}
       </div>
 
       {/* Resend */}
       <div className="mb-2 flex justify-end">
-        <OTPSection onResend={handleResendEmail} onDisableVerify={() => setCanVerify(false)} />
+        <OTPSection onResend={handleResendEmail} />
       </div>
 
       {/* Verify */}
@@ -141,17 +160,17 @@ export function OtpForm({ email }: EmailProps) {
         title="auth.auth-register.otp.verify"
         className="h-12 w-full"
         onClick={handleSubmit(onSubmit)}
-        disabled={!canVerify || loading}
+        disabled={loading}
       />
 
       <hr className="mb-7 border-border-muted" />
 
       {/* Footer */}
       <div className="text-center text-sm">
-        <span className="text-text-plain">{t('need-help')} </span>
+        <span className="text-text-plain">{t('auth.auth-register.need-help')} </span>
 
         <Link href="/contact" className="font-semibold text-text-primary hover:underline">
-          {t('contact-us')}
+          {t('auth.auth-register.contact-us')}
         </Link>
       </div>
     </div>

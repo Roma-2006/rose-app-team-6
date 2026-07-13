@@ -2,7 +2,7 @@ import createMiddleware from 'next-intl/middleware';
 import { getToken } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 import { routing } from './i18n/routing';
-import { verifyRegistrationToken, RegistrationStep } from '@/features/auth/lib/registeration-token';
+import { verifyRegistrationToken } from '@/features/auth/lib/registeration-token';
 
 const intlMiddleware = createMiddleware(routing);
 
@@ -36,9 +36,9 @@ export default async function middleware(req: NextRequest) {
 
   const isAuthRoute = AUTH_ROUTES.some((r) => bare === r || bare.startsWith(r + '/'));
   const isProtectedRoute = PROTECTED_ROUTES.some((r) => bare === r || bare.startsWith(r + '/'));
-  const isRegisterStepRoute = REGISTER_STEP_ROUTES.some(
-    (r) => bare === r || bare.startsWith(r + '/')
-  );
+  // const isRegisterStepRoute = REGISTER_STEP_ROUTES.some(
+  //   (r) => bare === r || bare.startsWith(r + '/')
+  // );
 
   if (isLoggedIn && isAuthRoute) {
     return NextResponse.redirect(new URL(`/${locale}`, req.url));
@@ -67,7 +67,6 @@ export default async function middleware(req: NextRequest) {
     }
 
     if (requestedStep !== payload.step) {
-      console.log(`Redirecting to correct registration step: ${payload.step}`);
       return NextResponse.redirect(new URL(`/${locale}/register/${payload.step}`, req.url));
     }
   }

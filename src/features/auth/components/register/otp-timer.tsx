@@ -1,48 +1,55 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 
 const COUNTDOWN_SECONDS = 60;
+const TIMER_KEY = 'otp-resend-end-time';
 
-export default function OTPSection({ onResend, onDisableVerify }: OTPSectionProps) {
-  const [seconds, setSeconds] = useState(COUNTDOWN_SECONDS);
+export default function OTPSection({ onResend }: OTPSectionProps) {
   const t = useTranslations();
+
+  const [seconds, setSeconds] = useState(0);
+
+  const calculateRemaining = () => {
+    const endTime = localStorage.getItem(TIMER_KEY);
+
+    if (!endTime) return 0;
+
+    return Math.max(0, Math.ceil((Number(endTime) - Date.now()) / 1000));
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSeconds(calculateRemaining());
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const handleResendClick = useCallback(async () => {
     const success = await onResend();
 
-    if (success) {
-      setSeconds(COUNTDOWN_SECONDS);
-    }
+    if (!success) return;
+
+    const endTime = Date.now() + COUNTDOWN_SECONDS * 1000;
+
+    localStorage.setItem(TIMER_KEY, endTime.toString());
+
+    setSeconds(COUNTDOWN_SECONDS);
   }, [onResend]);
 
-  useEffect(() => {
-    if (seconds === 0) {
-      onDisableVerify();
-    }
-  }, [seconds, onDisableVerify]);
-
-  useEffect(() => {
-    if (seconds <= 0) return;
-
-    const interval = setInterval(() => {
-      setSeconds((prev) => prev - 1);
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [seconds]);
-
   return (
-    <div className="flex flex-col items-center w-full">
-      <p className="text-text-plain text-sm mb-6">
+    <div className="flex w-full flex-col items-center">
+      <p className="mb-6 text-sm text-text-plain">
         {t('auth.auth-register.otp.resend')}:
         {seconds > 0 ? (
           <span className="ml-1 font-bold text-text-plain">{seconds}s</span>
         ) : (
           <button
+            type="button"
             onClick={handleResendClick}
-            className="cursor-pointer pl-3 font-medium text-blue-600"
+            className="cursor-pointer pl-3 font-medium text-text-info hover:underline"
           >
             {t('auth.auth-register.otp.resend-2')}
           </button>

@@ -27,7 +27,7 @@ export const RegisterEmailForm = () => {
 
   const { control, handleSubmit, setError } = useForm<RegisterEmailValues>({
     resolver: zodResolver(RegisterEmailSchema),
-    mode: 'onTouched',
+    mode: 'onChange',
     reValidateMode: 'onChange',
     defaultValues: {
       email: '',
@@ -38,10 +38,13 @@ export const RegisterEmailForm = () => {
     setIsLoading(true);
     try {
       const res = await registerEmailMutation.mutateAsync(data.email);
-
       if (res?.status) {
         await advanceRegistrationStep(data.email, 'otp');
         await saveRegisterEmail(data.email);
+
+        // حساب وقت انتهاء العداد بشكل منفصل لتجنب Impure render error
+        const getEndTime = () => Date.now() + 60 * 1000;
+        localStorage.setItem('otp-resend-end-time', getEndTime().toString());
 
         router.push({
           pathname: '/register/otp',
@@ -58,15 +61,15 @@ export const RegisterEmailForm = () => {
           ? err.message
           : ((err as ApiErrorLike)?.response?.message ?? (err as ApiErrorLike)?.message ?? '');
 
-      if (apiMessage?.toLowerCase().includes('no account') || apiMessage?.includes('حساب')) {
+      if (apiMessage.toLowerCase().includes('already registered')) {
         setError('email', {
           type: 'server',
-          message: 'noAccount',
+          message: 'emailAlreadyRegistered',
         });
       } else {
         setError('email', {
           type: 'server',
-          message: 'noAccount',
+          message: 'somethingWentWrong',
         });
       }
     } finally {
