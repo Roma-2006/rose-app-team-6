@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations, useLocale } from 'next-intl';
 import { Controller } from 'react-hook-form';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { TUserInfoFields, TUserInfoFormProps } from '../../types/register';
+import { TUserInfoFields } from '../../types/register';
 import SelectGender from '@/shared/components/custom-ui/select-gender';
 import RegisterSubtitle from './register-subtitle';
 import { ArrowRight, ArrowLeft } from 'lucide-react';

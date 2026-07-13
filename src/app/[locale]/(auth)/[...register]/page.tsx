@@ -6,8 +6,6 @@ import UserInfoForm from '@/features/auth/components/register/user-info.form';
 export default async function RegisterPage(props: RegisterPageProps) {
   const resolvedParams = 'then' in props.params ? await props.params : props.params;
   const steps = resolvedParams?.register || [];
-  console.log(resolvedParams);
-  console.log(steps);
   // 1.register
   if (steps.length === 0 || (steps[0] === 'register' && steps.length === 1)) {
     return <RegisterEmailForm />;

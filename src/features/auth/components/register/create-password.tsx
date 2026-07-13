@@ -3,7 +3,7 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import RegisterSubtitle from './register-subtitle';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { createPasswordSchema } from '../../schemas/create-password.schema';
-import { TCreatePasswordFields, TCreatePasswordProps } from '../../types/register';
+import { TCreatePasswordFields } from '../../types/register';
 import useRegister from '../../hooks/use-register';
 import CustomInput from '@/shared/components/custom-input';
 import { useTranslations } from 'next-intl';

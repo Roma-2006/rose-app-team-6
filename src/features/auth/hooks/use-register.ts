@@ -1,6 +1,6 @@
 import { useRouter } from '@/i18n/navigation';
 import { useMutation } from '@tanstack/react-query';
-import { TRegisterFields, TUseRegisterProps } from '../types/register';
+import { TRegisterFields } from '../types/register';
 import { toast } from 'sonner';
 import { useTranslations } from 'next-intl';
 

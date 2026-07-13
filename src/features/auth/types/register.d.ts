@@ -13,20 +13,8 @@ interface RegisterPageProps {
       };
 }
 
-export type TRegisterStepsProps = {
-  steps: string[];
-};
 //userInfo
 export type TUserInfoFields = z.infer<typeof UserInfoSchema>;
-export type TUserInfoFormProps = {
-  firstNameError?: string;
-  lastNameError?: string;
-  userNameError?: string;
-  genderError?: string;
-  email: string;
-  userInfo: TUserInfoFields;
-  setUserInfo: (userInfo: TUserInfoFields) => void;
-};
 
 export type TRegisterFields = TUserInfoFields & TCreatPasswordFields;
 
@@ -44,10 +32,3 @@ export type RegisterSubtitleProps = {
 
 //creatPassword
 export type TCreatePasswordFields = z.infer<typeof createPasswordSchema>;
-export type TCreatePasswordProps = {
-  userInfo: TUserInfoFields;
-} & TUseRegisterProps;
-export type TUseRegisterProps = {
-  setErrors: (errors: ValidationError[]) => void;
-  setUserInfo: (userInfo: TUserInfoFields) => void;
-};
