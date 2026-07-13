@@ -50,7 +50,7 @@ export function OtpForm() {
         code: otp,
       });
 
-      router.push(`/register/user-info`);
+      router.push(`/register/user-info?email=${encodeURIComponent(email)}`);
     } catch (err) {
       setError('otp', {
         type: 'server',
