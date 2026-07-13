@@ -122,15 +122,7 @@
         "gender": "Gender",
         "gender-placeholder": "Select gender",
         "male": "Male",
-        "female": "Female",
-        "errors": {
-          "first-name": "First Name is required",
-          "last-name": "Last Name is required",
-          "user-name": "User Name must be at least 2 characters.",
-          "phone": "Phone is required",
-          "gender": "Gender is required",
-          "invalid-phone-number": "Invalid phone number"
-        }
+        "female": "Female"
       },
       "create-password": {
         "sub-title": "Create a strong password",
@@ -172,15 +164,36 @@
   },
   "custom-input": {
     "default": {
-      "first-name": { "label": "First name", "placeholder": "zoe" },
-      "last-name": { "label": "Last name", "placeholder": "Jonathan" },
-      "username": { "label": "UserName", "placeholder": "zoe123" }
+      "first-name": {
+        "label": "First name",
+        "placeholder": "zoe"
+      },
+      "last-name": {
+        "label": "Last name",
+        "placeholder": "Jonathan"
+      },
+      "user-name": {
+        "label": "UserName",
+        "placeholder": "zoe123"
+      }
     },
-    "number": { "label": "Number", "placeholder": "0" },
-    "search": { "label": "Search", "placeholder": "Search..." },
+    "number": {
+      "label": "Number",
+      "placeholder": "0"
+    },
+    "search": {
+      "label": "Search",
+      "placeholder": "Search..."
+    },
     "password": {
-      "password": { "label": "Password", "placeholder": "*********" },
-      "confirm-Password": { "label": "Confirm Password", "placeholder": "*********" }
+      "password": {
+        "label": "Password",
+        "placeholder": "*********"
+      },
+      "confirm-Password": {
+        "label": "Confirm Password",
+        "placeholder": "*********"
+      }
     },
     "file": {
       "label": "File",
@@ -188,24 +201,15 @@
       "btn-text": "Upload File",
       "error-type": "File type not accepted."
     },
-    "phone": { "label": "Phone", "placeholder": "1012345678" },
-    "email": { "label": "Email", "placeholder": "user@example.com" }
+    "phone": {
+      "label": "Phone",
+      "placeholder": "1012345678"
+    },
+    "email": {
+      "label": "Email",
+      "placeholder": "user@example.com"
+    },
+    "nice-to-have-you-here": "nice to have you here"
   },
-  "login": {
-    "username": {
-      "invalid": "Please enter a valid username ",
-      "required": "Username is required"
-    },
-    "password": {
-      "invalid": "Incorrect Password",
-      "required": "Password is required"
-    },
-    "invalidCredentials" : "Invalid username or password",
-    "forgot-password": "Forgot Password?",
-    "no-account": "Don't have an account?",
-    "register": "Create one now!",
-    "submit-btn": "Login",
-    "loading": "Logging in...",
-    "remember-me": "Remember me"
-  }
+  "title": "welcom to Rose App"
 }
