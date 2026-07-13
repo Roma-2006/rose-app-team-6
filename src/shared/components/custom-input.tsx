@@ -89,7 +89,7 @@ export default function CustomInput({
   const isError = !!errorMessage || error;
 
   // Local states for managing input behavior
-  const [isPasswordVisible, setIsPasswordVisible] = React.useState<boolean>(false);
+  const [showPassword, setShowPassword] = React.useState(false);
   const [hasSearchValue, setHasSearchValue] = React.useState<boolean>(!!defaultValue);
   const [resetKey, setResetKey] = React.useState<number>(0);
   const internalRef = React.useRef<HTMLInputElement | null>(null);
@@ -127,7 +127,7 @@ export default function CustomInput({
 
   // Determine the input type
   const getInputType = () => {
-    if (variant === 'password') return isPasswordVisible ? 'text' : 'password';
+    if (variant === 'password') return showPassword ? 'text' : 'password';
     if (variant === 'number') return 'text';
     if (variant === 'search') return 'search';
     if (variant === 'phone') return 'tel';
@@ -155,21 +155,25 @@ export default function CustomInput({
   };
 
   // Handle toggling password visibility
-  const handleTogglePassword = () => {
-    const input = internalRef.current;
-    const start = input?.selectionStart;
-    const end = input?.selectionEnd;
 
-    setIsPasswordVisible((prev) => !prev);
+  const handleTogglePassword = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!internalRef.current) return;
+    const start = internalRef.current.selectionStart;
+    const end = internalRef.current.selectionEnd;
+
+    //   setIsPasswordVisible((prev) => !prev);
 
     setTimeout(() => {
-      const nextInput = internalRef.current;
-      if (!nextInput) return;
-      nextInput.focus();
-      if (start != null && end != null) {
-        nextInput.setSelectionRange(start, end);
+      if (internalRef.current) {
+        internalRef.current.focus();
+        internalRef.current.setSelectionRange(start, end);
       }
     }, 0);
+  };
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
   };
 
   // Label styles Definitions
@@ -368,7 +372,7 @@ export default function CustomInput({
           <button
             type="button"
             onMouseDown={(e) => e.preventDefault()}
-            onClick={handleTogglePassword}
+            onClick={toggleShowPassword}
             disabled={isDisabled}
             className={cn(
               'absolute top-1/2 -translate-y-1/2 text-text-muted hover:text-text-plain  transition-colors z-30 pointer-events-auto block select-none',
@@ -376,7 +380,7 @@ export default function CustomInput({
             )}
             style={{ contentVisibility: 'auto' }}
           >
-            {isPasswordVisible ? (
+            {showPassword ? (
               <Eye size={16} className="pointer-events-none" />
             ) : (
               <EyeOff size={16} className="pointer-events-none" />
