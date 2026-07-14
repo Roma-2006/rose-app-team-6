@@ -1,10 +1,10 @@
 'use client';
+import AboutSection from '@/features/home/components/about-section';
 import SecHeader from '@/features/home/components/section-header';
 import SecTitle from '@/features/home/components/section-title';
 import { BaseCheckbox } from '@/shared/components/custom-ui/BaseCheckbox';
 import { Button } from '@/shared/components/ui/button';
 import { Heart } from 'lucide-react';
-import { useState } from 'react';
 
 export default function Page() {
   const list = [
@@ -33,6 +33,7 @@ export default function Page() {
       <SecTitle text="Most Popular" className="w-80 ps-5" />
       <SecTitle text="Check Out our Wonderful Gallery" className="w-165 ps-2.5" />
       <SecTitle text="Real Words from Happy Customers" className="ps-5" />
+      <AboutSection />
     </>
   );
 }
