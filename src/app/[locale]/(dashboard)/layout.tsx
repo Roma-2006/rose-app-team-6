@@ -3,8 +3,10 @@ import SecondaryNavigation from '@/shared/components/custom-ui/secondary-navigat
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
     <main>
+      {/* header */}
       <SecondaryNavigation />
       <section>{children}</section>
+      {/* //footer */}
     </main>
   );
 }
