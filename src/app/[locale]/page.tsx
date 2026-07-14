@@ -17,7 +17,9 @@ export default async function Home({ params }: PageProps) {
           <ThemeToggle />
         </div>
 
-        <h1 className="text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">{t('title')}</h1>
+        <h1 className="text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">
+          {t('HomePage.title')}
+        </h1>
 
         <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 rounded-full text-sm font-medium text-slate-700">
           <span>Active Locale:</span>

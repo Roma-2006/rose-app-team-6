@@ -61,23 +61,24 @@ export default function CustomInput({
   //determine language
   const locale = useLocale();
   const computedIsRtl = isRtl !== undefined ? isRtl : locale === 'ar';
-  const t = useTranslations('custom-input');
+  const tLogin = useTranslations('auth.login');
+  const tInput = useTranslations('custom-input');
 
   let defaultLabel = '';
   let defaultPlaceholder = '';
 
   if (variant === 'default' && subVariant) {
     //first & last name
-    defaultLabel = t(`default.${subVariant}.label`);
-    defaultPlaceholder = t(`default.${subVariant}.placeholder`);
+    defaultLabel = tInput(`default.${subVariant}.label`);
+    defaultPlaceholder = tInput(`default.${subVariant}.placeholder`);
     // password & confirm password
   } else if (variant === 'password' && subVariant) {
-    defaultLabel = t(`password.${subVariant}.label`);
-    defaultPlaceholder = t(`password.${subVariant}.placeholder`);
+    defaultLabel = tInput(`password.${subVariant}.label`);
+    defaultPlaceholder = tInput(`password.${subVariant}.placeholder`);
     // file , phone , number , search & email
   } else {
-    defaultLabel = t(`${variant}.label`);
-    defaultPlaceholder = t(`${variant}.placeholder`);
+    defaultLabel = tInput(`${variant}.label`);
+    defaultPlaceholder = tInput(`${variant}.placeholder`);
   }
   // Compute label and placeholder
 
@@ -218,12 +219,7 @@ export default function CustomInput({
           htmlFor={id}
           className={`${baseLableStyle} ${labeltStyle} inline-block mb-2.5`}
         >
-          {label}
-          {(subVariant === 'first-name' ||
-            subVariant === 'last-name' ||
-            subVariant === 'user-name') && (
-            <Asterisk className="inline-block text-text-danger mb-2" size={12} />
-          )}
+          {computedLabel}
         </Field.Label>
       )}
 
@@ -257,7 +253,7 @@ export default function CustomInput({
             step={step}
             data-slot="input"
             className={cn(
-              'h-11.5 text-start  w-full  border px-3 py-1 text-base transition-colors outline-none md:text-sm radius-xl',
+              'h-11.5 text-start  w-full  border px-3 py-0.5 text-base transition-colors outline-none md:text-sm radius-xl',
               'focus-visible:outline-none focus-visible:ring-0',
               variant === 'search' && 'ps-9 pe-3',
               variant === 'password' && 'ps-3 pe-9',
