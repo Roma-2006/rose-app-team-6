@@ -13,6 +13,8 @@ import * as z from 'zod';
 import Link from 'next/link';
 import { useRouter } from '@/i18n/navigation';
 import { useRegisterEmail } from '../../hooks/useRegisterEmail';
+import { saveRegisterEmail } from '../../actions/register-step.action';
+import { advanceRegistrationStep } from '../../lib/registeration-progress';
 
 export const RegisterEmailForm = () => {
   const t = useTranslations();
