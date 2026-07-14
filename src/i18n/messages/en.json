@@ -10,7 +10,7 @@
     "save": "Save",
     "delete": "Delete",
     "confirm": "Confirm",
-    "next": "Next"
+     "next":"Next"
   },
   "common": {
     "select": {
@@ -69,7 +69,7 @@
       }
     },
     "auth-register": {
-      "title": "Create Account",
+      "title":"Create Account",
       "need-help": "Need help ?",
       "contact-us": " Contact us",
       "step1": {
@@ -89,33 +89,51 @@
         "verify": "Verify OTP",
         "Edit": "Edit"
       },
-      "user-info": {
-        "sub-title": "Tell us more about you",
-        "user-info-sub-title": "A few details to get started",
-        "first-name": "First Name",
-        "last-name": "Last Name",
-        "user-name": "Username",
-        "email": "Email",
-        "phone": "Phone",
-        "gender": "Gender",
-        "gender-placeholder": "Select gender",
-        "male": "Male",
-        "female": "Female"
-      },
-      "create-password": {
-        "sub-title": "Create a strong password",
-        "create-password-sub-title": "Choose a secure password to protect your account",
-        "password": "Password",
-        "confirm-password": "Confirm Password",
-        "button": "Create Account",
-        "email-in-use": "Email already in use",
-        "success": "Account created successfully",
+      "user-info":{
+        "sub-title":"Tell us more about you",
+        "user-info-sub-title":"A few details to get started",
+        "first-name":"First Name",
+        "last-name":"Last Name",
+        "user-name":"Username",
+        "email":"Email",
+        "phone":"Phone",
+        "gender":"Gender",
+        "gender-placeholder":"Select gender",
+        "male":"Male",
+        "female":"Female",
+        "errors":{
+          "first-name": "First Name is required",
+          "last-name": "Last Name is required",
+          "user-name": "User Name must be at least 2 characters.",
+          "phone": "Phone is required",
+          "gender": "Gender is required",
+          "invalid-phone-number": "Invalid phone number"
+        }
+     },
+      "create-password":{
+        "sub-title":"Create a strong password",
+        "create-password-sub-title":"Choose a secure password to protect your account",
+        "password":"Password",
+        "confirm-password":"Confirm Password",
+        "button":"Create Account",
+        "email-in-use":"Email already in use",
+        "success":"Account created successfully",
         "have-account": "Already have an account?",
-        "login": "Login"
+        "login": "Login",
+        "errors":{
+          "password-min-length": "Password must be at least 8 characters.",
+          "password-uppercase": "Password must contain at least one uppercase letter.",
+          "password-lowercase": "Password must contain at least one lowercase letter.",
+          "password-number": "Password must contain at least one number.",
+          "password-special": "Password must contain at least one special character.",
+          "confirm-password": "Confirm Password is required.",
+          "passwords-do-not-match": "Passwords do not match."
+        }
       },
       "errors": {
         "noAccount": "Please enter a valid email address"
       }
+
     },
     "passwordResetSent": {
       "title": "Password Reset Sent",
@@ -133,36 +151,15 @@
   },
   "custom-input": {
     "default": {
-      "first-name": {
-        "label": "First name",
-        "placeholder": "zoe"
-      },
-      "last-name": {
-        "label": "Last name",
-        "placeholder": "Jonathan"
-      },
-      "user-name": {
-        "label": "UserName",
-        "placeholder": "zoe123"
-      }
+      "first-name": { "label": "First name", "placeholder": "zoe" },
+      "last-name": { "label": "Last name", "placeholder": "Jonathan" } ,
+     "user-name": {"label" : "UserName" , "placeholder" :"zoe123"}
     },
-    "number": {
-      "label": "Number",
-      "placeholder": "0"
-    },
-    "search": {
-      "label": "Search",
-      "placeholder": "Search..."
-    },
+    "number": { "label": "Number", "placeholder": "0" },
+    "search": { "label": "Search", "placeholder": "Search..." },
     "password": {
-      "password": {
-        "label": "Password",
-        "placeholder": "*********"
-      },
-      "confirm-Password": {
-        "label": "Confirm Password",
-        "placeholder": "*********"
-      }
+      "password": { "label": "Password", "placeholder": "*********" },
+      "confirm-Password": { "label": "Confirm Password", "placeholder": "*********" }
     },
     "file": {
       "label": "File",
@@ -170,15 +167,8 @@
       "btn-text": "Upload File",
       "error-type": "File type not accepted."
     },
-    "phone": {
-      "label": "Phone",
-      "placeholder": "1012345678"
-    },
-    "email": {
-      "label": "Email",
-      "placeholder": "user@example.com"
-    },
+    "phone": { "label": "Phone", "placeholder": "1012345678" },
+    "email": { "label": "Email", "placeholder": "user@example.com" },
     "nice-to-have-you-here": "nice to have you here"
-  },
-  "title": "welcom to Rose App"
+}
 }
