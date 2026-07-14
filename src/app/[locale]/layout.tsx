@@ -8,6 +8,10 @@ import { notFound } from 'next/navigation';
 import Providers from '@/shared/providers';
 import { Sarabun, Tajawal } from 'next/font/google';
 
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/auth';
+import { Toaster } from '@/shared/components/ui/sonner';
+
 const sarabun = Sarabun({
   subsets: ['latin'],
   variable: '--font-sarabun',
@@ -43,6 +47,8 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
     notFound();
   }
   const messages = (await import(`@/i18n/messages/${locale}.json`)).default;
+  const session = await getServerSession(authOptions);
+
   return (
     <html
       lang={locale}
@@ -50,10 +56,11 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
       suppressHydrationWarning
       className={`${sarabun.variable} ${tajawal.variable} `}
     >
-      <body>
-        <Providers locale={locale} messages={messages}>
+      <body className="min-h-screen  bg-background text-foreground antialiased">
+        <Providers locale={locale} messages={messages} session={session}>
           {children}
         </Providers>
+        <Toaster />
       </body>
     </html>
   );
