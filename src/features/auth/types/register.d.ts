@@ -3,18 +3,17 @@ import { TUser } from './user';
 import { createPasswordSchema } from './../schemas/create-password.schema';
 import { ValidationError } from '@/shared/types/api';
 
-interface RegisterPageProps {
-  params:
-    | Promise<{
-        register: string[];
-      }>
-    | {
-        register: string[];
-      };
-}
-
-export type TRegisterStepsProps = {
-  steps: string[];
+export type TRegisterStepsProps = 'register' | 'otp' | 'user-info' | 'create-password';
+//register
+export type TRegisterEmailFormProps = {
+  setEmail: (email: string) => void;
+  setStep: (step: TRegisterStepsProps) => void;
+  verifyError?: string;
+};
+//otp
+export type TOtpFormProps = {
+  email: string;
+  setStep: (step: TRegisterStepsProps) => void;
 };
 //userInfo
 export type TUserInfoFields = z.infer<typeof UserInfoSchema>;
@@ -23,9 +22,11 @@ export type TUserInfoFormProps = {
   lastNameError?: string;
   userNameError?: string;
   genderError?: string;
+  phoneError?: string;
   email: string;
   userInfo: TUserInfoFields;
   setUserInfo: (userInfo: TUserInfoFields) => void;
+  setStep: (step: TRegisterStepsProps) => void;
 };
 
 export type TRegisterFields = TUserInfoFields & TCreatPasswordFields;
@@ -42,7 +43,7 @@ export type RegisterSubtitleProps = {
   registerSubTitle: string;
 };
 
-//creatPassword
+//createPassword
 export type TCreatePasswordFields = z.infer<typeof createPasswordSchema>;
 export type TCreatePasswordProps = {
   userInfo: TUserInfoFields;
@@ -50,4 +51,5 @@ export type TCreatePasswordProps = {
 export type TUseRegisterProps = {
   setErrors: (errors: ValidationError[]) => void;
   setUserInfo: (userInfo: TUserInfoFields) => void;
+  setStep: (step: TRegisterStepsProps) => void;
 };

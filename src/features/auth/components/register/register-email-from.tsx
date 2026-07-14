@@ -13,8 +13,10 @@ import * as z from 'zod';
 import Link from 'next/link';
 import { useRouter } from '@/i18n/navigation';
 import { useRegisterEmail } from '../../hooks/useRegisterEmail';
+import AuthError from '../shared/auth-error';
+import { TRegisterEmailFormProps } from '../../types/register';
 
-export const RegisterEmailForm = () => {
+export const RegisterEmailForm = ({ setEmail, setStep, verifyError }: TRegisterEmailFormProps) => {
   const t = useTranslations();
   const locale = useLocale();
   const isRtl = locale === 'ar';
@@ -41,7 +43,9 @@ export const RegisterEmailForm = () => {
       const res = await registerEmailMutation.mutateAsync(data.email);
 
       if (res?.status) {
-        router.push(`/register/otp?email=${encodeURIComponent(data.email)}`);
+        // router.push(`/register/otp?email=${encodeURIComponent(data.email)}`);
+        setEmail(data.email);
+        setStep('otp');
       }
     } catch (err) {
       type ApiErrorLike = {
@@ -80,7 +84,7 @@ export const RegisterEmailForm = () => {
                   variant="email"
                   label={t('auth.auth-register.step1.emailLabel')}
                   placeholder={t('auth.auth-register.step1.emailPlaceholder')}
-                  error={fieldState.invalid}
+                  error={fieldState.invalid || !!verifyError}
                   errorMessage={
                     fieldState.error?.message
                       ? t(`auth-register.errors.${fieldState.error.message}`)
@@ -89,12 +93,8 @@ export const RegisterEmailForm = () => {
                   isRtl={isRtl}
                   {...field}
                 />
-
-                {fieldState.error && (
-                  <ErrorAlert
-                    errorMessage={t(`auth-register.errors.${fieldState.error.message}`)}
-                    isRtl={isRtl}
-                  />
+                {(fieldState.error || verifyError) && (
+                  <AuthError zodError={fieldState.error?.message} beError={verifyError} />
                 )}
               </>
             )}

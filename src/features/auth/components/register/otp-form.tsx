@@ -16,13 +16,10 @@ import OTPSection from './otp-timer';
 import Stepper from './stepper';
 import { useForm } from 'react-hook-form';
 import { otpSchema, OtpSchema } from '../../schemas/otp.schema';
+import { TOtpFormProps } from '../../types/register';
 
-export function OtpForm() {
+export function OtpForm({ email, setStep }: TOtpFormProps) {
   const t = useTranslations();
-  const router = useRouter();
-  const searchParams = useSearchParams();
-
-  const email = searchParams.get('email') ?? '';
   const maskedEmail = maskEmail(email);
 
   const [loading, setLoading] = useState(false);
@@ -50,7 +47,8 @@ export function OtpForm() {
         code: otp,
       });
 
-      router.push(`/register/user-info?email=${encodeURIComponent(email)}`);
+      // router.push(`/register/user-info?email=${encodeURIComponent(email)}`);
+      setStep('user-info');
     } catch (err) {
       setError('otp', {
         type: 'server',
