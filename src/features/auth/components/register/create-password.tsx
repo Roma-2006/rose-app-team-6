@@ -8,7 +8,7 @@ import useRegister from '../../hooks/use-register';
 import CustomInput from '@/shared/components/custom-input';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/shared/components/ui/button';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import AuthFooter from '../shared/auth-footer';
 import AuthError from '../shared/auth-error';
 export default function CreatePassword() {
@@ -16,7 +16,7 @@ export default function CreatePassword() {
   const searchParams = useSearchParams();
   const email = searchParams.get('email');
   // Restore user information collected in the previous registration step.
-  // const userInfo = JSON.parse(sessionStorage.getItem(`register-user-info-${email}`) || '{}');
+  const userInfo = JSON.parse(sessionStorage.getItem(`register-user-info-${email}`) || '{}');
   //mutation
   const { mutate: register, error, isPending } = useRegister();
   //errors
@@ -36,27 +36,9 @@ export default function CreatePassword() {
       confirmPassword: '',
     },
   });
-  const isClient = typeof window !== 'undefined';
-  const userInfo = isClient
-    ? JSON.parse(sessionStorage.getItem(`register-user-info-${email}`) || '{}')
-    : {};
   //function
   const onSubmit: SubmitHandler<TCreatePasswordFields> = (values) => {
-    try {
-      console.log('Submitting with info:', userInfo);
-      console.log('Submitting with values:', values);
-
-      // تأكدي من وجود الإيميل بشكل سليم لمنع حدوث undefined crash
-      const emailToSubmit = (userInfo.email || email || '').toLowerCase();
-
-      register({
-        ...userInfo,
-        email: emailToSubmit,
-        ...values,
-      });
-    } catch (submitError) {
-      console.error('Error inside onSubmit handler:', submitError);
-    }
+    register({ ...userInfo, email: userInfo.email?.toLowerCase(), ...values });
   };
   return (
     <section className="flex flex-col w-full ">

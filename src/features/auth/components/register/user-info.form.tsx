@@ -10,21 +10,20 @@ import SelectGender from '@/shared/components/custom-ui/select-gender';
 import RegisterSubtitle from './register-subtitle';
 import { ArrowRight, ArrowLeft } from 'lucide-react';
 import { userInfoSchema } from '../../schemas/user-info.schema';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import AuthFooter from '../shared/auth-footer';
 import { ValidationError } from '@/shared/types/api';
 import AuthError from '../shared/auth-error';
-import { useRouter } from '@/i18n/navigation';
-import { goToCreatePassword } from '../../actions/register-step.action';
 
-export default function UserInfoForm({ email }: EmailProps) {
+export default function UserInfoForm() {
   const t = useTranslations('auth.auth-register');
   const router = useRouter();
   const locale = useLocale();
   const isRtl = locale === 'ar';
-
+  const searchParams = useSearchParams();
+  const email = searchParams.get('email');
   //mutation
-  console.log('email:', email);
   const getStoredErrors = (): ValidationError[] => {
     if (typeof window === 'undefined') return [];
     const storedError = sessionStorage.getItem('register-error');
@@ -57,15 +56,12 @@ export default function UserInfoForm({ email }: EmailProps) {
     },
   });
   //function
-  const onSubmit: SubmitHandler<TUserInfoFields> = async (values) => {
+  const onSubmit: SubmitHandler<TUserInfoFields> = (values) => {
     if (!email) return;
     const userInfo = { ...values, email: email, gender: values.gender.toUpperCase() };
     // Persist user information between registration steps.
     // The flow spans multiple pages and may redirect back after server validation.
-
     sessionStorage.setItem(`register-user-info-${email}`, JSON.stringify(userInfo));
-
-    await goToCreatePassword(email);
     router.push(`/register/create-password?email=${encodeURIComponent(email)}`);
   };
   useEffect(() => {

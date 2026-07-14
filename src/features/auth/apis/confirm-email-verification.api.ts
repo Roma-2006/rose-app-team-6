@@ -4,13 +4,16 @@ import { advanceRegistrationStep } from '../lib/registeration-progress';
 import { ConfirmEmailVerificationRequest } from '../types/confirm-email-verification';
 
 export async function confirmEmailVerification(data: ConfirmEmailVerificationRequest) {
-  const response = await fetch(`${process.env.NEXT_API_BASE_URL}/auth/confirm-email-verification`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/auth/confirm-email-verification`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    }
+  );
 
   const result = await response.json();
 
