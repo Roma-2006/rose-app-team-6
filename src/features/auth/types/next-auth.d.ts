@@ -1,4 +1,3 @@
-// /src/types/next-auth.d.ts
 import 'next-auth';
 import 'next-auth/jwt';
 import { User as UserType } from './user';

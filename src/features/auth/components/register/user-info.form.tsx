@@ -23,13 +23,11 @@ export default function UserInfoForm() {
   const isRtl = locale === 'ar';
   const searchParams = useSearchParams();
   const email = searchParams.get('email');
-  console.log(email, 'email');
   //mutation
   const getStoredErrors = (): ValidationError[] => {
     if (typeof window === 'undefined') return [];
     const storedError = sessionStorage.getItem('register-error');
     if (storedError && storedError !== 'undefined') {
-      // sessionStorage.removeItem('register-error');
       return JSON.parse(storedError);
     }
     return [];
@@ -56,10 +54,10 @@ export default function UserInfoForm() {
   });
   //function
   const onSubmit: SubmitHandler<TUserInfoFields> = (values) => {
-    console.log(values, 'v');
     if (!email) return;
     const userInfo = { ...values, email: email, gender: values.gender.toUpperCase() };
-    console.log(userInfo, 'userInfo');
+    // Persist user information between registration steps.
+    // The flow spans multiple pages and may redirect back after server validation.
     sessionStorage.setItem(`register-user-info-${email}`, JSON.stringify(userInfo));
     router.push(`/register/create-password?email=${encodeURIComponent(email)}`);
   };
@@ -79,12 +77,7 @@ export default function UserInfoForm() {
       });
       form.trigger();
     }
-    // const storedError = sessionStorage.getItem('register-error');
-    // if (storedError && storedError !== 'undefined') {
-    //   setErrors(JSON.parse(storedError));
-    //   sessionStorage.removeItem('register-error');
-    // }
-  }, [form.reset, email]);
+  }, [form, email]);
   return (
     <section className="flex flex-col ">
       <RegisterSubtitle
@@ -93,10 +86,7 @@ export default function UserInfoForm() {
         subTitle="user-info.sub-title"
         registerSubTitle="user-info.user-info-sub-title"
       />
-      <form
-        className="pt-5"
-        onSubmit={form.handleSubmit(onSubmit, (errors) => console.log('FORM ERRORS:', errors))}
-      >
+      <form className="pt-5" onSubmit={form.handleSubmit(onSubmit)}>
         <div className="flex flex-col gap-4 ">
           <div className="flex gap-5 justify-between ">
             {/* first-name*/}

@@ -67,8 +67,6 @@ export function OtpForm() {
       await sendEmailVerification({
         email,
       });
-
-      // setError('');
       return true;
     } catch (err) {
       if (err instanceof Error) {
@@ -78,7 +76,6 @@ export function OtpForm() {
           message: err.message,
         });
       } else {
-        // setError(t('auth.auth-register.otp.invalid'));
         setError('otp', {
           type: 'server',
           message: t('auth.auth-register.otp.invalid'),
