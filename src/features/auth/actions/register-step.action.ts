@@ -1,6 +1,7 @@
 'use server';
 
 import { cookies } from 'next/headers';
+import { advanceRegistrationStep } from '../lib/registeration-progress';
 
 export async function saveRegisterEmail(email: string) {
   const cookieStore = await cookies();
@@ -24,4 +25,7 @@ export async function clearRegisterEmail() {
   const cookieStore = await cookies();
 
   cookieStore.delete('register-email');
+}
+export async function goToCreatePassword(email: string) {
+  await advanceRegistrationStep(email, 'create-password');
 }

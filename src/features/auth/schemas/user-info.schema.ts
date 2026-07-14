@@ -6,8 +6,9 @@ export const userInfoSchema = z
     username: z.string().min(2, 'user-info.errors.user-name'),
     phone: z
       .string()
-      .nonempty('Phone is required')
-      .regex(/^\+20(10|11|12|15)[0-9]{8}$/, 'Invalid phone number'),
-    gender: z.string().nonempty('Gender is required'),
+      .trim()
+      .nonempty('user-info.errors.phone')
+      .regex(/^\+[1-9]\d{0,3}\s?\d{7,14}$/, 'user-info.errors.invalid-phone-number'),
+    gender: z.string().nonempty('user-info.errors.gender'),
   })
   .strict();

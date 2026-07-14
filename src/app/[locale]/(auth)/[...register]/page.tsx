@@ -1,8 +1,9 @@
 import { RegisterPageProps } from '@/features/auth/types/register';
 import { OtpForm } from '@/features/auth/components/register/otp-form';
-import { RegisterEmailForm } from '@/features/auth/components/register/register-email-from';
+
 import CreatePassword from '@/features/auth/components/register/create-password';
 import UserInfoForm from '@/features/auth/components/register/user-info.form';
+import { RegisterEmailForm } from '@/features/auth/components/register/register-email-form';
 export default async function RegisterPage(props: RegisterPageProps) {
   const resolvedParams = 'then' in props.params ? await props.params : props.params;
   const steps = resolvedParams?.register || [];

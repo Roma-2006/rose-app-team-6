@@ -8,7 +8,7 @@ import useRegister from '../../hooks/use-register';
 import CustomInput from '@/shared/components/custom-input';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/shared/components/ui/button';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import AuthFooter from '../shared/auth-footer';
 import AuthError from '../shared/auth-error';
 export default function CreatePassword() {

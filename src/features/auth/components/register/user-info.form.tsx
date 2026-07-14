@@ -32,7 +32,10 @@ export default function UserInfoForm() {
     }
     return [];
   };
-  const [errors] = useState<ValidationError[]>(getStoredErrors);
+  const [errors] = useState<ValidationError[]>(() => {
+    const result = getStoredErrors();
+    return Array.isArray(result) ? result : [];
+  });
   const genderError = errors?.find((err) => err.path === 'gender')?.message;
   const userNameErrors = errors?.find((err) => err.path === 'username');
   const userNameError = userNameErrors?.messages
