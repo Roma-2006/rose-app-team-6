@@ -100,7 +100,15 @@
         "gender":"Gender",
         "gender-placeholder":"Select gender",
         "male":"Male",
-        "female":"Female"
+        "female":"Female",
+        "errors":{
+          "first-name": "First Name is required",
+          "last-name": "Last Name is required",
+          "user-name": "User Name must be at least 2 characters.",
+          "phone": "Phone is required",
+          "gender": "Gender is required",
+          "invalid-phone-number": "Invalid phone number"
+        }
      },
       "create-password":{
         "sub-title":"Create a strong password",
@@ -111,7 +119,16 @@
         "email-in-use":"Email already in use",
         "success":"Account created successfully",
         "have-account": "Already have an account?",
-        "login": "Login"
+        "login": "Login",
+        "errors":{
+          "password-min-length": "Password must be at least 8 characters.",
+          "password-uppercase": "Password must contain at least one uppercase letter.",
+          "password-lowercase": "Password must contain at least one lowercase letter.",
+          "password-number": "Password must contain at least one number.",
+          "password-special": "Password must contain at least one special character.",
+          "confirm-password": "Confirm Password is required.",
+          "passwords-do-not-match": "Passwords do not match."
+        }
       },
       "errors": {
         "noAccount": "Please enter a valid email address"

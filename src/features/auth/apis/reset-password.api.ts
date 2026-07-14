@@ -1,6 +1,6 @@
 'use server';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export async function resetPassword(data: {
   token: string;

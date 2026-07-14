@@ -16,7 +16,6 @@ export default function CreatePassword() {
   const searchParams = useSearchParams();
   const email = searchParams.get('email');
   const userInfo = JSON.parse(sessionStorage.getItem(`register-user-info-${email}`) || '{}');
-  console.log(userInfo);
   //mutation
   const { mutate: register, error, isPending } = useRegister();
   //errors
@@ -27,7 +26,6 @@ export default function CreatePassword() {
     ? passwordErrors?.messages.join(',')
     : passwordErrors?.message;
   const confirmPasswordError = errors?.find((err) => err.path === 'confirmPassword')?.message;
-  console.log(generalError);
   //form
   const form = useForm<TCreatePasswordFields>({
     resolver: zodResolver(createPasswordSchema),
@@ -38,10 +36,10 @@ export default function CreatePassword() {
     },
   });
   //function
-  const onSubmit: SubmitHandler<TCreatePasswordFields> = (values) => {
-    console.log({ ...userInfo, ...values });
-    register({ ...userInfo, email: userInfo.email?.toLowerCase(), ...values });
-  };
+ const onSubmit: SubmitHandler<TCreatePasswordFields> = (values) => {
+  const { confirmPassword, ...rest } = values;
+  register({ ...userInfo, email: userInfo.email?.toLowerCase(), ...rest , confirmPassword: confirmPassword });
+};
   return (
     <section className="flex flex-col w-full ">
       <RegisterSubtitle
@@ -50,10 +48,7 @@ export default function CreatePassword() {
         subTitle="create-password.sub-title"
         registerSubTitle="create-password.create-password-sub-title"
       />
-      <form
-        className="pt-5"
-        onSubmit={form.handleSubmit(onSubmit, (errors) => console.log('FORM ERRORS:', errors))}
-      >
+      <form className="pt-5" onSubmit={form.handleSubmit(onSubmit)}>
         <div className="flex flex-col gap-4 ">
           <Controller
             name="password"
@@ -99,9 +94,8 @@ export default function CreatePassword() {
           buttonVariant="text"
           type="submit"
           loading={isPending}
-          disabled={isPending || !form.formState.isValid}
+          disabled={isPending || (form.formState.isSubmitted && !form.formState.isValid)}
         />
-        {/* {generalError && <p className="text-text-danger my-1">{generalError}</p>} */}
         <AuthError beError={generalError} />
         <AuthFooter
           question="auth-register.create-password.have-account"

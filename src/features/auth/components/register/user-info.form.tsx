@@ -24,14 +24,17 @@ export default function UserInfoForm() {
   const isRtl = locale === 'ar';
   const searchParams = useSearchParams();
   const email = searchParams.get('email');
-  console.log(email, 'email');
   //mutation
   const getStoredErrors = (): ValidationError[] => {
     if (typeof window === 'undefined') return [];
     const storedError = sessionStorage.getItem('register-error');
     if (storedError && storedError !== 'undefined') {
-      // sessionStorage.removeItem('register-error');
-      return JSON.parse(storedError);
+      try {
+        const parsed = JSON.parse(storedError);
+        return Array.isArray(parsed) ? parsed : [];
+      } catch {
+        return [];
+      }
     }
     return [];
   };
@@ -58,9 +61,7 @@ export default function UserInfoForm() {
   //function
   const onSubmit: SubmitHandler<TUserInfoFields> = async (values) => {
     if (!email) return;
-    console.log(values);
     const userInfo = { ...values, email: email, gender: values.gender.toUpperCase() };
-    console.log(userInfo, 'userInfo');
     sessionStorage.setItem(`register-user-info-${email}`, JSON.stringify(userInfo));
     await advanceRegistrationStep(email, 'create-password');
     router.push(`/register/create-password?email=${encodeURIComponent(email)}`);
@@ -79,13 +80,9 @@ export default function UserInfoForm() {
           ? data.gender.charAt(0).toUpperCase() + data.gender.slice(1).toLowerCase()
           : '',
       });
+      form.trigger();
     }
-    // const storedError = sessionStorage.getItem('register-error');
-    // if (storedError && storedError !== 'undefined') {
-    //   setErrors(JSON.parse(storedError));
-    //   sessionStorage.removeItem('register-error');
-    // }
-  }, [form.reset, email]);
+  }, [form, email]);
   return (
     <section className="flex flex-col ">
       <RegisterSubtitle
@@ -94,10 +91,7 @@ export default function UserInfoForm() {
         subTitle="user-info.sub-title"
         registerSubTitle="user-info.user-info-sub-title"
       />
-      <form
-        className="pt-5"
-        onSubmit={form.handleSubmit(onSubmit, (errors) => console.log('FORM ERRORS:', errors))}
-      >
+      <form className="pt-5" onSubmit={form.handleSubmit(onSubmit)}>
         <div className="flex flex-col gap-4 ">
           <div className="flex gap-5 justify-between ">
             {/* first-name*/}
@@ -201,8 +195,7 @@ export default function UserInfoForm() {
           rightIcon={isRtl ? <ArrowLeft /> : <ArrowRight />}
           buttonVariant="text"
           type="submit"
-          // loading={isPending}
-          // disabled={isPending || !form.formState.isValid}
+          disabled={(form.formState.isSubmitted && !form.formState.isValid) || !email}
         />
         <AuthFooter
           question="auth-register.need-help"
