@@ -16,6 +16,7 @@ import OTPSection from './otp-timer';
 import Stepper from './stepper';
 import { useForm } from 'react-hook-form';
 import { otpSchema, OtpSchema } from '../../schemas/otp.schema';
+import { saveRegisterEmail } from '../../actions/register-step.action';
 
 export function OtpForm() {
   const t = useTranslations();
