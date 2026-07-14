@@ -64,7 +64,7 @@ export const RegisterEmailForm = () => {
           ? err.message
           : ((err as ApiErrorLike)?.message ?? (err as ApiErrorLike)?.response?.message);
 
-      if (apiMessage.toLowerCase().includes('already registered')) {
+      if (apiMessage?.toLowerCase().includes('already registered')) {
         setError('email', {
           type: 'server',
           message: 'emailAlreadyRegistered',
