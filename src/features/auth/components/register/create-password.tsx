@@ -15,8 +15,8 @@ export default function CreatePassword() {
   const t = useTranslations('auth.auth-register.create-password');
   const searchParams = useSearchParams();
   const email = searchParams.get('email');
-  const userInfo = JSON.parse(sessionStorage.getItem(`register-user-info-${email}`) || '{}');
-  console.log(userInfo);
+  // Restore user information collected in the previous registration step.
+  // const userInfo = JSON.parse(sessionStorage.getItem(`register-user-info-${email}`) || '{}');
   //mutation
   const { mutate: register, error, isPending } = useRegister();
   //errors
@@ -27,7 +27,6 @@ export default function CreatePassword() {
     ? passwordErrors?.messages.join(',')
     : passwordErrors?.message;
   const confirmPasswordError = errors?.find((err) => err.path === 'confirmPassword')?.message;
-  console.log(generalError);
   //form
   const form = useForm<TCreatePasswordFields>({
     resolver: zodResolver(createPasswordSchema),
@@ -37,9 +36,27 @@ export default function CreatePassword() {
       confirmPassword: '',
     },
   });
+  const isClient = typeof window !== 'undefined';
+  const userInfo = isClient
+    ? JSON.parse(sessionStorage.getItem(`register-user-info-${email}`) || '{}')
+    : {};
   //function
   const onSubmit: SubmitHandler<TCreatePasswordFields> = (values) => {
-    register({ ...userInfo, email: userInfo.email?.toLowerCase(), ...values });
+    try {
+      console.log('Submitting with info:', userInfo);
+      console.log('Submitting with values:', values);
+
+      // تأكدي من وجود الإيميل بشكل سليم لمنع حدوث undefined crash
+      const emailToSubmit = (userInfo.email || email || '').toLowerCase();
+
+      register({
+        ...userInfo,
+        email: emailToSubmit,
+        ...values,
+      });
+    } catch (submitError) {
+      console.error('Error inside onSubmit handler:', submitError);
+    }
   };
   return (
     <section className="flex flex-col w-full ">
@@ -49,10 +66,7 @@ export default function CreatePassword() {
         subTitle="create-password.sub-title"
         registerSubTitle="create-password.create-password-sub-title"
       />
-      <form
-        className="pt-5"
-        onSubmit={form.handleSubmit(onSubmit, (errors) => console.log('FORM ERRORS:', errors))}
-      >
+      <form className="pt-5" onSubmit={form.handleSubmit(onSubmit)}>
         <div className="flex flex-col gap-4 ">
           <Controller
             name="password"
@@ -98,9 +112,8 @@ export default function CreatePassword() {
           buttonVariant="text"
           type="submit"
           loading={isPending}
-          disabled={isPending || !form.formState.isValid}
+          disabled={isPending || (form.formState.isSubmitted && !form.formState.isValid)}
         />
-        {/* {generalError && <p className="text-text-danger my-1">{generalError}</p>} */}
         <AuthError beError={generalError} />
         <AuthFooter
           question="auth-register.create-password.have-account"

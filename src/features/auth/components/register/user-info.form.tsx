@@ -15,6 +15,8 @@ import AuthFooter from '../shared/auth-footer';
 import { ValidationError } from '@/shared/types/api';
 import AuthError from '../shared/auth-error';
 import { useRouter } from '@/i18n/navigation';
+import { goToCreatePassword } from '../../actions/register-step.action';
+
 export default function UserInfoForm({ email }: EmailProps) {
   const t = useTranslations('auth.auth-register');
   const router = useRouter();
@@ -22,6 +24,7 @@ export default function UserInfoForm({ email }: EmailProps) {
   const isRtl = locale === 'ar';
 
   //mutation
+  console.log('email:', email);
   const getStoredErrors = (): ValidationError[] => {
     if (typeof window === 'undefined') return [];
     const storedError = sessionStorage.getItem('register-error');
@@ -30,7 +33,10 @@ export default function UserInfoForm({ email }: EmailProps) {
     }
     return [];
   };
-  const [errors] = useState<ValidationError[]>(getStoredErrors);
+  const [errors] = useState<ValidationError[]>(() => {
+    const result = getStoredErrors();
+    return Array.isArray(result) ? result : [];
+  });
   const genderError = errors?.find((err) => err.path === 'gender')?.message;
   const userNameErrors = errors?.find((err) => err.path === 'username');
   const userNameError = userNameErrors?.messages
@@ -53,8 +59,14 @@ export default function UserInfoForm({ email }: EmailProps) {
   //function
   const onSubmit: SubmitHandler<TUserInfoFields> = async (values) => {
     if (!email) return;
+    const userInfo = { ...values, email: email, gender: values.gender.toUpperCase() };
+    // Persist user information between registration steps.
+    // The flow spans multiple pages and may redirect back after server validation.
 
-    router.push(`/register/create-password`);
+    sessionStorage.setItem(`register-user-info-${email}`, JSON.stringify(userInfo));
+
+    await goToCreatePassword(email);
+    router.push(`/register/create-password?email=${encodeURIComponent(email)}`);
   };
   useEffect(() => {
     if (!email) return;
@@ -70,9 +82,9 @@ export default function UserInfoForm({ email }: EmailProps) {
           ? data.gender.charAt(0).toUpperCase() + data.gender.slice(1).toLowerCase()
           : '',
       });
+      form.trigger();
     }
-  }, [form.reset, email]);
-
+  }, [form, email]);
   return (
     <section className="flex flex-col ">
       <RegisterSubtitle
@@ -81,10 +93,7 @@ export default function UserInfoForm({ email }: EmailProps) {
         subTitle="user-info.sub-title"
         registerSubTitle="user-info.user-info-sub-title"
       />
-      <form
-        className="pt-5"
-        onSubmit={form.handleSubmit(onSubmit, (errors) => console.log('FORM ERRORS:', errors))}
-      >
+      <form className="pt-5" onSubmit={form.handleSubmit(onSubmit)}>
         <div className="flex flex-col gap-4 ">
           <div className="flex gap-5 justify-between ">
             {/* first-name*/}
@@ -188,8 +197,7 @@ export default function UserInfoForm({ email }: EmailProps) {
           rightIcon={isRtl ? <ArrowLeft /> : <ArrowRight />}
           buttonVariant="text"
           type="submit"
-          // loading={isPending}
-          // disabled={isPending || !form.formState.isValid}
+          disabled={(form.formState.isSubmitted && !form.formState.isValid) || !email}
         />
         <AuthFooter
           question="auth-register.need-help"

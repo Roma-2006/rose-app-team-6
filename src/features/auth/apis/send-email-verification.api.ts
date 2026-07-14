@@ -1,7 +1,7 @@
 'use server';
 
 export async function sendEmailVerification(data: EmailProps) {
-  const res = await fetch(`${process.env.API_BASE_URL}/auth/send-email-verification`, {
+  const res = await fetch(`${process.env.NEXT_API_BASE_URL}/auth/send-email-verification`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

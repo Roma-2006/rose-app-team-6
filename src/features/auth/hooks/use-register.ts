@@ -17,7 +17,6 @@ export default function useRegister() {
         },
       });
       const payload = await response.json();
-
       if (payload && !payload.status) throw payload.errors ? payload.errors : payload.message;
       return payload;
     },
@@ -27,7 +26,7 @@ export default function useRegister() {
       toast.success(t('success'));
       router.push('/login');
     },
-    onError: (data, variables) => {
+    onError: (data) => {
       if (data) {
         if (Array.isArray(data)) {
           const paths = data.map((err) => err.path);
@@ -37,10 +36,9 @@ export default function useRegister() {
             paths?.includes('lastName') ||
             paths?.includes('gender')
           ) {
-            router.push(`/register/user-info?email=${encodeURIComponent(variables.email)}`);
+            router.push('/register/user-info');
           }
         }
-
         sessionStorage.setItem('register-error', JSON.stringify(data));
       }
     },

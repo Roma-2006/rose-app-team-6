@@ -1,3 +1,4 @@
+import { RegisterPageProps } from '@/features/auth/types/register';
 import { OtpForm } from '@/features/auth/components/register/otp-form';
 import { RegisterEmailForm } from '@/features/auth/components/register/register-email-form';
 import CreatePassword from '@/features/auth/components/register/create-password';
@@ -12,13 +13,12 @@ export default async function RegisterPage(props: RegisterPageProps) {
   const email = cookieStore.get('register-email')?.value ?? '';
 
   const steps = resolvedParams?.register || [];
-
+  console.log('steps:', steps);
+  console.log('resolvedParams:', resolvedParams);
   // 1.register
-
   if (steps.length === 0 || (steps[0] === 'register' && steps.length === 1)) {
     return <RegisterEmailForm />;
   }
-
   // 2.register/otp
   if (steps[0] === 'otp' || (steps[0] === 'register' && steps[1] === 'otp')) {
     return <OtpForm email={email} />;

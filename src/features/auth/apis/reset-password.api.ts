@@ -5,7 +5,7 @@ export async function resetPassword(data: {
   newPassword: string;
   confirmPassword: string;
 }) {
-  const response = await fetch(`${process.env.API_BASE_URL}/api/auth/reset-password`, {
+  const response = await fetch(`${process.env.NEXT_API_BASE_URL}/api/auth/reset-password`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),

@@ -9,8 +9,6 @@ const intlMiddleware = createMiddleware(routing);
 const AUTH_ROUTES = ['/login', '/register', '/forgot-password'];
 const PROTECTED_ROUTES = ['/'];
 
-const REGISTER_STEP_ROUTES = ['/register/otp', '/register/user-info', '/register/create-password'];
-
 type Locale = (typeof routing.locales)[number];
 
 function getLocale(pathname: string): string {
@@ -67,6 +65,8 @@ export default async function middleware(req: NextRequest) {
     }
 
     if (requestedStep !== payload.step) {
+      console.log('requestedStep:', requestedStep);
+
       return NextResponse.redirect(new URL(`/${locale}/register/${payload.step}`, req.url));
     }
   }
