@@ -21,12 +21,10 @@ export default function useRegister() {
       return payload;
     },
     onSuccess: (data, variables) => {
-      router.push('/login');
-
       sessionStorage.removeItem(`register-user-info-${variables.email}`);
       sessionStorage.removeItem('register-error');
-
       toast.success(t('success'));
+      router.push('/login');
     },
     onError: (data) => {
       if (data) {

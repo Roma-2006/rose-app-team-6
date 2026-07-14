@@ -62,7 +62,7 @@ export default function UserInfoForm() {
     // Persist user information between registration steps.
     // The flow spans multiple pages and may redirect back after server validation.
     sessionStorage.setItem(`register-user-info-${email}`, JSON.stringify(userInfo));
-    router.push(`/create-password?email=${encodeURIComponent(email)}`);
+    router.push(`/register/create-password?email=${encodeURIComponent(email)}`);
   };
   useEffect(() => {
     if (!email) return;
