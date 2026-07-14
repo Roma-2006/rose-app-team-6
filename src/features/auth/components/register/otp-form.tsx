@@ -16,6 +16,7 @@ import OTPSection from './otp-timer';
 import Stepper from './stepper';
 import { useForm } from 'react-hook-form';
 import { otpSchema, OtpSchema } from '../../schemas/otp.schema';
+import { saveRegisterEmail } from '../../actions/register-step.action';
 
 export function OtpForm() {
   const t = useTranslations();
@@ -49,12 +50,27 @@ export function OtpForm() {
         email,
         code: otp,
       });
-
+      await saveRegisterEmail(email);
       router.push(`/register/user-info?email=${encodeURIComponent(email)}`);
     } catch (err) {
+      let message = t('auth.auth-register.otp.invalid');
+
+      if (err instanceof Error) {
+        const status = (err as Error & { status?: number }).status;
+
+        switch (status) {
+          case 400:
+            message = t('auth.auth-register.otp.invalid');
+            break;
+
+          default:
+            message = t('common.select.somethingWentWrong');
+        }
+      }
+
       setError('otp', {
         type: 'server',
-        message: err instanceof Error ? err.message : t('auth-register.otp.invalid'),
+        message,
       });
     } finally {
       setLoading(false);
@@ -67,10 +83,12 @@ export function OtpForm() {
       await sendEmailVerification({
         email,
       });
+
+      localStorage.setItem('otp-resend-end-time', (Date.now() + 60 * 1000).toString());
+
       return true;
     } catch (err) {
       if (err instanceof Error) {
-        // setError(err.message);
         setError('otp', {
           type: 'server',
           message: err.message,
@@ -81,7 +99,6 @@ export function OtpForm() {
           message: t('auth.auth-register.otp.invalid'),
         });
       }
-
       return false;
     }
   };
@@ -93,9 +110,9 @@ export function OtpForm() {
 
       {/* Title */}
       <div className="mb-3">
-        <h1 className="text-[30px] font-bold text-zinc-800">{t('auth.auth-register.title')}</h1>
+        <h1 className="text-[30px] font-bold text-text-inverse">{t('auth.auth-register.title')}</h1>
 
-        <h2 className="text-[20px] font-bold text-text-plain">
+        <h2 className="text-[20px] font-bold text-text-primary">
           {t('auth.auth-register.otp.subtitle-1')}
         </h2>
 
@@ -103,14 +120,14 @@ export function OtpForm() {
           {t('auth.auth-register.otp.subtitle-2', { email: maskedEmail })}{' '}
           <Link
             href="/register"
-            className="font-medium text-blue-400 hover:underline dark:text-blue-700"
+            className="font-medium text-text-info hover:underline dark:text-blue-700"
           >
             {t('auth.auth-register.otp.Edit')}
           </Link>
         </p>
       </div>
 
-      <hr className="border-border-muted" />
+      <hr className="mb-7 border-border-muted" />
 
       {/* OTP */}
       <div className="my-10 flex flex-col items-center">
@@ -124,12 +141,12 @@ export function OtpForm() {
         />
 
         {errors.otp && (
-          <p className="mt-2 text-center text-sm text-red-500">{errors.otp.message}</p>
+          <p className="mt-2 text-center text-sm text-text-danger">{errors.otp.message}</p>
         )}
       </div>
 
       {/* Resend */}
-      <div className="mb-10 flex justify-end">
+      <div className="mb-2 flex justify-end">
         <OTPSection onResend={handleResendEmail} />
       </div>
 
@@ -144,7 +161,7 @@ export function OtpForm() {
         disabled={loading}
       />
 
-      <hr className="my-8 border-border-muted" />
+      <hr className="mb-7 border-border-muted" />
 
       {/* Footer */}
       <div className="text-center text-sm">
