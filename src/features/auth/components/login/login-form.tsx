@@ -48,9 +48,9 @@ export default function LoginForm() {
                   variant="default"
                   disabled={isLoading}
                   error={fieldState.invalid}
-                  subVariant="username"
+                  subVariant="user-name"
                   id="username"
-                  autoComplete="username"
+                  autoComplete="user-name"
                   placeholder={tInput('default.user-name.placeholder')}
                   label={tInput('default.user-name.label')}
                   errorMessage={fieldState.error?.message}

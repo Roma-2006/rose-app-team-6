@@ -42,7 +42,10 @@
         "rememberMe" : "تذكرني",
         "noAccount" :"ليس لديك حساب؟",
          "register" :"إنشاء حساب",
-          "button" :"تسجيل الدخول"
+          "button" :"تسجيل الدخول",
+         "invalidCredentials": "اسم المستخدم أو كلمة المرور غير صحيحة"
+
+
       
     },
     "auth-forgotPw": {

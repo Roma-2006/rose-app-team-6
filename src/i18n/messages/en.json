@@ -45,7 +45,8 @@
         "rememberMe" : "Remember me",
         "noAccount" :"Don't have an account?",
          "register" :"Create one now!",
-         "button" :"Login"
+         "button" :"Login",
+         "invalidCredentials": "The username or password is incorrect."
       
     },
     "auth-forgotPw": {
