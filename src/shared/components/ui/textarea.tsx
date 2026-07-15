@@ -15,9 +15,6 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     // Translation
     const t = useTranslations('common.textarea');
 
-    // Ref
-    // (Passed through to the underlying <textarea />)
-
     // Variables (Derived)
     const count = typeof value === 'string' ? value.length : 0;
 
