@@ -1,4 +1,7 @@
 {
+  "HomePage": {
+    "title": "مرحباً بكم في تطبيق روز"
+  },
   "app-title": "تطبيق روز",
   "button": {
     "loading": "جاري التحميل...",
@@ -7,7 +10,7 @@
     "save": "حفظ",
     "delete": "حذف",
     "confirm": "تأكيد",
-    "next":"التالى"
+    "next": "التالى"
   },
   "common": {
     "select": {
@@ -20,6 +23,7 @@
       "charCount": "{current}/{max} حرف"
     }
   },
+
   "title": "مرحبا بك في تطبيق روز",
   "auth": {
     "switchLang": "العربية",
@@ -48,14 +52,7 @@
         "emailPlaceholder": "user@example.com",
         "continue": "متابعة",
         "footerText": "ليس لديك حساب بعد؟",
-        "registerLink": "أنشئ حساباً الآن!",
-        "errors": {
-            "email-required": "البريد الإلكتروني مطلوب.",
-            "invalid-email": "يرجى إدخال بريد إلكتروني صحيح.",
-            "no-account": "لا يوجد حساب بهذا البريد الإلكتروني.",
-            "email-already-registered": "هذا البريد الإلكتروني مسجل بالفعل.",
-            "something-went-wrong": "حدث خطأ، يرجى المحاولة مرة أخرى."
-      }
+        "registerLink": "أنشئ حساباً الآن!"
       },
       "step3": {
         "title": "إنشاء كلمة مرور جديدة",
@@ -75,7 +72,7 @@
       }
     },
     "auth-register": {
-      "title":"إنشاء حساب",
+      "title": "إنشاء حساب",
       "need-help": "تحتاج مساعده ؟",
       "contact-us": "تواصل معنا",
       "step1": {
@@ -83,28 +80,22 @@
         "emailPlaceholder": "user@example.com",
         "continue": "متابعة",
         "footerText": "هل لديك حساب بالفعل؟ ",
-        "registerLink": "سجل الدخول ",
-
-        "errors": {
-            "email-required": "البريد الإلكتروني مطلوب.",
-            "invalid-email": "يرجى إدخال بريد إلكتروني صحيح.",
-            "no-account": "لا يوجد حساب بهذا البريد الإلكتروني.",
-            "email-already-registered": "هذا البريد الإلكتروني مسجل بالفعل.",
-            "something-went-wrong": "حدث خطأ، يرجى المحاولة مرة أخرى."
-      }
+        "registerLink": "سجل الدخول !"
       },
       "otp": {
         "title": "انشاء حساب ",
         "subtitle-1": "أدخل رمز التحقق",
         "subtitle-2": "أرسلنا رمزاً إلى {email}",
         "resend": "أرسل رمزاً جديداً",
-        "resend-2": "اعاده ارسال ",
         "resendTimer": "أعد الإرسال خلال {s} ثانية",
         "invalid": "رمز التحقق غير صحيح",
         "expired": "انتهت صلاحية الرمز. يرجى طلب رمز جديد.",
         "verify": "تحقق",
-        "Edit": "تعديل"
+        "Edit": "تعديل",
+        "invalid": "رمز التحقق غير صحيح.",
+        "expired": "انتهت صلاحية رمز التحقق."
       },
+     
       "user-info":{
         "sub-title":"أخبرنا المزيد عن نفسك",
         "user-info-sub-title":"بعض التفاصيل للبدء.",
@@ -126,14 +117,14 @@
           "invalid-phone-number": "رقم الهاتف غير صالح"
         }
       },
-      "create-password":{
-        "sub-title":"أنشئ كلمة مرور قوية",
-        "create-password-sub-title":"اختر كلمة مرور آمنة لحماية حسابك",
-        "password":"كلمة المرور",
-        "confirm-password":"تأكيد كلمة المرور",
-        "button":"إنشاء حساب",
-        "email-in-use":"البريد الإلكتروني مستخدم بالفعل",
-        "success":"تم إنشاء الحساب بنجاح",
+      "create-password": {
+        "sub-title": "أنشئ كلمة مرور قوية",
+        "create-password-sub-title": "اختر كلمة مرور آمنة لحماية حسابك",
+        "password": "كلمة المرور",
+        "confirm-password": "تأكيد كلمة المرور",
+        "button": "إنشاء حساب",
+        "email-in-use": "البريد الإلكتروني مستخدم بالفعل",
+        "success": "تم إنشاء الحساب بنجاح",
         "have-account": "هل لديك حساب بالفعل؟",
         "login": "تسجيل الدخول",
         "errors": {
@@ -146,8 +137,14 @@
           "passwords-do-not-match": "كلمتا المرور غير متطابقتين."
         }
         
-      }
-   
+      },
+      "errors": {
+  "emailRequired": "البريد الإلكتروني مطلوب.",
+  "invalidEmail": "يرجى إدخال بريد إلكتروني صحيح.",
+  "noAccount": "لا يوجد حساب بهذا البريد الإلكتروني.",
+  "emailAlreadyRegistered": "هذا البريد الإلكتروني مسجل بالفعل.",
+  "somethingWentWrong": "حدث خطأ، يرجى المحاولة مرة أخرى."
+}
     },
     "passwordResetSent": {
       "title": "تم إرسال رابط إعادة تعيين كلمة المرور",
@@ -164,15 +161,17 @@
     "placeholder": "أدخل اسمك هنا..."
   },
 
-   "custom-input": {
-    "default":{
-      "first-name" : { "label": "الاسم الأول", "placeholder": "Jonathan" } , 
-      "last-name": {"label" :"الاسم الأخير" , "placeholder" :"Adrian"} ,
-      "user-name": {"label" :" اسم المسخدم" , "placeholder" :"Jonathan"}
-  },
+    "custom-input": {
+    "default": {
+      "first-name": { "label": "الاسم الأول", "placeholder": "Jonathan" },
+      "last-name": { "label": "الاسم الأخير", "placeholder": "Adrian" },
+      "username": { "label": " اسم المسخدم", "placeholder": "Jonathan" }
+    },
     "number": { "label": "الرقم", "placeholder": "0" },
     "search": { "label": "بحث", "placeholder": "ابحث هنا..." },
     "password": {
+      "label": "كلمة المرور",
+      "placeholder": "*********",
       "password": { "label": "كلمة المرور", "placeholder": "*********" },
       "confirm-Password": { "label": "تأكيد كلمة المرور", "placeholder": "*********" }
     },
@@ -183,7 +182,147 @@
       "error-type": "صيغة الملف غير مدعومة."
     },
     "phone": { "label": "رقم الهاتف", "placeholder": "1012345678" },
-    "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" },
-    "nice-to-have-you-here": "جميل أنك هنا"
-  }
-}
+    "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" }
+  },
+  "login": {
+    "username": {
+      "invalid": " اسم المستخدم غير صالح",
+      "required": "اسم المستخدم مطلوب"
+    },
+    "password": {
+      "invalid": "كلمة المرور غير صالحة",
+      "required": "كلمة المرور مطلوبة"
+    },
+    "invalidCredentials" : "اسم المستخدم أو كلمة المرور غير صحيحة",
+
+    "forgot-password": "نسيت كلمة المرور؟",
+    "no-account": "ليس لديك حساب؟",
+    "register": "إنشاء حساب",
+    "submit-btn": "تسجيل الدخول",
+    "loading": "جاري الدخول...",
+    "remember-me": "تذكرني"
+  },
+    "nice-to-have-you-here": "جميل أنك هنا" ,
+
+  "auth": {
+    "switchLang": "العربية",
+    "langLabel": "التحويل إلى الإنجليزية",
+    "welcome-auth": {
+      "login-title": "مرحبًا بعودتك!",
+      "register-title": "كن جزءًا من عائلتنا!"
+    },
+    "auth-forgotPw": {
+      "step1": {
+        "title": "نسيت كلمة المرور؟",
+
+        "subtitle": "لا تقلق، سنرسل لك التعليمات لمساعدتك في إعادة تعيينها.",
+
+        "emailLabel": "البريد الإلكتروني",
+
+        "emailPlaceholder": "user@example.com",
+
+
+        "continue": "متابعة",
+
+        "footerText": "ليس لديك حساب بعد؟",
+
+        "registerLink": "أنشئ حساباً الآن!"
+      },
+
+      "step2": {
+        "title": "تم إرسال رابط إعادة تعيين كلمة المرور",
+
+        "description": "إذا كان هناك حساب مرتبط بعنوان البريد الإلكتروني هذا، فقد أرسلنا رابطًا لإعادة تعيين كلمة المرور.",
+
+        "descriptionPrefix": "لقد أرسلنا رابط إعادة تعيين كلمة المرور إلى:",
+
+        "instruction1": "يرجى التحقق من صندوق الوارد واتباع التعليمات لإعادة تعيين كلمة المرور.",
+
+        "instruction2": "إذا لم تجد الرسالة خلال بضع دقائق، فتحقق من مجلد الرسائل غير المرغوب فيها.",
+
+        "needHelp": "تحتاج مساعدة؟",
+
+        "contactUs": "تواصل معنا",
+
+        "back": "رجوع",
+
+        "resend": "طلب رابط جديد",
+
+        "resending": "جارٍ طلب رابط جديد...",
+
+        "resendToast": "إذا كان هناك حساب مرتبط بهذا البريد الإلكتروني، فقد تم إرسال رابط لإعادة تعيين كلمة المرور.",
+
+        "successToast": "تم إرسال تعليمات إعادة تعيين كلمة المرور"
+      },
+
+      "step3": {
+        "title": "إنشاء كلمة مرور جديدة",
+
+        "subtitle": "قم بتعيين كلمة مرور قوية لتأمين حسابك.",
+
+        "passwordLabel": "كلمة المرور",
+
+        "confirmPasswordLabel": "تأكيد كلمة المرور",
+
+        "reset": "إعادة تعيين كلمة المرور",
+
+        "successToast": "تمت إعادة تعيين كلمة المرور بنجاح.",
+
+        "resetFailed": "غير قادر على إعادة تعيين كلمة المرور. يرجى المحاولة مرة أخرى.",
+
+        "footerText": "تحتاج مساعدة؟",
+
+        "contactLink": "تواصل معنا"
+      },
+
+      "errors": {
+        "noAccount": "لم يتم العثور على حساب بهذا البريد الإلكتروني",
+                "emailRequired": "البريد الإلكتروني مطلوب",
+
+
+        "fieldRequired": "هذا الحقل مطلوب",
+
+        "passwordInvalid": "يجب أن تتكون من 8 أحرف على الأقل، وتتضمن حرفاً كبيراً، حرفاً صغيراً، رقمًا، ورمزاً خاصاً",
+
+        "passwordMatch": "كلمات المرور غير متطابقة",
+
+        "invalidEmail": "صيغة البريد الإلكتروني غير صحيحة",
+
+        "somethingWentWrong": "حدث خطأ. يرجى المحاولة مرة أخرى."
+      }
+    },
+    "auth-register": {
+      "step1": {
+        "emailLabel": "البريد الإلكتروني",
+        "emailPlaceholder": "user@example.com",
+        "continue": "متابعة",
+        "footerText": "هل لديك حساب بالفعل؟ ",
+        "registerLink": "سجل الدخول "
+      },
+      "otp": {
+        "title": "انشاء حساب ",
+        "subtitle-1": "أدخل رمز التحقق",
+        "subtitle-2": "أرسلنا رمزاً إلى {email}",
+        "resend": "أرسل رمزاً جديداً",
+        "resendTimer": "أعد الإرسال خلال {s} ثانية",
+        "invalid": "رمز التحقق غير صحيح",
+        "expired": "انتهت صلاحية الرمز. يرجى طلب رمز جديد.",
+        "verify": "تحقق",
+        "Edit": "تعديل",
+        "Need-help": "تحتاج مساعده ؟",
+        "Contact-us": "تواصل معنا"
+      },
+      "errors": {
+        "noAccount": "يرجى إدخال عنوان بريد إلكتروني صالح"
+      }
+    },
+    "passwordResetSent": {
+      "title": "تم إرسال رابط إعادة تعيين كلمة المرور",
+      "subtitle": "لقد أرسلنا رابط إعادة تعيين كلمة المرور إلى:",
+      "message1": "يرجى التحقق من صندوق الوارد واتباع التعليمات لإعادة تعيين كلمة المرور.",
+      "message2": "إذا لم تجد الرسالة خلال بضع دقائق، فتحقق من مجلد الرسائل غير المرغوب فيها.",
+      "needHelp": "تحتاج إلى مساعدة؟",
+      "contact": "تواصل معنا",
+      "toast-description": "تم إرسال رمز التحقق الجديد إلى بريدك الإلكتروني"
+    }
+  }}
