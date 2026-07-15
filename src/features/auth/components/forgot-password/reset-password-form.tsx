@@ -8,6 +8,7 @@ import CustomInput from '@/shared/components/custom-input';
 import { Link } from '@/i18n/navigation';
 
 export const ResetPasswordForm = () => {
+  // Custom Hooks
   const { t, isRtl, isLoading, control, handleSubmit, onSubmit } = useResetPasswordForm();
 
   return (

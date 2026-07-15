@@ -10,6 +10,7 @@ interface ForgotPasswordFormProps {
 }
 
 export const ForgotPasswordForm = ({ onSuccess }: ForgotPasswordFormProps) => {
+  // Custom Hooks
   const { t, isRtl, isLoading, control, handleSubmit, onSubmit } = useForgotPasswordForm(onSuccess);
 
   return (

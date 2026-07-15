@@ -11,7 +11,10 @@ interface PasswordResetSentProps {
 }
 
 export const PasswordResetSent = ({ email, onBack }: PasswordResetSentProps) => {
+  // Translation
   const t = useTranslations();
+
+  // Context
   const locale = useLocale();
   const isRtl = locale === 'ar';
 

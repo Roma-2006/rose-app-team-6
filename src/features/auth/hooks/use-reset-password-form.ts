@@ -14,16 +14,24 @@ import { resetPasswordSchema } from '@/features/auth/schemas/reset-password.sche
 export type ResetPasswordValues = z.infer<typeof resetPasswordSchema>;
 
 export const useResetPasswordForm = () => {
+  // Translation
   const t = useTranslations();
+
+  // Context
   const locale = useLocale();
   const isRtl = locale === 'ar';
 
+  // Navigation
   const router = useRouter();
+
+  // Query
   const searchParams = useSearchParams();
   const token = searchParams.get('token') || '';
 
+  // State
   const [isLoading, setIsLoading] = useState(false);
 
+  // Form
   const form = useForm<ResetPasswordValues>({
     resolver: zodResolver(resetPasswordSchema),
     defaultValues: {
@@ -32,23 +40,40 @@ export const useResetPasswordForm = () => {
     },
   });
 
+  // Variables (Derived)
+  const buildPayload = (data: ResetPasswordValues) => ({
+    token,
+    newPassword: data.newPassword,
+    confirmPassword: data.confirmPassword,
+  });
+
+  // Functions
+  const handleSuccess = () => {
+    toast.success(t('auth.auth-forgotPw.step3.successToast'));
+    router.push(`/${locale}/login`);
+  };
+
+  const handleFailure = (message?: string) => {
+    toast.error(message || t('auth.auth-forgotPw.step3.resetFailed'));
+  };
+
+  const handleApiError = () => {
+    toast.error(t('auth.auth-forgotPw.errors.somethingWentWrong'));
+  };
+
   const onSubmit: SubmitHandler<ResetPasswordValues> = async (data) => {
     setIsLoading(true);
     try {
-      const res = await resetPassword({
-        token,
-        newPassword: data.newPassword,
-        confirmPassword: data.confirmPassword,
-      });
+      const res = await resetPassword(buildPayload(data));
 
       if (res.status) {
-        toast.success(t('auth.auth-forgotPw.step3.successToast'));
-        router.push(`/${locale}/login`);
-      } else {
-        toast.error(res.message || t('auth.auth-forgotPw.step3.resetFailed'));
+        handleSuccess();
+        return;
       }
+
+      handleFailure(res.message);
     } catch {
-      toast.error(t('auth.auth-forgotPw.errors.somethingWentWrong'));
+      handleApiError();
     } finally {
       setIsLoading(false);
     }

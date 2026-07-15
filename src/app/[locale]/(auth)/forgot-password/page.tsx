@@ -4,9 +4,11 @@ import { ForgotPasswordForm } from '@/features/auth/components/forgot-password/f
 import { PasswordResetSent } from '@/features/auth/components/forgot-password/password-reset-sent';
 
 export default function ForgotPasswordPage() {
+  // State
   const [step, setStep] = useState(1);
   const [userEmail, setUserEmail] = useState('');
 
+  // Functions
   const handleSuccess = (email: string) => {
     setUserEmail(email);
     setStep(2);
