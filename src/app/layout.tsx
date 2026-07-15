@@ -1,3 +1,4 @@
+import { Toaster } from 'sonner';
 import './globals.css';
 
 export default async function RootLayout({
@@ -5,5 +6,10 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return children;
+  return (
+    <>
+      {children}
+      <Toaster />
+    </>
+  );
 }

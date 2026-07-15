@@ -14,8 +14,8 @@ export const login = async (loginFields: TLoginData): Promise<Response<LoginResp
   });
 
   if (!response.ok) {
-    const error = await response.json();
-    throw new Error(error.message);
+    const error = await response.json().catch(() => ({ message: 'Login failed' }));
+    throw new Error(error.message || 'An unexpected error occurred during login');
   }
 
   const payload: Response<LoginResponse> = await response.json();

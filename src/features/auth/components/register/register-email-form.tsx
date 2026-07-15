@@ -13,6 +13,7 @@ import * as z from 'zod';
 import Link from 'next/link';
 import { useRouter } from '@/i18n/navigation';
 import { useRegisterEmail } from '../../hooks/useRegisterEmail';
+import { saveRegisterEmail } from '../../actions/register-step.action';
 import { advanceRegistrationStep } from '../../lib/registeration-progress';
 
 export const RegisterEmailForm = () => {
@@ -30,6 +31,8 @@ export const RegisterEmailForm = () => {
 
   const { setError, control, handleSubmit } = useForm<RegisterEmailValues>({
     resolver: zodResolver(RegisterEmailSchema),
+    mode: 'onChange',
+    reValidateMode: 'onChange',
     defaultValues: {
       email: '',
     },
@@ -37,16 +40,16 @@ export const RegisterEmailForm = () => {
 
   const onSubmit = async (data: RegisterEmailValues) => {
     setIsLoading(true);
-
     try {
       const res = await registerEmailMutation.mutateAsync(data.email);
-
       if (res?.status) {
         await advanceRegistrationStep(data.email, 'otp');
-        router.push({
-          pathname: '/register/otp',
-          query: { email: data.email },
-        });
+        await saveRegisterEmail(data.email);
+
+        const getEndTime = () => Date.now() + 60 * 1000;
+        localStorage.setItem('otp-resend-end-time', getEndTime().toString());
+
+        router.push(`/register/otp?email=${encodeURIComponent(data.email)}`);
       }
     } catch (err) {
       type ApiErrorLike = {
@@ -61,9 +64,15 @@ export const RegisterEmailForm = () => {
           ? err.message
           : ((err as ApiErrorLike)?.message ?? (err as ApiErrorLike)?.response?.message);
 
-      if (apiMessage?.toLowerCase().includes('no account')) {
+      if (apiMessage?.toLowerCase().includes('already registered')) {
         setError('email', {
-          message: 'noAccount',
+          type: 'server',
+          message: 'emailAlreadyRegistered',
+        });
+      } else {
+        setError('email', {
+          type: 'server',
+          message: 'somethingWentWrong',
         });
       }
     } finally {
@@ -73,7 +82,6 @@ export const RegisterEmailForm = () => {
 
   return (
     <div className="w-full max-w-md mx-auto">
-      {/* <hr className=" w-full border-0 border-t border-border-muted dark:border-border-soft" /> */}
       <form onSubmit={handleSubmit(onSubmit)} className=" space-y-6">
         <div className="space-y-2">
           <Controller
@@ -111,7 +119,7 @@ export const RegisterEmailForm = () => {
           type="submit"
           buttonVariant="text"
           variant="primary"
-          title="auth.auth-forgotPw.step1.continue"
+          title="auth.auth-register.step1.continue"
           loading={isLoading}
           className="h-12 w-full transition-all"
         />

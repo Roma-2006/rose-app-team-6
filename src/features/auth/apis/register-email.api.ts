@@ -6,7 +6,6 @@ export async function registerEmail(email: string) {
     body: JSON.stringify({ email }),
   });
   const payload = await response.json();
-  console.log(payload);
   if (!response.ok) {
     throw new Error(`Forgot password request failed: ${response.status}`);
   }

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { LanguageSwitcherAuth } from '@/features/auth/components/language-switcher-auth';
 import ThemeSeparator from '@/features/auth/components/shared/theme-separator';
 import WelcomeText from '@/features/auth/components/shared/welcome-text';
 import { LanguageSwitcherAuth } from '@/features/auth/components/language-switcher-auth';
