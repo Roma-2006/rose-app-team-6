@@ -9,7 +9,7 @@ import SecondaryNavigation from './secondary-navigation';
 export default function Header() {
   const t = useTranslations();
   return (
-    <header className="sticky top-0">
+    <header className="sticky top-0 bg-bg-plain">
       <div className=" flex items-center py-4.5 px-9 gap-4 ">
         <Link href="/" className="w-21.25 h-20 relative">
           <Image
