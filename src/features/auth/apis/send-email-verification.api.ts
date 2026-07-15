@@ -1,5 +1,7 @@
 'use server';
 
+import { EmailProps } from '../types/register';
+
 export async function sendEmailVerification(data: EmailProps) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/send-email-verification`, {
     method: 'POST',

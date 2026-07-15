@@ -1,8 +1,9 @@
+'use server';
 import { cookies } from 'next/headers';
 import { TRegisterFields, TRegisterResponse } from '../types/register';
 import { Response } from '@/shared/types/api';
 
-export const register = async (fields: TRegisterFields) => {
+export const registerAction = async (fields: TRegisterFields) => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/register`, {
     method: 'POST',
     body: JSON.stringify(fields),
