@@ -31,7 +31,7 @@ export const authOptions: NextAuthOptions = {
        * The credentials are validated locally with Zod before calling the API.
        */
       authorize: async (credentials) => {
-        const t = await getTranslations('login.schema');
+        const t = await getTranslations('login');
 
         const result = LOGIN_SCHEMA(t).safeParse({
           username: credentials?.username,
@@ -40,13 +40,14 @@ export const authOptions: NextAuthOptions = {
         });
 
         if (!result.success) {
-          throw new Error('Invalid username or password');
+          // throw new Error('Invalid username or password');
+          return null;
         }
 
         const data = await login(result.data);
 
         if (!data.status) {
-          throw new Error(data.message);
+          throw new Error(data?.message || 'Invalid username or password');
         }
 
         const { user, token } = data.payload ?? {};

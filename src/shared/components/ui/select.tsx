@@ -8,6 +8,7 @@ import { ChevronDownIcon, ChevronUpIcon } from 'lucide-react';
 const Select = SelectPrimitive.Root;
 
 function SelectValue({ className, placeholder, ...props }: SelectPrimitive.Value.Props) {
+  // Translation
   const t = useTranslations('common.select');
   return (
     <SelectPrimitive.Value
