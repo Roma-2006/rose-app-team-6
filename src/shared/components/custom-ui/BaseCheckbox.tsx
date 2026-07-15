@@ -11,17 +11,25 @@ import {
 } from '@/shared/components/ui/field';
 import { Label } from '@/shared/components/ui/label';
 import { TBaseCheckboxProps } from '@/shared/types/base-checkbox';
-import { useEffect, useState } from 'react';
 
-export function BaseCheckbox({ list, error, onChange }: TBaseCheckboxProps) {
-  const [selected, setSelected] = useState<string[]>([]);
-  const toggle = (id: string) => {
-    setSelected((prev) => {
-      const isChecked = prev.includes(id);
-      const updated = isChecked ? prev.filter((i) => i !== id) : [...prev, id];
-      onChange(!isChecked);
-      return updated;
-    });
+export function BaseCheckbox({ list, error, value, onChange }: TBaseCheckboxProps) {
+  // State to manage selected checkboxes
+  const isItemChecked = (id: string) => {
+    if (typeof value === 'boolean') {
+      return value;
+    }
+    return Array.isArray(value) ? value.includes(id) : false;
+  };
+
+  const toggle = (id: string, isChecked: boolean) => {
+    if (typeof value === 'boolean') {
+      // إذا كانت القيمة بوليان، نرسل الحالة الجديدة مباشرة
+      onChange(isChecked);
+    } else if (Array.isArray(value)) {
+      // إذا كانت مصفوفة، نقوم بتحديث المصفوفة وإرسالها كاملة للخارج
+      const updatedValue = isChecked ? [...value, id] : value.filter((itemId) => itemId !== id);
+      onChange(updatedValue);
+    }
   };
 
   return (
@@ -33,8 +41,9 @@ export function BaseCheckbox({ list, error, onChange }: TBaseCheckboxProps) {
               aria-invalid={error ? true : false}
               id={item.id}
               name={item.id}
-              checked={selected.includes(item.id)}
-              onCheckedChange={() => toggle(item.id)}
+              // checked={selected.includes(item.id)}
+              checked={isItemChecked(item.id)}
+              onCheckedChange={(isChecked: boolean) => toggle(item.id, isChecked)}
             />
             <Label htmlFor={item.id} variant="checkbox">
               {item.label}

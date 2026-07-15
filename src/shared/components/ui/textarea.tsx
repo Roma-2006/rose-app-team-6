@@ -12,12 +12,18 @@ interface TextareaProps extends React.ComponentProps<'textarea'> {
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   ({ className, showCount, maxLength, error, value, onChange, ...props }, ref) => {
-    const [count, setCount] = React.useState(0);
+    // Translation
     const t = useTranslations('common.textarea');
 
+    // Ref
+    // (Passed through to the underlying <textarea />)
+
+    // Variables (Derived)
+    const count = typeof value === 'string' ? value.length : 0;
+
+    // Functions
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-      setCount(e.target.value.length);
-      if (onChange) onChange(e);
+      onChange?.(e);
     };
 
     return (

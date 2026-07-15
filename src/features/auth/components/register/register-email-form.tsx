@@ -70,6 +70,7 @@ export const RegisterEmailForm = ({ setEmail, setStep, verifyError }: TRegisterE
         setError('email', {
           message: 'step1.errors.something-went-wrong',
         });
+        console.log(normalizedMessage, apiMessage);
       }
     } finally {
       setIsLoading(false);
@@ -97,6 +98,7 @@ export const RegisterEmailForm = ({ setEmail, setStep, verifyError }: TRegisterE
                     {...field}
                   />
 
+                  {/* {errorMessage && <AuthError beError={errorMessage} />} */}
                   {(fieldState.error || verifyError) && (
                     <AuthError zodError={fieldState.error?.message} beError={verifyError} />
                   )}

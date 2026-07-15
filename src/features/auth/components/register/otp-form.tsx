@@ -82,6 +82,7 @@ export function OtpForm({ email, setStep }: TOtpFormProps) {
       return true;
     } catch (err) {
       if (err instanceof Error) {
+        // setError(err.message);
         setError('otp', {
           type: 'server',
           message: err.message,
@@ -92,6 +93,7 @@ export function OtpForm({ email, setStep }: TOtpFormProps) {
           message: t('auth.auth-register.otp.invalid'),
         });
       }
+
       return false;
     }
   };
@@ -121,7 +123,7 @@ export function OtpForm({ email, setStep }: TOtpFormProps) {
         </p>
       </div>
 
-      <hr className="mb-7 border-border-muted" />
+      <hr className="border-border-muted" />
 
       {/* OTP */}
       <div className="my-10 flex flex-col items-center">
@@ -155,7 +157,7 @@ export function OtpForm({ email, setStep }: TOtpFormProps) {
         disabled={loading}
       />
 
-      <hr className="mb-7 border-border-muted" />
+      <hr className="my-8 border-border-muted" />
 
       {/* Footer */}
       <div className="text-center text-sm">

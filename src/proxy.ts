@@ -25,7 +25,11 @@ function stripLocale(pathname: string): string {
 }
 
 export default async function middleware(req: NextRequest) {
-  const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+  const token = await getToken({
+    req,
+    secret: process.env.NEXTAUTH_SECRET,
+  });
+
   const isLoggedIn = !!token;
   const { pathname, search } = req.nextUrl;
 
@@ -38,10 +42,12 @@ export default async function middleware(req: NextRequest) {
   //   (r) => bare === r || bare.startsWith(r + '/')
   // );
 
+  // Logged-in user → redirect away from auth pages
   if (isLoggedIn && isAuthRoute) {
     return NextResponse.redirect(new URL(`/${locale}`, req.url));
   }
 
+  // Guest → redirect away from protected routes, preserve returnUrl
   if (!isLoggedIn && isProtectedRoute) {
     const returnUrl = encodeURIComponent(pathname + search);
     return NextResponse.redirect(new URL(`/${locale}/login?returnUrl=${returnUrl}`, req.url));
@@ -75,5 +81,5 @@ export default async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: '/((?!api/auth|_next|_vercel|.*\\..*).*)',
+  matcher: '/((?!api|_next|_vercel|.*\\..*).*)',
 };
