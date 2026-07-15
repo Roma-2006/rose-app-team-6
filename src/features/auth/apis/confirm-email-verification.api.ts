@@ -1,8 +1,6 @@
 'use server';
-export interface ConfirmEmailVerificationRequest {
-  email: string;
-  code: string;
-}
+
+import { ConfirmEmailVerificationRequest } from '../types/register';
 
 export async function confirmEmailVerification(data: ConfirmEmailVerificationRequest) {
   const response = await fetch(
