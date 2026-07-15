@@ -10,11 +10,21 @@ export type TRegisterEmailFormProps = {
   setStep: (step: TRegisterStepsProps) => void;
   verifyError?: string;
 };
+type EmailProps = {
+  email: string;
+};
 //otp
 export type TOtpFormProps = {
   email: string;
   setStep: (step: TRegisterStepsProps) => void;
 };
+type OTPSectionProps = {
+  onResend: () => Promise<boolean>;
+};
+export interface ConfirmEmailVerificationRequest {
+  email: string;
+  code: string;
+}
 //userInfo
 export type TUserInfoFields = z.infer<typeof UserInfoSchema>;
 export type TUserInfoFormProps = {

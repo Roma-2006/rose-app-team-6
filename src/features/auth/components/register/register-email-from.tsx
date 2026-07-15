@@ -7,11 +7,10 @@ import { RegisterEmailSchema } from '@/features/auth/schemas/register-email.sche
 
 import { Button } from '@/shared/components/ui/button';
 import CustomInput from '@/shared/components/custom-input';
-import ErrorAlert from '@/shared/components/error-alert';
 import { useState } from 'react';
 import * as z from 'zod';
 import Link from 'next/link';
-import { useRouter } from '@/i18n/navigation';
+
 import { useRegisterEmail } from '../../hooks/useRegisterEmail';
 import AuthError from '../shared/auth-error';
 import { TRegisterEmailFormProps } from '../../types/register';
@@ -21,16 +20,15 @@ export const RegisterEmailForm = ({ setEmail, setStep, verifyError }: TRegisterE
   const locale = useLocale();
   const isRtl = locale === 'ar';
 
-  const router = useRouter();
-
   const [isLoading, setIsLoading] = useState(false);
 
   const registerEmailMutation = useRegisterEmail();
-
   type RegisterEmailValues = z.infer<typeof RegisterEmailSchema>;
 
-  const { setError, control, handleSubmit } = useForm<RegisterEmailValues>({
+  const { control, handleSubmit, setError } = useForm<RegisterEmailValues>({
     resolver: zodResolver(RegisterEmailSchema),
+    mode: 'onChange',
+    reValidateMode: 'onChange',
     defaultValues: {
       email: '',
     },
@@ -38,31 +36,39 @@ export const RegisterEmailForm = ({ setEmail, setStep, verifyError }: TRegisterE
 
   const onSubmit = async (data: RegisterEmailValues) => {
     setIsLoading(true);
-
     try {
       const res = await registerEmailMutation.mutateAsync(data.email);
-
+      console.log(res);
       if (res?.status) {
-        // router.push(`/register/otp?email=${encodeURIComponent(data.email)}`);
         setEmail(data.email);
         setStep('otp');
+        const getEndTime = () => Date.now() + 60 * 1000;
+        localStorage.setItem('otp-resend-end-time', getEndTime().toString());
       }
     } catch (err) {
       type ApiErrorLike = {
         message?: string;
-        response?: {
-          message?: string;
-        };
+        response?: { message?: string };
       };
 
       const apiMessage =
         err instanceof Error
           ? err.message
-          : ((err as ApiErrorLike)?.message ?? (err as ApiErrorLike)?.response?.message);
+          : ((err as ApiErrorLike)?.message ?? (err as ApiErrorLike)?.response?.message) || '';
 
-      if (apiMessage?.toLowerCase().includes('no account')) {
+      const normalizedMessage = apiMessage.toLowerCase();
+
+      if (normalizedMessage.includes('no account')) {
         setError('email', {
-          message: 'noAccount',
+          message: 'step1.errors.no-account',
+        });
+      } else if (normalizedMessage.includes('registered')) {
+        setError('email', {
+          message: 'step1.errors.email-already-registered',
+        });
+      } else {
+        setError('email', {
+          message: 'step1.errors.something-went-wrong',
         });
       }
     } finally {
@@ -72,32 +78,32 @@ export const RegisterEmailForm = ({ setEmail, setStep, verifyError }: TRegisterE
 
   return (
     <div className="w-full max-w-md mx-auto">
-      <form onSubmit={handleSubmit(onSubmit)} className=" space-y-6">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div className="space-y-2">
           <Controller
             name="email"
             control={control}
-            render={({ field, fieldState }) => (
-              <>
-                <CustomInput
-                  id="email"
-                  variant="email"
-                  label={t('auth.auth-register.step1.emailLabel')}
-                  placeholder={t('auth.auth-register.step1.emailPlaceholder')}
-                  error={fieldState.invalid || !!verifyError}
-                  errorMessage={
-                    fieldState.error?.message
-                      ? t(`auth-register.errors.${fieldState.error.message}`)
-                      : undefined
-                  }
-                  isRtl={isRtl}
-                  {...field}
-                />
-                {(fieldState.error || verifyError) && (
-                  <AuthError zodError={fieldState.error?.message} beError={verifyError} />
-                )}
-              </>
-            )}
+            render={({ field, fieldState }) => {
+              const hasError = fieldState.invalid || !!verifyError;
+              return (
+                <>
+                  <CustomInput
+                    id="email"
+                    variant="email"
+                    label={t('auth.auth-register.step1.emailLabel')}
+                    placeholder={t('auth.auth-register.step1.emailPlaceholder')}
+                    error={hasError}
+                    isRtl={isRtl}
+                    {...field}
+                  />
+
+                  {/* {errorMessage && <AuthError beError={errorMessage} />} */}
+                  {(fieldState.error || verifyError) && (
+                    <AuthError zodError={fieldState.error?.message} beError={verifyError} />
+                  )}
+                </>
+              );
+            }}
           />
         </div>
 
@@ -105,7 +111,7 @@ export const RegisterEmailForm = ({ setEmail, setStep, verifyError }: TRegisterE
           type="submit"
           buttonVariant="text"
           variant="primary"
-          title="auth.auth-forgotPw.step1.continue"
+          title="auth.auth-register.step1.continue"
           loading={isLoading}
           className="h-12 w-full transition-all"
         />

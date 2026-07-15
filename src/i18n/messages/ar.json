@@ -13,7 +13,8 @@
     "select": {
       "placeholder": "اختر خياراً",
       "noOptions": "لا توجد خيارات",
-      "search": "بحث..."
+      "search": "بحث...",
+        "somethingWentWrong": "حدث خطأ، يرجى المحاولة مرة أخرى."
     },
     "textarea": {
       "charCount": "{current}/{max} حرف"
@@ -47,7 +48,14 @@
         "emailPlaceholder": "user@example.com",
         "continue": "متابعة",
         "footerText": "ليس لديك حساب بعد؟",
-        "registerLink": "أنشئ حساباً الآن!"
+        "registerLink": "أنشئ حساباً الآن!",
+        "errors": {
+            "email-required": "البريد الإلكتروني مطلوب.",
+            "invalid-email": "يرجى إدخال بريد إلكتروني صحيح.",
+            "no-account": "لا يوجد حساب بهذا البريد الإلكتروني.",
+            "email-already-registered": "هذا البريد الإلكتروني مسجل بالفعل.",
+            "something-went-wrong": "حدث خطأ، يرجى المحاولة مرة أخرى."
+      }
       },
       "step3": {
         "title": "إنشاء كلمة مرور جديدة",
@@ -75,13 +83,14 @@
         "emailPlaceholder": "user@example.com",
         "continue": "متابعة",
         "footerText": "هل لديك حساب بالفعل؟ ",
-        "registerLink": "سجل الدخول !"
+        "registerLink": "سجل الدخول "
       },
       "otp": {
         "title": "انشاء حساب ",
         "subtitle-1": "أدخل رمز التحقق",
         "subtitle-2": "أرسلنا رمزاً إلى {email}",
         "resend": "أرسل رمزاً جديداً",
+        "resend-2": "اعاده ارسال ",
         "resendTimer": "أعد الإرسال خلال {s} ثانية",
         "invalid": "رمز التحقق غير صحيح",
         "expired": "انتهت صلاحية الرمز. يرجى طلب رمز جديد.",
@@ -129,9 +138,6 @@
           "passwords-do-not-match": "كلمتا المرور غير متطابقتين."
         }
         
-      },
-      "errors": {
-        "noAccount": "يرجى إدخال عنوان بريد إلكتروني صالح"
       }
     },
     "passwordResetSent": {
