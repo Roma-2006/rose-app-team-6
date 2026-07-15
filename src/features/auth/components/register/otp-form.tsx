@@ -1,14 +1,11 @@
 'use client';
 
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter } from '@/i18n/navigation';
 import { Button } from '@/shared/components/ui/button';
 import OTPVariant from '@/shared/components/ui/otp-variant';
-
 import { confirmEmailVerification } from '../../apis/confirm-email-verification.api';
 import { sendEmailVerification } from '../../apis/send-email-verification.api';
 import { maskEmail } from '../../utils/mask-email';
@@ -16,14 +13,10 @@ import OTPSection from './otp-timer';
 import Stepper from './stepper';
 import { useForm } from 'react-hook-form';
 import { otpSchema, OtpSchema } from '../../schemas/otp.schema';
-import { saveRegisterEmail } from '../../actions/register-step.action';
+import { TOtpFormProps } from '../../types/register';
 
-export function OtpForm() {
+export function OtpForm({ email, setStep }: TOtpFormProps) {
   const t = useTranslations();
-  const router = useRouter();
-  const searchParams = useSearchParams();
-
-  const email = searchParams.get('email') ?? '';
   const maskedEmail = maskEmail(email);
 
   const [loading, setLoading] = useState(false);
@@ -50,8 +43,8 @@ export function OtpForm() {
         email,
         code: otp,
       });
-      await saveRegisterEmail(email);
-      router.push(`/register/user-info?email=${encodeURIComponent(email)}`);
+
+      setStep('user-info');
     } catch (err) {
       let message = t('auth.auth-register.otp.invalid');
 
@@ -118,12 +111,13 @@ export function OtpForm() {
 
         <p className="mt-2 text-sm text-text-plain">
           {t('auth.auth-register.otp.subtitle-2', { email: maskedEmail })}{' '}
-          <Link
-            href="/register"
-            className="font-medium text-text-info hover:underline dark:text-blue-700"
+          <button
+            type="button"
+            onClick={() => setStep('register')}
+            className="font-medium text-text-info hover:underline cursor-pointer"
           >
             {t('auth.auth-register.otp.Edit')}
-          </Link>
+          </button>
         </p>
       </div>
 

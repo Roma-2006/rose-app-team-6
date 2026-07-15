@@ -76,7 +76,15 @@
         "emailPlaceholder": "user@example.com",
         "continue": "متابعة",
         "footerText": "هل لديك حساب بالفعل؟ ",
-        "registerLink": "سجل الدخول "
+        "registerLink": "سجل الدخول ",
+
+        "errors": {
+            "email-required": "البريد الإلكتروني مطلوب.",
+            "invalid-email": "يرجى إدخال بريد إلكتروني صحيح.",
+            "no-account": "لا يوجد حساب بهذا البريد الإلكتروني.",
+            "email-already-registered": "هذا البريد الإلكتروني مسجل بالفعل.",
+            "something-went-wrong": "حدث خطأ، يرجى المحاولة مرة أخرى."
+      }
       },
       "otp": {
         "title": "انشاء حساب ",
@@ -88,9 +96,7 @@
         "invalid": "رمز التحقق غير صحيح",
         "expired": "انتهت صلاحية الرمز. يرجى طلب رمز جديد.",
         "verify": "تحقق",
-        "Edit": "تعديل",
-        "invalid": "رمز التحقق غير صحيح.",
-        "expired": "انتهت صلاحية رمز التحقق."
+        "Edit": "تعديل"
       },
       "user-info":{
         "sub-title":"أخبرنا المزيد عن نفسك",
@@ -133,14 +139,8 @@
           "passwords-do-not-match": "كلمتا المرور غير متطابقتين."
         }
         
-      },
-      "errors": {
-  "emailRequired": "البريد الإلكتروني مطلوب.",
-  "invalidEmail": "يرجى إدخال بريد إلكتروني صحيح.",
-  "noAccount": "لا يوجد حساب بهذا البريد الإلكتروني.",
-  "emailAlreadyRegistered": "هذا البريد الإلكتروني مسجل بالفعل.",
-  "somethingWentWrong": "حدث خطأ، يرجى المحاولة مرة أخرى."
-}
+      }
+   
     },
     "passwordResetSent": {
       "title": "تم إرسال رابط إعادة تعيين كلمة المرور",

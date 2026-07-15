@@ -78,7 +78,15 @@
         "emailPlaceholder": "user@example.com",
         "continue": "Continue",
         "footerText": "Already have an account?",
-        "registerLink": "Login"
+        "registerLink": "Login",
+        "errors": {
+          "email-required": "Email is required.",
+          "invalid-email": "Please enter a valid email address.",
+          "no-account": "No account found with this email.",
+          "email-already-registered": "This email is already registered.",
+          "something-went-wrong": "Something went wrong. Please try again."
+        }
+
       },
       "otp": {
         "subtitle-1": "Enter Verification Code",
@@ -89,9 +97,7 @@
         "invalid": "Invalid OTP code",
         "expired": "Code expired. Please request a new one.",
         "verify": "Verify OTP",
-        "Edit": "Edit",
-        "invalid": "The verification code is incorrect.",
-        "expired": "The verification code has expired."
+        "Edit": "Edit" 
       },
       "user-info":{
         "sub-title":"Tell us more about you",
@@ -133,14 +139,8 @@
           "confirm-password": "Confirm Password is required.",
           "passwords-do-not-match": "Passwords do not match."
         }
-      },
-    "errors": {
-  "emailRequired": "Email is required.",
-  "invalidEmail": "Please enter a valid email address.",
-  "noAccount": "No account found with this email.",
-  "emailAlreadyRegistered": "This email is already registered.",
-  "somethingWentWrong": "Something went wrong. Please try again."
-}
+      }
+  
 
     },
     "passwordResetSent": {
@@ -180,6 +180,3 @@
     "nice-to-have-you-here": "nice to have you here"
 }
 }
-
-
-

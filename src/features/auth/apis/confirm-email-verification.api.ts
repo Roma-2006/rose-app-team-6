@@ -1,7 +1,6 @@
 'use server';
 
-import { advanceRegistrationStep } from '../lib/registeration-progress';
-import { ConfirmEmailVerificationRequest } from '../types/confirm-email-verification';
+import { ConfirmEmailVerificationRequest } from '../types/register';
 
 export async function confirmEmailVerification(data: ConfirmEmailVerificationRequest) {
   const response = await fetch(
@@ -26,8 +25,6 @@ export async function confirmEmailVerification(data: ConfirmEmailVerificationReq
 
     throw error;
   }
-
-  await advanceRegistrationStep(data.email, 'user-info');
 
   return result;
 }

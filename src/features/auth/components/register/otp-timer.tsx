@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { OTPSectionProps } from '../../types/register';
 
 const COUNTDOWN_SECONDS = 60;
 const TIMER_KEY = 'otp-resend-end-time';
