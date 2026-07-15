@@ -40,7 +40,7 @@ export const useResetPasswordForm = () => {
     },
   });
 
-  // Variables (Derived)
+  // Variables
   const buildPayload = (data: ResetPasswordValues) => ({
     token,
     newPassword: data.newPassword,

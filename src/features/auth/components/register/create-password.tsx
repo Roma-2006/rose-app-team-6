@@ -3,7 +3,7 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import RegisterSubtitle from './register-subtitle';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { createPasswordSchema } from '../../schemas/create-password.schema';
-import { TCreatePasswordFields } from '../../types/register';
+import { TCreatePasswordFields, TCreatePasswordProps } from '../../types/register';
 import useRegister from '../../hooks/use-register';
 import CustomInput from '@/shared/components/custom-input';
 import { useTranslations } from 'next-intl';
@@ -11,14 +11,16 @@ import { Button } from '@/shared/components/ui/button';
 import { useSearchParams, useRouter } from 'next/navigation';
 import AuthFooter from '../shared/auth-footer';
 import AuthError from '../shared/auth-error';
-export default function CreatePassword() {
+import { useEffect } from 'react';
+export default function CreatePassword({
+  userInfo,
+  setErrors,
+  setUserInfo,
+  setStep,
+}: TCreatePasswordProps) {
   const t = useTranslations('auth.auth-register.create-password');
-  const searchParams = useSearchParams();
-  const email = searchParams.get('email');
-  // Restore user information collected in the previous registration step.
-  const userInfo = JSON.parse(sessionStorage.getItem(`register-user-info-${email}`) || '{}');
   //mutation
-  const { mutate: register, error, isPending } = useRegister();
+  const { mutate: register, error, isPending } = useRegister({ setErrors, setUserInfo, setStep });
   //errors
   const generalError = typeof error === 'string' ? error : '';
   const errors = Array.isArray(error) ? error : [];
@@ -61,6 +63,7 @@ export default function CreatePassword() {
                   variant="password"
                   subVariant="password"
                   label={t('password')}
+                  error={fieldState.invalid || !!passwordError}
                 />
                 {(fieldState.error || passwordError) && (
                   <AuthError zodError={fieldState.error?.message} beError={passwordError} />
@@ -79,6 +82,7 @@ export default function CreatePassword() {
                   variant="password"
                   subVariant="password"
                   label={t('confirm-password')}
+                  error={fieldState.invalid || !!confirmPasswordError}
                 />
                 {(fieldState.error || confirmPasswordError) && (
                   <AuthError zodError={fieldState.error?.message} beError={confirmPasswordError} />
