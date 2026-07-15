@@ -1,6 +1,8 @@
 import { Link, usePathname } from '@/i18n/navigation';
 import { TLinkComponentProps } from '@/shared/types/link-component';
+import { useTranslations } from 'next-intl';
 export default function LinkComponent({ href, icon, title }: TLinkComponentProps) {
+  const t = useTranslations();
   const pathName = usePathname();
   return (
     <Link
@@ -8,7 +10,7 @@ export default function LinkComponent({ href, icon, title }: TLinkComponentProps
       href={href}
     >
       {icon}
-      {title}
+      {t(title)}
     </Link>
   );
 }

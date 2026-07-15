@@ -13,13 +13,26 @@
     "select": {
       "placeholder": "اختر خياراً",
       "noOptions": "لا توجد خيارات",
-      "search": "بحث..."
+      "search": "بحث...",
+        "somethingWentWrong": "حدث خطأ، يرجى المحاولة مرة أخرى."
     },
     "textarea": {
       "charCount": "{current}/{max} حرف"
     }
   },
-  "title": "مرحبا بك في تطبيق روز",
+  "header": {
+    "search-placeholder": "ما الهدية المميزة التي تبحث عنها؟",
+    "login": "تسجيل الدخول",
+    "search-default": "منتجات قد تعجبك"
+  },
+  "nav": {
+    "home": "الرئيسية",
+    "products": "المنتجات",
+    "categories": "الفئات",
+    "occasions": "المناسبات",
+    "contact": "تواصل معنا",
+    "about": "عن الموقع"
+  },
   "auth": {
     "switchLang": "العربية",
     "langLabel": "التحويل إلى الإنجليزية",
@@ -47,7 +60,14 @@
         "emailPlaceholder": "user@example.com",
         "continue": "متابعة",
         "footerText": "ليس لديك حساب بعد؟",
-        "registerLink": "أنشئ حساباً الآن!"
+        "registerLink": "أنشئ حساباً الآن!",
+        "errors": {
+            "email-required": "البريد الإلكتروني مطلوب.",
+            "invalid-email": "يرجى إدخال بريد إلكتروني صحيح.",
+            "no-account": "لا يوجد حساب بهذا البريد الإلكتروني.",
+            "email-already-registered": "هذا البريد الإلكتروني مسجل بالفعل.",
+            "something-went-wrong": "حدث خطأ، يرجى المحاولة مرة أخرى."
+      }
       },
       "step3": {
         "title": "إنشاء كلمة مرور جديدة",
@@ -75,13 +95,14 @@
         "emailPlaceholder": "user@example.com",
         "continue": "متابعة",
         "footerText": "هل لديك حساب بالفعل؟ ",
-        "registerLink": "سجل الدخول !"
+        "registerLink": "سجل الدخول "
       },
       "otp": {
         "title": "انشاء حساب ",
         "subtitle-1": "أدخل رمز التحقق",
         "subtitle-2": "أرسلنا رمزاً إلى {email}",
         "resend": "أرسل رمزاً جديداً",
+        "resend-2": "اعاده ارسال ",
         "resendTimer": "أعد الإرسال خلال {s} ثانية",
         "invalid": "رمز التحقق غير صحيح",
         "expired": "انتهت صلاحية الرمز. يرجى طلب رمز جديد.",
@@ -99,7 +120,15 @@
         "gender":"الجنس",
         "gender-placeholder":"اختر الجنس",
         "male":"ذكر",
-        "female":"أنثى"
+        "female":"أنثى",
+        "errors":{
+          "first-name": "الاسم الأول مطلوب",
+          "last-name": "اسم العائلة مطلوب",
+          "user-name": "يجب أن يتكون اسم المستخدم من حرفين على الأقل.",
+          "phone": "رقم الهاتف مطلوب",
+          "gender": "الجنس مطلوب",
+          "invalid-phone-number": "رقم الهاتف غير صالح"
+        }
       },
       "create-password":{
         "sub-title":"أنشئ كلمة مرور قوية",
@@ -110,10 +139,17 @@
         "email-in-use":"البريد الإلكتروني مستخدم بالفعل",
         "success":"تم إنشاء الحساب بنجاح",
         "have-account": "هل لديك حساب بالفعل؟",
-        "login": "تسجيل الدخول"
-      },
-      "errors": {
-        "noAccount": "يرجى إدخال عنوان بريد إلكتروني صالح"
+        "login": "تسجيل الدخول",
+        "errors": {
+          "password-min-length": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل.",
+          "password-uppercase": "يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل.",
+          "password-lowercase": "يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل.",
+          "password-number": "يجب أن تحتوي كلمة المرور على رقم واحد على الأقل.",
+          "password-special": "يجب أن تحتوي كلمة المرور على رمز خاص واحد على الأقل.",
+          "confirm-password": "تأكيد كلمة المرور مطلوب.",
+          "passwords-do-not-match": "كلمتا المرور غير متطابقتين."
+        }
+        
       }
     },
     "passwordResetSent": {
