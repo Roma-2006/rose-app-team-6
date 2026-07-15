@@ -221,7 +221,6 @@
 
         "emailPlaceholder": "user@example.com",
 
-        "emailRequired": "البريد الإلكتروني مطلوب",
 
         "continue": "متابعة",
 
@@ -278,6 +277,7 @@
 
       "errors": {
         "noAccount": "لم يتم العثور على حساب بهذا البريد الإلكتروني",
+        "emailRequired": "البريد الإلكتروني مطلوب",
 
         "fieldRequired": "هذا الحقل مطلوب",
 

@@ -53,7 +53,7 @@
         "continue": "Continue",
         "footerText": "Don’t have an account yet?",
         "registerLink": "Create one now!",
-        "emailRequired": "Email is required",
+       
         "errors": { "somethingWentWrong": "Something went wrong" }
       },
       "step2": {
@@ -83,6 +83,7 @@
       },
       "errors": {
         "noAccount": "No account found with this email",
+         "emailRequired": "Email is required",
         "fieldRequired": "This field is required",
         "passwordInvalid": "Must be 8+ chars, with uppercase, lowercase, digit, and special char",
         "passwordMatch": "Passwords do not match",
