@@ -205,7 +205,8 @@
       "contact": "Contact us",
       "toast-description": "A new OTP code has been sent to your email"
     }
-  },
+  }
+} ,
   "input-component": {
     "label": "Full Name",
     "placeholder": "Enter your name..."
@@ -263,5 +264,4 @@
     "phone": { "label": "Phone", "placeholder": "1012345678" },
     "email": { "label": "Email", "placeholder": "user@example.com" },
     "nice-to-have-you-here": "nice to have you here"
-}
 }
