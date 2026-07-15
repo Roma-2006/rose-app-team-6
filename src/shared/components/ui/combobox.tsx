@@ -15,8 +15,10 @@ import { ChevronDownIcon, XIcon, Loader2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 function Combobox({ value, onValueChange, ...props }: ComboboxPrimitive.Root.Props<string>) {
+  // Variables (Derived)
   const safeValue = value === '' ? null : value;
 
+  // Functions
   return (
     <ComboboxPrimitive.Root
       {...props}

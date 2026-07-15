@@ -19,7 +19,13 @@ export async function confirmEmailVerification(data: ConfirmEmailVerificationReq
   const result = await response.json();
 
   if (!response.ok) {
-    throw new Error(result.message || 'OTP verification failed');
+    const error = new Error(result.message || 'OTP verification failed') as Error & {
+      status?: number;
+    };
+
+    error.status = response.status;
+
+    throw error;
   }
 
   return result;

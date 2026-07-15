@@ -23,7 +23,6 @@ export default function Stepper({ currentStep }: StepperProps) {
   return (
     <div className="w-full flex items-center justify-center" dir={isRtl ? 'rtl' : 'ltr'}>
       <div className="flex items-center w-full relative">
-        {/*------------------ الخطوط --------------------- */}
         <div className="absolute top-1/2 left-3.5 right-3.5 border-t border-bg-primary-faint -translate-y-1/2" />
         <div
           className="absolute top-1/2 border-t-2 border-bg-primary -translate-y-1/2 transition-all duration-500"
@@ -42,7 +41,6 @@ export default function Stepper({ currentStep }: StepperProps) {
                 key={step}
                 className="relative flex items-center justify-center  transition-colors duration-300"
               >
-                {/*--------------------Circular step -----------------------*/}
                 <div
                   className={`w-7 h-7 rounded-full border-2 transition-all duration-500 relative flex items-center justify-center ${
                     isCompletedOrCurrent
@@ -50,11 +48,9 @@ export default function Stepper({ currentStep }: StepperProps) {
                       : 'bg-bg-primary-fade border-bg-primary-fade'
                   }`}
                 >
-                  {/* ----------------الأرقام----------------------  */}
-
                   <span
                     className={`text-[14px] font-bold scale-80 ${
-                      isCompletedOrCurrent ? 'text-text-secondary-fade' : 'text-text-primary'
+                      isCompletedOrCurrent ? 'text-white' : 'text-text-primary'
                     }`}
                   >
                     {formatStepNumber(step)}

@@ -156,22 +156,23 @@ export default function CustomInput({
   };
 
   // Handle toggling password visibility
-  // const handleTogglePassword = (e: React.MouseEvent<HTMLButtonElement>) => {
-  //   e.preventDefault();
-  //   e.stopPropagation();
-  //   if (!internalRef.current) return;
-  //   const start = internalRef.current.selectionStart;
-  //   const end = internalRef.current.selectionEnd;
 
-  //   setIsPasswordVisible((prev) => !prev);
+  const handleTogglePassword = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!internalRef.current) return;
+    const start = internalRef.current.selectionStart;
+    const end = internalRef.current.selectionEnd;
 
-  //   setTimeout(() => {
-  //     if (internalRef.current) {
-  //       internalRef.current.focus();
-  //       internalRef.current.setSelectionRange(start, end);
-  //     }
-  //   }, 0);
-  // };
+    //   setIsPasswordVisible((prev) => !prev);
+
+    setTimeout(() => {
+      if (internalRef.current) {
+        internalRef.current.focus();
+        internalRef.current.setSelectionRange(start, end);
+      }
+    }, 0);
+  };
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
