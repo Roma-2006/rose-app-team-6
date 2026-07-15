@@ -55,7 +55,7 @@
   --text-inverse: var(--color-white);
 
   /* Primary */
-  --text-primary: var(--color-maroon-800);
+  --text-primary: var(--color-maroon-600);
   --text-primary-faint: var(--color-maroon-100);
   --text-primary-fade: var(--color-maroon-50);
 
@@ -141,8 +141,8 @@
 
 .dark {
   /* Background --------------------------------------------------------------------*/
-  --bg-plain: var(--color-zinc-700);
-  --bg-subtle: var(--color-zinc-800);
+  --bg-plain: var(--color-zinc-800);
+  --bg-subtle: var(--color-zinc-700);
   --bg-muted: var(--color-zinc-900);
   --bg-soft: var(--color-zinc-700);
   --bg-default: var(--color-zinc-600);
@@ -443,11 +443,18 @@
   box-shadow: 0 0 0 var(--ring-width-default) var(--color-col-ring-danger);
 }
 
-@utility radius-sm { border-radius: 4px; }
-@utility radius-base { border-radius: 6px; }
-@utility radius-lg { border-radius: 8px; }
-@utility radius-xl { border-radius: 10px; }
-
+@utility radius-sm {
+  border-radius: 4px;
+}
+@utility radius-base {
+  border-radius: 6px;
+}
+@utility radius-lg {
+  border-radius: 8px;
+}
+@utility radius-xl {
+  border-radius: 10px;
+}
 
 html[dir='rtl'] {
   --font-sans: var(--font-tajawal);
