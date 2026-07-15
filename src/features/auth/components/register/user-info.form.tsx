@@ -15,6 +15,7 @@ import { useEffect, useState } from 'react';
 import AuthFooter from '../shared/auth-footer';
 import { ValidationError } from '@/shared/types/api';
 import AuthError from '../shared/auth-error';
+import { advanceRegistrationStep } from '@/features/auth/lib/registeration-progress';
 
 export default function UserInfoForm({
   firstNameError,
@@ -44,7 +45,7 @@ export default function UserInfoForm({
     },
   });
   //function
-  const onSubmit: SubmitHandler<TUserInfoFields> = (values) => {
+  const onSubmit: SubmitHandler<TUserInfoFields> = async (values) => {
     if (!email) return;
     const userDetails = { ...values, email: email, gender: values.gender.toUpperCase() };
     setUserInfo(userDetails);

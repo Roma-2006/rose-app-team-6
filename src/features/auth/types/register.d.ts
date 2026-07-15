@@ -13,7 +13,6 @@ export type TRegisterEmailFormProps = {
 type EmailProps = {
   email: string;
 };
-
 //otp
 export type TOtpFormProps = {
   email: string;

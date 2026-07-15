@@ -1,5 +1,4 @@
 'use client';
-
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
@@ -82,7 +81,6 @@ export function OtpForm({ email, setStep }: TOtpFormProps) {
       return true;
     } catch (err) {
       if (err instanceof Error) {
-        // setError(err.message);
         setError('otp', {
           type: 'server',
           message: err.message,
@@ -93,7 +91,6 @@ export function OtpForm({ email, setStep }: TOtpFormProps) {
           message: t('auth.auth-register.otp.invalid'),
         });
       }
-
       return false;
     }
   };
@@ -123,7 +120,7 @@ export function OtpForm({ email, setStep }: TOtpFormProps) {
         </p>
       </div>
 
-      <hr className="border-border-muted" />
+      <hr className="mb-7 border-border-muted" />
 
       {/* OTP */}
       <div className="my-10 flex flex-col items-center">
@@ -157,7 +154,7 @@ export function OtpForm({ email, setStep }: TOtpFormProps) {
         disabled={loading}
       />
 
-      <hr className="my-8 border-border-muted" />
+      <hr className="mb-7 border-border-muted" />
 
       {/* Footer */}
       <div className="text-center text-sm">

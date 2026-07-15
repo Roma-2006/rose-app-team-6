@@ -45,14 +45,14 @@ export default function OTPSection({ onResend }: OTPSectionProps) {
       <p className="mb-6 text-sm text-text-plain">
         {t('auth.auth-register.otp.resend')}:
         {seconds > 0 ? (
-          <span className="font-bold text-black ml-1">{seconds}s</span>
+          <span className="ml-1 font-bold text-text-plain">{seconds}s</span>
         ) : (
           <button
             type="button"
             onClick={handleResendClick}
             className="cursor-pointer pl-3 font-medium text-text-info hover:underline"
           >
-            {t('auth.auth-register.otp.resend')}
+            {t('auth.auth-register.otp.resend-2')}
           </button>
         )}
       </p>
