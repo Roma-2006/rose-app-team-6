@@ -23,7 +23,9 @@
   "header": {
     "search-placeholder": "ما الهدية المميزة التي تبحث عنها؟",
     "login": "تسجيل الدخول",
-    "search-default": "منتجات قد تعجبك"
+    "search-default": "منتجات قد تعجبك",
+    "search-empty":"لا توجد منتجات",
+    "search-error" :"فشل البحث. حاول مجدداً."
   },
   "nav": {
     "home": "الرئيسية",
@@ -34,7 +36,7 @@
     "about": "عن الموقع"
   },
   "auth": {
-    "switchLang": "العربية",
+    "switchLang": "English",
     "langLabel": "التحويل إلى الإنجليزية",
     "welcome-auth": {
       "login-title": "مرحبًا بعودتك!",
