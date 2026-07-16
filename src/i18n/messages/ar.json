@@ -42,7 +42,16 @@
           "invalid": "كلمة المرور غير صالحة",
           "required": "كلمة المرور مطلوبة"
         }
-      }
+      },
+         "forgot-password":"نسيت كلمة المرور؟",
+        "rememberMe" : "تذكرني",
+        "noAccount" :"ليس لديك حساب؟",
+         "register" :"إنشاء حساب",
+          "button" :"تسجيل الدخول",
+         "invalidCredentials": "اسم المستخدم أو كلمة المرور غير صحيحة"
+
+
+      
     },
     "auth-forgotPw": {
       "step1": {
@@ -182,6 +191,11 @@
       "error-type": "صيغة الملف غير مدعومة."
     },
     "phone": { "label": "رقم الهاتف", "placeholder": "1012345678" },
+    "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" },
+    "nice-to-have-you-here": "جميل أنك هنا"
+  }
+}
+
     "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" }
   },
   "login": {

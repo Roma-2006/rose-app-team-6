@@ -1,3 +1,4 @@
+
 {
   "HomePage": {
     "title": "Welcome to Rose App"
@@ -42,7 +43,14 @@
           "invalid": "Invalid Password",
           "required": "Password is required"
         }
-      }
+      },
+        "forgot-password":"Forgot Your password?",
+        "rememberMe" : "Remember me",
+        "noAccount" :"Don't have an account?",
+         "register" :"Create one now!",
+         "button" :"Login",
+         "invalidCredentials": "The username or password is incorrect."
+      
     },
     "auth-forgotPw": {
       "step1": {
@@ -167,6 +175,7 @@
       "toast-description": "A new OTP code has been sent to your email"
     }
   },
+ 
   "input-component": {
     "label": "Full Name",
     "placeholder": "Enter your name..."
