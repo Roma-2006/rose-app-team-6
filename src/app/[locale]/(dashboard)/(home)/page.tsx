@@ -9,12 +9,13 @@ export default async function HomePage({ params }: PageProps) {
   const { locale } = await params;
   const t = await getTranslations({ locale });
   return (
-    <main className="bg-plain  min-h-screen flex flex-col items-center justify-center p-6 text-center">
+    <section className="min-h-screen">
+      <h1>HomePage</h1>
       {/* Language Switcher */}
       <div className="mb-6 w-full flex justify-end">
         <LanguageSwitcher />
         <ThemeToggle />
       </div>
-    </main>
+    </section>
   );
 }

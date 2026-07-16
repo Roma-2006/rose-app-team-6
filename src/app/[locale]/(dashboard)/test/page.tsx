@@ -1,8 +1,10 @@
-// 'use client';
-// import { BaseCheckbox } from '@/shared/components/custom-ui/BaseCheckbox';
-// import { Button } from '@/shared/components/ui/button';
-// import { Heart } from 'lucide-react';
-// import { useState } from 'react';
+'use client';
+import AboutSection from '@/features/home/components/about-section';
+import SecHeader from '@/features/home/components/section-header';
+import SecTitle from '@/features/home/components/section-title';
+import { BaseCheckbox } from '@/shared/components/custom-ui/BaseCheckbox';
+import { Button } from '@/shared/components/ui/button';
+import { Heart } from 'lucide-react';
 
 // export default function Page() {
 //   const list = [
@@ -37,19 +39,26 @@ import { MostPopularSection } from '@/features/home/components/MostPopularSectio
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-white dark:bg-zinc-950">
-      {/* قسم الأكثر مبيعاً */}
-      <section className="py-8">
-        <BestSellingSection />
-      </section>
-
-      {/* فاصل بسيط أو مساحة */}
-      <div className="h-12" />
-
-      {/* قسم الأكثر شعبية مع الفلتر */}
-      <section className="py-8">
-        <MostPopularSection />
-      </section>
-    </main>
+    <>
+      <Button
+        variant="primary"
+        title="button.submit"
+        onClick={() => handleClick()}
+        buttonVariant="text"
+      />
+      <Button variant="secondary" title="button.save" buttonVariant="text" />
+      <Button variant="outline" title="button.loading" loading buttonVariant="text" />
+      <Button variant="subtle" title="button.delete" buttonVariant="text" />
+      <Button variant="ghost" title="button.confirm" buttonVariant="text" />
+      <Button variant="destructive" title="button.cancel" buttonVariant="text" />
+      <Button variant="destructive" iconOnly={<Heart />} buttonVariant="icon" />
+      <Button variant="destructive" iconOnly={<Heart />} loading buttonVariant="icon" />
+      <BaseCheckbox list={list} onChange={(selected) => console.log(selected)} />
+      <SecHeader text="Best Selling" />
+      <SecTitle text="Most Popular" className="w-80 ps-5" />
+      <SecTitle text="Check Out our Wonderful Gallery" className="w-165 ps-2.5" />
+      <SecTitle text="Real Words from Happy Customers" className="ps-5" />
+      <AboutSection />
+    </>
   );
 }

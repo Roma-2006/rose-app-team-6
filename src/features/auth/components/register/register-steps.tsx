@@ -1,6 +1,6 @@
 'use client';
 import { OtpForm } from '@/features/auth/components/register/otp-form';
-import { RegisterEmailForm } from '@/features/auth/components/register/register-email-form';
+import { RegisterEmailForm } from '@/features/auth/components/register/register-email-from';
 import CreatePassword from '@/features/auth/components/register/create-password';
 import UserInfoForm from '@/features/auth/components/register/user-info.form';
 import { useState } from 'react';
