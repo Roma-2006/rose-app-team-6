@@ -8,8 +8,24 @@ export default function AboutSection() {
     <section className="w-full flex  align-center justify-center  gap-20">
       <div className="about-imgs w-132.5">
         <Image
-          src=""
-          alt=""
+          src="/images/about-image1.png"
+          alt="purple box"
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 418px"
+          className="object-cover"
+          priority
+        />
+        <Image
+          src="/images/about-image2.png"
+          alt="orange box"
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 418px"
+          className="object-cover"
+          priority
+        />
+        <Image
+          src="/images/about-image3.png"
+          alt="box with pallon"
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 418px"
           className="object-cover"
