@@ -2,7 +2,6 @@
   "name": "rose-app-new",
   "version": "0.1.0",
   "private": true,
-
   "scripts": {
     "dev": "set NODE_OPTIONS=--dns-result-order=ipv4first&& set NODE_TLS_REJECT_UNAUTHORIZED=0&& next dev --turbopack",
     "build": "next build",
@@ -29,6 +28,8 @@
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "react-hook-form": "^7.78.0",
+    "react-masonry-component": "^6.3.0",
+    "react-masonry-css": "^1.0.16",
     "react-phone-number-input": "^3.4.17",
     "server-only": "^0.0.1",
     "shadcn": "^4.11.0",

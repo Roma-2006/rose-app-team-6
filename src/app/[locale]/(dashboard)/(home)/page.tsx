@@ -1,3 +1,4 @@
+import GallerySection from '@/features/home/components/gallery-section';
 import LanguageSwitcher from '@/shared/components/language-switcher';
 import { ThemeToggle } from '@/shared/components/theme';
 import { getTranslations } from 'next-intl/server';
@@ -16,6 +17,7 @@ export default async function HomePage({ params }: PageProps) {
         <LanguageSwitcher />
         <ThemeToggle />
       </div>
+      <GallerySection />
     </section>
   );
 }
