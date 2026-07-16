@@ -17,7 +17,7 @@ export const authOptions: NextAuthOptions = {
         rememberMe: { label: 'Remember me', type: 'text' },
       },
       authorize: async (credentials) => {
-        const t = await getTranslations('login');
+        const t = await getTranslations('auth.login');
 
         const isRememberMe = String(credentials?.rememberMe) === 'true';
 
