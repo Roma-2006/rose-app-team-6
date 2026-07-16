@@ -17,7 +17,8 @@
     "select": {
       "placeholder": "Select an option",
       "noOptions": "No options found",
-      "search": "Search..."
+      "search": "Search...",
+      "somethingWentWrong": "Something went wrong."
     },
     "textarea": {
       "charCount": "{current}/{max} characters"
@@ -79,17 +80,25 @@
         "emailPlaceholder": "user@example.com",
         "continue": "Continue",
         "footerText": "Already have an account?",
-        "registerLink": "Login!"
+        "registerLink": "Login",
+        "errors": {
+          "email-required": "Email is required.",
+          "invalid-email": "Please enter a valid email address.",
+          "no-account": "No account found with this email.",
+          "email-already-registered": "This email is already registered.",
+          "something-went-wrong": "Something went wrong. Please try again."
+        }
       },
       "otp": {
         "subtitle-1": "Enter Verification Code",
         "subtitle-2": "We have sent a 6-digit code to {email}",
         "resend": "Send a new code",
+         "resend-2": "resend",
         "resendTimer": "Resend in {s}s",
         "invalid": "Invalid OTP code",
         "expired": "Code expired. Please request a new one.",
         "verify": "Verify OTP",
-        "Edit": "Edit"
+        "Edit": "Edit" 
       },
       "user-info": {
         "sub-title": "Tell us more about you",
