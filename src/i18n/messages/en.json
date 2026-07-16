@@ -53,8 +53,9 @@
         "continue": "Continue",
         "footerText": "Don’t have an account yet?",
         "registerLink": "Create one now!",
-       
-        "errors": { "somethingWentWrong": "Something went wrong" }
+        "errors": {
+          "somethingWentWrong": "Something went wrong"
+        }
       },
       "step2": {
         "title": "Password Reset Sent",
@@ -83,7 +84,7 @@
       },
       "errors": {
         "noAccount": "No account found with this email",
-         "emailRequired": "Email is required",
+        "emailRequired": "Email is required",
         "fieldRequired": "This field is required",
         "passwordInvalid": "Must be 8+ chars, with uppercase, lowercase, digit, and special char",
         "passwordMatch": "Passwords do not match",
@@ -106,7 +107,7 @@
         "subtitle-1": "Enter Verification Code",
         "subtitle-2": "We have sent a 6-digit code to {email}",
         "resend": "Send a new code",
-         "resend-2": "resend",
+        "resend-2": "resend",
         "resendTimer": "Resend in {s}s",
         "invalid": "Invalid OTP code",
         "expired": "Code expired. Please request a new one.",
@@ -148,14 +149,13 @@
           "passwords-do-not-match": "Passwords do not match."
         }
       },
-    "errors": {
-  "emailRequired": "Email is required.",
-  "invalidEmail": "Please enter a valid email address.",
-  "noAccount": "No account found with this email.",
-  "emailAlreadyRegistered": "This email is already registered.",
-  "somethingWentWrong": "Something went wrong. Please try again."
-}
-
+      "errors": {
+        "emailRequired": "Email is required.",
+        "invalidEmail": "Please enter a valid email address.",
+        "noAccount": "No account found with this email.",
+        "emailAlreadyRegistered": "This email is already registered.",
+        "somethingWentWrong": "Something went wrong. Please try again."
+      }
     },
     "passwordResetSent": {
       "title": "Password Reset Sent",
@@ -220,5 +220,32 @@
     },
     "nice-to-have-you-here": "nice to have you here"
   },
-  "title": "welcom to Rose App"
+  "login": {
+    "username": {
+      "invalid": "Invalid Username",
+      "required": "Username is required"
+    },
+    "password": {
+      "invalid": "Invalid Password",
+      "required": "Password is required"
+    }
+  },
+  "title": "welcom to Rose App",
+  "home": {
+    "bestSelling": "Best Selling",
+    "viewAll": "View All",
+    "mostPopular": "Most Popular",
+    "viewMore": "View More",
+    "wedding": "Wedding",
+    "anniversary": "Anniversary",
+    "birthday": "Birthday",
+    "engagement": "Engagement",
+    "noProductsFound": "No products found for this occasion",
+    "error": "Failed to load products. Try again."
+  },
+  "product": {
+    "addToCart": "Add to cart",
+    "addToWishlist": "Add to wishlist"
+  }
 }
+
