@@ -155,6 +155,7 @@ export default function CustomInput({
   };
 
   // Handle toggling password visibility
+
   const handleTogglePassword = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
@@ -162,7 +163,7 @@ export default function CustomInput({
     const start = internalRef.current.selectionStart;
     const end = internalRef.current.selectionEnd;
 
-    setIsPasswordVisible((prev) => !prev);
+    //   setIsPasswordVisible((prev) => !prev);
 
     setTimeout(() => {
       if (internalRef.current) {

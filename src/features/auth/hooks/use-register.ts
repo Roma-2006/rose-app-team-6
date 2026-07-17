@@ -1,43 +1,52 @@
 import { useRouter } from '@/i18n/navigation';
 import { useMutation } from '@tanstack/react-query';
-import { TRegisterFields } from '../types/register';
+import { TRegisterFields, TUseRegisterProps } from '../types/register';
 import { toast } from 'sonner';
 import { useTranslations } from 'next-intl';
+import { registerAction } from '../actions/register.action';
 
-export default function useRegister() {
+export default function useRegister({ setErrors, setUserInfo, setStep }: TUseRegisterProps) {
   const router = useRouter();
   const t = useTranslations('auth.auth-register.create-password');
   return useMutation({
     mutationFn: async (fields: TRegisterFields) => {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/register/`, {
-        method: 'POST',
-        body: JSON.stringify(fields),
-        headers: { 'Content-Type': 'application/json' },
-      });
-      const payload = await response.json();
-      if (payload && !payload.status) throw payload.errors ? payload.errors : payload.message;
-      return payload;
+      const response = await registerAction(fields);
+      if (response && !response.status) throw response.errors ? response.errors : response.message;
+      return response;
     },
-    onSuccess: (data, variables) => {
-      sessionStorage.removeItem(`register-user-info-${variables.email}`);
-      sessionStorage.removeItem('register-error');
+    onSuccess: (data) => {
+      setErrors([]);
+      setUserInfo({});
       toast.success(t('success'));
       router.push('/login');
     },
     onError: (data) => {
-      if (Array.isArray(data)) {
-        const paths = data.map((err) => err.path);
-        if (
-          paths?.includes('username') ||
-          paths?.includes('firstName') ||
-          paths?.includes('lastName') ||
-          paths?.includes('gender')
-        ) {
-          router.push('/register/user-info');
+      if (data) {
+        if (Array.isArray(data)) {
+          setErrors(data);
+          const paths = data.map((err) => err.path);
+          if (
+            paths?.includes('username') ||
+            paths?.includes('firstName') ||
+            paths?.includes('lastName') ||
+            paths?.includes('gender')
+          ) {
+            setStep('user-info');
+          }
+        } else if (typeof data === 'string') {
+          const error = data as string;
+          if (error.includes('username')) {
+            setErrors([{ path: 'username', message: error }]);
+            setStep('user-info');
+          } else if (error.includes('phone')) {
+            setErrors([{ path: 'phone', message: error }]);
+            setStep('user-info');
+          }
+          if (error.includes('verify')) {
+            setErrors([{ path: 'verify', message: error }]);
+            setStep('register');
+          }
         }
-        sessionStorage.setItem('register-error', JSON.stringify(data));
-      } else if (data) {
-        toast.error(typeof data === 'string' ? data : 'Something went wrong. Please try again.');
       }
     },
   });

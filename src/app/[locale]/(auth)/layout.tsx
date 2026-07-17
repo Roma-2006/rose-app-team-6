@@ -14,10 +14,10 @@ export default function AuthLayout({ children }: Readonly<{ children: React.Reac
           </div>
           {/* Top Separator */}
           <ThemeSeparator />
-          {/* ---------------------------------------------------- */}
+
           {/*welcome text*/}
           <WelcomeText />
-          {/* ---------------------------------------------------- */}
+
           <div className=" flex items-center">{children}</div>
           {/* Bottom Separator */}
           <ThemeSeparator />

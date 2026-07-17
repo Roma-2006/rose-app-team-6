@@ -5,19 +5,24 @@ import { LoginResponse, TLoginData } from '../types/auth';
 import { API_ENDPOINTS } from '../constants/endpoints';
 
 export const login = async (loginFields: TLoginData): Promise<Response<LoginResponse>> => {
+  // Object Destructuring
+  const { rememberMe, ...body } = loginFields;
+
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}${API_ENDPOINTS.login}`, {
     method: 'POST',
-    body: JSON.stringify(loginFields),
     headers: {
       ...HEADERS.jsonBody,
     },
+    body: JSON.stringify(body),
   });
 
+  const payload = await response.json();
+
+  console.log('Response:', payload);
+
   if (!response.ok) {
-    const error = await response.json();
-    throw new Error(error.message);
+    throw new Error(payload.message || 'Login failed');
   }
 
-  const payload: Response<LoginResponse> = await response.json();
   return payload;
 };

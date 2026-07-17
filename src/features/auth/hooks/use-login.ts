@@ -4,6 +4,7 @@ import { signIn, signOut, useSession } from 'next-auth/react';
 import { useState } from 'react';
 import { TLoginData } from '../types/login';
 import { useRouter } from '@/i18n/navigation';
+import { useTranslations } from 'next-intl';
 
 export default function useLogin() {
   const [isLoading, setIsLoading] = useState(false);
@@ -11,6 +12,8 @@ export default function useLogin() {
   const { data: session, status, update } = useSession();
   const router = useRouter();
 
+  const t = useTranslations();
+  // handleLogin
   const handleLogin = async (data: TLoginData) => {
     setIsLoading(true);
     setError(null);
@@ -22,9 +25,14 @@ export default function useLogin() {
         rememberMe: data.rememberMe,
         redirect: false,
       });
-
+      console.log(data);
       if (result?.error) {
-        setError(result.error);
+        // Handle specific error messages and translate them
+        if (result.error === 'Route not found' || result.error === 'CredentialsSignin') {
+          setError(t('auth.login.invalidCredentials'));
+        } else {
+          setError(result.error);
+        }
         return;
       }
 
@@ -37,13 +45,14 @@ export default function useLogin() {
 
         router.refresh();
       }
+      console.log('Login Request:', router);
     } catch (error1) {
       setError((error1 as Error).message);
     } finally {
       setIsLoading(false);
     }
   };
-
+  // handleLogout
   const handleLogout = async () => {
     setIsLoading(true);
     try {

@@ -1,47 +1,58 @@
 'use client';
-import { useState, useEffect, useCallback } from 'react';
-import { useTranslations } from 'next-intl';
 
-interface OTPSectionProps {
-  onResend: () => Promise<boolean>;
-  onVerify?: () => Promise<void>;
-  isLoading?: boolean;
-}
+import { useCallback, useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
+import { OTPSectionProps } from '../../types/register';
 
 const COUNTDOWN_SECONDS = 60;
+const TIMER_KEY = 'otp-resend-end-time';
 
 export default function OTPSection({ onResend }: OTPSectionProps) {
-  const [seconds, setSeconds] = useState(COUNTDOWN_SECONDS);
   const t = useTranslations();
-  const handleResendClick = useCallback(async () => {
-    const success = await onResend();
-    if (success) {
-      setSeconds(COUNTDOWN_SECONDS);
-    }
-  }, [onResend]);
+
+  const [seconds, setSeconds] = useState(0);
+
+  const calculateRemaining = () => {
+    const endTime = localStorage.getItem(TIMER_KEY);
+
+    if (!endTime) return 0;
+
+    return Math.max(0, Math.ceil((Number(endTime) - Date.now()) / 1000));
+  };
 
   useEffect(() => {
-    if (seconds <= 0) return;
-
     const interval = setInterval(() => {
-      setSeconds((prev) => prev - 1);
+      setSeconds(calculateRemaining());
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [seconds]);
+  }, []);
+
+  const handleResendClick = useCallback(async () => {
+    const success = await onResend();
+
+    if (!success) return;
+
+    const endTime = Date.now() + COUNTDOWN_SECONDS * 1000;
+
+    localStorage.setItem(TIMER_KEY, endTime.toString());
+
+    setSeconds(COUNTDOWN_SECONDS);
+  }, [onResend]);
 
   return (
-    <div className="flex flex-col items-center space-y-6 w-full">
-      <p className="text-gray-500 text-sm mb-6">
+    <div className="flex w-full flex-col items-center">
+      <p className="mb-6 text-sm text-text-plain">
         {t('auth.auth-register.otp.resend')}:
         {seconds > 0 ? (
-          <span className="font-bold text-black ml-1">{seconds}s</span>
+          <span className="ml-1 font-bold text-text-plain">{seconds}s</span>
         ) : (
           <button
+            type="button"
             onClick={handleResendClick}
-            className="text-blue-600 font-medium pl-3 cursor-pointer"
+            className="cursor-pointer pl-3 font-medium text-text-info hover:underline"
           >
-            {t('auth.auth-register.otp.resend')}
+            {t('auth.auth-register.otp.resend-2')}
           </button>
         )}
       </p>

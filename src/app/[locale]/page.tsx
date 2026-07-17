@@ -1,29 +1,34 @@
+'use client';
+
+import { use } from 'react';
 import LanguageSwitcher from '@/shared/components/language-switcher';
 import { ThemeToggle } from '@/shared/components/theme';
-import { getTranslations } from 'next-intl/server';
+import { useTranslations } from 'next-intl';
+import { signOut } from 'next-auth/react';
+
 interface PageProps {
   params: Promise<{ locale: string }>;
 }
 
-export default async function Home({ params }: PageProps) {
-  const { locale } = await params;
-  const t = await getTranslations({ locale });
+export default function HomePage({ params }: PageProps) {
+  const { locale } = use(params);
+
+  const t = useTranslations('home');
+
   return (
-    <main className="bg-plain  min-h-screen flex flex-col items-center justify-center p-6 text-center">
-      <div className="bg-plain p-8 rounded-2xl shadow-sm border border-slate-100 max-w-md w-full flex flex-col items-center">
-        {/* Language Switcher */}
-        <div className="mb-6 w-full flex justify-end">
-          <LanguageSwitcher />
-          <ThemeToggle />
-        </div>
-
-        <h1 className="text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">{t('title')}</h1>
-
-        <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 rounded-full text-sm font-medium text-slate-700">
-          <span>Active Locale:</span>
-          <span className="uppercase text-indigo-600 font-bold">{locale}</span>
-        </div>
+    <main className="bg-plain min-h-screen flex flex-col items-center justify-center p-6 text-center">
+      {/* Language & Theme Switcher */}
+      <div className="mb-6 w-full flex justify-center gap-4">
+        <LanguageSwitcher />
+        <ThemeToggle />
       </div>
+
+      <button
+        onClick={() => signOut({ callbackUrl: `/${locale}/login` })}
+        className="rounded-xl bg-red-500 px-4 py-2 text-sm font-medium text-white hover:bg-red-600 transition-colors"
+      >
+        تسجيل الخروج
+      </button>
     </main>
   );
 }
