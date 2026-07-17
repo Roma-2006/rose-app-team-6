@@ -16,23 +16,26 @@ export const BestSellingSection = () => {
 
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  const scroll = (direction: 'left' | 'right') => {
+  const scroll = (direction: 'next' | 'prev') => {
     if (scrollRef.current) {
       const scrollAmount = 320;
+      const modifier = direction === 'next' ? 1 : -1;
+      const rtlMultiplier = isRtl ? -1 : 1;
+
       scrollRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        left: scrollAmount * modifier * rtlMultiplier,
         behavior: 'smooth',
       });
     }
   };
 
   return (
-    <section className="py-20 mx-20 lg:mx-20 dark:bg-bg-plain">
+    <section className="py-20 mx-20 lg:mx-20 ">
       <div className="flex flex-col lg:flex-row justify-center items-center gap-9">
-        {/* Left/Top Content: Badge, Headlines, and Call to Action */}
+        {/* Left/Top Content: Badge, Headlines */}
         <div className="size-lf-stretch inline-flex flex-col justify-start items-start gap-2.5">
           {/* Section Badge */}
-          <div className="self-stretch h-8 justify-center text-text-secondary text-base font-bold uppercase tracking-[4px]">
+          <div className="self-stretch h-8 justify-center text-text-secondary text-base font-bold uppercase tracking-widest">
             {t('badge')}
           </div>
 
@@ -77,27 +80,25 @@ export const BestSellingSection = () => {
                 />
               )
             }
-            className="mt-16 w-40 bg-secondary rounded-lg text-text-inverse"
+            className="mt-16 w-40 bg-secondary rounded-lg text-text-inverse "
           />
         </div>
 
-        {/* Right/Bottom Content: Product Carousel */}
+        {/* Right/Bottom Content */}
         <div className="relative flex-1 lg:max-w-[950px] w-full">
-          {/* Scroll Left Button - rtl:rotate-180 flips the arrow for Arabic */}
           <button
-            onClick={() => scroll('left')}
-            className="absolute -left-5 top-[161px] z-20 w-9 h-9 bg-secondary rounded-full flex justify-center items-center text-rose shadow-lg hover:opacity-80 transition-opacity"
+            onClick={() => scroll('prev')}
+            className="absolute -left-5 rtl:-right-5 rtl:left-auto top-[161px] z-20 w-9 h-9 bg-secondary rounded-full flex justify-center items-center text-rose shadow-lg hover:opacity-80 transition-opacity"
           >
-            <ChevronLeft size={20} className="rtl:rotate-180" />
+            {isRtl ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
           </button>
 
-          {/* Horizontal scroll  */}
           <div
             ref={scrollRef}
             className="flex gap-6 overflow-x-auto hide-scrollbar snap-x snap-mandatory px-2"
           >
             {isLoading
-              ? // Display Skeletons while fetching data
+              ? // Display Skeletons
                 [...Array(4)].map((_, i) => <ProductCardSkeleton key={i} />)
               : // Render actual Product Cards
                 products?.map((product) => (
@@ -107,12 +108,12 @@ export const BestSellingSection = () => {
                 ))}
           </div>
 
-          {/* Scroll Right Button - rtl:rotate-180 flips the arrow for Arabic */}
+          {/* Scroll Right Button  */}
           <button
-            onClick={() => scroll('right')}
-            className="absolute -right-5 top-[161px] z-20 w-9 h-9 bg-secondary rounded-full flex justify-center items-center text-rose shadow-lg hover:bg-red-900 transition-colors"
+            onClick={() => scroll('next')}
+            className="absolute -right-5 rtl:-left-5 rtl:right-auto top-[161px] z-20 w-9 h-9 bg-secondary rounded-full flex justify-center items-center text-rose shadow-lg hover:opacity-80 transition-opacity"
           >
-            <ChevronRight size={20} className="rtl:rotate-180" />
+            {isRtl ? <ChevronLeft size={20} /> : <ChevronRight size={20} />}
           </button>
         </div>
       </div>

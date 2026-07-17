@@ -2,33 +2,33 @@
 
 export const ProductCardSkeleton = () => {
   return (
-    <div className="w-full rounded-xl bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 overflow-hidden shadow-sm animate-pulse">
+    <div className="w-72 h-96 rounded-2xl bg-bg-plain border border-border-subtle dark:border-border-muted overflow-hidden shadow-sm animate-pulse">
+      {' '}
       {/* 1. Image Placeholder (Square Aspect Ratio) */}
-      <div className="relative aspect-square bg-zinc-200 dark:bg-zinc-800" />
-
+      <div className="relative aspect-square bg-bg-soft" />
       {/* 2. Content Area */}
       <div className="p-4 space-y-3">
-        {/* Title Line */}
-        <div className="h-5 bg-zinc-200 dark:bg-zinc-800 rounded-md w-3/4" />
+        {/* Title  */}
+        <div className="h-5 bg-bg-soft rounded-md w-3/4" />
 
-        {/* Rating Stars Line */}
+        {/* Rating Stars  */}
         <div className="flex gap-1">
           {[...Array(5)].map((_, i) => (
-            <div key={i} className="w-3 h-3 bg-zinc-200 dark:bg-zinc-800 rounded-full" />
+            <div key={i} className="w-3 h-3 bg-bg-soft rounded-full" />
           ))}
         </div>
 
-        {/* Price and Cart Button Line */}
+        {/* Price and Cart Button  */}
         <div className="flex items-center justify-between pt-2">
           <div className="space-y-2">
-            {/* Price Line */}
-            <div className="h-6 bg-zinc-200 dark:bg-zinc-800 rounded-md w-20" />
-            {/* Old Price Line (Smaller) */}
-            <div className="h-4 bg-zinc-100 dark:bg-zinc-800/50 rounded-md w-12" />
+            {/* Price  */}
+            <div className="h-6 bg-bg-soft rounded-md w-20" />
+            {/* Old Price   */}
+            <div className="h-4 bg-bg-muted dark:bg-bg-plain/50 rounded-md w-12" />
           </div>
 
           {/* Cart Button Circle */}
-          <div className="w-10 h-10 bg-zinc-200 dark:bg-zinc-800 rounded-full" />
+          <div className="w-10 h-10 bg-bg-soft rounded-full" />
         </div>
       </div>
     </div>

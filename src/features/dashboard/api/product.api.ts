@@ -1,10 +1,8 @@
 import type { Product } from '../types/product.type';
 import type { Occasion } from '../types/occasion.type';
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || '';
-
 export const getProducts = async (occasionId?: string, limit = 12): Promise<Product[]> => {
-  const url = new URL(`${BASE_URL}/products`);
+  const url = new URL(`${process.env.NEXT_PUBLIC_API_URL}/products`);
 
   url.searchParams.append('limit', String(limit));
 
@@ -23,7 +21,7 @@ export const getOccasions = async (
   page = 1,
   limit = 12
 ): Promise<{ occasions: Occasion[]; total?: number; totalPages?: number }> => {
-  const url = new URL(`${BASE_URL}/occasions`);
+  const url = new URL(`${process.env.NEXT_PUBLIC_API_URL}/occasions`);
   url.searchParams.append('page', String(page));
   url.searchParams.append('limit', String(limit));
 
@@ -37,7 +35,5 @@ export const getOccasions = async (
 
   return {
     occasions: result.payload?.data || [],
-    total: result.payload?.metadata?.total ?? result.metadata?.total,
-    totalPages: result.payload?.metadata?.totalPages ?? result.metadata?.totalPages,
   };
 };

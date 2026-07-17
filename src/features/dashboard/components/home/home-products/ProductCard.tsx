@@ -58,7 +58,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         <div className="relative self-stretch h-64 p-2.5 rounded-2xl flex flex-col justify-start items-end overflow-hidden bg-bg-muted">
           <button
             onClick={(e) => toggleWishlist(e)}
-            className="absolute top-3 left-3 z-20 w-9 h-9 bg-white rounded-full shadow-[0px_2px_8px_rgba(0,0,0,0.1)] flex justify-center items-center group/heart hover:bg-gray-50 transition-all active:scale-90"
+            className="absolute top-3 left-3 z-20 w-9 h-9 bg-bg-plain rounded-full shadow-[0px_2px_8px_rgba(0,0,0,0.1)] flex justify-center items-center group/heart hover:bg-bg-subtle transition-all active:scale-90"
           >
             <HeartPlus
               size={20}
@@ -132,7 +132,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
                 e.stopPropagation();
                 addToCart(e);
               }}
-              className="w-11 h-11 bg-secondary rounded-full inline-flex justify-center items-center hover:bg-bg-primary transition-all active:scale-90"
+              className="w-11 h-11 bg-secondary rounded-full inline-flex justify-center items-center hover:opacity-80 transition-opacity "
             >
               <ShoppingCart size={22} className="text-text-inverse" />
             </button>
