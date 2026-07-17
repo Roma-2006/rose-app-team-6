@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations, useLocale } from 'next-intl';
 import { Controller } from 'react-hook-form';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { TUserInfoFields } from '../../types/register';
+import { TUserInfoFields, TUserInfoFormProps } from '../../types/register';
 import SelectGender from '@/shared/components/custom-ui/select-gender';
 import RegisterSubtitle from './register-subtitle';
 import { ArrowRight, ArrowLeft } from 'lucide-react';
@@ -17,32 +17,21 @@ import { ValidationError } from '@/shared/types/api';
 import AuthError from '../shared/auth-error';
 import { advanceRegistrationStep } from '@/features/auth/lib/registeration-progress';
 
-export default function UserInfoForm() {
+export default function UserInfoForm({
+  firstNameError,
+  lastNameError,
+  userNameError,
+  genderError,
+  email,
+  setUserInfo,
+  userInfo,
+  setStep,
+  phoneError,
+}: TUserInfoFormProps) {
   const t = useTranslations('auth.auth-register');
   const router = useRouter();
   const locale = useLocale();
   const isRtl = locale === 'ar';
-  const searchParams = useSearchParams();
-  const email = searchParams.get('email');
-  console.log(email, 'email');
-  //mutation
-  const getStoredErrors = (): ValidationError[] => {
-    if (typeof window === 'undefined') return [];
-    const storedError = sessionStorage.getItem('register-error');
-    if (storedError && storedError !== 'undefined') {
-      // sessionStorage.removeItem('register-error');
-      return JSON.parse(storedError);
-    }
-    return [];
-  };
-  const [errors] = useState<ValidationError[]>(getStoredErrors);
-  const genderError = errors?.find((err) => err.path === 'gender')?.message;
-  const userNameErrors = errors?.find((err) => err.path === 'username');
-  const userNameError = userNameErrors?.messages
-    ? userNameErrors.messages.join(',')
-    : userNameErrors?.message;
-  const lastNameError = errors?.find((err) => err.path === 'lastName')?.message;
-  const firstNameError = errors?.find((err) => err.path === 'firstName')?.message;
   //form
   const form = useForm<TUserInfoFields>({
     resolver: zodResolver(userInfoSchema),
@@ -58,34 +47,25 @@ export default function UserInfoForm() {
   //function
   const onSubmit: SubmitHandler<TUserInfoFields> = async (values) => {
     if (!email) return;
-    console.log(values);
-    const userInfo = { ...values, email: email, gender: values.gender.toUpperCase() };
-    console.log(userInfo, 'userInfo');
-    sessionStorage.setItem(`register-user-info-${email}`, JSON.stringify(userInfo));
-    await advanceRegistrationStep(email, 'create-password');
-    router.push(`/register/create-password?email=${encodeURIComponent(email)}`);
+    const userDetails = { ...values, email: email, gender: values.gender.toUpperCase() };
+    setUserInfo(userDetails);
+    setStep('create-password');
   };
   useEffect(() => {
     if (!email) return;
-    const userInfo = sessionStorage.getItem(`register-user-info-${email}`);
     if (userInfo) {
-      const data = JSON.parse(userInfo);
       form.reset({
-        firstName: data.firstName,
-        lastName: data.lastName,
-        username: data.username,
-        phone: data.phone,
-        gender: data.gender
-          ? data.gender.charAt(0).toUpperCase() + data.gender.slice(1).toLowerCase()
+        firstName: userInfo.firstName,
+        lastName: userInfo.lastName,
+        username: userInfo.username,
+        phone: userInfo.phone,
+        gender: userInfo.gender
+          ? userInfo.gender.charAt(0).toUpperCase() + userInfo.gender.slice(1).toLowerCase()
           : '',
       });
+      form.trigger();
     }
-    // const storedError = sessionStorage.getItem('register-error');
-    // if (storedError && storedError !== 'undefined') {
-    //   setErrors(JSON.parse(storedError));
-    //   sessionStorage.removeItem('register-error');
-    // }
-  }, [form.reset, email]);
+  }, [form, email, userInfo]);
   return (
     <section className="flex flex-col ">
       <RegisterSubtitle
@@ -94,10 +74,7 @@ export default function UserInfoForm() {
         subTitle="user-info.sub-title"
         registerSubTitle="user-info.user-info-sub-title"
       />
-      <form
-        className="pt-5"
-        onSubmit={form.handleSubmit(onSubmit, (errors) => console.log('FORM ERRORS:', errors))}
-      >
+      <form className="pt-5" onSubmit={form.handleSubmit(onSubmit)}>
         <div className="flex flex-col gap-4 ">
           <div className="flex gap-5 justify-between ">
             {/* first-name*/}
@@ -112,6 +89,7 @@ export default function UserInfoForm() {
                     variant="default"
                     subVariant="first-name"
                     label={t('user-info.first-name')}
+                    error={fieldState.invalid || !!firstNameError}
                   />
                   {(fieldState.error || firstNameError) && (
                     <AuthError zodError={fieldState.error?.message} beError={firstNameError} />
@@ -131,6 +109,7 @@ export default function UserInfoForm() {
                     variant="default"
                     subVariant="last-name"
                     label={t('user-info.last-name')}
+                    error={fieldState.invalid || !!lastNameError}
                   />
                   {(fieldState.error || lastNameError) && (
                     <AuthError zodError={fieldState.error?.message} beError={lastNameError} />
@@ -151,6 +130,7 @@ export default function UserInfoForm() {
                   variant="default"
                   subVariant="user-name"
                   label={t('user-info.user-name')}
+                  error={fieldState.invalid || !!userNameError}
                 />
                 {(fieldState.error || userNameError) && (
                   <AuthError zodError={fieldState.error?.message} beError={userNameError} />
@@ -169,8 +149,11 @@ export default function UserInfoForm() {
                   variant="phone"
                   subVariant="phone"
                   label={t('user-info.phone')}
+                  error={fieldState.invalid || !!phoneError}
                 />
-                {fieldState.error && <AuthError zodError={fieldState.error?.message} />}
+                {(fieldState.error || phoneError) && (
+                  <AuthError zodError={fieldState.error?.message} beError={phoneError} />
+                )}
               </>
             )}
           />
@@ -201,8 +184,7 @@ export default function UserInfoForm() {
           rightIcon={isRtl ? <ArrowLeft /> : <ArrowRight />}
           buttonVariant="text"
           type="submit"
-          // loading={isPending}
-          // disabled={isPending || !form.formState.isValid}
+          disabled={(form.formState.isSubmitted && !form.formState.isValid) || !email}
         />
         <AuthFooter
           question="auth-register.need-help"

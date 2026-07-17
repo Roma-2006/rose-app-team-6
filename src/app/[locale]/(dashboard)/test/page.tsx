@@ -2,7 +2,6 @@
 import { BaseCheckbox } from '@/shared/components/custom-ui/BaseCheckbox';
 import { Button } from '@/shared/components/ui/button';
 import { Heart } from 'lucide-react';
-import { useState } from 'react';
 
 export default function Page() {
   const list = [

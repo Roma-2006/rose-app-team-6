@@ -16,7 +16,8 @@
     "select": {
       "placeholder": "Select an option",
       "noOptions": "No options found",
-      "search": "Search..."
+      "search": "Search...",
+      "somethingWentWrong": "Something went wrong."
     },
     "textarea": {
       "charCount": "{current}/{max} characters"
@@ -29,7 +30,7 @@
       "login-title": "Welcome back!",
       "register-title": "Become part of our family!"
     },
-    "login": {
+"login": {
       "schema": {
         "username": {
           "invalid": "Invalid Username",
@@ -39,7 +40,14 @@
           "invalid": "Invalid Password",
           "required": "Password is required"
         }
-      }
+      },
+        "forgot-password":"Forgot Your password?",
+        "rememberMe" : "Remember me",
+        "noAccount" :"Don't have an account?",
+         "register" :"Create one now!",
+         "button" :"Login",
+         "invalidCredentials": "The username or password is incorrect."
+      
     },
     "auth-forgotPw": {
       "step1": {
@@ -77,17 +85,25 @@
         "emailPlaceholder": "user@example.com",
         "continue": "Continue",
         "footerText": "Already have an account?",
-        "registerLink": "Login!"
+        "registerLink": "Login",
+        "errors": {
+          "email-required": "Email is required.",
+          "invalid-email": "Please enter a valid email address.",
+          "no-account": "No account found with this email.",
+          "email-already-registered": "This email is already registered.",
+          "something-went-wrong": "Something went wrong. Please try again."
+        }
       },
       "otp": {
         "subtitle-1": "Enter Verification Code",
         "subtitle-2": "We have sent a 6-digit code to {email}",
         "resend": "Send a new code",
+         "resend-2": "resend",
         "resendTimer": "Resend in {s}s",
         "invalid": "Invalid OTP code",
         "expired": "Code expired. Please request a new one.",
         "verify": "Verify OTP",
-        "Edit": "Edit"
+        "Edit": "Edit" 
       },
       "user-info":{
         "sub-title":"Tell us more about you",
@@ -100,7 +116,15 @@
         "gender":"Gender",
         "gender-placeholder":"Select gender",
         "male":"Male",
-        "female":"Female"
+        "female":"Female",
+        "errors":{
+          "first-name": "First Name is required",
+          "last-name": "Last Name is required",
+          "user-name": "User Name must be at least 2 characters.",
+          "phone": "Phone is required",
+          "gender": "Gender is required",
+          "invalid-phone-number": "Invalid phone number"
+        }
      },
       "create-password":{
         "sub-title":"Create a strong password",
@@ -111,12 +135,17 @@
         "email-in-use":"Email already in use",
         "success":"Account created successfully",
         "have-account": "Already have an account?",
-        "login": "Login"
-      },
-      "errors": {
-        "noAccount": "Please enter a valid email address"
+        "login": "Login",
+        "errors":{
+          "password-min-length": "Password must be at least 8 characters.",
+          "password-uppercase": "Password must contain at least one uppercase letter.",
+          "password-lowercase": "Password must contain at least one lowercase letter.",
+          "password-number": "Password must contain at least one number.",
+          "password-special": "Password must contain at least one special character.",
+          "confirm-password": "Confirm Password is required.",
+          "passwords-do-not-match": "Passwords do not match."
+        }
       }
-
     },
     "passwordResetSent": {
       "title": "Password Reset Sent",
@@ -215,6 +244,3 @@
     "nice-to-have-you-here": "nice to have you here"
 }
 }
-
-
-

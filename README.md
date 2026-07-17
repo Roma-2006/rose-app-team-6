@@ -6,8 +6,8 @@ A web application built with Next.js 15, TypeScript, Tailwind CSS, and next-intl
 
 Before running the project, make sure you have:
 
-* Node.js 20+
-* npm
+- Node.js 20+
+- npm
 
 ## Installation
 
@@ -76,10 +76,10 @@ Runs ESLint.
 
 ## Tech Stack
 
-* Next.js
-* TypeScript
-* Tailwind CSS
-* next-intl
+- Next.js
+- TypeScript
+- Tailwind CSS
+- next-intl
 
 ## Project Structure
 

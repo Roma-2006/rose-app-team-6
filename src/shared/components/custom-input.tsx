@@ -61,23 +61,24 @@ export default function CustomInput({
   //determine language
   const locale = useLocale();
   const computedIsRtl = isRtl !== undefined ? isRtl : locale === 'ar';
-  const t = useTranslations('custom-input');
+  const tLogin = useTranslations('auth.login');
+  const tInput = useTranslations('custom-input');
 
   let defaultLabel = '';
   let defaultPlaceholder = '';
 
   if (variant === 'default' && subVariant) {
     //first & last name
-    defaultLabel = t(`default.${subVariant}.label`);
-    defaultPlaceholder = t(`default.${subVariant}.placeholder`);
+    defaultLabel = tInput(`default.${subVariant}.label`);
+    defaultPlaceholder = tInput(`default.${subVariant}.placeholder`);
     // password & confirm password
   } else if (variant === 'password' && subVariant) {
-    defaultLabel = t(`password.${subVariant}.label`);
-    defaultPlaceholder = t(`password.${subVariant}.placeholder`);
+    defaultLabel = tInput(`password.${subVariant}.label`);
+    defaultPlaceholder = tInput(`password.${subVariant}.placeholder`);
     // file , phone , number , search & email
   } else {
-    defaultLabel = t(`${variant}.label`);
-    defaultPlaceholder = t(`${variant}.placeholder`);
+    defaultLabel = tInput(`${variant}.label`);
+    defaultPlaceholder = tInput(`${variant}.placeholder`);
   }
   // Compute label and placeholder
 
@@ -89,7 +90,7 @@ export default function CustomInput({
   const isError = !!errorMessage || error;
 
   // Local states for managing input behavior
-  const [isPasswordVisible, setIsPasswordVisible] = React.useState<boolean>(false);
+  const [showPassword, setShowPassword] = React.useState(false);
   const [hasSearchValue, setHasSearchValue] = React.useState<boolean>(!!defaultValue);
   const [resetKey, setResetKey] = React.useState<number>(0);
   const internalRef = React.useRef<HTMLInputElement | null>(null);
@@ -127,7 +128,7 @@ export default function CustomInput({
 
   // Determine the input type
   const getInputType = () => {
-    if (variant === 'password') return isPasswordVisible ? 'text' : 'password';
+    if (variant === 'password') return showPassword ? 'text' : 'password';
     if (variant === 'number') return 'text';
     if (variant === 'search') return 'search';
     if (variant === 'phone') return 'tel';
@@ -155,6 +156,7 @@ export default function CustomInput({
   };
 
   // Handle toggling password visibility
+
   const handleTogglePassword = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
@@ -162,7 +164,7 @@ export default function CustomInput({
     const start = internalRef.current.selectionStart;
     const end = internalRef.current.selectionEnd;
 
-    setIsPasswordVisible((prev) => !prev);
+    //   setIsPasswordVisible((prev) => !prev);
 
     setTimeout(() => {
       if (internalRef.current) {
@@ -170,6 +172,9 @@ export default function CustomInput({
         internalRef.current.setSelectionRange(start, end);
       }
     }, 0);
+  };
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
   };
 
   // Label styles Definitions
@@ -210,17 +215,12 @@ export default function CustomInput({
       className={cn('items-start justify-start flex-col gap-2  m-w-375 ', className)}
       dir={computedIsRtl ? 'rtl' : 'ltr'}
     >
-      {label && variant !== 'otp' && (
+      {computedLabel && variant !== 'otp' && (
         <Field.Label
           htmlFor={id}
           className={`${baseLableStyle} ${labeltStyle} inline-block mb-2.5`}
         >
-          {label}
-          {(subVariant === 'first-name' ||
-            subVariant === 'last-name' ||
-            subVariant === 'user-name') && (
-            <Asterisk className="inline-block text-text-danger mb-2" size={12} />
-          )}
+          {computedLabel}
         </Field.Label>
       )}
 
@@ -254,7 +254,7 @@ export default function CustomInput({
             step={step}
             data-slot="input"
             className={cn(
-              'h-11.5 text-start  w-full  border px-3 py-1 text-base transition-colors outline-none md:text-sm radius-xl',
+              'h-11.5 text-start  w-full  border px-3 py-0.5 text-base transition-colors outline-none md:text-sm radius-xl',
               'focus-visible:outline-none focus-visible:ring-0',
               variant === 'search' && 'ps-9 pe-3',
               variant === 'password' && 'ps-3 pe-9',
@@ -368,7 +368,7 @@ export default function CustomInput({
           <button
             type="button"
             onMouseDown={(e) => e.preventDefault()}
-            onClick={handleTogglePassword}
+            onClick={toggleShowPassword}
             disabled={isDisabled}
             className={cn(
               'absolute top-1/2 -translate-y-1/2 text-text-muted hover:text-text-plain  transition-colors z-30 pointer-events-auto block select-none',
@@ -376,7 +376,7 @@ export default function CustomInput({
             )}
             style={{ contentVisibility: 'auto' }}
           >
-            {isPasswordVisible ? (
+            {showPassword ? (
               <Eye size={16} className="pointer-events-none" />
             ) : (
               <EyeOff size={16} className="pointer-events-none" />

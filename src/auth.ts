@@ -12,85 +12,72 @@ export const authOptions: NextAuthOptions = {
     Credentials({
       name: 'Credentials',
       credentials: {
-        username: {
-          label: 'Username',
-          type: 'text',
-        },
-        password: {
-          label: 'Password',
-          type: 'password',
-        },
-        rememberMe: {
-          label: 'Remember me',
-          type: 'text',
-        },
+        username: { label: 'Username', type: 'text' },
+        password: { label: 'Password', type: 'password' },
+        rememberMe: { label: 'Remember me', type: 'text' },
       },
-      /**
-       * Authenticates a user using the Credentials provider.
-       *
-       * The credentials are validated locally with Zod before calling the API.
-       */
       authorize: async (credentials) => {
-        const t = await getTranslations('login.schema');
+        const t = await getTranslations('auth.login');
+
+        const isRememberMe = String(credentials?.rememberMe) === 'true';
 
         const result = LOGIN_SCHEMA(t).safeParse({
           username: credentials?.username,
           password: credentials?.password,
-          rememberMe: credentials?.rememberMe === 'true',
+          rememberMe: isRememberMe,
         });
 
         if (!result.success) {
-          throw new Error('Invalid username or password');
+          console.error('❌ Zod Validation Failed:', result.error.format());
+          return null;
         }
 
         const data = await login(result.data);
 
         if (!data.status) {
-          throw new Error(data.message);
+          throw new Error(data?.message || 'Invalid username or password');
         }
 
         const { user, token } = data.payload ?? {};
 
         if (!user || !token) {
-          return null; // satisfy User | null
+          return null;
         }
 
+        // هنا نرجع الهيكل المطابق تماماً لتعريف الـ Interface الخاص بك
         return {
-          id: user.id,
-          user,
-          token,
-          rememberMe: credentials?.rememberMe === 'true',
+          id: String(user.id),
+          user: user, // يتوافق مع user: UserType
+          token: token, // يتوافق مع token: string
+          rememberMe: isRememberMe,
         };
       },
     }),
   ],
 
   callbacks: {
-    /**
-     * Persist custom authentication data in the JWT so it survives
-     * across future requests.
-     */
     jwt: ({ token, user }) => {
+      // الـ user هنا يملك الآن التايب الصحيح تلقائياً بفضل الـ Augmentation
       if (user) {
         token.user = user.user;
         token.token = user.token;
         token.rememberMe = user.rememberMe;
 
-        if (token.rememberMe) {
-          token.exp = Math.floor(Date.now() / 1000) + 30 * 24 * 60 * 60; // 30 dayes
+        if (user.rememberMe) {
+          token.exp = Math.floor(Date.now() / 1000) + 30 * 24 * 60 * 60; // 30 days
         } else {
-          token.exp = Math.floor(Date.now() / 1000) + 1 * 24 * 60 * 60; //  one day
+          token.exp = Math.floor(Date.now() / 1000) + 1 * 24 * 60 * 60; // 1 day
         }
       }
-
       return token;
     },
 
-    /**
-     * Make the authenticated user available through the client session.
-     */
     session: ({ session, token }) => {
-      session.user = token.user;
+      if (token) {
+        session.user = token.user;
+        session.token = token.token;
+      }
+
       if (token.rememberMe) {
         session.expires = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString();
       }

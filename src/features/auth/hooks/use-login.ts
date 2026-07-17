@@ -2,15 +2,17 @@
 
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { useState } from 'react';
-import { TLoginData } from '../types/login';
+import { TLoginData } from '../types/auth';
 import { useRouter } from '@/i18n/navigation';
+import { useTranslations } from 'next-intl';
 
 export default function useLogin() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const { data: session, status, update } = useSession();
+  const { data: session, status } = useSession();
   const router = useRouter();
-
+  const t = useTranslations();
+  // handleLogin
   const handleLogin = async (data: TLoginData) => {
     setIsLoading(true);
     setError(null);
@@ -22,28 +24,37 @@ export default function useLogin() {
         rememberMe: data.rememberMe,
         redirect: false,
       });
-
+      console.log(data);
       if (result?.error) {
-        setError(result.error);
+        // Handle specific error messages and translate them
+        if (result.error === 'Route not found' || result.error === 'CredentialsSignin') {
+          setError(t('auth.login.invalidCredentials'));
+        } else {
+          setError(result.error);
+        }
         return;
       }
 
       if (result?.ok) {
-        const callbackUrl = new URLSearchParams(window.location.search).get('callbackUrl') || '/';
+        let callbackUrl = new URLSearchParams(window.location.search).get('callbackUrl') || '/';
 
-        await update();
-
-        router.push(callbackUrl);
+        // Strip the localized prefix (e.g., '/en/', '/ar/') if it exists at the start of the string
+        // This prevents the localized router from generating paths like '/en/en/dashboard'
+        if (callbackUrl.match(/^\/[a-z]{2}(\/|$)/)) {
+          callbackUrl = callbackUrl.replace(/^\/[a-z]{2}/, '') || '/';
+        }
 
         router.refresh();
+        router.push(callbackUrl);
       }
+      console.log('Login Request:', router);
     } catch (error1) {
       setError((error1 as Error).message);
     } finally {
       setIsLoading(false);
     }
   };
-
+  // handleLogout
   const handleLogout = async () => {
     setIsLoading(true);
     try {
@@ -53,7 +64,7 @@ export default function useLogin() {
 
       router.refresh();
     } catch (err) {
-      setError((err as Error).message);
+      setError(err instanceof Error ? err.message : 'An unknown error occurred');
     } finally {
       setIsLoading(false);
     }

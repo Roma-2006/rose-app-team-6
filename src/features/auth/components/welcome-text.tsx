@@ -41,19 +41,9 @@ export default function WelcomeText() {
         text-4xl
         italic
         font-medium
-<<<<<<< HEAD
         mt-12
         mb-10
         transition-colors
-=======
-        mt-10
-        mb-6
-        pb-4
-        transition-colors
-        border-b
-        border-border-muted
-
->>>>>>> origin/sprint-auth
         ${resolvedTheme === 'dark' ? 'text-text-primary-faint' : 'text-text-primary'}
       `}
     >
