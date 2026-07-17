@@ -3,7 +3,7 @@ import type { Response } from '@/shared/types/api';
 import { ReadNotificationRequestBody } from '../types/notification';
 import { HEADERS } from '@/shared/constants/api.constants';
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 /**
  * PATCH /api/notifications/{id}
