@@ -2,8 +2,8 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { ShoppingCart, Star, HeartPlus } from 'lucide-react';
-import { Product } from '../types/product.type';
-import { calculateDiscountedPrice } from '../types/utils/calculateDiscount';
+import { Product } from '../../../types/product.type';
+import { calculateDiscountedPrice } from '../../../utils/calculateDiscount';
 import { useState } from 'react';
 
 interface ProductCardProps {

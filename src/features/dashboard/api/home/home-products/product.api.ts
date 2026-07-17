@@ -1,7 +1,7 @@
 // src/features/home/api/home.api.ts
 
-import type { Product } from '../types/product.type';
-import type { Occasion } from '../types/occasion.type';
+import type { Product } from '../../../types/product.type';
+import type { Occasion } from '../../../types/occasion.type';
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || '';
 

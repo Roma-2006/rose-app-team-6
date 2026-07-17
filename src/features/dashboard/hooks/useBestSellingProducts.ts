@@ -1,6 +1,6 @@
 // src/features/home/hooks/useBestSellingProducts.ts
 import { useQuery } from '@tanstack/react-query';
-import { getProducts } from '../api/home.api';
+import { getProducts } from '../api/home/home-products/product.api';
 const BEST_SELLING_LIMIT = 6;
 export const useBestSellingProducts = () => {
   return useQuery({

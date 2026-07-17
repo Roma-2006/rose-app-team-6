@@ -2,8 +2,8 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useQuery } from '@tanstack/react-query';
-import { useOccasions } from '../hooks/useHomeData';
-import { getProducts } from '../api/home.api';
+import { useOccasions } from '../../../hooks/useHomeData';
+import { getProducts } from '../../../api/home/home-products/product.api';
 import { Link } from '@/i18n/navigation';
 import { ProductCard } from './ProductCard';
 import { ProductCardSkeleton } from './ProductCardSkeleton';
@@ -27,7 +27,7 @@ export const MostPopularSection = () => {
   const allOccasions = occasions ?? [];
 
   return (
-    <section className="py-20 max-w-[1280px] mx-20 px-4  flex flex-col gap-10">
+    <section className="py-20  mx-20 px-4  flex flex-col gap-10">
       {/* Header Section */}
       <div className="flex justify-between items-end  pb-4">
         {/* Left Side: Title with Decorations */}
@@ -60,7 +60,7 @@ export const MostPopularSection = () => {
         </div>
       </div>
       {/* Products Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-24 content-center mt-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 content-center mt-10">
         {isLoading ? (
           [...Array(8)].map((_, i) => <ProductCardSkeleton key={i} />)
         ) : isError ? (

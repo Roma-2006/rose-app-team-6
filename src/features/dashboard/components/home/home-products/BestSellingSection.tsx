@@ -1,9 +1,9 @@
 'use client';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
-import { useBestSellingProducts } from '../hooks/useBestSellingProducts';
+import { useBestSellingProducts } from '../../../hooks/useBestSellingProducts';
 import { ProductCard } from './ProductCard';
 import { useTranslations } from 'next-intl';
-import { ProductCardSkeleton } from './ProductCardSkeleton';
+import { ProductCardSkeleton } from '../../../../dashboard/components/home/home-products/ProductCardSkeleton';
 import { useRef } from 'react';
 import { Button } from '@/shared/components/ui/button';
 
@@ -23,7 +23,7 @@ export const BestSellingSection = () => {
   };
 
   return (
-    <section className="py-20  max-w-[1281px] mx-20 ">
+    <section className=" py-20  mx-20  ">
       <div className="flex flex-col lg:flex-row justify-center items-center gap-9">
         {/* الجزء الأيسر: النصوص */}
         <div className="size-lf-stretch inline-flex flex-col justify-start items-start gap-2.5">

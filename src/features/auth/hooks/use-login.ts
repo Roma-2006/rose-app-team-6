@@ -11,7 +11,7 @@ export default function useLogin() {
   const [error, setError] = useState<string | null>(null);
   const { data: session, status } = useSession();
   const router = useRouter();
-  const t = useTranslations('login');
+  const t = useTranslations('auth.login');
 
   const handleLogin = async (data: TLoginData) => {
     setIsLoading(true);

@@ -42,7 +42,16 @@
           "invalid": "كلمة المرور غير صالحة",
           "required": "كلمة المرور مطلوبة"
         }
-      }
+      },
+         "forgot-password":"نسيت كلمة المرور؟",
+        "rememberMe" : "تذكرني",
+        "noAccount" :"ليس لديك حساب؟",
+         "register" :"إنشاء حساب",
+          "button" :"تسجيل الدخول",
+         "invalidCredentials": "اسم المستخدم أو كلمة المرور غير صحيحة"
+
+
+      
     },
     "auth-forgotPw": {
       "step1": {
@@ -200,8 +209,17 @@
       "error-type": "صيغة الملف غير مدعومة."
     },
     "phone": { "label": "رقم الهاتف", "placeholder": "1012345678" },
-    "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" }
+    "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" },
+    "nice-to-have-you-here": "جميل أنك هنا"
   },
+
+
+
+"email": {
+  "label": "البريد الإلكتروني",
+  "placeholder": "user@example.com"
+},
+
   "login": {
     "username": {
       "invalid": " اسم المستخدم غير صالح",
@@ -290,152 +308,4 @@
       "contact": "تواصل معنا",
       "toast-description": "تم إرسال رمز التحقق الجديد إلى بريدك الإلكتروني"
     }
-  },
-  "home": {
-  "hero-aside": {
-    "badge": "ابتداءً من 10.99 جنيه",
-    "title": "هدايا مميزة للأشخاص الذين تحبهم",
-    "button": "تسوق الآن"
-  },
-
-  "carousel": {
-    "slide1": {
-      "title": "عبّر بالورود",
-      "subtitle": "هدايا أنيقة لكل مناسبة مميزة.",
-      "cta": "أنا أشتري!"
-    },
-    "slide2": {
-      "title": "عبّر بالورود",
-      "subtitle": "هدايا أنيقة لكل مناسبة مميزة.",
-      "cta": "أنا أشتري!"
-    },
-    "slide3": {
-      "title": "عبّر بالورود",
-      "subtitle": "هدايا أنيقة لكل مناسبة مميزة.",
-      "cta": "أنا أشتري!"
-    }
-  },
-
-  "cards": {
-    "anniversary": {
-      "badge": "ذكرى سنوية",
-      "title": "اجعل كل ذكرى للحب مفاجأة لا تُنسى"
-    },
-    "engagement": {
-      "badge": "خطوبة",
-      "title": "احتفل ببداية رحلة جميلة معًا"
-    },
-    "wedding": {
-      "badge": "زفاف",
-      "title": "هدية ستظل تذكرها للأبد"
-    }
-  },
-
-  "features": {
-    "support": {
-      "title": "دعم 24/7",
-      "description": "تواصل معنا في أي وقت"
-    },
-    "payment": {
-      "title": "دفع آمن",
-      "description": "دفع آمن 100%"
-    },
-    "refund": {
-      "title": "استرجاع الأموال",
-      "description": "استرداد خلال 30 يومًا"
-    },
-    "delivery": {
-      "title": "توصيل مجاني",
-      "description": "للطلبات فوق 120 جنيه"
-    }
-  }
-},
-  "input-component": {
-    "label": "الاسم بالكامل",
-    "placeholder": "أدخل اسمك هنا..."
-  },
-  "custom-input": {
-    "default": {
-      "first-name": {
-        "label": "الاسم الأول",
-        "placeholder": "Jonathan"
-      },
-      "last-name": {
-        "label": "الاسم الأخير",
-        "placeholder": "Adrian"
-      },
-      "username": {
-        "label": " اسم المسخدم",
-        "placeholder": "Jonathan"
-      }
-    },
-    "number": {
-      "label": "الرقم",
-      "placeholder": "0"
-    },
-    "search": {
-      "label": "بحث",
-      "placeholder": "ابحث هنا..."
-    },
-    "password": {
-      "label": "كلمة المرور",
-      "placeholder": "*********",
-      "password": {
-        "label": "كلمة المرور",
-        "placeholder": "*********"
-      },
-      "confirm-Password": {
-        "label": "تأكيد كلمة المرور",
-        "placeholder": "*********"
-      }
-    },
-    "file": {
-      "label": "الملف",
-      "placeholder": "اختر ملف",
-      "btn-text": "رفع ملف",
-      "error-type": "صيغة الملف غير مدعومة."
-    },
-    "phone": {
-      "label": "رقم الهاتف",
-      "placeholder": "1012345678"
-    },
-    "email": {
-      "label": "البريد الإلكتروني",
-      "placeholder": "user@example.com"
-    }
-  },
-  "login": {
-    "username": {
-      "invalid": " اسم المستخدم غير صالح",
-      "required": "اسم المستخدم مطلوب"
-    },
-    "password": {
-      "invalid": "كلمة المرور غير صالحة",
-      "required": "كلمة المرور مطلوبة"
-    },
-    "invalidCredentials": "اسم المستخدم أو كلمة المرور غير صحيحة",
-    "forgot-password": "نسيت كلمة المرور؟",
-    "no-account": "ليس لديك حساب؟",
-    "register": "إنشاء حساب",
-    "submit-btn": "تسجيل الدخول",
-    "loading": "جاري الدخول...",
-    "remember-me": "تذكرني"
-  },
-  "home": {
-    "bestSelling": "الأكثر مبيعاً",
-    "viewAll": "عرض الكل",
-    "mostPopular": "الأكثر شعبية",
-    "viewMore": "عرض المزيد",
-    "wedding": "زفاف",
-    "anniversary": "ذكرى سنوية",
-    "birthday": "عيد ميلاد",
-    "engagement": "خطوبة",
-    "noProductsFound": "لا توجد منتجات لهذه المناسبة",
-    "error": "فشل تحميل المنتجات. حاول مجدداً."
-  },
-  "product": {
-    "addToCart": "أضف إلى السلة",
-    "addToWishlist": "أضف إلى المفضلة"
-  }
-}
-
+  }}

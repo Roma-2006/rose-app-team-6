@@ -1,7 +1,7 @@
 // src/features/home/hooks/useHomeData.ts
 import { useQuery } from '@tanstack/react-query';
 // 1. حذف getProducts لأنه غير مستخدم
-import { getOccasions } from '../api/home.api';
+import { getOccasions } from '../api/home/home-products/product.api';
 
 const ALLOWED_OCCASIONS = ['Wedding', 'Anniversary', 'Birthday', 'Engagement'] as const;
 

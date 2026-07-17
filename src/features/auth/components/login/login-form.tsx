@@ -14,7 +14,7 @@ import { BaseCheckbox } from '@/shared/components/custom-ui/BaseCheckbox';
 import { Link } from '@/i18n/navigation';
 
 export default function LoginForm() {
-  const tLogin = useTranslations('login');
+  const tLogin = useTranslations('auth.login');
   const tInput = useTranslations('custom-input');
   const form = useForm<TLoginData>({
     resolver: zodResolver(LOGIN_SCHEMA(tLogin)),
@@ -34,7 +34,10 @@ export default function LoginForm() {
   return (
     <>
       {status !== 'authenticated' && (
-        <form onSubmit={form.handleSubmit(onSubmit)} className="w-full h-full mb-14 flex flex-col">
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="w-101.5   mb-7 flex flex-col justify-center     "
+        >
           <FieldGroup>
             <Controller
               name="username"
@@ -45,12 +48,11 @@ export default function LoginForm() {
                   variant="default"
                   disabled={isLoading}
                   error={fieldState.invalid}
-                  subVariant="username"
+                  subVariant="user-name"
                   id="username"
-                  autoComplete="username"
-                  placeholder={tInput('default.username.placeholder')}
-                  label={tInput('default.username.label')}
-                  className="mb-4"
+                  autoComplete="user-name"
+                  placeholder={tInput('default.user-name.placeholder')}
+                  label={tInput('default.user-name.label')}
                   errorMessage={fieldState.error?.message}
                 />
               )}
@@ -72,7 +74,7 @@ export default function LoginForm() {
                     placeholder={tInput('password.password.placeholder')}
                     label={tInput('password.password.label')}
                     errorMessage={fieldState.error?.message}
-                    className="mb-2.5"
+                    className="mb-2.5 "
                   />
                 )}
               />
@@ -95,7 +97,7 @@ export default function LoginForm() {
                 value={field.value}
                 onChange={field.onChange}
                 error={fieldState.error?.message}
-                list={[{ id: 'remember-me', label: tLogin('remember-me') }]}
+                list={[{ id: 'remember-me', label: tLogin('rememberMe') }]}
               />
             )}
           />
@@ -104,7 +106,7 @@ export default function LoginForm() {
             type="submit"
             variant="primary"
             className="mt-9 w-full"
-            title="login.submit-btn"
+            title="auth.login.button"
             buttonVariant="text"
             loading={isLoading}
             disabled={isLoading}
