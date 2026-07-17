@@ -66,13 +66,16 @@ export const MostPopularSection = () => {
         ) : isError ? (
           <div className="col-span-full text-center text-text-danger">{t('error')}</div>
         ) : (products ?? []).length === 0 ? (
-          <div className="col-span-full text-center py-20 text-text-soft">No products found</div>
+          <div className="col-span-full text-center py-20 text-text-soft">
+            {t('noProductsFound')}
+          </div>
         ) : (
           (products ?? []).slice(0, 12).map((p) => <ProductCard key={p.id} product={p} />)
         )}
       </div>
 
       {/* Footer Section: View More at the bottom right */}
+
       <div className="self-stretch flex justify-end items-center gap-2.5">
         <Link
           href="/products"

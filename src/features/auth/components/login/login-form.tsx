@@ -2,7 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
-import { TLoginData } from '@/features/auth/types/login';
+
 import { LOGIN_SCHEMA } from '@/features/auth/schemas/login.schema';
 import useLogin from '@/features/auth/hooks/use-login';
 import { FieldGroup } from '@/shared/components/ui/field';
@@ -12,12 +12,13 @@ import { useTranslations } from 'next-intl';
 import { Button } from '@/shared/components/ui/button';
 import { BaseCheckbox } from '@/shared/components/custom-ui/BaseCheckbox';
 import { Link } from '@/i18n/navigation';
+import { TLoginData } from '../../types/login';
 
 export default function LoginForm() {
-  const tLogin = useTranslations('auth.login');
+  const tLogin = useTranslations('login');
   const tInput = useTranslations('custom-input');
   const form = useForm<TLoginData>({
-    resolver: zodResolver(LOGIN_SCHEMA(tLogin)),
+    resolver: zodResolver(LOGIN_SCHEMA((key) => tLogin(key))),
     defaultValues: {
       username: '',
       password: '',
@@ -33,10 +34,12 @@ export default function LoginForm() {
 
   return (
     <>
+      {status === 'authenticated' && session && null}
+
       {status !== 'authenticated' && (
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="w-101.5   mb-7 flex flex-col justify-center     "
+          className="w-full max-w-96  mb-14 flex flex-col"
         >
           <FieldGroup>
             <Controller
@@ -47,12 +50,12 @@ export default function LoginForm() {
                   {...field}
                   variant="default"
                   disabled={isLoading}
-                  error={fieldState.invalid}
-                  subVariant="user-name"
+                  subVariant="username"
                   id="username"
-                  autoComplete="user-name"
-                  placeholder={tInput('default.user-name.placeholder')}
-                  label={tInput('default.user-name.label')}
+                  autoComplete="username"
+                  placeholder={tInput('default.username.placeholder')}
+                  label={tInput('default.username.label')}
+                  className="mb-4"
                   errorMessage={fieldState.error?.message}
                 />
               )}
@@ -68,19 +71,18 @@ export default function LoginForm() {
                     variant="password"
                     subVariant="password"
                     id="password"
-                    error={fieldState.invalid}
                     disabled={isLoading}
                     autoComplete="current-password"
                     placeholder={tInput('password.password.placeholder')}
                     label={tInput('password.password.label')}
                     errorMessage={fieldState.error?.message}
-                    className="mb-2.5 "
+                    className="mb-2.5"
                   />
                 )}
               />
 
               <div className="flex justify-end mb-2.5">
-                <Link href="forgot-password" className="text-sm font-semibold text-text-primary ">
+                <Link href="/forget-password" className="text-sm font-semibold text-text-primary ">
                   {tLogin('forgot-password')}
                 </Link>
               </div>
@@ -92,12 +94,16 @@ export default function LoginForm() {
           <Controller
             name="rememberMe"
             control={form.control}
-            render={({ field, fieldState }) => (
+            render={({ field }) => (
               <BaseCheckbox
-                value={field.value}
-                onChange={field.onChange}
-                error={fieldState.error?.message}
-                list={[{ id: 'remember-me', label: tLogin('rememberMe') }]}
+                onChange={(isChecked: boolean) => {
+                  if (field.value !== isChecked) {
+                    setTimeout(() => {
+                      field.onChange(isChecked);
+                    }, 0);
+                  }
+                }}
+                list={[{ id: 'remember-me', label: tLogin('remember-me') }]}
               />
             )}
           />
@@ -106,7 +112,7 @@ export default function LoginForm() {
             type="submit"
             variant="primary"
             className="mt-9 w-full"
-            title="auth.login.button"
+            title="login.submit-btn"
             buttonVariant="text"
             loading={isLoading}
             disabled={isLoading}

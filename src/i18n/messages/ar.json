@@ -1,3 +1,4 @@
+
 {
   "HomePage": {
     "title": "مرحباً بكم في تطبيق روز"
@@ -18,7 +19,7 @@
       "placeholder": "اختر خياراً",
       "noOptions": "لا توجد خيارات",
       "search": "بحث...",
-        "somethingWentWrong": "حدث خطأ، يرجى المحاولة مرة أخرى."
+      "somethingWentWrong": "حدث خطأ، يرجى المحاولة مرة أخرى."
     },
     "textarea": {
       "charCount": "{current}/{max} حرف"
@@ -43,17 +44,14 @@
           "required": "كلمة المرور مطلوبة"
         }
       },
-         "forgot-password":"نسيت كلمة المرور؟",
-        "rememberMe" : "تذكرني",
-        "noAccount" :"ليس لديك حساب؟",
-         "register" :"إنشاء حساب",
-          "button" :"تسجيل الدخول",
-         "invalidCredentials": "اسم المستخدم أو كلمة المرور غير صحيحة"
-
-
-      
+      "forgot-password": "نسيت كلمة المرور؟",
+      "rememberMe": "تذكرني",
+      "noAccount": "ليس لديك حساب؟",
+      "register": "إنشاء حساب",
+      "button": "تسجيل الدخول",
+      "invalidCredentials": "اسم المستخدم أو كلمة المرور غير صحيحة"
     },
-    "auth-forgotPw": {
+   "auth-forgotPw": {
       "step1": {
         "title": "نسيت كلمة المرور؟",
         "subtitle": "لا تقلق، سنرسل لك التعليمات لمساعدتك في إعادة تعيينها.",
@@ -63,12 +61,8 @@
         "footerText": "ليس لديك حساب بعد؟",
         "registerLink": "أنشئ حساباً الآن!",
         "errors": {
-            "email-required": "البريد الإلكتروني مطلوب.",
-            "invalid-email": "يرجى إدخال بريد إلكتروني صحيح.",
-            "no-account": "لا يوجد حساب بهذا البريد الإلكتروني.",
-            "email-already-registered": "هذا البريد الإلكتروني مسجل بالفعل.",
-            "something-went-wrong": "حدث خطأ، يرجى المحاولة مرة أخرى."
-      }
+          "somethingWentWrong": "حدث خطأ ما"
+        }
       },
       "step2": {
         "title": "تم إرسال رابط إعادة تعيين كلمة المرور",
@@ -105,6 +99,7 @@
         "somethingWentWrong": "حدث خطأ. يرجى المحاولة مرة أخرى."
       }
     },
+  
     "auth-register": {
       "title": "إنشاء حساب",
       "need-help": "تحتاج مساعده ؟",
