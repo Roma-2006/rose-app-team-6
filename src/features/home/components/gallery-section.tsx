@@ -66,9 +66,9 @@ export default function GallerySection() {
         <SecHeader text="Gallery" className="pb-2" />
         <SecTitle text="Check Out our Wonderful Gallery" className="pb-11.5" />
       </header>
-
-      <div className="w-full max-w-[1286px] mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 items-start w-full">
+      {/* grid system */}
+      <div className="w-full max-w-[1280px] mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5 items-start w-full">
           {columnsData.map((column, columnIndex) => (
             <div
               key={column.id}

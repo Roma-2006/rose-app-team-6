@@ -5,88 +5,74 @@ import { Button } from '@/shared/components/ui/button';
 
 export default function AboutSection() {
   return (
-    <section className="w-full flex  align-center justify-center  gap-20">
-      <div className="about-imgs grid grid-cols-1 md:grid-cols-3 gap-6 w-132.5">
-        {/* Image 1: Purple Box */}
-        <div className="relative w-full aspect-square">
-          {/* Border Shape Overlay */}
+    <section className="max-w-[1280px] w-full mx-auto flex items-center justify-center gap-19 px-4 py-16">
+      {/* 1. Asymmetrical Image Layout Container (Scaled to 70%: w-[371px]) */}
+      <div className="about-imgs grid grid-cols-12 gap-3 w-[371px] shrink-0 items-center">
+        {/* LEFT COLUMN: Large Organic Image with Dark Red Border */}
+        <div className="relative col-span-7 aspect-[4/5] w-full">
+          {/* Offset Dark Red Border Line (Thinned slightly to 1.5px for proportional balance) */}
           <svg
-            className="absolute inset-0 w-full h-full pointer-events-none scale-105 stroke-red-800 fill-none stroke-[2px]"
+            className="absolute inset-0 w-full h-full pointer-events-none scale-105 -translate-x-[6px] -translate-y-[3px] stroke-red-800 fill-none stroke-[1.5px]"
             viewBox="0 0 100 100"
+            preserveAspectRatio="none"
           >
-            <path d="M22,12 C48,7 83,13 88,38 C93,63 87,83 62,88 C37,93 12,83 12,58 C12,33 12,14 22,12 Z" />
+            <path d="M25,5 C55,2 95,10 98,40 C100,70 90,95 60,98 C30,100 5,90 2,60 C-1,30 2,8 25,5 Z" />
           </svg>
-          {/* Masked Container */}
+
+          {/* Masked Main Image Container */}
           <div
             className="relative w-full h-full"
             style={{ maskImage: 'url(#organic-mask)', WebkitMaskImage: 'url(#organic-mask)' }}
           >
             <Image
-              src="/images/about-image1.png"
+              src="/assets/about-images/about-image1.png"
               alt="purple box"
               fill
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 418px"
+              sizes="220px"
               className="object-cover"
               priority
             />
           </div>
         </div>
 
-        {/* Image 2: Orange Box */}
-        <div className="relative w-full aspect-square md:translate-y-6">
-          <svg
-            className="absolute inset-0 w-full h-full pointer-events-none scale-105 stroke-orange-600 fill-none stroke-[2px]"
-            viewBox="0 0 100 100"
-          >
-            <path d="M22,12 C48,7 83,13 88,38 C93,63 87,83 62,88 C37,93 12,83 12,58 C12,33 12,14 22,12 Z" />
-          </svg>
-          <div
-            className="relative w-full h-full"
-            style={{ maskImage: 'url(#organic-mask)', WebkitMaskImage: 'url(#organic-mask)' }}
-          >
+        {/* RIGHT COLUMN: Two Stacked Images */}
+        <div className="col-span-5 flex flex-col gap-3 w-full">
+          {/* Top Right: Perfect Circle */}
+          <div className="relative w-full aspect-square overflow-hidden rounded-full">
             <Image
-              src="/images/about-image2.png"
+              src="/assets/about-images/about-image2.png"
               alt="orange box"
               fill
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 418px"
+              sizes="150px"
               className="object-cover"
               priority
             />
           </div>
-        </div>
 
-        {/* Image 3: Box with Balloon */}
-        <div className="relative w-full aspect-square">
-          <svg
-            className="absolute inset-0 w-full h-full pointer-events-none scale-105 stroke-blue-600 fill-none stroke-[2px]"
-            viewBox="0 0 100 100"
-          >
-            <path d="M22,12 C48,7 83,13 88,38 C93,63 87,83 62,88 C37,93 12,83 12,58 C12,33 12,14 22,12 Z" />
-          </svg>
-          <div
-            className="relative w-full h-full"
-            style={{ maskImage: 'url(#organic-mask)', WebkitMaskImage: 'url(#organic-mask)' }}
-          >
+          {/* Bottom Right: Pill / Capsule Shape (Scaled corner radius down to match 70% bounds) */}
+          <div className="relative w-full aspect-[4/3] overflow-hidden rounded-[24px_24px_24px_24px_/_32px_32px_32px_32px]">
             <Image
-              src="/images/about-image3.png"
+              src="/assets/about-images/about-image3.png"
               alt="box with pallon"
               fill
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 418px"
+              sizes="150px"
               className="object-cover"
               priority
             />
           </div>
         </div>
       </div>
-      <div className="about-content flex flex-col gap-6 w-150.5 ">
+
+      {/* 2. Content Section */}
+      <div className="about-content flex flex-col gap-6 w-160">
         <SecHeader text="About" />
 
         <div className="content-text flex flex-col gap-2">
-          <h3 className="text-3xl font-bold  text-text-primary">
+          <h3 className="text-3xl font-bold text-text-primary">
             Delivering the <span className="text-text-secondary">Finest</span> Gift Boxes for Your{' '}
             <span className="text-text-secondary">Special</span> Moments
           </h3>
-          <p className="font-sm font-normal text-text-soft">
+          <p className="text-sm font-normal text-text-soft">
             {
               "Make every moment memorable with our premium gift boxes. Carefully curated and beautifully packaged, each box is filled with handpicked items designed to impress. Whether it's for a birthday, wedding, or a simple \“thank you,\” our gift boxes are crafted to leave a lasting impression — because thoughtful gifting starts here."
             }
@@ -94,6 +80,18 @@ export default function AboutSection() {
         </div>
         <Button variant="primary" title="button.save" buttonVariant="text" />
       </div>
+
+      {/* SVG Mask Definition Block */}
+      <svg className="absolute w-0 h-0" aria-hidden="true">
+        <defs>
+          <mask id="organic-mask" maskContentUnits="objectBoundingBox">
+            <path
+              fill="white"
+              d="M0.25,0.05 C0.55,0.02 0.95,0.10 0.98,0.40 C1.00,0.70 0.90,0.95 0.60,0.98 C0.30,1.00 0.05,0.90 0.02,0.60 C-0.01,0.30 0.02,0.08 0.25,0.05 Z"
+            />
+          </mask>
+        </defs>
+      </svg>
     </section>
   );
 }
