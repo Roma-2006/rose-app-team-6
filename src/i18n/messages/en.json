@@ -177,6 +177,108 @@
       "toast-description": "A new OTP code has been sent to your email"
     }
   },
+
+
+
+
+  "home": {
+  "hero-aside": {
+    "badge": "Starting from 10.99 EGP",
+    "title": "Special Gifts For The People You Love",
+    "button": "Shop Now"
+  },
+
+  "carousel": {
+    "slide1": {
+      "title": "Say It with Flowers",
+      "subtitle": "Elegant gifts for every special moment.",
+      "cta": "I'm buying!"
+    },
+    "slide2": {
+      "title": "Say It with Flowers",
+      "subtitle": "Elegant gifts for every special moment.",
+      "cta": "I'm buying!"
+    },
+    "slide3": {
+      "title": "Say It with Flowers",
+      "subtitle": "Elegant gifts for every special moment.",
+      "cta": "I'm buying!"
+    }
+  },
+
+  "cards": {
+    "anniversary": {
+      "badge": "Anniversary",
+      "title": "Mark Every Year of Love with a Meaningful Surprise"
+    },
+    "engagement": {
+      "badge": "Engagement",
+      "title": "Honor the Beginning of a Beautiful Journey Together"
+    },
+    "wedding": {
+      "badge": "Wedding",
+      "title": "Celebrate Her Forever with a Gift She’ll Always Remember"
+    }
+  },
+
+  "features": {
+    "support": {
+      "title": "24/7 Support",
+      "description": "Contact us at any time"
+    },
+    "payment": {
+      "title": "Safe Payment",
+      "description": "100% Secure Payment"
+    },
+    "refund": {
+      "title": "Get Refund",
+      "description": "Refunds within 30 days"
+    },
+    "delivery": {
+      "title": "Free Delivery",
+      "description": "For orders above 120 EGP"
+    }
+  },
+  "bestSelling": {
+      "badge": "Best Selling",
+      "titlePart1": "Check Out",
+      "titlePart2": "What Everyone’s",
+      "titlePart3": "Buying",
+      "titlePart4": "Right Now",
+      "description": "Not sure what to choose?\nStart with our best sellers, these are the gifts our customers keep coming back for.\nWhether you're celebrating a birthday, anniversary or wedding, our top picks are guaranteed to leave a lasting impression.",
+      "exploreButton": "Explore gifts"
+    },
+     "model-prompt": {
+    "authRequired": "Login Required",
+    "loginToContinue": "Please log in to your account to continue with this action.",
+    "login": "Login",
+    "cancel": "Cancel"
+  },
+  "most-Popular":{
+    "mostPopular":"Most Popular" ,
+    "all": "All",
+    "viewMore": "View More",
+    "error": "Something went wrong while loading products.",
+    "noProductsFound": "No products found in this category.",
+       "occasions": {
+        "Wedding": "Wedding",
+        "Anniversary": "Anniversary",
+        "Birthday": "Birthday",
+        "Engagement": "Engagement"
+      }
+  },
+   "product-card":
+   {
+       "new": "NEW",
+    "outOfStock": "OUT OF STOCK"
+   }
+
+
+
+},
+
+
+
   "input-component": {
     "label": "Full Name",
     "placeholder": "Enter your name..."
@@ -204,3 +306,9 @@
     "nice-to-have-you-here": "nice to have you here"
 }
 }
+
+
+
+
+
+

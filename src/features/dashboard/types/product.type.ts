@@ -1,4 +1,3 @@
-// src/features/home/types/product.type.ts
 import type { Occasion } from './occasion.type';
 
 export type Product = {

@@ -1,20 +1,20 @@
 'use client';
 import { useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useQuery } from '@tanstack/react-query';
 import { useOccasions } from '../../../hooks/useHomeData';
-import { getProducts } from '../../../api/home/home-products/product.api';
+import { getProducts } from '../../../api/product.api';
 import { Link } from '@/i18n/navigation';
 import { ProductCard } from './ProductCard';
 import { ProductCardSkeleton } from './ProductCardSkeleton';
 import { ArrowRight } from 'lucide-react';
 
 export const MostPopularSection = () => {
-  const t = useTranslations('home');
+  const t = useTranslations('home.most-Popular');
   const [activeTab, setActiveTab] = useState<string>('home.all');
-
-  const { data: occasions, isLoading: isOccasionsLoading } = useOccasions(1, 20);
-
+  const locale = useLocale();
+  const isRtl = locale === 'ar';
+  const { data: occasions, isLoading: isOccasionsLoading } = useOccasions();
   const {
     data: products,
     isLoading,
@@ -33,15 +33,18 @@ export const MostPopularSection = () => {
         {/* Left Side: Title with Decorations */}
         <div className="relative inline-block">
           {/* Pink background */}
-          <div className="absolute left-0 top-6 w-40 h-4 bg-bg-secondary-faint rounded-r-full" />
-
+          <div
+            className={`absolute start-0 top-6 w-40 h-4 bg-bg-secondary-faint ${
+              isRtl ? 'rounded-l-full' : 'rounded-r-full'
+            }`}
+          />
           {/* Title */}
           <h2 className="relative z-10  text-text-primary text-4xl font-bold font-['Sarabun'] leading-9">
             {t('mostPopular')}
           </h2>
 
           {/* Red underline */}
-          <div className="absolute left-0 bottom-0 top-9.5 w-14 h-0.5 bg-soft-pink  rounded-full z-10" />
+          <div className="absolute start-0 bottom-0 top-9.5 w-14 h-0.5 bg-soft-pink rounded-full z-10" />
         </div>
 
         {/* Right Side: Occasion Tabs */}
@@ -54,7 +57,7 @@ export const MostPopularSection = () => {
                 activeTab === occ.id ? 'text-text-primary' : 'text-text-soft hover:text-text-plain'
               }`}
             >
-              {occ.title}
+              {t(`occasions.${occ.title}`)}
             </button>
           ))}
         </div>
@@ -74,7 +77,7 @@ export const MostPopularSection = () => {
         )}
       </div>
 
-      {/* Footer Section: View More at the bottom right */}
+      {/* View More at the bottom right */}
 
       <div className="self-stretch flex justify-end items-center gap-2.5">
         <Link

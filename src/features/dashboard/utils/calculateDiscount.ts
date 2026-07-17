@@ -8,13 +8,16 @@ export const calculateDiscountedPrice = (
 
   if (!Number.isFinite(original)) return 0;
 
-  if (product.discountType === 'PERCENT') {
-    if (!Number.isFinite(val)) return original;
+  if (
+    (product.discountType as string) === 'PERCENT' ||
+    (product.discountType as string) === 'PERCENTAGE'
+  ) {
+    if (!Number.isFinite(val) || val === 0) return original;
     return original - (original * val) / 100;
   }
 
   if (product.discountType === 'FIXED') {
-    if (!Number.isFinite(val)) return original;
+    if (!Number.isFinite(val) || val === 0) return original;
     return original - val;
   }
 

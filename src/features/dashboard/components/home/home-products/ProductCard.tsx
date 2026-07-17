@@ -4,11 +4,11 @@ import { useRouter } from 'next/navigation';
 import { ShoppingCart, Star, HeartPlus } from 'lucide-react';
 import { Product } from '../../../types/product.type';
 import { calculateDiscountedPrice } from '../../../utils/calculateDiscount';
-import { useSession } from 'next-auth/react';
 import { useLocale, useTranslations } from 'next-intl';
-import { LoginPromptModal } from './LoginPromptModal';
-
 import { useState } from 'react';
+
+import { useProductActions } from '../../../hooks/use-product-actions';
+import { LoginPromptModal } from './loginpromptmodal';
 
 interface ProductCardProps {
   product: Product & {
@@ -20,66 +20,21 @@ interface ProductCardProps {
 
 export const ProductCard = ({ product }: ProductCardProps) => {
   const router = useRouter();
-  const t = useTranslations('product');
-
-  const { status } = useSession();
-
-  const [loading, setLoading] = useState(false);
-  const [showLoginPrompt, setShowLoginPrompt] = useState(false);
+  const t = useTranslations('home.product-card');
 
   const locale = useLocale();
   const loginHref = `/${locale}/login`;
 
   const handleNavigate = () => router.push(`/products/${product.id}`);
 
-  const handleRequireAuth = () => {
-    if (status !== 'authenticated') {
-      setShowLoginPrompt(true);
-      return false;
-    }
-    return true;
-  };
+  const [showLoginPrompt, setShowLoginPrompt] = useState(false);
 
-  const addToCart = async (productId: string) => {
-    if (!handleRequireAuth()) return;
-
-    try {
-      setLoading(true);
-      await fetch('/api/cart', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ productId, quantity: 1 }),
-      });
-    } catch (error) {
-      console.error('Error adding to cart', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const toggleWishlist = async (productId: string) => {
-    if (!handleRequireAuth()) return;
-
-    try {
-      setLoading(true);
-      const response = await fetch('/api/wishlist', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ productId }),
-      });
-      const data = await response.json();
-
-      if (data.status) {
-        console.log('Success:', data.message);
-      }
-    } catch (error) {
-      console.error('Error updating wishlist', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { addToCart, toggleWishlist } = useProductActions(product.id, () =>
+    setShowLoginPrompt(true)
+  );
 
   const rawPrice = Number(product.price);
+
   const discountedPrice = Number(calculateDiscountedPrice(product));
 
   console.log({
@@ -99,15 +54,10 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         onClick={handleNavigate}
         className="w-72 h-96 self-stretch rounded-2xl inline-flex flex-col justify-start items-start gap-6 cursor-pointer group "
       >
-        {/* Card login prompt modal */}
-
-        {/* 1. منطقة الصورة */}
+        {/* 1. image */}
         <div className="relative self-stretch h-64 p-2.5 rounded-2xl flex flex-col justify-start items-end overflow-hidden bg-bg-muted">
           <button
-            onClick={(e) => {
-              e.stopPropagation();
-              toggleWishlist(product.id);
-            }}
+            onClick={(e) => toggleWishlist(e)}
             className="absolute top-3 left-3 z-20 w-9 h-9 bg-white rounded-full shadow-[0px_2px_8px_rgba(0,0,0,0.1)] flex justify-center items-center group/heart hover:bg-gray-50 transition-all active:scale-90"
           >
             <HeartPlus
@@ -127,31 +77,29 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           <div className="absolute top-3 right-3 flex flex-col gap-1.5 items-end z-10">
             {(product.isNew || product.id.includes('2824')) && (
               <div className="px-2 py-1 bg-bg-muted rounded-full inline-flex justify-center items-center overflow-hidden">
-                <span className="text-text-plain text-xs font-medium uppercase leading-3">NEW</span>
+                <span className="text-text-plain text-xs font-medium uppercase leading-3">
+                  {t('new')}
+                </span>
               </div>
             )}
             {Number(product.stock) === 0 && (
               <div className="px-2 py-1 bg-bg-danger rounded-full inline-flex justify-center items-center gap-2.5">
                 <span className=" text-rose text-xs font-medium uppercase leading-3">
-                  OUT OF STOCK
+                  {t('outOfStock')}
                 </span>
               </div>
             )}
           </div>
         </div>
 
-        {/* 2. منطقة البيانات (العنوان + النجوم + السعر والزرار) */}
         <div className="self-stretch px-1 flex flex-col gap-1">
-          {/* العنوان - سطر واحد عشان ما يبوظش الارتفاع */}
           <h3 className="text-text-primary self-stretch justify-center text-lg font-semibold font-['Sarabun'] leading-4">
             {product.title}
           </h3>
 
-          {/* الصف السفلي: مقسوم شمال (نجوم وسعر) ويمين (زرار) */}
           <div className="flex items-end justify-between mt-2">
-            {/* المجموعة اليسرى: النجوم تحتها السعر */}
             <div className="flex flex-col gap-1.5">
-              {/* النجوم */}
+              {/* stars */}
               <div className="flex items-center gap-0.5">
                 {[...Array(5)].map((_, i) => (
                   <Star
@@ -163,7 +111,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
                 ))}
               </div>
 
-              {/* الأسعار */}
+              {/* prices */}
               <div className="flex items-center gap-2 flex-wrap">
                 <span className="text-text-primary text-base font-bold">
                   {discountedPrice.toFixed(2)} EGP
@@ -177,12 +125,12 @@ export const ProductCard = ({ product }: ProductCardProps) => {
               </div>
             </div>
 
-            {/* زر السلة الدائري في أقصى اليمين */}
+            {/* cart button*/}
             <button
               type="button"
               onClick={(e) => {
                 e.stopPropagation();
-                addToCart(product.id);
+                addToCart(e);
               }}
               className="w-11 h-11 bg-secondary rounded-full inline-flex justify-center items-center hover:bg-bg-primary transition-all active:scale-90"
             >
