@@ -75,13 +75,13 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 
           {/* Badges */}
           <div className="absolute top-3 right-3 flex flex-col gap-1.5 items-end z-10">
-            {(product.isNew || product.id.includes('2824')) && (
+            {/* {(product.isNew || product.id.includes('2824')) && (
               <div className="px-2 py-1 bg-bg-muted rounded-full inline-flex justify-center items-center overflow-hidden">
                 <span className="text-text-plain text-xs font-medium uppercase leading-3">
                   {t('new')}
                 </span>
               </div>
-            )}
+            )} */}
             {Number(product.stock) === 0 && (
               <div className="px-2 py-1 bg-bg-danger rounded-full inline-flex justify-center items-center gap-2.5">
                 <span className=" text-rose text-xs font-medium uppercase leading-3">
