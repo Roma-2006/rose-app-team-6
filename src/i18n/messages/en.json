@@ -23,8 +23,23 @@
       "charCount": "{current}/{max} characters"
     }
   },
+   "header": {
+    "search-placeholder": "What awesome gift are you looking for?",
+    "login": "Login",
+    "search-default": "Products you may like",
+    "search-empty":" No products found",
+    "search-error" :"Search failed. Try again."
+  },
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "categories": "Categories",
+    "occasions": "Occasions",
+    "contact": "Contact",
+    "about": "About"
+  },
   "auth": {
-    "switchLang": "English",
+    "switchLang": "العربيه",
     "langLabel": "Switch to Arabic",
     "welcome-auth": {
       "login-title": "Welcome back!",
