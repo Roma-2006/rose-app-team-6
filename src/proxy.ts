@@ -2,13 +2,12 @@ import createMiddleware from 'next-intl/middleware';
 import { getToken } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 import { routing } from './i18n/routing';
-import { verifyRegistrationToken, RegistrationStep } from '@/features/auth/lib/registeration-token';
+import { verifyRegistrationToken } from '@/features/auth/lib/registeration-token';
 
 const intlMiddleware = createMiddleware(routing);
 
 const AUTH_ROUTES = ['/login', '/register', '/forgot-password'];
-const PROTECTED_ROUTES = ['/checkout'];
-const REGISTER_STEP_ORDER: RegistrationStep[] = ['otp', 'user-info', 'create-password'];
+const PROTECTED_ROUTES = ['/'];
 
 type Locale = (typeof routing.locales)[number];
 
@@ -26,7 +25,11 @@ function stripLocale(pathname: string): string {
 }
 
 export default async function middleware(req: NextRequest) {
-  const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+  const token = await getToken({
+    req,
+    secret: process.env.NEXTAUTH_SECRET,
+  });
+
   const isLoggedIn = !!token;
   const { pathname, search } = req.nextUrl;
 
@@ -35,11 +38,16 @@ export default async function middleware(req: NextRequest) {
 
   const isAuthRoute = AUTH_ROUTES.some((r) => bare === r || bare.startsWith(r + '/'));
   const isProtectedRoute = PROTECTED_ROUTES.some((r) => bare === r || bare.startsWith(r + '/'));
+  // const isRegisterStepRoute = REGISTER_STEP_ROUTES.some(
+  //   (r) => bare === r || bare.startsWith(r + '/')
+  // );
 
+  // Logged-in user → redirect away from auth pages
   if (isLoggedIn && isAuthRoute) {
     return NextResponse.redirect(new URL(`/${locale}`, req.url));
   }
 
+  // Guest → redirect away from protected routes, preserve returnUrl
   if (!isLoggedIn && isProtectedRoute) {
     const returnUrl = encodeURIComponent(pathname + search);
     return NextResponse.redirect(new URL(`/${locale}/login?returnUrl=${returnUrl}`, req.url));
@@ -63,7 +71,8 @@ export default async function middleware(req: NextRequest) {
     }
 
     if (requestedStep !== payload.step) {
-      console.log(`Redirecting to correct registration step: ${payload.step}`);
+      console.log('requestedStep:', requestedStep);
+
       return NextResponse.redirect(new URL(`/${locale}/register/${payload.step}`, req.url));
     }
   }
