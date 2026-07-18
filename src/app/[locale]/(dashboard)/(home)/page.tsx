@@ -1,4 +1,4 @@
-import AboutSection from '@/features/home/components/about-section';
+import AboutSection from '@/features/dashboard/components/home/home-about/about-section';
 import GallerySection from '@/features/home/components/gallery-section';
 import LanguageSwitcher from '@/shared/components/language-switcher';
 import { ThemeToggle } from '@/shared/components/theme';

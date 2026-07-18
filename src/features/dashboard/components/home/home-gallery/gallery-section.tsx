@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
-import SecHeader from './section-header';
-import SecTitle from './section-title';
+import SecHeader from '../section-header';
+import SecTitle from '../section-title';
 import Image from 'next/image';
 
 const columnsData = [

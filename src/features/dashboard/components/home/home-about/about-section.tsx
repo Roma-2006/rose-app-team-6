@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import SecHeader from './section-header';
+import SecHeader from '../section-header';
 import { Button } from '@/shared/components/ui/button';
 
 export default function AboutSection() {

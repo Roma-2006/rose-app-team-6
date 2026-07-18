@@ -1,7 +1,7 @@
 'use client';
-import AboutSection from '@/features/home/components/about-section';
-import SecHeader from '@/features/home/components/section-header';
-import SecTitle from '@/features/home/components/section-title';
+import AboutSection from '@/features/dashboard/components/home/home-about/about-section';
+import SecHeader from '@/features/dashboard/components/home/section-header';
+import SecTitle from '@/features/dashboard/components/home/section-title';
 import { BaseCheckbox } from '@/shared/components/custom-ui/BaseCheckbox';
 import { Button } from '@/shared/components/ui/button';
 import { Heart } from 'lucide-react';
