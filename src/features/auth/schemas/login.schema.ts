@@ -14,12 +14,7 @@ export const LOGIN_SCHEMA = (t: Translate) =>
 
       password: z
         .string({ message: t('schema.password.required') })
-        .min(1, { message: t('schema.password.required') })
-        .min(8, { message: t('schema.password.required') })
-        .regex(/[A-Z]/, { message: t('schema.password.uppercase') })
-        .regex(/[a-z]/, { message: t('schema.password.lowercase') })
-        .regex(/[0-9]/, { message: t('schema.password.number') })
-        .regex(/[@$!%*?&]/, { message: t('schema.password.special') }),
+        .min(1, { message: t('schema.password.required') }),
 
       rememberMe: z.boolean().optional(),
     })

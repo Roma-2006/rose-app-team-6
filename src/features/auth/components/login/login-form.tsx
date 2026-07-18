@@ -14,7 +14,7 @@ import { BaseCheckbox } from '@/shared/components/custom-ui/BaseCheckbox';
 import { Link } from '@/i18n/navigation';
 
 export default function LoginForm() {
-  const tLogin = useTranslations('login');
+  const tLogin = useTranslations('auth.login');
   const tInput = useTranslations('custom-input');
   const form = useForm<TLoginData>({
     resolver: zodResolver(LOGIN_SCHEMA((key) => tLogin(key))),
@@ -102,7 +102,7 @@ export default function LoginForm() {
                     }, 0);
                   }
                 }}
-                list={[{ id: 'remember-me', label: tLogin('remember-me') }]}
+                list={[{ id: 'rememberMe', label: tLogin('rememberMe') }]}
               />
             )}
           />
@@ -111,7 +111,7 @@ export default function LoginForm() {
             type="submit"
             variant="primary"
             className="mt-9 w-full"
-            title="login.submit-btn"
+            title="auth.login.button"
             buttonVariant="text"
             loading={isLoading}
             disabled={isLoading}
