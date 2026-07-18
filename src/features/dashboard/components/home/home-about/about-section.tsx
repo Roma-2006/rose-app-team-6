@@ -2,60 +2,55 @@ import React from 'react';
 import Image from 'next/image';
 import SecHeader from '../section-header';
 import { Button } from '@/shared/components/ui/button';
+import { Check } from 'lucide-react';
 
 export default function AboutSection() {
   return (
-    <section className="max-w-[1280px] w-full mx-auto flex items-center justify-center gap-19 px-4 py-16">
-      {/* 1. Asymmetrical Image Layout Container (Scaled to 70%: w-[371px]) */}
-      <div className="about-imgs grid grid-cols-12 gap-3 w-[371px] shrink-0 items-center">
-        {/* LEFT COLUMN: Large Organic Image with Dark Red Border */}
-        <div className="relative col-span-7 aspect-[4/5] w-full">
-          {/* Offset Dark Red Border Line (Thinned slightly to 1.5px for proportional balance) */}
+    <section className="max-w-7xl   h-97.5 w-full mx-auto flex items-center justify-center gap-19 px-4 mb-33.5">
+      {/* About Images */}
+      <div className="about-images grid grid-cols-12 gap-3 w-full h-full    items-center">
+        <div className="relative col-span-7 aspect-[4/5]  w-full">
           <svg
-            className="absolute inset-0 w-full h-full pointer-events-none scale-105 -translate-x-[6px] -translate-y-[3px] stroke-red-800 fill-none stroke-[1.5px]"
+            className="absolute inset-0 w-full h-full pointer-events-none scale-[1.1] -translate-x-[14px] -translate-y-[8px] z-0"
             viewBox="0 0 100 100"
             preserveAspectRatio="none"
           >
-            <path d="M25,5 C55,2 95,10 98,40 C100,70 90,95 60,98 C30,100 5,90 2,60 C-1,30 2,8 25,5 Z" />
+            <path
+              d="M25,5 C55,2 95,10 98,40 C100,70 90,95 60,98 C30,100 5,90 2,60 C-1,30 2,8 25,5 Z"
+              className="stroke-red-800 fill-none stroke-[1.2px]"
+            />
           </svg>
 
-          {/* Masked Main Image Container */}
-          <div
-            className="relative w-full h-full"
-            style={{ maskImage: 'url(#organic-mask)', WebkitMaskImage: 'url(#organic-mask)' }}
-          >
+          <div className="relative w-full h-full overflow-hidden rounded-[80px_80px_80px_120px_/_90px_80px_80px_70px] z-10 bg-white">
             <Image
               src="/assets/about-images/about-image1.png"
               alt="purple box"
               fill
-              sizes="220px"
-              className="object-cover"
+              sizes="210px"
+              className="object-cover w-82.5 h-94"
               priority
             />
           </div>
         </div>
 
-        {/* RIGHT COLUMN: Two Stacked Images */}
         <div className="col-span-5 flex flex-col gap-3 w-full">
-          {/* Top Right: Perfect Circle */}
           <div className="relative w-full aspect-square overflow-hidden rounded-full">
             <Image
               src="/assets/about-images/about-image2.png"
               alt="orange box"
               fill
-              sizes="150px"
+              sizes="140px"
               className="object-cover"
               priority
             />
           </div>
 
-          {/* Bottom Right: Pill / Capsule Shape (Scaled corner radius down to match 70% bounds) */}
-          <div className="relative w-full aspect-[4/3] overflow-hidden rounded-[24px_24px_24px_24px_/_32px_32px_32px_32px]">
+          <div className="relative w-full aspect-[4/3] overflow-hidden rounded-[35px_55px_55px_35px_/_35px_65px_65px_35px]">
             <Image
               src="/assets/about-images/about-image3.png"
-              alt="box with pallon"
+              alt="box with balloon"
               fill
-              sizes="150px"
+              sizes="140px"
               className="object-cover"
               priority
             />
@@ -63,11 +58,11 @@ export default function AboutSection() {
         </div>
       </div>
 
-      {/* 2. Content Section */}
-      <div className="about-content flex flex-col gap-6 w-160">
+      {/* About Content  */}
+      <div className="about-content flex flex-col  text-start items-start  gap-6 w-130">
         <SecHeader text="About" />
 
-        <div className="content-text flex flex-col gap-2">
+        <div className="content-text items-start flex flex-col   gap-2">
           <h3 className="text-3xl font-bold text-text-primary">
             Delivering the <span className="text-text-secondary">Finest</span> Gift Boxes for Your{' '}
             <span className="text-text-secondary">Special</span> Moments
@@ -79,9 +74,26 @@ export default function AboutSection() {
           </p>
         </div>
         <Button variant="primary" title="button.save" buttonVariant="text" />
+        <ul className="flex flex-row flex-wrap items-center w-140 h-21 gap-4 text-left">
+          <li className=" flex gap-2  w-60 ">
+            <Check className="text-text-primary w-5 h-5" />
+            <p className="text-xs text-text-plain">Competitive Prices & Easy Shopping</p>
+          </li>
+          <li className=" flex gap-2 w-60  ">
+            <Check className="text-text-primary w-5 h-5" />
+            <p className="text-xs text-text-plain">Premium Quality & Elegant Packaging</p>
+          </li>
+          <li className=" flex gap-2 w-60  ">
+            <Check className="text-text-primary w-5 h-5" />
+            <p className="text-xs text-text-plain">Perfect for Every Occasion</p>
+          </li>
+          <li className="flex gap-2 w-60  ">
+            <Check className="text-text-primary w-5 h-5" />
+            <p className="text-xs text-text-plain">Fast & Reliable Delivery</p>
+          </li>
+        </ul>
       </div>
 
-      {/* SVG Mask Definition Block */}
       <svg className="absolute w-0 h-0" aria-hidden="true">
         <defs>
           <mask id="organic-mask" maskContentUnits="objectBoundingBox">

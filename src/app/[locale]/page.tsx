@@ -5,6 +5,8 @@ import LanguageSwitcher from '@/shared/components/language-switcher';
 import { ThemeToggle } from '@/shared/components/theme';
 import { useTranslations } from 'next-intl';
 import { signOut } from 'next-auth/react';
+import AboutSection from '@/features/dashboard/components/home/home-about/about-section';
+import GallerySection from '@/features/dashboard/components/home/home-gallery/gallery-section';
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -22,7 +24,8 @@ export default function HomePage({ params }: PageProps) {
         <LanguageSwitcher />
         <ThemeToggle />
       </div>
-
+      <AboutSection />
+      <GallerySection />
       <button
         onClick={() => signOut({ callbackUrl: `/${locale}/login` })}
         className="rounded-xl bg-red-500 px-4 py-2 text-sm font-medium text-white hover:bg-red-600 transition-colors"

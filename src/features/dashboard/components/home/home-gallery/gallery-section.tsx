@@ -60,7 +60,7 @@ const columnsData = [
 
 export default function GallerySection() {
   return (
-    <section className="w-full px-4 py-12 flex flex-col items-center justify-center bg-background">
+    <section className="w-full px-4 ms-3 mb-35 flex flex-col items-center justify-center bg-background">
       {/* Gallery Header */}
       <header className="text-center">
         <SecHeader text="Gallery" className="pb-2" />
