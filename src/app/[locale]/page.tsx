@@ -7,6 +7,7 @@ import { useTranslations } from 'next-intl';
 import { signOut } from 'next-auth/react';
 import AboutSection from '@/features/dashboard/components/home/home-about/about-section';
 import GallerySection from '@/features/dashboard/components/home/home-gallery/gallery-section';
+import TestimonialsSection from '@/features/dashboard/components/home/home-testimonials/testimonials-section';
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -26,6 +27,7 @@ export default function HomePage({ params }: PageProps) {
       </div>
       <AboutSection />
       <GallerySection />
+      <TestimonialsSection />
       <button
         onClick={() => signOut({ callbackUrl: `/${locale}/login` })}
         className="rounded-xl bg-red-500 px-4 py-2 text-sm font-medium text-white hover:bg-red-600 transition-colors"
