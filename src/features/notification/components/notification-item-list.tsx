@@ -3,8 +3,9 @@ import React, { useState } from 'react';
 import { Notification } from './../types/notification';
 import NotificationMenu from './notification-menu';
 import Link from 'next/link';
+import type { NotificationItemProps } from '../types/notification';
 
-const NotificationItemList = ({ notification }: { notification: Notification }) => {
+const NotificationItemList = ({ notification, onRead }: NotificationItemProps) => {
   const [isRead, setIsRead] = useState(notification.isRead);
 
   return (

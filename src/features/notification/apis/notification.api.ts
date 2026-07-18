@@ -7,7 +7,8 @@ import type {
 } from '../types/notification';
 
 export async function getNotifications(
-  params: GetNotificationsParams = {}
+  params: GetNotificationsParams = {},
+  token?: string
 ): Promise<Notification[]> {
   const { page = 1, limit = 20, type, isRead } = params;
 
@@ -25,6 +26,7 @@ export async function getNotifications(
       method: 'GET',
       headers: {
         ...HEADERS.jsonBody,
+        ...(token && { Authorization: `Bearer ${token}` }),
       },
     }
   );
@@ -35,5 +37,5 @@ export async function getNotifications(
     throw new Error(data.message);
   }
 
-  return data.payload;
+  return data.payload.data;
 }

@@ -181,5 +181,17 @@
     "phone": { "label": "رقم الهاتف", "placeholder": "1012345678" },
     "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" },
     "nice-to-have-you-here": "جميل أنك هنا"
+  },
+  "header":{
+    "notifications":{
+      "title": "الإشعارات ({count})",
+      "noNotifications": "لا توجد إشعارات حتى الآن",
+      "clearAll": "مسح جميع الإشعارات",
+      "markAllAsRead": "تعيين الكل كمقروء",
+      "notificationSettings": {
+        "markAsRead": "تعيين كمقروء",
+        "delete": "حذف"
+      }
+    }
   }
 }

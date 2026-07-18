@@ -3,6 +3,7 @@
   "HomePage": {
     "title": "Welcome to Rose App"
   },
+  
   "button": {
     "loading": "Loading...",
     "submit": "Submit",
@@ -181,5 +182,17 @@
     "phone": { "label": "Phone", "placeholder": "1012345678" },
     "email": { "label": "Email", "placeholder": "user@example.com" },
     "nice-to-have-you-here": "nice to have you here"
+  },
+  "header":{
+    "notifications":{
+      "title": "Notifications ({count})",
+      "noNotifications": "No notifications to display",
+      "clearAll": "Clear all notifications",
+      "markAllAsRead": "Mark all as read",
+      "notificationSettings": {
+        "markAsRead": "Mark as read",
+        "delete": "Delete"
+      }
+    }
   }
 }

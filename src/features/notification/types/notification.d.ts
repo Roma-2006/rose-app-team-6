@@ -24,9 +24,28 @@ export interface GetNotificationsParams {
 export interface NotificationResponse {
   status: boolean;
   message: string;
-  payload: Notification[];
+  payload: NotificationsPayload;
 }
 
 export interface ReadNotificationRequestBody {
   isRead: boolean;
+}
+
+interface NotificationsPayload {
+  data: Notification[];
+  metadata: {
+    total: number;
+    page: number;
+    limit: number;
+    totalPages: number;
+  };
+}
+
+export interface NotificationsListProps {
+  initialNotifications: Notification[];
+}
+
+export interface NotificationItemProps {
+  notification: Notification;
+  onRead: (notificationId: string) => void;
 }
