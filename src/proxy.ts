@@ -7,7 +7,7 @@ import { verifyRegistrationToken } from '@/features/auth/lib/registeration-token
 const intlMiddleware = createMiddleware(routing);
 
 const AUTH_ROUTES = ['/login', '/register', '/forgot-password'];
-const PROTECTED_ROUTES = ['/'];
+const PROTECTED_ROUTES: string[] = [];
 
 type Locale = (typeof routing.locales)[number];
 
@@ -38,9 +38,6 @@ export default async function middleware(req: NextRequest) {
 
   const isAuthRoute = AUTH_ROUTES.some((r) => bare === r || bare.startsWith(r + '/'));
   const isProtectedRoute = PROTECTED_ROUTES.some((r) => bare === r || bare.startsWith(r + '/'));
-  // const isRegisterStepRoute = REGISTER_STEP_ROUTES.some(
-  //   (r) => bare === r || bare.startsWith(r + '/')
-  // );
 
   // Logged-in user → redirect away from auth pages
   if (isLoggedIn && isAuthRoute) {
