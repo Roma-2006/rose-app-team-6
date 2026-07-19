@@ -24,8 +24,8 @@
     }
   },
   "auth": {
-    "switchLang": "English",
-    "langLabel": "Switch to Arabic",
+    "switchLang": "العربية",
+    "langLabel": "التحويل إلى الإنجليزية",
     "welcome-auth": {
       "login-title": "Welcome back!",
       "register-title": "Become part of our family!"
