@@ -3,6 +3,7 @@ import Image from 'next/image';
 import SecHeader from '../section-header';
 import SecTitle from '../section-title';
 import { Star } from 'lucide-react';
+import { getTranslations } from 'next-intl/server';
 
 const testimonials = [
   {
@@ -30,13 +31,15 @@ const testimonials = [
     date: 'January 12, 2025',
   },
 ];
-export default function TestimonialsSection() {
+export default async function TestimonialsSection() {
+  const tTistimonial = await getTranslations('home.testimonials');
+
   return (
     <section className="   h-165 w-full  flex flex-col items-center justify-center   mb-35">
       {/* Testimonials Header */}
       <header className=" testimonials-header text-center mb-10">
-        <SecHeader text="Testimonials" className="pb-2" />
-        <SecTitle text="Real Words from Happy Customers" className="pb-11.5" />
+        <SecHeader text={tTistimonial('label')} className="pb-2" />
+        <SecTitle text={tTistimonial('title')} className="pb-11.5" />
       </header>
 
       <div className=" testimonials-content   w-full h-full max-h-137.5 bg-bg-primary-fade  flex  justify-around items-center">

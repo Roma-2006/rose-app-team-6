@@ -3,6 +3,7 @@ import React from 'react';
 import SecHeader from '../section-header';
 import SecTitle from '../section-title';
 import Image from 'next/image';
+import { getTranslations } from 'next-intl/server';
 
 const columnsData = [
   {
@@ -58,13 +59,15 @@ const columnsData = [
   },
 ];
 
-export default function GallerySection() {
+export default async function GallerySection() {
+  const tGallery = await getTranslations('home.gallery');
+
   return (
     <section className="w-full max-w-7xl px-4 ms-3 mb-35 flex flex-col items-center justify-center bg-background">
       {/* Gallery Header */}
       <header className="text-center">
-        <SecHeader text="Gallery" className="pb-2" />
-        <SecTitle text="Check Out our Wonderful Gallery" className="pb-11.5" />
+        <SecHeader text={tGallery('label')} className="pb-2" />
+        <SecTitle text={tGallery('title')} className="pb-11.5" />
       </header>
       {/* grid system */}
       <div className="w-full max-w-[1280px] mx-auto">

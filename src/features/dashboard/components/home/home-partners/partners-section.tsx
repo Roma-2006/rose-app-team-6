@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import { getTranslations } from 'next-intl/server';
 const logos = [
   { name: 'Coconut', src: '/assets/partners-images/partner-image6.png' },
   { name: 'Ginyard', src: '/assets/partners-images/partner-image5.png' },
@@ -9,13 +10,17 @@ const logos = [
   { name: 'Habu', src: '/assets/partners-images/partner-image1.png' },
 ];
 
-export default function PartnersSection() {
+export default async function PartnersSection() {
+  const tPartners = await getTranslations('home.partners');
+
   return (
     <section className=" py-10  h-51.5 w-full bg-bg-primary-fade mx-4 gap-10 flex flex-col items-center justify-center  ">
       {/* Parteners Header */}
       <header className=" Parteners-header text-center ">
         <h3 className="text-3xl font-bold text-text-primary">
-          Trusted by over <span className="text-text-secondary">4.5k+</span> companies
+          {tPartners('title.part1')}
+          <span className="text-text-secondary">{tPartners('title.part2')}</span>
+          {tPartners('title.part3')}
         </h3>
       </header>
 
