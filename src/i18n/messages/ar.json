@@ -22,8 +22,8 @@
   },
   "title": "مرحبا بك في تطبيق روز",
   "auth": {
-    "switchLang": "العربية",
-    "langLabel": "التحويل إلى الإنجليزية",
+         "switchLang": "English",
+   "langLabel": "Switch to Arabic",
     "welcome-auth": {
       "login-title": "مرحبًا بعودتك!",
       "register-title": "كن جزءًا من عائلتنا!"
