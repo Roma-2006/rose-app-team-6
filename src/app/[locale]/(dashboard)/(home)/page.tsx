@@ -1,5 +1,8 @@
 import AboutSection from '@/features/dashboard/components/home/home-about/about-section';
-import GallerySection from '@/features/home/components/gallery-section';
+import GallerySection from '@/features/dashboard/components/home/home-gallery/gallery-section';
+import { BestSellingSection } from '@/features/dashboard/components/home/home-products/bestSellingSection';
+import { MostPopularSection } from '@/features/dashboard/components/home/home-products/mostPopularSection';
+import TestimonialsSection from '@/features/dashboard/components/home/home-testimonials/testimonials-section';
 import LanguageSwitcher from '@/shared/components/language-switcher';
 import { ThemeToggle } from '@/shared/components/theme';
 import { getTranslations } from 'next-intl/server';
@@ -18,8 +21,6 @@ export default async function HomePage({ params }: PageProps) {
         <LanguageSwitcher />
         <ThemeToggle />
       </div>
-      <AboutSection />
-      <GallerySection />
     </section>
   );
 }
