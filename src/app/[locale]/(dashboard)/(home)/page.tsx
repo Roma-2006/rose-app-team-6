@@ -1,3 +1,5 @@
+import AboutSection from '@/features/dashboard/components/home/home-about/about-section';
+import GallerySection from '@/features/dashboard/components/home/home-gallery/gallery-section';
 import LanguageSwitcher from '@/shared/components/language-switcher';
 import { ThemeToggle } from '@/shared/components/theme';
 import { getTranslations } from 'next-intl/server';
@@ -16,6 +18,8 @@ export default async function HomePage({ params }: PageProps) {
         <LanguageSwitcher />
         <ThemeToggle />
       </div>
+      <AboutSection />
+      <GallerySection />
     </section>
   );
 }

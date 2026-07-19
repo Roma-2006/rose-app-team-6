@@ -8,7 +8,7 @@ import { useTranslations } from 'next-intl';
 export default function CategoryCards({ image, badge, title, href }: CardsPageProps) {
   const t = useTranslations('home');
   return (
-    <Link href={href || '#'} className="block h-full">
+    <Link href={href} className="block h-full">
       <Card className="relative h-full min-h-60 w-99 overflow-hidden rounded-2xl border-0 p-0 transition-transform duration-200 hover:scale-[1.01]">
         <Image src={image} alt={title} fill priority className="object-cover" />
 

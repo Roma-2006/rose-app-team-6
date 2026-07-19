@@ -29,23 +29,23 @@ export const getProducts = async (
   return result.payload?.data || [];
 };
 
-export const getOccasions = async (
-  page = 1,
-  limit = 12
-): Promise<{ occasions: Occasion[]; total?: number; totalPages?: number }> => {
-  const url = new URL(`${process.env.NEXT_PUBLIC_API_URL}/occasions`);
-  url.searchParams.append('page', String(page));
-  url.searchParams.append('limit', String(limit));
+// export const getOccasions = async (
+//   page = 1,
+//   limit = 12
+// ): Promise<{ occasions: Occasion[]; total?: number; totalPages?: number }> => {
+//   const url = new URL(`${process.env.NEXT_PUBLIC_API_URL}/occasions`);
+//   url.searchParams.append('page', String(page));
+//   url.searchParams.append('limit', String(limit));
 
-  const response = await fetch(url.toString());
+//   const response = await fetch(url.toString());
 
-  if (!response.ok) {
-    throw new Error('Failed to fetch occasions');
-  }
+//   if (!response.ok) {
+//     throw new Error('Failed to fetch occasions');
+//   }
 
-  const result = await response.json();
+//   const result = await response.json();
 
-  return {
-    occasions: result.payload?.data || [],
-  };
-};
+//   return {
+//     occasions: result.payload?.data || [],
+//   };
+// };

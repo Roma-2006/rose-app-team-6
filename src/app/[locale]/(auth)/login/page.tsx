@@ -6,7 +6,6 @@ export default async function LoginPage() {
   const tLogin = await getTranslations('login');
   return (
     <main className="flex flex-col items-center justify-center max-h-100 max-w-102">
-      <CustomInput variant="search" />
       <LoginForm />
 
       <div className=" flex justify-center w-full max-w-96 gap-1">

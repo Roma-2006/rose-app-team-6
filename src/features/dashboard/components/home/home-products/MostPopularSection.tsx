@@ -1,30 +1,54 @@
 'use client';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useQuery } from '@tanstack/react-query';
-import { useOccasions } from '../../../hooks/useHomeData';
 import { getProducts } from '../../../api/product.api';
 import { Link } from '@/i18n/navigation';
 import { ProductCard } from './ProductCard';
 import { ProductCardSkeleton } from './ProductCardSkeleton';
 import { ArrowRight } from 'lucide-react';
 
+const ALL_TAB_ID = 'home.all';
+
 export const MostPopularSection = () => {
   const t = useTranslations('home.most-Popular');
-  const [activeTab, setActiveTab] = useState<string>('home.all');
+  const [activeTab, setActiveTab] = useState<string>(ALL_TAB_ID);
   const locale = useLocale();
   const isRtl = locale === 'ar';
-  const { data: occasions, isLoading: isOccasionsLoading } = useOccasions();
+
   const {
     data: products,
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ['products', 'most-popular', activeTab],
-    queryFn: () => getProducts(activeTab === 'home.all' ? undefined : activeTab, 12),
+    queryKey: ['products', 'most-popular'],
+    queryFn: () => getProducts(undefined, 12, 'mostPopular'),
   });
 
-  const allOccasions = occasions ?? [];
+  const allOccasions = useMemo(() => {
+    const map = new Map<string, { id: string; title: string }>();
+
+    for (const product of products ?? []) {
+      for (const item of product.occasions ?? []) {
+        const occ = item.occasion;
+        if (!occ) continue;
+        if (!map.has(occ.id)) {
+          map.set(occ.id, { id: occ.id, title: occ.title });
+        }
+      }
+    }
+
+    return Array.from(map.values());
+  }, [products]);
+
+  const filteredProducts = useMemo(() => {
+    if (!products) return [];
+    if (activeTab === ALL_TAB_ID) return products;
+
+    return products.filter((product) =>
+      product.occasions?.some((o) => o.occasion.id === activeTab)
+    );
+  }, [activeTab, products]);
 
   return (
     <section className="py-20  mx-20 px-4  flex flex-col gap-10">
@@ -46,18 +70,30 @@ export const MostPopularSection = () => {
           {/* Red underline */}
           <div className="absolute start-0 bottom-0 top-9.5 w-14 h-0.5 bg-soft-pink rounded-full z-10" />
         </div>
-
         {/* Right Side: Occasion Tabs */}
         <div className="flex items-center gap-6">
+          <button
+            type="button"
+            onClick={() => setActiveTab(ALL_TAB_ID)}
+            className={`text-sm md:text-base font-medium transition-all whitespace-nowrap ${
+              activeTab === ALL_TAB_ID
+                ? 'text-text-primary'
+                : 'text-text-soft hover:text-text-plain'
+            }`}
+          >
+            {t('all')}
+          </button>
+
           {allOccasions.map((occ) => (
             <button
               key={occ.id}
+              type="button"
               onClick={() => setActiveTab(occ.id)}
               className={`text-sm md:text-base font-medium transition-all whitespace-nowrap ${
                 activeTab === occ.id ? 'text-text-primary' : 'text-text-soft hover:text-text-plain'
               }`}
             >
-              {t(`occasions.${occ.title}`)}
+              {occ.title}
             </button>
           ))}
         </div>
@@ -68,12 +104,12 @@ export const MostPopularSection = () => {
           [...Array(8)].map((_, i) => <ProductCardSkeleton key={i} />)
         ) : isError ? (
           <div className="col-span-full text-center text-text-danger">{t('error')}</div>
-        ) : (products ?? []).length === 0 ? (
+        ) : filteredProducts.length === 0 ? (
           <div className="col-span-full text-center py-20 text-text-soft">
             {t('noProductsFound')}
           </div>
         ) : (
-          (products ?? []).slice(0, 12).map((p) => <ProductCard key={p.id} product={p} />)
+          filteredProducts.slice(0, 12).map((p) => <ProductCard key={p.id} product={p} />)
         )}
       </div>
 
