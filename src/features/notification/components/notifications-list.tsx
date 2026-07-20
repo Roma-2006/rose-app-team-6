@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,7 +12,7 @@ import {
 } from '@/shared/components/ui/dropdown-menu';
 import NotificationItemList from './notification-item-list';
 import { Button } from '@/shared/components/ui/button';
-import { Bell, CheckCheck, BellOff, BrushCleaning } from 'lucide-react';
+import { Bell, CheckCheck, BellOff, BrushCleaning, BellRing } from 'lucide-react';
 import { useNotifications } from '../hooks/use-notification';
 import type { NotificationsListProps } from '../types/notification';
 import { useTranslations } from 'next-intl';
@@ -23,17 +24,38 @@ const NotificationsList = ({ initialNotifications = [] }: NotificationsListProps
     markAllAsRead,
     isMarkingAllAsRead,
     subscribe,
-    // unsubscribe,
+    unsubscribe,
     // vapidKey,
     // isLoadingVapidKey,
+    isSubscribed,
   } = useNotifications();
 
   const notifications = initialNotifications;
   const t = useTranslations('header.notifications');
+  const [isSubscription, setIsSubscription] = useState(false);
+
+  useEffect(() => {
+    const checkSubscription = async () => {
+      const subscribed = await isSubscribed();
+      setIsSubscription(subscribed);
+    };
+
+    checkSubscription();
+  }, [isSubscribed]);
 
   const handleEnableNotifications = async () => {
     try {
       await subscribe();
+      setIsSubscription(true);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleDisableNotifications = async () => {
+    try {
+      await unsubscribe();
+      setIsSubscription(false);
     } catch (error) {
       console.error(error);
     }
@@ -50,14 +72,19 @@ const NotificationsList = ({ initialNotifications = [] }: NotificationsListProps
             size="icon-lg"
           />
         }
-        onClick={handleEnableNotifications}
+        // onClick={handleEnableNotifications}
       />
-      <DropdownMenuContent className="w-84 h-78 text-start p-0" align="start">
+      <DropdownMenuContent className="w-84 h-78 text-start p-0 bg-bg-plain" align="start">
         <DropdownMenuGroup>
-          <DropdownMenuLabel className="w-full h-13 bg-bg-primary-saturated text-text-inverse text-xl font-bold p-4">
+          <DropdownMenuLabel className="w-full h-13 bg-bg-primary-saturated text-text-inverse text-xl font-bold p-4 flex justify-between">
             {t('title', { count: notifications.length })}
+            {isSubscription ? (
+              <BellOff onClick={handleDisableNotifications} />
+            ) : (
+              <BellRing onClick={handleEnableNotifications} />
+            )}
           </DropdownMenuLabel>
-          <div className="flex gap-2.5 p-2.5 w-full h-9.5">
+          <div className="flex gap-2.5 p-2.5 w-full h-9.5 justify-between">
             <Button
               variant="ghost"
               buttonVariant="text"

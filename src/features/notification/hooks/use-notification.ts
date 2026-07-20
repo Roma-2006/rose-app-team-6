@@ -74,11 +74,21 @@ export function usePushSubscription() {
 
     if (!subscription) return;
 
+    console.log('endpoint : ', subscription.endpoint);
     await unsubscribeFromPush({ endpoint: subscription.endpoint });
     await subscription.unsubscribe();
   }
 
-  return { subscribe, unsubscribe };
+  const isSubscribed = async () => {
+    if (!('serviceWorker' in navigator)) return false;
+
+    const registration = await navigator.serviceWorker.ready;
+    const subscription = await registration.pushManager.getSubscription();
+
+    return subscription !== null;
+  };
+
+  return { subscribe, unsubscribe, isSubscribed };
 }
 
 // ---------- Mark as read / read all ----------
@@ -119,7 +129,7 @@ export function useMarkAllNotificationsAsRead() {
 export function useNotifications() {
   const markAsRead = useMarkNotificationAsRead();
   const markAllAsRead = useMarkAllNotificationsAsRead();
-  const { subscribe, unsubscribe } = usePushSubscription();
+  const { subscribe, unsubscribe, isSubscribed } = usePushSubscription();
   // const { data: vapidKey, isLoading: isLoadingVapidKey } = useVapidPublicKey();
 
   return {
@@ -133,6 +143,7 @@ export function useNotifications() {
 
     subscribe,
     unsubscribe,
+    isSubscribed,
     // vapidKey,
     // isLoadingVapidKey,
   };
