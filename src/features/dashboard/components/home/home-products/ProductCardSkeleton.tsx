@@ -1,10 +1,8 @@
-// src/features/home/components/ProductCardSkeleton.tsx
-
 export const ProductCardSkeleton = () => {
   return (
     <div className="w-72 h-96 rounded-2xl bg-bg-plain border border-border-subtle dark:border-border-muted overflow-hidden shadow-sm animate-pulse">
       {' '}
-      {/* 1. Image Placeholder (Square Aspect Ratio) */}
+      {/* 1. Image */}
       <div className="relative aspect-square bg-bg-soft" />
       {/* 2. Content Area */}
       <div className="p-4 space-y-3">

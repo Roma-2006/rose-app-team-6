@@ -280,7 +280,8 @@
         "Wedding": "Wedding",
         "Anniversary": "Anniversary",
         "Birthday": "Birthday",
-        "Engagement": "Engagement"
+        "Engagement": "Engagement",
+        "New Year":"New Year"
       }
   },
    "product-card":

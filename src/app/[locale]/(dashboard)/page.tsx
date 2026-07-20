@@ -1,5 +1,9 @@
 import { getTranslations } from 'next-intl/server';
 import HomeContent from '@/features/dashboard/components/home/home-content';
+import { MostPopularSection } from '@/features/dashboard/components/home/home-products/MostPopularSection';
+import AboutSection from '@/features/dashboard/components/home/home-about/about-section';
+import GallerySection from '@/features/dashboard/components/home/home-gallery/gallery-section';
+import { BestSellingSection } from '@/features/dashboard/components/home/home-products/BestSellingSection';
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -12,6 +16,10 @@ export default async function HomePage({ params }: PageProps) {
   return (
     <>
       <HomeContent />
+      <BestSellingSection />
+      <MostPopularSection />
+      <AboutSection />
+      <GallerySection />
     </>
   );
 }
