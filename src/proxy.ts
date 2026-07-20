@@ -37,7 +37,7 @@ export default async function middleware(req: NextRequest) {
   const bare = stripLocale(pathname);
 
   const bareSegments = bare.split('/').filter(Boolean);
-  const firstSegment = bareSegments[0];
+  // const firstSegment = bareSegments[0];
 
   const isAuthRoute = AUTH_ROUTES.some((r) => bare === r || bare.startsWith(r + '/'));
   const isProtectedRoute = PROTECTED_ROUTES.some((r) => bare === r || bare.startsWith(r + '/'));

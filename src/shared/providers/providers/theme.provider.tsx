@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic';
 
 type ThemeProviderProps = React.ComponentProps<typeof NextThemesProvider>;
 
