@@ -264,14 +264,8 @@
     "all": "الكل",
     "viewMore": "عرض المزيد",
     "error": "حدث خطأ ما أثناء تحميل المنتجات.",
-    "noProductsFound": "لا توجد منتجات في هذا القسم حالياً.",
-        "occasions": {
-        "Wedding": "زفاف",
-        "Anniversary": "ذكرى زواج",
-        "Birthday": "عيد ميلاد",
-        "Engagement": "خطوبة",
-        "New Year" :"السنة الجديدة"
-      }
+    "noProductsFound": "لا توجد منتجات في هذا القسم حالياً."
+     
   },
     "product-card":
    {

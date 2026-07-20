@@ -274,14 +274,8 @@
     "all": "All",
     "viewMore": "View More",
     "error": "Something went wrong while loading products.",
-    "noProductsFound": "No products found in this category.",
-       "occasions": {
-        "Wedding": "Wedding",
-        "Anniversary": "Anniversary",
-        "Birthday": "Birthday",
-        "Engagement": "Engagement",
-        "New Year":"New Year"
-      }
+    "noProductsFound": "No products found in this category."
+    
   },
    "product-card":
    {

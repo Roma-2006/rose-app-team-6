@@ -8,12 +8,11 @@ import { useLocale, useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 import { useProductActions } from '../../../hooks/use-product-actions';
-import { LoginPromptModal } from './loginpromptmodal';
+import { LoginPromptModal } from '../home-products/loginpromptmodal';
 
 interface ProductCardProps {
   product: Product & {
-    isNew?: boolean;
-    isHot?: boolean;
+    createdAt: string;
     stock?: number;
   };
 }
@@ -48,6 +47,13 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 
   const ratingValue = Math.round(product.rating);
 
+  const created = new Date(product.createdAt);
+  const now = new Date();
+
+  const diffDays = (now.getTime() - created.getTime()) / (1000 * 60 * 60 * 24);
+
+  const isNew = diffDays <= 30;
+
   return (
     <div>
       <div
@@ -75,13 +81,13 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 
           {/* Badges */}
           <div className="absolute top-3 right-3 flex flex-col gap-1.5 items-end z-10">
-            {/* {(product.isNew || product.id.includes('2824')) && (
+            {isNew && (
               <div className="px-2 py-1 bg-bg-muted rounded-full inline-flex justify-center items-center overflow-hidden">
                 <span className="text-text-plain text-xs font-medium uppercase leading-3">
                   {t('new')}
                 </span>
               </div>
-            )} */}
+            )}
             {Number(product.stock) === 0 && (
               <div className="px-2 py-1 bg-bg-danger rounded-full inline-flex justify-center items-center gap-2.5">
                 <span className=" text-rose text-xs font-medium uppercase leading-3">
