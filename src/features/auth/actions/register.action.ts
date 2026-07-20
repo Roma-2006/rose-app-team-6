@@ -4,7 +4,7 @@ import { TRegisterFields, TRegisterResponse } from '../types/register';
 import { Response } from '@/shared/types/api';
 
 export const registerAction = async (fields: TRegisterFields) => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/register`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/register`, {
     method: 'POST',
     body: JSON.stringify(fields),
     headers: {

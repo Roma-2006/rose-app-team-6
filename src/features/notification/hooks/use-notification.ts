@@ -3,11 +3,11 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { subscribeToPush } from '../apis/subscription.api';
 import { unsubscribeFromPush } from '../apis/unsubscription.api';
-import { getVapidPublicKey } from '../apis/vapid-public-key.api';
+// import { getVapidPublicKey } from '../apis/vapid-public-key.api';
 import { getNotifications } from '../apis/notification.api';
 import { markNotificationAsRead, markAllNotificationsAsRead } from '../apis/read-notification.api';
-import { urlBase64ToUint8Array } from '../lib/url-base64-to-unit8array';
-import type { PushSubscriptionRequestBody } from '../types/push-subscription';
+// import urlBase64ToUint8Array from './../lib/url-base64-to-unit8array';
+// import type { PushSubscriptionRequestBody } from '../types/push-subscription';
 import type { ReadNotificationRequestBody } from '../types/notification';
 import type { GetNotificationsParams } from '../types/notification';
 
@@ -30,40 +30,40 @@ export function useNotificationsList(params: GetNotificationsParams = {}) {
 
 // ---------- VAPID key ----------
 
-export function useVapidPublicKey() {
-  return useQuery({
-    queryKey: notificationsKeys.vapidKey,
-    queryFn: getVapidPublicKey,
-    staleTime: Infinity, // The VAPID not Changes during the session
-    gcTime: Infinity,
-    retry: false, // no retry on failure
-  });
-}
+// export function useVapidPublicKey() {
+//   return useQuery({
+//     queryKey: notificationsKeys.vapidKey,
+//     // queryFn: getVapidPublicKey,
+//     staleTime: Infinity, // The VAPID key doesn't change during the session
+//     gcTime: Infinity,
+//     retry: false, // no retry on failure
+//   });
+// }
 
 // ---------- Push subscription ----------
 
 export function usePushSubscription() {
-  const { data: vapidKey } = useVapidPublicKey();
+  // const { data: vapidKey } = useVapidPublicKey();
 
   async function subscribe() {
     if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
       throw new Error('Push not supported in this browser');
     }
-    if (!vapidKey) throw new Error('VAPID key not loaded yet');
+    // if (!vapidKey) throw new Error('VAPID key not loaded yet');
 
     const permission = await Notification.requestPermission();
     if (permission !== 'granted') throw new Error('Permission denied');
 
-    const registration = await navigator.serviceWorker.register('/sw.js');
+    // const registration = await navigator.serviceWorker.register('/sw.js');
     await navigator.serviceWorker.ready;
 
-    const subscription = await registration.pushManager.subscribe({
-      userVisibleOnly: true,
-      applicationServerKey: urlBase64ToUint8Array(vapidKey),
-    });
+    // const subscription = await registration.pushManager.subscribe({
+    //   userVisibleOnly: true,
+    //   applicationServerKey: urlBase64ToUint8Array(vapidKey || ""),
+    // });
 
-    const subscriptionJson = subscription.toJSON() as PushSubscriptionRequestBody;
-    await subscribeToPush(subscriptionJson);
+    // const subscriptionJson = subscription.toJSON() as PushSubscriptionRequestBody;
+    const subscription = await subscribeToPush();
 
     return subscription;
   }
@@ -120,7 +120,7 @@ export function useNotifications() {
   const markAsRead = useMarkNotificationAsRead();
   const markAllAsRead = useMarkAllNotificationsAsRead();
   const { subscribe, unsubscribe } = usePushSubscription();
-  const { data: vapidKey, isLoading: isLoadingVapidKey } = useVapidPublicKey();
+  // const { data: vapidKey, isLoading: isLoadingVapidKey } = useVapidPublicKey();
 
   return {
     markAsRead: markAsRead.mutate,
@@ -133,7 +133,7 @@ export function useNotifications() {
 
     subscribe,
     unsubscribe,
-    vapidKey,
-    isLoadingVapidKey,
+    // vapidKey,
+    // isLoadingVapidKey,
   };
 }

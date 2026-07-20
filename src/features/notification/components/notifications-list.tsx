@@ -15,12 +15,29 @@ import { Bell, CheckCheck, BellOff, BrushCleaning } from 'lucide-react';
 import { useNotifications } from '../hooks/use-notification';
 import type { NotificationsListProps } from '../types/notification';
 import { useTranslations } from 'next-intl';
+import { cn } from '@/shared/lib/utils/tailwind-cn';
 
 const NotificationsList = ({ initialNotifications = [] }: NotificationsListProps) => {
-  const { markAsRead, markAllAsRead, isMarkingAllAsRead } = useNotifications();
+  const {
+    markAsRead,
+    markAllAsRead,
+    isMarkingAllAsRead,
+    subscribe,
+    // unsubscribe,
+    // vapidKey,
+    // isLoadingVapidKey,
+  } = useNotifications();
 
   const notifications = initialNotifications;
   const t = useTranslations('header.notifications');
+
+  const handleEnableNotifications = async () => {
+    try {
+      await subscribe();
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <DropdownMenu>
@@ -33,6 +50,7 @@ const NotificationsList = ({ initialNotifications = [] }: NotificationsListProps
             size="icon-lg"
           />
         }
+        onClick={handleEnableNotifications}
       />
       <DropdownMenuContent className="w-84 h-78 text-start p-0" align="start">
         <DropdownMenuGroup>
@@ -45,9 +63,10 @@ const NotificationsList = ({ initialNotifications = [] }: NotificationsListProps
               buttonVariant="text"
               leftIcon={<CheckCheck className="size-3.5" />}
               title="header.notifications.markAllAsRead"
-              className={`w-fit justify-start gap-1.5 text-xs font-semibold  bg-none h-3.5 ${
+              className={cn(
+                'w-fit justify-start gap-1.5 text-xs font-semibold bg-none h-3.5',
                 notifications.length > 0 ? 'text-text-plain' : 'text-text-muted'
-              } `}
+              )}
               onClick={() => {
                 if (!isMarkingAllAsRead) markAllAsRead();
               }}
@@ -59,9 +78,10 @@ const NotificationsList = ({ initialNotifications = [] }: NotificationsListProps
               buttonVariant="text"
               leftIcon={<BrushCleaning className="size-3.5" />}
               title="header.notifications.clearAll"
-              className={`w-fit justify-start gap-1.5  text-xs font-semibold  bg-none h-3.5 ${
+              className={cn(
+                'w-fit justify-start gap-1.5 text-xs font-semibold bg-none h-3.5',
                 notifications.length > 0 ? 'text-text-plain' : 'text-text-muted'
-              } `}
+              )}
               onClick={() => {
                 if (!isMarkingAllAsRead) markAllAsRead();
               }}
@@ -70,20 +90,20 @@ const NotificationsList = ({ initialNotifications = [] }: NotificationsListProps
           </div>
           <DropdownMenuSeparator className="bg-bg-soft" />
           {notifications.length === 0 ? (
-            <div className="flex flex-col items-center justify-center p-4">
+            <DropdownMenuItem className="flex flex-col items-center justify-center p-4">
               <BellOff className="mx-auto mt-4 h-12.5 w-12.5 text-text-muted" />
               <p className="text-center text-sm text-text-muted mt-2 font-medium">
                 No notifications to display.
               </p>
-            </div>
+            </DropdownMenuItem>
           ) : (
             notifications.map((notification) => (
-              <DropdownMenuItem key={notification.id} className="text-text-muted cursor-pointer">
+              <div key={notification.id} className="text-text-muted">
                 <NotificationItemList
                   notification={notification}
                   onRead={(id) => markAsRead({ notificationId: id })}
                 />
-              </DropdownMenuItem>
+              </div>
             ))
           )}
         </DropdownMenuGroup>

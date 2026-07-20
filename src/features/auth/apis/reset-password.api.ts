@@ -1,7 +1,7 @@
 'use server';
 
 export async function resetPassword(data: ResetPasswordRequest) {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/reset-password`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/reset-password`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

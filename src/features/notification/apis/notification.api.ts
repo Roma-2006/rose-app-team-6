@@ -1,3 +1,5 @@
+'use server';
+
 import { ENDPOINTS } from './../constants/endpoints';
 import { HEADERS } from '@/shared/constants/api.constants';
 import type {
@@ -21,7 +23,7 @@ export async function getNotifications(
   if (isRead !== undefined) query.set('isRead', String(isRead));
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}${ENDPOINTS.NOTIFICATIONS}?${query.toString()}`,
+    `${process.env.NEXT_PUBLIC_API_URL}${ENDPOINTS.NOTIFICATIONS}?${query.toString()}`,
     {
       method: 'GET',
       headers: {

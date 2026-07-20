@@ -4,6 +4,7 @@ export interface PushSubscriptionRequestBody {
     p256dh: string;
     auth: string;
   };
+  // expirationTime : number | null;
 }
 
 export interface UnsubscribeRequestBody {

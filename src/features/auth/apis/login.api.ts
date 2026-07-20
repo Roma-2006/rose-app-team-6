@@ -8,7 +8,7 @@ export const login = async (loginFields: TLoginData): Promise<Response<LoginResp
   // Object Destructuring
   const { rememberMe, ...body } = loginFields;
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}${API_ENDPOINTS.login}`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${API_ENDPOINTS.login}`, {
     method: 'POST',
     headers: {
       ...HEADERS.jsonBody,

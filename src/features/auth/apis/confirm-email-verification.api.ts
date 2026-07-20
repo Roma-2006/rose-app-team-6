@@ -4,7 +4,7 @@ import { ConfirmEmailVerificationRequest } from '../types/register';
 
 export async function confirmEmailVerification(data: ConfirmEmailVerificationRequest) {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/confirm-email-verification`,
+    `${process.env.NEXT_PUBLIC_API_URL}/auth/confirm-email-verification`,
     {
       method: 'POST',
       headers: {

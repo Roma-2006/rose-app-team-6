@@ -31,7 +31,7 @@ Create a `.env.local` file in the project root and add the required environment 
 Example:
 
 ```env
-NEXT_PUBLIC_API_Base_URL=http://localhost:3000
+NEXT_PUBLIC_API_URL=http://localhost:3000
 ```
 
 ## Running the Project

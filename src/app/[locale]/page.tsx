@@ -1,13 +1,11 @@
 import LanguageSwitcher from '@/shared/components/language-switcher';
 import { ThemeToggle } from '@/shared/components/theme';
-import { getTranslations } from 'next-intl/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/auth';
 import SignOutButton from '@/features/auth/components/login/signout-btn';
 import NotificationsList from '@/features/notification/components/notifications-list';
 import { getNotifications } from '@/features/notification/apis/notification.api';
 import type { Notification } from '@/features/notification/types/notification';
-import { useNotifications } from '@/features/notification/hooks/use-notification';
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -15,7 +13,6 @@ interface PageProps {
 
 export default async function HomePage({ params }: PageProps) {
   const { locale } = await params;
-  const t = await getTranslations('home');
   const session = await getServerSession(authOptions);
 
   let notifications: Notification[] = [];
