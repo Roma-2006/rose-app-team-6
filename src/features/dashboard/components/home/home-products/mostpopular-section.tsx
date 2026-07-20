@@ -6,9 +6,8 @@ import { getProducts } from '../../../api/product.api';
 import { Link } from '@/i18n/navigation';
 
 import { ArrowRight } from 'lucide-react';
-import { ProductCardSkeleton } from './productcard-skelton';
-import { ProductCard } from './productcard';
-
+import { ProductCardSkeleton } from './product-card-skelton';
+import { ProductCard } from './Product-card';
 const ALL_TAB_ID = 'home.all';
 
 export const MostPopularSection = () => {

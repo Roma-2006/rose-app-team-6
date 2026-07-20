@@ -1,4 +1,4 @@
-import { ProductCardSkeleton } from './productcard-skelton';
+import { ProductCardSkeleton } from './product-card-skelton';
 
 export default function BestSellingSectionLoading() {
   return (

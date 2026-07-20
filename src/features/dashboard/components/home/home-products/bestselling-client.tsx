@@ -7,8 +7,8 @@ import { useRef } from 'react';
 import type { Product } from '../../../types/product.type';
 
 import { Button } from '@/shared/components/ui/button';
-import { ProductCardSkeleton } from './productcard-skelton';
-import { ProductCard } from './productcard';
+import { ProductCardSkeleton } from './product-card-skelton';
+import { ProductCard } from './Product-card';
 
 interface BestSellingSectionClientProps {
   products?: Product[];
