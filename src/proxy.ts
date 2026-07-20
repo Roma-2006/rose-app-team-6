@@ -7,8 +7,7 @@ import { verifyRegistrationToken, RegistrationStep } from '@/features/auth/lib/r
 const intlMiddleware = createMiddleware(routing);
 
 const AUTH_ROUTES = ['/login', '/register', '/forgot-password'];
-const PROTECTED_ROUTES = ['/checkout'];
-const REGISTER_STEP_ORDER: RegistrationStep[] = ['otp', 'user-info', 'create-password'];
+const PROTECTED_ROUTES: string[] = [];
 
 type Locale = (typeof routing.locales)[number];
 

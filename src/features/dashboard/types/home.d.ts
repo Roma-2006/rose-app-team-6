@@ -6,6 +6,7 @@ export interface HeroCard {
 }
 
 export interface Feature {
+  id: string;
   icon: LucideIcon;
   title: string;
   description: string;
