@@ -1,6 +1,6 @@
 import HomeContent from '@/features/dashboard/components/home/home-content';
-import { BestSellingSection } from '@/features/dashboard/components/home/home-products/bestsellingsection';
-import { MostPopularSection } from '@/features/dashboard/components/home/home-products/mostpopularsection';
+import { BestSellingSection } from '@/features/dashboard/components/home/home-products/bestselling-section';
+import { MostPopularSection } from '@/features/dashboard/components/home/home-products/mostpopular-section';
 
 export default async function HomePage() {
   return (
