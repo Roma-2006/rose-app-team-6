@@ -8,7 +8,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 import { useProductActions } from '../../../hooks/use-product-actions';
-import { LoginPromptModal } from '../home-products/loginpromptmodal';
+import { LoginPromptModal } from './LoginPromptModal';
 
 interface ProductCardProps {
   product: Product & {
