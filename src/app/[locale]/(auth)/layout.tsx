@@ -9,7 +9,7 @@ export default function AuthLayout({ children }: Readonly<{ children: React.Reac
       <section className="flex items-center justify-center bg-background  px-10">
         <div className="w-full max-w-md rounded-xl bg-card p-8">
           {/* Language Switcher */}
-          <div className="flex justify-end">
+          <div className="flex justify-end ">
             <LanguageSwitcherAuth />
           </div>
           {/* Top Separator */}
