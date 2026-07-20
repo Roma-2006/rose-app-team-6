@@ -6,6 +6,7 @@ import { unsubscribeFromPush } from '../apis/unsubscription.api';
 // import { getVapidPublicKey } from '../apis/vapid-public-key.api';
 import { getNotifications } from '../apis/notification.api';
 import { markNotificationAsRead, markAllNotificationsAsRead } from '../apis/read-notification.api';
+import { deleteAllNotifications, deleteNotification } from '../apis/delete-notification.api';
 // import urlBase64ToUint8Array from './../lib/url-base64-to-unit8array';
 // import type { PushSubscriptionRequestBody } from '../types/push-subscription';
 import type { ReadNotificationRequestBody } from '../types/notification';
@@ -74,7 +75,7 @@ export function usePushSubscription() {
 
     if (!subscription) return;
 
-    console.log('endpoint : ', subscription.endpoint);
+    // console.log('endpoint : ', subscription.endpoint);
     await unsubscribeFromPush({ endpoint: subscription.endpoint });
     await subscription.unsubscribe();
   }
@@ -121,6 +122,35 @@ export function useMarkAllNotificationsAsRead() {
   });
 }
 
+// ---------- Delete / Delete all ----------
+
+export function useDeleteNotification() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: ({
+      notificationId,
+      body,
+    }: {
+      notificationId: string;
+      body?: ReadNotificationRequestBody;
+    }) => deleteNotification(notificationId, body),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: notificationsKeys.lists() });
+    },
+  });
+}
+
+export function useDeleteAllNotifications() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: deleteAllNotifications,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: notificationsKeys.lists() });
+    },
+  });
+}
 /**
  * Single entry point for all notification operations.
  * Add future mutations/queries (e.g. useNotificationsList, useDeleteNotification)
@@ -131,6 +161,8 @@ export function useNotifications() {
   const markAllAsRead = useMarkAllNotificationsAsRead();
   const { subscribe, unsubscribe, isSubscribed } = usePushSubscription();
   // const { data: vapidKey, isLoading: isLoadingVapidKey } = useVapidPublicKey();
+  const deleteNotification = useDeleteNotification();
+  const deleteAllNotifications = useDeleteAllNotifications();
 
   return {
     markAsRead: markAsRead.mutate,
@@ -140,6 +172,14 @@ export function useNotifications() {
     markAllAsRead: markAllAsRead.mutate,
     markAllAsReadAsync: markAllAsRead.mutateAsync,
     isMarkingAllAsRead: markAllAsRead.isPending,
+
+    deleteNotification: deleteNotification.mutate,
+    deleteNotificationsAsync: deleteNotification.mutateAsync,
+    isDeleting: deleteNotification.isPending,
+
+    deleteAllNotification: deleteAllNotifications.mutate,
+    deleteAllNotificationsAsync: deleteAllNotifications.mutateAsync,
+    isDeletingAll: deleteAllNotifications.isPending,
 
     subscribe,
     unsubscribe,

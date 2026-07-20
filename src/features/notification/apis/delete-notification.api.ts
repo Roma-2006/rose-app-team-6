@@ -10,14 +10,14 @@ import { authOptions } from '@/auth';
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 /**
- * PATCH /api/notifications/{id}
- * Update a single notification (e.g. mark as read)
+ * DELETE /api/notifications/{id}
+ * Delete a single notification
  */
-export async function markNotificationAsRead(
+export async function deleteNotification(
   notificationId: string,
   body: ReadNotificationRequestBody = { isRead: true }
 ): Promise<Response<string>> {
-  const url = `${BASE_URL}${ENDPOINTS.READ_NOTIFICATION.replace(
+  const url = `${BASE_URL}${ENDPOINTS.DELETE_NOTIFICATION.replace(
     ':notificationId',
     notificationId
   )}`;
@@ -28,7 +28,7 @@ export async function markNotificationAsRead(
   }
 
   const res = await fetch(url, {
-    method: 'PATCH',
+    method: 'DELETE',
     headers: {
       ...HEADERS.jsonBody,
       Authorization: `Bearer ${session.token}`,
@@ -40,11 +40,11 @@ export async function markNotificationAsRead(
 }
 
 /**
- * PATCH /api/notifications/mark-all-read
- * Mark all of the current user's notifications as read
+ * DELETE /api/notifications/clear-all
+ * Delete all notifications
  */
-export async function markAllNotificationsAsRead(): Promise<Response<string>> {
-  const url = `${BASE_URL}${ENDPOINTS.READ_ALL_NOTIFICATIONS}`;
+export async function deleteAllNotifications(): Promise<Response<string>> {
+  const url = `${BASE_URL}${ENDPOINTS.DELETE_ALL_NOTIFICATIONS}`;
   const session = await getServerSession(authOptions);
 
   if (!session) {
@@ -52,7 +52,7 @@ export async function markAllNotificationsAsRead(): Promise<Response<string>> {
   }
 
   const res = await fetch(url, {
-    method: 'PATCH',
+    method: 'DELETE',
     headers: {
       ...HEADERS.jsonBody,
       Authorization: `Bearer ${session.token}`,

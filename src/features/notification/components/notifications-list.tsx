@@ -128,7 +128,7 @@ const NotificationsList = ({ initialNotifications = [] }: NotificationsListProps
               <div key={notification.id} className="text-text-muted">
                 <NotificationItemList
                   notification={notification}
-                  onRead={(id) => markAsRead({ notificationId: id })}
+                  // onRead={(id) => markAsRead({ notificationId: id })}
                 />
               </div>
             ))
