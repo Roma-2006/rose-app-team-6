@@ -11,7 +11,7 @@ export default function ServiceFeatures() {
 
           return (
             <div
-              key={t(feature.title)}
+              key={feature.id}
               className="flex items-center justify-center gap-4 w-full max-w-xs"
             >
               {/* ICON*/}
@@ -19,9 +19,11 @@ export default function ServiceFeatures() {
                 <Icon className="h-10 w-10 text-text-inverse" />
               </div>
 
-              <div className="text-left">
+              <div className="text-start">
                 <h4 className="font-semibold text-text-primary">{t(feature.title)}</h4>
-                <p className="text-sm text-muted">{t(feature.description)}</p>
+                <p className="text-sm text-text-default leading-relaxed">
+                  {t(feature.description)}
+                </p>
               </div>
             </div>
           );

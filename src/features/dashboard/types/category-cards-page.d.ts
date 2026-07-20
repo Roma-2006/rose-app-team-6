@@ -1,4 +1,4 @@
-interface CardsPageProps {
+interface CategoryCardProps {
   image: string;
   badge: string;
   title: string;

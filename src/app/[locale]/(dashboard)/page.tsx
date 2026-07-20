@@ -1,4 +1,3 @@
-import { getTranslations } from 'next-intl/server';
 import HomeContent from '@/features/dashboard/components/home/home-content';
 import { MostPopularSection } from '@/features/dashboard/components/home/home-products/mostPopularSection';
 import AboutSection from '@/features/dashboard/components/home/home-about/about-section';
@@ -13,6 +12,7 @@ export default async function HomePage({ params }: PageProps) {
   const { locale } = await params;
   const t = await getTranslations({ locale });
 
+export default async function HomePage() {
   return (
     <>
       <HomeContent />
