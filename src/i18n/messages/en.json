@@ -197,6 +197,7 @@
 
 
   "home": {
+    "discover":"Discover",
   "hero-aside": {
     "badge": "Starting from 10.99 EGP",
     "title": "Special Gifts For The People You Love",
@@ -288,6 +289,8 @@
     "outOfStock": "OUT OF STOCK"
    },
 
+  
+
   "about":{
 
     "label" :"About" ,
@@ -296,10 +299,11 @@
       "part2" : "Finest",
       "part3" : "Gift Boxes for Your",
       "part4" : "Special",
-      "part5" : "Moments"
+      "part5" : "Moments",
+        "discover":"Discover"
 
-     },
-  "discover":"Discover"
+
+     }
  
   },
  

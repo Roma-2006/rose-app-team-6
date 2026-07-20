@@ -79,7 +79,7 @@ export default async function AboutSection() {
             }
           </p>
         </div>
-        <Button variant="primary" title={tAbout('discover')} buttonVariant="text" />
+        <Button variant="primary" title="home.discover" buttonVariant="text" />
         <ul className="flex flex-row flex-wrap items-center w-140 h-21 gap-4 text-left">
           <li className=" flex gap-2  w-60 ">
             <Check className="text-text-primary w-5 h-5" />
