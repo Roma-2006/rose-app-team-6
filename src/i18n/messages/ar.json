@@ -38,8 +38,8 @@
     "about": "عن الموقع"
   },
   "auth": {
-       "switchLang": "English",
-   "langLabel": "Switch to Arabic",
+  "switchLang": "English",
+    "langLabel": "Switch to Arabic",
     "welcome-auth": {
       "login-title": "مرحبًا بعودتك!",
       "register-title": "كن جزءًا من عائلتنا!"
@@ -265,14 +265,8 @@
     "all": "الكل",
     "viewMore": "عرض المزيد",
     "error": "حدث خطأ ما أثناء تحميل المنتجات.",
-    "noProductsFound": "لا توجد منتجات في هذا القسم حالياً.",
-        "occasions": {
-        "Wedding": "زفاف",
-        "Anniversary": "ذكرى زواج",
-        "Birthday": "عيد ميلاد",
-        "Engagement": "خطوبة",
-        "New Year" :"السنة الجديدة"
-      }
+    "noProductsFound": "لا توجد منتجات في هذا القسم حالياً."
+     
   },
     "product-card":
    {

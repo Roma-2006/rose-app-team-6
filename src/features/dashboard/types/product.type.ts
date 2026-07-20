@@ -12,6 +12,8 @@ export type Product = {
   title: string;
   rating: number;
   price: string;
+  createdAt: string;
+  stock?: number;
   discountType: 'PERCENT' | 'FIXED' | 'NONE';
   discountValue: string;
   cover: string;
