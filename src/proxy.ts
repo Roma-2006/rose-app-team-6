@@ -36,7 +36,7 @@ export default async function middleware(req: NextRequest) {
   const locale = getLocale(pathname);
   const bare = stripLocale(pathname);
 
-  const bareSegments = bare.split('/').filter(Boolean);
+  // const bareSegments = bare.split('/').filter(Boolean);
   // const firstSegment = bareSegments[0];
 
   const isAuthRoute = AUTH_ROUTES.some((r) => bare === r || bare.startsWith(r + '/'));
