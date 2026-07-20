@@ -18,8 +18,6 @@ export default async function HomePage({ params }: PageProps) {
         <LanguageSwitcher />
         <ThemeToggle />
       </div>
-      <AboutSection />
-      <GallerySection />
     </section>
   );
 }
