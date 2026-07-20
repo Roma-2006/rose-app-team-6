@@ -9,7 +9,6 @@ import { useState } from 'react';
 
 import { useProductActions } from '../../../hooks/use-product-actions';
 import { LoginPromptModal } from './LoginPromptModal';
-
 interface ProductCardProps {
   product: Product & {
     createdAt: string;
