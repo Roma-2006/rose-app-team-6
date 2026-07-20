@@ -5,9 +5,10 @@ import { useLocale, useTranslations } from 'next-intl';
 import { useRef } from 'react';
 
 import type { Product } from '../../../types/product.type';
-import { ProductCard } from './ProductCard';
-import { ProductCardSkeleton } from './ProductCardSkeleton';
+
 import { Button } from '@/shared/components/ui/button';
+import { ProductCardSkeleton } from './productcard-skelton';
+import { ProductCard } from './productcard';
 
 interface BestSellingSectionClientProps {
   products?: Product[];

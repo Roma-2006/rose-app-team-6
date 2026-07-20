@@ -1,6 +1,5 @@
 import { getProducts } from '../../../api/product.api';
-
-import { BestSellingSectionClient } from './BestSellingSection.client';
+import { BestSellingSectionClient } from './bestselling.client';
 
 const BEST_SELLING_LIMIT = 6;
 
