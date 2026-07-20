@@ -1,3 +1,4 @@
+import React from 'react';
 import { LanguageSwitcherAuth } from '@/features/auth/components/language-switcher-auth';
 import Image from 'next/image';
 import ThemeSeparator from '@/features/auth/components/shared/theme-separator';
