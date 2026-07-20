@@ -39,8 +39,8 @@
     "about": "About"
   },
   "auth": {
-    "switchLang": "العربيه",
-    "langLabel": "Switch to Arabic",
+    "switchLang": "العربية",
+    "langLabel": "التحويل إلى الإنجليزية",
     "welcome-auth": {
       "login-title": "Welcome back!",
       "register-title": "Become part of our family!"
