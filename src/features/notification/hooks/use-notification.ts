@@ -11,6 +11,7 @@ import { deleteAllNotifications, deleteNotification } from '../apis/delete-notif
 // import type { PushSubscriptionRequestBody } from '../types/push-subscription';
 import type { ReadNotificationRequestBody } from '../types/notification';
 import type { GetNotificationsParams } from '../types/notification';
+import { useSession } from 'next-auth/react';
 
 // Central query key
 export const notificationsKeys = {
@@ -22,10 +23,10 @@ export const notificationsKeys = {
 
 // ---------- Notifications list ----------
 
-export function useNotificationsList(params: GetNotificationsParams = {}) {
+export function useNotificationsList(params: GetNotificationsParams = {}, token: string) {
   return useQuery({
     queryKey: notificationsKeys.list(params),
-    queryFn: () => getNotifications(params),
+    queryFn: () => getNotifications(params, token),
   });
 }
 
@@ -160,9 +161,19 @@ export function useNotifications() {
   const markAsRead = useMarkNotificationAsRead();
   const markAllAsRead = useMarkAllNotificationsAsRead();
   const { subscribe, unsubscribe, isSubscribed } = usePushSubscription();
-  // const { data: vapidKey, isLoading: isLoadingVapidKey } = useVapidPublicKey();
   const deleteNotification = useDeleteNotification();
   const deleteAllNotifications = useDeleteAllNotifications();
+
+  const { data: session } = useSession();
+  const {
+    data: notifications,
+    isLoading: isNotificationsLoading,
+    isFetching: isNotificationsFetching,
+    isError: isNotificationsError,
+    error: notificationsError,
+  } = useNotificationsList({ page: 1, limit: 10 }, session?.token || '');
+
+  const unreadCount = notifications?.filter((n) => !n.isRead).length ?? 0;
 
   return {
     markAsRead: markAsRead.mutate,
@@ -184,7 +195,12 @@ export function useNotifications() {
     subscribe,
     unsubscribe,
     isSubscribed,
-    // vapidKey,
-    // isLoadingVapidKey,
+    unreadCount,
+    notifications,
+
+    isLoading: isNotificationsLoading,
+    isFetching: isNotificationsFetching,
+    isError: isNotificationsError,
+    error: notificationsError,
   };
 }

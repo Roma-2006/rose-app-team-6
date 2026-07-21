@@ -1,37 +1,25 @@
 import LanguageSwitcher from '@/shared/components/language-switcher';
 import { ThemeToggle } from '@/shared/components/theme';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/auth';
-// import SignOutButton from '@/features/auth/components/login/signout-btn';
+
+import UserDropdownServer from '@/shared/components/header/user-dropdown-server';
+import { Suspense } from 'react';
+import NotificationListSkeleton from '@/features/notification/components/notification-skeleton';
+import UserDropdownSkeleton from '@/shared/components/header/user-dropdown-skeleton';
 import NotificationsList from '@/features/notification/components/notifications-list';
-import { getNotifications } from '@/features/notification/apis/notification.api';
-import type { Notification } from '@/features/notification/types/notification';
-import UserDropdown from '@/shared/components/header/user-dropdown';
 
-interface PageProps {
-  params: Promise<{ locale: string }>;
-}
-
-export default async function HomePage({ params }: PageProps) {
-  // const { locale } = await params;
-  const session = await getServerSession(authOptions);
-
-  let notifications: Notification[] = [];
-  try {
-    notifications = await getNotifications({ page: 1, limit: 10 }, session?.token);
-  } catch (error) {
-    console.error('Failed to fetch notifications', error);
-  }
-
+export default async function HomePage() {
   return (
     <main className="bg-plain min-h-screen flex flex-col items-center justify-center p-6 text-center">
       <div className="mb-6 w-full flex justify-center gap-4">
         <LanguageSwitcher />
         <ThemeToggle />
-        <NotificationsList initialNotifications={notifications} />
-        {session && <UserDropdown user={session?.user} />}
+
+        <NotificationsList />
+
+        <Suspense fallback={<UserDropdownSkeleton />}>
+          <UserDropdownServer />
+        </Suspense>
       </div>
-      {/* <SignOutButton locale={locale} /> */}
     </main>
   );
 }

@@ -17,10 +17,11 @@ import { useNotifications } from '../hooks/use-notification';
 import type { NotificationsListProps } from '../types/notification';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/shared/lib/utils/tailwind-cn';
+import NotificationListSkeleton from './notification-skeleton';
 
-const NotificationsList = ({ initialNotifications = [] }: NotificationsListProps) => {
+const NotificationsList = () => {
   const {
-    markAsRead,
+    // markAsRead,
     markAllAsRead,
     isMarkingAllAsRead,
     subscribe,
@@ -28,9 +29,11 @@ const NotificationsList = ({ initialNotifications = [] }: NotificationsListProps
     // vapidKey,
     // isLoadingVapidKey,
     isSubscribed,
+    notifications = [],
+    isLoading,
   } = useNotifications();
 
-  const notifications = initialNotifications;
+  // const notifications = initialNotifications;
   const t = useTranslations('header.notifications');
   const [isSubscription, setIsSubscription] = useState(false);
 
@@ -60,6 +63,10 @@ const NotificationsList = ({ initialNotifications = [] }: NotificationsListProps
       console.error(error);
     }
   };
+
+  if (isLoading) {
+    return <NotificationListSkeleton />;
+  }
 
   return (
     <DropdownMenu>
@@ -118,7 +125,7 @@ const NotificationsList = ({ initialNotifications = [] }: NotificationsListProps
           <DropdownMenuSeparator className="bg-bg-soft" />
           {notifications.length === 0 ? (
             <DropdownMenuItem className="flex flex-col items-center justify-center p-4">
-              <BellOff className="mx-auto mt-4 h-12.5 w-12.5 text-text-muted" />
+              <BellOff className="mx-auto mt-4 size-13 text-text-muted" />
               <p className="text-center text-sm text-text-muted mt-2 font-medium">
                 No notifications to display.
               </p>
