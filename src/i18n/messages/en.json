@@ -39,7 +39,7 @@
     "about": "About"
   },
   "auth": {
-      "switchLang": "العربية",
+    "switchLang": "العربية",
     "langLabel": "التحويل إلى الإنجليزية",
     "welcome-auth": {
       "login-title": "Welcome back!",

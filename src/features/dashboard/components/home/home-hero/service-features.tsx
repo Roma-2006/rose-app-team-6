@@ -20,10 +20,8 @@ export default function ServiceFeatures() {
               </div>
 
               <div className="text-start">
-                <h4 className="font-semibold text-text-primary">{t(feature.title)}</h4>
-                <p className="text-sm text-text-default leading-relaxed">
-                  {t(feature.description)}
-                </p>
+                <h4 className="font-semibold text-text-primary ">{t(feature.title)}</h4>
+                <p className="text-sm text-zinc-400 leading-relaxed ">{t(feature.description)}</p>
               </div>
             </div>
           );
