@@ -1,4 +1,4 @@
-import type { Occasion } from '../../features/dashboard/types/occasion.type';
+import type { Occasion } from '@/shared/types/occasion.type';
 
 export type ProductOccasion = {
   id: string;

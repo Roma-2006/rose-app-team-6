@@ -38,8 +38,8 @@
     "about": "عن الموقع"
   },
   "auth": {
-  "switchLang": "English",
-    "langLabel": "Switch to Arabic",
+         "switchLang": "English",
+   "langLabel": "Switch to Arabic",
     "welcome-auth": {
       "login-title": "مرحبًا بعودتك!",
       "register-title": "كن جزءًا من عائلتنا!"
