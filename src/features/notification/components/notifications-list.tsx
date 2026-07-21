@@ -75,7 +75,7 @@ const NotificationsList = ({ initialNotifications = [] }: NotificationsListProps
         // onClick={handleEnableNotifications}
       />
       <DropdownMenuContent className="w-84 h-78 text-start p-0 bg-bg-plain" align="start">
-        <DropdownMenuGroup>
+        <DropdownMenuGroup className="border border-none">
           <DropdownMenuLabel className="w-full h-13 bg-bg-primary-saturated text-text-inverse text-xl font-bold p-4 flex justify-between">
             {t('title', { count: notifications.length })}
             {isSubscription ? (

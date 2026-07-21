@@ -193,6 +193,15 @@
         "markAsRead": "Mark as read",
         "delete": "Delete"
       }
+    },
+     "userMenu" : {
+      "title": "Hello",
+      "account": "Account",
+      "addresses": "Adresses",
+      "orders": "Orders",
+      "dashboard": "Dashboard",
+      "logout": "Logout"
+    
     }
   }
 }

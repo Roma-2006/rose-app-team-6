@@ -25,7 +25,7 @@ export default function useLogin() {
         rememberMe: data.rememberMe,
         redirect: false,
       });
-      console.log(data);
+      // console.log(data);
       if (result?.error) {
         // Handle specific error messages and translate them
         if (result.error === 'Route not found' || result.error === 'CredentialsSignin') {

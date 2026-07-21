@@ -192,6 +192,14 @@
         "markAsRead": "تعيين كمقروء",
         "delete": "حذف"
       }
+    },
+    "userMenu" : {
+      "title": "مرحبا ",
+      "account": "حسابي",
+      "addresses": "عناويني",
+      "orders": "طلباتي",
+      "dashboard": "لوحة التحكم",
+      "logout": "تسجيل الخروج"
     }
   }
 }

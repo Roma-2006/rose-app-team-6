@@ -6,6 +6,7 @@ import SignOutButton from '@/features/auth/components/login/signout-btn';
 import NotificationsList from '@/features/notification/components/notifications-list';
 import { getNotifications } from '@/features/notification/apis/notification.api';
 import type { Notification } from '@/features/notification/types/notification';
+import UserDropdown from '@/shared/components/header/user-dropdown';
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -28,8 +29,9 @@ export default async function HomePage({ params }: PageProps) {
         <LanguageSwitcher />
         <ThemeToggle />
         <NotificationsList initialNotifications={notifications} />
+        {session && <UserDropdown user={session?.user} />}
       </div>
-      <SignOutButton locale={locale} />
+      {/* <SignOutButton locale={locale} /> */}
     </main>
   );
 }

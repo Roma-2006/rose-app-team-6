@@ -98,7 +98,7 @@ function Button(props: ButtonPrimitive.Props & VariantProps<typeof buttonVariant
       ) : (
         <>
           {isText && props.leftIcon}
-          {isIcon ? props.iconOnly : t(props.title)}
+          {isIcon ? props.iconOnly : (props.children ?? (props.title && t(props.title)))}
           {isText && props.rightIcon}
         </>
       )}
