@@ -1,6 +1,7 @@
 import Logout from '@/features/dashboard/components/logout-buttom';
 import { Link } from '@/i18n/navigation';
 import { ClipboardList, Gift, Headset, House, Info, PartyPopper } from 'lucide-react';
+import LinkComponent from './link-component';
 
 export default function SecondaryNavigation() {
   return (

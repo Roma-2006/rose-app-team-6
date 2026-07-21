@@ -1,10 +1,10 @@
-import SecondaryNavigation from '@/shared/components/custom-ui/secondary-navigation';
+import Header from '@/shared/components/custom-ui/header';
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
     <main>
       {/* header */}
-      <SecondaryNavigation />
+      <Header />
       <section>{children}</section>
       {/* //footer */}
     </main>
