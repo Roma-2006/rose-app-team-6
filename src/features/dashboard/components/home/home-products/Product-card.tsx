@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { ShoppingCart, Star, HeartPlus } from 'lucide-react';
-import { Product } from '../../../types/product.type';
+import { Product } from '../../../../../shared/types/product.type';
 import { calculateDiscountedPrice } from '../../../utils/calculateDiscount';
 import { useLocale, useTranslations } from 'next-intl';
 import { useState } from 'react';

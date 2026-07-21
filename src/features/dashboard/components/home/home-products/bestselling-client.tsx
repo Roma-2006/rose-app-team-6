@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useRef } from 'react';
 
-import type { Product } from '../../../types/product.type';
+import type { Product } from '../../../../../shared/types/product.type';
 
 import { Button } from '@/shared/components/ui/button';
 import { ProductCardSkeleton } from './product-card-skelton';
