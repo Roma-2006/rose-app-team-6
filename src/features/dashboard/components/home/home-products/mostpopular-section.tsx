@@ -4,10 +4,10 @@ import { useLocale, useTranslations } from 'next-intl';
 import { useQuery } from '@tanstack/react-query';
 import { getProducts } from '../../../api/product.api';
 import { Link } from '@/i18n/navigation';
-import { ProductCard } from './ProductCard';
-import { ProductCardSkeleton } from './ProductCardSkeleton';
-import { ArrowRight } from 'lucide-react';
 
+import { ArrowRight } from 'lucide-react';
+import { ProductCardSkeleton } from './product-card-skelton';
+import { ProductCard } from './Product-card';
 const ALL_TAB_ID = 'home.all';
 
 export const MostPopularSection = () => {

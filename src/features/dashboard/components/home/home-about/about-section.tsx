@@ -3,8 +3,11 @@ import Image from 'next/image';
 import SecHeader from '../section-header';
 import { Button } from '@/shared/components/ui/button';
 import { Check } from 'lucide-react';
+import { getTranslations } from 'next-intl/server';
 
-export default function AboutSection() {
+export default async function AboutSection() {
+  const tAbout = await getTranslations('home.about');
+
   return (
     <section className="max-w-7xl   h-97.5 w-full mx-auto flex items-center justify-center gap-19 px-4 mb-33.5">
       {/* About Images */}
@@ -60,12 +63,15 @@ export default function AboutSection() {
 
       {/* About Content  */}
       <div className="about-content flex flex-col  text-start items-start  gap-6 w-130">
-        <SecHeader text="About" />
+        <SecHeader text={tAbout('label')} />
 
         <div className="content-text items-start flex flex-col   gap-2">
           <h3 className="text-3xl font-bold text-text-primary">
-            Delivering the <span className="text-text-secondary">Finest</span> Gift Boxes for Your{' '}
-            <span className="text-text-secondary">Special</span> Moments
+            {tAbout('title.part1')}{' '}
+            <span className="text-text-secondary">{tAbout('title.part2')}</span>{' '}
+            {tAbout('title.part3')}{' '}
+            <span className="text-text-secondary">{tAbout('title.part4')}</span>{' '}
+            {tAbout('title.part5')}
           </h3>
           <p className="text-sm font-normal text-text-soft">
             {
@@ -73,7 +79,7 @@ export default function AboutSection() {
             }
           </p>
         </div>
-        <Button variant="primary" title="button.save" buttonVariant="text" />
+        <Button variant="primary" title="home.discover" buttonVariant="text" />
         <ul className="flex flex-row flex-wrap items-center w-140 h-21 gap-4 text-left">
           <li className=" flex gap-2  w-60 ">
             <Check className="text-text-primary w-5 h-5" />
