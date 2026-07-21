@@ -2,7 +2,7 @@ import LanguageSwitcher from '@/shared/components/language-switcher';
 import { ThemeToggle } from '@/shared/components/theme';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/auth';
-import SignOutButton from '@/features/auth/components/login/signout-btn';
+// import SignOutButton from '@/features/auth/components/login/signout-btn';
 import NotificationsList from '@/features/notification/components/notifications-list';
 import { getNotifications } from '@/features/notification/apis/notification.api';
 import type { Notification } from '@/features/notification/types/notification';
@@ -13,7 +13,7 @@ interface PageProps {
 }
 
 export default async function HomePage({ params }: PageProps) {
-  const { locale } = await params;
+  // const { locale } = await params;
   const session = await getServerSession(authOptions);
 
   let notifications: Notification[] = [];
