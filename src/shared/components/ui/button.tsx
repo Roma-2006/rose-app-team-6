@@ -83,7 +83,7 @@ function Button(props: ButtonPrimitive.Props & VariantProps<typeof buttonVariant
       className={cn(
         buttonVariants({
           variant: props.variant,
-          size: isIcon ? 'icon' : 'custom',
+          size: props.size ?? (isIcon ? 'icon' : 'custom'),
           className: props.className,
         })
       )}
@@ -99,7 +99,8 @@ function Button(props: ButtonPrimitive.Props & VariantProps<typeof buttonVariant
       ) : (
         <>
           {isText && props.leftIcon}
-          {isIcon ? props.iconOnly : props.title}
+
+          {isIcon ? props.iconOnly : (props.children ?? (props.title && t(props.title)))}
           {isText && props.rightIcon}
         </>
       )}

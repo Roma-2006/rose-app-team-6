@@ -19,6 +19,7 @@ export default function CreatePassword({
   setStep,
 }: TCreatePasswordProps) {
   const t = useTranslations('auth.auth-register.create-password');
+
   //mutation
   const { mutate: register, error, isPending } = useRegister({ setErrors, setUserInfo, setStep });
   //errors
@@ -40,7 +41,14 @@ export default function CreatePassword({
   });
   //function
   const onSubmit: SubmitHandler<TCreatePasswordFields> = (values) => {
-    register({ ...userInfo, email: userInfo.email?.toLowerCase(), ...values });
+
+    const { confirmPassword, ...rest } = values;
+    register({
+      ...userInfo,
+      email: userInfo.email?.toLowerCase(),
+      ...rest,
+      confirmPassword: confirmPassword,
+    });
   };
   return (
     <section className="flex flex-col w-full ">

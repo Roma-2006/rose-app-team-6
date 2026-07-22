@@ -29,6 +29,7 @@ export const RegisterEmailForm = ({ setEmail, setStep, verifyError }: TRegisterE
     resolver: zodResolver(RegisterEmailSchema),
     mode: 'onChange',
     reValidateMode: 'onChange',
+
     defaultValues: {
       email: '',
     },

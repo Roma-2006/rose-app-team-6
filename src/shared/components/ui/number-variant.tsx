@@ -104,7 +104,7 @@ const NumberVariant = React.forwardRef<HTMLInputElement, NumberVariantProps>(
     return (
       <div
         className={cn(
-          'relative inline-flex items-center radius-lg border py-1 w-full h-11.5 transition-colors bg-bg-plain overflow-hidden',
+          'relative inline-flex items-center rounded-lg border py-1 w-full h-11.5 transition-colors bg-bg-plain overflow-hidden',
           isRtl ? 'ps-6 pe-3' : 'ps-3 pe-6',
 
           isFocused

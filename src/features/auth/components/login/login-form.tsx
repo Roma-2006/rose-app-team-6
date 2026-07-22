@@ -94,10 +94,11 @@ export default function LoginForm() {
             control={form.control}
             render={({ field, fieldState }) => (
               <BaseCheckbox
-                value={field.value}
+                // value={field.value}
                 onChange={field.onChange}
                 error={fieldState.error?.message}
                 list={[{ id: 'remember-me', label: tLogin('rememberMe') }]}
+
               />
             )}
           />

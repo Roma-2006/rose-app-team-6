@@ -11,6 +11,7 @@ export default function useLogin() {
   const [error, setError] = useState<string | null>(null);
   const { data: session, status } = useSession();
   const router = useRouter();
+
   const t = useTranslations();
   // handleLogin
   const handleLogin = async (data: TLoginData) => {
@@ -24,7 +25,7 @@ export default function useLogin() {
         rememberMe: data.rememberMe,
         redirect: false,
       });
-      console.log(data);
+
       if (result?.error) {
         // Handle specific error messages and translate them
         if (result.error === 'Route not found' || result.error === 'CredentialsSignin') {

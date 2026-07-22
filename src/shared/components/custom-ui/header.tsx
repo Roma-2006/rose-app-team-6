@@ -7,6 +7,8 @@ import Image from 'next/image';
 import SecondaryNavigation from './secondary-navigation';
 import { useSession } from 'next-auth/react';
 import HeaderSearchInput from './headear-search-input';
+import UserDropdown from '../header/user-dropdown';
+import NotificationsList from '@/features/notification/components/notifications-list';
 
 export default function Header() {
   const t = useTranslations();
@@ -34,7 +36,7 @@ export default function Header() {
               <User size={20} /> {t('header.login')}
             </Link>
           ) : (
-            ''
+            <UserDropdown user={session.data.user} />
           )}
 
           <span className=" flex items-center gap-2.5 px-4 border-r border-l  border-border-muted">
@@ -52,7 +54,13 @@ export default function Header() {
             ) : (
               <ShoppingCart size={24} />
             )}
-            <Bell size={24} />
+            {!isAuthenticated ? (
+              <Link href="/login">
+                <Bell size={24} />
+              </Link>
+            ) : (
+              <NotificationsList/>
+            )}
           </span>
           <span className={` flex ltr:pl-4 rtl:pr-4 `}>
             <LanguageSwitcherAuth />

@@ -1,0 +1,240 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuLabel,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/shared/components/ui/dropdown-menu';
+import NotificationItemList from './notification-item-list';
+import { Button } from '@/shared/components/ui/button';
+import { Bell, CheckCheck, BellOff, BrushCleaning, BellRing } from 'lucide-react';
+import { useNotifications } from '../hooks/use-notification';
+import type { NotificationsListProps } from '../types/notification';
+import { useTranslations } from 'next-intl';
+import { cn } from '@/shared/lib/utils/tailwind-cn';
+import NotificationListSkeleton from './notification-skeleton';
+
+const MAX_DISPLAYED_COUNT = 99;
+
+const NotificationsList = () => {
+  const {
+    // markAsRead,
+    markAllAsRead,
+    isMarkingAllAsRead,
+    subscribe,
+    unsubscribe,
+    // vapidKey,
+    // isLoadingVapidKey,
+    isSubscribed,
+    notifications = [],
+    isLoading,
+    unreadCount,
+  } = useNotifications();
+
+  // const notifications = initialNotifications;
+  const t = useTranslations('header.notifications');
+  const [isSubscription, setIsSubscription] = useState(false);
+  const unReadedCount = unreadCount > MAX_DISPLAYED_COUNT ? MAX_DISPLAYED_COUNT : unreadCount;
+
+  useEffect(() => {
+    const checkSubscription = async () => {
+      const subscribed = await isSubscribed();
+      setIsSubscription(subscribed);
+    };
+
+    checkSubscription();
+  }, [isSubscribed]);
+
+  const handleEnableNotifications = async () => {
+    try {
+      await subscribe();
+      setIsSubscription(true);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleDisableNotifications = async () => {
+    try {
+      await unsubscribe();
+      setIsSubscription(false);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  if (isLoading) {
+    return (
+      <DropdownMenu>
+        <div className="relative inline-flex">
+          <DropdownMenuTrigger
+            render={
+              <Button
+                variant="ghost"
+                buttonVariant="icon"
+                iconOnly={<Bell className="size-6 text-text-plain" />}
+                size="icon-lg"
+              />
+            }
+            // onClick={handleEnableNotifications}
+          />
+          {unreadCount > 0 && (
+            <span
+              className={cn(
+                'absolute -top-1 -inset-e-1 flex items-center justify-center',
+                'min-w-4 h-4 px-1 rounded-full',
+                'bg-bg-danger text-text-inverse text-[10px] font-medium leading-none',
+                'pointer-events-none'
+              )}
+            >
+              {unreadCount > MAX_DISPLAYED_COUNT ? `${unReadedCount}+` : unReadedCount}
+            </span>
+          )}
+        </div>
+        <DropdownMenuContent className="w-84 h-78 text-start p-0 bg-bg-plain" align="start">
+          <DropdownMenuGroup className="border border-none">
+            <DropdownMenuLabel className="w-full h-13 bg-bg-primary-saturated text-text-inverse text-xl font-bold p-4 flex justify-between">
+              {t('title', { count: notifications.length })}
+              {isSubscription ? (
+                <BellOff onClick={handleDisableNotifications} />
+              ) : (
+                <BellRing onClick={handleEnableNotifications} />
+              )}
+            </DropdownMenuLabel>
+            <div className="flex gap-2.5 p-2.5 w-full h-9.5 justify-between">
+              <Button
+                variant="ghost"
+                buttonVariant="text"
+                leftIcon={<CheckCheck className="size-3.5" />}
+                title="header.notifications.markAllAsRead"
+                className={cn(
+                  'w-fit justify-start gap-1.5 text-xs font-semibold bg-none h-3.5',
+                  notifications.length > 0 ? 'text-text-plain' : 'text-text-muted'
+                )}
+                onClick={() => {
+                  if (!isMarkingAllAsRead) markAllAsRead();
+                }}
+                // disabled={isMarkingAllAsRead || notifications.length === 0}
+              />
+
+              <Button
+                variant="ghost"
+                buttonVariant="text"
+                leftIcon={<BrushCleaning className="size-3.5" />}
+                title="header.notifications.clearAll"
+                className={cn(
+                  'w-fit justify-start gap-1.5 text-xs font-semibold bg-none h-3.5',
+                  notifications.length > 0 ? 'text-text-plain' : 'text-text-muted'
+                )}
+                onClick={() => {
+                  if (!isMarkingAllAsRead) markAllAsRead();
+                }}
+                // disabled={isMarkingAllAsRead || notifications.length === 0}
+              />
+            </div>
+            <DropdownMenuSeparator className="bg-bg-soft" />
+            <NotificationListSkeleton />
+          </DropdownMenuGroup>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    );
+  }
+
+  return (
+    <DropdownMenu>
+      <div className="relative inline-flex">
+        <DropdownMenuTrigger
+          render={
+            <Button
+              variant="ghost"
+              buttonVariant="icon"
+              iconOnly={<Bell className="size-6 text-text-plain" />}
+              size="icon-lg"
+            />
+          }
+          // onClick={handleEnableNotifications}
+        />
+        {unreadCount > 0 && (
+          <span
+            className={cn(
+              'absolute -top-1 -inset-e-1 flex items-center justify-center',
+              'min-w-4 h-4 px-1 rounded-full',
+              'bg-bg-danger text-text-inverse text-[10px] font-medium leading-none',
+              'pointer-events-none'
+            )}
+          >
+            {unreadCount > MAX_DISPLAYED_COUNT ? `${unReadedCount}+` : unReadedCount}
+          </span>
+        )}
+      </div>
+      <DropdownMenuContent className="w-84 h-78 text-start p-0 bg-bg-plain" align="start">
+        <DropdownMenuGroup className="border border-none">
+          <DropdownMenuLabel className="w-full h-13 bg-bg-primary-saturated text-text-inverse text-xl font-bold p-4 flex justify-between">
+            {t('title', { count: notifications.length })}
+            {isSubscription ? (
+              <BellOff onClick={handleDisableNotifications} />
+            ) : (
+              <BellRing onClick={handleEnableNotifications} />
+            )}
+          </DropdownMenuLabel>
+          <div className="flex gap-2.5 p-2.5 w-full h-9.5 justify-between">
+            <Button
+              variant="ghost"
+              buttonVariant="text"
+              leftIcon={<CheckCheck className="size-3.5" />}
+              title="header.notifications.markAllAsRead"
+              className={cn(
+                'w-fit justify-start gap-1.5 text-xs font-semibold bg-none h-3.5',
+                notifications.length > 0 ? 'text-text-plain' : 'text-text-muted'
+              )}
+              onClick={() => {
+                if (!isMarkingAllAsRead) markAllAsRead();
+              }}
+              // disabled={isMarkingAllAsRead || notifications.length === 0}
+            />
+
+            <Button
+              variant="ghost"
+              buttonVariant="text"
+              leftIcon={<BrushCleaning className="size-3.5" />}
+              title="header.notifications.clearAll"
+              className={cn(
+                'w-fit justify-start gap-1.5 text-xs font-semibold bg-none h-3.5',
+                notifications.length > 0 ? 'text-text-plain' : 'text-text-muted'
+              )}
+              onClick={() => {
+                if (!isMarkingAllAsRead) markAllAsRead();
+              }}
+              // disabled={isMarkingAllAsRead || notifications.length === 0}
+            />
+          </div>
+          <DropdownMenuSeparator className="bg-bg-soft" />
+          {notifications.length === 0 ? (
+            <DropdownMenuItem className="flex flex-col items-center justify-center p-4">
+              <BellOff className="mx-auto mt-4 size-13 text-text-muted" />
+              <p className="text-center text-sm text-text-muted mt-2 font-medium">
+                No notifications to display.
+              </p>
+            </DropdownMenuItem>
+          ) : (
+            notifications.map((notification) => (
+              <div key={notification.id} className="text-text-muted">
+                <NotificationItemList
+                  notification={notification}
+                  // onRead={(id) => markAsRead({ notificationId: id })}
+                />
+              </div>
+            ))
+          )}
+        </DropdownMenuGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+};
+
+export default NotificationsList;

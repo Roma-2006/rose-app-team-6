@@ -32,6 +32,7 @@ export default function UserInfoForm({
   const router = useRouter();
   const locale = useLocale();
   const isRtl = locale === 'ar';
+
   //form
   const form = useForm<TUserInfoFields>({
     resolver: zodResolver(userInfoSchema),
@@ -47,6 +48,7 @@ export default function UserInfoForm({
   //function
   const onSubmit: SubmitHandler<TUserInfoFields> = async (values) => {
     if (!email) return;
+
     const userDetails = { ...values, email: email, gender: values.gender.toUpperCase() };
     setUserInfo(userDetails);
     setStep('create-password');
