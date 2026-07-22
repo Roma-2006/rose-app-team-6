@@ -2,6 +2,8 @@
 import AboutSection from '@/features/dashboard/components/home/home-about/about-section';
 import SecHeader from '@/features/dashboard/components/home/section-header';
 import SecTitle from '@/features/dashboard/components/home/section-title';
+import AddReviewForm from '@/features/dashboard/components/products/add-review-form';
+import { IAddReviewFormData } from '@/features/dashboard/types/product-reviews';
 import { BaseCheckbox } from '@/shared/components/custom-ui/BaseCheckbox';
 import { Button } from '@/shared/components/ui/button';
 import { Heart } from 'lucide-react';
@@ -34,6 +36,13 @@ export default function Page() {
       <SecTitle text="Check Out our Wonderful Gallery" className="w-165 ps-2.5" />
       <SecTitle text="Real Words from Happy Customers" className="ps-5" />
       <AboutSection />
+
+      <AddReviewForm
+        isAuthenticated={true}
+        onSubmit={function (data: IAddReviewFormData): Promise<void> | void {
+          throw new Error('Function not implemented.');
+        }}
+      />
     </>
   );
 }

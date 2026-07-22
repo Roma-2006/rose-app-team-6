@@ -2,8 +2,10 @@
 
 import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { Star } from 'lucide-react';
 import { IAddReviewFormData } from '../../types/product-reviews';
+import RatingStars from './star-rating';
+import CustomInput from '@/shared/components/custom-input';
+import { Button } from '@base-ui/react';
 
 interface AddReviewFormProps {
   onLoginClick?: () => void;
@@ -47,16 +49,16 @@ export default function AddReviewForm({
   return (
     <form
       onSubmit={handleSubmit(onFormSubmit)}
-      className="relative max-w-xl bg-white p-6 rounded-xl border border-gray-100 shadow-sm font-sans space-y-4"
+      className="relative max-w-121 max-h-92 flex flex-col  items-start justify-between "
     >
       {/* Content wrapper grouped for unauthenticated blur state */}
       <div
         className={`space-y-4 transition-all duration-200 ${!isAuthenticated ? 'blur-[2px] pointer-events-none select-none opacity-50' : ''}`}
       >
         {/* Field Group 1: Star Rating */}
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-1 ">
           <div className="flex items-center gap-2">
-            <span className="text-sm font-medium text-gray-700">Your rating:</span>
+            <span className="text-sm font-medium text-text-plain">Your rating:</span>
             <Controller
               name="rating"
               control={control}
@@ -68,7 +70,6 @@ export default function AddReviewForm({
                 <div className="flex gap-0.5">
                   {[...Array(5)].map((_, index) => {
                     const starValue = index + 1;
-                    const isFilled = starValue <= (hoverRating || field.value);
                     return (
                       <button
                         key={index}
@@ -79,14 +80,7 @@ export default function AddReviewForm({
                         onMouseEnter={() => setHoverRating(starValue)}
                         onMouseLeave={() => setHoverRating(0)}
                       >
-                        <Star
-                          size={16}
-                          className={`w-4 h-4 ${
-                            isFilled
-                              ? 'fill-[#FBA707] stroke-[#FBBF24]'
-                              : 'fill-white stroke-[#FBBF24]'
-                          }`}
-                        />
+                        <RatingStars rating={hoverRating || field.value} maxStars={5} />
                       </button>
                     );
                   })}
@@ -95,13 +89,13 @@ export default function AddReviewForm({
             />
           </div>
           {errors.rating && (
-            <p className="text-xs text-red-500 font-medium">{errors.rating.message}</p>
+            <p className="text-xs text-text-danger font-medium">{errors.rating.message}</p>
           )}
         </div>
 
         {/* Field Group 2: Review Title Input */}
         <div className="flex flex-col gap-1">
-          <label htmlFor="title" className="block text-xs font-semibold text-gray-700">
+          <label htmlFor="title" className=" text-xs font-medium text-text-plain">
             Title
           </label>
           <Controller
@@ -109,28 +103,23 @@ export default function AddReviewForm({
             control={control}
             rules={{ required: 'Review title is required' }}
             render={({ field }) => (
-              <input
+              <CustomInput
                 {...field}
+                variant="default"
                 id="title"
-                type="text"
                 disabled={!isAuthenticated}
                 placeholder="Enter review title"
-                className={`w-full px-3 py-2 text-sm bg-white border rounded-md focus:outline-none placeholder-gray-300 text-gray-800 transition-colors ${
-                  errors.title
-                    ? 'border-red-500 focus:border-red-500'
-                    : 'border-gray-200 focus:border-gray-400'
-                }`}
               />
             )}
           />
           {errors.title && (
-            <p className="text-xs text-red-500 font-medium">{errors.title.message}</p>
+            <p className="text-xs text-text-danger font-medium">{errors.title.message}</p>
           )}
         </div>
 
         {/* Field Group 3: Review Text Area */}
         <div className="flex flex-col gap-1 relative">
-          <label htmlFor="review" className="block text-xs font-semibold text-gray-700">
+          <label htmlFor="review" className="text-xs font-medium text-text-plain">
             Review
           </label>
           <Controller
@@ -144,27 +133,20 @@ export default function AddReviewForm({
                 rows={4}
                 disabled={!isAuthenticated}
                 placeholder="What do you think of this product?"
-                className={`w-full px-3 py-2 text-sm bg-white border rounded-md focus:outline-none placeholder-gray-300 text-gray-800 resize-none transition-colors ${
-                  errors.review
-                    ? 'border-red-500 focus:border-red-500'
-                    : 'border-gray-200 focus:border-gray-400'
-                }`}
+                className="w-full text-sm border rounded-md focus:outline-none placeholder-text-muted text-text-muted resize-none transition-colors"
               />
             )}
           />
-          {errors.review && (
-            <p className="text-xs text-red-500 font-medium">{errors.review.message}</p>
-          )}
         </div>
 
         {/* Action Button */}
-        <button
+
+        <Button
           type="submit"
+          className="mt-9 w-full"
+          title={isSubmittingState ? 'Adding...' : 'Add Review'}
           disabled={!isAuthenticated || isSubmittingState}
-          className="w-full bg-[#A32242] hover:bg-[#881b36] transition-colors text-white font-medium py-2 px-4 rounded-md text-sm disabled:bg-gray-300"
-        >
-          {isSubmittingState ? 'Adding...' : 'Add Review'}
-        </button>
+        />
       </div>
 
       {/* Centered Login Overlay Box */}
