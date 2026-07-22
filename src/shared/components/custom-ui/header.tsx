@@ -52,7 +52,13 @@ export default function Header() {
             ) : (
               <ShoppingCart size={24} />
             )}
-            <Bell size={24} />
+            {!isAuthenticated ? (
+              <Link href="/login">
+                <Bell size={24} />
+              </Link>
+            ) : (
+              <Bell size={24} />
+            )}
           </span>
           <span className={` flex ltr:pl-4 rtl:pr-4 `}>
             <LanguageSwitcherAuth />
