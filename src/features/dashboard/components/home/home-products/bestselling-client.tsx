@@ -95,10 +95,10 @@ export const BestSellingSectionClient = ({
         </div>
 
         {/* Right/Bottom Content */}
-        <div className="relative flex-1 lg:max-w-[950px] w-full">
+        <div className="relative flex-1 lg:max-w-237.5 w-full">
           <button
             onClick={() => scroll('prev')}
-            className="absolute -left-5 rtl:-right-5 rtl:left-auto top-[161px] z-20 w-9 h-9 bg-secondary rounded-full flex justify-center items-center text-rose shadow-lg hover:opacity-80 transition-opacity"
+            className="absolute -left-5 rtl:-right-5 rtl:left-auto top-40.25 z-20 w-9 h-9 bg-secondary rounded-full flex justify-center items-center text-rose shadow-lg hover:opacity-80 transition-opacity"
           >
             {isRtl ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
           </button>

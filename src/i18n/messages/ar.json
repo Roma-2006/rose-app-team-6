@@ -1,4 +1,3 @@
-
 {
   "app-title": "تطبيق روز",
   "title": "مرحبا بك في تطبيق روز",
@@ -9,7 +8,7 @@
     "save": "حفظ",
     "delete": "حذف",
     "confirm": "تأكيد",
-    "next":"التالى"
+    "next": "التالى"
   },
   "common": {
     "select": {
@@ -26,8 +25,26 @@
     "search-placeholder": "ما الهدية المميزة التي تبحث عنها؟",
     "login": "تسجيل الدخول",
     "search-default": "منتجات قد تعجبك",
-    "search-empty":"لا توجد منتجات",
-    "search-error" :"فشل البحث. حاول مجدداً."
+    "search-empty": "لا توجد منتجات",
+    "search-error": "فشل البحث. حاول مجدداً.",
+    "notifications": {
+      "title": "الإشعارات ({count})",
+      "noNotifications": "لا توجد إشعارات حتى الآن",
+      "clearAll": "مسح جميع الإشعارات",
+      "markAllAsRead": "تعيين الكل كمقروء",
+      "notificationSettings": {
+        "markAsRead": "تعيين كمقروء",
+        "delete": "حذف"
+      }
+    },
+    "userMenu": {
+      "title": "مرحبا ",
+      "account": "حسابي",
+      "addresses": "عناويني",
+      "orders": "طلباتي",
+      "dashboard": "لوحة التحكم",
+      "logout": "تسجيل الخروج"
+    }
   },
   "nav": {
     "home": "الرئيسية",
@@ -38,13 +55,13 @@
     "about": "عن الموقع"
   },
   "auth": {
-       "switchLang": "English",
-   "langLabel": "Switch to Arabic",
+    "switchLang": "English",
+    "langLabel": "Switch to Arabic",
     "welcome-auth": {
       "login-title": "مرحبًا بعودتك!",
       "register-title": "كن جزءًا من عائلتنا!"
     },
-   "login": {
+    "login": {
       "schema": {
         "username": {
           "invalid": "اسم المستخدم غير صالح",
@@ -62,7 +79,7 @@
       "button": "تسجيل الدخول",
       "invalidCredentials": "اسم المستخدم أو كلمة المرور غير صحيحة"
     },
-   "auth-forgotPw": {
+    "auth-forgotPw": {
       "step1": {
         "title": "نسيت كلمة المرور؟",
         "subtitle": "لا تقلق، سنرسل لك تعليمات لمساعدتك في إعادة تعيينها.",
@@ -109,9 +126,9 @@
         "passwordRequirement": "يجب أن تكون 8 أحرف فأكثر، وتحتوي على حرف كبير، حرف صغير، رقم، ورمز خاص"
       }
     },
-  
+
     "auth-register": {
-      "title":"إنشاء حساب",
+      "title": "إنشاء حساب",
       "need-help": "تحتاج مساعده ؟",
       "contact-us": "تواصل معنا",
       "step1": {
@@ -133,19 +150,19 @@
         "verify": "تحقق",
         "Edit": "تعديل"
       },
-      "user-info":{
-        "sub-title":"أخبرنا المزيد عن نفسك",
-        "user-info-sub-title":"بعض التفاصيل للبدء.",
-        "first-name":"الاسم الاول",
-        "last-name":"اسم العائله",
-        "user-name":"اسم المستخدم",
-        "email":"البريد الإلكتروني",
-        "phone":"رقم الهاتف",
-        "gender":"الجنس",
-        "gender-placeholder":"اختر الجنس",
-        "male":"ذكر",
-        "female":"أنثى",
-        "errors":{
+      "user-info": {
+        "sub-title": "أخبرنا المزيد عن نفسك",
+        "user-info-sub-title": "بعض التفاصيل للبدء.",
+        "first-name": "الاسم الاول",
+        "last-name": "اسم العائله",
+        "user-name": "اسم المستخدم",
+        "email": "البريد الإلكتروني",
+        "phone": "رقم الهاتف",
+        "gender": "الجنس",
+        "gender-placeholder": "اختر الجنس",
+        "male": "ذكر",
+        "female": "أنثى",
+        "errors": {
           "first-name": "الاسم الأول مطلوب",
           "last-name": "اسم العائلة مطلوب",
           "user-name": "يجب أن يتكون اسم المستخدم من حرفين على الأقل.",
@@ -154,14 +171,14 @@
           "invalid-phone-number": "رقم الهاتف غير صالح"
         }
       },
-      "create-password":{
-        "sub-title":"أنشئ كلمة مرور قوية",
-        "create-password-sub-title":"اختر كلمة مرور آمنة لحماية حسابك",
-        "password":"كلمة المرور",
-        "confirm-password":"تأكيد كلمة المرور",
-        "button":"إنشاء حساب",
-        "email-in-use":"البريد الإلكتروني مستخدم بالفعل",
-        "success":"تم إنشاء الحساب بنجاح",
+      "create-password": {
+        "sub-title": "أنشئ كلمة مرور قوية",
+        "create-password-sub-title": "اختر كلمة مرور آمنة لحماية حسابك",
+        "password": "كلمة المرور",
+        "confirm-password": "تأكيد كلمة المرور",
+        "button": "إنشاء حساب",
+        "email-in-use": "البريد الإلكتروني مستخدم بالفعل",
+        "success": "تم إنشاء الحساب بنجاح",
         "have-account": "هل لديك حساب بالفعل؟",
         "login": "تسجيل الدخول",
         "errors": {
@@ -173,7 +190,6 @@
           "confirm-password": "تأكيد كلمة المرور مطلوب.",
           "passwords-do-not-match": "كلمتا المرور غير متطابقتين."
         }
-        
       }
     },
     "passwordResetSent": {
@@ -186,66 +202,66 @@
       "toast-description": "تم إرسال رمز التحقق الجديد إلى بريدك الإلكتروني"
     }
   },
-   "home": {
-   "discover":"اكتشف",
-  "hero-aside": {
-    "badge": "ابتداءً من 10.99 جنيه",
-    "title": "هدايا مميزة للأشخاص الذين تحبهم",
-    "button": "تسوق الآن"
-  },
+  "home": {
+    "discover": "اكتشف",
+    "hero-aside": {
+      "badge": "ابتداءً من 10.99 جنيه",
+      "title": "هدايا مميزة للأشخاص الذين تحبهم",
+      "button": "تسوق الآن"
+    },
 
-  "carousel": {
-    "slide1": {
-      "title": "عبّر بالورود",
-      "subtitle": "هدايا أنيقة لكل مناسبة مميزة.",
-      "cta": "أنا أشتري!"
+    "carousel": {
+      "slide1": {
+        "title": "عبّر بالورود",
+        "subtitle": "هدايا أنيقة لكل مناسبة مميزة.",
+        "cta": "أنا أشتري!"
+      },
+      "slide2": {
+        "title": "عبّر بالورود",
+        "subtitle": "هدايا أنيقة لكل مناسبة مميزة.",
+        "cta": "أنا أشتري!"
+      },
+      "slide3": {
+        "title": "عبّر بالورود",
+        "subtitle": "هدايا أنيقة لكل مناسبة مميزة.",
+        "cta": "أنا أشتري!"
+      }
     },
-    "slide2": {
-      "title": "عبّر بالورود",
-      "subtitle": "هدايا أنيقة لكل مناسبة مميزة.",
-      "cta": "أنا أشتري!"
-    },
-    "slide3": {
-      "title": "عبّر بالورود",
-      "subtitle": "هدايا أنيقة لكل مناسبة مميزة.",
-      "cta": "أنا أشتري!"
-    }
-  },
 
-  "cards": {
-    "anniversary": {
-      "badge": "ذكرى سنوية",
-      "title": "اجعل كل ذكرى للحب مفاجأة لا تُنسى"
+    "cards": {
+      "anniversary": {
+        "badge": "ذكرى سنوية",
+        "title": "اجعل كل ذكرى للحب مفاجأة لا تُنسى"
+      },
+      "engagement": {
+        "badge": "خطوبة",
+        "title": "احتفل ببداية رحلة جميلة معًا"
+      },
+      "wedding": {
+        "badge": "زفاف",
+        "title": "هدية ستظل تذكرها للأبد"
+      }
     },
-    "engagement": {
-      "badge": "خطوبة",
-      "title": "احتفل ببداية رحلة جميلة معًا"
-    },
-    "wedding": {
-      "badge": "زفاف",
-      "title": "هدية ستظل تذكرها للأبد"
-    }
-  },
 
-  "features": {
-    "support": {
-      "title": "دعم 24/7",
-      "description": "تواصل معنا في أي وقت"
+    "features": {
+      "support": {
+        "title": "دعم 24/7",
+        "description": "تواصل معنا في أي وقت"
+      },
+      "payment": {
+        "title": "دفع آمن",
+        "description": "دفع آمن 100%"
+      },
+      "refund": {
+        "title": "استرجاع الأموال",
+        "description": "استرداد خلال 30 يومًا"
+      },
+      "delivery": {
+        "title": "توصيل مجاني",
+        "description": "للطلبات فوق 120 جنيه"
+      }
     },
-    "payment": {
-      "title": "دفع آمن",
-      "description": "دفع آمن 100%"
-    },
-    "refund": {
-      "title": "استرجاع الأموال",
-      "description": "استرداد خلال 30 يومًا"
-    },
-    "delivery": {
-      "title": "توصيل مجاني",
-      "description": "للطلبات فوق 120 جنيه"
-    }
-  },
-   "bestSelling": {
+    "bestSelling": {
       "badge": "الأكثر مبيعاً",
       "titlePart1": "اكتشف",
       "titlePart2": "ما يشتريه",
@@ -254,80 +270,64 @@
       "description": "لست متأكداً مما تختار؟\nابدأ بالأكثر مبيعاً لدينا، فهي الهدايا التي يعود عملاؤنا لطلبها دائماً.\nسواء كنت تحتفل بعيد ميلاد، ذكرى سنوية، أو زفاف، فإن اختياراتنا تضمن لك ترك انطباع لا يُنسى.",
       "exploreButton": "استكشف الهدايا"
     },
-      "model-prompt": {
-    "authRequired": "تسجيل الدخول مطلوب",
-    "loginToContinue": "يرجى تسجيل الدخول إلى حسابك للمتابعة.",
-    "login": "تسجيل الدخول",
-    "cancel": "إلغاء"
-  },
- "most-Popular":{
-     "mostPopular": "الأكثر شعبية",
-    "all": "الكل",
-    "viewMore": "عرض المزيد",
-    "error": "حدث خطأ ما أثناء تحميل المنتجات.",
-    "noProductsFound": "لا توجد منتجات في هذا القسم حالياً."
-     
-  },
-    "product-card":
-   {
+    "model-prompt": {
+      "authRequired": "تسجيل الدخول مطلوب",
+      "loginToContinue": "يرجى تسجيل الدخول إلى حسابك للمتابعة.",
+      "login": "تسجيل الدخول",
+      "cancel": "إلغاء"
+    },
+    "most-Popular": {
+      "mostPopular": "الأكثر شعبية",
+      "all": "الكل",
+      "viewMore": "عرض المزيد",
+      "error": "حدث خطأ ما أثناء تحميل المنتجات.",
+      "noProductsFound": "لا توجد منتجات في هذا القسم حالياً."
+    },
+    "product-card": {
       "new": "جديد",
-    "outOfStock": "نفدت الكمية"
-   },
+      "outOfStock": "نفدت الكمية"
+    },
 
-   "about":{
+    "about": {
+      "label": "عن الموقع",
+      "title": {
+        "part1": "نقدم",
+        "part2": "أفضل",
+        "part3": "صناديق الهدايا لمناسباتك",
+        "part4": "لمناسباتك",
+        "part5": "الخاصة"
+      }
+    },
 
-    "label" :"عن الموقع" ,
-     "title" :{
-      "part1" : "نقدم",
-      "part2" : "أفضل",
-      "part3" : "صناديق الهدايا لمناسباتك",
-      "part4" : "لمناسباتك",
-      "part5" : "الخاصة" 
+    "gallery": {
+      "label": "المعرض",
+      "title": "تصفح معرض صورنا الرائع"
+    },
 
-
-     }
- 
+    "testimonials": {
+      "label": "أراء العملاء",
+      "title": "كلمات حقيقية من عملاء سعداء"
+    },
+    "partners": {
+      "title": {
+        "part1": "موثوق من قبل أكثر من",
+        "part2": "4500",
+        "part3": "شركة"
+      }
+    }
   },
-
-  "gallery":{
-
-    "label" :"المعرض" ,
-    "title": "تصفح معرض صورنا الرائع"
-
-
-  },
-
-"testimonials" :{
- "label" :"أراء العملاء" ,
- "title": "كلمات حقيقية من عملاء سعداء"
-    
-},
-"partners":{
-
-  "title" :{
-    "part1" : "موثوق من قبل أكثر من",
-     "part2" : "4500",
-     "part3" : "شركة"
- 
-
-}
-
-}
-},
-
-  
 
   "input-component": {
     "label": "الاسم بالكامل",
     "placeholder": "أدخل اسمك هنا..."
   },
 
-   "custom-input": {
-    "default":{
-      "first-name" : { "label": "الاسم الأول", "placeholder": "Jonathan" } , 
-      "last-name": {"label" :"الاسم الأخير" , "placeholder" :"Adrian"} ,
-      "user-name": {"label" :" اسم المسخدم" , "placeholder" :"Jonathan"}
-  },
+  "custom-input": {
+    "default": {
+      "first-name": { "label": "الاسم الأول", "placeholder": "Jonathan" },
+      "last-name": { "label": "الاسم الأخير", "placeholder": "Adrian" },
+      "user-name": { "label": " اسم المسخدم", "placeholder": "Jonathan" }
+    },
     "number": { "label": "الرقم", "placeholder": "0" },
     "search": { "label": "بحث", "placeholder": "ابحث هنا..." },
     "password": {
