@@ -1,6 +1,7 @@
 import { getProductById } from '@/features/dashboard/api/product-details.api';
 import ProductGallery from '@/features/dashboard/components/products/product-gallery';
 import ProductInfo from '@/features/dashboard/components/products/product-info';
+import { IReviewItem } from '@/features/dashboard/types/product-reviews';
 
 interface ProductPageProps {
   params: Promise<{
