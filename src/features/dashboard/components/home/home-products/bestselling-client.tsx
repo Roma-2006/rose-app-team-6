@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useRef } from 'react';
 
-import type { Product } from '../../../../../shared/types/product.type';
+import type { Product } from '@/shared/types/product-type';
 
 import { Button } from '@/shared/components/ui/button';
 import { ProductCardSkeleton } from './product-card-skelton';
@@ -40,39 +40,22 @@ export const BestSellingSectionClient = ({
   };
 
   return (
-    <section className="py-20 mx-20 lg:mx-20 ">
-      <div className="flex flex-col lg:flex-row justify-center items-center gap-9">
-        {/* Left/Top Content: Badge, Headlines */}
-        <div className="size-lf-stretch inline-flex flex-col justify-start items-start gap-2.5">
-          {/* Section Badge */}
-          <div className="self-stretch h-8 justify-center text-text-secondary text-base font-bold uppercase tracking-widest">
+    <section className="py-8 w-full">
+      <div className="flex flex-col lg:flex-row lg:items-start gap-9">
+        <div className="w-80 shrink-0 flex flex-col items-start gap-3">
+          <p className="text-base font-bold uppercase tracking-widest text-text-secondary text-start w-full">
             {t('badge')}
-          </div>
+          </p>
 
-          <div className="self-stretch flex-1 flex flex-col justify-start items-start gap-2">
-            {/* Split Title for dynamic coloring */}
-            <div className="self-stretch justify-center ">
-              <span className="text-text-secondary text-3xl font-bold leading-8">
-                {t('titlePart1')}{' '}
-              </span>
-              <span className="text-text-primary text-3xl font-bold leading-8">
-                {t('titlePart2')}{' '}
-              </span>
-              <span className="text-text-secondary text-3xl font-bold leading-8">
-                {t('titlePart3')}{' '}
-              </span>
-              <span className="text-text-primary text-3xl font-bold leading-8">
-                {t('titlePart4')}
-              </span>
-            </div>
+          <h2 className="w-full text-start text-3xl font-bold leading-tight">
+            <span className="text-text-secondary">{t('titlePart1')} </span>
+            <span className="text-text-primary">{t('titlePart2')} </span>
+            <span className="text-text-secondary">{t('titlePart3')} </span>
+          </h2>
 
-            {/* Description  */}
-            <div className="self-stretch justify-center text-text-soft text-base font-normal leading-5 whitespace-pre-line mt-4">
-              {t('description')}
-            </div>
-          </div>
-
-          {/* Call to Action Button */}
+          <p className="w-full text-start text-base leading-6 text-text-soft whitespace-pre-line">
+            {t('description')}
+          </p>
           <Button
             buttonVariant="text"
             variant="primary"
@@ -90,12 +73,12 @@ export const BestSellingSectionClient = ({
                 />
               )
             }
-            className="mt-16 w-40 bg-secondary rounded-lg text-text-inverse "
+            className="mt-5 w-40 bg-secondary rounded-lg text-text-inverse"
           />
         </div>
 
         {/* Right/Bottom Content */}
-        <div className="relative flex-1 lg:max-w-[950px] w-full">
+        <div className="relative flex-1 lg:max-w-5xl w-full">
           <button
             onClick={() => scroll('prev')}
             className="absolute -left-5 rtl:-right-5 rtl:left-auto top-[161px] z-20 w-9 h-9 bg-secondary rounded-full flex justify-center items-center text-rose shadow-lg hover:opacity-80 transition-opacity"

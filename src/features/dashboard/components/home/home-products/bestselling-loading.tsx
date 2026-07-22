@@ -2,8 +2,8 @@ import { ProductCardSkeleton } from './product-card-skelton';
 
 export default function BestSellingSectionLoading() {
   return (
-    <section className="py-20 mx-20 lg:mx-20">
-      <div className="flex flex-col lg:flex-row justify-center items-center gap-9">
+    <section className="py-8 w-full">
+      <div className="flex flex-col lg:flex-row lg:items-start gap-9">
         <div className="size-lf-stretch inline-flex flex-col justify-start items-start gap-2.5">
           <div className="self-stretch h-8 justify-center bg-bg-soft rounded-md w-40" />
           <div className="self-stretch flex-1 flex flex-col justify-start items-start gap-2">

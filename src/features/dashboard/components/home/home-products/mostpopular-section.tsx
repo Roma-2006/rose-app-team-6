@@ -9,6 +9,7 @@ import { ArrowRight } from 'lucide-react';
 import { ProductCardSkeleton } from './product-card-skelton';
 import { ProductCard } from './Product-card';
 import { getOccasions } from '@/shared/api/occasion.api';
+import { useProducts } from '@/shared/hooks/use-products';
 const ALL_TAB_ID = 'home.all';
 
 export const MostPopularSection = () => {
@@ -21,15 +22,11 @@ export const MostPopularSection = () => {
     data: products,
     isLoading,
     isError,
-  } = useQuery({
-    queryKey: ['products', 'most-popular', activeTab],
-    queryFn: () =>
-      getProducts({
-        limit: 12,
-        sortBy: 'mostPopular',
-        sortOrder: 'desc',
-        occasionId: activeTab === ALL_TAB_ID ? undefined : activeTab,
-      }),
+  } = useProducts({
+    limit: 12,
+    sortBy: 'mostPopular',
+    sortOrder: 'desc',
+    occasionId: activeTab === ALL_TAB_ID ? undefined : activeTab,
   });
 
   const { data: occasions } = useQuery({
@@ -48,11 +45,8 @@ export const MostPopularSection = () => {
   const visibleOccasions = occasions?.filter((occ) => HOME_OCCASIONS.includes(occ.title)) ?? [];
 
   return (
-    <section className="py-20  mx-20 px-4  flex flex-col gap-10">
-      {/* Header Section */}
-      <div className="flex justify-between items-end pb-10">
-        {' '}
-        {/* Left Side: Title with Decorations */}
+    <section className="py-8 w-full">
+      <div className={`flex justify-between items-end pb-10 ${isRtl ? 'pr-6' : 'pl-6'}`}>
         <div className="relative inline-block">
           {/* Pink background */}
           <div

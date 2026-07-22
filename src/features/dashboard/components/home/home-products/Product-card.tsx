@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { ShoppingCart, Star, HeartPlus } from 'lucide-react';
-import { Product } from '../../../../../shared/types/product.type';
+import { Product } from '../../../../../shared/types/product-type';
 import { calculateDiscountedPrice } from '../../../utils/calculateDiscount';
 import { useLocale, useTranslations } from 'next-intl';
 import { useState } from 'react';
@@ -99,7 +99,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         </div>
 
         <div className="self-stretch px-1 flex flex-col gap-1">
-          <h3 className="text-text-primary self-stretch justify-center text-lg font-semibold font-['Sarabun'] leading-4">
+          <h3 className="text-text-primary self-stretch text-start text-lg font-semibold font-['Sarabun'] leading-6">
             {product.title}
           </h3>
 

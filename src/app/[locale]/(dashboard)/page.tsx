@@ -6,8 +6,10 @@ import { signOut } from 'next-auth/react';
 import AboutSection from '@/features/dashboard/components/home/home-about/about-section';
 import GallerySection from '@/features/dashboard/components/home/home-gallery/gallery-section';
 import TestimonialsSection from '@/features/dashboard/components/home/home-testimonials/testimonials-section';
-import PartenersSection from '@/features/dashboard/components/home/home-partners/partners-section';
 import PartnersSection from '@/features/dashboard/components/home/home-partners/partners-section';
+import { BestSellingSection } from '@/features/dashboard/components/home/home-products/bestselling-section';
+import { MostPopularSection } from '@/features/dashboard/components/home/home-products/mostpopular-section';
+import HomeContent from '@/features/dashboard/components/home/home-content';
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -25,17 +27,19 @@ export default function HomePage({ params }: PageProps) {
         <LanguageSwitcher />
         <ThemeToggle />
       </div>
-
+      <HomeContent />
+      <BestSellingSection />
+      <MostPopularSection />
       <AboutSection />
       <GallerySection />
       <TestimonialsSection />
       <PartnersSection />
-      <button
+      {/* <button
         onClick={() => signOut({ callbackUrl: `/${locale}/login` })}
         className="rounded-xl bg-red-500 px-4 py-2 text-sm font-medium text-white hover:bg-red-600 transition-colors"
       >
         تسجيل الخروج
-      </button>
+      </button> */}
     </main>
   );
 }
