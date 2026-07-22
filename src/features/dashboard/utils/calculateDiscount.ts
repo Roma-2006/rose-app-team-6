@@ -7,18 +7,16 @@ export const calculateDiscountedPrice = (
   const val = Number(product.discountValue);
 
   if (!Number.isFinite(original)) return 0;
+  if (!Number.isFinite(val) || val <= 0) return original;
 
-  if (
-    (product.discountType as string) === 'PERCENT' ||
-    (product.discountType as string) === 'PERCENTAGE'
-  ) {
-    if (!Number.isFinite(val) || val === 0) return original;
-    return original - (original * val) / 100;
+  const type = (product.discountType || '').toString().toUpperCase();
+
+  if (type === 'PERCENT' || type === 'PERCENTAGE') {
+    return Math.max(0, original - (original * val) / 100);
   }
 
-  if (product.discountType === 'FIXED') {
-    if (!Number.isFinite(val) || val === 0) return original;
-    return original - val;
+  if (type === 'FIXED' || type === 'FLAT' || type === 'AMOUNT') {
+    return Math.max(0, original - val);
   }
 
   return original;

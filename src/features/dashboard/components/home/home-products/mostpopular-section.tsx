@@ -46,7 +46,7 @@ export const MostPopularSection = () => {
 
   return (
     <section className="py-8 w-full">
-      <div className={`flex justify-between items-end pb-10 ${isRtl ? 'pr-6' : 'pl-6'}`}>
+      <div className="flex justify-between items-end pb-10">
         <div className="relative inline-block">
           {/* Pink background */}
           <div

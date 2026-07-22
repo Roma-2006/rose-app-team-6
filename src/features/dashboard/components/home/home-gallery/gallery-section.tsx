@@ -1,8 +1,9 @@
 'use client';
-import React from 'react';
+
 import SecHeader from '../section-header';
 import SecTitle from '../section-title';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 const columnsData = [
   {
@@ -59,40 +60,45 @@ const columnsData = [
 ];
 
 export default function GallerySection() {
+  const tGallery = useTranslations('home.gallery');
+
   return (
-    <section className="w-full px-4 ms-3 mb-35 flex flex-col items-center justify-center bg-background">
-      {/* Gallery Header */}
-      <header className="text-center">
-        <SecHeader text="Gallery" className="pb-2" />
-        <SecTitle text="Check Out our Wonderful Gallery" className="pb-11.5" />
-      </header>
-      {/* grid system */}
-      <div className="w-full max-w-[1280px] mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5 items-start w-full">
-          {columnsData.map((column, columnIndex) => (
-            <div
-              key={column.id}
-              className={`flex flex-col gap-4 w-full ${columnIndex === 2 ? 'hidden md:flex' : ''}`}
-            >
-              {column.items.map((item) => (
-                <div
-                  key={item.id}
-                  className={`relative w-full h-[300px] ${item.height} overflow-hidden rounded-xl shadow-md border border-muted bg-neutral-50`}
-                >
-                  <Image
-                    src={item.src}
-                    alt={item.alt}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 418px"
-                    className="object-cover"
-                    priority={item.id <= 3}
-                  />
-                </div>
-              ))}
-            </div>
-          ))}
+    <>
+      <section className="w-full max-w-7xl px-4 ms-3 mb-35 flex flex-col items-center justify-center bg-background">
+        {/* Gallery Header */}
+        <header className="text-center">
+          <SecHeader text={tGallery('label')} className="pb-2" />
+          <SecTitle text={tGallery('title')} className="pb-11.5" />
+        </header>
+
+        {/* grid system */}
+        <div className="w-full max-w-[1280px] mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5 items-start w-full">
+            {columnsData.map((column, columnIndex) => (
+              <div
+                key={column.id}
+                className={`flex flex-col gap-4 w-full ${columnIndex === 2 ? 'hidden md:flex' : ''}`}
+              >
+                {column.items.map((item) => (
+                  <div
+                    key={item.id}
+                    className={`relative w-full h-[300px] ${item.height} overflow-hidden rounded-xl shadow-md border border-muted bg-neutral-50`}
+                  >
+                    <Image
+                      src={item.src}
+                      alt={item.alt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 418px"
+                      className="object-cover"
+                      priority={item.id <= 3}
+                    />
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

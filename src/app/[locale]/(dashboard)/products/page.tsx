@@ -1,3 +1,5 @@
-export default function ProductsPage() {
-  return <h1>ProductsPage</h1>;
+import React from 'react';
+
+export default function Products() {
+  return <div>Products</div>;
 }

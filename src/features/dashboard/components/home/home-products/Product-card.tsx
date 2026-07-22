@@ -36,13 +36,6 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 
   const discountedPrice = Number(calculateDiscountedPrice(product));
 
-  console.log({
-    rawPrice,
-    discountedPrice,
-    discountType: product.discountType,
-    discountValue: product.discountValue,
-  });
-
   const hasDiscount = product.discountType && Number(product.discountValue) > 0;
 
   const ratingValue = Math.round(product.rating);
