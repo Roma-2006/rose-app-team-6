@@ -280,11 +280,12 @@
     "noProductsFound": "No products found in this category."
     
   },
-   "product-card":
-   {
+   "product-card":{
        "new": "NEW",
     "outOfStock": "OUT OF STOCK"
    },
+  
+
 
   
 
