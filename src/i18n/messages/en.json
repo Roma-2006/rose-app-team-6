@@ -1,11 +1,6 @@
 {
 
-  "custom-input": {
-    "default": {
-      "label": "Title",
-      "placeholder": "Enter title"
-    }
-  },
+
   "app-title": "Rose App",
   "HomePage": {
     "title": "Welcome to Rose App"
@@ -347,8 +342,11 @@
     "default": {
       "first-name": { "label": "First name", "placeholder": "zoe" },
       "last-name": { "label": "Last name", "placeholder": "Jonathan" } ,
-     "user-name": {"label" : "UserName" , "placeholder" :"zoe123"}
-    },
+     "user-name": {"label" : "UserName" , "placeholder" :"zoe123"},
+    "review-title": {"label": "Title","placeholder": "Enter review title"}
+                     
+    } ,
+   
     "number": { "label": "Number", "placeholder": "0" },
     "search": { "label": "Search", "placeholder": "Search..." },
     "password": {
@@ -365,7 +363,7 @@
     "email": { "label": "Email", "placeholder": "user@example.com" },
     "nice-to-have-you-here": "nice to have you here"
 }
-}
+  }
 
 
 

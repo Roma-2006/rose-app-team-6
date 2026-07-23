@@ -327,8 +327,10 @@
     "default":{
       "first-name" : { "label": "الاسم الأول", "placeholder": "Jonathan" } , 
       "last-name": {"label" :"الاسم الأخير" , "placeholder" :"Adrian"} ,
-      "user-name": {"label" :" اسم المسخدم" , "placeholder" :"Jonathan"}
-  },
+      "user-name": {"label" :" اسم المسخدم" , "placeholder" :"Jonathan"},
+      "review-title": {"label": "Title","placeholder": "Enter review title"}
+
+    },
     "number": { "label": "الرقم", "placeholder": "0" },
     "search": { "label": "بحث", "placeholder": "ابحث هنا..." },
     "password": {

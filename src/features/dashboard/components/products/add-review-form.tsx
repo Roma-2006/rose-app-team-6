@@ -9,6 +9,7 @@ import { Button } from '@/shared/components/ui/button';
 import { Label } from '@/shared/components/ui/label';
 import { FieldGroup } from '@/shared/components/ui/field';
 import { Textarea } from '@/shared/components/ui/textarea';
+import { useTranslations } from 'next-intl';
 
 interface IAddReviewFormProps {
   onLoginClick?: () => void;
@@ -16,6 +17,8 @@ interface IAddReviewFormProps {
 }
 
 export default function AddReviewForm({ isAuthenticated, onLoginClick }: IAddReviewFormProps) {
+  const tInput = useTranslations('custom-input');
+
   const [isSubmittingState, setIsSubmittingState] = useState<boolean>(false);
 
   const form = useForm<IAddReviewFormData>({
@@ -71,7 +74,7 @@ export default function AddReviewForm({ isAuthenticated, onLoginClick }: IAddRev
 
           {/* Field 2: Review Title Input */}
 
-          <div className="flex w-full flex-col gap-1">
+          <div className="flex w-full flex-col gap-2.5">
             <Controller
               name="title"
               control={form.control}
@@ -80,10 +83,11 @@ export default function AddReviewForm({ isAuthenticated, onLoginClick }: IAddRev
                   {...field}
                   className="w-full"
                   variant="default"
+                  subVariant="review-title"
                   id="title"
-                  label="Title"
                   disabled={!isAuthenticated}
-                  placeholder="Enter review title"
+                  placeholder={tInput('default.review-title.placeholder')}
+                  label={tInput('default.review-title.label')}
                 />
               )}
             />
