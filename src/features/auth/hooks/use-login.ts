@@ -12,6 +12,8 @@ export default function useLogin() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const t = useTranslations();
+  const tLogin = useTranslations('auth.login');
+
   // handleLogin
   const handleLogin = async (data: TLoginData) => {
     setIsLoading(true);
@@ -21,14 +23,15 @@ export default function useLogin() {
       const result = await signIn('credentials', {
         username: data.username,
         password: data.password,
-        rememberMe: data.rememberMe,
+        rememberMe: String(data.rememberMe),
         redirect: false,
       });
-      console.log(data);
+
+      console.log('Form data:', data);
+
       if (result?.error) {
-        // Handle specific error messages and translate them
         if (result.error === 'Route not found' || result.error === 'CredentialsSignin') {
-          setError(t('auth.login.invalidCredentials'));
+          setError(tLogin('invalidCredentials'));
         } else {
           setError(result.error);
         }
@@ -39,7 +42,6 @@ export default function useLogin() {
         let callbackUrl = new URLSearchParams(window.location.search).get('callbackUrl') || '/';
 
         // Strip the localized prefix (e.g., '/en/', '/ar/') if it exists at the start of the string
-        // This prevents the localized router from generating paths like '/en/en/dashboard'
         if (callbackUrl.match(/^\/[a-z]{2}(\/|$)/)) {
           callbackUrl = callbackUrl.replace(/^\/[a-z]{2}/, '') || '/';
         }
@@ -47,21 +49,19 @@ export default function useLogin() {
         router.refresh();
         router.push(callbackUrl);
       }
-      console.log('Login Request:', router);
     } catch (error1) {
       setError((error1 as Error).message);
     } finally {
       setIsLoading(false);
     }
   };
+
   // handleLogout
   const handleLogout = async () => {
     setIsLoading(true);
     try {
       await signOut({ redirect: false });
-
       router.push('/');
-
       router.refresh();
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An unknown error occurred');

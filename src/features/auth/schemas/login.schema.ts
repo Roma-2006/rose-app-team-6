@@ -14,6 +14,6 @@ export const LOGIN_SCHEMA = (t: Translate) =>
 
       password: z.string().min(1, { message: t('schema.password.required') }),
 
-      rememberMe: z.boolean().optional(),
+      rememberMe: z.boolean().default(false),
     })
     .strict();

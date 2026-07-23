@@ -35,7 +35,9 @@ export const authOptions: NextAuthOptions = {
         const data = await login(result.data);
 
         if (!data.status) {
-          throw new Error(data?.message || 'Invalid username or password');
+          console.error('❌ Backend Authentication Failed:', data?.message);
+
+          return null;
         }
 
         const { user, token } = data.payload ?? {};
@@ -44,11 +46,10 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
-        // هنا نرجع الهيكل المطابق تماماً لتعريف الـ Interface الخاص بك
         return {
           id: String(user.id),
-          user: user, // يتوافق مع user: UserType
-          token: token, // يتوافق مع token: string
+          user: user,
+          token: token,
           rememberMe: isRememberMe,
         };
       },
@@ -57,16 +58,17 @@ export const authOptions: NextAuthOptions = {
 
   callbacks: {
     jwt: ({ token, user }) => {
-      // الـ user هنا يملك الآن التايب الصحيح تلقائياً بفضل الـ Augmentation
       if (user) {
         token.user = user.user;
         token.token = user.token;
         token.rememberMe = user.rememberMe;
 
         if (user.rememberMe) {
-          token.exp = Math.floor(Date.now() / 1000) + 30 * 24 * 60 * 60; // 30 days
+          // تاريخ اليوم بالثواني + (30 يوم × 24 ساعة × 60 دقيقة × 60 ثانية)
+          token.exp = Math.floor(Date.now() / 1000) + 30 * 24 * 60 * 60;
         } else {
-          token.exp = Math.floor(Date.now() / 1000) + 1 * 24 * 60 * 60; // 1 day
+          // في حال عدم التفعيل، تنتهي الجلسة بعد يوم واحد
+          token.exp = Math.floor(Date.now() / 1000) + 1 * 24 * 60 * 60;
         }
       }
       return token;
