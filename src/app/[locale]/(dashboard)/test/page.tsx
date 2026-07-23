@@ -6,7 +6,7 @@ import AddReviewForm from '@/features/dashboard/components/products/add-review-f
 import { IAddReviewFormData } from '@/features/dashboard/types/product-reviews';
 import { BaseCheckbox } from '@/shared/components/custom-ui/BaseCheckbox';
 import { Button } from '@/shared/components/ui/button';
-import { Heart } from 'lucide-react';
+import { Heart, TruckElectricIcon } from 'lucide-react';
 
 export default function Page() {
   const list = [
@@ -17,7 +17,7 @@ export default function Page() {
   const handleClick = () => console.log('hello');
   return (
     <>
-      <Button
+      {/* <Button
         variant="primary"
         title="button.submit"
         onClick={() => handleClick()}
@@ -34,15 +34,9 @@ export default function Page() {
       <SecHeader text="Best Selling" />
       <SecTitle text="Most Popular" className="w-80 ps-5" />
       <SecTitle text="Check Out our Wonderful Gallery" className="w-165 ps-2.5" />
-      <SecTitle text="Real Words from Happy Customers" className="ps-5" />
-      <AboutSection />
+      <SecTitle text="Real Words from Happy Customers" className="ps-5" /> */}
 
-      <AddReviewForm
-        isAuthenticated={true}
-        onSubmit={function (data: IAddReviewFormData): Promise<void> | void {
-          throw new Error('Function not implemented.');
-        }}
-      />
+      <AddReviewForm isAuthenticated={true} />
     </>
   );
 }

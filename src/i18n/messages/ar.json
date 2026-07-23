@@ -322,6 +322,7 @@
     "placeholder": "أدخل اسمك هنا..."
   },
 
+ 
    "custom-input": {
     "default":{
       "first-name" : { "label": "الاسم الأول", "placeholder": "Jonathan" } , 

@@ -1,4 +1,11 @@
 {
+
+  "custom-input": {
+    "default": {
+      "label": "Title",
+      "placeholder": "Enter title"
+    }
+  },
   "app-title": "Rose App",
   "HomePage": {
     "title": "Welcome to Rose App"
@@ -335,6 +342,8 @@
     "placeholder": "Enter your name..."
   },
   "custom-input": {
+
+   
     "default": {
       "first-name": { "label": "First name", "placeholder": "zoe" },
       "last-name": { "label": "Last name", "placeholder": "Jonathan" } ,
