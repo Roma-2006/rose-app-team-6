@@ -106,7 +106,7 @@ export default function LoginForm() {
             type="submit"
             variant="primary"
             className="mt-9 w-full"
-            title="auth.login.button"
+            title={tLogin('button')}
             buttonVariant="text"
             loading={isLoading}
             disabled={isLoading}
