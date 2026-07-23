@@ -5,9 +5,11 @@ import { useForm, Controller } from 'react-hook-form';
 import { IAddReviewFormData } from '../../types/product-reviews';
 import RatingStars from './star-rating';
 import CustomInput from '@/shared/components/custom-input';
-import { Button } from '@base-ui/react';
+import { Button } from '@/shared/components/ui/button';
+import { Label } from '@/shared/components/ui/label';
+import { FieldGroup } from '@/shared/components/ui/field';
 
-interface AddReviewFormProps {
+interface IAddReviewFormProps {
   onLoginClick?: () => void;
   isAuthenticated: boolean;
   onSubmit: (data: IAddReviewFormData) => Promise<void> | void;
@@ -17,28 +19,22 @@ export default function AddReviewForm({
   onSubmit,
   isAuthenticated,
   onLoginClick,
-}: AddReviewFormProps) {
+}: IAddReviewFormProps) {
   const [hoverRating, setHoverRating] = useState<number>(0);
   const [isSubmittingState, setIsSubmittingState] = useState<boolean>(false);
 
-  const {
-    handleSubmit,
-    control,
-    reset,
-    formState: { errors },
-  } = useForm<IAddReviewFormData>({
+  const form = useForm<IAddReviewFormData>({
     defaultValues: {
       rating: 0,
       title: '',
       review: '',
     },
   });
-
   const onFormSubmit = async (data: IAddReviewFormData) => {
     setIsSubmittingState(true);
     try {
       await onSubmit(data);
-      reset();
+      form.reset();
     } catch (error) {
       console.error('Failed to submit review:', error);
     } finally {
@@ -48,25 +44,22 @@ export default function AddReviewForm({
 
   return (
     <form
-      onSubmit={handleSubmit(onFormSubmit)}
+      onSubmit={form.handleSubmit(onFormSubmit)}
       className="relative max-w-121 max-h-92 flex flex-col  items-start justify-between "
     >
       {/* Content wrapper grouped for unauthenticated blur state */}
       <div
         className={`space-y-4 transition-all duration-200 ${!isAuthenticated ? 'blur-[2px] pointer-events-none select-none opacity-50' : ''}`}
       >
-        {/* Field Group 1: Star Rating */}
-        <div className="flex flex-col gap-1 ">
+        {/* Field : Star Rating */}
+
+        <FieldGroup>
           <div className="flex items-center gap-2">
-            <span className="text-sm font-medium text-text-plain">Your rating:</span>
+            <Label className="text-sm font-medium text-text-plain">Your rating:</Label>
             <Controller
               name="rating"
-              control={control}
-              rules={{
-                required: 'Please select a rating score',
-                min: { value: 1, message: 'Please select a rating score' },
-              }}
-              render={({ field }) => (
+              control={form.control}
+              render={({ field, fieldState }) => (
                 <div className="flex gap-0.5">
                   {[...Array(5)].map((_, index) => {
                     const starValue = index + 1;
@@ -88,64 +81,61 @@ export default function AddReviewForm({
               )}
             />
           </div>
-          {errors.rating && (
-            <p className="text-xs text-text-danger font-medium">{errors.rating.message}</p>
-          )}
-        </div>
 
-        {/* Field Group 2: Review Title Input */}
-        <div className="flex flex-col gap-1">
-          <label htmlFor="title" className=" text-xs font-medium text-text-plain">
-            Title
-          </label>
-          <Controller
-            name="title"
-            control={control}
-            rules={{ required: 'Review title is required' }}
-            render={({ field }) => (
-              <CustomInput
-                {...field}
-                variant="default"
-                id="title"
-                disabled={!isAuthenticated}
-                placeholder="Enter review title"
-              />
-            )}
-          />
-          {errors.title && (
-            <p className="text-xs text-text-danger font-medium">{errors.title.message}</p>
-          )}
-        </div>
+          {/* Field 2: Review Title Input */}
 
-        {/* Field Group 3: Review Text Area */}
-        <div className="flex flex-col gap-1 relative">
-          <label htmlFor="review" className="text-xs font-medium text-text-plain">
-            Review
-          </label>
-          <Controller
-            name="review"
-            control={control}
-            rules={{ required: 'Review details are required' }}
-            render={({ field }) => (
-              <textarea
-                {...field}
-                id="review"
-                rows={4}
-                disabled={!isAuthenticated}
-                placeholder="What do you think of this product?"
-                className="w-full text-sm border rounded-md focus:outline-none placeholder-text-muted text-text-muted resize-none transition-colors"
-              />
-            )}
-          />
-        </div>
+          <div className="flex flex-col gap-1">
+            <label htmlFor="title" className=" text-xs font-medium text-text-plain">
+              Title
+            </label>
+            <Controller
+              name="title"
+              control={form.control}
+              render={({ field, fieldState }) => (
+                <CustomInput
+                  {...field}
+                  variant="default"
+                  id="title"
+                  disabled={!isAuthenticated}
+                  placeholder="Enter review title"
+                />
+              )}
+            />
+          </div>
 
-        {/* Action Button */}
+          {/* Field  3: Review Text Area */}
+          <div className="flex flex-col gap-1 relative">
+            <label htmlFor="review" className="text-xs font-medium text-text-plain">
+              Review
+            </label>
+            <Controller
+              name="review"
+              control={form.control}
+              rules={{ required: 'Review details are required' }}
+              render={({ field, fieldState }) => (
+                <textarea
+                  {...field}
+                  id="review"
+                  rows={4}
+                  disabled={!isAuthenticated}
+                  placeholder="What do you think of this product?"
+                  className="w-full text-sm border rounded-md focus:outline-none placeholder-text-muted text-text-muted resize-none transition-colors"
+                />
+              )}
+            />
+          </div>
+        </FieldGroup>
+
+        {/* Submit Button */}
 
         <Button
           type="submit"
+          buttonVariant="text"
+          variant="primary"
           className="mt-9 w-full"
           title={isSubmittingState ? 'Adding...' : 'Add Review'}
           disabled={!isAuthenticated || isSubmittingState}
+          loading={isSubmittingState}
         />
       </div>
 
