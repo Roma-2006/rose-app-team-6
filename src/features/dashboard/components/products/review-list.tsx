@@ -1,6 +1,7 @@
 'use client';
 
 import { useProductReviews } from '../../hooks/use-review-list';
+import { IReview } from '../../types/product-reviews';
 import RatingStars from './star-rating';
 
 interface ReviewListProps {
@@ -11,8 +12,7 @@ export default function ReviewList({ productId }: ReviewListProps) {
   const { data, isLoading, isError, error, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useProductReviews(productId);
 
-  const reviews = data?.pages.flatMap((page) => page.data) ?? [];
-  console.log(reviews);
+  const reviews: IReview[] = data?.pages.flatMap((page) => page.data) ?? [];
 
   if (isLoading) {
     return <p>Loading reviews...</p>;
@@ -28,7 +28,7 @@ export default function ReviewList({ productId }: ReviewListProps) {
 
   return (
     <div className="col-span-2 max-h-56 overflow-auto pe-7 border-bg-muted border-r scrollbar-none">
-      {reviews.map((review) => {
+      {reviews?.map((review) => {
         const userName =
           `${review.user.firstName} ${review.user.lastName}`.trim() || review.user.username;
 

@@ -36,7 +36,7 @@ export default function OverallReview({ product }: OverallReviewProps) {
       </div>
 
       <div className="mt-2">
-        <h5 className=" text-lg font-semibold">General rating:</h5>
+        <h5 className=" text-lg font-semibold">{t('reviews.generalrating')}:</h5>
 
         <div className="flex items-center gap-2 text-sm text-text-muted">
           <span className="font-semibold text-text-plain">Rating: {product.rating}/5</span>

@@ -7,7 +7,7 @@ export interface IErrorResponse {
 }
 
 export interface ISuccessResponse<T> {
-  status: true;
+  status: boolean;
   message?: string;
   payload?: T;
 }

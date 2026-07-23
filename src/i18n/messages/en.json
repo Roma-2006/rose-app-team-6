@@ -367,7 +367,8 @@
     "title": "Product Reviews",
     "empty": "No reviews yet.",
     "loading": "Loading reviews...",
-    "error": "Failed to load reviews."
+    "error": "Failed to load reviews.",
+    "generalrating":"General Rating"
   }
 }
   }

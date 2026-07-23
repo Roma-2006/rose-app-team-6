@@ -18,8 +18,8 @@ export async function getProductReviews({
 
   const result: IApiResponse<IPaginatedResponse<IReview>> = await response.json();
 
-  if (!response.ok || !result.status) {
-    throw new Error(result.status ? 'Failed to fetch reviews' : result.message);
+  if (!response.ok || !result.status || !result.payload) {
+    throw new Error(result.message || 'Failed to fetch reviews');
   }
 
   return result.payload;

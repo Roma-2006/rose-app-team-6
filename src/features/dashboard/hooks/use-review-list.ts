@@ -6,7 +6,6 @@ import { getProductReviews } from '../api/product-review.api';
 export function useProductReviews(productId: string, limit = 5) {
   return useInfiniteQuery({
     queryKey: ['product-reviews', productId, limit],
-
     queryFn: ({ pageParam }) =>
       getProductReviews({
         productId,
