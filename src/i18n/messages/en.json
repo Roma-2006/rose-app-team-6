@@ -57,7 +57,8 @@
     "about": "About"
   },
   "auth": {
-    "switchLang": "العربية",
+
+   "switchLang": "العربية",
     "langLabel": "التحويل إلى الإنجليزية",
     "welcome-auth": {
       "login-title": "Welcome back!",
@@ -74,12 +75,14 @@
           "required": "Password is required"
         }
       },
-      "forgot-password": "Forgot Your password?",
-      "rememberMe": "Remember me",
-      "noAccount": "Don't have an account?",
-      "register": "Create one now!",
-      "button": "Login",
+
+      "forgot-password":"Forgot Your password?",
+      "rememberMe" : "Remember me",
+      "no-account" :"Don't have an account?",
+      "register" :"Create one now!",
+      "button" :"Login",
       "invalidCredentials": "The username or password is incorrect."
+      
     },
     "auth-forgotPw": {
       "step1": {

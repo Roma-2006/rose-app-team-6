@@ -324,7 +324,7 @@
   --color-bg-danger: var(--bg-danger);
   --color-bg-danger-faint: var(--bg-danger-faint);
   --color-bg-danger-fade: var(--bg-danger-fade);
-
+  --color-bg-danger-saturated: var(--bg-danger-saturated);
   /* Text ---------------------------------------------------------------------------------*/
   --color-text-plain: var(--text-plain);
   --color-text-subtle: var(--text-subtle);

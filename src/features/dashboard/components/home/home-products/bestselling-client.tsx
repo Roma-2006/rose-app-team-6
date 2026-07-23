@@ -4,11 +4,10 @@ import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useRef } from 'react';
 
-import type { Product } from '../../../types/product.type';
-
 import { Button } from '@/shared/components/ui/button';
 import { ProductCardSkeleton } from './product-card-skelton';
 import { ProductCard } from './Product-card';
+import { Product } from '@/features/dashboard/types/products';
 
 interface BestSellingSectionClientProps {
   products?: Product[];
@@ -21,7 +20,7 @@ export const BestSellingSectionClient = ({
 }: BestSellingSectionClientProps) => {
   const locale = useLocale();
   const isRtl = locale === 'ar';
-
+  console.log(products);
   const t = useTranslations('home.bestSelling');
 
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -76,7 +75,7 @@ export const BestSellingSectionClient = ({
           <Button
             buttonVariant="text"
             variant="primary"
-            title={t('exploreButton')}
+            title="home.bestSelling.exploreButton"
             rightIcon={
               isRtl ? (
                 <ArrowLeft

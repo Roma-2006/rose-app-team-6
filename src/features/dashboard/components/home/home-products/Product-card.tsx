@@ -2,13 +2,14 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { ShoppingCart, Star, HeartPlus } from 'lucide-react';
-import { Product } from '../../../types/product.type';
+
 import { calculateDiscountedPrice } from '../../../utils/calculateDiscount';
 import { useLocale, useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 import { useProductActions } from '../../../hooks/use-product-actions';
 import { LoginPromptModal } from './login-prompt';
+import { Product } from '@/features/dashboard/types/products';
 
 interface ProductCardProps {
   product: Product & {
@@ -55,10 +56,10 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   const isNew = diffDays <= 30;
 
   return (
-    <div>
+    <div className=" flex justify-center">
       <div
         onClick={handleNavigate}
-        className="w-72 h-96 self-stretch rounded-2xl inline-flex flex-col justify-start items-start gap-6 cursor-pointer group "
+        className=" w-72 h-96 self-stretch rounded-2xl inline-flex flex-col justify-start items-start gap-6 cursor-pointer group "
       >
         {/* 1. image */}
         <div className="relative self-stretch h-64 p-2.5 rounded-2xl flex flex-col justify-start items-end overflow-hidden bg-bg-muted">

@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 import Image from 'next/image';
@@ -34,6 +33,7 @@ export default function AuthLayout({ children }: Readonly<{ children: React.Reac
           src="/assets/images/Cover.png"
           alt="Authentication illustration"
           fill
+          sizes="50vw"
           priority
           className="object-cover object-center  "
         />

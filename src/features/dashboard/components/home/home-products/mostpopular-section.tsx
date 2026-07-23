@@ -1,13 +1,14 @@
 'use client';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useQuery } from '@tanstack/react-query';
-import { getProducts } from '../../../api/product.api';
+import { getProducts } from '@/features/dashboard/apis/product.api';
 import { Link } from '@/i18n/navigation';
 
 import { ArrowRight } from 'lucide-react';
 import { ProductCardSkeleton } from './product-card-skelton';
 import { ProductCard } from './Product-card';
+import { getOccasions } from '@/shared/api/occasion.api';
 const ALL_TAB_ID = 'home.all';
 
 export const MostPopularSection = () => {
@@ -16,44 +17,37 @@ export const MostPopularSection = () => {
   const locale = useLocale();
   const isRtl = locale === 'ar';
 
-  const {
-    data: products,
-    isLoading,
-    isError,
-  } = useQuery({
-    queryKey: ['products', 'most-popular'],
-    queryFn: () => getProducts(undefined, 12, 'mostPopular'),
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['products', 'most-popular', activeTab],
+    queryFn: () =>
+      getProducts({
+        limit: 12,
+        sortBy: 'mostPopular',
+        sortOrder: 'desc',
+        occasionId: activeTab === ALL_TAB_ID ? undefined : activeTab,
+      }),
+  });
+  const products = data?.data;
+  const { data: occasions } = useQuery({
+    queryKey: ['occasions'],
+    queryFn: () => getOccasions(),
   });
 
-  const allOccasions = useMemo(() => {
-    const map = new Map<string, { id: string; title: string }>();
+  const HOME_OCCASIONS = [
+    'Wedding',
+    'Anniversary',
+    'Birthday',
+    // 'Engagement',
+    'New Year',
+  ];
 
-    for (const product of products ?? []) {
-      for (const item of product.occasions ?? []) {
-        const occ = item.occasion;
-        if (!occ) continue;
-        if (!map.has(occ.id)) {
-          map.set(occ.id, { id: occ.id, title: occ.title });
-        }
-      }
-    }
-
-    return Array.from(map.values());
-  }, [products]);
-
-  const filteredProducts = useMemo(() => {
-    if (!products) return [];
-    if (activeTab === ALL_TAB_ID) return products;
-
-    return products.filter((product) =>
-      product.occasions?.some((o) => o.occasion.id === activeTab)
-    );
-  }, [activeTab, products]);
+  const visibleOccasions = occasions?.filter((occ) => HOME_OCCASIONS.includes(occ.title)) ?? [];
 
   return (
     <section className="py-20  mx-20 px-4  flex flex-col gap-10">
       {/* Header Section */}
-      <div className="flex justify-between items-end  pb-4">
+      <div className="flex justify-between items-end pb-10">
+        {' '}
         {/* Left Side: Title with Decorations */}
         <div className="relative inline-block">
           {/* Pink background */}
@@ -84,10 +78,9 @@ export const MostPopularSection = () => {
             {t('all')}
           </button>
 
-          {allOccasions.map((occ) => (
+          {visibleOccasions.map((occ) => (
             <button
               key={occ.id}
-              type="button"
               onClick={() => setActiveTab(occ.id)}
               className={`text-sm md:text-base font-medium transition-all whitespace-nowrap ${
                 activeTab === occ.id ? 'text-text-primary' : 'text-text-soft hover:text-text-plain'
@@ -99,17 +92,18 @@ export const MostPopularSection = () => {
         </div>
       </div>
       {/* Products Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 content-center mt-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {' '}
         {isLoading ? (
           [...Array(8)].map((_, i) => <ProductCardSkeleton key={i} />)
         ) : isError ? (
           <div className="col-span-full text-center text-text-danger">{t('error')}</div>
-        ) : filteredProducts.length === 0 ? (
+        ) : products?.length === 0 ? (
           <div className="col-span-full text-center py-20 text-text-soft">
             {t('noProductsFound')}
           </div>
         ) : (
-          filteredProducts.slice(0, 12).map((p) => <ProductCard key={p.id} product={p} />)
+          products?.map((p) => <ProductCard key={p.id} product={p} />)
         )}
       </div>
 
