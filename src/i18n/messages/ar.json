@@ -346,5 +346,12 @@
     "phone": { "label": "رقم الهاتف", "placeholder": "1012345678" },
     "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" },
     "nice-to-have-you-here": "جميل أنك هنا"
+  },"product-details": {
+  "reviews": {
+    "title": "تقييمات المنتج",
+    "empty": "لا توجد تقييمات حتى الآن",
+    "loading": "جاري تحميل التقييمات...",
+    "error": "حدث خطأ أثناء تحميل التقييمات"
   }
+}
 }

@@ -1,7 +1,9 @@
 import { getProductById } from '@/features/dashboard/api/product-details.api';
+import OverallReview from '@/features/dashboard/components/products/overall-review';
 import ProductGallery from '@/features/dashboard/components/products/product-gallery';
 import ProductInfo from '@/features/dashboard/components/products/product-info';
-import { IReviewItem } from '@/features/dashboard/types/product-reviews';
+import ReviewList from '@/features/dashboard/components/products/review-list';
+import { Star } from 'lucide-react';
 
 interface ProductPageProps {
   params: Promise<{
@@ -41,6 +43,15 @@ export default async function ProductDetailsPage({ params }: ProductPageProps) {
           }}
         />
       </div>
+      <OverallReview
+        product={{
+          rating: product.rating,
+          ratingsCount: product.ratings,
+        }}
+      />
+      <section className="py-5 grid grid-cols-2 gap-6 lg:grid-cols-3 divide-y border-y border-bg-muted">
+        <ReviewList productId={id} />
+      </section>
     </div>
   );
 }

@@ -362,6 +362,13 @@
     "phone": { "label": "Phone", "placeholder": "1012345678" },
     "email": { "label": "Email", "placeholder": "user@example.com" },
     "nice-to-have-you-here": "nice to have you here"
+},"product-details": {
+  "reviews": {
+    "title": "Product Reviews",
+    "empty": "No reviews yet.",
+    "loading": "Loading reviews...",
+    "error": "Failed to load reviews."
+  }
 }
   }
 
