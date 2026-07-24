@@ -31,17 +31,7 @@ export default async function ProductDetailsPage({ params }: ProductPageProps) {
     <div className="container mx-auto px-4 py-8 max-w-6xl">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-12 items-start">
         <ProductGallery images={allImages} title={product.title} />
-        <ProductInfo
-          product={{
-            id: product.id,
-            title: product.title,
-            price: parseFloat(product.price),
-            stock: product.stock,
-            rating: product.rating,
-            ratingsCount: product.ratings,
-            description: product.description,
-          }}
-        />
+        <ProductInfo product={product} />
       </div>
       <OverallReview
         product={{

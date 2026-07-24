@@ -52,8 +52,8 @@ export interface Product {
   ratings: number;
   stock: number;
   price: string;
-  discountType: string | null;
-  discountValue: string | null;
+  discountType: 'PERCENT' | 'FIXED' | 'NONE';
+  discountValue: string;
   cover: string;
   gallery: string;
   categoryId: string;

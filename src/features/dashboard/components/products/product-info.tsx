@@ -1,57 +1,71 @@
 'use client';
 
 import { Star, Package } from 'lucide-react';
+import { calculateDiscountedPrice } from '../../utils/calculateDiscount';
+import { Product } from '../../types/product-details.types';
 
-interface ProductInfoProps {
-  product: {
+interface ProductCardProps {
+  product: Product & {
+    createdAt: string;
+    stock?: number;
     id: string;
     title: string;
-    price: number;
     originalPrice?: number;
-    stock: number;
     rating: number;
-    ratingsCount: number;
+    ratings: number;
     description: string;
   };
 }
+export default function ProductInfo({ product }: ProductCardProps) {
+  const rawPrice = Number(product.price) || 0;
+  const discountedPrice = calculateDiscountedPrice(product);
+  const hasDiscount = product.discountType && Number(product.discountValue) > 0;
 
-export default function ProductInfo({ product }: ProductInfoProps) {
   return (
     <div className="flex flex-col gap-5 w-full text-start">
-      {/* title*/}
-      <h1 className="text-2xl md:text-3xl font-bold text-text-plain ">{product.title}</h1>
+      {/* Title */}
+      <h1 className="text-2xl md:text-3xl font-bold text-text-plain">{product.title}</h1>
 
-      {/* originalPrice*/}
+      {/* Price & Discount */}
       <div className="flex items-center gap-4 flex-wrap">
-        {product.originalPrice && (
-          <span className="text-lg text-text-muted line-through">{product.originalPrice}</span>
-        )}
-        <span className="text-3xl font-bold text-text-plain ">
-          {product.price.toFixed(2)} <span className="text-lg font-normal">EGP</span>
-        </span>
+        <div className="flex items-center gap-3 flex-wrap">
+          {/* rawPrice*/}
+          {hasDiscount && (
+            <span className="text-text-muted text-2xl font-bold line-through">
+              {rawPrice.toFixed(2)}
+            </span>
+          )}
 
-        {/* stock*/}
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 font-medium text-lg rounded-full bg-bg-muted text-text-plain  ">
+          {/* discountedPrice*/}
+          <span className="text-text-plain text-2xl font-bold">
+            {discountedPrice.toFixed(2)} EGP
+          </span>
+        </div>
+
+        {/* Stock */}
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 font-medium text-lg rounded-full bg-bg-muted text-text-plain">
           <Package className="w-5 h-5 text-text-muted shrink-0" />
           <span>{product.stock} left in stock</span>
         </span>
       </div>
-      <hr className="border-border-subtle  my-1" />
-      {/* rating*/}
+
+      <hr className="border-border-subtle my-1" />
+
+      {/* Rating */}
       <div className="flex items-center gap-2 text-sm text-text-muted">
         <Star className="w-5 h-5 fill-amber-400 text-amber-400" />
         <span className="font-semibold text-text-plain">Rating: {product.rating}/5</span>
-        <span className="text-text-info">({product.ratingsCount} ratings)</span>
+        <span className="text-text-info">({product.ratings} ratings)</span>
       </div>
 
-      <hr className="border-border-subtle  my-1" />
+      <hr className="border-border-subtle my-1" />
 
-      {/* Description*/}
-      <p className="text-sm md:text-base text-text-default  leading-relaxed">
+      {/* Description */}
+      <p className="text-sm md:text-base text-text-default leading-relaxed">
         {product.description}
       </p>
 
-      {/* Button and wish list*/}
+      {/* Button and wishlist */}
     </div>
   );
 }
