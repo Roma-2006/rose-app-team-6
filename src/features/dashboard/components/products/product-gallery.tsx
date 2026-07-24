@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { cn } from '@/lib/utils';
 
 export default function ProductGallery({ images, title }: ProductGalleryProps) {
   const [selectedImage, setSelectedImage] = useState(images[0] || '');
@@ -16,7 +17,8 @@ export default function ProductGallery({ images, title }: ProductGalleryProps) {
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover"
-            priority
+            loading="eager"
+            fetchPriority="high"
           />
         )}
       </div>
@@ -27,11 +29,12 @@ export default function ProductGallery({ images, title }: ProductGalleryProps) {
           <button
             key={index}
             onClick={() => setSelectedImage(img)}
-            className={`relative w-20 h-20 min:w-23 min:h-28 shrink-0 rounded-xl overflow-hidden border-2 transition-all ${
+            className={cn(
+              `relative w-20 h-20 min:w-23 min:h-28 shrink-0 rounded-xl overflow-hidden border-2 transition-all `,
               selectedImage === img
                 ? 'border-bg-primary scale-95'
                 : 'border-transparent opacity-70 hover:opacity-100'
-            }`}
+            )}
           >
             <Image
               src={img}

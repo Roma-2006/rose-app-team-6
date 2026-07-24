@@ -1,10 +1,12 @@
 import Image from 'next/image';
-import Link from 'next/link';
-import { ArrowRight, ArrowLeft } from 'lucide-react';
+
+import { ArrowRight } from 'lucide-react';
 
 import { Badge } from '@/shared/components/ui/badge';
 import { Card } from '@/shared/components/ui/card';
 import { useTranslations, useLocale } from 'next-intl';
+import { Link } from '@/i18n/navigation';
+import { Button } from '@/shared/components/ui/button';
 
 export default function HeroAside() {
   const t = useTranslations('home');
@@ -26,9 +28,7 @@ export default function HeroAside() {
         {/*  Overlay */}
         <div className="absolute inset-0 z-10 flex flex-col justify-end gap-3 p-6 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
           {/* Badge */}
-          <Badge className="w-fit rounded-full bg-soft-pink-50 border-0 px-3 py-1 text-xs font-bold text-maroon-600 shadow-sm">
-            {t('hero-aside.badge')}
-          </Badge>
+          <Badge>{t('hero-aside.badge')}</Badge>
 
           {/* Heading */}
           <h3 className="text-2xl lg:text-3xl font-bold text-white tracking-tight leading-tight">
@@ -36,14 +36,20 @@ export default function HeroAside() {
           </h3>
 
           {/* Button*/}
-          <div className="mt-2 flex w-fit items-center gap-2 rounded-xl bg-soft-pink-50 px-5 py-2.5 text-sm font-bold text-maroon-600 shadow-sm transition-all hover:bg-soft-pink-100">
+          {/* <div className="mt-2 flex w-fit items-center gap-2 rounded-xl bg-soft-pink-50 px-5 py-2.5 text-sm font-bold text-maroon-600 shadow-sm transition-all hover:bg-soft-pink-100">
             <span>{t('hero-aside.button')}</span>
             {isRtl ? (
-              <ArrowLeft className="h-4 w-4 text-maroon-600" />
+              <Arrow className="h-4 w-4 text-maroon-600" />
             ) : (
               <ArrowRight className="h-4 w-4 text-maroon-600" />
             )}
-          </div>
+          </div> */}
+          <Button
+            rightIcon={<ArrowRight className="h-4 w-4 text-maroon-600" />}
+            variant="secondary"
+            title={t('hero-aside.button')}
+            buttonVariant="text"
+          />
         </div>
       </Card>
     </Link>
