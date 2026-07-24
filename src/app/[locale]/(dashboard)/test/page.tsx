@@ -35,8 +35,6 @@ export default function Page() {
       <SecTitle text="Most Popular" className="w-80 ps-5" />
       <SecTitle text="Check Out our Wonderful Gallery" className="w-165 ps-2.5" />
       <SecTitle text="Real Words from Happy Customers" className="ps-5" /> */}
-
-      <AddReviewForm isAuthenticated={false} />
     </>
   );
 }

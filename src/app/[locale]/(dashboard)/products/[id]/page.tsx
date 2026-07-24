@@ -1,9 +1,12 @@
+import { authOptions } from '@/auth';
 import { getProductById } from '@/features/dashboard/api/product-details.api';
+import AddReviewForm from '@/features/dashboard/components/products/add-review-form';
 import OverallReview from '@/features/dashboard/components/products/overall-review';
 import ProductGallery from '@/features/dashboard/components/products/product-gallery';
 import ProductInfo from '@/features/dashboard/components/products/product-info';
 import ReviewList from '@/features/dashboard/components/products/review-list';
 import { Star } from 'lucide-react';
+import { getServerSession } from 'next-auth';
 
 interface ProductPageProps {
   params: Promise<{
@@ -14,6 +17,8 @@ interface ProductPageProps {
 
 export default async function ProductDetailsPage({ params }: ProductPageProps) {
   const { id } = await params;
+  const session = await getServerSession(authOptions);
+  const isAuthenticated = !!session?.token;
 
   const data = await getProductById(id);
   const product = data.payload.product;
@@ -41,6 +46,7 @@ export default async function ProductDetailsPage({ params }: ProductPageProps) {
       />
       <section className="py-5 grid grid-cols-2 gap-6 lg:grid-cols-3 divide-y border-y border-bg-muted">
         <ReviewList productId={id} />
+        <AddReviewForm isAuthenticated={isAuthenticated} productId={id} />
       </section>
     </div>
   );

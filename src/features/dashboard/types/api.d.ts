@@ -21,3 +21,15 @@ export interface IPaginatedResponse<T> {
     totalPages: number;
   };
 }
+
+export interface IAddReviewResponse {
+  status: boolean;
+  message?: string;
+  code?: number;
+  payload?: string;
+}
+export interface IAddReviewActionResponse {
+  success: boolean;
+  message?: string;
+  error?: string;
+}

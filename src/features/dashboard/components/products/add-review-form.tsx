@@ -11,15 +11,16 @@ import { FieldGroup } from '@/shared/components/ui/field';
 import { Textarea } from '@/shared/components/ui/textarea';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
-
+import { UseReview } from '../../hooks/use-review';
 interface IAddReviewFormProps {
   isAuthenticated: boolean;
+  productId: string;
 }
 
-export default function AddReviewForm({ isAuthenticated }: IAddReviewFormProps) {
+export default function AddReviewForm({ isAuthenticated, productId }: IAddReviewFormProps) {
   const tInput = useTranslations('custom-input');
   const router = useRouter();
-  const [isSubmittingState, setIsSubmittingState] = useState<boolean>(false);
+  const { mutate, isPending } = UseReview(productId);
   const form = useForm<IAddReviewFormData>({
     defaultValues: {
       rating: 0,
@@ -27,19 +28,15 @@ export default function AddReviewForm({ isAuthenticated }: IAddReviewFormProps) 
       review: '',
     },
   });
+  // the send function to pass data directly to the hook
   const onFormSubmit = async (data: IAddReviewFormData) => {
-    setIsSubmittingState(true);
-    try {
-      console.log('Form submitted internally with data:', data);
-
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      form.reset();
-    } catch (error) {
-      console.error('Failed to submit review:', error);
-    } finally {
-      setIsSubmittingState(false);
-    }
+    mutate(data, {
+      onSuccess: (res) => {
+        if (res.success) {
+          form.reset();
+        }
+      },
+    });
   };
   const handleGoToLogin = () => {
     router.push('/login');
@@ -77,7 +74,7 @@ export default function AddReviewForm({ isAuthenticated }: IAddReviewFormProps) 
             <Controller
               name="title"
               control={form.control}
-              render={({ field, fieldState }) => (
+              render={({ field }) => (
                 <CustomInput
                   {...field}
                   className="w-full"
@@ -100,7 +97,7 @@ export default function AddReviewForm({ isAuthenticated }: IAddReviewFormProps) 
               name="review"
               control={form.control}
               rules={{ required: 'Review details are required' }}
-              render={({ field, fieldState }) => (
+              render={({ field }) => (
                 <Textarea
                   {...field}
                   id="review"
@@ -123,8 +120,8 @@ export default function AddReviewForm({ isAuthenticated }: IAddReviewFormProps) 
           buttonVariant="text"
           variant="primary"
           className="mt-9 w-full"
-          title={isSubmittingState ? 'Adding...' : 'Add Review'}
-          disabled={isSubmittingState}
+          title={isPending ? 'Adding...' : 'Add Review'}
+          disabled={isPending}
         />
       </div>
 
@@ -132,6 +129,7 @@ export default function AddReviewForm({ isAuthenticated }: IAddReviewFormProps) 
       {!isAuthenticated && (
         <div className="absolute inset-0 flex items-center justify-center p-6 z-10">
           <button
+            type="button"
             onClick={handleGoToLogin}
             className="text-center mt-9  px-5 py-3   font-semibold text-lg text-text-plain cursor-pointer hover:scale-[1.02] active:scale-[0.98]  select-none"
           >
