@@ -7,10 +7,11 @@ import CategoryItem from './category-item';
 import CategoryItemSkeleton from './category-skeleton';
 import ResetButton from '../general/reset-button';
 import { getCategories } from '@/shared/api/products/filter/category.api';
-
-const LIMIT = 20;
-const SKELETON_COUNT = 4;
-const NEXT_PAGE_SKELETON_COUNT = 2;
+import {
+  LIMIT,
+  SKELETON_COUNT,
+  NEXT_PAGE_SKELETON_COUNT,
+} from '@/shared/constants/filter.constants';
 
 const CategoryList = () => {
   const t = useTranslations('products.filter.category');
@@ -46,7 +47,7 @@ const CategoryList = () => {
   const categories = data?.pages.flatMap((page) => page.data) ?? [];
 
   return (
-    <div className="w-full">
+    <div className="w-full pt-2.5 pb-5 border-b border-border-muted">
       <div className="flex justify-between">
         <h3 className="text-text-plain font-semibold text-lg">{t('title')}</h3>
         <ResetButton paramKeys={['categoryId', 'subCategoryId']} />

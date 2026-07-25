@@ -356,15 +356,23 @@
   "products": {
     "filter": {
       "resetButton": "Reset",
-       "category" : {
+      "category": {
         "title": "Category"
       },
-      "occasion" : {
-        "title" : "Occasion"
+      "occasion": {
+        "title": "Occasion"
       },
-      "rating" : {
-        "title" : "Rating",
+      "rating": {
+        "title": "Rating",
         "starLabel": "{count} stars"
+      },
+      "price": {
+        "title": "Price",
+        "from": "from",
+        "to": "to"
+      },
+      "resetAll": {
+        "title": "Reset All"
       }
     }
   }

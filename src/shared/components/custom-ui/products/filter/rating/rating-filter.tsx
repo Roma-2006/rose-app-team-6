@@ -6,8 +6,7 @@ import { Star } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/shared/lib/utils/tailwind-cn';
 import ResetButton from '../general/reset-button';
-
-const STAR_VALUES = [1, 2, 3, 4, 5];
+import { STAR_VALUES } from '@/shared/constants/filter.constants';
 
 const RatingFilter = () => {
   const t = useTranslations('products.filter.rating');
@@ -34,7 +33,7 @@ const RatingFilter = () => {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full pt-2.5 pb-5 border-b border-border-muted">
       <div className="flex justify-between items-center">
         <h3 className="text-text-plain font-semibold text-lg">{t('title')}</h3>
         <ResetButton paramKeys={['minRating']} />

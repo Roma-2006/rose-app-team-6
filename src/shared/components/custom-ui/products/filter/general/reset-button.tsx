@@ -31,7 +31,7 @@ const ResetButton = ({ paramKeys }: ResetButtonProps) => {
       buttonVariant="text"
       leftIcon={<X className="size-3.75 text-text-danger" />}
       title="products.filter.resetButton"
-      className="w-fit text-text-danger gap-1 font-normal text-sm"
+      className="w-fit text-text-danger gap-1 font-normal text-sm px-3"
       onClick={handleReset}
     />
   );

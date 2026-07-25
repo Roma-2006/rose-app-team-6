@@ -347,15 +347,23 @@
   "products": {
     "filter": {
       "resetButton": "إلغاء",
-      "category" : {
+      "category": {
         "title": "فئات"
       },
-      "occasion" : {
-        "title" : "مناسبات"
+      "occasion": {
+        "title": "مناسبات"
       },
-      "rating" : {
-        "title" : "تقييم",
+      "rating": {
+        "title": "تقييم",
         "starLabel": "{count} نجوم"
+      },
+      "price": {
+        "title": "السعر",
+        "from": "من",
+        "to": "إلى"
+      },
+      "resetAll": {
+        "title": "إلغاء الكل"
       }
     }
   }
