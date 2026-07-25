@@ -1,4 +1,4 @@
-const NotificationItemSkeleton = () => {
+export const NotificationItemSkeleton = () => {
   return (
     <div className="w-full h-25 top-px p-4 gap-1.5 flex flex-col max-h-25 overflow-hidden border-b-2 border-border-soft bg-bg-plain animate-pulse">
       <div className="flex justify-between items-center">

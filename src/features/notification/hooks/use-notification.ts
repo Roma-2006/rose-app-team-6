@@ -1,6 +1,6 @@
 'use client';
 
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { subscribeToPush } from '../apis/subscription.api';
 import { unsubscribeFromPush } from '../apis/unsubscription.api';
 // import { getVapidPublicKey } from '../apis/vapid-public-key.api';
@@ -23,10 +23,19 @@ export const notificationsKeys = {
 
 // ---------- Notifications list ----------
 
-export function useNotificationsList(params: GetNotificationsParams = {}, token: string) {
-  return useQuery({
+export function useNotificationsList(
+  params: Omit<GetNotificationsParams, 'page'> = {},
+  token: string
+) {
+  return useInfiniteQuery({
     queryKey: notificationsKeys.list(params),
-    queryFn: () => getNotifications(params, token),
+    queryFn: ({ pageParam }) => getNotifications({ ...params, page: pageParam }, token),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) =>
+      lastPage.metadata.page < lastPage.metadata.totalPages
+        ? lastPage.metadata.page + 1
+        : undefined,
+    enabled: !!token,
   });
 }
 
@@ -166,14 +175,18 @@ export function useNotifications() {
 
   const { data: session } = useSession();
   const {
-    data: notifications,
+    data,
     isLoading: isNotificationsLoading,
     isFetching: isNotificationsFetching,
+    isFetchingNextPage,
+    fetchNextPage,
+    hasNextPage,
     isError: isNotificationsError,
     error: notificationsError,
-  } = useNotificationsList({ page: 1, limit: 10 }, session?.token || '');
+  } = useNotificationsList({ limit: 10 }, session?.token || '');
 
-  const unreadCount = notifications?.filter((n) => !n.isRead).length ?? 0;
+  const notifications = data?.pages.flatMap((page) => page.data) ?? [];
+  const unreadCount = notifications.filter((n) => !n.isRead).length;
 
   return {
     markAsRead: markAsRead.mutate,
@@ -197,6 +210,10 @@ export function useNotifications() {
     isSubscribed,
     unreadCount,
     notifications,
+
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
 
     isLoading: isNotificationsLoading,
     isFetching: isNotificationsFetching,

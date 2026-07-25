@@ -1,43 +1,36 @@
-'use server';
+import type { GetNotificationsParams, Notification } from '../types/notification';
 
-import { ENDPOINTS } from './../constants/endpoints';
-import { HEADERS } from '@/shared/constants/api.constants';
-import type {
-  NotificationResponse,
-  Notification,
-  GetNotificationsParams,
-} from '../types/notification';
+export interface NotificationsResponse {
+  data: Notification[];
+  metadata: {
+    page: number;
+    limit: number;
+    total: number;
+    totalPages: number;
+  };
+}
 
-export async function getNotifications(
-  params: GetNotificationsParams = {},
-  token?: string
-): Promise<Notification[]> {
-  const { page = 1, limit = 20, type, isRead } = params;
+export const getNotifications = async (
+  params: GetNotificationsParams,
+  token: string
+): Promise<NotificationsResponse> => {
+  const url = new URL(`${process.env.NEXT_PUBLIC_API_URL}/notifications`);
 
-  const query = new URLSearchParams({
-    page: String(page),
-    limit: String(limit),
+  url.searchParams.set('page', String(params.page ?? 1));
+  url.searchParams.set('limit', String(params.limit ?? 20));
+
+  const response = await fetch(url.toString(), {
+    headers: { Authorization: `Bearer ${token}` },
   });
 
-  if (type) query.set('type', type);
-  if (isRead !== undefined) query.set('isRead', String(isRead));
-
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}${ENDPOINTS.NOTIFICATIONS}?${query.toString()}`,
-    {
-      method: 'GET',
-      headers: {
-        ...HEADERS.jsonBody,
-        ...(token && { Authorization: `Bearer ${token}` }),
-      },
-    }
-  );
-
-  const data: NotificationResponse = await res.json();
-
-  if (!data.status) {
-    throw new Error(data.message);
+  if (!response.ok) {
+    throw new Error('Failed to fetch notifications');
   }
 
-  return data.payload.data;
-}
+  const result = await response.json();
+
+  return {
+    data: result.payload?.data ?? [],
+    metadata: result.payload?.metadata ?? { page: 1, limit: 20, total: 0, totalPages: 1 },
+  };
+};
