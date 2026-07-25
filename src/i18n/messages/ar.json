@@ -343,5 +343,13 @@
     "phone": { "label": "رقم الهاتف", "placeholder": "1012345678" },
     "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" },
     "nice-to-have-you-here": "جميل أنك هنا"
+  },
+  "products": {
+    "filter": {
+      "resetButton": "إلغاء",
+      "category" : {
+        "title": "فئات"
+      }
+    }
   }
 }

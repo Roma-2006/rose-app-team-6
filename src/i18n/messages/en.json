@@ -57,8 +57,7 @@
     "about": "About"
   },
   "auth": {
-
-   "switchLang": "العربية",
+    "switchLang": "العربية",
     "langLabel": "التحويل إلى الإنجليزية",
     "welcome-auth": {
       "login-title": "Welcome back!",
@@ -76,13 +75,12 @@
         }
       },
 
-      "forgot-password":"Forgot Your password?",
-      "rememberMe" : "Remember me",
-      "no-account" :"Don't have an account?",
-      "register" :"Create one now!",
-      "button" :"Login",
+      "forgot-password": "Forgot Your password?",
+      "rememberMe": "Remember me",
+      "no-account": "Don't have an account?",
+      "register": "Create one now!",
+      "button": "Login",
       "invalidCredentials": "The username or password is incorrect."
-      
     },
     "auth-forgotPw": {
       "step1": {
@@ -354,5 +352,13 @@
     "phone": { "label": "Phone", "placeholder": "1012345678" },
     "email": { "label": "Email", "placeholder": "user@example.com" },
     "nice-to-have-you-here": "nice to have you here"
+  },
+  "products": {
+    "filter": {
+      "resetButton": "Reset",
+       "category" : {
+        "title": "Category"
+      }
+    }
   }
 }
