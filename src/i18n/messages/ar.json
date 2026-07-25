@@ -349,6 +349,9 @@
       "resetButton": "إلغاء",
       "category" : {
         "title": "فئات"
+      },
+      "occasion" : {
+        "title" : "مناسبات"
       }
     }
   }

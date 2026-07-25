@@ -358,6 +358,9 @@
       "resetButton": "Reset",
        "category" : {
         "title": "Category"
+      },
+      "occasion" : {
+        "title" : "Occasion"
       }
     }
   }
