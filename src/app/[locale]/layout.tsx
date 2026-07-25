@@ -11,7 +11,6 @@ import { Sarabun, Tajawal } from 'next/font/google';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/auth';
 import { Toaster } from '@/shared/components/ui/sonner';
-// import  Pwa  from '@/features/notification/components/pwa'
 
 const sarabun = Sarabun({
   subsets: ['latin'],
@@ -59,7 +58,6 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
     >
       <body className="min-h-screen  bg-background text-foreground antialiased">
         <Providers locale={locale} messages={messages} session={session}>
-          {/* <Pwa/> */}
           {children}
         </Providers>
         <Toaster />

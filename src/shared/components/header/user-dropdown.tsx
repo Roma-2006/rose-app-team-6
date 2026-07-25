@@ -38,7 +38,7 @@ const UserDropdown = ({ user }: userMenuProps) => {
         render={<HelloButton variant={'ghost'} name={user.firstName}></HelloButton>}
       ></DropdownMenuTrigger>
       <DropdownMenuContent
-        className="shadow-none border-0 bg-bg-plain w-56 h-55.5 text-start p-0 "
+        className="shadow-none border-0 bg-bg-plain w-56 max-h-55.5 h-fit text-start p-0 "
         align="start"
       >
         <DropdownMenuGroup>
@@ -79,28 +79,27 @@ const UserDropdown = ({ user }: userMenuProps) => {
           </DropdownMenuItem>
           <DropdownMenuSeparator className="bg-bg-muted"></DropdownMenuSeparator>
 
-          <DropdownMenuItem>
-            <Link
-              href={`/dashboard`}
-              className="flex gap-2 w-full text-text-plain font-medium text-sm"
-            >
-              <Settings className="size-4" />
-              {t('dashboard')}
-            </Link>
-          </DropdownMenuItem>
-          <DropdownMenuSeparator className="bg-bg-muted"></DropdownMenuSeparator>
+          {!(user.role == 'USER') && (
+            <DropdownMenuItem>
+              <Link
+                href={`/dashboard`}
+                className="flex gap-2 w-full text-text-plain font-medium text-sm"
+              >
+                <Settings className="size-4" />
+                {t('dashboard')}
+              </Link>
+            </DropdownMenuItem>
+          )}
 
           <DropdownMenuItem className="py-0">
             <Button
               variant="ghost"
               buttonVariant="text"
               leftIcon={<LogOut className="size-4 " />}
-              title=""
+              title="header.userMenu.logout"
               onClick={handleSignout}
-              className="flex gap-2 w-full text-text-plain font-medium text-sm justify-start h-8"
-            >
-              {t('account')}
-            </Button>
+              className="flex gap-2 w-full text-text-plain font-medium text-sm justify-start h-8 border-0 m-0 hover:bg-bg-plain cursor-pointer"
+            ></Button>
           </DropdownMenuItem>
           <DropdownMenuSeparator className="bg-bg-muted"></DropdownMenuSeparator>
         </DropdownMenuGroup>
