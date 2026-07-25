@@ -18,7 +18,7 @@ const OccasionList = () => {
   const loadMoreRef = useRef<HTMLDivElement>(null);
 
   const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery({
-    queryKey: ['occasions'],
+    queryKey: ['occasions', 'filter'],
     queryFn: ({ pageParam }) => getOccasions({ page: pageParam, limit: LIMIT }),
     initialPageParam: 1,
     getNextPageParam: (lastPage) =>

@@ -5,9 +5,9 @@ import { ProductCard } from '../home/home-products/Product-card';
 import ProductPagination from './product-pagination';
 
 export default function AllProducts({ params }: TAllProductsProps) {
-  console.log(params);
+  // console.log(params);
   const { data } = UseAllProducts(params);
-  console.log(data?.metadata, 'productse');
+  // console.log(data?.metadata, 'productse');
   return (
     <>
       <div className="  grid  md:grid-cols-2  xl:grid-cols-3 gap-4">

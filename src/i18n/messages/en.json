@@ -361,6 +361,10 @@
       },
       "occasion" : {
         "title" : "Occasion"
+      },
+      "rating" : {
+        "title" : "Rating",
+        "starLabel": "{count} stars"
       }
     }
   }

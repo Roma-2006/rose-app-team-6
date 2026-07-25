@@ -352,6 +352,10 @@
       },
       "occasion" : {
         "title" : "مناسبات"
+      },
+      "rating" : {
+        "title" : "تقييم",
+        "starLabel": "{count} نجوم"
       }
     }
   }
