@@ -44,7 +44,7 @@ export default async function ProductDetailsPage({ params }: ProductPageProps) {
           ratingsCount: product.ratings,
         }}
       />
-      <section className="py-5 grid grid-cols-2 gap-6 lg:grid-cols-3 divide-y border-y border-bg-muted">
+      <section className="py-5 grid grid-cols-2 gap-6 lg:grid-cols-3 border-y border-bg-muted">
         <ReviewList productId={id} />
         <AddReviewForm isAuthenticated={isAuthenticated} productId={id} />
       </section>

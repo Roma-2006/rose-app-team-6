@@ -27,7 +27,7 @@ export default function ReviewList({ productId }: ReviewListProps) {
   }
 
   return (
-    <div className="col-span-2 max-h-56 overflow-auto pe-7 border-bg-muted border-r scrollbar-none">
+    <div className="col-span-2 max-h-100 overflow-auto pe-7 border-bg-muted border-r scrollbar-none">
       {reviews?.map((review) => {
         const userName =
           `${review.user.firstName} ${review.user.lastName}`.trim() || review.user.username;
