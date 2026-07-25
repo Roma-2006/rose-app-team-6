@@ -1,37 +1,23 @@
 'use client';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { ShoppingCart, Star, HeartPlus } from 'lucide-react';
-import { Product } from '../../../types/product.type';
+import { useRouter } from '@/i18n/navigation';
+import { ShoppingCart, Star, Heart, LoaderCircle, HeartPlus, HeartMinus } from 'lucide-react';
 import { calculateDiscountedPrice } from '../../../utils/calculateDiscount';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
-
 import { useProductActions } from '../../../hooks/use-product-actions';
 import { LoginPromptModal } from './login-prompt';
+import { Product } from '@/features/dashboard/types/products';
+import { Button } from '@/shared/components/ui/button';
 
-interface ProductCardProps {
-  product: Product & {
-    createdAt: string;
-    stock?: number;
-  };
-}
-
-export const ProductCard = ({ product }: ProductCardProps) => {
+export const ProductCard = ({
+  product,
+}: {
+  product: Product & { createdAt: string; stock?: number };
+}) => {
   const router = useRouter();
   const t = useTranslations('home.product-card');
-
-  const locale = useLocale();
-  const loginHref = `/${locale}/login`;
-
-  const handleNavigate = () => router.push(`/products/${product.id}`);
-
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
-
-  const { addToCart, toggleWishlist } = useProductActions(product.id, () =>
-    setShowLoginPrompt(true)
-  );
-
   const rawPrice = Number(product.price);
 
   const discountedPrice = Number(calculateDiscountedPrice(product));
@@ -46,30 +32,48 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   const diffDays = (now.getTime() - created.getTime()) / (1000 * 60 * 60 * 24);
 
   const isNew = diffDays <= 30;
+  const isOutOfStock = Number(product.stock) <= 0;
+
+  const { addToCart, toggleWishlist, isAdding, isWishlisting, isInWishlist } = useProductActions(
+    product.id,
+    () => setShowLoginPrompt(true)
+  );
 
   return (
-    <div>
+    <div className="flex justify-center">
       <div
-        onClick={handleNavigate}
-        className="w-72 h-96 self-stretch rounded-2xl inline-flex flex-col justify-start items-start gap-6 cursor-pointer group "
+        onClick={() => router.push(`/products/${product.id}`)}
+        className="w-72 h-96 rounded-2xl flex flex-col gap-6 cursor-pointer group"
       >
-        {/* 1. image */}
-        <div className="relative self-stretch h-64 p-2.5 rounded-2xl flex flex-col justify-start items-end overflow-hidden bg-bg-muted">
-          <button
-            onClick={(e) => toggleWishlist(e)}
-            className="absolute top-3 left-3 z-20 w-9 h-9 bg-bg-plain rounded-full shadow-[0px_2px_8px_rgba(0,0,0,0.1)] flex justify-center items-center group/heart hover:bg-bg-subtle transition-all active:scale-90"
+        <div className="relative self-stretch h-64 p-2.5 rounded-2xl overflow-hidden bg-bg-muted">
+          {/* Wishlist Button */}
+
+          {/* <button
+            onClick={toggleWishlist}
+            disabled={isWishlisting}
+            className="absolute top-3 left-3 z-20 w-9 h-9 bg-bg-plain rounded-full shadow-sm flex justify-center items-center hover:bg-bg-subtle transition-all active:scale-95 disabled:opacity-50"
           >
-            <HeartPlus
-              size={20}
-              strokeWidth={1.5}
-              className="text-secondary group-hover/heart:scale-110 transition-transform"
-            />
-          </button>
+            {isWishlisting ? (
+              <LoaderCircle size={18} className="animate-spin text-text-primary" />
+            ) : (
+              <HeartPlus size={20} className={isInWishlist ? 'fill-bg-primary text-text-primary' : 'text-text-muted'} />
+            )}
+          </button> */}
+
+          <Button
+            variant={isInWishlist ? 'primary' : 'outline'}
+            buttonVariant="icon"
+            loading={isWishlisting}
+            onClick={toggleWishlist}
+            className={`absolute top-3 left-3 left-3 z-20 w-9 h-9 rounded-full flex justify-center items-center transition-all active:scale-95 disabled:opacity-50 border-none`}
+            iconOnly={isInWishlist ? <HeartMinus /> : <HeartPlus />}
+          />
+
           <Image
             src={product.cover}
             alt={product.title}
             fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            className="object-cover transition-transform group-hover:scale-105 "
           />
 
           {/* Badges */}
@@ -91,15 +95,13 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           </div>
         </div>
 
-        <div className="self-stretch px-1 flex flex-col gap-1">
-          <h3 className="text-text-primary self-stretch justify-center text-lg font-semibold font-['Sarabun'] leading-4">
+        <div className="self-stretch px-1 flex flex-col gap-2">
+          <h3 className="text-text-primary self-stretch text-start text-lg font-semibold font-['Sarabun'] leading-6">
             {product.title}
           </h3>
-
-          <div className="flex items-end justify-between mt-2">
-            <div className="flex flex-col gap-1.5">
-              {/* stars */}
-              <div className="flex items-center gap-0.5">
+          <div className="flex items-end justify-between">
+            <div>
+              <div className="flex gap-0.5 mb-1">
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
@@ -110,8 +112,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
                 ))}
               </div>
 
-              {/* prices */}
-              <div className="flex items-center gap-2 flex-wrap">
+              <div className="flex items-center gap-2 flex-wrap mt-2">
                 <span className="text-text-primary text-base font-bold">
                   {discountedPrice.toFixed(2)} EGP
                 </span>
@@ -124,17 +125,24 @@ export const ProductCard = ({ product }: ProductCardProps) => {
               </div>
             </div>
 
-            {/* cart button*/}
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                addToCart(e);
-              }}
-              className="w-11 h-11 bg-secondary rounded-full inline-flex justify-center items-center hover:opacity-80 transition-opacity "
+            {/* Cart Button */}
+            {/* <Button
+              onClick={addToCart}
+              disabled={isAdding || isOutOfStock}
+              className="w-11 h-11 bg-secondary rounded-full flex justify-center items-center transition-all disabled:grayscale disabled:opacity-50"
             >
-              <ShoppingCart size={22} className="text-text-inverse" />
-            </button>
+              {isAdding ? <LoaderCircle size={20} className="text-text-inverse animate-spin" /> : <ShoppingCart size={20} className="text-text-inverse" />}
+            </Button> */}
+
+            <Button
+              buttonVariant="icon"
+              loading={isAdding}
+              disabled={isOutOfStock}
+              onClick={addToCart}
+              variant="secondary"
+              className={`w-11 h-11 bg-bg-primary rounded-full transition-all disabled:grayscale disabled:opacity-50`}
+              iconOnly={<ShoppingCart className="text-text-inverse" />}
+            />
           </div>
         </div>
       </div>
@@ -142,7 +150,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
       <LoginPromptModal
         isOpen={showLoginPrompt}
         onClose={() => setShowLoginPrompt(false)}
-        loginHref={loginHref}
+        loginHref="/login"
       />
     </div>
   );

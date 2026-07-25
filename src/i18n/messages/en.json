@@ -49,7 +49,7 @@
       "login-title": "Welcome back!",
       "register-title": "Become part of our family!"
     },
-"login": {
+    "login": {
       "schema": {
         "username": {
           "invalid": "Invalid Username",
@@ -60,12 +60,12 @@
           "required": "Password is required"
         }
       },
-        "forgot-password":"Forgot Your password?",
-        "rememberMe" : "Remember me",
-        "noAccount" :"Don't have an account?",
-         "register" :"Create one now!",
-         "button" :"Login",
-         "invalidCredentials": "The username or password is incorrect."
+      "forgot-password":"Forgot Your password?",
+      "rememberMe" : "Remember me",
+      "no-account" :"Don't have an account?",
+      "register" :"Create one now!",
+      "button" :"Login",
+      "invalidCredentials": "The username or password is incorrect."
       
     },
     "auth-forgotPw": {
@@ -265,6 +265,8 @@
       "titlePart2": "What Everyone’s",
       "titlePart3": "Buying",
       "titlePart4": "Right Now",
+      "titlePart2": "What Everyone’s Buying",
+      
       "description": "Not sure what to choose?\nStart with our best sellers, these are the gifts our customers keep coming back for.\nWhether you're celebrating a birthday, anniversary or wedding, our top picks are guaranteed to leave a lasting impression.",
       "exploreButton": "Explore gifts"
     },
@@ -330,8 +332,10 @@
 
 }
 }},
-
-
+      "product": {
+    "addToCart": "Add to cart",
+    "outOfStock": "Out of stock"
+  },
 
   "input-component": {
     "label": "Full Name",
@@ -373,6 +377,7 @@
   }
 }
   }
+
 
 
 

@@ -3,6 +3,7 @@
 import { Star, Package } from 'lucide-react';
 import { calculateDiscountedPrice } from '../../utils/calculateDiscount';
 import { Product } from '../../types/product-details.types';
+import { ProductActions } from './product-actions';
 
 interface ProductCardProps {
   product: Product & {
@@ -66,6 +67,9 @@ export default function ProductInfo({ product }: ProductCardProps) {
       </p>
 
       {/* Button and wishlist */}
+      <div className="mt-16">
+        <ProductActions productId={product.id} stock={product.stock || 0} />
+      </div>
     </div>
   );
 }

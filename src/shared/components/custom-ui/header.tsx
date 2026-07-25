@@ -7,12 +7,16 @@ import Image from 'next/image';
 import SecondaryNavigation from './secondary-navigation';
 import { useSession } from 'next-auth/react';
 import HeaderSearchInput from './headear-search-input';
+import { useCart } from '@/shared/hooks/use-cart';
+import { useWishlist } from '@/shared/hooks/use-wishlist';
 
 export default function Header() {
   const t = useTranslations();
   const session = useSession();
   const userStatus = session.status;
   const isAuthenticated = userStatus === 'authenticated';
+  const { uniqueItemsCount } = useCart();
+  const { wishlistCount } = useWishlist();
   return (
     <header className="sticky top-0 z-50 bg-bg-plain">
       <div className=" flex items-center py-4.5 px-9 gap-4 ">
@@ -39,18 +43,32 @@ export default function Header() {
 
           <span className=" flex items-center gap-2.5 px-4 border-r border-l  border-border-muted">
             {!isAuthenticated ? (
-              <Link href="/login">
+              <Link href="/login" className="relative">
                 <Heart size={24} />
               </Link>
             ) : (
-              <Heart size={24} />
+              <div className="relative">
+                <Heart size={24} />
+                {wishlistCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-secondary text-text-inverse text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                    {wishlistCount}
+                  </span>
+                )}
+              </div>
             )}
             {!isAuthenticated ? (
-              <Link href="/login">
+              <Link href="/login" className="relative">
                 <ShoppingCart size={24} />
               </Link>
             ) : (
-              <ShoppingCart size={24} />
+              <div className="relative">
+                <ShoppingCart size={24} />
+                {uniqueItemsCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-secondary text-text-inverse text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                    {uniqueItemsCount}
+                  </span>
+                )}
+              </div>
             )}
             <Bell size={24} />
           </span>
