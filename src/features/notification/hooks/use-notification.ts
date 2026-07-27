@@ -56,26 +56,17 @@ export function useNotificationsList(
 export function usePushSubscription() {
   // const { data: vapidKey } = useVapidPublicKey();
 
+  // use-notification.ts
   async function subscribe() {
     if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
       throw new Error('Push not supported in this browser');
     }
-    // if (!vapidKey) throw new Error('VAPID key not loaded yet');
 
     const permission = await Notification.requestPermission();
     if (permission !== 'granted') throw new Error('Permission denied');
 
-    // const registration = await navigator.serviceWorker.register('/sw.js');
-    await navigator.serviceWorker.ready;
-
-    // const subscription = await registration.pushManager.subscribe({
-    //   userVisibleOnly: true,
-    //   applicationServerKey: urlBase64ToUint8Array(vapidKey || ""),
-    // });
-
-    // const subscriptionJson = subscription.toJSON() as PushSubscriptionRequestBody;
+    // don't await serviceWorker.ready here — subscribeToPush handles registration
     const subscription = await subscribeToPush();
-
     return subscription;
   }
 
