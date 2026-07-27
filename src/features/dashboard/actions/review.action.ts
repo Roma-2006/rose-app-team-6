@@ -24,7 +24,7 @@ export async function CreateReviewAction(
       rating: data.rating,
     };
 
-    const response = await fetch('https://elevate-bootcamp.cloud', {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reviews`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
