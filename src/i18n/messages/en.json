@@ -195,9 +195,6 @@
     }
   },
 
-
-
-
   "home": {
     "discover":"Discover",
   "hero-aside": {
@@ -280,16 +277,7 @@
     "noProductsFound": "No products found in this category."
     
   },
-   "product-card":{
-       "new": "NEW",
-    "outOfStock": "OUT OF STOCK"
-   },
-  
-
-
-  
-
-  "about":{
+ "about":{
 
     "label" :"About" ,
      "title" :{
@@ -328,6 +316,19 @@
 
 }
 }},
+
+ "products": {
+    "product-card": {
+      "new": "New",
+      "outOfStock": "Out of stock"
+    },
+    "product-details": {
+      "currency": "EGP",
+      "leftInStock": "left in stock",
+      "rating": "Rating",
+      "ratings": "ratings"
+    }
+  },
 
 
 

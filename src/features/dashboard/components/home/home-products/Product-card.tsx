@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { ShoppingCart, Star, HeartPlus } from 'lucide-react';
 import { Product } from '../../../types/product.type';
-import { calculateDiscountedPrice } from '../../../utils/calculateDiscount';
+import { calculateDiscountedPrice } from '../../../utils/calculate-discount';
 import { useLocale, useTranslations } from 'next-intl';
 import { useState } from 'react';
 

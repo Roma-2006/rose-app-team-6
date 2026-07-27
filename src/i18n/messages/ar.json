@@ -316,6 +316,20 @@
 },
 
   
+ 
+  "products": {
+    "product-card": {
+      "new": "جديد",
+      "outOfStock": "غير متوفر"
+    },
+    "product-details": {
+      "currency": "جنيه",
+      "leftInStock": "متبقي في المخزون",
+      "rating": "التقييم",
+      "ratings": "تقييمات"
+    }
+  },
+
 
   "input-component": {
     "label": "الاسم بالكامل",

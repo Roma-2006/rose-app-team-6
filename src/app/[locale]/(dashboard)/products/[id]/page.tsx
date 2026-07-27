@@ -1,6 +1,7 @@
 import { getProductById } from '@/features/dashboard/api/product-details.api';
 import ProductGallery from '@/features/dashboard/components/products/product-gallery';
 import ProductInfo from '@/features/dashboard/components/products/product-info';
+import { notFound } from 'next/navigation';
 
 interface ProductPageProps {
   params: Promise<{
@@ -13,6 +14,9 @@ export default async function ProductDetailsPage({ params }: ProductPageProps) {
   const { id } = await params;
 
   const data = await getProductById(id);
+  if (!data || !data.payload?.product) {
+    notFound();
+  }
   const product = data.payload.product;
 
   let galleryImages: string[] = [];
