@@ -2,11 +2,10 @@
 import Image from 'next/image';
 import { useRouter } from '@/i18n/navigation';
 import { ShoppingCart, Star, Heart, LoaderCircle, HeartPlus, HeartMinus } from 'lucide-react';
-import { calculateDiscountedPrice } from '../../../utils/calculateDiscount';
+import { calculateDiscountedPrice } from '../../../utils/calculate-discount';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { useProductActions } from '../../../hooks/use-product-actions';
-import { LoginPromptModal } from './login-prompt';
 import { Product } from '@/features/dashboard/types/products';
 import { Button } from '@/shared/components/ui/button';
 
@@ -47,19 +46,6 @@ export const ProductCard = ({
       >
         <div className="relative self-stretch h-64 p-2.5 rounded-2xl overflow-hidden bg-bg-muted">
           {/* Wishlist Button */}
-
-          {/* <button
-            onClick={toggleWishlist}
-            disabled={isWishlisting}
-            className="absolute top-3 left-3 z-20 w-9 h-9 bg-bg-plain rounded-full shadow-sm flex justify-center items-center hover:bg-bg-subtle transition-all active:scale-95 disabled:opacity-50"
-          >
-            {isWishlisting ? (
-              <LoaderCircle size={18} className="animate-spin text-text-primary" />
-            ) : (
-              <HeartPlus size={20} className={isInWishlist ? 'fill-bg-primary text-text-primary' : 'text-text-muted'} />
-            )}
-          </button> */}
-
           <Button
             variant={isInWishlist ? 'primary' : 'outline'}
             buttonVariant="icon"
@@ -126,13 +112,6 @@ export const ProductCard = ({
             </div>
 
             {/* Cart Button */}
-            {/* <Button
-              onClick={addToCart}
-              disabled={isAdding || isOutOfStock}
-              className="w-11 h-11 bg-secondary rounded-full flex justify-center items-center transition-all disabled:grayscale disabled:opacity-50"
-            >
-              {isAdding ? <LoaderCircle size={20} className="text-text-inverse animate-spin" /> : <ShoppingCart size={20} className="text-text-inverse" />}
-            </Button> */}
 
             <Button
               buttonVariant="icon"
@@ -146,12 +125,6 @@ export const ProductCard = ({
           </div>
         </div>
       </div>
-
-      <LoginPromptModal
-        isOpen={showLoginPrompt}
-        onClose={() => setShowLoginPrompt(false)}
-        loginHref="/login"
-      />
     </div>
   );
 };

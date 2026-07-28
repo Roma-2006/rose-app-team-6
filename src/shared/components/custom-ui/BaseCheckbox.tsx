@@ -23,10 +23,8 @@ export function BaseCheckbox({ list, error, value, onChange }: TBaseCheckboxProp
 
   const toggle = (id: string, isChecked: boolean) => {
     if (typeof value === 'boolean') {
-      // إذا كانت القيمة بوليان، نرسل الحالة الجديدة مباشرة
       onChange(isChecked);
     } else if (Array.isArray(value)) {
-      // إذا كانت مصفوفة، نقوم بتحديث المصفوفة وإرسالها كاملة للخارج
       const updatedValue = isChecked ? [...value, id] : value.filter((itemId) => itemId !== id);
       onChange(updatedValue);
     }

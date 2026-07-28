@@ -1,6 +1,6 @@
 import { TProductsResponse } from '@/features/dashboard/types/products';
 import { Response } from '../../../shared/types/api';
-import { GetProductsParams } from '@/shared/types/product-query';
+import { GetProductsParams } from '@/features/dashboard/types/product-query';
 
 export async function getProducts(params: GetProductsParams = {}) {
   const url = new URL(`${process.env.NEXT_PUBLIC_API_URL}/products`);

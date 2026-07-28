@@ -1,8 +1,7 @@
-interface CartItem {
+interface LocalWishlistItem {
   id: string;
   productId: string;
-  quantity: number;
-  product?: {
+  product: {
     id: string;
   };
 }

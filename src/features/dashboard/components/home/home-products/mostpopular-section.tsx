@@ -7,8 +7,8 @@ import { Link } from '@/i18n/navigation';
 import { ArrowRight } from 'lucide-react';
 import { ProductCardSkeleton } from './product-card-skelton';
 import { ProductCard } from './Product-card';
-import { getOccasions } from '@/shared/api/occasion.api';
-import { useProducts } from '@/shared/hooks/use-products';
+import { getOccasions } from '@/features/dashboard/apis/occasion.api';
+import { useProducts } from '@/features/dashboard/hooks/use-products';
 const ALL_TAB_ID = 'home.all';
 
 export const MostPopularSection = () => {
@@ -35,7 +35,7 @@ export const MostPopularSection = () => {
   const visibleOccasions = occasions?.filter((occ) => HOME_OCCASIONS.includes(occ.title)) ?? [];
 
   return (
-    <section className="w-full">
+    <section className="w-full mt-16">
       <div className="flex justify-between items-end pb-10">
         <div className="relative inline-block">
           {/* Pink background */}

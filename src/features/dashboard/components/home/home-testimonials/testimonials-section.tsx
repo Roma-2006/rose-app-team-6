@@ -9,7 +9,7 @@ const testimonials = [
   {
     id: 1,
     name: 'Jake Miller',
-    image: '/assets/testimonials-images/testimonial-image-1.png', // استبدل المسارات بملفاتك الحقيقية
+    image: '/assets/testimonials-images/testimonial-image-1.png',
     stars: 4,
     text: "I've been ordering from this flower shop for years and they never disappoint. The quality and service are exceptional!",
     date: 'January 12, 2025',

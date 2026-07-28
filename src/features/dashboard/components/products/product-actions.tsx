@@ -3,7 +3,6 @@
 import { Heart, HeartPlus, ShoppingCart } from 'lucide-react';
 import { Button } from '@/shared/components/ui/button';
 import { useTranslations } from 'next-intl';
-import { LoginPromptModal } from '../home/home-products/login-prompt';
 import { useState } from 'react';
 import { useProductActions } from '../../hooks/use-product-actions';
 
@@ -45,11 +44,6 @@ export function ProductActions({ productId, stock }: { productId: string; stock:
         title={isOutOfStock ? t('outOfStock') : t('addToCart')}
         leftIcon={<ShoppingCart />}
       ></Button>
-      <LoginPromptModal
-        isOpen={showLoginPrompt}
-        onClose={() => setShowLoginPrompt(false)}
-        loginHref="/login"
-      />
     </div>
   );
 }

@@ -7,8 +7,8 @@ import Image from 'next/image';
 import SecondaryNavigation from './secondary-navigation';
 import { useSession } from 'next-auth/react';
 import HeaderSearchInput from './headear-search-input';
-import { useCart } from '@/shared/hooks/use-cart';
-import { useWishlist } from '@/shared/hooks/use-wishlist';
+import { useCart } from '@/features/dashboard/hooks/use-cart';
+import { useWishlist } from '@/features/dashboard/hooks/use-wishlist';
 
 export default function Header() {
   const t = useTranslations();
@@ -42,34 +42,22 @@ export default function Header() {
           )}
 
           <span className=" flex items-center gap-2.5 px-4 border-r border-l  border-border-muted">
-            {!isAuthenticated ? (
-              <Link href="/login" className="relative">
-                <Heart size={24} />
-              </Link>
-            ) : (
-              <div className="relative">
-                <Heart size={24} />
-                {wishlistCount > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-secondary text-text-inverse text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                    {wishlistCount}
-                  </span>
-                )}
-              </div>
-            )}
-            {!isAuthenticated ? (
-              <Link href="/login" className="relative">
-                <ShoppingCart size={24} />
-              </Link>
-            ) : (
-              <div className="relative">
-                <ShoppingCart size={24} />
-                {uniqueItemsCount > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-secondary text-text-inverse text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                    {uniqueItemsCount}
-                  </span>
-                )}
-              </div>
-            )}
+            <div className="relative">
+              <Heart size={24} />
+              {wishlistCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-bg-primary text-text-inverse text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  {wishlistCount}
+                </span>
+              )}
+            </div>
+            <div className="relative">
+              <ShoppingCart size={24} />
+              {uniqueItemsCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-bg-primary text-text-inverse text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  {uniqueItemsCount}
+                </span>
+              )}
+            </div>
             <Bell size={24} />
           </span>
           <span className={` flex ltr:pl-4 rtl:pr-4 `}>

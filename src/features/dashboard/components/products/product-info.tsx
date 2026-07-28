@@ -1,7 +1,7 @@
 'use client';
 
 import { Star, Package } from 'lucide-react';
-import { calculateDiscountedPrice } from '../../utils/calculateDiscount';
+import { calculateDiscountedPrice } from '../../utils/calculate-discount';
 import { Product } from '../../types/product-details.types';
 import { ProductActions } from './product-actions';
 
