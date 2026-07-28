@@ -39,7 +39,6 @@ export const RegisterEmailForm = ({ setEmail, setStep, verifyError }: TRegisterE
     setIsLoading(true);
     try {
       const res = await registerEmailMutation.mutateAsync(data.email);
-      console.log(res);
       if (res?.status) {
         setEmail(data.email);
         setStep('otp');
@@ -71,7 +70,6 @@ export const RegisterEmailForm = ({ setEmail, setStep, verifyError }: TRegisterE
         setError('email', {
           message: 'step1.errors.something-went-wrong',
         });
-        console.log(normalizedMessage, apiMessage);
       }
     } finally {
       setIsLoading(false);

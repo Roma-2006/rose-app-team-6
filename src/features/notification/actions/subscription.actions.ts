@@ -23,10 +23,7 @@ export async function saveSubscription(sub: PushSubscriptionRequestBody) {
 
   const subscription = await res.json();
 
-  // console.log("subscriptions response : " , subscription)
-
   if (!res.status) {
-    // console.log("subscriptions response : " , subscription)
     throw new Error('Failed to save push subscription');
   }
   return subscription;

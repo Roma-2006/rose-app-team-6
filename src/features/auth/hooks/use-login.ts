@@ -48,7 +48,6 @@ export default function useLogin() {
         router.refresh();
         router.push(callbackUrl);
       }
-      console.log('Login Request:', router);
     } catch (error1) {
       setError((error1 as Error).message);
     } finally {

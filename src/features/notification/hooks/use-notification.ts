@@ -85,7 +85,6 @@ export function usePushSubscription() {
 
     if (!subscription) return;
 
-    // console.log('endpoint : ', subscription.endpoint);
     await unsubscribeFromPush({ endpoint: subscription.endpoint });
     await subscription.unsubscribe();
   }
