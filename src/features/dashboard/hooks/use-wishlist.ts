@@ -102,6 +102,5 @@ export const useWishlist = (productId?: string) => {
     isPending: toggleWishlistMutation.isPending,
     isLoading: isAuthenticated ? wishlistQuery.isLoading : false,
     isError: isAuthenticated ? wishlistQuery.isError : false,
-    refetch: isAuthenticated ? wishlistQuery.refetch : async () => Promise.resolve(),
   };
 };
