@@ -4,10 +4,11 @@ import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useRef } from 'react';
 
+import type { Product } from '@/shared/types/product-type';
+
 import { Button } from '@/shared/components/ui/button';
 import { ProductCardSkeleton } from './product-card-skelton';
 import { ProductCard } from './Product-card';
-import { Product } from '@/features/dashboard/types/products';
 
 interface BestSellingSectionClientProps {
   products?: Product[];
@@ -20,7 +21,7 @@ export const BestSellingSectionClient = ({
 }: BestSellingSectionClientProps) => {
   const locale = useLocale();
   const isRtl = locale === 'ar';
-  console.log(products);
+
   const t = useTranslations('home.bestSelling');
 
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -39,7 +40,7 @@ export const BestSellingSectionClient = ({
   };
 
   return (
-    <section className=" w-full">
+    <section className="py-8 w-full">
       <div className="flex flex-col lg:flex-row lg:items-start gap-9">
         <div className="w-80 shrink-0 flex flex-col items-start gap-3">
           <p className="text-base font-bold uppercase tracking-widest text-text-secondary text-start w-full">
@@ -58,21 +59,21 @@ export const BestSellingSectionClient = ({
           <Button
             buttonVariant="text"
             variant="primary"
-            title="home.bestSelling.exploreButton"
+            title={t('exploreButton')}
             rightIcon={
               isRtl ? (
                 <ArrowLeft
                   size={18}
-                  className="text-text-inverse group-hover/button:-translate-x-1 transition-transform"
+                  className="text-rose group-hover/button:-translate-x-1 transition-transform"
                 />
               ) : (
                 <ArrowRight
                   size={18}
-                  className="text-text-inverse group-hover/button:translate-x-1 transition-transform"
+                  className="text-rose group-hover/button:translate-x-1 transition-transform"
                 />
               )
             }
-            className="mt-5 w-40 bg-bg-primary rounded-lg text-text-inverse"
+            className="mt-5 w-40 bg-secondary rounded-lg text-text-inverse"
           />
         </div>
 
@@ -80,7 +81,7 @@ export const BestSellingSectionClient = ({
         <div className="relative flex-1 lg:max-w-5xl w-full">
           <button
             onClick={() => scroll('prev')}
-            className="absolute -left-5 rtl:-right-5 rtl:left-auto top-[161px] z-20 w-9 h-9 bg-bg-primary rounded-full flex justify-center items-center text-text-inverse shadow-lg hover:opacity-80 transition-opacity"
+            className="absolute -left-5 rtl:-right-5 rtl:left-auto top-[161px] z-20 w-9 h-9 bg-secondary rounded-full flex justify-center items-center text-rose shadow-lg hover:opacity-80 transition-opacity"
           >
             {isRtl ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
           </button>
@@ -101,7 +102,7 @@ export const BestSellingSectionClient = ({
           {/* Scroll Right Button  */}
           <button
             onClick={() => scroll('next')}
-            className="absolute -right-5 rtl:-left-5 rtl:right-auto top-[161px] z-20 w-9 h-9 bg-bg-primary rounded-full flex justify-center items-center text-text-inverse shadow-lg hover:opacity-80 transition-opacity"
+            className="absolute -right-5 rtl:-left-5 rtl:right-auto top-[161px] z-20 w-9 h-9 bg-secondary rounded-full flex justify-center items-center text-rose shadow-lg hover:opacity-80 transition-opacity"
           >
             {isRtl ? <ChevronLeft size={20} /> : <ChevronRight size={20} />}
           </button>

@@ -1,4 +1,4 @@
-import type { Occasion } from '../types/occasion';
+import type { Occasion } from '../types/occasion.type';
 
 export const getOccasions = async (page = 1, limit = 20): Promise<Occasion[]> => {
   const url = new URL(`${process.env.NEXT_PUBLIC_API_URL}/occasions`);

@@ -1,4 +1,4 @@
-import type { Occasion } from './occasion.type';
+import type { Occasion } from '@/shared/types/occasion.type.d';
 
 export type ProductOccasion = {
   id: string;
@@ -18,12 +18,13 @@ export type Product = {
   discountValue: string;
   cover: string;
 
-  _count: {
-    reviews: number;
-    cartItems: number;
-    wishlistItems: number;
-    orderItems: number;
-  };
+  _count: ProductCount;
 
   occasions: ProductOccasion[];
 };
+export interface ProductCount {
+  reviews: number;
+  cartItems: number;
+  wishlistItems: number;
+  orderItems: number;
+}

@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useQuery } from '@tanstack/react-query';
+import { getProducts } from '@/shared/api/product.api';
 import { Link } from '@/i18n/navigation';
 
 import { ArrowRight } from 'lucide-react';
@@ -17,25 +18,34 @@ export const MostPopularSection = () => {
   const locale = useLocale();
   const isRtl = locale === 'ar';
 
-  const { data, isLoading, isError } = useProducts({
+  const {
+    data: products,
+    isLoading,
+    isError,
+  } = useProducts({
     limit: 12,
     sortBy: 'mostPopular',
     sortOrder: 'desc',
     occasionId: activeTab === ALL_TAB_ID ? undefined : activeTab,
   });
 
-  const products = data?.data;
   const { data: occasions } = useQuery({
     queryKey: ['occasions'],
     queryFn: () => getOccasions(),
   });
 
-  const HOME_OCCASIONS = ['Wedding', 'Anniversary', 'Birthday', 'Engagement'];
+  const HOME_OCCASIONS = [
+    'Wedding',
+    'Anniversary',
+    'Birthday',
+    // 'Engagement',
+    'New Year',
+  ];
 
   const visibleOccasions = occasions?.filter((occ) => HOME_OCCASIONS.includes(occ.title)) ?? [];
 
   return (
-    <section className="w-full">
+    <section className="py-8 w-full">
       <div className="flex justify-between items-end pb-10">
         <div className="relative inline-block">
           {/* Pink background */}
