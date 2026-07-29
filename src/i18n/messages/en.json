@@ -24,7 +24,7 @@
     }
   },
    "header": {
-    "search-placeholder": "What awesome gift are you looking for?",
+    "search-placeholder": "Search for products…",
     "login": "Login",
     "search-default": "Products you may like",
     "search-empty":" No products found",
@@ -314,7 +314,34 @@
     "phone": { "label": "Phone", "placeholder": "1012345678" },
     "email": { "label": "Email", "placeholder": "user@example.com" },
     "nice-to-have-you-here": "nice to have you here"
-}
+},
+ "products": {
+    "filter": {
+      "resetButton": "Reset",
+      "category": {
+        "title": "Category"
+      },
+      "occasion": {
+        "title": "Occasion"
+      },
+      "rating": {
+        "title": "Rating",
+        "subtitle":"ratings",
+        "starLabel": "{count} stars"
+      },
+      "price": {
+        "title": "Price",
+        "from": "from",
+        "to": "to"
+      },
+      "currency": {
+        "egp": "EGP"
+      },
+      "resetAll": {
+        "title": "Reset All"
+      }
+    }
+  }
 }
 
 

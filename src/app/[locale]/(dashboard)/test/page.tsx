@@ -1,8 +1,10 @@
 'use client';
 import AboutSection from '@/features/dashboard/components/home/home-about/about-section';
+import { ProductCardSkeleton } from '@/features/dashboard/components/home/home-products/product-card-skelton';
 import SecHeader from '@/features/dashboard/components/home/section-header';
 import SecTitle from '@/features/dashboard/components/home/section-title';
 import { BaseCheckbox } from '@/shared/components/custom-ui/BaseCheckbox';
+import { Badge } from '@/shared/components/ui/badge';
 import { Button } from '@/shared/components/ui/button';
 import { Heart } from 'lucide-react';
 
@@ -15,6 +17,8 @@ export default function Page() {
   const handleClick = () => console.log('hello');
   return (
     <>
+      <Badge>3</Badge>
+      <Badge>rowida</Badge>
       <Button
         variant="primary"
         title="button.submit"

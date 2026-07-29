@@ -16,6 +16,7 @@ export async function getProducts(params: GetProductsParams = {}) {
     minRating,
     sortBy,
     sortOrder,
+    search,
   } = params;
 
   url.searchParams.set('limit', String(limit));
@@ -56,6 +57,10 @@ export async function getProducts(params: GetProductsParams = {}) {
     url.searchParams.set('sortOrder', sortOrder);
   }
 
+  if (search) {
+    url.searchParams.set('search', search);
+  }
+  console.log(url.toString());
   const response = await fetch(url.toString());
   const result: Response<TProductsResponse> = await response.json();
   if (!result.status) {

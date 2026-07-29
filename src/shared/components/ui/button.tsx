@@ -17,7 +17,7 @@ const buttonVariants = cva(
         subtle: 'bg-bg-muted border border-border-soft text-text-plain hover:bg-bg-soft ',
         ghost: ' text-text-plain hover:bg-bg-soft  ',
         destructive: 'bg-bg-danger text-text-inverse hover:bg-bg-danger-saturated',
-        link: 'text-primary underline-offset-4 hover:underline',
+        link: 'bg-bg-subtle border border-border-subtle text-text-plain',
       },
       size: {
         custom: 'h-11 w-45.25 gap-1.5',

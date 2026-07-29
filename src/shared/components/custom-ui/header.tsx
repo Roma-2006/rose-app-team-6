@@ -6,7 +6,9 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import SecondaryNavigation from './secondary-navigation';
 import { useSession } from 'next-auth/react';
-import HeaderSearchInput from './headear-search-input';
+import HeaderSearchInput from './header-search-input';
+import GuestGatedIcon from './guest-gated-icon';
+import UserAuthAction from './user-auth-action';
 
 export default function Header() {
   const t = useTranslations();
@@ -15,43 +17,30 @@ export default function Header() {
   const isAuthenticated = userStatus === 'authenticated';
   return (
     <header className="sticky top-0 z-50 bg-bg-plain">
-      <div className=" flex items-center py-4.5 px-9 gap-4 ">
-        <Link href="/" className="w-21.25 h-20 relative">
-          <Image
-            src="/assets/images/logo.png"
-            alt="Rose app logo"
-            fill
-            className="object-cover object-center "
-          />
-        </Link>
-        {/* search input */}
-        <div className="grow">
-          <HeaderSearchInput />
+      <div className=" flex flex-col md:flex-row  items-center py-4.5 px-9 gap-4 ">
+        <div className="flex w-full md:grow items-center gap-4">
+          <Link href="/" className="w-21.25 h-20 relative">
+            <Image
+              src="/assets/images/logo.png"
+              alt="Rose app logo"
+              fill
+              className="object-cover object-center "
+            />
+          </Link>
+          {/* search input */}
+          <div className="grow w-full">
+            <HeaderSearchInput />
+          </div>
         </div>
         <div className="flex">
-          {!isAuthenticated ? (
-            <Link href="/login" className=" flex items-center gap-1.5 px-4  ">
-              <User size={20} /> {t('header.login')}
-            </Link>
-          ) : (
-            ''
-          )}
-
+          <UserAuthAction isAuthenticated={isAuthenticated} />
           <span className=" flex items-center gap-2.5 px-4 border-r border-l  border-border-muted">
-            {!isAuthenticated ? (
-              <Link href="/login">
-                <Heart size={24} />
-              </Link>
-            ) : (
+            <GuestGatedIcon isAuthenticated={isAuthenticated} badgeCount={3}>
               <Heart size={24} />
-            )}
-            {!isAuthenticated ? (
-              <Link href="/login">
-                <ShoppingCart size={24} />
-              </Link>
-            ) : (
+            </GuestGatedIcon>
+            <GuestGatedIcon isAuthenticated={isAuthenticated} badgeCount={3}>
               <ShoppingCart size={24} />
-            )}
+            </GuestGatedIcon>
             <Bell size={24} />
           </span>
           <span className={` flex ltr:pl-4 rtl:pr-4 `}>

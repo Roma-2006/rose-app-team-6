@@ -23,7 +23,7 @@
     }
   },
   "header": {
-    "search-placeholder": "ما الهدية المميزة التي تبحث عنها؟",
+    "search-placeholder": "البحث عن منتجات...",
     "login": "تسجيل الدخول",
     "search-default": "منتجات قد تعجبك",
     "search-empty":"لا توجد منتجات",
@@ -301,5 +301,32 @@
     "phone": { "label": "رقم الهاتف", "placeholder": "1012345678" },
     "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" },
     "nice-to-have-you-here": "جميل أنك هنا"
+  },
+   "products": {
+    "filter": {
+      "resetButton": "إلغاء",
+      "category": {
+        "title": "فئات"
+      },
+      "occasion": {
+        "title": "مناسبات"
+      },
+      "rating": {
+        "title": "تقييم",
+        "subtitle":"التقييمات",
+        "starLabel": "{count} نجوم"
+      },
+      "price": {
+        "title": "السعر",
+        "from": "من",
+        "to": "إلى"
+      },
+      "currency": {
+        "egp": "ج.م"
+      }, 
+      "resetAll": {
+        "title": "إلغاء الكل"
+      }
+    }
   }
 }

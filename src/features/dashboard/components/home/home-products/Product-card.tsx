@@ -10,6 +10,7 @@ import { useState } from 'react';
 import { useProductActions } from '../../../hooks/use-product-actions';
 import { LoginPromptModal } from './login-prompt';
 import { Product } from '@/features/dashboard/types/products';
+import RatingStarts from '@/shared/components/custom-ui/rating-stars';
 
 interface ProductCardProps {
   product: Product & {
@@ -108,14 +109,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
             <div className="flex flex-col gap-1.5">
               {/* stars */}
               <div className="flex items-center gap-0.5">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    size={16}
-                    fill={i < ratingValue ? 'var(--color-yellow-400)' : 'none'}
-                    stroke="var(--color-yellow-400)"
-                  />
-                ))}
+                <RatingStarts rating={product.rating} />
               </div>
 
               {/* prices */}
