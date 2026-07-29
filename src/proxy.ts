@@ -2,7 +2,7 @@ import createMiddleware from 'next-intl/middleware';
 import { getToken } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 import { routing } from './i18n/routing';
-import { verifyRegistrationToken, RegistrationStep } from '@/features/auth/lib/registeration-token';
+import { verifyRegistrationToken } from '@/features/auth/lib/registeration-token';
 
 const intlMiddleware = createMiddleware(routing);
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { usePathname, useRouter } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
@@ -9,7 +9,10 @@ import ResetButton from '../general/reset-button';
 import { DEFAULT_MIN, DEFAULT_MAX, DEBOUNCE_MS } from '@/shared/constants/filter.constants';
 
 const PriceFilter = () => {
+  // Translation
   const t = useTranslations('products.filter.price');
+
+  // State
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -20,21 +23,12 @@ const PriceFilter = () => {
   const [minPrice, setMinPrice] = useState(urlMinPrice);
   const [maxPrice, setMaxPrice] = useState(urlMaxPrice);
 
-  // track the last URL values we've synced from, so we can tell
-  // "the URL changed externally" apart from "we're just re-rendering"
   const [syncedMin, setSyncedMin] = useState(urlMinPrice);
   const [syncedMax, setSyncedMax] = useState(urlMaxPrice);
 
-  // adjust state during render instead of in an effect, per React's guidance
-  if (urlMinPrice !== syncedMin) {
-    setSyncedMin(urlMinPrice);
-    setMinPrice(urlMinPrice);
-  }
-  if (urlMaxPrice !== syncedMax) {
-    setSyncedMax(urlMaxPrice);
-    setMaxPrice(urlMaxPrice);
-  }
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  // Functions
   const pushPrice = (nextMin: string, nextMax: string) => {
     const params = new URLSearchParams(searchParams.toString());
 
@@ -48,6 +42,11 @@ const PriceFilter = () => {
     router.push(nextUrl, { scroll: false });
   };
 
+  const scheduleDebouncedPush = (nextMin: string, nextMax: string) => {
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => pushPrice(nextMin, nextMax), DEBOUNCE_MS);
+  };
+
   const handleMinChange = (value: string) => {
     setMinPrice(value);
     scheduleDebouncedPush(value, maxPrice);
@@ -58,12 +57,15 @@ const PriceFilter = () => {
     scheduleDebouncedPush(minPrice, value);
   };
 
-  // simple debounce without an effect: a ref-held timer
-  const debounceRef = useDebounceRef();
-  const scheduleDebouncedPush = (nextMin: string, nextMax: string) => {
-    if (debounceRef.current) clearTimeout(debounceRef.current);
-    debounceRef.current = setTimeout(() => pushPrice(nextMin, nextMax), DEBOUNCE_MS);
-  };
+  // Effects
+  if (urlMinPrice !== syncedMin) {
+    setSyncedMin(urlMinPrice);
+    setMinPrice(urlMinPrice);
+  }
+  if (urlMaxPrice !== syncedMax) {
+    setSyncedMax(urlMaxPrice);
+    setMaxPrice(urlMaxPrice);
+  }
 
   return (
     <div className="w-full pt-2.5 pb-5 border-b border-border-muted">
@@ -85,7 +87,7 @@ const PriceFilter = () => {
               inputMode="numeric"
               placeholder={String(DEFAULT_MIN)}
               value={minPrice}
-              onChange={(e) => setMinPrice(e.target.value)}
+              onChange={(e) => handleMinChange(e.target.value)}
             />
           </InputGroup>
         </div>
@@ -102,7 +104,7 @@ const PriceFilter = () => {
               inputMode="numeric"
               placeholder={String(DEFAULT_MAX)}
               value={maxPrice}
-              onChange={(e) => setMaxPrice(e.target.value)}
+              onChange={(e) => handleMaxChange(e.target.value)}
             />
           </InputGroup>
         </div>
@@ -110,11 +112,5 @@ const PriceFilter = () => {
     </div>
   );
 };
-function useDebounceRef() {
-  const ref = useState<{ current: ReturnType<typeof setTimeout> | null }>(() => ({
-    current: null,
-  }))[0];
-  return ref;
-}
 
 export default PriceFilter;

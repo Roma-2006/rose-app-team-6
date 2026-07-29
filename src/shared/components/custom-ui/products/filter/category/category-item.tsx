@@ -1,17 +1,20 @@
 'use client';
 
-import { CategoryItemProps } from '@/shared/types/products/filter/category';
 import Image from 'next/image';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { cn } from '@/shared/lib/utils/tailwind-cn';
+import { CategoryItemProps } from '@/shared/types/products/filter/category';
 
 const CategoryItem = ({ category }: CategoryItemProps) => {
+  // State
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
+  // Variables
   const isActive = searchParams.get('categoryId') === category.id;
 
+  // Functions
   const handleClick = () => {
     const params = new URLSearchParams(searchParams.toString());
 
@@ -24,7 +27,7 @@ const CategoryItem = ({ category }: CategoryItemProps) => {
     params.delete('subCategoryId');
     params.set('page', '1');
 
-    router.push(`${pathname}?${params.toString()}`, { scroll: false });
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
   };
 
   return (

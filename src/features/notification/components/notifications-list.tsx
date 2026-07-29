@@ -16,7 +16,7 @@ import { Bell, CheckCheck, BellOff, BrushCleaning, BellRing } from 'lucide-react
 import { useNotifications } from '../hooks/use-notification';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/shared/lib/utils/tailwind-cn';
-import NotificationListSkeleton, { NotificationItemSkeleton } from './notification-skeleton';
+import NotificationListSkeleton from './notification-skeleton';
 
 const MAX_DISPLAYED_COUNT = 99;
 const NEXT_PAGE_SKELETON_COUNT = 2;

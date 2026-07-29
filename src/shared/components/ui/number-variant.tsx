@@ -1,7 +1,6 @@
 'use client';
 import { cn } from '@/lib/utils';
 import { Triangle } from 'lucide-react';
-import { useTranslations } from 'next-intl';
 import React from 'react';
 
 interface NumberVariantProps {
@@ -36,8 +35,6 @@ const NumberVariant = React.forwardRef<HTMLInputElement, NumberVariantProps>(
     },
     ref
   ) => {
-    const t = useTranslations('custom-input.phone');
-
     const [localValue, setLocalValue] = React.useState<string>('');
     const isControlled = value !== undefined;
     const displayValue = isControlled ? String(value ?? '') : localValue;

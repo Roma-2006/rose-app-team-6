@@ -152,8 +152,8 @@
   --bg-soft: var(--color-zinc-700);
   --bg-default: var(--color-zinc-600);
   --bg-inverse: var(--color-zinc-50);
-  --bg-elevated: color-mix(in srgb, var(--color-white) 20%, transparent);
-  --bg-overlay: color-mix(in srgb, var(--color-white) 50%, transparent);
+  --bg-elevated: color-mix(in srgb, var(--color-black) 20%, transparent);
+  --bg-overlay: color-mix(in srgb, var(--color-black) 50%, transparent);
 
   /* Primary */
   --bg-primary: var(--color-soft-pink-300);

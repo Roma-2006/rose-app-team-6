@@ -25,7 +25,7 @@ export default function LoginForm() {
     },
   });
 
-  const { handleLogin, isLoading, session, status, error } = useLogin();
+  const { handleLogin, isLoading, status, error } = useLogin();
 
   const onSubmit = (data: TLoginData) => {
     handleLogin(data);
@@ -98,7 +98,6 @@ export default function LoginForm() {
                 onChange={field.onChange}
                 error={fieldState.error?.message}
                 list={[{ id: 'remember-me', label: tLogin('rememberMe') }]}
-
               />
             )}
           />

@@ -8,10 +8,8 @@ import useRegister from '../../hooks/use-register';
 import CustomInput from '@/shared/components/custom-input';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/shared/components/ui/button';
-import { useSearchParams, useRouter } from 'next/navigation';
 import AuthFooter from '../shared/auth-footer';
 import AuthError from '../shared/auth-error';
-import { useEffect } from 'react';
 export default function CreatePassword({
   userInfo,
   setErrors,
@@ -41,7 +39,6 @@ export default function CreatePassword({
   });
   //function
   const onSubmit: SubmitHandler<TCreatePasswordFields> = (values) => {
-
     const { confirmPassword, ...rest } = values;
     register({
       ...userInfo,

@@ -6,13 +6,13 @@ import ResetAllButton from './reset-all-button';
 
 const Filter = () => {
   return (
-    <div className="flex flex-col gap-6">
+    <aside className="flex flex-col gap-6">
       <CategoryList />
       <OccasionList />
       <RatingFilter />
       <PriceFilter />
       <ResetAllButton />
-    </div>
+    </aside>
   );
 };
 export default Filter;

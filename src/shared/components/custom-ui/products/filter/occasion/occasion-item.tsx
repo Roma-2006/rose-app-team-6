@@ -6,12 +6,15 @@ import { cn } from '@/shared/lib/utils/tailwind-cn';
 import { OccasionItemProps } from '@/shared/types/products/filter/occasion';
 
 const OccasionItem = ({ occasion }: OccasionItemProps) => {
+  // State
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
+  // Variables
   const isActive = searchParams.get('occasionId') === occasion.id;
 
+  // Functions
   const handleClick = () => {
     const params = new URLSearchParams(searchParams.toString());
 
@@ -24,7 +27,7 @@ const OccasionItem = ({ occasion }: OccasionItemProps) => {
     params.delete('suboccasionId');
     params.set('page', '1');
 
-    router.push(`${pathname}?${params.toString()}`, {
+    router.replace(`${pathname}?${params.toString()}`, {
       scroll: false,
     });
   };
@@ -36,7 +39,7 @@ const OccasionItem = ({ occasion }: OccasionItemProps) => {
       className={cn(
         'group relative w-full aspect-video overflow-hidden rounded-xl',
         ' transition-all',
-        isActive ? 'ring-primary' : 'ring-transparent '
+        isActive ? 'ring-2 ring-primary' : 'ring-transparent '
       )}
     >
       <Image

@@ -1,6 +1,5 @@
 import LoginForm from '@/features/auth/components/login/login-form';
 import { Link } from '@/i18n/navigation';
-import CustomInput from '@/shared/components/custom-input';
 import { getTranslations } from 'next-intl/server';
 export default async function LoginPage() {
   const tLogin = await getTranslations('auth.login');

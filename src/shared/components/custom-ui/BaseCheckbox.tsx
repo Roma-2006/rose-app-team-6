@@ -1,17 +1,10 @@
 'use client';
 
 import { Checkbox } from '@/shared/components/ui/checkbox';
-import {
-  Field,
-  FieldContent,
-  FieldDescription,
-  FieldGroup,
-  FieldLabel,
-  FieldTitle,
-} from '@/shared/components/ui/field';
+import { Field, FieldGroup } from '@/shared/components/ui/field';
 import { Label } from '@/shared/components/ui/label';
 import { TBaseCheckboxProps } from '@/shared/types/base-checkbox';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export function BaseCheckbox({ list, error, onChange }: TBaseCheckboxProps) {
   const [selected, setSelected] = useState<string[]>([]);

@@ -3,8 +3,6 @@ import { useLocale, useTranslations } from 'next-intl';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 
-import { useRouter } from 'next/navigation';
-
 interface PasswordResetSentProps {
   email: string;
   onBack: () => void;
