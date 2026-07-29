@@ -20,7 +20,6 @@ export const BestSellingSectionClient = ({
 }: BestSellingSectionClientProps) => {
   const locale = useLocale();
   const isRtl = locale === 'ar';
-  console.log(products);
   const t = useTranslations('home.bestSelling');
 
   const scrollRef = useRef<HTMLDivElement>(null);

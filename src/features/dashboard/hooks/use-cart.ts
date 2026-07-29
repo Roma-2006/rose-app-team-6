@@ -6,7 +6,7 @@ import { useState, useEffect, useCallback } from 'react';
 
 import { getCartAction, addToCartAction, updateCartQuantityAction } from '../apis/cart.api';
 import { getLocalCart, addToLocalCart, CART_STORAGE_EVENT } from '../lib/storage';
-import { LocalCartItem } from '../types/local-cart';
+import type { LocalCartItem, LocalCartProduct } from '../types/local-cart';
 
 export const useCart = () => {
   const { data: session, status } = useSession();
@@ -14,7 +14,10 @@ export const useCart = () => {
   const isAuthenticated = status === 'authenticated';
   const token = session?.token;
 
-  const [localItems, setLocalItems] = useState<LocalCartItem[]>(() => getLocalCart());
+  const [localItems, setLocalItems] = useState<LocalCartItem[]>(() =>
+    typeof window !== 'undefined' ? getLocalCart() : []
+  );
+
   useEffect(() => {
     if (!isAuthenticated) {
       const handleGuestCartChange = () => setLocalItems(getLocalCart());
@@ -39,7 +42,15 @@ export const useCart = () => {
   const cartItems = isAuthenticated ? serverItems : localItems;
 
   const addToCartMutation = useMutation({
-    mutationFn: async ({ productId, quantity = 1 }: { productId: string; quantity?: number }) => {
+    mutationFn: async ({
+      productId,
+      quantity = 1,
+      product,
+    }: {
+      productId: string;
+      quantity?: number;
+      product?: LocalCartProduct;
+    }) => {
       if (!productId) {
         throw new Error('Product id is required');
       }
@@ -53,8 +64,7 @@ export const useCart = () => {
 
         return addToCartAction(productId, quantity);
       } else {
-        // localStorage (guest)
-        const updated = addToLocalCart(productId, quantity);
+        const updated = addToLocalCart(productId, quantity, product);
         setLocalItems([...updated]);
         return Promise.resolve({ success: true });
       }
@@ -71,6 +81,7 @@ export const useCart = () => {
     (id: string) => cartItems.some((item) => item.productId === id),
     [cartItems]
   );
+
   return {
     cartItems,
     uniqueItemsCount: cartItems.length,

@@ -2,8 +2,9 @@
 
 import { useCart } from '@/features/dashboard/hooks/use-cart';
 import { useWishlist } from '@/features/dashboard/hooks/use-wishlist';
+import type { LocalCartProduct } from '@/features/dashboard/types/local-cart';
 
-export const useProductActions = (productId: string, onShowLogin?: () => void) => {
+export const useProductActions = (productId: string, product?: LocalCartProduct) => {
   const { addToCart: cartAction, isAdding, isInCart } = useCart();
   const {
     toggleWishlist: wishlistAction,
@@ -19,7 +20,7 @@ export const useProductActions = (productId: string, onShowLogin?: () => void) =
 
     if (isAdding) return;
 
-    cartAction({ productId, quantity: 1 });
+    cartAction({ productId: product?.id ?? productId, quantity: 1, product });
   };
 
   const handleToggleWishlist = (e?: React.MouseEvent) => {
@@ -30,7 +31,7 @@ export const useProductActions = (productId: string, onShowLogin?: () => void) =
 
     if (isWishlisting) return;
 
-    wishlistAction();
+    wishlistAction({ product });
   };
 
   return {
@@ -39,6 +40,6 @@ export const useProductActions = (productId: string, onShowLogin?: () => void) =
     isAdding,
     isWishlisting,
     isInWishlist,
-    isInCart: isInCart(productId),
+    isInCart: isInCart(product?.id ?? productId),
   };
 };

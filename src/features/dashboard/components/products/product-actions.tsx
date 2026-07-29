@@ -1,29 +1,36 @@
 'use client';
 
-import { Heart, HeartPlus, ShoppingCart } from 'lucide-react';
+import { HeartPlus, ShoppingCart } from 'lucide-react';
 import { Button } from '@/shared/components/ui/button';
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
 import { useProductActions } from '../../hooks/use-product-actions';
+import type { LocalCartProduct } from '../../types/local-cart';
 
-export function ProductActions({ productId, stock }: { productId: string; stock: number }) {
-  const t = useTranslations('product');
-  const isOutOfStock = stock <= 0;
-  const [showLoginPrompt, setShowLoginPrompt] = useState(false);
+export function ProductActions({
+  productId,
+  stock,
+  product,
+}: {
+  productId: string;
+  stock: number;
+  product: LocalCartProduct;
+}) {
+  const t = useTranslations('products');
+  const isOutOfStock = Number(stock) <= 0;
   const { addToCart, toggleWishlist, isAdding, isWishlisting, isInWishlist } = useProductActions(
     productId,
-    () => setShowLoginPrompt(true)
+    product
   );
 
   return (
-    <div className="flex items-center gap-4 mt-12">
+    <>
       <Button
         buttonVariant="icon"
         variant="subtle"
         loading={isWishlisting}
         disabled={isWishlisting}
         className="w-12 h-12 rounded-xl border-none "
-        onClick={() => toggleWishlist()}
+        onClick={toggleWishlist}
         iconOnly={
           <HeartPlus
             className={
@@ -44,6 +51,6 @@ export function ProductActions({ productId, stock }: { productId: string; stock:
         title={isOutOfStock ? t('outOfStock') : t('addToCart')}
         leftIcon={<ShoppingCart />}
       ></Button>
-    </div>
+    </>
   );
 }

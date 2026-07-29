@@ -1,17 +1,6 @@
 'use server';
 
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/auth';
-
-async function getAuthToken(): Promise<string> {
-  const session = await getServerSession(authOptions);
-
-  if (!session?.token) {
-    throw new Error('Authentication required');
-  }
-
-  return session.token;
-}
+import { getAuthToken } from '../lib/get-auth-token';
 
 export async function getCartAction(): Promise<GetCartResponse> {
   const token = await getAuthToken();

@@ -1,12 +1,13 @@
 'use client';
 import Image from 'next/image';
-import { useRouter } from '@/i18n/navigation';
-import { ShoppingCart, Star, Heart, LoaderCircle, HeartPlus, HeartMinus } from 'lucide-react';
+import { Link } from '@/i18n/navigation';
+import { ShoppingCart, Star, HeartPlus, HeartMinus } from 'lucide-react';
 import { calculateDiscountedPrice } from '../../../utils/calculate-discount';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { useProductActions } from '../../../hooks/use-product-actions';
 import { Product } from '@/features/dashboard/types/products';
+import type { LocalCartProduct } from '@/features/dashboard/types/local-cart';
 import { Button } from '@/shared/components/ui/button';
 
 export const ProductCard = ({
@@ -14,9 +15,10 @@ export const ProductCard = ({
 }: {
   product: Product & { createdAt: string; stock?: number };
 }) => {
-  const router = useRouter();
+  // Translation
   const t = useTranslations('home.product-card');
-  const [showLoginPrompt, setShowLoginPrompt] = useState(false);
+
+  // Variables
   const rawPrice = Number(product.price);
 
   const discountedPrice = Number(calculateDiscountedPrice(product));
@@ -33,15 +35,27 @@ export const ProductCard = ({
   const isNew = diffDays <= 30;
   const isOutOfStock = Number(product.stock) <= 0;
 
+  const productSnapshot: LocalCartProduct = {
+    id: product.id,
+    title: product.title,
+    cover: product.cover,
+    price: product.price,
+    discountType: product.discountType === 'NONE' ? null : product.discountType,
+    discountValue: product.discountValue,
+    rating: product.rating ?? 0,
+    ratings: Number(product._count?.reviews ?? 0),
+    stock: Number(product.stock ?? 0),
+  };
+  // Hooks
   const { addToCart, toggleWishlist, isAdding, isWishlisting, isInWishlist } = useProductActions(
     product.id,
-    () => setShowLoginPrompt(true)
+    productSnapshot
   );
 
   return (
     <div className="flex justify-center">
-      <div
-        onClick={() => router.push(`/products/${product.id}`)}
+      <Link
+        href={`/products/${product.id}`}
         className="w-72 h-96 rounded-2xl flex flex-col gap-6 cursor-pointer group"
       >
         <div className="relative self-stretch h-64 p-2.5 rounded-2xl overflow-hidden bg-bg-muted">
@@ -51,7 +65,7 @@ export const ProductCard = ({
             buttonVariant="icon"
             loading={isWishlisting}
             onClick={toggleWishlist}
-            className={`absolute top-3 left-3 left-3 z-20 w-9 h-9 rounded-full flex justify-center items-center transition-all active:scale-95 disabled:opacity-50 border-none`}
+            className="absolute top-3 left-3 z-20 w-9 h-9 rounded-full flex justify-center items-center transition-all active:scale-95 disabled:opacity-50 border-none"
             iconOnly={isInWishlist ? <HeartMinus /> : <HeartPlus />}
           />
 
@@ -71,7 +85,7 @@ export const ProductCard = ({
                 </span>
               </div>
             )}
-            {Number(product.stock) === 0 && (
+            {isOutOfStock && (
               <div className="px-2 py-1 bg-bg-danger rounded-full inline-flex justify-center items-center gap-2.5">
                 <span className=" text-rose text-xs font-medium uppercase leading-3">
                   {t('outOfStock')}
@@ -124,7 +138,7 @@ export const ProductCard = ({
             />
           </div>
         </div>
-      </div>
+      </Link>
     </div>
   );
 };

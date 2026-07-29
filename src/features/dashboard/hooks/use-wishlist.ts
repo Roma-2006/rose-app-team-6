@@ -16,6 +16,7 @@ import {
   isInLocalWishlist,
   WISHLIST_STORAGE_EVENT,
 } from '../lib/storage';
+import type { LocalWishlistItem, LocalWishlistProduct } from '../types/local-wishlist';
 
 export const useWishlist = (productId?: string) => {
   const { data: session, status } = useSession();
@@ -23,7 +24,10 @@ export const useWishlist = (productId?: string) => {
   const isAuthenticated = status === 'authenticated';
   const token = session?.token;
 
-  const [localItems, setLocalItems] = useState<LocalWishlistItem[]>(() => getLocalWishlist());
+  const [localItems, setLocalItems] = useState<LocalWishlistItem[]>(() =>
+    typeof window !== 'undefined' ? getLocalWishlist() : []
+  );
+
   useEffect(() => {
     if (isAuthenticated) return;
 
@@ -61,25 +65,23 @@ export const useWishlist = (productId?: string) => {
       : null;
 
   const toggleWishlistMutation = useMutation({
-    mutationFn: async () => {
+    mutationFn: async ({ product }: { product?: LocalWishlistProduct } = {}) => {
       if (!productId) {
         throw new Error('Product id is required');
       }
 
       if (isAuthenticated) {
-        // Server action (authenticated)
         if (isInWishlist && existingItem) {
           return removeFromWishlistAction(existingItem.id);
         }
 
         return addToWishlistAction(productId);
       } else {
-        // localStorage (guest)
         if (isInWishlist && existingItem) {
           const updated = removeFromLocalWishlist(existingItem.id);
           setLocalItems([...updated]);
         } else {
-          const updated = addToLocalWishlist(productId);
+          const updated = addToLocalWishlist(productId, product);
           setLocalItems([...updated]);
         }
 
