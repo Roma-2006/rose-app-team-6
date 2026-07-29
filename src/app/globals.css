@@ -29,6 +29,7 @@
   --bg-secondary: var(--color-soft-pink-400);
   --bg-secondary-faint: var(--color-soft-pink-100);
   --bg-secondary-fade: var(--color-soft-pink-50);
+  
 
   /* success */
   --bg-success: var(--color-emerald-500);
@@ -137,6 +138,10 @@
   --col-ring-default: var(--color-maroon-50);
   --col-ring-danger: var(--color-red-100);
   --ring-width-default: 3px;
+
+  --secondary: var(--color-maroon-600);
+  --soft-pink :var(--color-soft-pink-600);
+   --rose:var(--color-rose-50);
 }
 
 .dark {
@@ -285,6 +290,7 @@
   --color-bg-inverse: var(--bg-inverse);
   --color-bg-elevated: var(--bg-elevated);
   --color-bg-overlay: var(--bg-overlay);
+  
 
   /* Primary */
   --color-bg-primary: var(--bg-primary);
@@ -302,6 +308,7 @@
   --color-bg-secondary-faint: var(--bg-secondary-faint);
   --color-bg-secondary-fade: var(--bg-secondary-fade);
 
+
   /* success */
   --color-bg-success: var(--bg-success);
   --color-bg-success-faint: var(--bg-success-faint);
@@ -316,7 +323,7 @@
   --color-bg-danger: var(--bg-danger);
   --color-bg-danger-faint: var(--bg-danger-faint);
   --color-bg-danger-fade: var(--bg-danger-fade);
-
+  --color-bg-danger-saturated: var(--bg-danger-saturated);
   /* Text ---------------------------------------------------------------------------------*/
   --color-text-plain: var(--text-plain);
   --color-text-subtle: var(--text-subtle);
@@ -418,7 +425,12 @@
   --color-maroon-800: #501419;
   --color-maroon-900: #2c0c10;
   --color-maroon-950: #20090c;
+    
+  /*rose*/
+--color-rose-100:#FFE4E6;
+--color-rose-50:#FFF1F2;
 
+  
   /* shadows -------------------------------------------------------------------------------- */
 
   --shadow-shadow-subtle-sm: var(--app-shadow-subtle-sm);
@@ -433,6 +445,19 @@
 
   --color-col-ring-default: var(--col-ring-default);
   --color-col-ring-danger: var(--col-ring-danger);
+
+
+
+
+
+
+  --color-secondary: var(--color-maroon-600);
+  --color-soft-pink: var(--color-soft-pink-600);
+  --color-rose:var(--color-rose-50);
+
+
+
+
 }
 
 @utility ring-default {
@@ -464,4 +489,12 @@ body {
   background: var(--bg-plain);
 
   font-family: var(--font-sans);
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
