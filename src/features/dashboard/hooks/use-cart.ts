@@ -14,10 +14,14 @@ export const useCart = () => {
   const isAuthenticated = status === 'authenticated';
   const token = session?.token;
 
+  // State
+  //  Guest cart state
   const [localItems, setLocalItems] = useState<LocalCartItem[]>(() =>
     typeof window !== 'undefined' ? getLocalCart() : []
   );
 
+  // Effects
+  // Listen for guest cart updates from localStorage
   useEffect(() => {
     if (!isAuthenticated) {
       const handleGuestCartChange = () => setLocalItems(getLocalCart());
