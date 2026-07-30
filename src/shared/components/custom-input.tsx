@@ -306,7 +306,7 @@ export default function CustomInput({
             max={max}
             step={step}
             placeholder={computedPlaceholder}
-            value={(props.value ?? defaultValue) as string | number | undefined}
+            value={(props.value ?? defaultValue) as string | number | undefined} // إضافة تحويل النوع لحل خطأ TypeScript السابق
             onChange={onChange}
             onBlur={props.onBlur}
             isRtl={computedIsRtl}

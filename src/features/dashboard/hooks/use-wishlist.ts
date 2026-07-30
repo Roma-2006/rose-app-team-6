@@ -5,11 +5,6 @@ import { useSession } from 'next-auth/react';
 import { useState, useEffect } from 'react';
 
 import {
-  getWishlistAction,
-  addToWishlistAction,
-  removeFromWishlistAction,
-} from '../apis/wishlist.api';
-import {
   getLocalWishlist,
   addToLocalWishlist,
   removeFromLocalWishlist,
@@ -17,6 +12,11 @@ import {
   WISHLIST_STORAGE_EVENT,
 } from '../lib/storage';
 import type { LocalWishlistItem, LocalWishlistProduct } from '../types/local-wishlist';
+import {
+  addToWishlistAction,
+  getWishlistAction,
+  removeFromWishlistAction,
+} from '../api/wishlist.api';
 
 export const useWishlist = (productId?: string) => {
   const { data: session, status } = useSession();
