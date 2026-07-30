@@ -1,4 +1,4 @@
-import { getProducts } from '@/shared/api/product.api';
+import { getProducts } from '@/features/dashboard/apis/product.api';
 import { BestSellingSectionClient } from './bestselling-client';
 
 export const BestSellingSection = async () => {
@@ -7,6 +7,5 @@ export const BestSellingSection = async () => {
     sortBy: 'bestSelling',
     sortOrder: 'desc',
   });
-
-  return <BestSellingSectionClient products={products} isLoading={false} />;
+  return <BestSellingSectionClient products={products?.data} isLoading={false} />;
 };

@@ -23,7 +23,7 @@ export type TInputVariant =
 
 interface InputProps {
   variant: TInputVariant;
-  subVariant?: 'first-name' | 'last-name' | 'review-title' | string;
+  subVariant?: string;
   label?: string;
   placeholder?: string;
   disabled?: boolean;
@@ -69,27 +69,17 @@ export default function CustomInput({
 
   if (variant === 'default' && subVariant) {
     //first & last name
-    defaultLabel = tInput.has(`default.${subVariant}.label`)
-      ? tInput(`default.${subVariant}.label`)
-      : '';
-    defaultPlaceholder = tInput.has(`default.${subVariant}.placeholder`)
-      ? tInput(`default.${subVariant}.placeholder`)
-      : '';
+    defaultLabel = tInput(`default.${subVariant}.label`);
+    defaultPlaceholder = tInput(`default.${subVariant}.placeholder`);
     // password & confirm password
   } else if (variant === 'password' && subVariant) {
-    defaultLabel = tInput.has(`password.${subVariant}.label`)
-      ? tInput(`password.${subVariant}.label`)
-      : '';
-    defaultPlaceholder = tInput.has(`password.${subVariant}.placeholder`)
-      ? tInput(`password.${subVariant}.placeholder`)
-      : ''; //   // file , phone , number , search & email
+    defaultLabel = tInput(`password.${subVariant}.label`);
+    defaultPlaceholder = tInput(`password.${subVariant}.placeholder`);
+    // file , phone , number , search & email
   } else {
-    defaultLabel = tInput.has(`${variant}.label`) ? tInput(`${variant}.label`) : '';
-    defaultPlaceholder = tInput.has(`${variant}.placeholder`)
-      ? tInput(`${variant}.placeholder`)
-      : '';
+    defaultLabel = tInput(`${variant}.label`);
+    defaultPlaceholder = tInput(`${variant}.placeholder`);
   }
-
   // Compute label and placeholder
 
   const computedLabel = label !== undefined ? label : defaultLabel;

@@ -6,7 +6,7 @@ import ProductGallery from '@/features/dashboard/components/products/product-gal
 import ProductInfo from '@/features/dashboard/components/products/product-info';
 import RelatedProductsSection from '@/features/dashboard/components/products/related-products-section';
 import ReviewList from '@/features/dashboard/components/products/review-list';
-import { ProductOccasion } from '@/shared/types/product-type';
+import { ProductOccasion } from '@/features/dashboard/types/products';
 import { Star } from 'lucide-react';
 import { getServerSession } from 'next-auth';
 

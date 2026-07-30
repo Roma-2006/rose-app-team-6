@@ -6,12 +6,12 @@ import { MostPopularSection } from '@/features/dashboard/components/home/home-pr
 
 export default async function HomePage() {
   return (
-    <>
+    <section className="min-h-screen">
       <HomeContent />
       <BestSellingSection />
       <MostPopularSection />
       <AboutSection />
       <GallerySection />
-    </>
+    </section>
   );
 }

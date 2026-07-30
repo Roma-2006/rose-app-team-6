@@ -11,6 +11,7 @@ export default function useLogin() {
   const [error, setError] = useState<string | null>(null);
   const { data: session, status } = useSession();
   const router = useRouter();
+
   const t = useTranslations();
   const tLogin = useTranslations('auth.login');
 
@@ -26,8 +27,6 @@ export default function useLogin() {
         rememberMe: String(data.rememberMe),
         redirect: false,
       });
-
-      console.log('Form data:', data);
 
       if (result?.error) {
         if (result.error === 'Route not found' || result.error === 'CredentialsSignin') {

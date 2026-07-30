@@ -35,9 +35,7 @@ export const authOptions: NextAuthOptions = {
         const data = await login(result.data);
 
         if (!data.status) {
-          console.error('❌ Backend Authentication Failed:', data?.message);
-
-          return null;
+          throw new Error(data.message);
         }
 
         const { user, token } = data.payload ?? {};

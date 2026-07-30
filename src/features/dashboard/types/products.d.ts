@@ -30,6 +30,7 @@ export type Product = {
 
   occasions: ProductOccasion[];
 };
+
 //productPage
 export type TGetProductsParams = {
   page?: string;
@@ -65,35 +66,6 @@ export type TProductsResponse = {
 //productPagination
 export type TProductMetaDataProps = {
   productMetaData: TPaginationMetadata;
-};
-
-import type { Occasion } from '../../features/dashboard/types/occasion.type';
-
-export type ProductOccasion = {
-  id: string;
-  productId: string;
-  occasionId: string;
-  occasion: Occasion;
-};
-
-// الـ Type الرئيسي للمشروع
-export type Product = {
-  id: string;
-  title: string;
-  rating: number;
-  price: string;
-  createdAt: string;
-  stock?: number;
-  discountType: 'PERCENT' | 'FIXED' | 'NONE';
-  discountValue: string;
-  cover: string;
-  _count: {
-    reviews: number;
-    cartItems: number;
-    wishlistItems: number;
-    orderItems: number;
-  };
-  occasions: ProductOccasion[];
 };
 
 export interface IProductCount {

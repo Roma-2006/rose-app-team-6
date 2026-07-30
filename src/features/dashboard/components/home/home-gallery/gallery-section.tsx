@@ -1,9 +1,9 @@
 'use client';
 
-import SecHeader from '../../shared/section-header';
-import SecTitle from '../../shared/section-title';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
+import SecHeader from '../../shared/section-header';
+import SecTitle from '../../shared/section-title';
 
 const columnsData = [
   {

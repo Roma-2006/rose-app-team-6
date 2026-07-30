@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useQuery } from '@tanstack/react-query';
-import { getProducts } from '@/shared/api/product.api';
+import { getProducts } from '@/features/dashboard/apis/product.api';
 import { Link } from '@/i18n/navigation';
 
 import { ArrowRight } from 'lucide-react';
@@ -18,17 +18,17 @@ export const MostPopularSection = () => {
   const locale = useLocale();
   const isRtl = locale === 'ar';
 
-  const {
-    data: products,
-    isLoading,
-    isError,
-  } = useProducts({
-    limit: 12,
-    sortBy: 'mostPopular',
-    sortOrder: 'desc',
-    occasionId: activeTab === ALL_TAB_ID ? undefined : activeTab,
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['products', 'most-popular', activeTab],
+    queryFn: () =>
+      getProducts({
+        limit: 12,
+        sortBy: 'mostPopular',
+        sortOrder: 'desc',
+        occasionId: activeTab === ALL_TAB_ID ? undefined : activeTab,
+      }),
   });
-
+  const products = data?.data;
   const { data: occasions } = useQuery({
     queryKey: ['occasions'],
     queryFn: () => getOccasions(),
