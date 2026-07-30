@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from '@/shared/components/ui/dropdown-menu';
 import { HelloButton } from '../ui/hello-button';
-import { ChevronDown, UserIcon, MapPinHouse, ScrollText, Settings, LogOut } from 'lucide-react';
+import { UserIcon, MapPinHouse, ScrollText, Settings, LogOut } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { User } from '@/features/auth/types/user';

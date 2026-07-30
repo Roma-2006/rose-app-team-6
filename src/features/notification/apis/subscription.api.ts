@@ -9,6 +9,7 @@ import { PushSubscriptionRequestBody } from '../types/push-subscription';
 
 export async function subscribeToPush() {
   const reg = await navigator.serviceWorker.register('/sw.js');
+  await navigator.serviceWorker.ready;
 
   // const { vapidKey } = await fetch(
   //   `${process.env.NEXT_PUBLIC_API_URL}${ENDPOINTS.VAPID_PUBLIC_KEY}`, {
