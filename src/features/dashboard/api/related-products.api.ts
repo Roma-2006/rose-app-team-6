@@ -44,11 +44,14 @@ export async function getRelatedProducts({
       params.append('minRating', minRating.toString());
     }
 
-    const response = await fetch(`${process.env.API_URL}/api/products?${params.toString()}`, {
-      method: 'GET',
-      headers: { Accept: 'application/json' },
-      next: { revalidate: 3600 },
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/products?${params.toString()}`,
+      {
+        method: 'GET',
+        headers: { Accept: 'application/json' },
+        next: { revalidate: 3600 },
+      }
+    );
 
     if (!response.ok) return [];
 

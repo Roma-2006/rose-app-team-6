@@ -4,7 +4,7 @@ import type { GetProductsParams } from '../types/product-query-type';
 const DEFAULT_LIMIT = 12;
 
 export async function getProducts(params: GetProductsParams = {}): Promise<Product[]> {
-  const url = new URL(`${process.env.NEXT_PUBLIC_API_URL}/products`);
+  const url = new URL(`${process.env.NEXT_PUBLIC_API_URL}/api/products`);
 
   const {
     page,
