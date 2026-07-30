@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import SecHeader from '../section-header';
-import SecTitle from '../section-title';
+import SecHeader from '../../shared/section-header';
+import SecTitle from '../../shared/section-title';
 import { Star } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 

@@ -262,17 +262,13 @@
   "bestSelling": {
       "badge": "Best Selling",
       "titlePart1": "Check Out",
-<<<<<<< HEAD
+
       "titlePart2": "What Everyone’s",
       "titlePart3": "Buying",
       "titlePart4": "Right Now",
       "titlePart2": "What Everyone’s Buying",
       
-=======
-      "titlePart2": "What Everyone’s Buying",
-      
-      "titlePart3": "Right Now",
->>>>>>> 21c805a87c532a6736dbf5f3d3b5af17409d8173
+
       "description": "Not sure what to choose?\nStart with our best sellers, these are the gifts our customers keep coming back for.\nWhether you're celebrating a birthday, anniversary or wedding, our top picks are guaranteed to leave a lasting impression.",
       "exploreButton": "Explore gifts"
     },
@@ -338,14 +334,6 @@
 
 }
 }},
-<<<<<<< HEAD
-      "product": {
-    "addToCart": "Add to cart",
-    "outOfStock": "Out of stock"
-  },
-=======
-
->>>>>>> 21c805a87c532a6736dbf5f3d3b5af17409d8173
 
   "input-component": {
     "label": "Full Name",

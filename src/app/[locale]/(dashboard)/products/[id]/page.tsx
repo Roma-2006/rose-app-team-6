@@ -4,7 +4,9 @@ import AddReviewForm from '@/features/dashboard/components/products/add-review-f
 import OverallReview from '@/features/dashboard/components/products/overall-review';
 import ProductGallery from '@/features/dashboard/components/products/product-gallery';
 import ProductInfo from '@/features/dashboard/components/products/product-info';
+import RelatedProductsSection from '@/features/dashboard/components/products/related-products-section';
 import ReviewList from '@/features/dashboard/components/products/review-list';
+import { ProductOccasion } from '@/shared/types/product-type';
 import { Star } from 'lucide-react';
 import { getServerSession } from 'next-auth';
 
@@ -48,6 +50,18 @@ export default async function ProductDetailsPage({ params }: ProductPageProps) {
         <ReviewList productId={id} />
         <AddReviewForm isAuthenticated={isAuthenticated} productId={id} />
       </section>
+      <RelatedProductsSection
+        product={{
+          ...product,
+          _count: {
+            reviews: product._count?.reviews ?? 0,
+            cartItems: product._count?.cartItems ?? 0,
+            wishlistItems: product._count?.wishlistItems ?? 0,
+            orderItems: 0,
+          },
+          occasions: (product.occasions ?? []) as ProductOccasion[],
+        }}
+      />
     </div>
   );
 }
