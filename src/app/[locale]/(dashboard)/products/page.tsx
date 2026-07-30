@@ -21,6 +21,7 @@ export default async function ProductsPage({ searchParams }: TProductsPageProps)
       <section className="lg:col-span-3">
         <Filter />
       </section>
+
       <section className=" lg:col-span-9 grid gap-6">
         <AllProducts params={productFilters} />
       </section>

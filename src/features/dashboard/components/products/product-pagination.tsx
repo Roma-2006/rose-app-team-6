@@ -2,6 +2,7 @@
 
 import { usePathname } from '@/i18n/navigation';
 import { useSearchParams } from 'next/navigation';
+
 import {
   Pagination,
   PaginationContent,

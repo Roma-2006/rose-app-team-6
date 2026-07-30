@@ -74,13 +74,13 @@
           "required": "Password is required"
         }
       },
-
-      "forgot-password": "Forgot Your password?",
-      "rememberMe": "Remember me",
-      "no-account": "Don't have an account?",
-      "register": "Create one now!",
-      "button": "Login",
+      "forgot-password":"Forgot Your password?",
+      "rememberMe" : "Remember me",
+      "no-account" :"Don't have an account?",
+      "register" :"Create one now!",
+      "button" :"Login",
       "invalidCredentials": "The username or password is incorrect."
+      
     },
     "auth-forgotPw": {
       "step1": {
@@ -324,6 +324,7 @@
         "part2": "4.5k+",
         "part3": "companies"
       }
+
     }
   },
 
@@ -377,3 +378,4 @@
     }
   }
 }
+

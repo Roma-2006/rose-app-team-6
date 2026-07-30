@@ -3,12 +3,16 @@ import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useQuery } from '@tanstack/react-query';
 import { getProducts } from '@/features/dashboard/apis/product.api';
+
 import { Link } from '@/i18n/navigation';
 
 import { ArrowRight } from 'lucide-react';
 import { ProductCardSkeleton } from './product-card-skelton';
 import { ProductCard } from './Product-card';
-import { getOccasions } from '@/shared/api/occasion.api';
+
+import { getOccasions } from '@/features/dashboard/apis/occasion.api';
+import { useProducts } from '@/features/dashboard/hooks/use-products';
+
 const ALL_TAB_ID = 'home.all';
 
 export const MostPopularSection = () => {
@@ -17,38 +21,26 @@ export const MostPopularSection = () => {
   const locale = useLocale();
   const isRtl = locale === 'ar';
 
-  const { data, isLoading, isError } = useQuery({
-    queryKey: ['products', 'most-popular', activeTab],
-    queryFn: () =>
-      getProducts({
-        limit: 12,
-        sortBy: 'mostPopular',
-        sortOrder: 'desc',
-        occasionId: activeTab === ALL_TAB_ID ? undefined : activeTab,
-      }),
+  const { data, isLoading, isError } = useProducts({
+    limit: 12,
+    sortBy: 'mostPopular',
+    sortOrder: 'desc',
+    occasionId: activeTab === ALL_TAB_ID ? undefined : activeTab,
   });
+
   const products = data?.data;
   const { data: occasions } = useQuery({
     queryKey: ['occasions'],
     queryFn: () => getOccasions(),
   });
 
-  const HOME_OCCASIONS = [
-    'Wedding',
-    'Anniversary',
-    'Birthday',
-    // 'Engagement',
-    'New Year',
-  ];
+  const HOME_OCCASIONS = ['Wedding', 'Anniversary', 'Birthday', 'Engagement'];
 
   const visibleOccasions = occasions?.filter((occ) => HOME_OCCASIONS.includes(occ.title)) ?? [];
 
   return (
-    <section className="py-20  mx-20 px-4  flex flex-col gap-10">
-      {/* Header Section */}
+    <section className="w-full mt-16">
       <div className="flex justify-between items-end pb-10">
-        {' '}
-        {/* Left Side: Title with Decorations */}
         <div className="relative inline-block">
           {/* Pink background */}
           <div

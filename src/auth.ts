@@ -44,11 +44,10 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
-        // هنا نرجع الهيكل المطابق تماماً لتعريف الـ Interface الخاص بك
         return {
           id: String(user.id),
-          user: user, // يتوافق مع user: UserType
-          token: token, // يتوافق مع token: string
+          user: user,
+          token: token,
           rememberMe: isRememberMe,
         };
       },
@@ -57,7 +56,6 @@ export const authOptions: NextAuthOptions = {
 
   callbacks: {
     jwt: ({ token, user }) => {
-      // الـ user هنا يملك الآن التايب الصحيح تلقائياً بفضل الـ Augmentation
       if (user) {
         token.user = user.user;
         token.token = user.token;
