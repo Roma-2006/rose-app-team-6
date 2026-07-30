@@ -20,7 +20,6 @@ export const BestSellingSectionClient = ({
 }: BestSellingSectionClientProps) => {
   const locale = useLocale();
   const isRtl = locale === 'ar';
-  console.log(products);
   const t = useTranslations('home.bestSelling');
 
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -39,14 +38,12 @@ export const BestSellingSectionClient = ({
   };
 
   return (
-    <section className="py-20 mx-20 lg:mx-20 ">
-      <div className="flex flex-col lg:flex-row justify-center items-center gap-9">
-        {/* Left/Top Content: Badge, Headlines */}
-        <div className="size-lf-stretch inline-flex flex-col justify-start items-start gap-2.5">
-          {/* Section Badge */}
-          <div className="self-stretch h-8 justify-center text-text-secondary text-base font-bold uppercase tracking-widest">
+    <section className=" w-full mt-16">
+      <div className="flex flex-col lg:flex-row lg:items-start gap-9">
+        <div className="w-80 shrink-0 flex flex-col items-start gap-3">
+          <p className="text-base font-bold uppercase tracking-widest text-text-secondary text-start w-full">
             {t('badge')}
-          </div>
+          </p>
 
           <div className="self-stretch flex-1 flex flex-col justify-start items-start gap-2">
             {/* Split Title for dynamic coloring */}

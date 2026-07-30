@@ -8,6 +8,7 @@ import { Link } from '@/i18n/navigation';
 import { ArrowRight } from 'lucide-react';
 import { ProductCardSkeleton } from './product-card-skelton';
 import { ProductCard } from './Product-card';
+import { useProducts } from '@/features/dashboard/hooks/use-products';
 const ALL_TAB_ID = 'home.all';
 
 export const MostPopularSection = () => {
@@ -51,10 +52,8 @@ export const MostPopularSection = () => {
   }, [activeTab, products]);
 
   return (
-    <section className="py-20  mx-20 px-4  flex flex-col gap-10">
-      {/* Header Section */}
-      <div className="flex justify-between items-end  pb-4">
-        {/* Left Side: Title with Decorations */}
+    <section className="w-full mt-16">
+      <div className="flex justify-between items-end pb-10">
         <div className="relative inline-block">
           {/* Pink background */}
           <div

@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { getProducts } from '@/shared/api/product.api';
-import type { GetProductsParams } from '@/shared/types/product-query-type';
+import type { GetProductsParams } from '@/features/dashboard/types/product-query';
+import { getProducts } from '@/features/dashboard/apis/product.api';
 
 export const useProducts = (params: GetProductsParams) => {
   return useQuery({
