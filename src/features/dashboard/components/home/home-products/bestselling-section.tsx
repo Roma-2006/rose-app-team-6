@@ -1,4 +1,4 @@
-import { getProducts } from '@/features/dashboard/apis/product.api';
+import { getProducts } from '@/features/dashboard/api/product.api';
 import { BestSellingSectionClient } from './bestselling-client';
 
 export const BestSellingSection = async () => {

@@ -6,8 +6,6 @@ import { Card } from '@/shared/components/ui/card';
 import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 
-import { Link } from '@/i18n/navigation';
-
 export default function HeroAside() {
   const t = useTranslations('home');
   const locale = useLocale();
