@@ -45,7 +45,7 @@ export async function getRelatedProducts({
     }
 
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/products?${params.toString()}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/products?${params.toString()}`,
       {
         method: 'GET',
         headers: { Accept: 'application/json' },
