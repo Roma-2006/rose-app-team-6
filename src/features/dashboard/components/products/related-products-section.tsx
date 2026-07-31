@@ -26,11 +26,20 @@ export default async function RelatedProductsSection({ product }: IRelatedProduc
     minRating: Math.floor(calculatedMinRating),
   });
 
-  if (!relatedProducts || relatedProducts.length === 0) return null;
+  if (!relatedProducts || relatedProducts.length === 0) {
+    return (
+      <section className="flex flex-col gap-4 w-full mt-12 border-t pt-8">
+        <SecTitle text="Related Products" className="mb-5" />
+        <div className="rounded-lg border border-border-soft bg-bg-plain p-6 text-center text-sm text-text-muted">
+          No related products available right now.
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="flex flex-col gap-4 w-full mt-12 border-t pt-8">
-      <SecTitle text="Related Products" />
+      <SecTitle text="Related Products" className="mb-5" />
       <RelatedProductsCarousel products={relatedProducts} />
     </section>
   );

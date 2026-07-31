@@ -69,10 +69,15 @@ export async function getRelatedProducts({
 
     if (!Array.isArray(products)) return [];
 
-    // Filter out the current product and slice the first 20 results for the carousel
-    return products
-      .filter((filteredProduct: Product) => filteredProduct.id !== currentProductId)
-      .slice(0, 20);
+    const filteredProducts = products.filter(
+      (filteredProduct: Product) => filteredProduct.id !== currentProductId
+    );
+
+    // If the backend returned only the current product, fall back to the
+    // original server array so callers still receive items to render.
+    // This preserves the previous client-side behavior (shows same product
+    // if server only returns it).
+    return (filteredProducts.length > 0 ? filteredProducts : products).slice(0, 20);
   } catch (error) {
     console.error('Error fetching related products:', error);
     return [];

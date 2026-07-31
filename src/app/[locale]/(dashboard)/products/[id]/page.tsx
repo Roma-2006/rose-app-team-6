@@ -23,7 +23,20 @@ export default async function ProductDetailsPage({ params }: ProductPageProps) {
   const isAuthenticated = !!session?.token;
 
   const data = await getProductById(id);
-  const product = data.payload.product;
+  const product = data?.payload?.product ?? null;
+
+  if (!product) {
+    return (
+      <div className="container mx-auto px-4 py-8 max-w-6xl">
+        <div className="rounded-lg border border-border-soft bg-bg-plain p-8 text-center">
+          <h1 className="text-2xl font-semibold text-text-plain">Product not found</h1>
+          <p className="mt-2 text-sm text-text-muted">
+            The requested product could not be loaded right now.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   let galleryImages: string[] = [];
   try {

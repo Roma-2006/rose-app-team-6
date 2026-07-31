@@ -161,31 +161,49 @@ function CarouselItem({ className, ...props }: React.ComponentProps<'div'>) {
   );
 }
 
+type CarouselButtonProps = Omit<
+  React.ComponentProps<typeof Button>,
+  'buttonVariant' | 'iconOnly'
+> & {
+  buttonVariant?: 'icon';
+  iconOnly?: React.ReactNode;
+};
+
 function CarouselPrevious({
   className,
-  variant = 'outline',
+  variant = 'secondary',
   size = 'icon-sm',
+  buttonVariant = 'icon',
+  iconOnly = <ChevronLeftIcon className="stroke-white" />,
   ...props
-}: React.ComponentProps<typeof Button>) {
+}: CarouselButtonProps) {
   const { orientation, scrollPrev, canScrollPrev } = useCarousel();
+  const handlePrevClick = React.useCallback(
+    (event?: React.MouseEvent<HTMLButtonElement>) => {
+      event?.preventDefault();
+      scrollPrev();
+    },
+    [scrollPrev]
+  );
 
   return (
     <Button
       data-slot="carousel-previous"
       variant={variant}
       size={size}
+      buttonVariant={buttonVariant}
+      iconOnly={iconOnly}
       className={cn(
-        'absolute touch-manipulation rounded-full',
+        'absolute touch-manipulation rounded-full bg-bg-secondary  text-white hover:bg-bg-secondary  disabled:bg-bg-secondary',
         orientation === 'horizontal'
           ? 'inset-y-0 -left-12 my-auto'
           : '-top-12 left-1/2 -translate-x-1/2 rotate-90',
         className
       )}
       disabled={!canScrollPrev}
-      onClick={scrollPrev}
+      onClick={handlePrevClick}
       {...props}
     >
-      <ChevronLeftIcon />
       <span className="sr-only">Previous slide</span>
     </Button>
   );
@@ -193,29 +211,39 @@ function CarouselPrevious({
 
 function CarouselNext({
   className,
-  variant = 'outline',
+  variant = 'secondary',
   size = 'icon-sm',
+  buttonVariant = 'icon',
+  iconOnly = <ChevronRightIcon className="stroke-white" />,
   ...props
-}: React.ComponentProps<typeof Button>) {
+}: CarouselButtonProps) {
   const { orientation, scrollNext, canScrollNext } = useCarousel();
+  const handleNextClick = React.useCallback(
+    (event?: React.MouseEvent<HTMLButtonElement>) => {
+      event?.preventDefault();
+      scrollNext();
+    },
+    [scrollNext]
+  );
 
   return (
     <Button
       data-slot="carousel-next"
       variant={variant}
       size={size}
+      buttonVariant={buttonVariant}
+      iconOnly={iconOnly}
       className={cn(
-        'absolute touch-manipulation rounded-full',
+        'absolute touch-manipulation rounded-full bg-bg-secondary text-white hover:bg-bg-secondary disabled:opacity-100 disabled:bg-bg-secondary',
         orientation === 'horizontal'
           ? 'inset-y-0 -right-12 my-auto'
           : '-bottom-12 left-1/2 -translate-x-1/2 rotate-90',
         className
       )}
       disabled={!canScrollNext}
-      onClick={scrollNext}
+      onClick={handleNextClick}
       {...props}
     >
-      <ChevronRightIcon />
       <span className="sr-only">Next slide</span>
     </Button>
   );

@@ -57,7 +57,7 @@ export const ProductCard = ({
     <div className="flex justify-center">
       <Link
         href={`/products/${product.id}`}
-        className="w-72 h-96 rounded-2xl flex flex-col gap-6 cursor-pointer group"
+        className="w-full h-96 rounded-2xl flex flex-col gap-6 cursor-pointer group"
       >
         <div className="relative self-stretch h-64 p-2.5 rounded-2xl overflow-hidden bg-bg-muted">
           {/* Wishlist Button */}

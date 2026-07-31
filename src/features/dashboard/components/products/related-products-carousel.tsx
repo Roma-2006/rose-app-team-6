@@ -18,7 +18,6 @@ interface RelatedProductsCarouselProps {
 }
 
 export default function RelatedProductsCarousel({ products }: RelatedProductsCarouselProps) {
-  // 1. إنشاء الـ Plugin باستخدام useMemo لجعله مستقراً ومتاحاً للـ Render بدون استخدام useRef
   const autoplayPlugin = useMemo(() => Autoplay({ delay: 3000, stopOnInteraction: true }), []);
 
   const handleMouseEnter = () => {
@@ -35,12 +34,12 @@ export default function RelatedProductsCarousel({ products }: RelatedProductsCar
         align: 'start',
         loop: true,
       }}
-      plugins={[autoplayPlugin]} // ✅ ممرر الآن بشكل آمن تماماً ويتوافق مع قواعد React
-      className="w-full relative px-8"
+      plugins={[autoplayPlugin]}
+      className="w-full relative "
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <CarouselContent className="-ms-4">
+      <CarouselContent>
         {products.map((item) => (
           <CarouselItem
             key={item.id}
@@ -51,8 +50,14 @@ export default function RelatedProductsCarousel({ products }: RelatedProductsCar
         ))}
       </CarouselContent>
 
-      <CarouselPrevious className="absolute left-1 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full border-none bg-secondary text-white hover:bg-secondary/90 hover:text-white transition-all active:scale-95 disabled:opacity-50" />
-      <CarouselNext className="absolute right-1 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full border-none bg-secondary text-white hover:bg-secondary/90 hover:text-white transition-all active:scale-95 disabled:opacity-50" />
+      <CarouselPrevious
+        variant="secondary"
+        className="absolute -left-3 top-1/10 -translate-y-1/2 z-20 w-8 h-8 rounded-full border-none bg-marron-600 text-white transition-all hover:bg-marron-600/90 active:scale-95 disabled:opacity-50"
+      />
+      <CarouselNext
+        variant="secondary"
+        className="absolute -right-3 top-1/10 -translate-y-1/2 z-20 w-8 h-8 rounded-full border-none bg-marron-600 text-white transition-all hover:bg-marron-600/90 active:scale-95 disabled:opacity-50"
+      />
     </Carousel>
   );
 }
