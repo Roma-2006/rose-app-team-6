@@ -1,5 +1,6 @@
 import AllProducts from '@/features/dashboard/components/products/all-products';
 import { TProductsPageProps } from '@/features/dashboard/types/products';
+import Filter from '@/shared/components/custom-ui/products/filter/general/filter';
 
 export default async function ProductsPage({ searchParams }: TProductsPageProps) {
   const params = await searchParams;
@@ -17,7 +18,10 @@ export default async function ProductsPage({ searchParams }: TProductsPageProps)
   };
   return (
     <main className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-      <section className="bg-red-600 lg:col-span-3">nesreen</section>
+      <section className="lg:col-span-3">
+        <Filter />
+      </section>
+
       <section className=" lg:col-span-9 grid gap-6">
         <AllProducts params={productFilters} />
       </section>

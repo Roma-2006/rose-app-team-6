@@ -20,6 +20,7 @@ export default function useLogin() {
     }
   }, [status, session?.token, queryClient]);
   const router = useRouter();
+
   const t = useTranslations();
   // handleLogin
   const handleLogin = async (data: TLoginData) => {
@@ -33,7 +34,7 @@ export default function useLogin() {
         rememberMe: data.rememberMe,
         redirect: false,
       });
-      console.log(data);
+
       if (result?.error) {
         // Handle specific error messages and translate them
         if (result.error === 'Route not found' || result.error === 'CredentialsSignin') {
@@ -56,7 +57,6 @@ export default function useLogin() {
         router.refresh();
         router.push(callbackUrl);
       }
-      console.log('Login Request:', router);
     } catch (error1) {
       setError((error1 as Error).message);
     } finally {

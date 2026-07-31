@@ -1,7 +1,9 @@
+import React from 'react';
+
 import Image from 'next/image';
 import { LanguageSwitcherAuth } from '@/features/auth/components/language-switcher-auth';
-import ThemeSeparator from '@/features/auth/components/theme-separator';
-import WelcomeText from '@/features/auth/components/welcome-text';
+import ThemeSeparator from '@/features/auth/components/shared/theme-separator';
+import WelcomeText from '@/features/auth/components/shared/welcome-text';
 export default function AuthLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <main className="min-h-screen bg-bg-plain  grid lg:grid-cols-[1fr_1.1fr]">
@@ -31,6 +33,7 @@ export default function AuthLayout({ children }: Readonly<{ children: React.Reac
           src="/assets/images/Cover.png"
           alt="Authentication illustration"
           fill
+          sizes="50vw"
           priority
           className="object-cover object-center  "
         />

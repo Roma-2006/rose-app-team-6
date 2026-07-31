@@ -85,6 +85,7 @@ export const ProductCard = ({
                 </span>
               </div>
             )}
+
             {isOutOfStock && (
               <div className="px-2 py-1 bg-bg-danger rounded-full inline-flex justify-center items-center gap-2.5">
                 <span className=" text-rose text-xs font-medium uppercase leading-3">

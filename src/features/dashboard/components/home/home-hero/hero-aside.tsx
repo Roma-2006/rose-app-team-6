@@ -1,10 +1,10 @@
 import Image from 'next/image';
-
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 import { Badge } from '@/shared/components/ui/badge';
 import { Card } from '@/shared/components/ui/card';
 import { useTranslations, useLocale } from 'next-intl';
+
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/shared/components/ui/button';
 

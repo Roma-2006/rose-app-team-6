@@ -76,6 +76,7 @@ export const BestSellingSectionClient = ({
         </div>
 
         {/* Right/Bottom Content */}
+
         <div className="relative flex-1 lg:max-w-5xl w-full">
           <button
             onClick={() => scroll('prev')}

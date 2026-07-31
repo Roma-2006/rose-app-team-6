@@ -1,4 +1,3 @@
-
 {
   "app-title": "تطبيق روز",
   "title": "مرحبا بك في تطبيق روز",
@@ -30,15 +29,15 @@
     "search-error": "فشل البحث. حاول مجدداً.",
     "notifications": {
       "title": "الإشعارات ({count})",
-      "noNotifications": "لا توجد إشعارات حتى الآن",
-      "clearAll": "مسح جميع الإشعارات",
-      "markAllAsRead": "تعيين الكل كمقروء",
-      "notificationSettings": {
-        "markAsRead": "تعيين كمقروء",
+      "no-notifications": "لا توجد إشعارات حتى الآن",
+      "clear-all": "مسح جميع الإشعارات",
+      "mark-all-as-read": "تعيين الكل كمقروء",
+      "notification-settings": {
+        "mark-as-read": "تعيين كمقروء",
         "delete": "حذف"
       }
     },
-    "userMenu": {
+    "user-menu": {
       "title": "مرحبا ",
       "account": "حسابي",
       "addresses": "عناويني",
@@ -80,7 +79,7 @@
       "button": "تسجيل الدخول",
       "invalidCredentials": "اسم المستخدم أو كلمة المرور غير صحيحة"
     },
-   "auth-forgotPw": {
+    "auth-forgotPw": {
       "step1": {
         "title": "نسيت كلمة المرور؟",
         "subtitle": "لا تقلق، سنرسل لك تعليمات لمساعدتك في إعادة تعيينها.",
@@ -265,6 +264,7 @@
     "bestSelling": {
       "badge": "الأكثر مبيعاً",
       "titlePart1": "اكتشف",
+
       "titlePart2": "ما يشتريه الجميع",
       "titlePart3": "في الوقت الحالي",
       "description": "لست متأكداً مما تختار؟\nابدأ بالأكثر مبيعاً لدينا، فهي الهدايا التي يعود عملاؤنا لطلبها دائماً.\nسواء كنت تحتفل بعيد ميلاد، ذكرى سنوية، أو زفاف، فإن اختياراتنا تضمن لك ترك انطباع لا يُنسى.",
@@ -316,6 +316,7 @@
       }
     }
   },
+
 "products": {
    "addToCart": "ضف إلى السلة",
     "outOfStock": "نفدت الكمية",
@@ -328,6 +329,27 @@
       "leftInStock": "متبقي في المخزون",
       "rating": "التقييم",
       "ratings": "تقييمات"
+    },
+    "filter": {
+      "resetButton": "إلغاء",
+      "category": {
+        "title": "فئات"
+      },
+      "occasion": {
+        "title": "مناسبات"
+      },
+      "rating": {
+        "title": "تقييم",
+        "starLabel": "{count} نجوم"
+      },
+      "price": {
+        "title": "السعر",
+        "from": "من",
+        "to": "إلى"
+      },
+      "resetAll": {
+        "title": "إلغاء الكل"
+      }
     }
   },
   "input-component": {

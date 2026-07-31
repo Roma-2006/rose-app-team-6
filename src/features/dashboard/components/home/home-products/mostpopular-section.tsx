@@ -9,6 +9,7 @@ import { ProductCardSkeleton } from './product-card-skelton';
 import { ProductCard } from './Product-card';
 import { getOccasions } from '@/features/dashboard/apis/occasion.api';
 import { useProducts } from '@/features/dashboard/hooks/use-products';
+
 const ALL_TAB_ID = 'home.all';
 
 export const MostPopularSection = () => {
