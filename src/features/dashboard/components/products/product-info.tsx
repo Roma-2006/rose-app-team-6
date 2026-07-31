@@ -2,6 +2,8 @@ import { getTranslations } from 'next-intl/server';
 import { Star, Package } from 'lucide-react';
 import { calculateDiscountedPrice } from '../../utils/calculate-discount';
 import { Product } from '../../types/product-details.types';
+import { ProductActions } from './product-actions';
+import { LocalCartProduct } from '../../types/local-cart';
 
 interface ProductCardProps {
   product: Product & {
@@ -22,6 +24,17 @@ export default async function ProductInfo({ product }: ProductCardProps) {
   const rawPrice = Number(product.price) || 0;
   const discountedPrice = calculateDiscountedPrice(product);
   const hasDiscount = Boolean(product.discountType && Number(product.discountValue) > 0);
+  const productSnapshot: LocalCartProduct = {
+    id: product.id,
+    title: product.title,
+    cover: product.cover,
+    price: product.price,
+    discountType: product.discountType === 'NONE' ? null : product.discountType,
+    discountValue: product.discountValue,
+    rating: product.rating,
+    ratings: product.ratings,
+    stock: product.stock ?? 0,
+  };
 
   return (
     <div className="flex flex-col gap-5 w-full text-start">
@@ -68,10 +81,19 @@ export default async function ProductInfo({ product }: ProductCardProps) {
       <hr className="border-border-subtle my-1" />
 
       {/* Description */}
-      <div className="max-h-48 overflow-y-auto pr-2 custom-scrollbar">
+      <div className="max-h-48 overflow-y-auto pr-2 custom-scrollbar mb-16">
         <p className="text-sm md:text-base text-text-default leading-relaxed">
           {product.description}
         </p>
+      </div>
+      {/* Button and wishlist */}
+
+      <div className="flex items-center gap-4 mt-16">
+        <ProductActions
+          productId={product.id}
+          stock={product.stock || 0}
+          product={productSnapshot}
+        />
       </div>
     </div>
   );

@@ -1,15 +1,24 @@
 'use client';
 
 import { signIn, signOut, useSession } from 'next-auth/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { TLoginData } from '../types/auth';
 import { useRouter } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
+import { syncGuestDataToServer } from '@/features/dashboard/lib/guest-data';
+import { useQueryClient } from '@tanstack/react-query';
 
 export default function useLogin() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { data: session, status } = useSession();
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    if (status === 'authenticated' && session?.token) {
+      syncGuestDataToServer(session.token, queryClient);
+    }
+  }, [status, session?.token, queryClient]);
   const router = useRouter();
   const t = useTranslations();
   // handleLogin

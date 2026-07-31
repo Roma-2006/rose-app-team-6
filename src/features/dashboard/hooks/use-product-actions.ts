@@ -1,26 +1,45 @@
-import { useState } from 'react';
-import { useSession } from 'next-auth/react';
+'use client';
 
-export const useProductActions = (productId: string, onShowLogin: () => void) => {
-  const { status } = useSession();
-  const [loading] = useState(false);
-  const handleRequireAuth = () => {
-    if (status !== 'authenticated') {
-      onShowLogin();
-      return false;
+import { useCart } from '@/features/dashboard/hooks/use-cart';
+import { useWishlist } from '@/features/dashboard/hooks/use-wishlist';
+import type { LocalCartProduct } from '@/features/dashboard/types/local-cart';
+
+export const useProductActions = (productId: string, product?: LocalCartProduct) => {
+  const { addToCart: cartAction, isAdding, isInCart } = useCart();
+  const {
+    toggleWishlist: wishlistAction,
+    isPending: isWishlisting,
+    isInWishlist,
+  } = useWishlist(productId);
+
+  const handleAddToCart = (e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
     }
-    return true;
+
+    if (isAdding) return;
+
+    cartAction({ productId: product?.id ?? productId, quantity: 1, product });
   };
 
-  const addToCart = async (e?: React.MouseEvent) => {
-    if (e) e.stopPropagation();
-    if (!handleRequireAuth()) return;
+  const handleToggleWishlist = (e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    if (isWishlisting) return;
+
+    wishlistAction({ product });
   };
 
-  const toggleWishlist = async (e?: React.MouseEvent) => {
-    if (e) e.stopPropagation();
-    if (!handleRequireAuth()) return;
+  return {
+    addToCart: handleAddToCart,
+    toggleWishlist: handleToggleWishlist,
+    isAdding,
+    isWishlisting,
+    isInWishlist,
+    isInCart: isInCart(product?.id ?? productId),
   };
-
-  return { addToCart, toggleWishlist, loading };
 };
