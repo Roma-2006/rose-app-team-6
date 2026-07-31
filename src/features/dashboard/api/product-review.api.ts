@@ -1,11 +1,11 @@
 import { IApiResponse, IPaginatedResponse } from '../types/api';
-import { GetProductReviewsParams, IReview } from '../types/product-reviews';
+import { GetProductReviewsParams, IProductReview } from '../types/product-reviews';
 
 export async function getProductReviews({
   productId,
   page = 1,
   limit = 5,
-}: GetProductReviewsParams): Promise<IPaginatedResponse<IReview>> {
+}: GetProductReviewsParams): Promise<IPaginatedResponse<IProductReview>> {
   const params = new URLSearchParams({
     productId,
     page: String(page),
@@ -16,7 +16,7 @@ export async function getProductReviews({
     cache: 'no-store',
   });
 
-  const result: IApiResponse<IPaginatedResponse<IReview>> = await response.json();
+  const result: IApiResponse<IPaginatedResponse<IProductReview>> = await response.json();
 
   if (!response.ok || !result.status || !result.payload) {
     throw new Error(result.message || 'Failed to fetch reviews');

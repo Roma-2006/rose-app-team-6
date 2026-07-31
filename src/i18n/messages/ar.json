@@ -352,7 +352,11 @@
     "empty": "لا توجد تقييمات حتى الآن",
     "loading": "جاري تحميل التقييمات...",
     "error": "حدث خطأ أثناء تحميل التقييمات",
-    "generalrating":"التقييم العام"
+    "generalrating":"التقييم العام",
+          "loadMore": "عرض المزيد",
+      "loadingMore": "جارٍ التحميل...",
+      "rating": "التقييم: {rating}/5",
+      "ratingsCount": "({count} تقييم)"
 
   }
 }

@@ -369,7 +369,11 @@
     "empty": "No reviews yet.",
     "loading": "Loading reviews...",
     "error": "Failed to load reviews.",
-    "generalrating":"General Rating"
+    "generalrating":"General Rating",
+        "loadMore": "Load more",
+      "loadingMore": "Loading...",
+      "rating": "Rating: {rating}/5",
+      "ratingsCount": "({count} ratings)"
   }
 }
   }

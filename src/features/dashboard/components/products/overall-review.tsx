@@ -39,9 +39,11 @@ export default function OverallReview({ product }: OverallReviewProps) {
         <h5 className=" text-lg font-semibold">{t('reviews.generalrating')}:</h5>
 
         <div className="flex items-center gap-2 text-sm text-text-muted">
-          <span className="font-semibold text-text-plain">Rating: {product.rating}/5</span>
+          <span className="font-semibold text-text-plain">
+            {t('reviews.rating', { rating: product.rating })}
+          </span>
 
-          <span>({product.ratingsCount} ratings)</span>
+          <span>{t('reviews.ratingsCount', { count: product.ratingsCount })}</span>
         </div>
         <RatingStars rating={product.rating} disabled />
       </div>
