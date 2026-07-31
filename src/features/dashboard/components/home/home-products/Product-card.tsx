@@ -1,6 +1,5 @@
 'use client';
 import Image from 'next/image';
-
 import { Link } from '@/i18n/navigation';
 import { ShoppingCart, Star, HeartPlus, HeartMinus } from 'lucide-react';
 import { calculateDiscountedPrice } from '../../../utils/calculate-discount';
@@ -34,7 +33,6 @@ export const ProductCard = ({
   const diffDays = (now.getTime() - created.getTime()) / (1000 * 60 * 60 * 24);
 
   const isNew = diffDays <= 30;
-
   const isOutOfStock = Number(product.stock) <= 0;
 
   const productSnapshot: LocalCartProduct = {

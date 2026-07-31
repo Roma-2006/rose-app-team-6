@@ -10,6 +10,7 @@ import { Button } from '@/shared/components/ui/button';
 import { EllipsisVerticalIcon, Check, Trash2 } from 'lucide-react';
 import { cn } from '@/shared/lib/utils/tailwind-cn';
 import type { MouseEvent } from 'react';
+import { useTranslations } from 'next-intl';
 
 interface NotificationMenuProps {
   isRead: boolean;
@@ -19,6 +20,8 @@ interface NotificationMenuProps {
 
 const NotificationMenu = ({ isRead, setIsRead, notificationId }: NotificationMenuProps) => {
   const { mutate: markAsRead, isPending } = useMarkNotificationAsRead();
+
+  const t = useTranslations('header.notifications.notification-settings');
 
   const handleMarkAsRead = () => {
     if (isRead || isPending) return;
@@ -55,7 +58,7 @@ const NotificationMenu = ({ isRead, setIsRead, notificationId }: NotificationMen
             }}
           >
             <Check className="mr-2 h-4.5 w-4.5" />
-            Mark as read
+            {t('mark-as-read')}
           </DropdownMenuItem>
           <DropdownMenuItem
             className="text-text-plain gap-2.5 font-medium text-sm"
@@ -64,7 +67,7 @@ const NotificationMenu = ({ isRead, setIsRead, notificationId }: NotificationMen
             }}
           >
             <Trash2 className="mr-2 h-4.5 w-4.5 text-text-danger" />
-            Delete
+            {t('delete')}
           </DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>

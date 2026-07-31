@@ -9,6 +9,7 @@ import { useSession } from 'next-auth/react';
 import HeaderSearchInput from './headear-search-input';
 import UserDropdown from '../header/user-dropdown';
 import NotificationsList from '@/features/notification/components/notifications-list';
+
 import { useCart } from '@/features/dashboard/hooks/use-cart';
 import { useWishlist } from '@/features/dashboard/hooks/use-wishlist';
 

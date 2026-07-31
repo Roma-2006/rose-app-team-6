@@ -24,7 +24,7 @@ function HelloButton({ name, className, variant, ...props }: HelloButtonProps) {
       className={cn('h-auto items-center gap-1.5 rounded-lg px-2 py-1 w-fit', className)}
     >
       <span className="flex flex-col items-start leading-tight rtl:items-end">
-        <span className="text-xs font-normal text-text-muted">{t('header.userMenu.title')}</span>
+        <span className="text-xs font-normal text-text-muted">{t('header.user-menu.title')}</span>
         <span className="text-sm font-semibold text-text-primary">{name}</span>
       </span>
       <ChevronDown className="size-4 text-text-muted transition-transform group-data-popup-open/button:rotate-180" />
