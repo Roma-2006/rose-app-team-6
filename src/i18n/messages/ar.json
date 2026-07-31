@@ -328,6 +328,27 @@
       "leftInStock": "متبقي في المخزون",
       "rating": "التقييم",
       "ratings": "تقييمات"
+    },
+    "filter": {
+      "resetButton": "إلغاء",
+      "category": {
+        "title": "فئات"
+      },
+      "occasion": {
+        "title": "مناسبات"
+      },
+      "rating": {
+        "title": "تقييم",
+        "starLabel": "{count} نجوم"
+      },
+      "price": {
+        "title": "السعر",
+        "from": "من",
+        "to": "إلى"
+      },
+      "resetAll": {
+        "title": "إلغاء الكل"
+      }
     }
   },
   "input-component": {
@@ -359,28 +380,5 @@
     "phone": { "label": "رقم الهاتف", "placeholder": "1012345678" },
     "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" },
     "nice-to-have-you-here": "جميل أنك هنا"
-  },
-  "products": {
-    "filter": {
-      "resetButton": "إلغاء",
-      "category": {
-        "title": "فئات"
-      },
-      "occasion": {
-        "title": "مناسبات"
-      },
-      "rating": {
-        "title": "تقييم",
-        "starLabel": "{count} نجوم"
-      },
-      "price": {
-        "title": "السعر",
-        "from": "من",
-        "to": "إلى"
-      },
-      "resetAll": {
-        "title": "إلغاء الكل"
-      }
-    }
   }
 }

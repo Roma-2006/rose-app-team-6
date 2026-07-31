@@ -6,22 +6,15 @@ import { Label } from '@/shared/components/ui/label';
 import { TBaseCheckboxProps } from '@/shared/types/base-checkbox';
 import { useState } from 'react';
 
-export function BaseCheckbox({ list, error, value, onChange }: TBaseCheckboxProps) {
-  // State to manage selected checkboxes
-  const isItemChecked = (id: string) => {
-    if (typeof value === 'boolean') {
-      return value;
-    }
-    return Array.isArray(value) ? value.includes(id) : false;
-  };
-
-  const toggle = (id: string, isChecked: boolean) => {
-    if (typeof value === 'boolean') {
-      onChange(isChecked);
-    } else if (Array.isArray(value)) {
-      const updatedValue = isChecked ? [...value, id] : value.filter((itemId) => itemId !== id);
-      onChange(updatedValue);
-    }
+export function BaseCheckbox({ list, error, onChange }: TBaseCheckboxProps) {
+  const [selected, setSelected] = useState<string[]>([]);
+  const toggle = (id: string) => {
+    setSelected((prev) => {
+      const isChecked = prev.includes(id);
+      const updated = isChecked ? prev.filter((i) => i !== id) : [...prev, id];
+      onChange(!isChecked);
+      return updated;
+    });
   };
 
   return (

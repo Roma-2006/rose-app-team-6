@@ -2,13 +2,17 @@
 import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useQuery } from '@tanstack/react-query';
+import { getProducts } from '@/features/dashboard/apis/product.api';
+
 import { Link } from '@/i18n/navigation';
 
 import { ArrowRight } from 'lucide-react';
 import { ProductCardSkeleton } from './product-card-skelton';
 import { ProductCard } from './Product-card';
-import { getOccasions } from '@/features/dashboard/api/occasion.api';
+
 import { useProducts } from '@/features/dashboard/hooks/use-products';
+import { getOccasions } from '@/features/dashboard/api/occasion.api';
+
 const ALL_TAB_ID = 'home.all';
 
 export const MostPopularSection = () => {

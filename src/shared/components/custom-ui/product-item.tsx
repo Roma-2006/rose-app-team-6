@@ -1,5 +1,5 @@
 import { Link } from '@/i18n/navigation';
-import { TProductItemProps } from '@/features/dashboard/types/product-item';
+import { TProductItemProps } from '@/shared/types/product-item';
 import { Star } from 'lucide-react';
 import Image from 'next/image';
 

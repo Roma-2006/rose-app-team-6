@@ -1,7 +1,4 @@
 'use client';
-
-import { usePathname } from '@/i18n/navigation';
-import { useSearchParams } from 'next/navigation';
 import {
   Pagination,
   PaginationContent,
@@ -13,19 +10,15 @@ import {
 } from '@/shared/components/ui/pagination';
 import { ChevronLeftIcon, ChevronRightIcon, ChevronsRight, ChevronsLeft } from 'lucide-react';
 import { TProductMetaDataProps } from '../../types/products';
-
+import { useSearchParams } from 'next/navigation';
 export default function ProductPagination({ productMetaData }: TProductMetaDataProps) {
-  const pathname = usePathname(); // hook called at top level of the component
-  const searchParams = useSearchParams(); // hook called at top level of the component
   const { page, totalPages } = productMetaData;
-
-  const buildHref = (targetPage: number | string) => {
-    // plain function — just uses the values already pulled from the hooks above
+  const searchParams = useSearchParams();
+  const createPageUrl = (newPage: number) => {
     const params = new URLSearchParams(searchParams.toString());
-    params.set('page', String(targetPage));
-    return `${pathname}?${params.toString()}`;
+    params.set('page', String(newPage));
+    return `/products?${params.toString()}`;
   };
-
   const getPages = () => {
     const pages: (string | number)[] = [];
     const start = Math.max(2, page - 2);
@@ -51,7 +44,8 @@ export default function ProductPagination({ productMetaData }: TProductMetaDataP
       <PaginationContent>
         <PaginationItem>
           <PaginationPrevious
-            href={buildHref(1)}
+            className="size-8!"
+            href={createPageUrl(1)}
             buttonVariant="icon"
             iconOnly={<ChevronsLeft />}
             disabled={page === 1}
@@ -59,7 +53,8 @@ export default function ProductPagination({ productMetaData }: TProductMetaDataP
         </PaginationItem>
         <PaginationItem>
           <PaginationPrevious
-            href={buildHref(Math.max(1, page - 1))}
+            className="size-8!"
+            href={createPageUrl(Math.max(1, page - 1))}
             buttonVariant="icon"
             iconOnly={<ChevronLeftIcon data-icon="inline-start" />}
             disabled={page === 1}
@@ -72,7 +67,7 @@ export default function ProductPagination({ productMetaData }: TProductMetaDataP
             ) : (
               <PaginationLink
                 buttonVariant="number"
-                href={buildHref(item)}
+                href={createPageUrl(item as number)}
                 isActive={page === item}
                 number={item as number}
               />
@@ -81,7 +76,8 @@ export default function ProductPagination({ productMetaData }: TProductMetaDataP
         ))}
         <PaginationItem>
           <PaginationNext
-            href={buildHref(Math.min(totalPages, page + 1))}
+            className="size-8!"
+            href={createPageUrl(Math.min(totalPages, page + 1))}
             buttonVariant="icon"
             iconOnly={<ChevronRightIcon data-icon="inline-end" />}
             disabled={page === totalPages}
@@ -89,7 +85,8 @@ export default function ProductPagination({ productMetaData }: TProductMetaDataP
         </PaginationItem>
         <PaginationItem>
           <PaginationNext
-            href={buildHref(totalPages)}
+            className="size-8!"
+            href={createPageUrl(totalPages)}
             buttonVariant="icon"
             iconOnly={<ChevronsRight />}
             disabled={page === totalPages}

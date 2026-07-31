@@ -5,12 +5,12 @@ import CategoryItem from './category-item';
 import CategoryItemSkeleton from './category-skeleton';
 import ResetButton from '../general/reset-button';
 import { getCategories } from '@/shared/api/products/filter/category.api';
-import { useInfiniteFilterList } from '@/shared/hooks/use-infinity-filter';
 import {
   LIMIT,
   SKELETON_COUNT,
   NEXT_PAGE_SKELETON_COUNT,
 } from '@/shared/constants/filter.constants';
+import { useInfiniteFilterList } from '@/features/dashboard/hooks/use-infinity-filter';
 
 const CategoryList = () => {
   // Translation

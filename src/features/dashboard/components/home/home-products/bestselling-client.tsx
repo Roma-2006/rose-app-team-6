@@ -45,30 +45,15 @@ export const BestSellingSectionClient = ({
             {t('badge')}
           </p>
 
-          <div className="self-stretch flex-1 flex flex-col justify-start items-start gap-2">
-            {/* Split Title for dynamic coloring */}
-            <div className="self-stretch justify-center ">
-              <span className="text-text-secondary text-3xl font-bold leading-8">
-                {t('titlePart1')}{' '}
-              </span>
-              <span className="text-text-primary text-3xl font-bold leading-8">
-                {t('titlePart2')}{' '}
-              </span>
-              <span className="text-text-secondary text-3xl font-bold leading-8">
-                {t('titlePart3')}{' '}
-              </span>
-              <span className="text-text-primary text-3xl font-bold leading-8">
-                {t('titlePart4')}
-              </span>
-            </div>
+          <h2 className="w-full text-start text-3xl font-bold leading-tight">
+            <span className="text-text-secondary">{t('titlePart1')} </span>
+            <span className="text-text-primary">{t('titlePart2')} </span>
+            <span className="text-text-secondary">{t('titlePart3')} </span>
+          </h2>
 
-            {/* Description  */}
-            <div className="self-stretch justify-center text-text-soft text-base font-normal leading-5 whitespace-pre-line mt-4">
-              {t('description')}
-            </div>
-          </div>
-
-          {/* Call to Action Button */}
+          <p className="w-full text-start text-base leading-6 text-text-soft whitespace-pre-line">
+            {t('description')}
+          </p>
           <Button
             buttonVariant="text"
             variant="primary"
@@ -77,24 +62,25 @@ export const BestSellingSectionClient = ({
               isRtl ? (
                 <ArrowLeft
                   size={18}
-                  className="text-rose group-hover/button:-translate-x-1 transition-transform"
+                  className="text-text-inverse group-hover/button:-translate-x-1 transition-transform"
                 />
               ) : (
                 <ArrowRight
                   size={18}
-                  className="text-rose group-hover/button:translate-x-1 transition-transform"
+                  className="text-text-inverse group-hover/button:translate-x-1 transition-transform"
                 />
               )
             }
-            className="mt-16 w-40 bg-secondary rounded-lg text-text-inverse "
+            className="mt-5 w-40 bg-bg-primary rounded-lg text-text-inverse"
           />
         </div>
 
         {/* Right/Bottom Content */}
-        <div className="relative flex-1 lg:max-w-237.5 w-full">
+
+        <div className="relative flex-1 lg:max-w-5xl w-full">
           <button
             onClick={() => scroll('prev')}
-            className="absolute -left-5 rtl:-right-5 rtl:left-auto top-40.25 z-20 w-9 h-9 bg-secondary rounded-full flex justify-center items-center text-rose shadow-lg hover:opacity-80 transition-opacity"
+            className="absolute -left-5 rtl:-right-5 rtl:left-auto top-[161px] z-20 w-9 h-9 bg-bg-primary rounded-full flex justify-center items-center text-text-inverse shadow-lg hover:opacity-80 transition-opacity"
           >
             {isRtl ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
           </button>
@@ -115,7 +101,7 @@ export const BestSellingSectionClient = ({
           {/* Scroll Right Button  */}
           <button
             onClick={() => scroll('next')}
-            className="absolute -right-5 rtl:-left-5 rtl:right-auto top-[161px] z-20 w-9 h-9 bg-secondary rounded-full flex justify-center items-center text-rose shadow-lg hover:opacity-80 transition-opacity"
+            className="absolute -right-5 rtl:-left-5 rtl:right-auto top-[161px] z-20 w-9 h-9 bg-bg-primary rounded-full flex justify-center items-center text-text-inverse shadow-lg hover:opacity-80 transition-opacity"
           >
             {isRtl ? <ChevronLeft size={20} /> : <ChevronRight size={20} />}
           </button>

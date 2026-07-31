@@ -74,7 +74,7 @@ export const ProductCard = ({
             src={product.cover}
             alt={product.title}
             fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            className="object-cover transition-transform group-hover:scale-105 "
           />
 
           {/* Badges */}
@@ -96,15 +96,13 @@ export const ProductCard = ({
           </div>
         </div>
 
-        <div className="self-stretch px-1 flex flex-col gap-1">
+        <div className="self-stretch px-1 flex flex-col gap-2">
           <h3 className="text-text-primary self-stretch text-start text-lg font-semibold font-['Sarabun'] leading-6">
             {product.title}
           </h3>
-
-          <div className="flex items-end justify-between mt-2">
-            <div className="flex flex-col gap-1.5">
-              {/* stars */}
-              <div className="flex items-center gap-0.5">
+          <div className="flex items-end justify-between">
+            <div>
+              <div className="flex gap-0.5 mb-1">
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
@@ -115,8 +113,7 @@ export const ProductCard = ({
                 ))}
               </div>
 
-              {/* prices */}
-              <div className="flex items-center gap-2 flex-wrap">
+              <div className="flex items-center gap-2 flex-wrap mt-2">
                 <span className="text-text-primary text-base font-bold">
                   {discountedPrice.toFixed(2)} EGP
                 </span>
