@@ -19,6 +19,8 @@ interface IAddReviewFormProps {
 
 export default function AddReviewForm({ isAuthenticated, productId }: IAddReviewFormProps) {
   const tInput = useTranslations('custom-input');
+  const tAddReview = useTranslations('add-review');
+
   const router = useRouter();
   const { mutate, isPending } = UseReview(productId);
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
@@ -65,7 +67,7 @@ export default function AddReviewForm({ isAuthenticated, productId }: IAddReview
 
         <FieldGroup>
           <div className="flex items-center w-full gap-2">
-            <Label className="text-sm font-medium text-text-plain">Your rating:</Label>
+            <Label className="text-sm font-medium text-text-plain">{tAddReview('rating')}</Label>
             <Controller
               name="rating"
               control={form.control}
@@ -102,7 +104,7 @@ export default function AddReviewForm({ isAuthenticated, productId }: IAddReview
           {/* Field  3: Review Text Area */}
           <div className="flex flex-col gap-2.5 relative">
             <label htmlFor="review" className="text-sm font-medium text-text-plain">
-              Review
+              {tAddReview('review')}
             </label>
             <Controller
               name="review"
@@ -114,7 +116,7 @@ export default function AddReviewForm({ isAuthenticated, productId }: IAddReview
                   id="review"
                   disabled={!isAuthenticated && showLoginPrompt}
                   rows={4}
-                  placeholder="What do you think of this product?"
+                  placeholder={tAddReview('text-area-placeholder')}
                   className={`w-full p-2 text-sm border rounded-md  resize-none  outline-none focus:outline-none focus-visible:outline-none  focus-visible:ring-0  ${
                     !isAuthenticated && showLoginPrompt ? 'cursor-not-allowed' : ''
                   }`}
@@ -131,7 +133,7 @@ export default function AddReviewForm({ isAuthenticated, productId }: IAddReview
           buttonVariant="text"
           variant="primary"
           className="mt-9 w-full"
-          title={isPending ? 'Adding...' : 'Add Review'}
+          title={isPending ? tAddReview('adding') : tAddReview('add-review')}
           disabled={isPending}
           onClick={handleAddReviewClick}
         />
@@ -145,7 +147,7 @@ export default function AddReviewForm({ isAuthenticated, productId }: IAddReview
             onClick={handleGoToLogin}
             className=" w-full  mt-9   py-3   font-semibold text-xs text-text-plain cursor-pointer hover:scale-[1.02] active:scale-[0.98]  select-none"
           >
-            Please login to be able to review the product
+            {tAddReview('login-to-review')}
           </button>
         </div>
       )}

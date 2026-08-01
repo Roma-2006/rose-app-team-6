@@ -329,6 +329,8 @@
       "rating": "التقييم",
       "ratings": "تقييمات"
     },
+
+    
     "filter": {
       "resetButton": "إلغاء",
       "category": {
@@ -380,5 +382,22 @@
     "phone": { "label": "رقم الهاتف", "placeholder": "1012345678" },
     "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" },
     "nice-to-have-you-here": "جميل أنك هنا"
+  },
+
+   "add-review":{
+    "rating": "تقييمك",
+    "title":"العنوان",
+    "review": "رأيك",
+    "text-area-placeholder":"ما رأيك في هذا المنتج؟",
+    "add-review":"أضف تقييمًا",
+     "adding":"إضافة...",
+    "login-to-review":"يرجى تسجيل الدخول لتتمكن من اضافة تقييم"
+
+
+
+  },
+  "related-products":{
+  "sec-title":"المنتجات ذات الصلة"
+
   }
 }

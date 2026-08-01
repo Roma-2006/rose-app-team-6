@@ -424,7 +424,27 @@
     "error": "Failed to load reviews.",
     "generalrating":"General Rating"
   }
-}
+  
+ 
+
+  
+},
+
+ "add-review":{
+    "rating": "Your rating",
+    "title":"Title",
+    "review": "Review",
+    "text-area-placeholder":"What do you think of this product?",
+    "add-review":"Add Review",
+    "adding":"Adding...",
+    "login-to-review":"Please login to be able to review the product"
+
+  },
+  "related-products":{
+  "sec-title":"Related Products"
+
+  }
+
   }
 
 

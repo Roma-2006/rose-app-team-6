@@ -1,9 +1,12 @@
+import { getTranslations } from 'next-intl/server';
 import { getRelatedProducts } from '../../api/related-products.api';
 import { IRelatedProductsSectionProps } from '../../types/products';
 import SecTitle from '../shared/section-title';
 import RelatedProductsCarousel from './related-products-carousel';
 
 export default async function RelatedProductsSection({ product }: IRelatedProductsSectionProps) {
+  const tRelatedProducts = await getTranslations('related-products');
+
   // Transform price from string to number
   const numericPrice = parseFloat(product.price) || 0;
 
@@ -29,7 +32,7 @@ export default async function RelatedProductsSection({ product }: IRelatedProduc
   if (!relatedProducts || relatedProducts.length === 0) {
     return (
       <section className="flex flex-col gap-4 w-full mt-12 border-t pt-8">
-        <SecTitle text="Related Products" className="mb-5" />
+        <SecTitle text={tRelatedProducts('sec-title')} className="mb-5" />
         <div className="rounded-lg border border-border-soft bg-bg-plain p-6 text-center text-sm text-text-muted">
           No related products available right now.
         </div>
