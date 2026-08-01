@@ -35,8 +35,8 @@ export const MostPopularSection = () => {
   const visibleOccasions = occasions?.filter((occ) => HOME_OCCASIONS.includes(occ.title)) ?? [];
 
   return (
-    <section className="w-full mt-16">
-      <div className="flex justify-between items-end pb-10">
+    <section className="w-full my-16 mx-auto justify-center ">
+      <div className="flex justify-between items-end pb-10 mr-1.5">
         <div className="relative inline-block">
           {/* Pink background */}
           <div

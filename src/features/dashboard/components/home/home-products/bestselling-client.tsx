@@ -38,7 +38,7 @@ export const BestSellingSectionClient = ({
   };
 
   return (
-    <section className=" w-full mt-16">
+    <section className=" w-full mt-16 flex justify-center">
       <div className="flex flex-col lg:flex-row lg:items-start gap-9">
         <div className="w-80 shrink-0 flex flex-col items-start gap-3">
           <p className="text-base font-bold uppercase tracking-widest text-text-secondary text-start w-full">

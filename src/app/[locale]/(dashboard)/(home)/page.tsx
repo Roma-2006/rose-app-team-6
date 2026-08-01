@@ -8,7 +8,7 @@ import PartnersSection from '@/features/dashboard/components/home/home-partners/
 
 export default async function HomePage() {
   return (
-    <>
+    <div className="mx-auto max-w-7xl px-4 gap-16">
       <HomeContent />
       <BestSellingSection />
       <MostPopularSection />
@@ -16,6 +16,6 @@ export default async function HomePage() {
       <GallerySection />
       <TestimonialsSection />
       <PartnersSection />
-    </>
+    </div>
   );
 }
