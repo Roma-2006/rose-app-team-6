@@ -13,9 +13,8 @@ import { userInfoSchema } from '../../schemas/user-info.schema';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import AuthFooter from '../shared/auth-footer';
-import { ValidationError } from '@/shared/types/api';
+
 import AuthError from '../shared/auth-error';
-import { advanceRegistrationStep } from '@/features/auth/lib/registeration-progress';
 
 export default function UserInfoForm({
   firstNameError,

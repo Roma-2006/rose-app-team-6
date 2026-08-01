@@ -23,14 +23,31 @@
       "charCount": "{current}/{max} characters"
     }
   },
+   "header": {
+    "search-placeholder": "What awesome gift are you looking for?",
+    "login": "Login",
+    "search-default": "Products you may like",
+    "search-empty":" No products found",
+    "search-error" :"Search failed. Try again."
+  },
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "categories": "Categories",
+    "occasions": "Occasions",
+    "contact": "Contact",
+    "about": "About"
+  },
   "auth": {
+
    "switchLang": "العربية",
+
     "langLabel": "التحويل إلى الإنجليزية",
     "welcome-auth": {
       "login-title": "Welcome back!",
       "register-title": "Become part of our family!"
     },
-"login": {
+    "login": {
       "schema": {
         "username": {
           "invalid": "Invalid Username",
@@ -41,12 +58,12 @@
           "required": "Password is required"
         }
       },
-        "forgot-password":"Forgot Your password?",
-        "rememberMe" : "Remember me",
-        "noAccount" :"Don't have an account?",
-         "register" :"Create one now!",
-         "button" :"Login",
-         "invalidCredentials": "The username or password is incorrect."
+      "forgot-password":"Forgot Your password?",
+      "rememberMe" : "Remember me",
+      "no-account" :"Don't have an account?",
+      "register" :"Create one now!",
+      "button" :"Login",
+      "invalidCredentials": "The username or password is incorrect."
       
     },
     "auth-forgotPw": {
@@ -57,7 +74,24 @@
         "emailPlaceholder": "user@example.com",
         "continue": "Continue",
         "footerText": "Don’t have an account yet?",
-        "registerLink": "Create one now!"
+        "registerLink": "Create one now!",
+        "errors": {
+          "somethingWentWrong": "Something went wrong"
+        }
+      },
+      "step2": {
+        "title": "Password Reset Sent",
+        "description": "If an account exists for this email, we've sent a password reset link.",
+        "descriptionPrefix": "We have sent a password reset link to:",
+        "instruction1": "Please check your inbox and follow the instructions to reset your password.",
+        "instruction2": "If you don’t see the email within a few minutes, check your spam or junk folder.",
+        "needHelp": "Need help?",
+        "contactUs": "Contact us",
+        "back": "Back",
+        "resend": "Request a new link",
+        "resending": "Resending...",
+        "resendToast": "If an account exists with this email, a reset link has been sent.",
+        "successToast": "Reset instructions sent"
       },
       "step3": {
         "title": "Create a new password",
@@ -71,6 +105,9 @@
       },
       "errors": {
         "noAccount": "No account found with this email",
+        "emailRequired": "Email is required",
+        "fieldRequired": "This field is required",
+        "passwordInvalid": "Must be 8+ chars, with uppercase, lowercase, digit, and special char",
         "passwordMatch": "Passwords do not match",
         "passwordOldSame": "New password must differ from current password",
         "passwordRequirement": "Must be 8+ chars, with uppercase, lowercase, digit, and special char"
@@ -157,6 +194,154 @@
       "toast-description": "A new OTP code has been sent to your email"
     }
   },
+
+
+
+
+  "home": {
+    "discover":"Discover",
+  "hero-aside": {
+    "badge": "Starting from 10.99 EGP",
+    "title": "Special Gifts For The People You Love",
+    "button": "Shop Now"
+  },
+
+  "carousel": {
+    "slide1": {
+      "title": "Say It with Flowers",
+      "subtitle": "Elegant gifts for every special moment.",
+      "cta": "I'm buying!"
+    },
+    "slide2": {
+      "title": "Say It with Flowers",
+      "subtitle": "Elegant gifts for every special moment.",
+      "cta": "I'm buying!"
+    },
+    "slide3": {
+      "title": "Say It with Flowers",
+      "subtitle": "Elegant gifts for every special moment.",
+      "cta": "I'm buying!"
+    }
+  },
+
+  "cards": {
+    "anniversary": {
+      "badge": "Anniversary",
+      "title": "Mark Every Year of Love with a Meaningful Surprise"
+    },
+    "engagement": {
+      "badge": "Engagement",
+      "title": "Honor the Beginning of a Beautiful Journey Together"
+    },
+    "wedding": {
+      "badge": "Wedding",
+      "title": "Celebrate Her Forever with a Gift She’ll Always Remember"
+    }
+  },
+
+  "features": {
+    "support": {
+      "title": "24/7 Support",
+      "description": "Contact us at any time"
+    },
+    "payment": {
+      "title": "Safe Payment",
+      "description": "100% Secure Payment"
+    },
+    "refund": {
+      "title": "Get Refund",
+      "description": "Refunds within 30 days"
+    },
+    "delivery": {
+      "title": "Free Delivery",
+      "description": "For orders above 120 EGP"
+    }
+  },
+  "bestSelling": {
+      "badge": "Best Selling",
+      "titlePart1": "Check Out",
+      "titlePart2": "What Everyone’s Buying",
+      
+      "titlePart3": "Right Now",
+      "description": "Not sure what to choose?\nStart with our best sellers, these are the gifts our customers keep coming back for.\nWhether you're celebrating a birthday, anniversary or wedding, our top picks are guaranteed to leave a lasting impression.",
+      "exploreButton": "Explore gifts"
+    },
+     "model-prompt": {
+    "authRequired": "Login Required",
+    "loginToContinue": "Please log in to your account to continue with this action.",
+    "login": "Login",
+    "cancel": "Cancel"
+  },
+  "most-Popular":{
+    "mostPopular":"Most Popular" ,
+    "all": "All",
+    "viewMore": "View More",
+    "error": "Something went wrong while loading products.",
+    "noProductsFound": "No products found in this category."
+    
+  },
+   "product-card":{
+       "new": "NEW",
+    "outOfStock": "OUT OF STOCK"
+   },
+  
+
+
+
+  "about":{
+
+    "label" :"About" ,
+     "title" :{
+      "part1" : "Delivering the",
+      "part2" : "Finest",
+      "part3" : "Gift Boxes for Your",
+      "part4" : "Special",
+      "part5" : "Moments",
+        "discover":"Discover"
+
+
+     }
+ 
+  },
+ 
+  "gallery":{
+
+    "label" :"Gallery" ,
+    "title": "Check Out our Wonderful Gallery"
+
+
+  },
+
+"testimonials" :{
+ "label" :"Testimonials" ,
+ "title": "Real Words from Happy Customers"
+    
+},
+"partners":{
+
+"title" :{
+    "part1" : "Trusted by over",
+     "part2" : "4.5k+",
+     "part3" : "companies"
+ 
+
+}
+}},
+      "products": {
+    "addToCart": "Add to cart",
+    "outOfStock": "Out of stock",
+     "product-card": {
+      "new": "New",
+      "outOfStock": "Out of stock"
+    },
+    "product-details": {
+      "currency": "EGP",
+      "leftInStock": "left in stock",
+      "rating": "Rating",
+      "ratings": "ratings"
+    }
+  },
+
   "input-component": {
     "label": "Full Name",
     "placeholder": "Enter your name..."
@@ -184,3 +369,9 @@
     "nice-to-have-you-here": "nice to have you here"
 }
 }
+
+
+
+
+
+
