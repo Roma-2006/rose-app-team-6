@@ -18,6 +18,7 @@ export type Product = {
   id: string;
   title: string;
   rating: number;
+  ratings: number;
   price: string;
   createdAt: string;
   stock?: number;

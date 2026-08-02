@@ -25,8 +25,13 @@
       "charCount": "{current}/{max} characters"
     }
   },
+<<<<<<< HEAD
   "header": {
     "search-placeholder": "What awesome gift are you looking for?",
+=======
+   "header": {
+    "search-placeholder": "Search for products…",
+>>>>>>> 461077af48edec4ffa44e38c3c65240ae9c21370
     "login": "Login",
     "search-default": "Products you may like",
     "search-empty": " No products found",
@@ -443,12 +448,41 @@
   "related-products":{
   "sec-title":"Related Products"
 
+  },
+  
+  
+
+
+
+
+ "products": {
+    "filter": {
+      "resetButton": "Reset",
+      "category": {
+        "title": "Category"
+      },
+      "occasion": {
+        "title": "Occasion"
+      },
+      "rating": {
+        "title": "Rating",
+        "subtitle":"ratings",
+        "starLabel": "{count} stars"
+      },
+      "price": {
+        "title": "Price",
+        "from": "from",
+        "to": "to"
+      },
+      "currency": {
+        "egp": "EGP"
+      },
+      "resetAll": {
+        "title": "Reset All"
+      }
+    }
   }
-
-  }
-
-
-
+}
 
 
 
