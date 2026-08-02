@@ -5,15 +5,12 @@ import { LoginResponse, TLoginData } from '../types/auth';
 import { API_ENDPOINTS } from '../constants/endpoints';
 
 export const login = async (loginFields: TLoginData): Promise<Response<LoginResponse>> => {
-  // Object Destructuring
-  const { rememberMe, ...body } = loginFields;
-
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${API_ENDPOINTS.login}`, {
     method: 'POST',
     headers: {
       ...HEADERS.jsonBody,
     },
-    body: JSON.stringify(body),
+    body: JSON.stringify(loginFields),
   });
 
   const payload = await response.json();

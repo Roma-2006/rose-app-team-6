@@ -27,12 +27,12 @@ export default function RatingStars({
             type="button"
             disabled={disabled}
             className="relative select-none focus:outline-none disabled:cursor-not-allowed"
-            onClick={() => onStarClick?.(starValue)} // Only click handler remains
+            onClick={() => onStarClick?.(starValue)}
           >
             <Star
               size={14}
               className={`w-4 h-4 ${
-                isFull ? 'fill-[#FBA707] stroke-[#FBBF24]' : 'fill-white stroke-[#FBBF24]'
+                isFull ? 'fill-[#FBA707] stroke-[#FBBF24]' : 'fill-transparent stroke-[#FBBF24]'
               }`}
             />
             {isHalf && (

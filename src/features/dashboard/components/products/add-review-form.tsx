@@ -133,10 +133,11 @@ export default function AddReviewForm({ isAuthenticated, productId }: IAddReview
           buttonVariant="text"
           variant="primary"
           className="mt-9 w-full"
-          title={isPending ? tAddReview('adding') : tAddReview('add-review')}
           disabled={isPending}
           onClick={handleAddReviewClick}
-        />
+        >
+          {isPending ? tAddReview('adding') : tAddReview('add-review')}
+        </Button>
       </div>
 
       {/* Centered Login Overlay Box */}

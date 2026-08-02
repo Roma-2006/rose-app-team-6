@@ -4,17 +4,13 @@ import { Checkbox } from '@/shared/components/ui/checkbox';
 import { Field, FieldGroup } from '@/shared/components/ui/field';
 import { Label } from '@/shared/components/ui/label';
 import { TBaseCheckboxProps } from '@/shared/types/base-checkbox';
-import { useState } from 'react';
 
-export function BaseCheckbox({ list, error, onChange }: TBaseCheckboxProps) {
-  const [selected, setSelected] = useState<string[]>([]);
+export function BaseCheckbox({ list, error, onChange, value = false }: TBaseCheckboxProps) {
+  const selectedIds = value ? list.map((item) => item.id) : [];
+
   const toggle = (id: string) => {
-    setSelected((prev) => {
-      const isChecked = prev.includes(id);
-      const updated = isChecked ? prev.filter((i) => i !== id) : [...prev, id];
-      onChange(!isChecked);
-      return updated;
-    });
+    const isChecked = selectedIds.includes(id);
+    onChange(!isChecked);
   };
 
   return (
@@ -26,7 +22,7 @@ export function BaseCheckbox({ list, error, onChange }: TBaseCheckboxProps) {
               aria-invalid={error ? true : false}
               id={item.id}
               name={item.id}
-              checked={selected.includes(item.id)}
+              checked={selectedIds.includes(item.id)}
               onCheckedChange={() => toggle(item.id)}
             />
             <Label htmlFor={item.id} variant="checkbox">

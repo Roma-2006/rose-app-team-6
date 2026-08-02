@@ -72,7 +72,7 @@ export default function GallerySection() {
         </header>
 
         {/* grid system */}
-        <div className="w-full max-w-[1280px] mx-auto">
+        <div className="w-full max-w-7xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5 items-start w-full">
             {columnsData.map((column, columnIndex) => (
               <div
@@ -82,7 +82,7 @@ export default function GallerySection() {
                 {column.items.map((item) => (
                   <div
                     key={item.id}
-                    className={`relative w-full h-[300px] ${item.height} overflow-hidden rounded-xl shadow-md border border-muted bg-neutral-50`}
+                    className={`relative w-full h-75 ${item.height} overflow-hidden rounded-xl shadow-md bg-neutral-50`}
                   >
                     <Image
                       src={item.src}

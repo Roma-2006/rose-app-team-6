@@ -1,63 +1,61 @@
 'use client';
 
-import React, { useMemo } from 'react';
-import Autoplay from 'embla-carousel-autoplay';
+import React, { useRef } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useLocale } from 'next-intl';
 import { ProductCard } from '../home/home-products/Product-card';
 import { Product } from '../../types/products';
-
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@/shared/components/ui/carousel';
 
 interface RelatedProductsCarouselProps {
   products: Product[];
 }
 
 export default function RelatedProductsCarousel({ products }: RelatedProductsCarouselProps) {
-  const autoplayPlugin = useMemo(() => Autoplay({ delay: 3000, stopOnInteraction: true }), []);
+  const locale = useLocale();
+  const isRtl = locale === 'ar';
+  const scrollRef = useRef<HTMLDivElement>(null);
 
-  const handleMouseEnter = () => {
-    autoplayPlugin.stop();
-  };
+  const scroll = (direction: 'next' | 'prev') => {
+    if (!scrollRef.current) return;
 
-  const handleMouseLeave = () => {
-    autoplayPlugin.reset();
+    const scrollAmount = 320;
+    const modifier = direction === 'next' ? 1 : -1;
+    const rtlMultiplier = isRtl ? -1 : 1;
+
+    scrollRef.current.scrollBy({
+      left: scrollAmount * modifier * rtlMultiplier,
+      behavior: 'smooth',
+    });
   };
 
   return (
-    <Carousel
-      opts={{
-        align: 'start',
-        loop: true,
-      }}
-      plugins={[autoplayPlugin]}
-      className="w-full relative "
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      <CarouselContent>
-        {products.map((item) => (
-          <CarouselItem
-            key={item.id}
-            className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 flex justify-center"
-          >
-            <ProductCard product={item} />
-          </CarouselItem>
-        ))}
-      </CarouselContent>
+    <section className="w-full mt-16">
+      <div className="relative flex-1 lg:max-w-5xl w-full mx-auto">
+        <button
+          onClick={() => scroll('prev')}
+          className="absolute -left-5 rtl:-right-5 rtl:left-auto top-40.25 z-20 w-9 h-9 bg-bg-primary rounded-full flex justify-center items-center text-text-inverse shadow-lg hover:opacity-80 transition-opacity"
+        >
+          {isRtl ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
+        </button>
 
-      <CarouselPrevious
-        variant="secondary"
-        className="absolute -left-3 top-1/10 -translate-y-1/2 z-20 w-8 h-8 rounded-full border-none bg-marron-600 text-white transition-all hover:bg-marron-600/90 active:scale-95 disabled:opacity-50"
-      />
-      <CarouselNext
-        variant="secondary"
-        className="absolute -right-3 top-1/10 -translate-y-1/2 z-20 w-8 h-8 rounded-full border-none bg-marron-600 text-white transition-all hover:bg-marron-600/90 active:scale-95 disabled:opacity-50"
-      />
-    </Carousel>
+        <div
+          ref={scrollRef}
+          className="flex gap-6 overflow-x-auto hide-scrollbar snap-x snap-mandatory px-2 py-2"
+        >
+          {products.map((item) => (
+            <div key={item.id} className="snap-start shrink-0">
+              <ProductCard product={item} />
+            </div>
+          ))}
+        </div>
+
+        <button
+          onClick={() => scroll('next')}
+          className="absolute -right-5 rtl:-left-5 rtl:right-auto top-40.25 z-20 w-9 h-9 bg-bg-primary rounded-full flex justify-center items-center text-text-inverse shadow-lg hover:opacity-80 transition-opacity"
+        >
+          {isRtl ? <ChevronLeft size={20} /> : <ChevronRight size={20} />}
+        </button>
+      </div>
+    </section>
   );
 }

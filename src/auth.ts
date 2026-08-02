@@ -8,6 +8,7 @@ export const authOptions: NextAuthOptions = {
   pages: {
     signIn: '/login',
   },
+  trustHost: true,
   providers: [
     Credentials({
       name: 'Credentials',

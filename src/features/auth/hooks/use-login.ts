@@ -21,7 +21,6 @@ export default function useLogin() {
   }, [status, session?.token, queryClient]);
   const router = useRouter();
 
-  const t = useTranslations();
   const tLogin = useTranslations('auth.login');
 
   // handleLogin
@@ -47,15 +46,14 @@ export default function useLogin() {
       }
 
       if (result?.ok) {
-        let callbackUrl = new URLSearchParams(window.location.search).get('callbackUrl') || '/';
-
-        // Strip the localized prefix (e.g., '/en/', '/ar/') if it exists at the start of the string
-        if (callbackUrl.match(/^\/[a-z]{2}(\/|$)/)) {
-          callbackUrl = callbackUrl.replace(/^\/[a-z]{2}/, '') || '/';
-        }
+        const rawCallbackUrl =
+          new URLSearchParams(window.location.search).get('callbackUrl') || '/';
+        const normalizedCallbackUrl = rawCallbackUrl.startsWith('/')
+          ? rawCallbackUrl.replace(/^\/([a-z]{2})(\/|$)/, '/$2')
+          : rawCallbackUrl;
 
         router.refresh();
-        router.push(callbackUrl);
+        router.push(normalizedCallbackUrl || '/');
       }
     } catch (error1) {
       setError((error1 as Error).message);
