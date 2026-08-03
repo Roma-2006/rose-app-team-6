@@ -1,4 +1,4 @@
-import { getProductById } from '@/features/dashboard/api/product-details.api';
+import { getProductById } from '@/features/dashboard/apis/product-details.api';
 import ProductGallery from '@/features/dashboard/components/products/product-gallery';
 import ProductInfo from '@/features/dashboard/components/products/product-info';
 import { notFound } from 'next/navigation';
