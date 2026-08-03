@@ -1,38 +1,45 @@
-'use client';
-import { useState } from 'react';
-import { useLocale, useTranslations } from 'next-intl';
-import { useQuery } from '@tanstack/react-query';
+import { Suspense } from 'react';
+import { getLocale, getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 
 import { ArrowRight } from 'lucide-react';
-import { ProductCardSkeleton } from './product-card-skelton';
 import { ProductCard } from './Product-card';
 import { getOccasions } from '@/features/dashboard/apis/occasion.api';
-import { useProducts } from '@/features/dashboard/hooks/use-products';
-const ALL_TAB_ID = 'home.all';
+import { getProducts } from '@/features/dashboard/apis/product.api';
+import type { Product } from '@/features/dashboard/types/products';
+import MostPopularSectionLoading from './mostpopular-loading';
 
-export const MostPopularSection = () => {
-  const t = useTranslations('home.most-Popular');
-  const [activeTab, setActiveTab] = useState<string>(ALL_TAB_ID);
-  const locale = useLocale();
+const HOME_OCCASIONS = ['Wedding', 'Anniversary', 'Birthday', 'Engagement'];
+
+interface MostPopularSectionProps {
+  occasionId?: string;
+}
+
+const MostPopularSectionContent = async ({ occasionId }: MostPopularSectionProps) => {
+  const t = await getTranslations('home.most-Popular');
+  const locale = await getLocale();
   const isRtl = locale === 'ar';
 
-  const { data, isLoading, isError } = useProducts({
-    limit: 12,
-    sortBy: 'mostPopular',
-    sortOrder: 'desc',
-    occasionId: activeTab === ALL_TAB_ID ? undefined : activeTab,
-  });
+  let products: Product[] | undefined;
+  let visibleOccasions: Awaited<ReturnType<typeof getOccasions>> = [];
+  let hasError = false;
 
-  const products = data?.data;
-  const { data: occasions } = useQuery({
-    queryKey: ['occasions'],
-    queryFn: () => getOccasions(),
-  });
+  try {
+    const [productsResult, occasions] = await Promise.all([
+      getProducts({
+        limit: 12,
+        sortBy: 'mostPopular',
+        sortOrder: 'desc',
+        occasionId,
+      }),
+      getOccasions(),
+    ]);
 
-  const HOME_OCCASIONS = ['Wedding', 'Anniversary', 'Birthday', 'Engagement'];
-
-  const visibleOccasions = occasions?.filter((occ) => HOME_OCCASIONS.includes(occ.title)) ?? [];
+    products = productsResult?.data;
+    visibleOccasions = occasions?.filter((occ) => HOME_OCCASIONS.includes(occ.title)) ?? [];
+  } catch {
+    hasError = true;
+  }
 
   return (
     <section className="w-full mt-16">
@@ -54,37 +61,24 @@ export const MostPopularSection = () => {
         </div>
         {/* Right Side: Occasion Tabs */}
         <div className="flex items-center gap-6">
-          <button
-            type="button"
-            onClick={() => setActiveTab(ALL_TAB_ID)}
-            className={`text-sm md:text-base font-medium transition-all whitespace-nowrap ${
-              activeTab === ALL_TAB_ID
-                ? 'text-text-primary'
-                : 'text-text-soft hover:text-text-plain'
-            }`}
-          >
-            {t('all')}
-          </button>
-
           {visibleOccasions.map((occ) => (
-            <button
+            <Link
               key={occ.id}
-              onClick={() => setActiveTab(occ.id)}
+              href={`/?occasionId=${occ.id}`}
+              scroll={false}
               className={`text-sm md:text-base font-medium transition-all whitespace-nowrap ${
-                activeTab === occ.id ? 'text-text-primary' : 'text-text-soft hover:text-text-plain'
+                occasionId === occ.id ? 'text-text-primary' : 'text-text-soft hover:text-text-plain'
               }`}
             >
               {occ.title}
-            </button>
+            </Link>
           ))}
         </div>
       </div>
       {/* Products Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {' '}
-        {isLoading ? (
-          [...Array(8)].map((_, i) => <ProductCardSkeleton key={i} />)
-        ) : isError ? (
+        {hasError ? (
           <div className="col-span-full text-center text-text-danger">{t('error')}</div>
         ) : products?.length === 0 ? (
           <div className="col-span-full text-center py-20 text-text-soft">
@@ -107,5 +101,13 @@ export const MostPopularSection = () => {
         </Link>
       </div>
     </section>
+  );
+};
+
+export const MostPopularSection = ({ occasionId }: MostPopularSectionProps) => {
+  return (
+    <Suspense fallback={<MostPopularSectionLoading />}>
+      <MostPopularSectionContent occasionId={occasionId} />
+    </Suspense>
   );
 };

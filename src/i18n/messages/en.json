@@ -258,9 +258,9 @@
   "bestSelling": {
       "badge": "Best Selling",
       "titlePart1": "Check Out",
-      "titlePart2": "What Everyone’s Buying",
-      
-      "titlePart3": "Right Now",
+      "titlePart2": "What Everyone’s",
+       "titlePart3": "Buying",
+      "titlePart4": "Right Now",
       "description": "Not sure what to choose?\nStart with our best sellers, these are the gifts our customers keep coming back for.\nWhether you're celebrating a birthday, anniversary or wedding, our top picks are guaranteed to leave a lasting impression.",
       "exploreButton": "Explore gifts"
     },

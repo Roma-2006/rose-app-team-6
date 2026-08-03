@@ -4,11 +4,12 @@ import { Link } from '@/i18n/navigation';
 import { ShoppingCart, Star, HeartPlus, HeartMinus } from 'lucide-react';
 import { calculateDiscountedPrice } from '../../../utils/calculate-discount';
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
+
 import { useProductActions } from '../../../hooks/use-product-actions';
 import { Product } from '@/features/dashboard/types/products';
 import type { LocalCartProduct } from '@/features/dashboard/types/local-cart';
 import { Button } from '@/shared/components/ui/button';
+import { cn } from '@/shared/lib/utils/tailwind-cn';
 
 export const ProductCard = ({
   product,
@@ -54,21 +55,22 @@ export const ProductCard = ({
 
   return (
     <div className="flex justify-center">
-      <Link
-        href={`/products/${product.id}`}
-        className="w-72 h-96 rounded-2xl flex flex-col gap-6 cursor-pointer group"
-      >
-        <div className="relative self-stretch h-64 p-2.5 rounded-2xl overflow-hidden bg-bg-muted">
-          {/* Wishlist Button */}
-          <Button
-            variant={isInWishlist ? 'primary' : 'outline'}
-            buttonVariant="icon"
-            loading={isWishlisting}
-            onClick={toggleWishlist}
-            className="absolute top-3 left-3 z-20 w-9 h-9 rounded-full flex justify-center items-center transition-all active:scale-95 disabled:opacity-50 border-none"
-            iconOnly={isInWishlist ? <HeartMinus /> : <HeartPlus />}
-          />
+      <div className="w-72 h-96 rounded-2xl flex flex-col gap-6 cursor-pointer group relative">
+        {/* Wishlist Button  */}
+        <Button
+          variant={isInWishlist ? 'primary' : 'outline'}
+          buttonVariant="icon"
+          loading={isWishlisting}
+          onClick={toggleWishlist}
+          className="absolute top-3 left-3 z-30 w-9 h-9 rounded-full flex justify-center items-center transition-all active:scale-95 disabled:opacity-50 border-none cursor-pointer"
+          iconOnly={isInWishlist ? <HeartMinus /> : <HeartPlus />}
+        />
 
+        {/* Image */}
+        <Link
+          href={`/products/${product.id}`}
+          className="relative self-stretch h-64 p-2.5 rounded-2xl overflow-hidden bg-bg-muted block"
+        >
           <Image
             src={product.cover}
             alt={product.title}
@@ -77,7 +79,7 @@ export const ProductCard = ({
           />
 
           {/* Badges */}
-          <div className="absolute top-3 right-3 flex flex-col gap-1.5 items-end z-10">
+          <div className="absolute top-3 right-3 flex  flex-row gap-1.5 items-end z-10">
             {isNew && (
               <div className="px-2 py-1 bg-bg-muted rounded-full inline-flex justify-center items-center overflow-hidden">
                 <span className="text-text-plain text-xs font-medium uppercase leading-3">
@@ -93,14 +95,16 @@ export const ProductCard = ({
               </div>
             )}
           </div>
-        </div>
+        </Link>
 
         <div className="self-stretch px-1 flex flex-col gap-2">
-          <h3 className="text-text-primary self-stretch text-start text-lg font-semibold font-['Sarabun'] leading-6">
-            {product.title}
-          </h3>
+          <Link href={`/products/${product.id}`} className="block">
+            <h3 className="text-text-primary self-stretch text-start text-lg font-semibold font-['Sarabun'] leading-6">
+              {product.title}
+            </h3>
+          </Link>
           <div className="flex items-end justify-between">
-            <div>
+            <Link href={`/products/${product.id}`} className="block">
               <div className="flex gap-0.5 mb-1">
                 {[...Array(5)].map((_, i) => (
                   <Star
@@ -123,22 +127,21 @@ export const ProductCard = ({
                   </span>
                 )}
               </div>
-            </div>
+            </Link>
 
-            {/* Cart Button */}
-
+            {/* Cart Button  */}
             <Button
               buttonVariant="icon"
               loading={isAdding}
               disabled={isOutOfStock}
               onClick={addToCart}
               variant="secondary"
-              className={`w-11 h-11 bg-bg-primary rounded-full transition-all disabled:grayscale disabled:opacity-50`}
+              className={`w-11 h-11 bg-bg-primary hover:bg-bg-primary rounded-full transition-all cursor-pointer disabled:grayscale disabled:opacity-50`}
               iconOnly={<ShoppingCart className="text-text-inverse" />}
             />
           </div>
         </div>
-      </Link>
+      </div>
     </div>
   );
 };
