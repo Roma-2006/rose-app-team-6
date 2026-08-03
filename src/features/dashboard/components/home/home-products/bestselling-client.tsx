@@ -24,7 +24,7 @@ export const BestSellingSectionClient = ({
   const t = useTranslations('home.bestSelling');
 
   return (
-    <section className=" w-full mt-16 flex justify-center">
+    <section className=" w-full mt-16">
       <div className="flex flex-col lg:flex-row lg:items-start gap-9">
         <div className="w-80 shrink-0 flex flex-col items-start gap-3">
           <p className="text-base font-bold uppercase tracking-widest text-text-secondary text-start w-full">

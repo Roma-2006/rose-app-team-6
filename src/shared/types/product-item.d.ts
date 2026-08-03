@@ -1,8 +1,6 @@
+import { Product } from '@/features/dashboard/types/products';
+
 export type TProductItemProps = {
-  image: string;
-  title: string;
-  price: string;
-  rate: string;
-  rating: string;
+  product: Product;
   search?: string;
 };

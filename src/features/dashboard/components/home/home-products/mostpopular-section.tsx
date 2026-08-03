@@ -7,8 +7,9 @@ import { ProductCard } from './Product-card';
 import { getOccasions } from '@/features/dashboard/apis/occasion.api';
 import { getProducts } from '@/features/dashboard/apis/product.api';
 import type { Product } from '@/features/dashboard/types/products';
+
 import MostPopularSectionLoading from './mostpopular-loading';
-import SectionTitle from '@/shared/components/section-heading';
+import SectionTitle from '@/shared/components/custom-ui/section-heading';
 
 const HOME_OCCASIONS = ['Wedding', 'Anniversary', 'Birthday', 'Engagement'];
 

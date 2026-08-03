@@ -22,11 +22,11 @@
     }
   },
   "header": {
-    "search-placeholder": "ما الهدية المميزة التي تبحث عنها؟",
+    "search-placeholder": "البحث عن منتجات...",
     "login": "تسجيل الدخول",
     "search-default": "منتجات قد تعجبك",
-    "search-empty": "لا توجد منتجات",
-    "search-error": "فشل البحث. حاول مجدداً.",
+    "search-empty":"لا توجد منتجات",
+    "search-error" :"فشل البحث. حاول مجدداً.",
     "notifications": {
       "title": "الإشعارات ({count})",
       "noNotifications": "لا توجد إشعارات حتى الآن",
@@ -56,7 +56,7 @@
   },
   "auth": {
     "switchLang": "English",
-    "langLabel": "Switch to Arabic",
+   "langLabel": "Switch to Arabic",
     "welcome-auth": {
       "login-title": "مرحبًا بعودتك!",
       "register-title": "كن جزءًا من عائلتنا!"
@@ -126,7 +126,6 @@
         "passwordRequirement": "يجب أن تكون 8 أحرف فأكثر، وتحتوي على حرف كبير، حرف صغير، رقم، ورمز خاص"
       }
     },
-
     "auth-register": {
       "title": "إنشاء حساب",
       "need-help": "تحتاج مساعده ؟",
@@ -316,20 +315,6 @@
       }
     }
   },
-"products": {
-   "addToCart": "ضف إلى السلة",
-    "outOfStock": "نفدت الكمية",
-       "product-card": {
-      "new": "جديد",
-      "outOfStock": "غير متوفر"
-    },
-    "product-details": {
-      "currency": "جنيه",
-      "leftInStock": "متبقي في المخزون",
-      "rating": "التقييم",
-      "ratings": "تقييمات"
-    }
-  },
   "input-component": {
     "label": "الاسم بالكامل",
     "placeholder": "أدخل اسمك هنا..."
@@ -356,5 +341,47 @@
     "phone": { "label": "رقم الهاتف", "placeholder": "1012345678" },
     "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" },
     "nice-to-have-you-here": "جميل أنك هنا"
+  },
+   "products": {
+    "addToCart": "ضف إلى السلة",
+    "outOfStock": "نفدت الكمية",
+       "product-card": {
+      "new": "جديد",
+      "outOfStock": "غير متوفر"
+    },
+    "product-details": {
+      "currency": "جنيه",
+      "leftInStock": "متبقي في المخزون",
+      "rating": "التقييم",
+      "ratings": "تقييمات"
+    },
+    "filter": {
+      "resetButton": "إلغاء",
+      "category": {
+        "title": "فئات"
+      },
+      "occasion": {
+        "title": "مناسبات"
+      },
+      "rating": {
+        "title": "تقييم",
+        "subtitle":"التقييمات",
+        "starLabel": "{count} نجوم"
+      },
+      "price": {
+        "title": "السعر",
+        "from": "من",
+        "to": "إلى"
+      },
+      "currency": {
+        "egp": "ج.م"
+      }, 
+      "resetAll": {
+        "title": "إلغاء الكل"
+      }
+    },
+    "grid":{
+      "product-empty":"لا توجد منتجات تطابق الفلاتر المحددة."
+    }
   }
 }

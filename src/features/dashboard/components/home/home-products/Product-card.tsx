@@ -10,6 +10,8 @@ import { Product } from '@/features/dashboard/types/products';
 import type { LocalCartProduct } from '@/features/dashboard/types/local-cart';
 import { Button } from '@/shared/components/ui/button';
 import { cn } from '@/shared/lib/utils/tailwind-cn';
+import RatingStarts from '@/shared/components/custom-ui/rating-stars';
+import { Badge } from '@/shared/components/ui/badge';
 
 export const ProductCard = ({
   product,
@@ -80,20 +82,8 @@ export const ProductCard = ({
 
           {/* Badges */}
           <div className="absolute top-3 right-3 flex  flex-row gap-1.5 items-end z-10">
-            {isNew && (
-              <div className="px-2 py-1 bg-bg-muted rounded-full inline-flex justify-center items-center overflow-hidden">
-                <span className="text-text-plain text-xs font-medium uppercase leading-3">
-                  {t('new')}
-                </span>
-              </div>
-            )}
-            {isOutOfStock && (
-              <div className="px-2 py-1 bg-bg-danger rounded-full inline-flex justify-center items-center gap-2.5">
-                <span className=" text-rose text-xs font-medium uppercase leading-3">
-                  {t('outOfStock')}
-                </span>
-              </div>
-            )}
+            {isNew && <Badge variant="subtle">{t('new')}</Badge>}
+            {isOutOfStock && <Badge variant="destructive"> {t('outOfStock')}</Badge>}
           </div>
         </Link>
 
@@ -105,15 +95,9 @@ export const ProductCard = ({
           </Link>
           <div className="flex items-end justify-between">
             <Link href={`/products/${product.id}`} className="block">
-              <div className="flex gap-0.5 mb-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    size={16}
-                    fill={i < ratingValue ? 'var(--color-yellow-400)' : 'none'}
-                    stroke="var(--color-yellow-400)"
-                  />
-                ))}
+              {/* stars */}
+              <div className="flex items-center gap-0.5">
+                <RatingStarts rating={product.rating} />
               </div>
 
               <div className="flex items-center gap-2 flex-wrap mt-2">

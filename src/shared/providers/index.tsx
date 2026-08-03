@@ -17,7 +17,7 @@ export default function Providers({ children, locale, messages, session }: Provi
   return (
     <NextAuthProvider session={session}>
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-        <NextIntlClientProvider locale={locale} messages={messages}>
+        <NextIntlClientProvider locale={locale} messages={messages} timeZone="Africa/Cairo">
           <QueryProvider>{children}</QueryProvider>
         </NextIntlClientProvider>
       </ThemeProvider>

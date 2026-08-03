@@ -63,7 +63,8 @@ function PaginationLink(props: PaginationLinkProps) {
         };
   return (
     <Button
-      variant={isActive ? 'outline' : 'ghost'}
+      variant={isActive ? 'primary' : 'link'}
+      className={className}
       {...buttonProps}
       nativeButton={false}
       render={
@@ -83,7 +84,7 @@ function PaginationPrevious({ className, ...props }: React.ComponentProps<typeof
     <PaginationLink
       {...props}
       aria-label="Go to previous page"
-      className={cn('pl-1.5!', className)}
+      className={cn('pl-1.5! ', className)}
     />
   );
 }
