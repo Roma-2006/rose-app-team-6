@@ -1,13 +1,14 @@
 'use client';
 
-import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
-import { useRef } from 'react';
 
 import { Button } from '@/shared/components/ui/button';
+
 import { ProductCardSkeleton } from './product-card-skelton';
 import { ProductCard } from './Product-card';
 import { Product } from '@/features/dashboard/types/products';
+import { Carousel } from '../../shared/carousel';
 
 interface BestSellingSectionClientProps {
   products?: Product[];
@@ -22,21 +23,6 @@ export const BestSellingSectionClient = ({
   const isRtl = locale === 'ar';
   const t = useTranslations('home.bestSelling');
 
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  const scroll = (direction: 'next' | 'prev') => {
-    if (!scrollRef.current) return;
-
-    const scrollAmount = 320;
-    const modifier = direction === 'next' ? 1 : -1;
-    const rtlMultiplier = isRtl ? -1 : 1;
-
-    scrollRef.current.scrollBy({
-      left: scrollAmount * modifier * rtlMultiplier,
-      behavior: 'smooth',
-    });
-  };
-
   return (
     <section className=" w-full mt-16 flex justify-center">
       <div className="flex flex-col lg:flex-row lg:items-start gap-9">
@@ -49,6 +35,7 @@ export const BestSellingSectionClient = ({
             <span className="text-text-secondary">{t('titlePart1')} </span>
             <span className="text-text-primary">{t('titlePart2')} </span>
             <span className="text-text-secondary">{t('titlePart3')} </span>
+            <span className="text-text-primary">{t('titlePart4')} </span>
           </h2>
 
           <p className="w-full text-start text-base leading-6 text-text-soft whitespace-pre-line">
@@ -57,7 +44,7 @@ export const BestSellingSectionClient = ({
           <Button
             buttonVariant="text"
             variant="primary"
-            title="home.bestSelling.exploreButton"
+            title={t('exploreButton')}
             rightIcon={
               isRtl ? (
                 <ArrowLeft
@@ -77,33 +64,19 @@ export const BestSellingSectionClient = ({
 
         {/* Right/Bottom Content */}
         <div className="relative flex-1 lg:max-w-5xl w-full">
-          <button
-            onClick={() => scroll('prev')}
-            className="absolute -left-5 rtl:-right-5 rtl:left-auto top-[161px] z-20 w-9 h-9 bg-bg-primary rounded-full flex justify-center items-center text-text-inverse shadow-lg hover:opacity-80 transition-opacity"
-          >
-            {isRtl ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
-          </button>
-
-          <div
-            ref={scrollRef}
-            className="flex gap-6 overflow-x-auto hide-scrollbar snap-x snap-mandatory px-2"
-          >
+          <Carousel>
             {isLoading
-              ? [...Array(4)].map((_, i) => <ProductCardSkeleton key={i} />)
+              ? [...Array(4)].map((_, i) => (
+                  <div key={i} className="snap-start">
+                    <ProductCardSkeleton />
+                  </div>
+                ))
               : products?.map((product) => (
                   <div key={product.id} className="snap-start">
                     <ProductCard product={product} />
                   </div>
                 ))}
-          </div>
-
-          {/* Scroll Right Button  */}
-          <button
-            onClick={() => scroll('next')}
-            className="absolute -right-5 rtl:-left-5 rtl:right-auto top-[161px] z-20 w-9 h-9 bg-bg-primary rounded-full flex justify-center items-center text-text-inverse shadow-lg hover:opacity-80 transition-opacity"
-          >
-            {isRtl ? <ChevronLeft size={20} /> : <ChevronRight size={20} />}
-          </button>
+          </Carousel>
         </div>
       </div>
     </section>

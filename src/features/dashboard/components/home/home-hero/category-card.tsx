@@ -15,7 +15,7 @@ export default function CategoryCard({ image, badge, title, href }: CategoryCard
 
   return (
     <Link href={href} className="block h-full">
-      <Card className="relative h-full min-h-60 w-full overflow-hidden group rounded-2xl border-0 p-0 transition-transform duration-200 hover:scale-[1.01]">
+      <Card className="relative h-full min-h-60 w-full overflow-hidden group rounded-2xl ring-0 border-0 p-0 transition-transform duration-200 hover:scale-[1.01]">
         {isLoading && <Skeleton className="absolute inset-0 w-full h-full" />}
 
         <Image

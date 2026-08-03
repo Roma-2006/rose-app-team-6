@@ -1,11 +1,8 @@
+import type { ReactNode } from 'react';
 import { Toaster } from 'sonner';
 import './globals.css';
 
-export default async function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <>
       {children}

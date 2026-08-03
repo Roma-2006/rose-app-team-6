@@ -1,10 +1,10 @@
 import Image from 'next/image';
-
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 import { Badge } from '@/shared/components/ui/badge';
 import { Card } from '@/shared/components/ui/card';
 import { useTranslations, useLocale } from 'next-intl';
+
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/shared/components/ui/button';
 
@@ -15,7 +15,7 @@ export default function HeroAside() {
 
   return (
     <Link href="/products" className="block h-full">
-      <Card className="relative h-full min-h-111 overflow-hidden rounded-3xl border-0 p-0">
+      <Card className="relative h-full min-h-111 overflow-hidden rounded-3xl ring-0 border-0 p-0">
         {/* Background Image */}
         <Image
           src="/assets/images/image-8.png"

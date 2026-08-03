@@ -35,7 +35,7 @@ export const authOptions: NextAuthOptions = {
         const data = await login(result.data);
 
         if (!data.status) {
-          throw new Error(data?.message || 'Invalid username or password');
+          throw new Error(data.message);
         }
 
         const { user, token } = data.payload ?? {};

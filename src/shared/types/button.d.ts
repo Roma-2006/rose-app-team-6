@@ -19,7 +19,7 @@ export type TBaseButtonProps = {
 
 export type TTextButton = TBaseButtonProps & {
   buttonVariant: 'text';
-  title: string;
+  title?: string;
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
 };

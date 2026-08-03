@@ -8,10 +8,8 @@ import useRegister from '../../hooks/use-register';
 import CustomInput from '@/shared/components/custom-input';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/shared/components/ui/button';
-
 import AuthFooter from '../shared/auth-footer';
 import AuthError from '../shared/auth-error';
-
 export default function CreatePassword({
   userInfo,
   setErrors,
@@ -19,6 +17,7 @@ export default function CreatePassword({
   setStep,
 }: TCreatePasswordProps) {
   const t = useTranslations('auth.auth-register.create-password');
+
   //mutation
   const { mutate: register, error, isPending } = useRegister({ setErrors, setUserInfo, setStep });
   //errors
@@ -40,7 +39,13 @@ export default function CreatePassword({
   });
   //function
   const onSubmit: SubmitHandler<TCreatePasswordFields> = (values) => {
-    register({ ...userInfo, email: userInfo.email?.toLowerCase(), ...values });
+    const { confirmPassword, ...rest } = values;
+    register({
+      ...userInfo,
+      email: userInfo.email?.toLowerCase(),
+      ...rest,
+      confirmPassword: confirmPassword,
+    });
   };
   return (
     <section className="flex flex-col w-full ">
