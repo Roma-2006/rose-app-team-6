@@ -10,7 +10,7 @@
     "save": "Save",
     "delete": "Delete",
     "confirm": "Confirm",
-    "next": "Next"
+     "next":"Next"
   },
   "common": {
     "select": {
@@ -23,30 +23,12 @@
       "charCount": "{current}/{max} characters"
     }
   },
-  "header": {
+   "header": {
     "search-placeholder": "What awesome gift are you looking for?",
     "login": "Login",
     "search-default": "Products you may like",
-    "search-empty": " No products found",
-    "search-error": "Search failed. Try again.",
-    "notifications": {
-      "title": "Notifications ({count})",
-      "no-notifications,": "No notifications to display",
-      "clear-all": "Clear all notifications",
-      "mark-all-as-read": "Mark all as read",
-      "notification-settings": {
-        "markAsRead": "Mark as read",
-        "delete": "Delete"
-      }
-    },
-    "user-menu": {
-      "title": "Hello",
-      "account": "Account",
-      "addresses": "Adresses",
-      "orders": "Orders",
-      "dashboard": "Dashboard",
-      "logout": "Logout"
-    }
+    "search-empty":" No products found",
+    "search-error" :"Search failed. Try again."
   },
   "nav": {
     "home": "Home",
@@ -57,7 +39,7 @@
     "about": "About"
   },
   "auth": {
-    "switchLang": "العربية",
+   "switchLang": "العربية",
     "langLabel": "التحويل إلى الإنجليزية",
     "welcome-auth": {
       "login-title": "Welcome back!",
@@ -74,12 +56,13 @@
           "required": "Password is required"
         }
       },
-      "forgot-password": "Forgot Your password?",
-      "rememberMe": "Remember me",
-      "no-account": "Don't have an account?",
-      "register": "Create one now!",
-      "button": "Login",
+      "forgot-password":"Forgot Your password?",
+      "rememberMe" : "Remember me",
+      "no-account" :"Don't have an account?",
+      "register" :"Create one now!",
+      "button" :"Login",
       "invalidCredentials": "The username or password is incorrect."
+      
     },
     "auth-forgotPw": {
       "step1": {
@@ -129,7 +112,7 @@
       }
     },
     "auth-register": {
-      "title": "Create Account",
+      "title":"Create Account",
       "need-help": "Need help ?",
       "contact-us": " Contact us",
       "step1": {
@@ -150,26 +133,26 @@
         "subtitle-1": "Enter Verification Code",
         "subtitle-2": "We have sent a 6-digit code to {email}",
         "resend": "Send a new code",
-        "resend-2": "resend",
+         "resend-2": "resend",
         "resendTimer": "Resend in {s}s",
         "invalid": "Invalid OTP code",
         "expired": "Code expired. Please request a new one.",
         "verify": "Verify OTP",
-        "Edit": "Edit"
+        "Edit": "Edit" 
       },
-      "user-info": {
-        "sub-title": "Tell us more about you",
-        "user-info-sub-title": "A few details to get started",
-        "first-name": "First Name",
-        "last-name": "Last Name",
-        "user-name": "Username",
-        "email": "Email",
-        "phone": "Phone",
-        "gender": "Gender",
-        "gender-placeholder": "Select gender",
-        "male": "Male",
-        "female": "Female",
-        "errors": {
+      "user-info":{
+        "sub-title":"Tell us more about you",
+        "user-info-sub-title":"A few details to get started",
+        "first-name":"First Name",
+        "last-name":"Last Name",
+        "user-name":"Username",
+        "email":"Email",
+        "phone":"Phone",
+        "gender":"Gender",
+        "gender-placeholder":"Select gender",
+        "male":"Male",
+        "female":"Female",
+        "errors":{
           "first-name": "First Name is required",
           "last-name": "Last Name is required",
           "user-name": "User Name must be at least 2 characters.",
@@ -177,18 +160,18 @@
           "gender": "Gender is required",
           "invalid-phone-number": "Invalid phone number"
         }
-      },
-      "create-password": {
-        "sub-title": "Create a strong password",
-        "create-password-sub-title": "Choose a secure password to protect your account",
-        "password": "Password",
-        "confirm-password": "Confirm Password",
-        "button": "Create Account",
-        "email-in-use": "Email already in use",
-        "success": "Account created successfully",
+     },
+      "create-password":{
+        "sub-title":"Create a strong password",
+        "create-password-sub-title":"Choose a secure password to protect your account",
+        "password":"Password",
+        "confirm-password":"Confirm Password",
+        "button":"Create Account",
+        "email-in-use":"Email already in use",
+        "success":"Account created successfully",
         "have-account": "Already have an account?",
         "login": "Login",
-        "errors": {
+        "errors":{
           "password-min-length": "Password must be at least 8 characters.",
           "password-uppercase": "Password must contain at least one uppercase letter.",
           "password-lowercase": "Password must contain at least one lowercase letter.",
@@ -210,66 +193,69 @@
     }
   },
 
+
+
+
   "home": {
-    "discover": "Discover",
-    "hero-aside": {
-      "badge": "Starting from 10.99 EGP",
-      "title": "Special Gifts For The People You Love",
-      "button": "Shop Now"
-    },
+    "discover":"Discover",
+  "hero-aside": {
+    "badge": "Starting from 10.99 EGP",
+    "title": "Special Gifts For The People You Love",
+    "button": "Shop Now"
+  },
 
-    "carousel": {
-      "slide1": {
-        "title": "Say It with Flowers",
-        "subtitle": "Elegant gifts for every special moment.",
-        "cta": "I'm buying!"
-      },
-      "slide2": {
-        "title": "Say It with Flowers",
-        "subtitle": "Elegant gifts for every special moment.",
-        "cta": "I'm buying!"
-      },
-      "slide3": {
-        "title": "Say It with Flowers",
-        "subtitle": "Elegant gifts for every special moment.",
-        "cta": "I'm buying!"
-      }
+  "carousel": {
+    "slide1": {
+      "title": "Say It with Flowers",
+      "subtitle": "Elegant gifts for every special moment.",
+      "cta": "I'm buying!"
     },
+    "slide2": {
+      "title": "Say It with Flowers",
+      "subtitle": "Elegant gifts for every special moment.",
+      "cta": "I'm buying!"
+    },
+    "slide3": {
+      "title": "Say It with Flowers",
+      "subtitle": "Elegant gifts for every special moment.",
+      "cta": "I'm buying!"
+    }
+  },
 
-    "cards": {
-      "anniversary": {
-        "badge": "Anniversary",
-        "title": "Mark Every Year of Love with a Meaningful Surprise"
-      },
-      "engagement": {
-        "badge": "Engagement",
-        "title": "Honor the Beginning of a Beautiful Journey Together"
-      },
-      "wedding": {
-        "badge": "Wedding",
-        "title": "Celebrate Her Forever with a Gift She’ll Always Remember"
-      }
+  "cards": {
+    "anniversary": {
+      "badge": "Anniversary",
+      "title": "Mark Every Year of Love with a Meaningful Surprise"
     },
+    "engagement": {
+      "badge": "Engagement",
+      "title": "Honor the Beginning of a Beautiful Journey Together"
+    },
+    "wedding": {
+      "badge": "Wedding",
+      "title": "Celebrate Her Forever with a Gift She’ll Always Remember"
+    }
+  },
 
-    "features": {
-      "support": {
-        "title": "24/7 Support",
-        "description": "Contact us at any time"
-      },
-      "payment": {
-        "title": "Safe Payment",
-        "description": "100% Secure Payment"
-      },
-      "refund": {
-        "title": "Get Refund",
-        "description": "Refunds within 30 days"
-      },
-      "delivery": {
-        "title": "Free Delivery",
-        "description": "For orders above 120 EGP"
-      }
+  "features": {
+    "support": {
+      "title": "24/7 Support",
+      "description": "Contact us at any time"
     },
-    "bestSelling": {
+    "payment": {
+      "title": "Safe Payment",
+      "description": "100% Secure Payment"
+    },
+    "refund": {
+      "title": "Get Refund",
+      "description": "Refunds within 30 days"
+    },
+    "delivery": {
+      "title": "Free Delivery",
+      "description": "For orders above 120 EGP"
+    }
+  },
+  "bestSelling": {
       "badge": "Best Selling",
       "titlePart1": "Check Out",
       "titlePart2": "What Everyone’s",
@@ -278,47 +264,79 @@
       "description": "Not sure what to choose?\nStart with our best sellers, these are the gifts our customers keep coming back for.\nWhether you're celebrating a birthday, anniversary or wedding, our top picks are guaranteed to leave a lasting impression.",
       "exploreButton": "Explore gifts"
     },
+     "model-prompt": {
+    "authRequired": "Login Required",
+    "loginToContinue": "Please log in to your account to continue with this action.",
+    "login": "Login",
+    "cancel": "Cancel"
+  },
+  "most-Popular":{
+    "mostPopular":"Most Popular" ,
+    "all": "All",
+    "viewMore": "View More",
+    "error": "Something went wrong while loading products.",
+    "noProductsFound": "No products found in this category."
+    
+  },
+   "product-card":{
+       "new": "NEW",
+    "outOfStock": "OUT OF STOCK"
+   },
   
-    "most-Popular": {
-      "mostPopular": "Most Popular",
-      "all": "All",
-      "viewMore": "View More",
-      "error": "Something went wrong while loading products.",
-      "noProductsFound": "No products found in this category."
-    },
 
-    "product-card": {
-      "new": "NEW",
-      "outOfStock": "OUT OF STOCK"
-    },
 
-    "about": {
-      "label": "About",
-      "title": {
-        "part1": "Delivering the",
-        "part2": "Finest",
-        "part3": "Gift Boxes for Your",
-        "part4": "Special",
-        "part5": "Moments",
-        "discover": "Discover"
-      }
-    },
 
-    "gallery": {
-      "label": "Gallery",
-      "title": "Check Out our Wonderful Gallery"
-    },
+  "about":{
 
-    "testimonials": {
-      "label": "Testimonials",
-      "title": "Real Words from Happy Customers"
+    "label" :"About" ,
+     "title" :{
+      "part1" : "Delivering the",
+      "part2" : "Finest",
+      "part3" : "Gift Boxes for Your",
+      "part4" : "Special",
+      "part5" : "Moments",
+        "discover":"Discover"
+
+
+     }
+ 
+  },
+ 
+  "gallery":{
+
+    "label" :"Gallery" ,
+    "title": "Check Out our Wonderful Gallery"
+
+
+  },
+
+"testimonials" :{
+ "label" :"Testimonials" ,
+ "title": "Real Words from Happy Customers"
+    
+},
+"partners":{
+
+"title" :{
+    "part1" : "Trusted by over",
+     "part2" : "4.5k+",
+     "part3" : "companies"
+ 
+
+}
+}},
+      "products": {
+    "addToCart": "Add to cart",
+    "outOfStock": "Out of stock",
+     "product-card": {
+      "new": "New",
+      "outOfStock": "Out of stock"
     },
-    "partners": {
-      "title": {
-        "part1": "Trusted by over",
-        "part2": "4.5k+",
-        "part3": "companies"
-      }
+    "product-details": {
+      "currency": "EGP",
+      "leftInStock": "left in stock",
+      "rating": "Rating",
+      "ratings": "ratings"
     }
   },
 
@@ -329,8 +347,8 @@
   "custom-input": {
     "default": {
       "first-name": { "label": "First name", "placeholder": "zoe" },
-      "last-name": { "label": "Last name", "placeholder": "Jonathan" },
-      "user-name": { "label": "UserName", "placeholder": "zoe123" }
+      "last-name": { "label": "Last name", "placeholder": "Jonathan" } ,
+     "user-name": {"label" : "UserName" , "placeholder" :"zoe123"}
     },
     "number": { "label": "Number", "placeholder": "0" },
     "search": { "label": "Search", "placeholder": "Search..." },
@@ -347,28 +365,5 @@
     "phone": { "label": "Phone", "placeholder": "1012345678" },
     "email": { "label": "Email", "placeholder": "user@example.com" },
     "nice-to-have-you-here": "nice to have you here"
-  },
-  "products": {
-    "filter": {
-      "resetButton": "Reset",
-      "category": {
-        "title": "Category"
-      },
-      "occasion": {
-        "title": "Occasion"
-      },
-      "rating": {
-        "title": "Rating",
-        "starLabel": "{count} stars"
-      },
-      "price": {
-        "title": "Price",
-        "from": "from",
-        "to": "to"
-      },
-      "resetAll": {
-        "title": "Reset All"
-      }
-    }
-  }
+}
 }

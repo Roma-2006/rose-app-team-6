@@ -64,7 +64,7 @@ export default function GallerySection() {
 
   return (
     <>
-      <section className="w-full max-w-7xl px-4 ms-3 mb-35 flex flex-col items-center justify-center bg-background">
+      <section className="w-full max-w-7xl px-4 ms-3  mb-35 flex flex-col items-center justify-center bg-background">
         {/* Gallery Header */}
         <header className="text-center">
           <SecHeader text={tGallery('label')} className="pb-2" />

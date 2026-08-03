@@ -29,15 +29,15 @@
     "search-error": "فشل البحث. حاول مجدداً.",
     "notifications": {
       "title": "الإشعارات ({count})",
-      "no-notifications": "لا توجد إشعارات حتى الآن",
-      "clear-all": "مسح جميع الإشعارات",
-      "mark-all-as-read": "تعيين الكل كمقروء",
-      "notification-settings": {
-        "mark-as-read": "تعيين كمقروء",
+      "noNotifications": "لا توجد إشعارات حتى الآن",
+      "clearAll": "مسح جميع الإشعارات",
+      "markAllAsRead": "تعيين الكل كمقروء",
+      "notificationSettings": {
+        "markAsRead": "تعيين كمقروء",
         "delete": "حذف"
       }
     },
-    "user-menu": {
+    "userMenu": {
       "title": "مرحبا ",
       "account": "حسابي",
       "addresses": "عناويني",
@@ -270,7 +270,12 @@
       "description": "لست متأكداً مما تختار؟\nابدأ بالأكثر مبيعاً لدينا، فهي الهدايا التي يعود عملاؤنا لطلبها دائماً.\nسواء كنت تحتفل بعيد ميلاد، ذكرى سنوية، أو زفاف، فإن اختياراتنا تضمن لك ترك انطباع لا يُنسى.",
       "exploreButton": "استكشف الهدايا"
     },
-  
+    "model-prompt": {
+      "authRequired": "تسجيل الدخول مطلوب",
+      "loginToContinue": "يرجى تسجيل الدخول إلى حسابك للمتابعة.",
+      "login": "تسجيل الدخول",
+      "cancel": "إلغاء"
+    },
     "most-Popular": {
       "mostPopular": "الأكثر شعبية",
       "all": "الكل",
@@ -311,7 +316,6 @@
       }
     }
   },
-
 "products": {
    "addToCart": "ضف إلى السلة",
     "outOfStock": "نفدت الكمية",
@@ -324,27 +328,6 @@
       "leftInStock": "متبقي في المخزون",
       "rating": "التقييم",
       "ratings": "تقييمات"
-    },
-    "filter": {
-      "resetButton": "إلغاء",
-      "category": {
-        "title": "فئات"
-      },
-      "occasion": {
-        "title": "مناسبات"
-      },
-      "rating": {
-        "title": "تقييم",
-        "starLabel": "{count} نجوم"
-      },
-      "price": {
-        "title": "السعر",
-        "from": "من",
-        "to": "إلى"
-      },
-      "resetAll": {
-        "title": "إلغاء الكل"
-      }
     }
   },
   "input-component": {
