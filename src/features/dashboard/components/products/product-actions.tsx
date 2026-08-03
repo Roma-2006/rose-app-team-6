@@ -29,7 +29,7 @@ export function ProductActions({
         variant="subtle"
         loading={isWishlisting}
         disabled={isWishlisting}
-        className="w-12 h-12 rounded-xl border-none "
+        className="w-12 h-12 rounded-xl border-none hover:bg-bg-muted"
         onClick={toggleWishlist}
         iconOnly={
           <HeartPlus
