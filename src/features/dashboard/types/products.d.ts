@@ -49,7 +49,7 @@ export type TProductsPageProps = {
 };
 //allProducts
 export type TAllProductsProps = {
-  params: GetProductsParams;
+  searchParams: TGetProductsParams;
 };
 
 export type TPaginationMetadata = {

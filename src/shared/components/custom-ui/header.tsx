@@ -9,6 +9,8 @@ import { useSession } from 'next-auth/react';
 import HeaderSearchInput from './header-search-input';
 import GuestGatedIcon from './guest-gated-icon';
 import UserAuthAction from './user-auth-action';
+import LanguageSwitcher from '../language-switcher';
+import { ThemeToggle } from '../theme';
 
 export default function Header() {
   const t = useTranslations();
@@ -43,8 +45,9 @@ export default function Header() {
             </GuestGatedIcon>
             <Bell size={24} />
           </span>
-          <span className={` flex ltr:pl-4 rtl:pr-4 `}>
+          <span className={` flex ltr:pl-4 rtl:pr-4 gap-2.5 `}>
             <LanguageSwitcherAuth />
+            <ThemeToggle />
           </span>
         </div>
       </div>

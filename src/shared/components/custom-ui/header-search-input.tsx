@@ -2,29 +2,28 @@ import { useTranslations } from 'next-intl';
 import CustomInput from '../custom-input';
 import ProductItem from './product-item';
 import { useEffect, useRef, useState } from 'react';
-import UseAllProducts from '@/features/dashboard/hooks/use-all-products';
+import useAllProducts from '@/features/dashboard/hooks/use-all-products';
 import ProductItemSkeleton from '../skeleton/product-item-skeleton';
 
 export default function HeaderSearchInput() {
   const t = useTranslations();
-  // state
+  // State
   const [openDropdown, setDropdownOpen] = useState(false);
   const [search, setSearch] = useState('');
   const [debouncedSearch, setDebouncedSearch] = useState('');
-  // data queries
-  const userSearch = UseAllProducts(
+  // DataQueries
+  const userSearch = useAllProducts(
     {
       search: debouncedSearch,
     },
     debouncedSearch.length >= 2
   );
-  const productsSuggestions = UseAllProducts({
+  const productsSuggestions = useAllProducts({
     sortBy: 'bestSelling',
   });
-  console.log(userSearch?.data?.data);
-  // refs
+  // Refs
   const searchRef = useRef<HTMLDivElement>(null);
-  // effects
+  // Effects
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
@@ -52,7 +51,7 @@ export default function HeaderSearchInput() {
       />
       {/* dropDown */}
       {openDropdown && (
-        <div className="absolute bg-bg-plain right-0 left-0  max-h-96 overflow-y-auto">
+        <div className="absolute bg-bg-plain right-0 left-0  max-h-96 overflow-y-auto z-5">
           {search.length < 2 ? (
             <>
               <h1 className="p-2.5 font-semibold text-base text-text-primary ">

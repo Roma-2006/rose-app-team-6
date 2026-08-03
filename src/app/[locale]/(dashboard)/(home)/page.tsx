@@ -15,11 +15,6 @@ export default async function HomePage({ params }: PageProps) {
   const t = await getTranslations({ locale });
   return (
     <section className="min-h-screen">
-      {/* Language Switcher */}
-      <div className="mb-6 w-full flex justify-end">
-        <LanguageSwitcher />
-        <ThemeToggle />
-      </div>
       <HomeContent />
       <BestSellingSection />
       <MostPopularSection />

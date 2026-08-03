@@ -60,7 +60,6 @@ export async function getProducts(params: GetProductsParams = {}) {
   if (search) {
     url.searchParams.set('search', search);
   }
-  console.log(url.toString());
   const response = await fetch(url.toString());
   const result: Response<TProductsResponse> = await response.json();
   if (!result.status) {

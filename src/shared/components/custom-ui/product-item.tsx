@@ -1,7 +1,6 @@
 import { calculateDiscountedPrice } from '@/features/dashboard/utils/calculateDiscount';
 import { Link } from '@/i18n/navigation';
 import { TProductItemProps } from '@/shared/types/product-item';
-import { Star } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import RatingStarts from './rating-stars';
@@ -10,6 +9,8 @@ export default function ProductItem({ product, search }: TProductItemProps) {
   const t = useTranslations();
   const discountedPrice = Number(calculateDiscountedPrice(product));
   const hasDiscount = product.discountType && Number(product.discountValue) > 0;
+  const safeSearch = search?.trim() ? search.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') : '';
+  const regex = safeSearch ? new RegExp(`(${safeSearch})`, 'gi') : null;
   return (
     <Link
       href={`/products/${product.id}`}
@@ -21,9 +22,9 @@ export default function ProductItem({ product, search }: TProductItemProps) {
       <div className="flex flex-col lg:flex-row items-start justify-between grow ">
         <div>
           <h2 className="text-sm font-semi-bold text-text-plain">
-            {search
-              ? product.title.split(new RegExp(`(${search})`, 'gi')).map((part, i) =>
-                  part.toLowerCase() === search.toLowerCase() ? (
+            {regex
+              ? product.title.split(regex).map((part, i) =>
+                  part.toLowerCase() === search?.trim().toLowerCase() ? (
                     <span key={i} className="text-text-primary">
                       {part}
                     </span>

@@ -12,8 +12,11 @@ import { ChevronLeftIcon, ChevronRightIcon, ChevronsRight, ChevronsLeft } from '
 import { TProductMetaDataProps } from '../../types/products';
 import { useSearchParams } from 'next/navigation';
 export default function ProductPagination({ productMetaData }: TProductMetaDataProps) {
-  const { page, totalPages } = productMetaData;
+  // Navigation
   const searchParams = useSearchParams();
+  // Variables
+  const { page, totalPages } = productMetaData;
+  // Functions
   const createPageUrl = (newPage: number) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set('page', String(newPage));

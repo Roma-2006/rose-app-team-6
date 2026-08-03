@@ -62,7 +62,6 @@ export default async function middleware(req: NextRequest) {
     }
 
     if (requestedStep !== payload.step) {
-      console.log(`Redirecting to correct registration step: ${payload.step}`);
       return NextResponse.redirect(new URL(`/${locale}/register/${payload.step}`, req.url));
     }
   }
