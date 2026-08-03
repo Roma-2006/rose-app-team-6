@@ -1,7 +1,5 @@
-import useAllProducts from '../../hooks/use-all-products';
 import { Product, TAllProductsProps } from '../../types/products';
 import { ProductCard } from '../home/home-products/Product-card';
-import { ProductCardSkeleton } from '../home/home-products/product-card-skelton';
 import ProductPagination from './product-pagination';
 import { redirect } from 'next/navigation';
 import { getProducts } from '../../apis/product.api';
@@ -10,8 +8,10 @@ export default async function AllProducts({ searchParams }: TAllProductsProps) {
   // Translation
   const t = await getTranslations('products');
   // Variables
+  const currentPage = Number(searchParams.page) || 1;
+  const safePage = currentPage < 1 ? 1 : currentPage;
   const productFilters = {
-    page: Number(searchParams.page) || 1,
+    page: safePage,
     limit: Number(searchParams.limit) || 12,
     occasionId: searchParams.occasionId,
     categoryId: searchParams.categoryId,
@@ -22,17 +22,25 @@ export default async function AllProducts({ searchParams }: TAllProductsProps) {
     sortBy: searchParams.sortBy,
     sortOrder: searchParams.sortOrder,
   };
-  const products = await getProducts(productFilters);
-  const currentPage = Number(searchParams.page) || 1;
+  let products;
+  try {
+    products = await getProducts(productFilters);
+  } catch (error) {
+    return (
+      <div className="flex items-center justify-center py-10">
+        <p>{error instanceof Error && error.message}</p>
+      </div>
+    );
+  }
   // Navigation
-  if (products?.metadata && currentPage > products?.metadata.totalPages) {
+  if ((products?.metadata && currentPage > products?.metadata.totalPages) || currentPage < 1) {
     const newParams = new URLSearchParams();
     Object.entries(searchParams).forEach(([key, value]) => {
       if (value) {
         newParams.set(key, String(value));
       }
     });
-    newParams.set('page', String(products.metadata.totalPages));
+    newParams.set('page', currentPage < 1 ? '1' : String(products?.metadata.totalPages));
     redirect(`/products?${newParams.toString()}`);
   }
   return (

@@ -63,7 +63,8 @@ export async function getProducts(params: GetProductsParams = {}) {
   const response = await fetch(url.toString());
   const result: Response<TProductsResponse> = await response.json();
   if (!result.status) {
-    throw new Error('Failed to fetch products');
+    throw new Error(result.message || 'Failed to fetch products');
+    console.log(result.message);
   }
   return result.payload;
 }
