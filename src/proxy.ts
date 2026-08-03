@@ -2,7 +2,7 @@ import createMiddleware from 'next-intl/middleware';
 import { getToken } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 import { routing } from './i18n/routing';
-import { verifyRegistrationToken, RegistrationStep } from '@/features/auth/lib/registeration-token';
+import { verifyRegistrationToken } from '@/features/auth/lib/registeration-token';
 
 const intlMiddleware = createMiddleware(routing);
 
@@ -32,6 +32,9 @@ export default async function middleware(req: NextRequest) {
   const locale = getLocale(pathname);
   const bare = stripLocale(pathname);
 
+  // const bareSegments = bare.split('/').filter(Boolean);
+  // const firstSegment = bareSegments[0];
+
   const isAuthRoute = AUTH_ROUTES.some((r) => bare === r || bare.startsWith(r + '/'));
   const isProtectedRoute = PROTECTED_ROUTES.some((r) => bare === r || bare.startsWith(r + '/'));
 
@@ -51,8 +54,14 @@ export default async function middleware(req: NextRequest) {
     const requestedStep = segments[1];
 
     const regCookie = req.cookies.get('reg_progress')?.value;
-    const payload = regCookie ? await verifyRegistrationToken(regCookie) : null;
-
+    let payload = null;
+    if (regCookie) {
+      try {
+        payload = await verifyRegistrationToken(regCookie);
+      } catch {
+        payload = null;
+      }
+    }
     if (!requestedStep) {
       return intlMiddleware(req);
     }

@@ -1,15 +1,16 @@
 import React from 'react';
 import Image from 'next/image';
-import SecHeader from '../section-header';
-import { Button } from '@/shared/components/ui/button';
+
 import { Check } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
+import SecHeader from '../section-header';
+import { Button } from '@/shared/components/ui/button';
 
 export default async function AboutSection() {
   const tAbout = await getTranslations('home.about');
 
   return (
-    <section className="max-w-7xl   h-97.5 w-full mx-auto flex items-center justify-center gap-19 px-4 mb-33.5">
+    <section className="max-w-7xl   h-97.5 w-full mx-auto flex items-center justify-center gap-19 px-4 my-16 mb-33.5">
       {/* About Images */}
       <div className="about-images grid grid-cols-12 gap-3 w-full h-full    items-center">
         <div className="relative col-span-7 aspect-[4/5]  w-full">

@@ -117,7 +117,7 @@ export default function OTPVariant({
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         containerClassName={cn(
-          'flex items-center gap-2 has-disabled:opacity-50 w-full justify-center',
+          'flex items-center gap-2 has-disabled:opacity-50 w-full justify-between',
           containerClassName
         )}
         className={cn(
@@ -127,7 +127,7 @@ export default function OTPVariant({
         {...props}
         render={({ slots }: { slots: SlotProps[] }) => {
           return (
-            <div className="flex items-center gap-2 w-full justify-center relative z-0">
+            <div className="flex items-center gap-1.5 w-full justify-between relative z-0">
               {slots.map((slot, index) => {
                 const isHovered = hoveredIndex === index;
                 const showStaticHover = isHovered && index !== activeIndex;
@@ -137,7 +137,8 @@ export default function OTPVariant({
                     key={index}
                     data-slot="input-otp-slot-item"
                     className={cn(
-                      'relative flex size-11 items-center justify-center text-base font-medium transition-colors outline-none radius-lg border border-border-soft bg-bg-plain text-text-plain',
+                      'relative flex size-11 items-center justify-center text-base font-medium transition-colors outline-none rounded-lg border border-border-soft bg-bg-plain text-text-plain',
+                      // تطبيق الـ Hover بشكل ثابت وفوري بدون أي أنيميشن انتقال مرئي بين الخانات
                       !isDisabled && !isError && showStaticHover && 'border-border-default',
                       isError && 'border-border-danger text-text-danger bg-bg-plain z-20',
                       isDisabled && 'border-border-subtle bg-bg-subtle text-text-muted opacity-50'

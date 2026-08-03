@@ -11,6 +11,7 @@ export type TBaseButtonProps = {
     | 'subtle'
     | 'ghost'
     | 'destructive'
+    | 'softPink'
     | 'link'
     | 'softPink'
     | null
@@ -19,7 +20,7 @@ export type TBaseButtonProps = {
 
 export type TTextButton = TBaseButtonProps & {
   buttonVariant: 'text';
-  title: string;
+  title?: string;
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
 };

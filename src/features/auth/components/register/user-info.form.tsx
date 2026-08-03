@@ -10,12 +10,9 @@ import SelectGender from '@/shared/components/custom-ui/select-gender';
 import RegisterSubtitle from './register-subtitle';
 import { ArrowRight, ArrowLeft } from 'lucide-react';
 import { userInfoSchema } from '../../schemas/user-info.schema';
-import { useSearchParams, useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import AuthFooter from '../shared/auth-footer';
-import { ValidationError } from '@/shared/types/api';
 import AuthError from '../shared/auth-error';
-import { advanceRegistrationStep } from '@/features/auth/lib/registeration-progress';
 
 export default function UserInfoForm({
   firstNameError,
@@ -29,9 +26,9 @@ export default function UserInfoForm({
   phoneError,
 }: TUserInfoFormProps) {
   const t = useTranslations('auth.auth-register');
-  const router = useRouter();
   const locale = useLocale();
   const isRtl = locale === 'ar';
+
   //form
   const form = useForm<TUserInfoFields>({
     resolver: zodResolver(userInfoSchema),
@@ -47,6 +44,7 @@ export default function UserInfoForm({
   //function
   const onSubmit: SubmitHandler<TUserInfoFields> = async (values) => {
     if (!email) return;
+
     const userDetails = { ...values, email: email, gender: values.gender.toUpperCase() };
     setUserInfo(userDetails);
     setStep('create-password');

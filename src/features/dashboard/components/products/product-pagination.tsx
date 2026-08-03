@@ -42,6 +42,7 @@ export default function ProductPagination({ productMetaData }: TProductMetaDataP
     return pages;
   };
   const pages = getPages();
+
   return (
     <Pagination>
       <PaginationContent>

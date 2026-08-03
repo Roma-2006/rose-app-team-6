@@ -83,7 +83,7 @@ function Button(props: ButtonPrimitive.Props & VariantProps<typeof buttonVariant
     <ButtonPrimitive
       data-slot="button"
       aria-busy={props.loading}
-      aria-label={props.title ? t(props.title) : undefined}
+      // aria-label={props.title ? t(props.title) : undefined}
       disabled={props.disabled || props.loading}
       onClick={props.onClick}
       // buttonVariant={buttonVariant}
@@ -106,7 +106,7 @@ function Button(props: ButtonPrimitive.Props & VariantProps<typeof buttonVariant
       ) : (
         <>
           {isText && props.leftIcon}
-          {isIcon ? props.iconOnly : isText ? t(props.title) : props.number}
+          {isIcon ? props.iconOnly : isText ? t(props.title!) : props.number}
           {isText && props.rightIcon}
         </>
       )}

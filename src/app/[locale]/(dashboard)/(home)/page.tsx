@@ -6,12 +6,16 @@ import HomeContent from '@/features/dashboard/components/home/home-content';
 import { BestSellingSection } from '@/features/dashboard/components/home/home-products/bestselling-section';
 import { MostPopularSection } from '@/features/dashboard/components/home/home-products/mostpopular-section';
 
-export default async function HomePage() {
+interface HomePageProps {
+  searchParams: Promise<{ occasionId?: string }>;
+}
+export default async function HomePage({ searchParams }: HomePageProps) {
+  const { occasionId } = await searchParams;
   return (
     <>
       <HomeContent />
       <BestSellingSection />
-      <MostPopularSection />
+      <MostPopularSection occasionId={occasionId} />
       <AboutSection />
       <GallerySection />
       <TestimonialsSection />

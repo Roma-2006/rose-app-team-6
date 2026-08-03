@@ -15,7 +15,7 @@ export default function CategoryCard({ image, badge, title, href }: CategoryCard
 
   return (
     <Link href={href} className="block h-full">
-      <Card className="relative h-full min-h-60 w-full overflow-hidden group rounded-2xl border-0 p-0 transition-transform duration-200 hover:scale-[1.01]">
+      <Card className="relative h-full min-h-60 w-full overflow-hidden group rounded-2xl ring-0 border-0 p-0 transition-transform duration-200 hover:scale-[1.01]">
         {isLoading && <Skeleton className="absolute inset-0 w-full h-full" />}
 
         <Image
@@ -35,9 +35,7 @@ export default function CategoryCard({ image, badge, title, href }: CategoryCard
         {/* Gradient Overlay */}
         <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col gap-3 p-6 bg-gradient-to-t from-black/80 via-black/30 to-transparent">
           {/* Badge */}
-          <Badge className="w-fit rounded-full bg-soft-pink-50 border-0 px-3 py-1 text-xs font-bold text-maroon-700 shadow-sm transition-colors hover:bg-soft-pink-100">
-            {t(badge)}
-          </Badge>
+          <Badge variant="softPink">{t(badge)}</Badge>
 
           {/* Heading */}
           <h3 className="text-start text-xl lg:text-2xl font-bold text-white tracking-tight leading-snug">

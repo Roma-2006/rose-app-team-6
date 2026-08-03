@@ -9,7 +9,6 @@ import { useSession } from 'next-auth/react';
 import HeaderSearchInput from './header-search-input';
 import GuestGatedIcon from './guest-gated-icon';
 import UserAuthAction from './user-auth-action';
-import LanguageSwitcher from '../language-switcher';
 import { ThemeToggle } from '../theme';
 import { useCart } from '@/features/dashboard/hooks/use-cart';
 import { useWishlist } from '@/features/dashboard/hooks/use-wishlist';

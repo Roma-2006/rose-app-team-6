@@ -152,8 +152,8 @@
   --bg-soft: var(--color-zinc-700);
   --bg-default: var(--color-zinc-600);
   --bg-inverse: var(--color-zinc-50);
-  --bg-elevated: color-mix(in srgb, var(--color-white) 20%, transparent);
-  --bg-overlay: color-mix(in srgb, var(--color-white) 50%, transparent);
+  --bg-elevated: color-mix(in srgb, var(--color-black) 20%, transparent);
+  --bg-overlay: color-mix(in srgb, var(--color-black) 50%, transparent);
 
   /* Primary */
   --bg-primary: var(--color-soft-pink-300);
@@ -225,6 +225,7 @@
   --text-danger-faint: color-mix(in srgb, var(--color-red-500) 50%, transparent);
   --text-danger-fade: color-mix(in srgb, var(--color-red-500) 25%, transparent);
 
+ 
   /* Border ----------------------------------------------------------------------------------*/
   --border-plain: var(--color-zinc-50);
   --border-subtle: var(--color-zinc-700);
@@ -468,18 +469,11 @@
   box-shadow: 0 0 0 var(--ring-width-default) var(--color-col-ring-danger);
 }
 
-@utility radius-sm {
-  border-radius: 4px;
-}
-@utility radius-base {
-  border-radius: 6px;
-}
-@utility radius-lg {
-  border-radius: 8px;
-}
-@utility radius-xl {
-  border-radius: 10px;
-}
+@utility radius-sm { border-radius: 4px; }
+@utility radius-base { border-radius: 6px; }
+@utility radius-lg { border-radius: 8px; }
+@utility radius-xl { border-radius: 10px; }
+
 
 html[dir='rtl'] {
   --font-sans: var(--font-tajawal);

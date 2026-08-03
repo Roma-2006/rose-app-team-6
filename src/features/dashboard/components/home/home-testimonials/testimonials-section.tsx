@@ -35,7 +35,7 @@ export default async function TestimonialsSection() {
   const tTistimonial = await getTranslations('home.testimonials');
 
   return (
-    <section className="   h-165 w-full  flex flex-col items-center justify-center   mb-35">
+    <section className="-mx-20   h-165  flex flex-col items-center justify-center   mb-35">
       {/* Testimonials Header */}
       <header className=" testimonials-header text-center mb-10">
         <SecHeader text={tTistimonial('label')} className="pb-2" />
