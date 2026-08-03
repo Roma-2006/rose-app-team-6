@@ -18,6 +18,7 @@ const buttonVariants = cva(
         ghost: ' text-text-plain hover:bg-bg-soft  ',
         destructive: 'bg-bg-danger text-text-inverse hover:bg-bg-danger-saturated',
         link: 'bg-bg-subtle border border-border-subtle text-text-plain',
+        softPink: 'bg-soft-pink-50 text-maroon-600 hover:bg-soft-pink-100 shadow-sm border-none',
       },
       size: {
         custom: 'h-11 w-45.25 gap-1.5',

@@ -1,17 +1,41 @@
 import { Product, TAllProductsProps } from '../../types/products';
 import { ProductCard } from '../home/home-products/Product-card';
 import ProductPagination from './product-pagination';
-import { redirect } from 'next/navigation';
 import { getProducts } from '../../apis/product.api';
 import { getTranslations } from 'next-intl/server';
+import { redirect } from '@/i18n/navigation';
+import { getLocale } from 'next-intl/server';
 export default async function AllProducts({ searchParams }: TAllProductsProps) {
+  const locale = await getLocale();
   // Translation
   const t = await getTranslations('products');
   // Variables
-  const currentPage = Number(searchParams.page) || 1;
-  const safePage = currentPage < 1 ? 1 : currentPage;
+  const createPageUrl = (page: number) => {
+    const newParams = new URLSearchParams();
+
+    Object.entries(searchParams).forEach(([key, value]) => {
+      if (value !== undefined) {
+        newParams.set(key, String(value));
+      }
+    });
+
+    newParams.set('page', String(page));
+
+    return `/products?${newParams.toString()}`;
+  };
+  // const currentPage = Number(searchParams.page)||1;
+  const rawPage = Number(searchParams.page);
+  const currentPage = Number.isNaN(rawPage) ? 1 : rawPage;
+  // handle 0 and negative pages before fetching
+  if (currentPage <= 0) {
+    redirect({
+      href: createPageUrl(1),
+      locale,
+    });
+  }
+  // const safePage = currentPage <= 0 ? 1 : currentPage;
   const productFilters = {
-    page: safePage,
+    page: currentPage,
     limit: Number(searchParams.limit) || 12,
     occasionId: searchParams.occasionId,
     categoryId: searchParams.categoryId,
@@ -32,16 +56,17 @@ export default async function AllProducts({ searchParams }: TAllProductsProps) {
       </div>
     );
   }
-  // Navigation
-  if ((products?.metadata && currentPage > products?.metadata.totalPages) || currentPage < 1) {
-    const newParams = new URLSearchParams();
-    Object.entries(searchParams).forEach(([key, value]) => {
-      if (value) {
-        newParams.set(key, String(value));
-      }
+  // handle page greater than total pages
+  if (products?.metadata && currentPage > products.metadata.totalPages) {
+    console.log('REDIRECTING');
+    console.log({
+      currentPage,
+      totalPages: products?.metadata?.totalPages,
     });
-    newParams.set('page', currentPage < 1 ? '1' : String(products?.metadata.totalPages));
-    redirect(`/products?${newParams.toString()}`);
+    redirect({
+      href: createPageUrl(products.metadata.totalPages),
+      locale,
+    });
   }
   return (
     <>

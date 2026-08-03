@@ -30,10 +30,9 @@ export default function HeroCarousel() {
         className="object-cover"
       />
 
-      {/*  Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-e from-black/80 via-black/20 to-transparent" />
-
-      {/* Content Side  */}
+      {/* Overlay Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+      {/* Content Side */}
       <div className="absolute inset-y-0 start-0 z-10 flex max-w-xl flex-col justify-end gap-3 p-10 pb-12">
         <h2 className="text-4xl font-semibold leading-tight text-white tracking-tight text-start">
           {t(slide.title)}
@@ -43,7 +42,7 @@ export default function HeroCarousel() {
         {/* Button */}
         <Link
           href="/products"
-          className="mt-2 w-fit rounded-xl bg-bg-primary-fade px-6 py-2 text-center text-sm font-medium text-text-primary transition-colors hover:bg-bg-primary-fade/90"
+          className="mt-2 w-fit rounded-xl bg-soft-pink-50 px-6 py-2.5 text-center text-sm font-bold text-maroon-600 transition-colors hover:bg-soft-pink-100 shadow-sm"
         >
           {t(slide.cta)}
         </Link>
@@ -57,32 +56,32 @@ export default function HeroCarousel() {
             onClick={() => goTo(index)}
             className={`h-2 transition-all duration-300 ${
               index === active
-                ? 'w-8 rounded-full bg-bg-primary-saturated'
-                : 'w-2 rounded-full bg-bg-plain'
+                ? 'w-8 rounded-full bg-maroon-600'
+                : 'w-2 rounded-full bg-white/70 hover:bg-white'
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}
       </div>
 
-      {/* Bottom  Arrows Container */}
-      <div className="absolute bottom-10 end-10 z-10 flex items-center justify-between w-20 h-9 rounded-full bg-bg-plain/70 p-1 backdrop-blur-sm">
+      {/* Bottom Arrows Container */}
+      <div className="absolute bottom-10 end-10 z-10 flex items-center justify-between w-20 h-9 rounded-full bg-soft-pink-50/90 p-1 backdrop-blur-sm shadow-sm border border-white/20">
         {/* Left Arrow */}
         <button
           onClick={() => goTo(active - 1)}
-          className="flex h-8 w-8 items-center justify-center text-gray-600 transition hover:text-text-primary rtl:rotate-180"
+          className="flex h-8 w-8 items-center justify-center text-maroon-800 transition hover:opacity-75 rtl:rotate-180"
           aria-label="Previous slide"
         >
-          <ChevronLeft className="h-7 w-7" />
+          <ChevronLeft className="h-5 w-5" />
         </button>
 
         {/* Right Arrow */}
         <button
           onClick={() => goTo(active + 1)}
-          className="flex h-8 w-8 items-center justify-center text-gray-600 transition hover:text-text-primary rtl:rotate-180"
+          className="flex h-8 w-8 items-center justify-center text-maroon-800 transition hover:opacity-75 rtl:rotate-180"
           aria-label="Next slide"
         >
-          <ChevronRight className="h-7 w-7" />
+          <ChevronRight className="h-5 w-5" />
         </button>
       </div>
     </Card>

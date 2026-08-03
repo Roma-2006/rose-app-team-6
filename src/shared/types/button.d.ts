@@ -12,6 +12,7 @@ export type TBaseButtonProps = {
     | 'ghost'
     | 'destructive'
     | 'link'
+    | 'softPink'
     | null
     | undefined;
 };

@@ -11,12 +11,16 @@ import GuestGatedIcon from './guest-gated-icon';
 import UserAuthAction from './user-auth-action';
 import LanguageSwitcher from '../language-switcher';
 import { ThemeToggle } from '../theme';
+import { useCart } from '@/features/dashboard/hooks/use-cart';
+import { useWishlist } from '@/features/dashboard/hooks/use-wishlist';
 
 export default function Header() {
   const t = useTranslations();
   const session = useSession();
   const userStatus = session.status;
   const isAuthenticated = userStatus === 'authenticated';
+  const { uniqueItemsCount } = useCart();
+  const { wishlistCount } = useWishlist();
   return (
     <header className="sticky top-0 z-50 bg-bg-plain">
       <div className=" flex flex-col md:flex-row  items-center py-4.5 px-9 gap-4 ">
@@ -37,10 +41,10 @@ export default function Header() {
         <div className="flex">
           <UserAuthAction isAuthenticated={isAuthenticated} />
           <span className=" flex items-center gap-2.5 px-4 border-r border-l  border-border-muted">
-            <GuestGatedIcon isAuthenticated={isAuthenticated} badgeCount={3}>
+            <GuestGatedIcon isAuthenticated={isAuthenticated} badgeCount={wishlistCount}>
               <Heart size={24} />
             </GuestGatedIcon>
-            <GuestGatedIcon isAuthenticated={isAuthenticated} badgeCount={3}>
+            <GuestGatedIcon isAuthenticated={isAuthenticated} badgeCount={uniqueItemsCount}>
               <ShoppingCart size={24} />
             </GuestGatedIcon>
             <Bell size={24} />
