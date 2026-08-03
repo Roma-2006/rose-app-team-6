@@ -53,7 +53,7 @@ const columnsData = [
         id: 6,
         src: '/assets/gallery-images/gallery-image6.png',
         alt: 'Engagement card',
-        height: 'md:h-[611px]',
+        height: 'md:h-[616px]',
       },
     ],
   },
@@ -64,16 +64,16 @@ export default function GallerySection() {
 
   return (
     <>
-      <section className="w-full max-w-7xl px-4 ms-3  mb-35 flex flex-col items-center justify-center bg-background">
+      <section className="w-full max-w-7xl mx-auto px-4 mb-35 flex flex-col items-center justify-center bg-background">
         {/* Gallery Header */}
         <header className="text-center">
           <SecHeader text={tGallery('label')} className="pb-2" />
           <SecTitle text={tGallery('title')} className="pb-11.5" />
         </header>
 
-        {/* grid system */}
-        <div className="w-full max-w-[1280px] mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5 items-start w-full">
+        {/* Grid System */}
+        <div className="w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5 items-start justify-center w-full">
             {columnsData.map((column, columnIndex) => (
               <div
                 key={column.id}
@@ -82,7 +82,7 @@ export default function GallerySection() {
                 {column.items.map((item) => (
                   <div
                     key={item.id}
-                    className={`relative w-full h-[300px] ${item.height} overflow-hidden rounded-xl shadow-md border border-muted bg-neutral-50`}
+                    className={`relative w-full h-[300px] ${item.height} overflow-hidden rounded-xl shadow-md border-0 ring-0 bg-neutral-50`}
                   >
                     <Image
                       src={item.src}
