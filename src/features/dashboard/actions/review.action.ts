@@ -12,7 +12,7 @@ export async function CreateReviewAction(
     // Retrieve the user's current session from the server.
     const session = await getServerSession(authOptions);
 
-    // Verify the token.
+    // Verify the token...
     if (!session || !session.token) {
       throw new Error('Unauthorized: Please login first');
     }
