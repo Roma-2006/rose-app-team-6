@@ -1,5 +1,6 @@
-import React from 'react';
-import { Star } from 'lucide-react';
+'use client';
+
+import { Star, StarHalf } from 'lucide-react';
 
 interface IRatingStarsProps {
   rating: number;
@@ -15,30 +16,29 @@ export default function RatingStars({
   onStarClick,
 }: IRatingStarsProps) {
   return (
-    <div className="flex w-25 h-5 gap-0.5">
-      {[...Array(maxStars)].map((_, index) => {
+    <div className="flex h-5 gap-0.5">
+      {Array.from({ length: maxStars }).map((_, index) => {
         const starValue = index + 1;
+
         const isFull = index < Math.floor(rating);
-        const isHalf = !isFull && index < rating;
+
+        const isHalf = !isFull && rating - index >= 0.5 && rating - index < 1;
 
         return (
           <button
-            key={index}
+            key={starValue}
             type="button"
             disabled={disabled}
-            className="relative select-none focus:outline-none disabled:cursor-not-allowed"
+            aria-label={`${starValue} stars`}
+            className="relative size-4 shrink-0 select-none focus:outline-none disabled:cursor-default"
             onClick={() => onStarClick?.(starValue)}
           >
-            <Star
-              size={14}
-              className={`w-4 h-4 ${
-                isFull ? 'fill-[#FBA707] stroke-[#FBBF24]' : 'fill-transparent stroke-[#FBBF24]'
-              }`}
-            />
-            {isHalf && (
-              <div className="absolute top-0 left-0 overflow-hidden w-1/2 pointer-events-none">
-                <Star size={14} className="w-4 h-3.5 fill-[#FBA707] stroke-[#FBBF24]" />
-              </div>
+            {isFull ? (
+              <Star aria-hidden="true" className="size-4 fill-amber-400 stroke-amber-400" />
+            ) : isHalf ? (
+              <StarHalf aria-hidden="true" className="size-4 fill-amber-400 stroke-amber-400" />
+            ) : (
+              <Star aria-hidden="true" className="size-4 fill-transparent stroke-amber-400" />
             )}
           </button>
         );

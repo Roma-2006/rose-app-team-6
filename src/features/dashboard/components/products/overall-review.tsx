@@ -11,7 +11,7 @@ interface OverallReviewProps {
 }
 
 export default function OverallReview({ product }: OverallReviewProps) {
-  const t = useTranslations('product-details');
+  const t = useTranslations('products.product-reviews');
   const locale = useLocale();
 
   const isRtl = locale === 'ar';
@@ -19,31 +19,36 @@ export default function OverallReview({ product }: OverallReviewProps) {
   return (
     <section className="py-10">
       <div className="relative inline-block">
-        {/* Pink background */}
+        {/* Pink background highlight */}
         <div
           className={`absolute start-0 top-6 h-4 w-40 bg-bg-secondary-faint ${
             isRtl ? 'rounded-l-full' : 'rounded-r-full'
           }`}
         />
 
-        {/* Title */}
+        {/* Section Title */}
         <h2 className="relative z-10 font-['Sarabun'] text-4xl font-bold leading-9 text-text-primary">
-          {t('reviews.title')}
+          {t('title')}
         </h2>
 
-        {/* Red underline */}
+        {/* Decorative underline */}
         <div className="absolute start-0 top-9.5 z-10 h-0.5 w-14 rounded-full bg-soft-pink" />
       </div>
 
-      <div className="mt-2">
-        <h5 className=" text-lg font-semibold">{t('reviews.generalrating')}:</h5>
+      <div className="mt-4">
+        <h3 className="text-lg font-semibold text-text-primary">{t('generalrating')}:</h3>
 
-        <div className="flex items-center gap-2 text-sm text-text-muted">
-          <span className="font-semibold text-text-plain">Rating: {product.rating}/5</span>
+        <div className="mt-1 flex items-center gap-2 text-sm text-text-muted">
+          <span className="font-semibold text-text-plain">
+            {t('rating', { rating: product?.rating ?? 0 })}
+          </span>
 
-          <span>({product.ratingsCount} ratings)</span>
+          <span>{t('ratingsCount', { count: product?.ratingsCount ?? 0 })}</span>
         </div>
-        <RatingStars rating={product.rating} disabled />
+
+        <div className="mt-2">
+          <RatingStars rating={product?.rating ?? 0} disabled />
+        </div>
       </div>
     </section>
   );

@@ -30,6 +30,14 @@ const testimonials = [
     text: 'The team truly cares about every order. I always feel confident when I buy flowers from here. The checkout process was sup...',
     date: 'January 12, 2025',
   },
+  {
+    id: 4,
+    name: 'Max Turner',
+    image: '/assets/testimonials-images/testimonial-image-3.png',
+    stars: 4,
+    text: 'The team truly cares about every order. I always feel confident when I buy flowers from here. The checkout process was sup...',
+    date: 'January 12, 2025',
+  },
 ];
 export default async function TestimonialsSection() {
   const tTistimonial = await getTranslations('home.testimonials');

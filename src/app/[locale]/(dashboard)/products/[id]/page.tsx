@@ -18,40 +18,54 @@ interface ProductPageProps {
 }
 
 export default async function ProductDetailsPage({ params }: ProductPageProps) {
-  const { id } = await params;
+  const { id: productId } = await params;
+
   const session = await getServerSession(authOptions);
   const isAuthenticated = !!session?.token;
+  const data = await getProductById(productId);
 
-  const data = await getProductById(id);
-  if (!data || !data.payload?.product) {
+  if (!data?.status || !data?.payload?.product) {
     notFound();
   }
+
   const product = data.payload.product;
 
   let galleryImages: string[] = [];
+
   try {
-    galleryImages = product.gallery ? JSON.parse(product.gallery) : [];
+    galleryImages =
+      typeof product.gallery === 'string' ? JSON.parse(product.gallery) : (product.gallery ?? []);
   } catch {
     galleryImages = [];
   }
 
-  const allImages = [product.cover, ...galleryImages].filter(Boolean);
+  const allImages = [product.cover, ...galleryImages].filter((image): image is string =>
+    Boolean(image)
+  );
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-6xl">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-12 items-start">
+    <div className="container mx-auto max-w-6xl px-4 py-8">
+      <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-2 lg:gap-12">
         <ProductGallery images={allImages} title={product.title} />
+
         <ProductInfo product={product} />
       </div>
+
       <OverallReview
         product={{
           rating: product.rating,
           ratingsCount: product.ratings,
         }}
       />
-      <section className="py-5 grid grid-cols-2 gap-6 lg:grid-cols-3 divide-y border-y border-bg-muted">
-        <ReviewList productId={id} />
-        <AddReviewForm isAuthenticated={isAuthenticated} productId={id} />
+
+      <section className="grid grid-cols-2 gap-6 border-y border-bg-muted py-5 lg:grid-cols-3">
+        <ReviewList
+          productId={productId}
+          initialReviews={product.reviews ?? []}
+          totalReviews={product.ratings ?? 0}
+        />
+
+        <AddReviewForm isAuthenticated={isAuthenticated} productId={productId} />
       </section>
       <RelatedProductsSection
         product={{

@@ -3,7 +3,7 @@
 import { authOptions } from '@/auth';
 import { getServerSession } from 'next-auth/next';
 import { IAddReviewFormData } from '../types/product-reviews';
-import { IAddReviewActionResponse, IAddReviewResponse, IApiResponse } from '../types/api';
+import { IAddReviewActionResponse, IAddReviewResponse } from '../types/api';
 
 export async function CreateReviewAction(
   data: IAddReviewFormData & { productId: string }

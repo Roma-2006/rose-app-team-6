@@ -1,6 +1,8 @@
 {
   "app-title": "تطبيق روز",
-  "title": "مرحبا بك في تطبيق روز",
+  "HomePage": {
+    "title": "مرحبا بك في تطبيق روز"
+  },
   "button": {
     "loading": "جاري التحميل...",
     "submit": "إرسال",
@@ -8,9 +10,9 @@
     "save": "حفظ",
     "delete": "حذف",
     "confirm": "تأكيد",
-    "next": "التالى",
-     "add-review":"أضف تقييمًا",
-    "adding":"إضافة..."
+    "next": "التالي",
+    "add-review": "أضف تقييمًا",
+    "adding": "إضافة..."
   },
   "common": {
     "select": {
@@ -27,8 +29,8 @@
     "search-placeholder": "ما الهدية المميزة التي تبحث عنها؟",
     "login": "تسجيل الدخول",
     "search-default": "منتجات قد تعجبك",
-    "search-empty":"لا توجد منتجات",
-    "search-error" :"فشل البحث. حاول مجدداً.",
+    "search-empty": "لا توجد منتجات",
+    "search-error": "فشل البحث. حاول مجدداً.",
     "notifications": {
       "title": "الإشعارات ({count})",
       "noNotifications": "لا توجد إشعارات حتى الآن",
@@ -58,7 +60,7 @@
   },
   "auth": {
     "switchLang": "English",
-   "langLabel": "Switch to Arabic",
+    "langLabel": "التحويل إلى الإنجليزية",
     "welcome-auth": {
       "login-title": "مرحبًا بعودتك!",
       "register-title": "كن جزءًا من عائلتنا!"
@@ -130,7 +132,7 @@
     },
     "auth-register": {
       "title": "إنشاء حساب",
-      "need-help": "تحتاج مساعده ؟",
+      "need-help": "تحتاج مساعدة ؟",
       "contact-us": "تواصل معنا",
       "step1": {
         "emailLabel": "البريد الإلكتروني",
@@ -140,11 +142,11 @@
         "registerLink": "سجل الدخول "
       },
       "otp": {
-        "title": "انشاء حساب ",
+        "title": "إنشاء حساب",
         "subtitle-1": "أدخل رمز التحقق",
         "subtitle-2": "أرسلنا رمزاً إلى {email}",
         "resend": "أرسل رمزاً جديداً",
-        "resend-2": "اعاده ارسال ",
+        "resend-2": "إعادة ارسال",
         "resendTimer": "أعد الإرسال خلال {s} ثانية",
         "invalid": "رمز التحقق غير صحيح",
         "expired": "انتهت صلاحية الرمز. يرجى طلب رمز جديد.",
@@ -154,8 +156,8 @@
       "user-info": {
         "sub-title": "أخبرنا المزيد عن نفسك",
         "user-info-sub-title": "بعض التفاصيل للبدء.",
-        "first-name": "الاسم الاول",
-        "last-name": "اسم العائله",
+        "first-name": "الاسم الأول",
+        "last-name": "اسم العائلة",
         "user-name": "اسم المستخدم",
         "email": "البريد الإلكتروني",
         "phone": "رقم الهاتف",
@@ -210,7 +212,6 @@
       "title": "هدايا مميزة للأشخاص الذين تحبهم",
       "button": "تسوق الآن"
     },
-
     "carousel": {
       "slide1": {
         "title": "عبّر بالورود",
@@ -228,7 +229,6 @@
         "cta": "أنا أشتري!"
       }
     },
-
     "cards": {
       "anniversary": {
         "badge": "ذكرى سنوية",
@@ -243,7 +243,6 @@
         "title": "هدية ستظل تذكرها للأبد"
       }
     },
-
     "features": {
       "support": {
         "title": "دعم 24/7",
@@ -265,8 +264,8 @@
     "bestSelling": {
       "badge": "الأكثر مبيعاً",
       "titlePart1": "اكتشف",
-      "titlePart2": " ما يشتريه",
-       "titlePart3": "الجميع",
+      "titlePart2": "ما يشتريه",
+      "titlePart3": "الجميع",
       "titlePart4": "في الوقت الحالي",
       "description": "لست متأكداً مما تختار؟\nابدأ بالأكثر مبيعاً لدينا، فهي الهدايا التي يعود عملاؤنا لطلبها دائماً.\nسواء كنت تحتفل بعيد ميلاد، ذكرى سنوية، أو زفاف، فإن اختياراتنا تضمن لك ترك انطباع لا يُنسى.",
       "exploreButton": "استكشف الهدايا"
@@ -288,7 +287,6 @@
       "new": "جديد",
       "outOfStock": "نفدت الكمية"
     },
-
     "about": {
       "label": "عن الموقع",
       "title": {
@@ -299,12 +297,10 @@
         "part5": "الخاصة"
       }
     },
-
     "gallery": {
       "label": "المعرض",
       "title": "تصفح معرض صورنا الرائع"
     },
-
     "testimonials": {
       "label": "أراء العملاء",
       "title": "كلمات حقيقية من عملاء سعداء"
@@ -317,11 +313,37 @@
       }
     }
   },
-
-"products": {
-   "addToCart": "ضف إلى السلة",
+  "input-component": {
+    "label": "الاسم بالكامل",
+    "placeholder": "أدخل اسمك هنا..."
+  },
+  "custom-input": {
+    "default": {
+      "first-name": { "label": "الاسم الأول", "placeholder": "Jonathan" },
+      "last-name": { "label": "الاسم الأخير", "placeholder": "Adrian" },
+      "user-name": { "label": "اسم المستخدم", "placeholder": "Jonathan" },
+      "review-title": { "label": "العنوان", "placeholder": "ادخل عنوان التقييم" }
+    },
+    "number": { "label": "الرقم", "placeholder": "0" },
+    "search": { "label": "بحث", "placeholder": "ابحث هنا..." },
+    "password": {
+      "password": { "label": "كلمة المرور", "placeholder": "*********" },
+      "confirm-Password": { "label": "تأكيد كلمة المرور", "placeholder": "*********" }
+    },
+    "file": {
+      "label": "الملف",
+      "placeholder": "اختر ملف",
+      "btn-text": "رفع ملف",
+      "error-type": "صيغة الملف غير مدعومة."
+    },
+    "phone": { "label": "رقم الهاتف", "placeholder": "1012345678" },
+    "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" },
+    "nice-to-have-you-here": "جميل أنك هنا"
+  },
+  "products": {
+    "addToCart": "أضف إلى السلة",
     "outOfStock": "نفدت الكمية",
-       "product-card": {
+    "product-card": {
       "new": "جديد",
       "outOfStock": "غير متوفر"
     },
@@ -341,6 +363,7 @@
       },
       "rating": {
         "title": "تقييم",
+        "subtitle": "تقييمات",
         "starLabel": "{count} نجوم"
       },
       "price": {
@@ -348,52 +371,36 @@
         "from": "من",
         "to": "إلى"
       },
+      "currency": {
+        "egp": "جنيه"
+      },
       "resetAll": {
         "title": "إلغاء الكل"
       }
     },
-    "add-review":{
-    "rating": "تقييمك",
-    "title":"العنوان",
-    "review": "اكتب رأيك",
-    "text-area-placeholder":"ما رأيك في هذا المنتج؟",
-   
-    "login-to-review":"يرجى تسجيل الدخول لتتمكن من تقييم المنتج"
-
+    "product-reviews": {
+      "title": "تقييمات المنتج",
+      "empty": "لا توجد تقييمات حتى الآن",
+      "loading": "جاري تحميل التقييمات...",
+      "error": "حدث خطأ أثناء تحميل التقييمات",
+      "generalrating": "التقييم العام",
+      "loadMore": "عرض المزيد",
+      "loadingMore": "جارٍ التحميل...",
+      "rating": "التقييم: {rating}/5",
+      "ratingsCount": "({count} تقييم)"
+    },
+    "add-review": {
+      "rating": "تقييمك",
+      "title": "العنوان",
+      "review": "اكتب رأيك",
+      "text-area-placeholder": "ما رأيك في هذا المنتج؟",
+      "login-to-review": "يرجى تسجيل الدخول لتتمكن من تقييم المنتج"
+    },
+    "related-products": {
+      "sec-title": "منتجات ذات صلة"
+    }
   },
-  "related-products":{
-  "sec-title":"منتجات ذات صلة"
-
+  "grid": {
+    "product-empty": "لا توجد منتجات تطابق خيارات البحث."
   }
-  },
-  "input-component": {
-    "label": "الاسم بالكامل",
-    "placeholder": "أدخل اسمك هنا..."
-  },
-
-  "custom-input": {
-    "default": {
-      "first-name": { "label": "الاسم الأول", "placeholder": "Jonathan" },
-      "last-name": { "label": "الاسم الأخير", "placeholder": "Adrian" },
-      "user-name": { "label": " اسم المسخدم", "placeholder": "Jonathan" },
-     "review-title": { "label": " العنوان", "placeholder": "ادخل عنوان التقييم" }
-
-    },
-    "number": { "label": "الرقم", "placeholder": "0" },
-    "search": { "label": "بحث", "placeholder": "ابحث هنا..." },
-    "password": {
-      "password": { "label": "كلمة المرور", "placeholder": "*********" },
-      "confirm-Password": { "label": "تأكيد كلمة المرور", "placeholder": "*********" }
-    },
-    "file": {
-      "label": "الملف",
-      "placeholder": "اختر ملف",
-      "btn-text": "رفع ملف",
-      "error-type": "صيغة الملف غير مدعومة."
-    },
-    "phone": { "label": "رقم الهاتف", "placeholder": "1012345678" },
-    "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" },
-    "nice-to-have-you-here": "جميل أنك هنا"
-  }
- 
 }

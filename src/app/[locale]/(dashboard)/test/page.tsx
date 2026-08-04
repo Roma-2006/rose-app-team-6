@@ -1,13 +1,8 @@
 'use client';
 import AboutSection from '@/features/dashboard/components/home/home-about/about-section';
 import { ProductCardSkeleton } from '@/features/dashboard/components/home/home-products/product-card-skelton';
-<<<<<<< HEAD
 import SecHeader from '@/features/dashboard/components/shared/section-header';
 import SecTitle from '@/features/dashboard/components/shared/section-title';
-=======
-import SecHeader from '@/features/dashboard/components/home/section-header';
-import SecTitle from '@/features/dashboard/components/home/section-title';
->>>>>>> 67f74cc5b2f63372fd222ce4d502de39038e4758
 import { BaseCheckbox } from '@/shared/components/custom-ui/BaseCheckbox';
 import { Badge } from '@/shared/components/ui/badge';
 import { Button } from '@/shared/components/ui/button';
