@@ -1,6 +1,6 @@
 import { TProductsResponse } from '@/features/dashboard/types/products';
 import { Response } from '../../../shared/types/api';
-import { GetProductsParams } from '../types/product-query';
+import { GetProductsParams } from '@/features/dashboard/types/product-query';
 
 export async function getProducts(params: GetProductsParams = {}) {
   const url = new URL(`${process.env.NEXT_PUBLIC_API_URL}/products`);
@@ -16,7 +16,6 @@ export async function getProducts(params: GetProductsParams = {}) {
     minRating,
     sortBy,
     sortOrder,
-    search,
   } = params;
 
   const queryParams = {
@@ -30,7 +29,6 @@ export async function getProducts(params: GetProductsParams = {}) {
     minRating,
     sortBy,
     sortOrder,
-    search,
   };
 
   Object.entries(queryParams).forEach(([key, value]) => {
@@ -40,12 +38,9 @@ export async function getProducts(params: GetProductsParams = {}) {
   });
 
   const response = await fetch(url.toString());
-
   const result: Response<TProductsResponse> = await response.json();
-
   if (!result.status) {
-    throw new Error(result.message || 'Failed to fetch products');
+    throw new Error('Failed to fetch products');
   }
-
   return result.payload;
 }

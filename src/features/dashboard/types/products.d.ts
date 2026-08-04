@@ -31,6 +31,7 @@ export type Product = {
 
   occasions: ProductOccasion[];
 };
+
 //productPage
 export type TGetProductsParams = {
   page?: string;
@@ -67,3 +68,19 @@ export type TProductsResponse = {
 export type TProductMetaDataProps = {
   productMetaData: TPaginationMetadata;
 };
+
+export interface IProductCount {
+  reviews?: number;
+  cartItems?: number;
+  wishlistItems?: number;
+  orderItems?: number;
+}
+
+export interface IRelatedProductsSectionProps {
+  product: Product & {
+    categoryId?: string;
+    subCategoryId?: string;
+    _count?: IProductCount;
+    occasions?: unknown[];
+  };
+}

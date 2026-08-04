@@ -8,7 +8,9 @@
     "save": "حفظ",
     "delete": "حذف",
     "confirm": "تأكيد",
-    "next": "التالى"
+    "next": "التالى",
+     "add-review":"أضف تقييمًا",
+    "adding":"إضافة..."
   },
   "common": {
     "select": {
@@ -22,7 +24,7 @@
     }
   },
   "header": {
-    "search-placeholder": "البحث عن منتجات...",
+    "search-placeholder": "ما الهدية المميزة التي تبحث عنها؟",
     "login": "تسجيل الدخول",
     "search-default": "منتجات قد تعجبك",
     "search-empty":"لا توجد منتجات",
@@ -315,35 +317,9 @@
       }
     }
   },
-  "input-component": {
-    "label": "الاسم بالكامل",
-    "placeholder": "أدخل اسمك هنا..."
-  },
 
-  "custom-input": {
-    "default": {
-      "first-name": { "label": "الاسم الأول", "placeholder": "Jonathan" },
-      "last-name": { "label": "الاسم الأخير", "placeholder": "Adrian" },
-      "user-name": { "label": " اسم المسخدم", "placeholder": "Jonathan" }
-    },
-    "number": { "label": "الرقم", "placeholder": "0" },
-    "search": { "label": "بحث", "placeholder": "ابحث هنا..." },
-    "password": {
-      "password": { "label": "كلمة المرور", "placeholder": "*********" },
-      "confirm-Password": { "label": "تأكيد كلمة المرور", "placeholder": "*********" }
-    },
-    "file": {
-      "label": "الملف",
-      "placeholder": "اختر ملف",
-      "btn-text": "رفع ملف",
-      "error-type": "صيغة الملف غير مدعومة."
-    },
-    "phone": { "label": "رقم الهاتف", "placeholder": "1012345678" },
-    "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" },
-    "nice-to-have-you-here": "جميل أنك هنا"
-  },
-   "products": {
-    "addToCart": "ضف إلى السلة",
+"products": {
+   "addToCart": "ضف إلى السلة",
     "outOfStock": "نفدت الكمية",
        "product-card": {
       "new": "جديد",
@@ -365,7 +341,6 @@
       },
       "rating": {
         "title": "تقييم",
-        "subtitle":"التقييمات",
         "starLabel": "{count} نجوم"
       },
       "price": {
@@ -373,15 +348,52 @@
         "from": "من",
         "to": "إلى"
       },
-      "currency": {
-        "egp": "ج.م"
-      }, 
       "resetAll": {
         "title": "إلغاء الكل"
       }
     },
-    "grid":{
-      "product-empty":"لا توجد منتجات تطابق الفلاتر المحددة."
-    }
+    "add-review":{
+    "rating": "تقييمك",
+    "title":"العنوان",
+    "review": "اكتب رأيك",
+    "text-area-placeholder":"ما رأيك في هذا المنتج؟",
+   
+    "login-to-review":"يرجى تسجيل الدخول لتتمكن من تقييم المنتج"
+
+  },
+  "related-products":{
+  "sec-title":"منتجات ذات صلة"
+
   }
+  },
+  "input-component": {
+    "label": "الاسم بالكامل",
+    "placeholder": "أدخل اسمك هنا..."
+  },
+
+  "custom-input": {
+    "default": {
+      "first-name": { "label": "الاسم الأول", "placeholder": "Jonathan" },
+      "last-name": { "label": "الاسم الأخير", "placeholder": "Adrian" },
+      "user-name": { "label": " اسم المسخدم", "placeholder": "Jonathan" },
+     "review-title": { "label": " العنوان", "placeholder": "ادخل عنوان التقييم" }
+
+    },
+    "number": { "label": "الرقم", "placeholder": "0" },
+    "search": { "label": "بحث", "placeholder": "ابحث هنا..." },
+    "password": {
+      "password": { "label": "كلمة المرور", "placeholder": "*********" },
+      "confirm-Password": { "label": "تأكيد كلمة المرور", "placeholder": "*********" }
+    },
+    "file": {
+      "label": "الملف",
+      "placeholder": "اختر ملف",
+      "btn-text": "رفع ملف",
+      "error-type": "صيغة الملف غير مدعومة."
+    },
+    "phone": { "label": "رقم الهاتف", "placeholder": "1012345678" },
+    "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" },
+    "nice-to-have-you-here": "جميل أنك هنا"
+  }
+ 
 }

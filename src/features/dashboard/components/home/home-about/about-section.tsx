@@ -1,10 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
-
+import SecHeader from '../../shared/section-header';
+import { Button } from '@/shared/components/ui/button';
 import { Check } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
-import SecHeader from '../section-header';
-import { Button } from '@/shared/components/ui/button';
 
 export default async function AboutSection() {
   const tAbout = await getTranslations('home.about');

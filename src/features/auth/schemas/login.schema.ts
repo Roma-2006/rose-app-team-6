@@ -8,14 +8,15 @@ export const LOGIN_SCHEMA = (t: Translate) =>
     .object({
       username: z
         .string({ message: t('schema.username.required') })
+        .trim()
         .min(1, { message: t('schema.username.required') })
-        .min(3, { message: t('schema.username.invalid') })
-        .max(20, { message: t('schema.username.invalid') }),
+        .min(2, { message: t('schema.username.invalid') })
+        .max(100, { message: t('schema.username.invalid') }),
 
       password: z
         .string({ message: t('schema.password.required') })
         .min(1, { message: t('schema.password.required') }),
 
-      rememberMe: z.boolean().optional(),
+      rememberMe: z.boolean().default(false),
     })
     .strict();

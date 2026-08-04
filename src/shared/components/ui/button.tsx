@@ -1,7 +1,6 @@
 import { Button as ButtonPrimitive } from '@base-ui/react/button';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/shared/lib/utils/tailwind-cn';
-// import { TButtonProps } from '@/shared/components/ui/button';
 import { LoaderCircle } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { TButtonProps } from '@/shared/types/button';

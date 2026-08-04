@@ -4,12 +4,12 @@ import { Link } from '@/i18n/navigation';
 
 import { ArrowRight } from 'lucide-react';
 import { ProductCard } from './Product-card';
-import { getOccasions } from '@/features/dashboard/apis/occasion.api';
 import { getProducts } from '@/features/dashboard/apis/product.api';
 import type { Product } from '@/features/dashboard/types/products';
 
 import MostPopularSectionLoading from './mostpopular-loading';
 import SectionTitle from '@/shared/components/custom-ui/section-heading';
+import { getOccasions } from '@/features/dashboard/api/occasion.api';
 
 const HOME_OCCASIONS = ['Wedding', 'Anniversary', 'Birthday', 'Engagement'];
 

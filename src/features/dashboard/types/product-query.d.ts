@@ -16,4 +16,5 @@ export interface GetProductsParams {
 
   sortBy?: ProductSortBy;
   sortOrder?: SortOrder;
+  search?: string;
 }

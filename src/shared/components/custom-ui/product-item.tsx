@@ -1,9 +1,9 @@
 import { Link } from '@/i18n/navigation';
-import { TProductItemProps } from '@/shared/types/product-item';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import RatingStarts from './rating-stars';
 import { calculateDiscountedPrice } from '@/features/dashboard/utils/calculate-discount';
+import { TProductItemProps } from '@/features/dashboard/types/product-item';
 
 export default function ProductItem({ product, search }: TProductItemProps) {
   const t = useTranslations();

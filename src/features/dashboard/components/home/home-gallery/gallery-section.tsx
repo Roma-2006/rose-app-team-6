@@ -1,9 +1,9 @@
 'use client';
 
-import SecHeader from '../section-header';
-import SecTitle from '../section-title';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
+import SecHeader from '../../shared/section-header';
+import SecTitle from '../../shared/section-title';
 
 const columnsData = [
   {
@@ -71,9 +71,9 @@ export default function GallerySection() {
           <SecTitle text={tGallery('title')} className="pb-11.5" />
         </header>
 
-        {/* Grid System */}
-        <div className="w-full">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5 items-start justify-center w-full">
+        {/* grid system */}
+        <div className="w-full max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5 items-start w-full">
             {columnsData.map((column, columnIndex) => (
               <div
                 key={column.id}
@@ -82,7 +82,7 @@ export default function GallerySection() {
                 {column.items.map((item) => (
                   <div
                     key={item.id}
-                    className={`relative w-full h-[300px] ${item.height} overflow-hidden rounded-xl shadow-md border-0 ring-0 bg-neutral-50`}
+                    className={`relative w-full h-75 ${item.height} overflow-hidden rounded-xl shadow-md bg-neutral-50`}
                   >
                     <Image
                       src={item.src}

@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import SecHeader from '../section-header';
-import SecTitle from '../section-title';
+import SecHeader from '../../shared/section-header';
+import SecTitle from '../../shared/section-title';
 import { Star } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 
@@ -46,7 +46,7 @@ export default async function TestimonialsSection() {
         {testimonials.map((item) => (
           <div
             key={item.id}
-            className="card  px-5 h-62.5 mx-7.5 gap-3 relative bg-white rounded-3xl  flex flex-col items-center text-center shadow-[0_10px_30px_rgba(0,0,0,0.04)]"
+            className="card  px-5 h-62.5 mx-7.5 gap-2.5 relative bg-white rounded-3xl  flex flex-col items-center text-center shadow-[0_10px_30px_rgba(0,0,0,0.04)]"
           >
             {/* Circular image */}
 
@@ -60,7 +60,7 @@ export default async function TestimonialsSection() {
 
             {/* Star Rating */}
 
-            <div className="flex gap-0.5 pt-5">
+            <div className="flex gap-0.5 pt-4">
               {[...Array(5)].map((_, index) => (
                 <Star
                   key={index}
@@ -75,10 +75,10 @@ export default async function TestimonialsSection() {
             </div>
 
             {/* Customer Review  */}
-            <p className="text-xs pt-2.5 font-medium  leading-relaxed h-12  flex-1 ">{item.text}</p>
+            <p className="text-xs pt-2 font-medium  leading-relaxed h-12  flex-1 ">{item.text}</p>
 
             {/* Date of evaluation */}
-            <span className="text-xs text-text-muted pb-5  font-medium">{item.date}</span>
+            <span className="text-xs text-text-muted mt-1 pb-2  font-medium">{item.date}</span>
           </div>
         ))}
       </div>

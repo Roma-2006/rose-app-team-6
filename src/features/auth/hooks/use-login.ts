@@ -21,7 +21,8 @@ export default function useLogin() {
   }, [status, session?.token, queryClient]);
   const router = useRouter();
 
-  const t = useTranslations();
+  const tLogin = useTranslations('auth.login');
+
   // handleLogin
   const handleLogin = async (data: TLoginData) => {
     setIsLoading(true);
@@ -31,30 +32,32 @@ export default function useLogin() {
       const result = await signIn('credentials', {
         username: data.username,
         password: data.password,
-        rememberMe: data.rememberMe,
+        rememberMe: String(data.rememberMe),
         redirect: false,
       });
       if (result?.error) {
-        // Handle specific error messages and translate them
-        if (result.error === 'Route not found' || result.error === 'CredentialsSignin') {
-          setError(t('auth.login.invalidCredentials'));
+        const rawError = String(result.error);
+        const normalizedError = rawError.replace(/^[^:]+:/, '').trim();
+
+        if (rawError === 'Route not found' || rawError === 'CredentialsSignin') {
+          setError(tLogin('invalidCredentials'));
+        } else if (normalizedError) {
+          setError(normalizedError);
         } else {
-          setError(result.error);
+          setError(tLogin('invalidCredentials'));
         }
         return;
       }
 
       if (result?.ok) {
-        let callbackUrl = new URLSearchParams(window.location.search).get('callbackUrl') || '/';
-
-        // Strip the localized prefix (e.g., '/en/', '/ar/') if it exists at the start of the string
-        // This prevents the localized router from generating paths like '/en/en/dashboard'
-        if (callbackUrl.match(/^\/[a-z]{2}(\/|$)/)) {
-          callbackUrl = callbackUrl.replace(/^\/[a-z]{2}/, '') || '/';
-        }
+        const rawCallbackUrl =
+          new URLSearchParams(window.location.search).get('callbackUrl') || '/';
+        const normalizedCallbackUrl = rawCallbackUrl.startsWith('/')
+          ? rawCallbackUrl.replace(/^\/([a-z]{2})(\/|$)/, '/$2')
+          : rawCallbackUrl;
 
         router.refresh();
-        router.push(callbackUrl);
+        router.push(normalizedCallbackUrl || '/');
       }
     } catch (error1) {
       setError((error1 as Error).message);
@@ -62,14 +65,13 @@ export default function useLogin() {
       setIsLoading(false);
     }
   };
+
   // handleLogout
   const handleLogout = async () => {
     setIsLoading(true);
     try {
       await signOut({ redirect: false });
-
       router.push('/');
-
       router.refresh();
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An unknown error occurred');
