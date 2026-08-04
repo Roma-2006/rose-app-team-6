@@ -4,11 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build ",
+   "build": "next build --no-turbo",
     "start": "next start",
     "lint": "eslint .",
     "lint:staged": "lint-staged",
-   "prepare": " husky"
+  "prepare": "is-ci || husky"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
