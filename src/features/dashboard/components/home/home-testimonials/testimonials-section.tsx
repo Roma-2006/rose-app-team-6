@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import SecHeader from '../section-header';
-import SecTitle from '../section-title';
+import SecHeader from '../../shared/section-header';
+import SecTitle from '../../shared/section-title';
 import { Star } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 
@@ -9,7 +9,7 @@ const testimonials = [
   {
     id: 1,
     name: 'Jake Miller',
-    image: '/assets/testimonials-images/testimonial-image-1.png', // استبدل المسارات بملفاتك الحقيقية
+    image: '/assets/testimonials-images/testimonial-image-1.png',
     stars: 4,
     text: "I've been ordering from this flower shop for years and they never disappoint. The quality and service are exceptional!",
     date: 'January 12, 2025',
@@ -24,6 +24,14 @@ const testimonials = [
   },
   {
     id: 3,
+    name: 'Max Turner',
+    image: '/assets/testimonials-images/testimonial-image-3.png',
+    stars: 4,
+    text: 'The team truly cares about every order. I always feel confident when I buy flowers from here. The checkout process was sup...',
+    date: 'January 12, 2025',
+  },
+  {
+    id: 4,
     name: 'Max Turner',
     image: '/assets/testimonials-images/testimonial-image-3.png',
     stars: 4,

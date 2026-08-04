@@ -21,6 +21,7 @@ export default function AddReviewForm({ isAuthenticated, productId }: IAddReview
   const tInput = useTranslations('custom-input');
   const router = useRouter();
   const { mutate, isPending } = UseReview(productId);
+  const [showLoginPrompt, setShowLoginPrompt] = useState(false);
   const form = useForm<IAddReviewFormData>({
     defaultValues: {
       rating: 0,
@@ -41,14 +42,24 @@ export default function AddReviewForm({ isAuthenticated, productId }: IAddReview
   const handleGoToLogin = () => {
     router.push('/login');
   };
+
+  const handleAddReviewClick = () => {
+    if (!isAuthenticated) {
+      setShowLoginPrompt(true);
+      return;
+    }
+
+    setShowLoginPrompt(false);
+  };
+
   return (
     <form
       onSubmit={form.handleSubmit(onFormSubmit)}
-      className="relative w-full max-w-120 max-h-92 flex flex-col  items-start justify-between "
+      className="relative w-full max-w-130 max-h-92 flex flex-col  items-start justify-between "
     >
       {/* Content wrapper grouped for unauthenticated blur state */}
       <div
-        className={`w-full space-y-4 transition-all duration-200 ${!isAuthenticated ? 'blur-[1px] pointer-events-none select-none opacity-50' : ''}`}
+        className={`w-full space-y-4 transition-all duration-200 ${!isAuthenticated && showLoginPrompt ? 'blur-[1px] pointer-events-none select-none opacity-50' : ''}`}
       >
         {/* Field : Star Rating */}
 
@@ -101,11 +112,11 @@ export default function AddReviewForm({ isAuthenticated, productId }: IAddReview
                 <Textarea
                   {...field}
                   id="review"
-                  disabled={!isAuthenticated}
+                  disabled={!isAuthenticated && showLoginPrompt}
                   rows={4}
                   placeholder="What do you think of this product?"
                   className={`w-full p-2 text-sm border rounded-md  resize-none  outline-none focus:outline-none focus-visible:outline-none  focus-visible:ring-0  ${
-                    !isAuthenticated ? 'cursor-not-allowed' : ''
+                    !isAuthenticated && showLoginPrompt ? 'cursor-not-allowed' : ''
                   }`}
                 />
               )}
@@ -122,16 +133,17 @@ export default function AddReviewForm({ isAuthenticated, productId }: IAddReview
           className="mt-9 w-full"
           title={isPending ? 'Adding...' : 'Add Review'}
           disabled={isPending}
+          onClick={handleAddReviewClick}
         />
       </div>
 
       {/* Centered Login Overlay Box */}
-      {!isAuthenticated && (
+      {!isAuthenticated && showLoginPrompt && (
         <div className="absolute inset-0 flex items-center justify-center p-6 z-10">
           <button
             type="button"
             onClick={handleGoToLogin}
-            className="text-center mt-9  px-5 py-3   font-semibold text-lg text-text-plain cursor-pointer hover:scale-[1.02] active:scale-[0.98]  select-none"
+            className=" w-full  mt-9   py-3   font-semibold text-xs text-text-plain cursor-pointer hover:scale-[1.02] active:scale-[0.98]  select-none"
           >
             Please login to be able to review the product
           </button>

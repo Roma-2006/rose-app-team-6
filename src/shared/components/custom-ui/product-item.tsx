@@ -1,16 +1,9 @@
+import { TProductItemProps } from '@/features/dashboard/types/product-item';
 import { Link } from '@/i18n/navigation';
-import { TProductItemProps } from '@/shared/types/product-item';
 import { Star } from 'lucide-react';
 import Image from 'next/image';
 
-export default function ProductItem({
-  image,
-  title,
-  price,
-  rate,
-  rating,
-  search,
-}: TProductItemProps) {
+export default function ProductItem({ image, title, price, rate, rating }: TProductItemProps) {
   return (
     <Link href="/products" className="border-t border-border-muted p-2.5 flex gap-4 ">
       <div className="w-20 h-20 relative">

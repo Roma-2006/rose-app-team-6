@@ -25,7 +25,7 @@ export default function ReviewList({ productId, initialReviews, totalReviews }: 
     });
 
   const reviews = data?.pages.flatMap((page) => page.data) ?? [];
-
+  const uniqueReviews = Array.from(new Map(reviews.map((review) => [review.id, review])).values());
   if (isPending) {
     return (
       <div className="col-span-2 space-y-1">
@@ -59,7 +59,7 @@ export default function ReviewList({ productId, initialReviews, totalReviews }: 
 
   return (
     <div className="scrollbar-none col-span-2 max-h-100 overflow-auto border-r border-bg-muted pe-7">
-      {reviews.map((review) => {
+      {uniqueReviews.map((review) => {
         const fullName = `${review.user.firstName} ${review.user.lastName}`.trim();
 
         const userName = fullName || review.user.username;

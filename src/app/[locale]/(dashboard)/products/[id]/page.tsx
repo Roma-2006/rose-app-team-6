@@ -4,7 +4,9 @@ import AddReviewForm from '@/features/dashboard/components/products/add-review-f
 import OverallReview from '@/features/dashboard/components/products/overall-review';
 import ProductGallery from '@/features/dashboard/components/products/product-gallery';
 import ProductInfo from '@/features/dashboard/components/products/product-info';
+import RelatedProductsSection from '@/features/dashboard/components/products/related-products-section';
 import ReviewList from '@/features/dashboard/components/products/review-list';
+import { ProductOccasion } from '@/features/dashboard/types/products';
 import { getServerSession } from 'next-auth';
 import { notFound } from 'next/navigation';
 
@@ -20,14 +22,26 @@ export default async function ProductDetailsPage({ params }: ProductPageProps) {
 
   const session = await getServerSession(authOptions);
   const isAuthenticated = !!session?.token;
-
   const data = await getProductById(productId);
 
   if (!data?.status || !data?.payload?.product) {
     notFound();
   }
 
-  const product = data.payload.product;
+  const product = data?.payload?.product ?? null;
+
+  if (!product) {
+    return (
+      <div className="container mx-auto px-4 py-8 max-w-6xl">
+        <div className="rounded-lg border border-border-soft bg-bg-plain p-8 text-center">
+          <h1 className="text-2xl font-semibold text-text-plain">Product not found</h1>
+          <p className="mt-2 text-sm text-text-muted">
+            The requested product could not be loaded right now.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   let galleryImages: string[] = [];
 
@@ -66,6 +80,18 @@ export default async function ProductDetailsPage({ params }: ProductPageProps) {
 
         <AddReviewForm isAuthenticated={isAuthenticated} productId={productId} />
       </section>
+      <RelatedProductsSection
+        product={{
+          ...product,
+          _count: {
+            reviews: product._count?.reviews ?? 0,
+            cartItems: product._count?.cartItems ?? 0,
+            wishlistItems: product._count?.wishlistItems ?? 0,
+            orderItems: 0,
+          },
+          occasions: (product.occasions ?? []) as ProductOccasion[],
+        }}
+      />
     </div>
   );
 }

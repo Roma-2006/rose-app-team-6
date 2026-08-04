@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import SecHeader from '../section-header';
+import SecHeader from '../../shared/section-header';
 import { Button } from '@/shared/components/ui/button';
 import { Check } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';

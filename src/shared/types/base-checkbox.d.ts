@@ -1,6 +1,5 @@
 export type TBaseCheckboxProps = {
-  value?: boolean | string[];
-  onChange: (value: boolean | string[]) => void;
+  onChange: (isChecked: boolean) => void;
   error?: string;
   list: {
     id: string;

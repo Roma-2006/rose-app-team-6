@@ -1,10 +1,11 @@
-import { getProducts } from '../../../api/product.api';
+import { getProducts } from '@/features/dashboard/api/product.api';
 import { BestSellingSectionClient } from './bestselling-client';
 
-const BEST_SELLING_LIMIT = 6;
-
 export const BestSellingSection = async () => {
-  const products = await getProducts(undefined, BEST_SELLING_LIMIT, 'bestSelling');
-
-  return <BestSellingSectionClient products={products} isLoading={false} />;
+  const products = await getProducts({
+    limit: 6,
+    sortBy: 'bestSelling',
+    sortOrder: 'desc',
+  });
+  return <BestSellingSectionClient products={products?.data} isLoading={false} />;
 };

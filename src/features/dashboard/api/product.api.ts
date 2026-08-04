@@ -1,51 +1,46 @@
-import type { Product } from '../types/product.type';
-import type { Occasion } from '../types/occasion.type';
+import { TProductsResponse } from '@/features/dashboard/types/products';
+import { Response } from '../../../shared/types/api';
+import { GetProductsParams } from '@/features/dashboard/types/product-query';
 
-export const getProducts = async (
-  occasionId?: string,
-  limit = 12,
-  sortBy?: 'bestSelling' | 'mostPopular'
-): Promise<Product[]> => {
+export async function getProducts(params: GetProductsParams = {}) {
   const url = new URL(`${process.env.NEXT_PUBLIC_API_URL}/products`);
 
-  url.searchParams.append('limit', String(limit));
+  const {
+    page,
+    limit = 12,
+    occasionId,
+    categoryId,
+    subCategoryId,
+    minPrice,
+    maxPrice,
+    minRating,
+    sortBy,
+    sortOrder,
+  } = params;
 
-  if (occasionId) {
-    url.searchParams.append('occasionId', occasionId);
-  }
+  const queryParams = {
+    page,
+    limit,
+    occasionId,
+    categoryId,
+    subCategoryId,
+    minPrice,
+    maxPrice,
+    minRating,
+    sortBy,
+    sortOrder,
+  };
 
-  if (sortBy) {
-    url.searchParams.append('sortBy', sortBy);
-  }
+  Object.entries(queryParams).forEach(([key, value]) => {
+    if (value !== undefined) {
+      url.searchParams.set(key, String(value));
+    }
+  });
 
   const response = await fetch(url.toString());
-
-  if (!response.ok) {
+  const result: Response<TProductsResponse> = await response.json();
+  if (!result.status) {
     throw new Error('Failed to fetch products');
   }
-
-  const result = await response.json();
-
-  return result.payload?.data || [];
-};
-
-// export const getOccasions = async (
-//   page = 1,
-//   limit = 12
-// ): Promise<{ occasions: Occasion[]; total?: number; totalPages?: number }> => {
-//   const url = new URL(`${process.env.NEXT_PUBLIC_API_URL}/occasions`);
-//   url.searchParams.append('page', String(page));
-//   url.searchParams.append('limit', String(limit));
-
-//   const response = await fetch(url.toString());
-
-//   if (!response.ok) {
-//     throw new Error('Failed to fetch occasions');
-//   }
-
-//   const result = await response.json();
-
-//   return {
-//     occasions: result.payload?.data || [],
-//   };
-// };
+  return result.payload;
+}

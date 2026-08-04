@@ -7,12 +7,18 @@ import Image from 'next/image';
 import SecondaryNavigation from './secondary-navigation';
 import { useSession } from 'next-auth/react';
 import HeaderSearchInput from './headear-search-input';
+import UserDropdown from '../header/user-dropdown';
+import NotificationsList from '@/features/notification/components/notifications-list';
+import { useCart } from '@/features/dashboard/hooks/use-cart';
+import { useWishlist } from '@/features/dashboard/hooks/use-wishlist';
 
 export default function Header() {
   const t = useTranslations();
   const session = useSession();
   const userStatus = session.status;
   const isAuthenticated = userStatus === 'authenticated';
+  const { uniqueItemsCount } = useCart();
+  const { wishlistCount } = useWishlist();
   return (
     <header className="sticky top-0 z-50 bg-bg-plain">
       <div className=" flex items-center py-4.5 px-9 gap-4 ">
@@ -34,25 +40,33 @@ export default function Header() {
               <User size={20} /> {t('header.login')}
             </Link>
           ) : (
-            ''
+            <UserDropdown user={session.data.user} />
           )}
 
           <span className=" flex items-center gap-2.5 px-4 border-r border-l  border-border-muted">
-            {!isAuthenticated ? (
-              <Link href="/login">
-                <Heart size={24} />
-              </Link>
-            ) : (
+            <div className="relative">
               <Heart size={24} />
-            )}
+              {wishlistCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-bg-primary text-text-inverse text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  {wishlistCount}
+                </span>
+              )}
+            </div>
+            <div className="relative">
+              <ShoppingCart size={24} />
+              {uniqueItemsCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-bg-primary text-text-inverse text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  {uniqueItemsCount}
+                </span>
+              )}
+            </div>
             {!isAuthenticated ? (
               <Link href="/login">
-                <ShoppingCart size={24} />
+                <Bell size={24} />
               </Link>
             ) : (
-              <ShoppingCart size={24} />
+              <NotificationsList />
             )}
-            <Bell size={24} />
           </span>
           <span className={` flex ltr:pl-4 rtl:pr-4 `}>
             <LanguageSwitcherAuth />

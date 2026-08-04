@@ -1,10 +1,10 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { ArrowRight, ArrowLeft } from 'lucide-react';
 
 import { Badge } from '@/shared/components/ui/badge';
 import { Card } from '@/shared/components/ui/card';
 import { useTranslations, useLocale } from 'next-intl';
+import { Link } from '@/i18n/navigation';
 
 export default function HeroAside() {
   const t = useTranslations('home');

@@ -18,7 +18,7 @@ export type TBaseButtonProps = {
 
 export type TTextButton = TBaseButtonProps & {
   buttonVariant: 'text';
-  title: string;
+  title?: string;
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
 };
@@ -27,4 +27,9 @@ export type TIconButtonProps = TBaseButtonProps & {
   buttonVariant: 'icon';
   iconOnly: ReactNode;
 };
-export type TButtonProps = TTextButton | TIconButtonProps;
+
+export type TNumberButtonProps = TBaseButtonProps & {
+  buttonVariant: 'number';
+  number: number;
+};
+export type TButtonProps = TTextButton | TIconButtonProps | TNumberButtonProps;
