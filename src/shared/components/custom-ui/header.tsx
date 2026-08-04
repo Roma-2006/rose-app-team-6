@@ -1,8 +1,7 @@
 'use client';
 import { LanguageSwitcherAuth } from '@/features/auth/components/language-switcher-auth';
 import { Link } from '@/i18n/navigation';
-import { Bell, Heart, ShoppingCart, User } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { Bell, Heart, ShoppingCart } from 'lucide-react';
 import Image from 'next/image';
 import SecondaryNavigation from './secondary-navigation';
 import { useSession } from 'next-auth/react';
@@ -14,7 +13,6 @@ import { useCart } from '@/features/dashboard/hooks/use-cart';
 import { useWishlist } from '@/features/dashboard/hooks/use-wishlist';
 
 export default function Header() {
-  const t = useTranslations();
   const session = useSession();
   const userStatus = session.status;
   const isAuthenticated = userStatus === 'authenticated';

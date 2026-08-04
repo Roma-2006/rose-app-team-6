@@ -1,6 +1,6 @@
-import { getProducts } from '@/features/dashboard/apis/product.api';
-import { GetProductsParams } from '@/shared/types/product-query';
+import { getProducts } from '@/features/dashboard/api/product.api';
 import { useQuery } from '@tanstack/react-query';
+import { GetProductsParams } from '../types/product-query';
 
 export default function useAllProducts(params: GetProductsParams, enabled = true) {
   return useQuery({

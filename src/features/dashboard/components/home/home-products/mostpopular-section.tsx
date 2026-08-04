@@ -4,7 +4,7 @@ import { Link } from '@/i18n/navigation';
 
 import { ArrowRight } from 'lucide-react';
 import { ProductCard } from './Product-card';
-import { getProducts } from '@/features/dashboard/apis/product.api';
+import { getProducts } from '@/features/dashboard/api/product.api';
 import type { Product } from '@/features/dashboard/types/products';
 
 import MostPopularSectionLoading from './mostpopular-loading';

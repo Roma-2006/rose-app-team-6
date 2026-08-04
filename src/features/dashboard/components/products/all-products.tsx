@@ -1,7 +1,7 @@
 import { Product, TAllProductsProps } from '../../types/products';
 import { ProductCard } from '../home/home-products/Product-card';
 import ProductPagination from './product-pagination';
-import { getProducts } from '../../apis/product.api';
+import { getProducts } from '../../api/product.api';
 import { getTranslations } from 'next-intl/server';
 import { redirect } from '@/i18n/navigation';
 import { getLocale } from 'next-intl/server';
