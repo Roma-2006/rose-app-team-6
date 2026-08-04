@@ -29,15 +29,15 @@
     "search-error": "فشل البحث. حاول مجدداً.",
     "notifications": {
       "title": "الإشعارات ({count})",
-      "noNotifications": "لا توجد إشعارات حتى الآن",
-      "clearAll": "مسح جميع الإشعارات",
-      "markAllAsRead": "تعيين الكل كمقروء",
-      "notificationSettings": {
-        "markAsRead": "تعيين كمقروء",
+      "no-notifications": "لا توجد إشعارات حتى الآن",
+      "clear-all": "مسح جميع الإشعارات",
+      "mark-all-as-read": "تعيين الكل كمقروء",
+      "notification-settings": {
+        "mark-as-read": "تعيين كمقروء",
         "delete": "حذف"
       }
     },
-    "userMenu": {
+    "user-menu": {
       "title": "مرحبا ",
       "account": "حسابي",
       "addresses": "عناويني",
@@ -265,7 +265,7 @@
       "badge": "الأكثر مبيعاً",
       "titlePart1": "اكتشف",
       "titlePart2": " ما يشتريه",
-       "titlePart3": "الجميع",
+      "titlePart3": "الجميع",
       "titlePart4": "في الوقت الحالي",
       "description": "لست متأكداً مما تختار؟\nابدأ بالأكثر مبيعاً لدينا، فهي الهدايا التي يعود عملاؤنا لطلبها دائماً.\nسواء كنت تحتفل بعيد ميلاد، ذكرى سنوية، أو زفاف، فإن اختياراتنا تضمن لك ترك انطباع لا يُنسى.",
       "exploreButton": "استكشف الهدايا"
@@ -316,10 +316,10 @@
       }
     }
   },
-"products": {
-   "addToCart": "ضف إلى السلة",
+  "products": {
+    "addToCart": "ضف إلى السلة",
     "outOfStock": "نفدت الكمية",
-       "product-card": {
+    "product-card": {
       "new": "جديد",
       "outOfStock": "غير متوفر"
     },
@@ -328,6 +328,27 @@
       "leftInStock": "متبقي في المخزون",
       "rating": "التقييم",
       "ratings": "تقييمات"
+    },
+    "filter": {
+      "resetButton": "إلغاء",
+      "category": {
+        "title": "فئات"
+      },
+      "occasion": {
+        "title": "مناسبات"
+      },
+      "rating": {
+        "title": "تقييم",
+        "starLabel": "{count} نجوم"
+      },
+      "price": {
+        "title": "السعر",
+        "from": "من",
+        "to": "إلى"
+      },
+      "resetAll": {
+        "title": "إلغاء الكل"
+      }
     }
   },
   "input-component": {
