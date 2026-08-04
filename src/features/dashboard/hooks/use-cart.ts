@@ -42,8 +42,10 @@ export const useCart = () => {
   });
 
   const serverItems = cartQuery.data?.payload.cartItems ?? [];
+  const shouldUseGuestData =
+    !isAuthenticated || cartQuery.isPending || cartQuery.isLoading || cartQuery.isFetching;
 
-  const cartItems = isAuthenticated ? serverItems : localItems;
+  const cartItems = shouldUseGuestData ? localItems : serverItems;
 
   const addToCartMutation = useMutation({
     mutationFn: async ({
@@ -59,23 +61,23 @@ export const useCart = () => {
         throw new Error('Product id is required');
       }
 
-      if (isAuthenticated) {
-        const existingItem = cartItems.find((item) => item.productId === productId);
-
-        if (existingItem) {
-          return updateCartQuantityAction(existingItem.id, existingItem.quantity + quantity);
-        }
-
-        return addToCartAction(productId, quantity);
-      } else {
+      if (shouldUseGuestData) {
         const updated = addToLocalCart(productId, quantity, product);
         setLocalItems([...updated]);
         return Promise.resolve({ success: true });
       }
+
+      const existingItem = cartItems.find((item) => item.productId === productId);
+
+      if (existingItem) {
+        return updateCartQuantityAction(existingItem.id, existingItem.quantity + quantity);
+      }
+
+      return addToCartAction(productId, quantity);
     },
 
     onSuccess: async () => {
-      if (isAuthenticated) {
+      if (!shouldUseGuestData) {
         await queryClient.invalidateQueries({ queryKey: ['cart'] });
       }
     },

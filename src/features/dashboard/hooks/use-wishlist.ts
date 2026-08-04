@@ -49,20 +49,25 @@ export const useWishlist = (productId?: string) => {
   });
 
   const serverItems = wishlistQuery.data?.payload.wishlistItems ?? [];
+  const shouldUseGuestData =
+    !isAuthenticated ||
+    wishlistQuery.isPending ||
+    wishlistQuery.isLoading ||
+    wishlistQuery.isFetching;
 
-  const wishlistItems = isAuthenticated ? serverItems : localItems;
+  const wishlistItems = shouldUseGuestData ? localItems : serverItems;
 
-  const isInWishlist = isAuthenticated
-    ? wishlistItems.some((item) => item.productId === productId)
-    : productId
+  const isInWishlist = shouldUseGuestData
+    ? productId
       ? isInLocalWishlist(productId)
-      : false;
+      : false
+    : wishlistItems.some((item) => item.productId === productId);
 
-  const existingItem = isAuthenticated
-    ? wishlistItems.find((item) => item.productId === productId)
-    : productId
+  const existingItem = shouldUseGuestData
+    ? productId
       ? (localItems.find((item) => item.productId === productId) ?? null)
-      : null;
+      : null
+    : wishlistItems.find((item) => item.productId === productId);
 
   const toggleWishlistMutation = useMutation({
     mutationFn: async ({ product }: { product?: LocalWishlistProduct } = {}) => {
@@ -70,13 +75,7 @@ export const useWishlist = (productId?: string) => {
         throw new Error('Product id is required');
       }
 
-      if (isAuthenticated) {
-        if (isInWishlist && existingItem) {
-          return removeFromWishlistAction(existingItem.id);
-        }
-
-        return addToWishlistAction(productId);
-      } else {
+      if (shouldUseGuestData) {
         if (isInWishlist && existingItem) {
           const updated = removeFromLocalWishlist(existingItem.id);
           setLocalItems([...updated]);
@@ -87,10 +86,16 @@ export const useWishlist = (productId?: string) => {
 
         return Promise.resolve({ success: true });
       }
+
+      if (isInWishlist && existingItem) {
+        return removeFromWishlistAction(existingItem.id);
+      }
+
+      return addToWishlistAction(productId);
     },
 
     onSuccess: async () => {
-      if (isAuthenticated) {
+      if (!shouldUseGuestData) {
         await queryClient.invalidateQueries({ queryKey: ['wishlist'] });
       }
     },

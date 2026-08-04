@@ -35,7 +35,6 @@ export default function useLogin() {
         rememberMe: String(data.rememberMe),
         redirect: false,
       });
-
       if (result?.error) {
         const rawError = String(result.error);
         const normalizedError = rawError.replace(/^[^:]+:/, '').trim();

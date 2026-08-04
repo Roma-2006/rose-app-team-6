@@ -6,14 +6,12 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import SecondaryNavigation from './secondary-navigation';
 import { useSession } from 'next-auth/react';
-import UserDropdown from '../header/user-dropdown';
-import NotificationsList from '@/features/notification/components/notifications-list';
-
+import HeaderSearchInput from './header-search-input';
+import GuestGatedIcon from './guest-gated-icon';
+import UserAuthAction from './user-auth-action';
+import { ThemeToggle } from '../theme';
 import { useCart } from '@/features/dashboard/hooks/use-cart';
 import { useWishlist } from '@/features/dashboard/hooks/use-wishlist';
-import GuestGatedIcon from './guest-gated-icon';
-import HeaderSearchInput from './header-search-input';
-import UserAuthAction from './user-auth-action';
 
 export default function Header() {
   const t = useTranslations();
@@ -42,16 +40,17 @@ export default function Header() {
         <div className="flex">
           <UserAuthAction isAuthenticated={isAuthenticated} />
           <span className=" flex items-center gap-2.5 px-4 border-r border-l  border-border-muted">
-            <GuestGatedIcon isAuthenticated={isAuthenticated} badgeCount={3}>
+            <GuestGatedIcon isAuthenticated={isAuthenticated} badgeCount={wishlistCount}>
               <Heart size={24} />
             </GuestGatedIcon>
-            <GuestGatedIcon isAuthenticated={isAuthenticated} badgeCount={3}>
+            <GuestGatedIcon isAuthenticated={isAuthenticated} badgeCount={uniqueItemsCount}>
               <ShoppingCart size={24} />
             </GuestGatedIcon>
             <Bell size={24} />
           </span>
-          <span className={` flex ltr:pl-4 rtl:pr-4 `}>
+          <span className={` flex ltr:pl-4 rtl:pr-4 gap-2.5 `}>
             <LanguageSwitcherAuth />
+            <ThemeToggle />
           </span>
         </div>
       </div>

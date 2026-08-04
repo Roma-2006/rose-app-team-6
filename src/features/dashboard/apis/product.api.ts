@@ -19,52 +19,33 @@ export async function getProducts(params: GetProductsParams = {}) {
     search,
   } = params;
 
-  url.searchParams.set('limit', String(limit));
+  const queryParams = {
+    page,
+    limit,
+    occasionId,
+    categoryId,
+    subCategoryId,
+    minPrice,
+    maxPrice,
+    minRating,
+    sortBy,
+    sortOrder,
+    search,
+  };
 
-  if (page) {
-    url.searchParams.set('page', String(page));
-  }
+  Object.entries(queryParams).forEach(([key, value]) => {
+    if (value !== undefined) {
+      url.searchParams.set(key, String(value));
+    }
+  });
 
-  if (occasionId) {
-    url.searchParams.set('occasionId', occasionId);
-  }
-
-  if (categoryId) {
-    url.searchParams.set('categoryId', categoryId);
-  }
-
-  if (subCategoryId) {
-    url.searchParams.set('subCategoryId', subCategoryId);
-  }
-
-  if (minPrice !== undefined) {
-    url.searchParams.set('minPrice', String(minPrice));
-  }
-
-  if (maxPrice !== undefined) {
-    url.searchParams.set('maxPrice', String(maxPrice));
-  }
-
-  if (minRating !== undefined) {
-    url.searchParams.set('minRating', String(minRating));
-  }
-
-  if (sortBy) {
-    url.searchParams.set('sortBy', sortBy);
-  }
-
-  if (sortOrder) {
-    url.searchParams.set('sortOrder', sortOrder);
-  }
-
-  if (search) {
-    url.searchParams.set('search', search);
-  }
-  console.log(url.toString());
   const response = await fetch(url.toString());
+
   const result: Response<TProductsResponse> = await response.json();
+
   if (!result.status) {
-    throw new Error('Failed to fetch products');
+    throw new Error(result.message || 'Failed to fetch products');
   }
+
   return result.payload;
 }

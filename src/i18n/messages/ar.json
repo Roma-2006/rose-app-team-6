@@ -27,19 +27,19 @@
     "search-placeholder": "ما الهدية المميزة التي تبحث عنها؟",
     "login": "تسجيل الدخول",
     "search-default": "منتجات قد تعجبك",
-    "search-empty": "لا توجد منتجات",
-    "search-error": "فشل البحث. حاول مجدداً.",
+    "search-empty":"لا توجد منتجات",
+    "search-error" :"فشل البحث. حاول مجدداً.",
     "notifications": {
       "title": "الإشعارات ({count})",
-      "no-notifications": "لا توجد إشعارات حتى الآن",
-      "clear-all": "مسح جميع الإشعارات",
-      "mark-all-as-read": "تعيين الكل كمقروء",
-      "notification-settings": {
-        "mark-as-read": "تعيين كمقروء",
+      "noNotifications": "لا توجد إشعارات حتى الآن",
+      "clearAll": "مسح جميع الإشعارات",
+      "markAllAsRead": "تعيين الكل كمقروء",
+      "notificationSettings": {
+        "markAsRead": "تعيين كمقروء",
         "delete": "حذف"
       }
     },
-    "user-menu": {
+    "userMenu": {
       "title": "مرحبا ",
       "account": "حسابي",
       "addresses": "عناويني",
@@ -58,7 +58,7 @@
   },
   "auth": {
     "switchLang": "English",
-    "langLabel": "Switch to Arabic",
+   "langLabel": "Switch to Arabic",
     "welcome-auth": {
       "login-title": "مرحبًا بعودتك!",
       "register-title": "كن جزءًا من عائلتنا!"
@@ -128,7 +128,6 @@
         "passwordRequirement": "يجب أن تكون 8 أحرف فأكثر، وتحتوي على حرف كبير، حرف صغير، رقم، ورمز خاص"
       }
     },
-
     "auth-register": {
       "title": "إنشاء حساب",
       "need-help": "تحتاج مساعده ؟",
@@ -266,9 +265,9 @@
     "bestSelling": {
       "badge": "الأكثر مبيعاً",
       "titlePart1": "اكتشف",
-
-      "titlePart2": "ما يشتريه الجميع",
-      "titlePart3": "في الوقت الحالي",
+      "titlePart2": " ما يشتريه",
+       "titlePart3": "الجميع",
+      "titlePart4": "في الوقت الحالي",
       "description": "لست متأكداً مما تختار؟\nابدأ بالأكثر مبيعاً لدينا، فهي الهدايا التي يعود عملاؤنا لطلبها دائماً.\nسواء كنت تحتفل بعيد ميلاد، ذكرى سنوية، أو زفاف، فإن اختياراتنا تضمن لك ترك انطباع لا يُنسى.",
       "exploreButton": "استكشف الهدايا"
     },
@@ -396,4 +395,5 @@
     "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" },
     "nice-to-have-you-here": "جميل أنك هنا"
   }
+ 
 }

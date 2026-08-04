@@ -1,8 +1,4 @@
-import {
-  GetProductsParams,
-  ProductSortBy,
-  SortOrder,
-} from '@/features/dashboard/types/product-query';
+import { GetProductsParams, ProductSortBy, SortOrder } from '@/shared/types/product-query';
 import { Product } from '@/shared/types/product.type';
 
 import type { Occasion } from '../../features/dashboard/types/occasion.type';
@@ -54,7 +50,7 @@ export type TProductsPageProps = {
 };
 //allProducts
 export type TAllProductsProps = {
-  params: GetProductsParams;
+  searchParams: TGetProductsParams;
 };
 
 export type TPaginationMetadata = {

@@ -14,7 +14,7 @@ export default function HeroAside() {
 
   return (
     <Link href="/products" className="block h-full">
-      <Card className="relative h-full min-h-111 overflow-hidden rounded-3xl border-0 p-0">
+      <Card className="relative h-full min-h-111 overflow-hidden rounded-3xl ring-0 border-0 p-0">
         {/* Background Image */}
         <Image
           src="/assets/images/image-8.png"
@@ -38,7 +38,7 @@ export default function HeroAside() {
           <Button
             buttonVariant="text"
             variant="softPink"
-            title={t('hero-aside.button')}
+            title="home.hero-aside.button"
             className="mt-2 h-auto w-fit rounded-xl px-5 py-2.5 text-sm font-bold"
             rightIcon={
               isRtl ? (

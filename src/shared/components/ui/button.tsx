@@ -16,10 +16,8 @@ const buttonVariants = cva(
         subtle: 'bg-bg-muted border border-border-soft text-text-plain hover:bg-bg-soft ',
         ghost: ' text-text-plain hover:bg-bg-soft  ',
         destructive: 'bg-bg-danger text-text-inverse hover:bg-bg-danger-saturated',
-        // softPink
+        link: 'bg-bg-subtle border border-border-subtle text-text-plain',
         softPink: 'bg-soft-pink-50 text-maroon-600 hover:bg-soft-pink-100 shadow-sm border-none',
-
-        link: 'text-primary underline-offset-4 hover:underline',
       },
       size: {
         custom: 'h-11 w-45.25 gap-1.5',
@@ -85,7 +83,6 @@ function Button(props: ButtonPrimitive.Props & VariantProps<typeof buttonVariant
       data-slot="button"
       aria-busy={props.loading}
       // aria-label={props.title ? t(props.title) : undefined}
-      aria-label={props.title}
       disabled={props.disabled || props.loading}
       onClick={props.onClick}
       // buttonVariant={buttonVariant}
@@ -108,7 +105,7 @@ function Button(props: ButtonPrimitive.Props & VariantProps<typeof buttonVariant
       ) : (
         <>
           {isText && props.leftIcon}
-          {isIcon ? props.iconOnly : props.title}
+          {isIcon ? props.iconOnly : isText ? t(props.title!) : props.number}
           {isText && props.rightIcon}
         </>
       )}
