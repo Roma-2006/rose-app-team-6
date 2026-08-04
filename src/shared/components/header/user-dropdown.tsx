@@ -23,7 +23,7 @@ interface userMenuProps {
 
 const UserDropdown = ({ user }: userMenuProps) => {
   // const { data: session, status } = useSession();
-  const t = useTranslations('header.userMenu');
+  const t = useTranslations('header.user-menu');
 
   // if (status === 'loading') return null;
   // if (!session) return null;
@@ -96,7 +96,7 @@ const UserDropdown = ({ user }: userMenuProps) => {
               variant="ghost"
               buttonVariant="text"
               leftIcon={<LogOut className="size-4 " />}
-              title="header.userMenu.logout"
+              title="header.user-menu.logout"
               onClick={handleSignout}
               className="flex gap-2 w-full text-text-plain font-medium text-sm justify-start h-8 border-0 m-0 hover:bg-bg-plain cursor-pointer"
             ></Button>

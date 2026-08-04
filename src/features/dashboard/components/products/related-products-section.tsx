@@ -5,7 +5,7 @@ import SecTitle from '../shared/section-title';
 import RelatedProductsCarousel from './related-products-carousel';
 
 export default async function RelatedProductsSection({ product }: IRelatedProductsSectionProps) {
-  const tRelatedProducts = await getTranslations('related-products');
+  const tRelatedProducts = await getTranslations('products.related-products');
 
   // Transform price from string to number
   const numericPrice = parseFloat(product.price) || 0;
@@ -29,11 +29,15 @@ export default async function RelatedProductsSection({ product }: IRelatedProduc
     minRating: Math.floor(calculatedMinRating),
   });
 
-  if (!relatedProducts || relatedProducts.length === 0) {
+  const safeRelatedProducts = (relatedProducts || []).filter(
+    (item) => item?.id && item.id !== product.id
+  );
+
+  if (!safeRelatedProducts || safeRelatedProducts.length === 0) {
     return (
-      <section className="flex flex-col gap-4 w-full mt-12 border-t pt-8">
+      <section className="flex flex-col gap-4 w-full mt-12 border-t border-border-soft pt-8">
         <SecTitle text={tRelatedProducts('sec-title')} className="mb-5" />
-        <div className="rounded-lg border border-border-soft bg-bg-plain p-6 text-center text-sm text-text-muted">
+        <div className="rounded-2xl border border-border-soft bg-bg-plain p-6 text-center text-sm text-text-muted">
           No related products available right now.
         </div>
       </section>
@@ -41,9 +45,9 @@ export default async function RelatedProductsSection({ product }: IRelatedProduc
   }
 
   return (
-    <section className="flex flex-col gap-4 w-full mt-12 border-t pt-8">
-      <SecTitle text="Related Products" className="mb-5" />
-      <RelatedProductsCarousel products={relatedProducts} />
+    <section className="flex flex-col gap-4 w-full mt-12 border-t border-border-soft pt-8">
+      <SecTitle text={tRelatedProducts('sec-title')} className="mb-5" />
+      <RelatedProductsCarousel products={safeRelatedProducts} />
     </section>
   );
 }

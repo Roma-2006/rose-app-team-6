@@ -8,7 +8,9 @@
     "save": "حفظ",
     "delete": "حذف",
     "confirm": "تأكيد",
-    "next": "التالى"
+    "next": "التالى",
+     "add-review":"أضف تقييمًا",
+    "adding":"إضافة..."
   },
   "common": {
     "select": {
@@ -22,22 +24,22 @@
     }
   },
   "header": {
-    "search-placeholder": "البحث عن منتجات...",
+    "search-placeholder": "ما الهدية المميزة التي تبحث عنها؟",
     "login": "تسجيل الدخول",
     "search-default": "منتجات قد تعجبك",
     "search-empty": "لا توجد منتجات",
     "search-error": "فشل البحث. حاول مجدداً.",
     "notifications": {
       "title": "الإشعارات ({count})",
-      "noNotifications": "لا توجد إشعارات حتى الآن",
-      "clearAll": "مسح جميع الإشعارات",
-      "markAllAsRead": "تعيين الكل كمقروء",
-      "notificationSettings": {
-        "markAsRead": "تعيين كمقروء",
+      "no-notifications": "لا توجد إشعارات حتى الآن",
+      "clear-all": "مسح جميع الإشعارات",
+      "mark-all-as-read": "تعيين الكل كمقروء",
+      "notification-settings": {
+        "mark-as-read": "تعيين كمقروء",
         "delete": "حذف"
       }
     },
-    "userMenu": {
+    "user-menu": {
       "title": "مرحبا ",
       "account": "حسابي",
       "addresses": "عناويني",
@@ -264,6 +266,7 @@
     "bestSelling": {
       "badge": "الأكثر مبيعاً",
       "titlePart1": "اكتشف",
+
       "titlePart2": "ما يشتريه الجميع",
       "titlePart3": "في الوقت الحالي",
       "description": "لست متأكداً مما تختار؟\nابدأ بالأكثر مبيعاً لدينا، فهي الهدايا التي يعود عملاؤنا لطلبها دائماً.\nسواء كنت تحتفل بعيد ميلاد، ذكرى سنوية، أو زفاف، فإن اختياراتنا تضمن لك ترك انطباع لا يُنسى.",
@@ -329,8 +332,6 @@
       "rating": "التقييم",
       "ratings": "تقييمات"
     },
-
-    
     "filter": {
       "resetButton": "إلغاء",
       "category": {
@@ -351,20 +352,32 @@
       "resetAll": {
         "title": "إلغاء الكل"
       }
-    }
+    },
+    "add-review":{
+    "rating": "تقييمك",
+    "title":"العنوان",
+    "review": "اكتب رأيك",
+    "text-area-placeholder":"ما رأيك في هذا المنتج؟",
+   
+    "login-to-review":"يرجى تسجيل الدخول لتتمكن من تقييم المنتج"
+
+  },
+  "related-products":{
+  "sec-title":"منتجات ذات صلة"
+
+  }
   },
   "input-component": {
     "label": "الاسم بالكامل",
     "placeholder": "أدخل اسمك هنا..."
   },
 
- 
-   "custom-input": {
-    "default":{
-      "first-name" : { "label": "الاسم الأول", "placeholder": "Jonathan" } , 
-      "last-name": {"label" :"الاسم الأخير" , "placeholder" :"Adrian"} ,
-      "user-name": {"label" :" اسم المسخدم" , "placeholder" :"Jonathan"},
-      "review-title": {"label": "Title","placeholder": "Enter review title"}
+  "custom-input": {
+    "default": {
+      "first-name": { "label": "الاسم الأول", "placeholder": "Jonathan" },
+      "last-name": { "label": "الاسم الأخير", "placeholder": "Adrian" },
+      "user-name": { "label": " اسم المسخدم", "placeholder": "Jonathan" },
+     "review-title": { "label": " العنوان", "placeholder": "ادخل عنوان التقييم" }
 
     },
     "number": { "label": "الرقم", "placeholder": "0" },
@@ -382,48 +395,5 @@
     "phone": { "label": "رقم الهاتف", "placeholder": "1012345678" },
     "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" },
     "nice-to-have-you-here": "جميل أنك هنا"
-  },
-
-   "add-review":{
-    "rating": "تقييمك",
-    "title":"العنوان",
-    "review": "رأيك",
-    "text-area-placeholder":"ما رأيك في هذا المنتج؟",
-    "add-review":"أضف تقييمًا",
-     "adding":"إضافة...",
-    "login-to-review":"يرجى تسجيل الدخول لتتمكن من اضافة تقييم"
-
-
-
-  },
-  "related-products":{
-  "sec-title":"المنتجات ذات الصلة",
-
-   "products": {
-    "filter": {
-      "resetButton": "إلغاء",
-      "category": {
-        "title": "فئات"
-      },
-      "occasion": {
-        "title": "مناسبات"
-      },
-      "rating": {
-        "title": "تقييم",
-        "subtitle":"التقييمات",
-        "starLabel": "{count} نجوم"
-      },
-      "price": {
-        "title": "السعر",
-        "from": "من",
-        "to": "إلى"
-      },
-      "currency": {
-        "egp": "ج.م"
-      }, 
-      "resetAll": {
-        "title": "إلغاء الكل"
-      }
-    }
   }
-  }}
+}

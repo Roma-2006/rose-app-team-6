@@ -37,10 +37,15 @@ export default function useLogin() {
       });
 
       if (result?.error) {
-        if (result.error === 'Route not found' || result.error === 'CredentialsSignin') {
+        const rawError = String(result.error);
+        const normalizedError = rawError.replace(/^[^:]+:/, '').trim();
+
+        if (rawError === 'Route not found' || rawError === 'CredentialsSignin') {
           setError(tLogin('invalidCredentials'));
+        } else if (normalizedError) {
+          setError(normalizedError);
         } else {
-          setError(result.error);
+          setError(tLogin('invalidCredentials'));
         }
         return;
       }

@@ -129,7 +129,7 @@ const NotificationsList = () => {
               variant="ghost"
               buttonVariant="text"
               leftIcon={<CheckCheck className="size-3.5" />}
-              title="header.notifications.markAllAsRead"
+              title="header.notifications.mark-all-as-read"
               className={cn(
                 'w-fit justify-start gap-1.5 text-xs font-semibold bg-none h-3.5',
                 notifications.length > 0 ? 'text-text-plain' : 'text-text-muted'
@@ -142,7 +142,7 @@ const NotificationsList = () => {
               variant="ghost"
               buttonVariant="text"
               leftIcon={<BrushCleaning className="size-3.5" />}
-              title="header.notifications.clearAll"
+              title="header.notifications.clear-all"
               className={cn(
                 'w-fit justify-start gap-1.5 text-xs font-semibold bg-none h-3.5',
                 notifications.length > 0 ? 'text-text-plain' : 'text-text-muted'
@@ -161,7 +161,7 @@ const NotificationsList = () => {
               <DropdownMenuItem className="flex flex-col items-center justify-center p-4">
                 <BellOff className="mx-auto mt-4 size-13 text-text-muted" />
                 <p className="text-center text-sm text-text-muted mt-2 font-medium">
-                  No notifications to display.
+                  {t('no-notifications')}
                 </p>
               </DropdownMenuItem>
             ) : (

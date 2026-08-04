@@ -1,6 +1,4 @@
 {
-
-
   "app-title": "Rose App",
   "HomePage": {
     "title": "Welcome to Rose App"
@@ -12,7 +10,9 @@
     "save": "Save",
     "delete": "Delete",
     "confirm": "Confirm",
-    "next": "Next"
+    "next": "Next",
+     "add-review":"Add Review",
+    "adding":"Adding..."
   },
   "common": {
     "select": {
@@ -26,8 +26,7 @@
     }
   },
   "header": {
-
-    "search-placeholder": "Search for products…",
+    "search-placeholder": "What awesome gift are you looking for?",
     "login": "Login",
     "search-default": "Products you may like",
     "search-empty": " No products found",
@@ -77,13 +76,12 @@
           "required": "Password is required"
         }
       },
-      "forgot-password":"Forgot Your password?",
-      "rememberMe" : "Remember me",
-      "no-account" :"Don't have an account?",
-      "register" :"Create one now!",
-      "button" :"Login",
+      "forgot-password": "Forgot Your password?",
+      "rememberMe": "Remember me",
+      "no-account": "Don't have an account?",
+      "register": "Create one now!",
+      "button": "Login",
       "invalidCredentials": "The username or password is incorrect."
-      
     },
     "auth-forgotPw": {
       "step1": {
@@ -276,13 +274,9 @@
     "bestSelling": {
       "badge": "Best Selling",
       "titlePart1": "Check Out",
-
       "titlePart2": "What Everyone’s",
       "titlePart3": "Buying",
       "titlePart4": "Right Now",
-      "titlePart2": "What Everyone’s Buying",
-      
-
       "description": "Not sure what to choose?\nStart with our best sellers, these are the gifts our customers keep coming back for.\nWhether you're celebrating a birthday, anniversary or wedding, our top picks are guaranteed to leave a lasting impression.",
       "exploreButton": "Explore gifts"
     },
@@ -299,6 +293,7 @@
       "error": "Something went wrong while loading products.",
       "noProductsFound": "No products found in this category."
     },
+
     "product-card": {
       "new": "NEW",
       "outOfStock": "OUT OF STOCK"
@@ -330,60 +325,7 @@
         "part1": "Trusted by over",
         "part2": "4.5k+",
         "part3": "companies"
-      },
-  "about":{
-
-    "label" :"About" ,
-     "title" :{
-      "part1" : "Delivering the",
-      "part2" : "Finest",
-      "part3" : "Gift Boxes for Your",
-      "part4" : "Special",
-      "part5" : "Moments",
-        "discover":"Discover"
-
-
-     }
- 
-  },
- 
-  "gallery":{
-
-    "label" :"Gallery" ,
-    "title": "Check Out our Wonderful Gallery"
-
-
-  },
-
-"testimonials" :{
- "label" :"Testimonials" ,
- "title": "Real Words from Happy Customers"
-    
-},
-"partners":{
-
-"title" :{
-    "part1" : "Trusted by over",
-     "part2" : "4.5k+",
-     "part3" : "companies"
- 
-
-}
-}},
-      "products": {
-    "addToCart": "Add to cart",
-    "outOfStock": "Out of stock",
-     "product-card": {
-      "new": "New",
-      "outOfStock": "Out of stock"
-    },
-    "product-details": {
-      "currency": "EGP",
-      "leftInStock": "left in stock",
-      "rating": "Rating",
-      "ratings": "ratings"
       }
-
     }
   },
 
@@ -392,16 +334,13 @@
     "placeholder": "Enter your name..."
   },
   "custom-input": {
-
-   
     "default": {
       "first-name": { "label": "First name", "placeholder": "zoe" },
-      "last-name": { "label": "Last name", "placeholder": "Jonathan" } ,
-     "user-name": {"label" : "UserName" , "placeholder" :"zoe123"},
-    "review-title": {"label": "Title","placeholder": "Enter review title"}
-                     
-    } ,
-   
+      "last-name": { "label": "Last name", "placeholder": "Jonathan" },
+      "user-name": { "label": "UserName", "placeholder": "zoe123" },
+       "review-title": { "label": " Title", "placeholder": "Enter review title" }
+
+    },
     "number": { "label": "Number", "placeholder": "0" },
     "search": { "label": "Search", "placeholder": "Search..." },
     "password": {
@@ -417,41 +356,8 @@
     "phone": { "label": "Phone", "placeholder": "1012345678" },
     "email": { "label": "Email", "placeholder": "user@example.com" },
     "nice-to-have-you-here": "nice to have you here"
-},"product-details": {
-  "reviews": {
-    "title": "Product Reviews",
-    "empty": "No reviews yet.",
-    "loading": "Loading reviews...",
-    "error": "Failed to load reviews.",
-    "generalrating":"General Rating"
-  }
-  
- 
-
-  
-},
-
- "add-review":{
-    "rating": "Your rating",
-    "title":"Title",
-    "review": "Review",
-    "text-area-placeholder":"What do you think of this product?",
-    "add-review":"Add Review",
-    "adding":"Adding...",
-    "login-to-review":"Please login to be able to review the product"
-
   },
-  "related-products":{
-  "sec-title":"Related Products"
-
-  },
-  
-  
-
-
-
-
- "products": {
+  "products": {
     "filter": {
       "resetButton": "Reset",
       "category": {
@@ -462,7 +368,6 @@
       },
       "rating": {
         "title": "Rating",
-        "subtitle":"ratings",
         "starLabel": "{count} stars"
       },
       "price": {
@@ -470,18 +375,36 @@
         "from": "from",
         "to": "to"
       },
-      "currency": {
-        "egp": "EGP"
-      },
       "resetAll": {
         "title": "Reset All"
       }
+    },
+     
+    "add-review":{
+    "rating": "Your rating",
+    "title":"Title",
+    "review": "Review",
+    "text-area-placeholder":"What do you think of this product?",
+   
+    "login-to-review":"Please login to be able to review the product"
+
+  },
+  "related-products":{
+  "sec-title":"Related Products"
+
+  },
+   "addToCart": "Add to cart",
+    "outOfStock": "Out of stock",
+     "product-card": {
+      "new": "New",
+      "outOfStock": "Out of stock"
+    },
+  "product-details": {
+      "currency": "EGP",
+      "leftInStock": "left in stock",
+      "rating": "Rating",
+      "ratings": "ratings"
     }
   }
+  
 }
-
-
-
-
-
-

@@ -29,18 +29,18 @@ export default function RelatedProductsCarousel({ products }: RelatedProductsCar
   };
 
   return (
-    <section className="w-full mt-16">
-      <div className="relative flex-1 lg:max-w-5xl w-full mx-auto">
+    <section className="w-full mt-4">
+      <div className="relative mx-auto w-full lg:max-w-5xl">
         <button
           onClick={() => scroll('prev')}
-          className="absolute -left-5 rtl:-right-5 rtl:left-auto top-40.25 z-20 w-9 h-9 bg-bg-primary rounded-full flex justify-center items-center text-text-inverse shadow-lg hover:opacity-80 transition-opacity"
+          className="absolute -left-4 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-bg-primary text-text-inverse shadow-lg transition-opacity hover:opacity-80 rtl:-right-4 rtl:left-auto"
         >
           {isRtl ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
         </button>
 
         <div
           ref={scrollRef}
-          className="flex gap-6 overflow-x-auto hide-scrollbar snap-x snap-mandatory px-2 py-2"
+          className="flex gap-6 overflow-x-auto px-2 py-2 snap-x snap-mandatory hide-scrollbar"
         >
           {products.map((item) => (
             <div key={item.id} className="snap-start shrink-0">
@@ -51,7 +51,7 @@ export default function RelatedProductsCarousel({ products }: RelatedProductsCar
 
         <button
           onClick={() => scroll('next')}
-          className="absolute -right-5 rtl:-left-5 rtl:right-auto top-40.25 z-20 w-9 h-9 bg-bg-primary rounded-full flex justify-center items-center text-text-inverse shadow-lg hover:opacity-80 transition-opacity"
+          className="absolute -right-4 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-bg-primary text-text-inverse shadow-lg transition-opacity hover:opacity-80 rtl:-left-4 rtl:right-auto"
         >
           {isRtl ? <ChevronLeft size={20} /> : <ChevronRight size={20} />}
         </button>

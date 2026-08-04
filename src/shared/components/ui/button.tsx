@@ -1,7 +1,6 @@
 import { Button as ButtonPrimitive } from '@base-ui/react/button';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/shared/lib/utils/tailwind-cn';
-// import { TButtonProps } from '@/shared/components/ui/button';
 import { LoaderCircle } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { TButtonProps } from '@/shared/types/button';
@@ -17,7 +16,10 @@ const buttonVariants = cva(
         subtle: 'bg-bg-muted border border-border-soft text-text-plain hover:bg-bg-soft ',
         ghost: ' text-text-plain hover:bg-bg-soft  ',
         destructive: 'bg-bg-danger text-text-inverse hover:bg-bg-danger-saturated',
-        link: 'bg-bg-subtle border border-border-subtle text-text-plain',
+        // softPink
+        softPink: 'bg-soft-pink-50 text-maroon-600 hover:bg-soft-pink-100 shadow-sm border-none',
+
+        link: 'text-primary underline-offset-4 hover:underline',
       },
       size: {
         custom: 'h-11 w-45.25 gap-1.5',
@@ -90,7 +92,6 @@ function Button(props: ButtonPrimitive.Props & VariantProps<typeof buttonVariant
       className={cn(
         buttonVariants({
           variant: props.variant,
-
           size: isIcon ? 'icon' : isText ? 'custom' : 'number',
           className: props.className,
         })
@@ -107,12 +108,7 @@ function Button(props: ButtonPrimitive.Props & VariantProps<typeof buttonVariant
       ) : (
         <>
           {isText && props.leftIcon}
-
-          {isIcon
-            ? props.iconOnly
-            : isText
-              ? (props.children ?? t(props.title || ''))
-              : props.number}
+          {isIcon ? props.iconOnly : props.title}
           {isText && props.rightIcon}
         </>
       )}

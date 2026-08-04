@@ -19,7 +19,8 @@ interface IAddReviewFormProps {
 
 export default function AddReviewForm({ isAuthenticated, productId }: IAddReviewFormProps) {
   const tInput = useTranslations('custom-input');
-  const tAddReview = useTranslations('add-review');
+  const tAddReview = useTranslations('products.add-review');
+  const tButton = useTranslations('button');
 
   const router = useRouter();
   const { mutate, isPending } = UseReview(productId);
@@ -133,11 +134,11 @@ export default function AddReviewForm({ isAuthenticated, productId }: IAddReview
           buttonVariant="text"
           variant="primary"
           className="mt-9 w-full"
-          disabled={isPending}
+          loading={isPending}
+          disabled={isPending || (!isAuthenticated && showLoginPrompt)}
+          title={tButton('add-review')}
           onClick={handleAddReviewClick}
-        >
-          {isPending ? tAddReview('adding') : tAddReview('add-review')}
-        </Button>
+        ></Button>
       </div>
 
       {/* Centered Login Overlay Box */}

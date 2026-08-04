@@ -6,11 +6,14 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import SecondaryNavigation from './secondary-navigation';
 import { useSession } from 'next-auth/react';
-import HeaderSearchInput from './header-search-input';
-import GuestGatedIcon from './guest-gated-icon';
-import UserAuthAction from './user-auth-action';
+import UserDropdown from '../header/user-dropdown';
+import NotificationsList from '@/features/notification/components/notifications-list';
+
 import { useCart } from '@/features/dashboard/hooks/use-cart';
 import { useWishlist } from '@/features/dashboard/hooks/use-wishlist';
+import GuestGatedIcon from './guest-gated-icon';
+import HeaderSearchInput from './header-search-input';
+import UserAuthAction from './user-auth-action';
 
 export default function Header() {
   const t = useTranslations();
