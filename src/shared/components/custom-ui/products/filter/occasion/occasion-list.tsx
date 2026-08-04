@@ -6,12 +6,12 @@ import OccasionItemSkeleton from './occasion-skelton';
 import ResetButton from '../general/reset-button';
 import { getOccasions } from '@/shared/api/products/filter/occasion.api';
 import { Occasion } from '@/shared/types/products/filter/occasion';
-import { useInfiniteFilterList } from '@/shared/hooks/use-infinity-filter';
 import {
   LIMIT,
   SKELETON_COUNT,
   NEXT_PAGE_SKELETON_COUNT,
 } from '@/shared/constants/filter.constants';
+import { useInfiniteFilterList } from '@/features/dashboard/hooks/use-infinity-filter';
 
 const OccasionList = () => {
   // Translation

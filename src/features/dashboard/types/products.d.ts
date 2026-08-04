@@ -1,8 +1,4 @@
-import {
-  GetProductsParams,
-  ProductSortBy,
-  SortOrder,
-} from '@/features/dashboard/types/product-query';
+import { GetProductsParams, ProductSortBy, SortOrder } from '@/shared/types/product-query';
 import { Product } from '@/shared/types/product.type';
 
 import type { Occasion } from '../../features/dashboard/types/occasion.type';
@@ -18,6 +14,7 @@ export type Product = {
   id: string;
   title: string;
   rating: number;
+  ratings: number;
   price: string;
   createdAt: string;
   stock?: number;
@@ -34,6 +31,7 @@ export type Product = {
 
   occasions: ProductOccasion[];
 };
+
 //productPage
 export type TGetProductsParams = {
   page?: string;
@@ -52,7 +50,7 @@ export type TProductsPageProps = {
 };
 //allProducts
 export type TAllProductsProps = {
-  params: GetProductsParams;
+  searchParams: TGetProductsParams;
 };
 
 export type TPaginationMetadata = {
@@ -70,3 +68,19 @@ export type TProductsResponse = {
 export type TProductMetaDataProps = {
   productMetaData: TPaginationMetadata;
 };
+
+export interface IProductCount {
+  reviews?: number;
+  cartItems?: number;
+  wishlistItems?: number;
+  orderItems?: number;
+}
+
+export interface IRelatedProductsSectionProps {
+  product: Product & {
+    categoryId?: string;
+    subCategoryId?: string;
+    _count?: IProductCount;
+    occasions?: unknown[];
+  };
+}

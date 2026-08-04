@@ -9,7 +9,6 @@ import { useProductActions } from '../../../hooks/use-product-actions';
 import { Product } from '@/features/dashboard/types/products';
 import type { LocalCartProduct } from '@/features/dashboard/types/local-cart';
 import { Button } from '@/shared/components/ui/button';
-import { cn } from '@/shared/lib/utils/tailwind-cn';
 
 export const ProductCard = ({
   product,
@@ -55,7 +54,7 @@ export const ProductCard = ({
 
   return (
     <div className="flex justify-center">
-      <div className="w-72 h-96 rounded-2xl flex flex-col gap-6 cursor-pointer group relative">
+      <div className="w-72 h-auto rounded-2xl flex flex-col gap-6 cursor-pointer group relative">
         {/* Wishlist Button  */}
         <Button
           variant={isInWishlist ? 'primary' : 'outline'}

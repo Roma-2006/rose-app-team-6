@@ -1,4 +1,4 @@
-import { Product } from '../types/product-details.types';
+import { Product } from '../types/products';
 
 export const calculateDiscountedPrice = (
   product: Pick<Product, 'price' | 'discountType' | 'discountValue'>

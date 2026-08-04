@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import SecHeader from '../section-header';
-import SecTitle from '../section-title';
+import SecHeader from '../../shared/section-header';
+import SecTitle from '../../shared/section-title';
 import { Star } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 
@@ -30,12 +30,20 @@ const testimonials = [
     text: 'The team truly cares about every order. I always feel confident when I buy flowers from here. The checkout process was sup...',
     date: 'January 12, 2025',
   },
+  {
+    id: 4,
+    name: 'Max Turner',
+    image: '/assets/testimonials-images/testimonial-image-3.png',
+    stars: 4,
+    text: 'The team truly cares about every order. I always feel confident when I buy flowers from here. The checkout process was sup...',
+    date: 'January 12, 2025',
+  },
 ];
 export default async function TestimonialsSection() {
   const tTistimonial = await getTranslations('home.testimonials');
 
   return (
-    <section className="   h-165 w-full  flex flex-col items-center justify-center   mb-35">
+    <section className="-mx-20   h-165  flex flex-col items-center justify-center   mb-35">
       {/* Testimonials Header */}
       <header className=" testimonials-header text-center mb-10">
         <SecHeader text={tTistimonial('label')} className="pb-2" />
@@ -46,7 +54,7 @@ export default async function TestimonialsSection() {
         {testimonials.map((item) => (
           <div
             key={item.id}
-            className="card  px-5 h-62.5 mx-7.5 gap-3 relative bg-white rounded-3xl  flex flex-col items-center text-center shadow-[0_10px_30px_rgba(0,0,0,0.04)]"
+            className="card  px-5 h-62.5 mx-7.5 gap-2.5 relative bg-white rounded-3xl  flex flex-col items-center text-center shadow-[0_10px_30px_rgba(0,0,0,0.04)]"
           >
             {/* Circular image */}
 
@@ -60,7 +68,7 @@ export default async function TestimonialsSection() {
 
             {/* Star Rating */}
 
-            <div className="flex gap-0.5 pt-5">
+            <div className="flex gap-0.5 pt-4">
               {[...Array(5)].map((_, index) => (
                 <Star
                   key={index}
@@ -75,10 +83,10 @@ export default async function TestimonialsSection() {
             </div>
 
             {/* Customer Review  */}
-            <p className="text-xs pt-2.5 font-medium  leading-relaxed h-12  flex-1 ">{item.text}</p>
+            <p className="text-xs pt-2 font-medium  leading-relaxed h-12  flex-1 ">{item.text}</p>
 
             {/* Date of evaluation */}
-            <span className="text-xs text-text-muted pb-5  font-medium">{item.date}</span>
+            <span className="text-xs text-text-muted mt-1 pb-2  font-medium">{item.date}</span>
           </div>
         ))}
       </div>

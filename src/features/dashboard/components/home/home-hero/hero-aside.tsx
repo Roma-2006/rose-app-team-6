@@ -4,7 +4,6 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { Badge } from '@/shared/components/ui/badge';
 import { Card } from '@/shared/components/ui/card';
 import { useTranslations, useLocale } from 'next-intl';
-
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/shared/components/ui/button';
 
@@ -39,7 +38,7 @@ export default function HeroAside() {
           <Button
             buttonVariant="text"
             variant="softPink"
-            title={t('hero-aside.button')}
+            title="home.hero-aside.button"
             className="mt-2 h-auto w-fit rounded-xl px-5 py-2.5 text-sm font-bold"
             rightIcon={
               isRtl ? (
