@@ -49,9 +49,9 @@ export default async function RelatedProductsSection({ product }: IRelatedProduc
     <section className="flex flex-col gap-4 w-full mt-12 border-t border-border-soft pt-8">
       <SecTitle text={tRelatedProducts('sec-title')} className="mb-5" />
       <div className="relative flex-1 lg:max-w-5xl w-full">
-        <Carousel gap={24}>
+        <Carousel gap={11}>
           {safeRelatedProducts.map((item) => (
-            <div key={item.id} className="snap-start shrink-0  w-46">
+            <div key={item.id} className="snap-start shrink-0  w-49">
               <ProductCard product={item} />
             </div>
           ))}
