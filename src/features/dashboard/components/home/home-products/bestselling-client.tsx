@@ -35,7 +35,6 @@ export const BestSellingSectionClient = ({
             <span className="text-text-secondary">{t('titlePart1')} </span>
             <span className="text-text-primary">{t('titlePart2')} </span>
             <span className="text-text-secondary">{t('titlePart3')} </span>
-            <span className="text-text-primary">{t('titlePart4')} </span>
           </h2>
 
           <p className="w-full text-start text-base leading-6 text-text-soft whitespace-pre-line">

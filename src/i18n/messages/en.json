@@ -275,15 +275,17 @@
       "outOfStock": "OUT OF STOCK"
     },
     "about": {
+      "discover": "Discover",
       "label": "About",
       "title": {
         "part1": "Delivering the",
         "part2": "Finest",
         "part3": "Gift Boxes for Your",
         "part4": "Special",
-        "part5": "Moments",
-        "discover": "Discover"
+        "part5": "Moments"
+        
       }
+      
     },
     "gallery": {
       "label": "Gallery",
