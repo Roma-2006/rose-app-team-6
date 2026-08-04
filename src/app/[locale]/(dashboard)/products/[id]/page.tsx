@@ -1,11 +1,7 @@
-<<<<<<< HEAD
 import { authOptions } from '@/auth';
 import { getProductById } from '@/features/dashboard/api/product-details.api';
 import AddReviewForm from '@/features/dashboard/components/products/add-review-form';
 import OverallReview from '@/features/dashboard/components/products/overall-review';
-=======
-import { getProductById } from '@/features/dashboard/apis/product-details.api';
->>>>>>> 67f74cc5b2f63372fd222ce4d502de39038e4758
 import ProductGallery from '@/features/dashboard/components/products/product-gallery';
 import ProductInfo from '@/features/dashboard/components/products/product-info';
 import RelatedProductsSection from '@/features/dashboard/components/products/related-products-section';

@@ -2,7 +2,8 @@ import { getTranslations } from 'next-intl/server';
 import { getRelatedProducts } from '../../api/related-products.api';
 import { IRelatedProductsSectionProps } from '../../types/products';
 import SecTitle from '../shared/section-title';
-import RelatedProductsCarousel from './related-products-carousel';
+import { Carousel } from '../shared/carousel';
+import { ProductCard } from '../home/home-products/Product-card';
 
 export default async function RelatedProductsSection({ product }: IRelatedProductsSectionProps) {
   const tRelatedProducts = await getTranslations('products.related-products');
@@ -47,7 +48,15 @@ export default async function RelatedProductsSection({ product }: IRelatedProduc
   return (
     <section className="flex flex-col gap-4 w-full mt-12 border-t border-border-soft pt-8">
       <SecTitle text={tRelatedProducts('sec-title')} className="mb-5" />
-      <RelatedProductsCarousel products={safeRelatedProducts} />
+      <div className="relative flex-1 lg:max-w-5xl w-full">
+        <Carousel gap={24}>
+          {safeRelatedProducts.map((item) => (
+            <div key={item.id} className="snap-start shrink-0  w-46">
+              <ProductCard product={item} />
+            </div>
+          ))}
+        </Carousel>
+      </div>
     </section>
   );
 }

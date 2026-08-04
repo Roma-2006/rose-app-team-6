@@ -1,12 +1,10 @@
 import AboutSection from '@/features/dashboard/components/home/home-about/about-section';
 import GallerySection from '@/features/dashboard/components/home/home-gallery/gallery-section';
-import TestimonialsSection from '@/features/dashboard/components/home/home-testimonials/testimonials-section';
 import PartnersSection from '@/features/dashboard/components/home/home-partners/partners-section';
 import HomeContent from '@/features/dashboard/components/home/home-content';
 import { BestSellingSection } from '@/features/dashboard/components/home/home-products/bestselling-section';
 import { MostPopularSection } from '@/features/dashboard/components/home/home-products/mostpopular-section';
 import TestimonialsSection from '@/features/dashboard/components/home/home-testimonials/testimonials-section';
-import PartnersSection from '@/features/dashboard/components/home/home-partners/partners-section';
 
 interface HomePageProps {
   searchParams: Promise<{ occasionId?: string }>;
@@ -22,10 +20,6 @@ export default async function HomePage({ searchParams }: HomePageProps) {
       <GallerySection />
       <TestimonialsSection />
       <PartnersSection />
-<<<<<<< HEAD
-    </section>
-=======
     </>
->>>>>>> 67f74cc5b2f63372fd222ce4d502de39038e4758
   );
 }
