@@ -1,4 +1,4 @@
-import { Product } from '@/features/dashboard/types/products';
+import { Product } from '@/features/main/types/products';
 
 export type TProductItemProps = {
   product: Product;

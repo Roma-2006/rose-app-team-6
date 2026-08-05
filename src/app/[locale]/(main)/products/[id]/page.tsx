@@ -1,12 +1,12 @@
 import { authOptions } from '@/auth';
-import { getProductById } from '@/features/dashboard/api/product-details.api';
-import AddReviewForm from '@/features/dashboard/components/products/add-review-form';
-import OverallReview from '@/features/dashboard/components/products/overall-review';
-import ProductGallery from '@/features/dashboard/components/products/product-gallery';
-import ProductInfo from '@/features/dashboard/components/products/product-info';
-import RelatedProductsSection from '@/features/dashboard/components/products/related-products-section';
-import ReviewList from '@/features/dashboard/components/products/review-list';
-import { ProductOccasion } from '@/features/dashboard/types/products';
+import { getProductById } from '@/features/main/api/product-details.api';
+import AddReviewForm from '@/features/main/components/products/add-review-form';
+import OverallReview from '@/features/main/components/products/overall-review';
+import ProductGallery from '@/features/main/components/products/product-gallery';
+import ProductInfo from '@/features/main/components/products/product-info';
+import RelatedProductsSection from '@/features/main/components/products/related-products-section';
+import ReviewList from '@/features/main/components/products/review-list';
+import { ProductOccasion } from '@/features/main/types/products';
 import { getServerSession } from 'next-auth';
 import { notFound } from 'next/navigation';
 

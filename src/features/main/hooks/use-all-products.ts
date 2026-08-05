@@ -1,4 +1,4 @@
-import { getProducts } from '@/features/dashboard/api/product.api';
+import { getProducts } from '@/features/main/api/product.api';
 import { useQuery } from '@tanstack/react-query';
 import { GetProductsParams } from '../types/product-query';
 
