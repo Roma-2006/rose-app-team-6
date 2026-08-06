@@ -1,7 +1,7 @@
 'use client';
 
 // relatives
-import { AddressListProps } from '@/features/dashboard/types/address.d';
+import { AddressListProps } from '@/features/main/types/address.d';
 import AddressListItem from './address-list-item';
 
 const AddressList = ({ addresses, selectedAddressId, onSelectAddress }: AddressListProps) => {

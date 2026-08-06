@@ -7,8 +7,8 @@ import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
 // relatives
-import { CheckoutStepsProps } from '@/features/dashboard/types/checkout.d';
-import { Address } from '@/features/dashboard/types/address.d';
+import { CheckoutStepsProps } from '@/features/main/types/checkout.d';
+import { Address } from '@/features/main/types/address.d';
 import Stepper from '@/shared/components/custom-ui/stepper';
 import ShippingAddressStep from './address/shipping-address/shipping-address-step';
 import { Button } from '@/shared/components/ui/button';

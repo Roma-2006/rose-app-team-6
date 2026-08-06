@@ -7,7 +7,7 @@ import { cn } from '@/shared/lib/utils/tailwind-cn';
 import { Phone } from 'lucide-react';
 
 // relatives
-import { AddressListItemProps } from '@/features/dashboard/types/address.d';
+import { AddressListItemProps } from '@/features/main/types/address.d';
 
 const AddressListItem = ({ address, isSelected, onSelect }: AddressListItemProps) => {
   return (
