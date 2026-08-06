@@ -18,13 +18,21 @@ interface IAddReviewFormProps {
 }
 
 export default function AddReviewForm({ isAuthenticated, productId }: IAddReviewFormProps) {
+  // Translation
   const tInput = useTranslations('custom-input');
   const tAddReview = useTranslations('products.add-review');
   const tButton = useTranslations('button');
 
+  // Navigation
   const router = useRouter();
+
+  // Custom hooks
   const { mutate, isPending } = UseReview(productId);
+
+  //States
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
+
+  //Form
   const form = useForm<IAddReviewFormData>({
     defaultValues: {
       rating: 0,
@@ -32,7 +40,6 @@ export default function AddReviewForm({ isAuthenticated, productId }: IAddReview
       review: '',
     },
   });
-  // the send function to pass data directly to the hook
   const onFormSubmit = async (data: IAddReviewFormData) => {
     mutate(data, {
       onSuccess: (res) => {
@@ -64,8 +71,6 @@ export default function AddReviewForm({ isAuthenticated, productId }: IAddReview
       <div
         className={`w-full space-y-4 transition-all duration-200 ${!isAuthenticated && showLoginPrompt ? 'blur-[1px] pointer-events-none select-none opacity-50' : ''}`}
       >
-        {/* Field : Star Rating */}
-
         <FieldGroup>
           <div className="flex items-center w-full gap-2">
             <Label className="text-sm font-medium text-text-plain">{tAddReview('rating')}</Label>
@@ -81,8 +86,6 @@ export default function AddReviewForm({ isAuthenticated, productId }: IAddReview
               )}
             />
           </div>
-
-          {/* Field 2: Review Title Input */}
 
           <div className="flex w-full flex-col gap-2.5">
             <Controller
@@ -102,7 +105,6 @@ export default function AddReviewForm({ isAuthenticated, productId }: IAddReview
             />
           </div>
 
-          {/* Field  3: Review Text Area */}
           <div className="flex flex-col gap-2.5 relative">
             <label htmlFor="review" className="text-sm font-medium text-text-plain">
               {tAddReview('review')}
@@ -127,8 +129,6 @@ export default function AddReviewForm({ isAuthenticated, productId }: IAddReview
           </div>
         </FieldGroup>
 
-        {/* Submit Button */}
-
         <Button
           type="submit"
           buttonVariant="text"
@@ -141,7 +141,6 @@ export default function AddReviewForm({ isAuthenticated, productId }: IAddReview
         ></Button>
       </div>
 
-      {/* Centered Login Overlay Box */}
       {!isAuthenticated && showLoginPrompt && (
         <div className="absolute inset-0 flex items-center justify-center p-6 z-10">
           <button
