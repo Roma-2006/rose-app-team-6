@@ -386,5 +386,15 @@
     "phone": { "label": "Phone", "placeholder": "1012345678" },
     "email": { "label": "Email", "placeholder": "user@example.com" },
     "nice-to-have-you-here": "nice to have you here"
+  },
+  "checkout" : {
+    "shipping-address": {
+      "title": "Shipping Address",
+      "add-new-address": "Add New Address",
+      "or" : "OR",
+      "load-error " : "Failed to load addresses.",
+      "no-addresses-error": "Add your first address to continue"
+    },
+    "next": "Next"
   }
 }

@@ -377,5 +377,15 @@
     "phone": { "label": "رقم الهاتف", "placeholder": "1012345678" },
     "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" },
     "nice-to-have-you-here": "جميل أنك هنا"
+  },
+  "checkout" : {
+    "shipping-address": {
+      "title": "عنوان الشحن",
+      "add-new-address": "إضافة عنوان جديد",
+      "or" : "أو",
+      "load-error " : "فشل تحميل العناوين.",
+      "no-addresses-error": "أضف عنوانك الأول للمتابعة"
+    },
+    "next": "التالي"
   }
 }
