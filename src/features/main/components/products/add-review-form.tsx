@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { IAddReviewFormData } from '../../types/product-reviews';
-import RatingStars from './star-rating';
+import RatingStars from '../shared/star-rating';
 import CustomInput from '@/shared/components/custom-input';
 import { Button } from '@/shared/components/ui/button';
 import { Label } from '@/shared/components/ui/label';
