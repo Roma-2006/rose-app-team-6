@@ -9,8 +9,8 @@ import HeaderSearchInput from './header-search-input';
 import GuestGatedIcon from './guest-gated-icon';
 import UserAuthAction from './user-auth-action';
 import { ThemeToggle } from '../theme';
-import { useCart } from '@/features/dashboard/hooks/use-cart';
-import { useWishlist } from '@/features/dashboard/hooks/use-wishlist';
+import { useCart } from '@/features/main/hooks/use-cart';
+import { useWishlist } from '@/features/main/hooks/use-wishlist';
 
 export default function Header() {
   const session = useSession();
@@ -38,10 +38,18 @@ export default function Header() {
         <div className="flex">
           <UserAuthAction isAuthenticated={isAuthenticated} />
           <span className=" flex items-center gap-2.5 px-4 border-r border-l  border-border-muted">
-            <GuestGatedIcon isAuthenticated={isAuthenticated} badgeCount={wishlistCount}>
+            <GuestGatedIcon
+              isAuthenticated={isAuthenticated}
+              badgeCount={wishlistCount}
+              type="wishlist"
+            >
               <Heart size={24} />
             </GuestGatedIcon>
-            <GuestGatedIcon isAuthenticated={isAuthenticated} badgeCount={uniqueItemsCount}>
+            <GuestGatedIcon
+              isAuthenticated={isAuthenticated}
+              badgeCount={uniqueItemsCount}
+              type="cart"
+            >
               <ShoppingCart size={24} />
             </GuestGatedIcon>
             <Bell size={24} />

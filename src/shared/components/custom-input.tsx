@@ -75,7 +75,11 @@ export default function CustomInput({
   } else if (variant === 'password' && subVariant) {
     defaultLabel = tInput(`password.${subVariant}.label`);
     defaultPlaceholder = tInput(`password.${subVariant}.placeholder`);
-    // file , phone , number , search & email
+    //search
+  } else if (variant === 'search') {
+    defaultLabel = '';
+    defaultPlaceholder = tInput('search.placeholder');
+    // file , phone , number & email
   } else {
     defaultLabel = tInput(`${variant}.label`);
     defaultPlaceholder = tInput(`${variant}.placeholder`);

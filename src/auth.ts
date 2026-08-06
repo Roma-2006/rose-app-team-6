@@ -26,7 +26,6 @@ export const authOptions: NextAuthOptions = {
           password: credentials?.password,
           rememberMe: isRememberMe,
         });
-
         if (!result.success) {
           console.error('❌ Zod Validation Failed:', result.error.format());
           return null;
@@ -34,7 +33,6 @@ export const authOptions: NextAuthOptions = {
 
         try {
           const data = await login(result.data);
-
           if (!data.status) {
             throw new Error(data.message || 'Login failed');
           }
