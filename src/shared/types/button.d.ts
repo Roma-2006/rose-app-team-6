@@ -13,6 +13,7 @@ export type TBaseButtonProps = {
     | 'destructive'
     | 'softPink'
     | 'link'
+    | 'softPink'
     | null
     | undefined;
 };

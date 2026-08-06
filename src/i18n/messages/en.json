@@ -10,7 +10,9 @@
     "save": "Save",
     "delete": "Delete",
     "confirm": "Confirm",
-    "next": "Next"
+    "next": "Next",
+    "add-review": "Add Review",
+    "adding": "Adding..."
   },
   "common": {
     "select": {
@@ -24,29 +26,11 @@
     }
   },
   "header": {
-    "search-placeholder": "What awesome gift are you looking for?",
+    "search-placeholder": "Search for products…",
     "login": "Login",
     "search-default": "Products you may like",
-    "search-empty": " No products found",
-    "search-error": "Search failed. Try again.",
-    "notifications": {
-      "title": "Notifications ({count})",
-      "no-notifications": "No notifications yet",
-      "clear-all": "Clear all notifications",
-      "mark-all-as-read": "Mark all as read",
-      "notification-settings": {
-        "mark-as-read": "Mark as read",
-        "delete": "Delete"
-      }
-    },
-    "user-menu": {
-      "title": "Welcome ",
-      "account": "Account",
-      "addresses": "Addresses",
-      "orders": "Orders",
-      "dashboard": "Dashboard",
-      "logout": "Logout"
-    }
+    "search-empty": "No products found",
+    "search-error": "Search failed. Try again."
   },
   "nav": {
     "home": "Home",
@@ -58,7 +42,7 @@
   },
   "auth": {
     "switchLang": "العربية",
-    "langLabel": "التحويل إلى الإنجليزية",
+    "langLabel": "Switch to Arabic",
     "welcome-auth": {
       "login-title": "Welcome back!",
       "register-title": "Become part of our family!"
@@ -130,8 +114,8 @@
     },
     "auth-register": {
       "title": "Create Account",
-      "need-help": "Need help ?",
-      "contact-us": " Contact us",
+      "need-help": "Need help?",
+      "contact-us": "Contact us",
       "step1": {
         "emailLabel": "Email",
         "emailPlaceholder": "user@example.com",
@@ -209,7 +193,6 @@
       "toast-description": "A new OTP code has been sent to your email"
     }
   },
-
   "home": {
     "discover": "Discover",
     "hero-aside": {
@@ -217,7 +200,6 @@
       "title": "Special Gifts For The People You Love",
       "button": "Shop Now"
     },
-
     "carousel": {
       "slide1": {
         "title": "Say It with Flowers",
@@ -235,7 +217,6 @@
         "cta": "I'm buying!"
       }
     },
-
     "cards": {
       "anniversary": {
         "badge": "Anniversary",
@@ -250,7 +231,6 @@
         "title": "Celebrate Her Forever with a Gift She’ll Always Remember"
       }
     },
-
     "features": {
       "support": {
         "title": "24/7 Support",
@@ -272,9 +252,8 @@
     "bestSelling": {
       "badge": "Best Selling",
       "titlePart1": "Check Out",
-      "titlePart2": "What Everyone’s",
-      "titlePart3": "Buying",
-      "titlePart4": "Right Now",
+      "titlePart2": "What Everyone’s Buying",
+      "titlePart3": "Right Now",
       "description": "Not sure what to choose?\nStart with our best sellers, these are the gifts our customers keep coming back for.\nWhether you're celebrating a birthday, anniversary or wedding, our top picks are guaranteed to leave a lasting impression.",
       "exploreButton": "Explore gifts"
     },
@@ -295,24 +274,21 @@
       "new": "NEW",
       "outOfStock": "OUT OF STOCK"
     },
-
     "about": {
+      "discover": "Discover",
       "label": "About",
       "title": {
         "part1": "Delivering the",
         "part2": "Finest",
         "part3": "Gift Boxes for Your",
         "part4": "Special",
-        "part5": "Moments",
-        "discover": "Discover"
+        "part5": "Moments"
       }
     },
-
     "gallery": {
       "label": "Gallery",
       "title": "Check Out our Wonderful Gallery"
     },
-
     "testimonials": {
       "label": "Testimonials",
       "title": "Real Words from Happy Customers"
@@ -324,6 +300,45 @@
         "part3": "companies"
       }
     }
+  },
+  "input-component": {
+    "label": "Full Name",
+    "placeholder": "Enter your name..."
+  },
+  "custom-input": {
+    "default": {
+      "first-name": { "label": "First name", "placeholder": "zoe" },
+      "last-name": { "label": "Last name", "placeholder": "Jonathan" },
+      "user-name": { "label": "UserName", "placeholder": "zoe123" },
+      "review-title": { "label": "Title", "placeholder": "Enter review title" }
+    },
+    "number": { "label": "Number", "placeholder": "0" },
+    "search": { "label": "Search", "placeholder": "Search..." },
+    "password": {
+      "password": { "label": "Password", "placeholder": "*********" },
+      "confirm-Password": { "label": "Confirm Password", "placeholder": "*********" }
+    },
+    "file": {
+      "label": "File",
+      "placeholder": "Upload file",
+      "btn-text": "Upload File",
+      "error-type": "File type not accepted."
+    },
+    "phone": { "label": "Phone", "placeholder": "1012345678" },
+    "email": { "label": "Email", "placeholder": "user@example.com" },
+    "nice-to-have-you-here": "nice to have you here"
+  },
+
+  "checkout": {
+    "shipping-address": {
+      "title": "Shipping Address",
+      "add-new-address": "Add New Address",
+      "or": "OR",
+      "load-error ": "Failed to load addresses.",
+      "no-addresses-error": "Add your first address to continue"
+    },
+    "next": "Next",
+    "back": "Back"
   },
   "products": {
     "addToCart": "Add to cart",
@@ -348,6 +363,7 @@
       },
       "rating": {
         "title": "Rating",
+        "subtitle": "ratings",
         "starLabel": "{count} stars"
       },
       "price": {
@@ -355,47 +371,36 @@
         "from": "from",
         "to": "to"
       },
+      "currency": {
+        "egp": "EGP"
+      },
       "resetAll": {
         "title": "Reset All"
       }
+    },
+    "product-reviews": {
+      "title": "Product Reviews",
+      "empty": "No reviews yet.",
+      "loading": "Loading reviews...",
+      "error": "Failed to load reviews.",
+      "generalrating": "General Rating",
+      "loadMore": "Load more",
+      "loadingMore": "Loading...",
+      "rating": "Rating: {rating}/5",
+      "ratingsCount": "({count} ratings)"
+    },
+    "add-review": {
+      "rating": "Your rating",
+      "title": "Title",
+      "review": "Review",
+      "text-area-placeholder": "What do you think of this product?",
+      "login-to-review": "Please login to be able to review the product"
+    },
+    "related-products": {
+      "sec-title": "Related Products"
     }
   },
-
-  "input-component": {
-    "label": "Full Name",
-    "placeholder": "Enter your name..."
-  },
-  "custom-input": {
-    "default": {
-      "first-name": { "label": "First name", "placeholder": "zoe" },
-      "last-name": { "label": "Last name", "placeholder": "Jonathan" },
-      "user-name": { "label": "UserName", "placeholder": "zoe123" }
-    },
-    "number": { "label": "Number", "placeholder": "0" },
-    "search": { "label": "Search", "placeholder": "Search..." },
-    "password": {
-      "password": { "label": "Password", "placeholder": "*********" },
-      "confirm-Password": { "label": "Confirm Password", "placeholder": "*********" }
-    },
-    "file": {
-      "label": "File",
-      "placeholder": " Upload file",
-      "btn-text": "Upload File",
-      "error-type": "File type not accepted."
-    },
-    "phone": { "label": "Phone", "placeholder": "1012345678" },
-    "email": { "label": "Email", "placeholder": "user@example.com" },
-    "nice-to-have-you-here": "nice to have you here"
-  },
-  "checkout" : {
-    "shipping-address": {
-      "title": "Shipping Address",
-      "add-new-address": "Add New Address",
-      "or" : "OR",
-      "load-error " : "Failed to load addresses.",
-      "no-addresses-error": "Add your first address to continue"
-    },
-    "next": "Next",
-    "back": "Back"
+  "grid": {
+    "product-empty": "No products found matching your filters."
   }
 }

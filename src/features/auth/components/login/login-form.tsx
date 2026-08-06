@@ -94,7 +94,7 @@ export default function LoginForm() {
             control={form.control}
             render={({ field, fieldState }) => (
               <BaseCheckbox
-                // value={field.value}
+                value={Boolean(field.value)}
                 onChange={field.onChange}
                 error={fieldState.error?.message}
                 list={[{ id: 'remember-me', label: tLogin('rememberMe') }]}
@@ -106,7 +106,7 @@ export default function LoginForm() {
             type="submit"
             variant="primary"
             className="mt-9 w-full"
-            title="auth.login.button"
+            title={tLogin('button')}
             buttonVariant="text"
             loading={isLoading}
             disabled={isLoading}
