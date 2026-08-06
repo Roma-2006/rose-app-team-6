@@ -31,3 +31,17 @@ export interface IAppliedCouponsBoxProps {
   onRemoveCoupon: (id: string) => void;
   currency?: string;
 }
+
+export interface ITotalPriceProps {
+  subtotal: number;
+  appliedCoupons: ICouponBackendResponse[];
+  currency?: string;
+  isRecalculating: boolean;
+}
+export interface IOrderSummaryPanelProps {
+  subtotal: number;
+  variant?: 'editable' | 'read-only';
+
+}
+
+

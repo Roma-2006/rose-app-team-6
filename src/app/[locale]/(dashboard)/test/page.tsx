@@ -1,4 +1,5 @@
 'use client';
+import OrderSummaryPanel from '@/features/dashboard/components/checkout/order-summary-panel';
 import AboutSection from '@/features/dashboard/components/home/home-about/about-section';
 import { ProductCardSkeleton } from '@/features/dashboard/components/home/home-products/product-card-skelton';
 import SecHeader from '@/features/dashboard/components/shared/section-header';
@@ -38,6 +39,12 @@ export default function Page() {
       <SecTitle text="Check Out our Wonderful Gallery" className="w-165 ps-2.5" />
       <SecTitle text="Real Words from Happy Customers" className="ps-5" />
       <AboutSection />
-    </>
+
+ <OrderSummaryPanel 
+          subtotal={250}
+         
+          variant="editable"
+        />   
+         </>
   );
 }
