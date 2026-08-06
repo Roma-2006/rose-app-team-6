@@ -30,7 +30,12 @@ const ShippingAddressesSection = ({
       {!isLoading && !isError && addresses.length === 0 && (
         <div className="flex flex-col items-center gap-4 py-6">
           <p className="text-text-soft text-lg text-center">{t('no-addresses-error')}</p>
-          <Button variant="primary" buttonVariant="text" onClick={onAddNewAddress} title={t('add-new-address')} />
+          <Button
+            variant="primary"
+            buttonVariant="text"
+            onClick={onAddNewAddress}
+            title={t('add-new-address')}
+          />
         </div>
       )}
 
@@ -44,7 +49,13 @@ const ShippingAddressesSection = ({
 
           <span className="text-text-soft text-lg py-2.25 flex justify-center my-3">{t('or')}</span>
 
-          <Button variant="secondary" buttonVariant="text" onClick={onAddNewAddress} title={t('add-new-address')}  className='self-center w-full text-center'/>
+          <Button
+            variant="secondary"
+            buttonVariant="text"
+            onClick={onAddNewAddress}
+            title={t('add-new-address')}
+            className="self-center w-full text-center"
+          />
         </>
       )}
     </div>

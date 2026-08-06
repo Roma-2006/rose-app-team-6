@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl';
 import { Address } from '@/features/dashboard/types/address.d';
 import { Button } from '@/shared/components/ui/button';
 import ShippingAddressesSection from './shipping-addresses-section';
-import  { ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 interface ShippingAddressStepProps {
   addresses: Address[];
@@ -45,7 +45,7 @@ const ShippingAddressStep = ({
         <Button
           variant="primary"
           buttonVariant="text"
-          disabled={!canProceed}
+          // disabled={!canProceed}
           onClick={onNext}
           title={t('next')}
           className="self-end"
@@ -53,19 +53,7 @@ const ShippingAddressStep = ({
         />
       </div>
 
-      
-
       {/* <ProductsCarousel /> */}
-
-      {/* isModalOpen && (
-        <AddressBookModal
-          onClose={() => setIsModalOpen(false)}
-          onAddressAdded={(address) => {
-            onAddressAdded(address);
-            setIsModalOpen(false);
-          }}
-        />
-      ) */}
     </div>
   );
 };

@@ -395,6 +395,7 @@
       "load-error " : "Failed to load addresses.",
       "no-addresses-error": "Add your first address to continue"
     },
-    "next": "Next"
+    "next": "Next",
+    "back": "Back"
   }
 }
