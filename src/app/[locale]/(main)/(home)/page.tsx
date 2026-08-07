@@ -5,6 +5,7 @@ import HomeContent from '@/features/main/components/home/home-content';
 import { BestSellingSection } from '@/features/main/components/home/home-products/bestselling-section';
 import { MostPopularSection } from '@/features/main/components/home/home-products/mostpopular-section';
 import TestimonialsSection from '@/features/main/components/home/home-testimonials/testimonials-section';
+import OrderSummaryPanel from '@/features/main/components/order-summary/order-summary-panel';
 
 interface HomePageProps {
   searchParams: Promise<{ occasionId?: string }>;
