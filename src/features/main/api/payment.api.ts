@@ -1,3 +1,5 @@
+'use client';
+
 import { ICreateOrderPayload, IConfirmPaymentPayload } from '../types/payment';
 
 export async function createOrder(payload: ICreateOrderPayload) {

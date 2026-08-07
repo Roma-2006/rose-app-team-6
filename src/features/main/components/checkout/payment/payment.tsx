@@ -14,17 +14,21 @@ import { PaymentMethodOption } from './PaymentMethodOption';
 
 interface CheckoutPaymentStepProps {
   selectedAddressId: string | null;
+  couponCode?: string;
   onBack: () => void;
 }
 
-export function CheckoutPaymentStep({ selectedAddressId, onBack }: CheckoutPaymentStepProps) {
+export function CheckoutPaymentStep({
+  selectedAddressId,
+  couponCode,
+  onBack,
+}: CheckoutPaymentStepProps) {
   const router = useRouter();
   const t = useTranslations('checkout');
 
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod | null>(null);
 
   function handlePaymentMethodChange(method: PaymentMethod) {
-    console.log('[Checkout] Payment method selected:', method);
     setPaymentMethod(method);
   }
 
@@ -47,12 +51,14 @@ export function CheckoutPaymentStep({ selectedAddressId, onBack }: CheckoutPayme
       const order = await createOrderMutation.mutateAsync({
         addressId: selectedAddressId,
         paymentMethod,
+        ...(couponCode && { couponCode }),
       });
 
       if (paymentMethod === 'CASH_ON_DELIVERY') {
         await clearCartAction();
         toast.success(t('orderSuccess'));
         router.replace('/orders');
+
         return;
       }
 

@@ -433,5 +433,32 @@
   },
   "grid": {
     "product-empty": "No products found matching your filters."
+  },
+  
+  "cart": {
+    "title": " Cart",
+    "title-2": " Products You May Like",
+    "products":"products",
+    "clearCart": "Clear Cart",
+    "confirmClear": "Are you sure you want to clear your cart?",
+    "emptyDescription": "You haven't added any products to your shopping cart yet.",
+    "continueShopping": "Continue Shopping",
+     "empty": "Your cart is empty, wanna try shopping?",
+    "remove": "Remove",
+    "outOfStock": "Out of stock",
+    "ratings": "ratings",
+    "rating": "Rating"
+  },
+  "button": {
+    "cancel": "Cancel",
+    "confirm": "Confirm"
+  },  "custom-input": {
+    "default": {
+      "label": "Label",
+      "placeholder": "Enter value"
+    },"search":{
+            "placeholder": "Enter value"
+
+    }
   }
 }

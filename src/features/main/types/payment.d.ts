@@ -2,6 +2,7 @@ export type PaymentMethod = 'CASH_ON_DELIVERY' | 'CREDIT_CARD';
 export interface ICreateOrderPayload {
   addressId: string;
   paymentMethod: PaymentMethod;
+  couponCode?: string;
 }
 
 export interface IOrder {
