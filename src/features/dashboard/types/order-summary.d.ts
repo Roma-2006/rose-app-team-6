@@ -13,23 +13,25 @@ export interface ICouponBackendResponse {
   createdAt: string;
   updatedAt: string;
 }
-interface ICouponFormData {
+
+export interface ICouponFormData {
   couponCode: string;
 }
-interface ICouponFormProps {
+
+export interface ICouponFormProps {
   subtotal: number;
   onValidCouponApplied: (coupon: ICouponBackendResponse) => void;
 }
-interface IApplyValidCouponProps {
+
+export interface IApplyValidCouponProps {
   IValidCoupon: (code: string, id: string, discount: number) => void;
 }
-
-import { ICouponBackendResponse } from './order-summary';
 
 export interface IAppliedCouponsBoxProps {
   appliedCoupons: ICouponBackendResponse[];
   onRemoveCoupon: (id: string) => void;
   currency?: string;
+  variant?: 'editable' | 'read-only';
 }
 
 export interface ITotalPriceProps {
@@ -38,10 +40,13 @@ export interface ITotalPriceProps {
   currency?: string;
   isRecalculating: boolean;
 }
+
 export interface IOrderSummaryPanelProps {
   subtotal: number;
   variant?: 'editable' | 'read-only';
-
+  className?: string;
 }
-
-
+interface IValidationResult {
+  isValid: boolean;
+  message: string | null;
+}

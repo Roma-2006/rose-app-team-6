@@ -1,12 +1,5 @@
 import React from 'react';
-import { ICouponBackendResponse } from '../../types/order-summary';
-
-export interface IAppliedCouponsBoxProps {
-  appliedCoupons: ICouponBackendResponse[];
-  onRemoveCoupon: (id: string) => void;
-  currency?: string;
-  variant?: 'editable' | 'read-only';
-}
+import { IAppliedCouponsBoxProps } from '../../types/order-summary';
 
 export default function AppliedCouponsBox({
   appliedCoupons,
@@ -14,35 +7,38 @@ export default function AppliedCouponsBox({
   currency = 'EGP',
   variant = 'editable',
 }: IAppliedCouponsBoxProps) {
-  
+  // Variables
   const hasCoupons = appliedCoupons.length > 0;
   const isEditable = variant === 'editable';
 
   return (
-    <div className="w-full min-h-[140px] flex flex-col items-center justify-center border border-solid border-[#E4E7EC] rounded-lg bg-[#FAFAFA] p-5 mb-1">
+    <div className="w-full flex flex-col h-61 gap-1 items-center justify-center border border-border-soft rounded-xl p-5 mb-1 transition-all duration-200 ">
       {!hasCoupons ? (
-        <p className="text-[#98A2B3] text-sm italic font-light tracking-wide select-none">
+        <p className="text-text-muted text-sm italic font-semibold tracking-wide select-none">
           No coupons applied
         </p>
       ) : (
-        <div className="w-full flex flex-col gap-2.5">
+        <div className="w-60  flex flex-col gap-2.5">
           {appliedCoupons.map((coupon) => (
-            <div key={coupon.id} className="flex items-center justify-between w-full bg-white text-gray-800 text-xs px-3.5 py-2.5 rounded-md border border-gray-200 shadow-sm">
-              <div className="flex items-center gap-2">
-                <span className="font-mono font-bold text-[#A61C24] bg-red-50 px-2 py-0.5 rounded border border-red-100">
+            <div
+              key={coupon.id}
+              className="flex items-center justify-between w-full  text-text-muted text-xs rounded-xl border border-border-soft px-2 "
+            >
+              <div className="flex items-center gap-1 h-10  ">
+                <span className="font-mono font-bold text-text-primary bg-bg-secondary-fade px-3 py-1 rounded-lg  ">
                   {coupon.code}
                 </span>
-                <span className="text-gray-500 font-medium">
-                  ({coupon.type === 'PERCENT' ? `${coupon.value}%` : `${coupon.value} ${currency}`} Off)
+                <span className="text-text-muted font-medium">
+                  ({coupon.type === 'PERCENT' ? `${coupon.value}%` : `${coupon.value} ${currency}`}{' '}
+                  Off)
                 </span>
               </div>
 
-              {/* 🛠️ يظهر زر الحذف فقط إذا كان المكون في وضع التعديل التفاعلي */}
               {isEditable && (
                 <button
                   type="button"
                   onClick={() => onRemoveCoupon(coupon.id)}
-                  className="text-gray-400 hover:text-red-600 focus:outline-none transition-colors duration-150 p-1 font-bold text-sm cursor-pointer"
+                  className="text-text-primary  focus:outline-none transition-colors duration-150 p-1 font-bold text-sm cursor-pointer"
                 >
                   ✕
                 </button>

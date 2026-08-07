@@ -1,33 +1,27 @@
-import { ICouponBackendResponse } from '../../types/order-summary';
+import { ICouponBackendResponse, IValidationResult } from '../../types/order-summary';
 
 export default function CheckIsCouponValid(
   coupon: ICouponBackendResponse,
-  currentSubtotal: number
-): { isValid: boolean; reason: string } {
-  // Variables (derived)
+  subtotal: number
+): IValidationResult {
+  if (!coupon.isActive) {
+    return { isValid: false, message: 'Invalid or expired coupon' };
+  }
+  if (coupon.usageLimit !== null && coupon.usedCount >= coupon.usageLimit) {
+    return { isValid: false, message: ' Invalid or expired coupon' };
+  }
+  //Variables
   const now = new Date();
   const validFromDate = new Date(coupon.validFrom);
   const validUntilDate = new Date(coupon.validUntil);
 
-  if (!coupon.isActive) {
-    return { isValid: false, reason: 'Coupon is disabled' };
+  if (now < validFromDate || now > validUntilDate) {
+    return { isValid: false, message: 'Invalid or expired coupon' };
   }
 
-  if (now < validFromDate) {
-    return { isValid: false, reason: 'Coupon is not active yet' };
+  if (coupon.minPurchase !== null && subtotal < coupon.minPurchase) {
+    return { isValid: false, message: ' Invalid or expired coupon' };
   }
 
-  if (now > validUntilDate) {
-    return { isValid: false, reason: 'Coupon has expired' };
-  }
-
-  if (coupon.usageLimit !== null && coupon.usedCount >= coupon.usageLimit) {
-    return { isValid: false, reason: 'Coupon usage limit has been reached' };
-  }
-
-  if (coupon.minPurchase !== null && currentSubtotal < coupon.minPurchase) {
-    return { isValid: false, reason: `Min purchase required is ${coupon.minPurchase}` };
-  }
-
-  return { isValid: true, reason: 'Success' };
+  return { isValid: true, message: null };
 }
