@@ -139,7 +139,14 @@
         "emailPlaceholder": "user@example.com",
         "continue": "متابعة",
         "footerText": "هل لديك حساب بالفعل؟ ",
-        "registerLink": "سجل الدخول "
+        "registerLink": "سجل الدخول ",
+        "errors": {
+          "email-required": "البريد الإلكتروني مطلوب.",
+          "invalid-email": "يرجى إدخال بريد إلكتروني صالح.",
+          "no-account": "لم يتم العثور على حساب بهذا البريد.",
+          "email-already-registered": "هذا البريد الإلكتروني مسجل بالفعل.",
+          "something-went-wrong": "حدث خطأ ما. يرجى المحاولة مرة أخرى."
+        }
       },
       "otp": {
         "title": "إنشاء حساب",
@@ -206,6 +213,7 @@
     }
   },
   "home": {
+    "discover": "اكتشف",
     "hero-aside": {
       "badge": "ابتداءً من 10.99 جنيه",
       "title": "هدايا مميزة للأشخاص الذين تحبهم",
@@ -348,6 +356,17 @@
       "load-error ": "فشل تحميل العناوين.",
       "no-addresses-error": "أضف عنوانك الأول للمتابعة"
     },
+    "step2Title": "طريقة الدفع",
+    "cashOnDelivery": "الدفع عند الاستلام",
+    "creditCard": "بطاقة ائتمانية",
+    "placeOrder": "تقديم الطلب",
+    "orderSuccess": "تم تقديم طلبك بنجاح!",
+    "orderFailed": "فشل تقديم الطلب. حاول مجدداً.",
+    "selectPaymentMethod": "يرجى اختيار طريقة الدفع.",
+    "selectAddress": "يرجى اختيار عنوان التوصيل.",
+    "stepIndicator": "الخطوة {current} من {total}",
+    "cashDescription": "سيتم الدفع نقداً عند استلام الطلب.",
+    "creditDescription": "سيتم تحويلك بشكل آمن لإتمام عملية الدفع.",
     "next": "التالي",
     "back": "رجوع"
   },

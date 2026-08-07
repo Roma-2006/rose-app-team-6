@@ -30,7 +30,25 @@
     "login": "Login",
     "search-default": "Products you may like",
     "search-empty": "No products found",
-    "search-error": "Search failed. Try again."
+    "search-error": "Search failed. Try again.",
+    "notifications": {
+      "title": "Notifications ({count})",
+      "no-notifications": "No notifications yet",
+      "clear-all": "Clear all notifications",
+      "mark-all-as-read": "Mark all as read",
+      "notification-settings": {
+        "mark-as-read": "Mark as read",
+        "delete": "Delete"
+      }
+    },
+    "user-menu": {
+      "title": "Hello ",
+      "account": "My Account",
+      "addresses": "My Addresses",
+      "orders": "My Orders",
+      "dashboard": "Dashboard",
+      "logout": "Logout"
+    }
   },
   "nav": {
     "home": "Home",
@@ -131,6 +149,7 @@
         }
       },
       "otp": {
+        "title": "Create Account",
         "subtitle-1": "Enter Verification Code",
         "subtitle-2": "We have sent a 6-digit code to {email}",
         "resend": "Send a new code",
@@ -254,6 +273,7 @@
       "titlePart1": "Check Out",
       "titlePart2": "What Everyone’s Buying",
       "titlePart3": "Right Now",
+      "titlePart4": "",
       "description": "Not sure what to choose?\nStart with our best sellers, these are the gifts our customers keep coming back for.\nWhether you're celebrating a birthday, anniversary or wedding, our top picks are guaranteed to leave a lasting impression.",
       "exploreButton": "Explore gifts"
     },
@@ -337,6 +357,17 @@
       "load-error ": "Failed to load addresses.",
       "no-addresses-error": "Add your first address to continue"
     },
+    "step2Title": "Payment Method",
+    "cashOnDelivery": "Cash on Delivery",
+    "creditCard": "Credit Card",
+    "placeOrder": "Place Order",
+    "orderSuccess": "Order placed successfully!",
+    "orderFailed": "Order failed. Please try again.",
+    "selectPaymentMethod": "Please select a payment method.",
+    "selectAddress": "Please select a delivery address.",
+    "stepIndicator": "Step {current} of {total}",
+    "cashDescription": "You'll pay in cash when your order is delivered.",
+    "creditDescription": "You'll be securely redirected to complete your payment.",
     "next": "Next",
     "back": "Back"
   },

@@ -43,6 +43,22 @@ export async function addToCartAction(productId: string, quantity: number = 1) {
   return response.json();
 }
 
+export async function clearCartAction() {
+  const token = await getAuthToken();
+
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cart`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      accept: 'application/json',
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to clear cart');
+  }
+}
+
 export async function updateCartQuantityAction(itemId: string, quantity: number) {
   const token = await getAuthToken();
 

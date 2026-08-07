@@ -14,7 +14,8 @@ export default function Stepper({ currentStep, numberOfSteps = 4, type = 'start'
   const locale = useLocale();
   const isRtl = locale === 'ar';
 
-  const formatStepNumber = (num: number) => (isRtl ? num.toLocaleString('ar-EG') : num.toString());
+  const formatStepNumber = (num: number) =>
+    isRtl ? num.toString().replace(/\d/g, (d) => '٠١٢٣٤٥٦٧٨٩'[+d]) : num.toString();
 
   const renderDot = (step: number) => {
     const isCompletedOrCurrent = step <= currentStep;
@@ -96,7 +97,7 @@ export default function Stepper({ currentStep, numberOfSteps = 4, type = 'start'
       </div>
     );
   }
-  
+
   // type === 'start' (default) — edge-to-edge, dots pinned to container edges
   const progressWidth = ((currentStep - 1) / (steps.length - 1)) * 100;
 
@@ -113,7 +114,10 @@ export default function Stepper({ currentStep, numberOfSteps = 4, type = 'start'
         />
         <div className="flex justify-between w-full relative z-10">
           {steps.map((step) => (
-            <div key={step} className="relative flex items-center justify-center transition-colors duration-300">
+            <div
+              key={step}
+              className="relative flex items-center justify-center transition-colors duration-300"
+            >
               {renderDot(step)}
             </div>
           ))}

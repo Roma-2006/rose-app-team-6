@@ -13,6 +13,7 @@ import Stepper from '@/shared/components/custom-ui/stepper';
 import ShippingAddressStep from './address/shipping-address/shipping-address-step';
 import { Button } from '@/shared/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
+import { CheckoutPaymentStep } from './payment/payment';
 
 const CheckoutSteps = ({ initialAddresses, initialAddressesError }: CheckoutStepsProps) => {
   // translations
@@ -30,19 +31,28 @@ const CheckoutSteps = ({ initialAddresses, initialAddressesError }: CheckoutStep
   // functions
 
   const handleAddressAdded = (newAddress: Address) => {
+    console.log('[Checkout] Address added:', newAddress);
     setAddresses((prev) => [...prev, newAddress]);
     setSelectedAddressId(newAddress.id);
   };
 
   const handelNextStep = () => {
+    console.log('| selectedAddressId:', selectedAddressId);
     if (initialAddresses && initialAddresses.length > 0) {
-      setCurrentStep((prev) => prev + 1);
+      setCurrentStep((prev) => {
+        console.log('[Checkout] Moving to step:', prev + 1);
+        return prev + 1;
+      });
     }
   };
 
   const handleBackStep = () => {
+    console.log('[Checkout] Back step triggered — currentStep:', currentStep);
     if (currentStep > 1) {
-      setCurrentStep((prev) => prev - 1);
+      setCurrentStep((prev) => {
+        console.log('[Checkout] Moving back to step:', prev - 1);
+        return prev - 1;
+      });
     }
   };
 
@@ -64,15 +74,7 @@ const CheckoutSteps = ({ initialAddresses, initialAddressesError }: CheckoutStep
         )}
 
         {currentStep === 2 && (
-          <Button
-            variant="primary"
-            buttonVariant="text"
-            // disabled={!canProceed}
-            onClick={handleBackStep}
-            title={t('back')}
-            className="self-end"
-            leftIcon={<ArrowLeft size={20} />}
-          />
+          <CheckoutPaymentStep selectedAddressId={selectedAddressId} onBack={handleBackStep} />
         )}
       </div>
       <aside className="w-121.25  flex flex-col gap-4 bg-bg-soft">
