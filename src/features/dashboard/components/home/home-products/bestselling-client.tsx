@@ -5,7 +5,6 @@ import { useLocale, useTranslations } from 'next-intl';
 
 import { Button } from '@/shared/components/ui/button';
 
-import { ProductCardSkeleton } from './product-card-skelton';
 import { ProductCard } from './Product-card';
 import { Product } from '@/features/dashboard/types/products';
 import { Carousel } from '../../shared/carousel';
@@ -15,10 +14,7 @@ interface BestSellingSectionClientProps {
   isLoading?: boolean;
 }
 
-export const BestSellingSectionClient = ({
-  products,
-  isLoading = false,
-}: BestSellingSectionClientProps) => {
+export const BestSellingSectionClient = ({ products }: BestSellingSectionClientProps) => {
   const locale = useLocale();
   const isRtl = locale === 'ar';
   const t = useTranslations('home.bestSelling');
@@ -65,17 +61,11 @@ export const BestSellingSectionClient = ({
         {/* Right/Bottom Content */}
         <div className="relative flex-1 lg:max-w-5xl w-full">
           <Carousel>
-            {isLoading
-              ? [...Array(4)].map((_, i) => (
-                  <div key={i} className="snap-start">
-                    <ProductCardSkeleton />
-                  </div>
-                ))
-              : products?.map((product) => (
-                  <div key={product.id} className="snap-start">
-                    <ProductCard product={product} />
-                  </div>
-                ))}
+            {products?.map((product) => (
+              <div key={product.id} className="snap-start">
+                <ProductCard product={product} />
+              </div>
+            ))}
           </Carousel>
         </div>
       </div>

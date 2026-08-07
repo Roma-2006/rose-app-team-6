@@ -9,7 +9,6 @@ import { useProductActions } from '../../../hooks/use-product-actions';
 import { Product } from '@/features/dashboard/types/products';
 import type { LocalCartProduct } from '@/features/dashboard/types/local-cart';
 import { Button } from '@/shared/components/ui/button';
-import { cn } from '@/shared/lib/utils/tailwind-cn';
 
 export const ProductCard = ({
   product,

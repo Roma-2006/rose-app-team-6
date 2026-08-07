@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { getLocale, getTranslations } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 
 import { ArrowRight } from 'lucide-react';
@@ -18,7 +18,6 @@ interface MostPopularSectionProps {
 
 const MostPopularSectionContent = async ({ occasionId }: MostPopularSectionProps) => {
   const t = await getTranslations('home.most-Popular');
-  await getLocale();
 
   let products: Product[] | undefined;
   let visibleOccasions: Awaited<ReturnType<typeof getOccasions>> = [];

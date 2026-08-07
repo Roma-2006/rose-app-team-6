@@ -370,5 +370,36 @@
         "title": "Reset All"
       }
     }
+  },
+
+    "address": {
+    "modal": {
+      "title": "My Addresses"
+    },
+    "add": {
+      "title": "Add New Address",
+      "step1Title": "Basic Information",
+      "step2Title": "Set Location on Map"
+    },
+    "editTitle": "Edit Address",
+    "city": "City",
+    "details": "Address Details",
+    "phone": "Phone Number",
+    "next": "Next Step",
+    "save": "Save Changes",
+    "addAddress": "Add a New Address",
+    "empty": "You don't have any saved addresses yet.",
+    "findMyLocation": "Find my location",
+    "deleteConfirm": "Are you sure you want to delete this address?",
+    "confirmDelete": "Delete",
+    "cancel": "Cancel",
+    "placeholder": {
+      "city": "Enter city name",
+      "street": "Enter your full address (building, floor, apartment...)"
+    },
+       
+    "added": "Address added successfully",
+    "updated": "Address updated successfully",
+    "deleted": "Address deleted successfully"
   }
 }
