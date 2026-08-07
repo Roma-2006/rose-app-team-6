@@ -21,7 +21,7 @@ function HelloButton({ name, className, variant, ...props }: HelloButtonProps) {
       buttonVariant="text"
       {...props}
       variant={variant ?? 'ghost'}
-      className={cn('h-auto items-center gap-1.5 rounded-lg px-2 py-1 w-fit', className)}
+      className={cn('h-auto w-fit items-center gap-1.5 rounded-lg px-2 py-1 ', className)}
     >
       <span className="flex flex-col items-start leading-tight rtl:items-end">
         <span className="text-xs font-normal text-text-muted">{t('header.user-menu.title')}</span>

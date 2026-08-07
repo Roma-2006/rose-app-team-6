@@ -32,24 +32,30 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
-        const data = await login(result.data);
+        try {
+          const data = await login(result.data);
 
-        if (!data.status) {
-          throw new Error(data.message);
+          if (!data.status) {
+            throw new Error(data.message || 'Login failed');
+          }
+
+          const { user, token } = data.payload ?? {};
+
+          if (!user || !token) {
+            return null;
+          }
+
+          return {
+            id: String(user.id),
+            user,
+            token,
+            rememberMe: isRememberMe,
+          };
+        } catch (error) {
+          const message = error instanceof Error ? error.message : 'Login failed';
+          console.error('❌ Credentials authorize failed:', message);
+          throw new Error(message);
         }
-
-        const { user, token } = data.payload ?? {};
-
-        if (!user || !token) {
-          return null;
-        }
-
-        return {
-          id: String(user.id),
-          user: user,
-          token: token,
-          rememberMe: isRememberMe,
-        };
       },
     }),
   ],
@@ -60,13 +66,14 @@ export const authOptions: NextAuthOptions = {
         token.user = user.user;
         token.token = user.token;
         token.rememberMe = user.rememberMe;
-
-        if (user.rememberMe) {
-          token.exp = Math.floor(Date.now() / 1000) + 30 * 24 * 60 * 60; // 30 days
-        } else {
-          token.exp = Math.floor(Date.now() / 1000) + 1 * 24 * 60 * 60; // 1 day
-        }
       }
+
+      if (token.rememberMe) {
+        token.exp = Math.floor(Date.now() / 1000) + 30 * 24 * 60 * 60;
+      } else if (!token.exp) {
+        token.exp = Math.floor(Date.now() / 1000) + 1 * 24 * 60 * 60;
+      }
+
       return token;
     },
 

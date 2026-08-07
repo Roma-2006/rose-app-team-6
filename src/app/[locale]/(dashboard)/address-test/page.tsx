@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { AddressBookModal } from '@/features/address/components/address-model';
+import { AddressBookModal } from '@/features/main/components/address/address-model';
 
 export default function CheckoutTestPage() {
   const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);

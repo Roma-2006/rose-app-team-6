@@ -24,7 +24,6 @@ export function LanguageSwitcherAuth() {
       onClick={handleSwitchLanguage}
       aria-label={t('auth.langLabel')}
       className=" cursor-pointer text-text-plaint text-lg"
-
     >
       {t('auth.switchLang')}
     </button>
