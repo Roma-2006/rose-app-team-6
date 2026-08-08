@@ -12,7 +12,11 @@
     "confirm": "تأكيد",
     "next": "التالي",
     "add-review": "أضف تقييمًا",
-    "adding": "إضافة..."
+    "adding": "إضافة...",
+   "applyCoupon":"تطبيق",
+  "checkout":"المتابعة للدفع"
+
+
   },
   "common": {
     "select": {
@@ -408,7 +412,13 @@
   
   "cart": {
     "title": "سله",
-     "title-2": " منتجات قد تعجبك",
+    "title-2": " منتجات قد تعجبك",
+    "couponPlaceholder":"رمز الكوبون",
+    "invalidCoupon":"كوبون غير صالح أو منتهي الصلاحية",
+    "couponApplied":"تم تطبيق الكوبون!",
+    "NocouponApplied":"لم يتم تطبيق أي كوبونات",
+    "subtotal":"المجموع الفرعي",
+    "total ":"الإجمالي",
     "products":"منتاجات",
     "clearCart": "إفراغ السلة",
     "confirmClear": "هل أنت أصلًا متاكد من إفراغ السلة؟",

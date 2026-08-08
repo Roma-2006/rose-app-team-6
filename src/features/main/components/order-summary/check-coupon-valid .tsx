@@ -1,14 +1,18 @@
 import { ICouponBackendResponse, IValidationResult } from '../../types/order-summary';
+import { getTranslations } from 'next-intl/server';
 
-export default function CheckIsCouponValid(
+export default async function CheckIsCouponValid(
   coupon: ICouponBackendResponse,
   subtotal: number
-): IValidationResult {
+): Promise<IValidationResult> {
+  //Transelation
+  const tSummary = await getTranslations('cart');
+
   if (!coupon.isActive) {
-    return { isValid: false, message: 'Invalid or expired coupon' };
+    return { isValid: false, message: tSummary('invalidCoupon') };
   }
   if (coupon.usageLimit !== null && coupon.usedCount >= coupon.usageLimit) {
-    return { isValid: false, message: ' Invalid or expired coupon' };
+    return { isValid: false, message: tSummary('invalidCoupon') };
   }
   //Variables
   const now = new Date();
@@ -16,11 +20,11 @@ export default function CheckIsCouponValid(
   const validUntilDate = new Date(coupon.validUntil);
 
   if (now < validFromDate || now > validUntilDate) {
-    return { isValid: false, message: 'Invalid or expired coupon' };
+    return { isValid: false, message: tSummary('invalidCoupon') };
   }
 
   if (coupon.minPurchase !== null && subtotal < coupon.minPurchase) {
-    return { isValid: false, message: ' Invalid or expired coupon' };
+    return { isValid: false, message: tSummary('invalidCoupon') };
   }
 
   return { isValid: true, message: null };

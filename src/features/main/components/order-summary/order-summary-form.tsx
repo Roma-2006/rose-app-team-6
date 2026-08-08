@@ -1,9 +1,11 @@
+'use client';
 import React, { useState } from 'react';
 import { ICouponBackendResponse, ICouponFormProps } from '../../types/order-summary';
 import CheckIsCouponValid from './check-coupon-valid ';
 import CustomInput from '@/shared/components/custom-input';
 import { Button } from '@/shared/components/ui/button';
 import { TicketPercent } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 const LOCAL_COUPONS_DATABASE: ICouponBackendResponse[] = [
   {
@@ -54,13 +56,17 @@ const LOCAL_COUPONS_DATABASE: ICouponBackendResponse[] = [
 ];
 
 export default function CouponForm({ subtotal, onValidCouponApplied }: ICouponFormProps) {
+  //Transelation
+  const tSummary = useTranslations('cart');
+  const tButton = useTranslations('button');
+
   // States
   const [couponInput, setCouponInput] = useState('');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isButtonLoading, setIsButtonLoading] = useState(false);
 
   // Functions
-  const handleApply = (e: React.FormEvent) => {
+  const handleApply = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage(null);
     const cleanCoupon = couponInput.trim().toUpperCase();
@@ -80,7 +86,7 @@ export default function CouponForm({ subtotal, onValidCouponApplied }: ICouponFo
       return;
     }
 
-    const validation = CheckIsCouponValid(matchedCoupon, subtotal);
+    const validation = await CheckIsCouponValid(matchedCoupon, subtotal);
 
     if (validation.isValid) {
       onValidCouponApplied(matchedCoupon);
@@ -100,7 +106,7 @@ export default function CouponForm({ subtotal, onValidCouponApplied }: ICouponFo
           variant="default"
           label=" "
           value={couponInput}
-          placeholder="Coupon Code"
+          placeholder={tSummary('couponPlaceholder')}
           onChange={(e) => {
             setCouponInput(e.target.value);
             if (errorMessage) setErrorMessage(null);
@@ -112,7 +118,7 @@ export default function CouponForm({ subtotal, onValidCouponApplied }: ICouponFo
           buttonVariant="text"
           variant="primary"
           disabled={isButtonLoading}
-          title=" Apply Coupon"
+          title={tButton('applyCoupon')}
           leftIcon={<TicketPercent size={20} />}
           loading={isButtonLoading}
           className="w-40  mt-6 py-3"
@@ -120,7 +126,7 @@ export default function CouponForm({ subtotal, onValidCouponApplied }: ICouponFo
       </form>
 
       {errorMessage && (
-        <p className="text-sm text-red-500 font-medium mt-0.5" role="alert">
+        <p className="text-sm text-text-danger font-medium mt-0.5" role="alert">
           {errorMessage}
         </p>
       )}

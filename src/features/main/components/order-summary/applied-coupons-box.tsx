@@ -1,5 +1,6 @@
 import React from 'react';
 import { IAppliedCouponsBoxProps } from '../../types/order-summary';
+import { useTranslations } from 'next-intl';
 
 export default function AppliedCouponsBox({
   appliedCoupons,
@@ -7,6 +8,9 @@ export default function AppliedCouponsBox({
   currency = 'EGP',
   variant = 'editable',
 }: IAppliedCouponsBoxProps) {
+  //Transelation
+  const tSummary = useTranslations('cart');
+
   // Variables
   const hasCoupons = appliedCoupons.length > 0;
   const isEditable = variant === 'editable';
@@ -15,7 +19,7 @@ export default function AppliedCouponsBox({
     <div className="w-full flex flex-col h-61 gap-1 items-center justify-center border border-border-soft rounded-xl p-5 mb-1 transition-all duration-200 ">
       {!hasCoupons ? (
         <p className="text-text-muted text-sm italic font-semibold tracking-wide select-none">
-          No coupons applied
+          {tSummary('NocouponApplied')}
         </p>
       ) : (
         <div className="w-60  flex flex-col gap-2.5">

@@ -1,5 +1,6 @@
 import React from 'react';
 import { ITotalPriceProps } from '../../types/order-summary';
+import { useTranslations } from 'next-intl';
 
 export default function TotalPrice({
   subtotal,
@@ -7,6 +8,9 @@ export default function TotalPrice({
   currency = 'EGP',
   isRecalculating,
 }: ITotalPriceProps) {
+  //Transelation
+  const tSummary = useTranslations('cart');
+
   // Variables (derived)
   const totalDiscountAmount = appliedCoupons.reduce((sum, coupon) => {
     if (coupon.type === 'PERCENT') {
@@ -26,7 +30,7 @@ export default function TotalPrice({
   return (
     <div className="w-full space-y-4    font-sans">
       <div className="flex justify-between text-lg font-medium text-text-plain">
-        <span>Subtotal</span>
+        <span>{tSummary('subtotal')}</span>
         <span className="font-semibold text-black">
           {subtotal.toFixed(0)} {currency}
         </span>
@@ -50,7 +54,7 @@ export default function TotalPrice({
           )}
 
           <div className="flex justify-between items-baseline pt-2 border-t border-border-soft">
-            <span className="text-2xl font-bold text-text-primary">Total</span>
+            <span className="text-2xl font-bold text-text-primary">{tSummary('total')}</span>
             <span className="text-2xl font-bold text-text-primary tracking-tight">
               {total.toFixed(0)} {currency}
             </span>

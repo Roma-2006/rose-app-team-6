@@ -12,7 +12,11 @@
     "confirm": "Confirm",
     "next": "Next",
      "add-review":"Add Review",
-    "adding":"Adding..."
+    "adding":"Adding...",
+    "applyCoupon":"Apply",
+    "checkout":"Checkout"
+
+
   },
   "common": {
     "select": {
@@ -397,6 +401,12 @@
   "cart": {
     "title": " Cart",
     "title-2": " Products You May Like",
+    "couponPlaceholder":"Coupon Code",
+    "invalidCoupon":"Invalid or expired coupon",
+    "couponApplied":"Coupon applied",
+    "NocouponApplied":"No coupons applied",
+    "subtotal":"Subtotal",
+    "total ":"Total",
     "products":"products",
     "clearCart": "Clear Cart",
     "confirmClear": "Are you sure you want to clear your cart?",

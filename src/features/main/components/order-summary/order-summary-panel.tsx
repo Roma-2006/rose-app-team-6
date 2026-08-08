@@ -7,12 +7,16 @@ import TotalPrice from './total-price';
 import { Button } from '@/shared/components/ui/button';
 import { MoveRight } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
+import { useTranslations } from 'next-intl';
 
 export default function OrderSummaryPanel({
   subtotal,
   variant = 'editable',
   className,
 }: IOrderSummaryPanelProps) {
+  //Transelation
+  const tButton = useTranslations('button');
+
   // Variables
   const isEditable = variant === 'editable';
 
@@ -58,7 +62,7 @@ export default function OrderSummaryPanel({
         type="submit"
         buttonVariant="text"
         variant="primary"
-        title="Checkout"
+        title={tButton('checkout')}
         rightIcon={<MoveRight size={20} />}
         className="w-full  mt-6 py-3"
       >
