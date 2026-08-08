@@ -21,7 +21,7 @@ export const BestSellingSectionLoading = () => {
             <div className="h-4 w-11/12 rounded-md bg-bg-soft animate-pulse" />
             <div className="h-4 w-4/5 rounded-md bg-bg-soft animate-pulse" />
             <div className="h-4 w-4/6 rounded-md bg-bg-soft animate-pulse" />
-             <div className="h-4 w-4/8 rounded-md bg-bg-soft animate-pulse" />
+            <div className="h-4 w-4/8 rounded-md bg-bg-soft animate-pulse" />
           </div>
 
           {/* Button */}
@@ -32,10 +32,7 @@ export const BestSellingSectionLoading = () => {
         <div className="relative flex-1 lg:max-w-5xl w-full overflow-hidden">
           <div className="flex gap-6">
             {[...Array(4)].map((_, i) => (
-              <div
-                key={i}
-                className="shrink-0 w-72 pointer-events-none select-none"
-              >
+              <div key={i} className="shrink-0 w-72 pointer-events-none select-none">
                 <ProductCardSkeleton />
               </div>
             ))}

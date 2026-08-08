@@ -6,8 +6,7 @@ import {
   CreateAddressRequest,
   UpdateAddressRequest,
   GetAddressesResponse,
-  ApiResponse
-
+  ApiResponse,
 } from '../types/address-model';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -15,7 +14,6 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 if (!API_URL) {
   throw new Error('NEXT_PUBLIC_API_URL is not defined');
 }
-
 
 async function addressFetch<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
   const token = await getAuthToken();

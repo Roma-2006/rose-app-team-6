@@ -251,9 +251,10 @@
     },
     "bestSelling": {
       "badge": "Best Selling",
-      "titlePart1": "Check Out",
-      "titlePart2": "What Everyone’s Buying",
-      "titlePart3": "Right Now",
+        "titlePart1": "Check Out",
+      "titlePart2": "What Everyone’s",
+       "titlePart3": "Buying",
+      "titlePart4": "Right Now",
       "description": "Not sure what to choose?\nStart with our best sellers, these are the gifts our customers keep coming back for.\nWhether you're celebrating a birthday, anniversary or wedding, our top picks are guaranteed to leave a lasting impression.",
       "exploreButton": "Explore gifts"
     },
@@ -407,15 +408,16 @@
     },
     "add": {
       "title": "Add New Address",
-      "step1Title": "Basic Information",
-      "step2Title": "Set Location on Map"
+      "step1Title": "Enter Address Details",
+      "step2Title": "Find Your Location"
     },
     "editTitle": "Edit Address",
     "city": "City",
     "details": "Address Details",
     "phone": "Phone Number",
-    "next": "Next Step",
-    "save": "Save Changes",
+    "next": "Next",
+    "save": "Add Address",
+    "updateAddress": "Update Address",
     "addAddress": "Add a New Address",
     "empty": "You don't have any saved addresses yet.",
     "findMyLocation": "Find my location",

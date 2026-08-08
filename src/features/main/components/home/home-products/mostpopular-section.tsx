@@ -11,16 +11,13 @@ import MostPopularSectionLoading from './mostpopular-loading';
 import SectionTitle from '@/shared/components/custom-ui/section-heading';
 import { getOccasions } from '@/features/main/api/occasion.api';
 
-
-
- const HOME_OCCASIONS = ['Wedding', 'Anniversary', 'Birthday', 'Engagement'];
+const HOME_OCCASIONS = ['Wedding', 'Anniversary', 'Birthday', 'Engagement'];
 
 interface MostPopularSectionProps {
   occasionId?: string;
 }
 
 const MostPopularSectionContent = async ({ occasionId }: MostPopularSectionProps) => {
-
   const t = await getTranslations('home.most-Popular');
 
   let products: Product[] | undefined;
@@ -53,7 +50,6 @@ const MostPopularSectionContent = async ({ occasionId }: MostPopularSectionProps
 };
 
 export const MostPopularSection = async ({ occasionId }: MostPopularSectionProps) => {
-  
   const t = await getTranslations('home.most-Popular');
 
   let visibleOccasions: Awaited<ReturnType<typeof getOccasions>> = [];
@@ -86,7 +82,7 @@ export const MostPopularSection = async ({ occasionId }: MostPopularSectionProps
         </div>
       </div>
 
-      {/* Products Grid (suspense for loading state) */}
+      {/* Products Grid  */}
       <Suspense fallback={<MostPopularSectionLoading />}>
         <MostPopularSectionContent occasionId={occasionId} />
       </Suspense>

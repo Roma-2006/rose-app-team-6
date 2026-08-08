@@ -64,9 +64,10 @@ export function AddressDeleteConfirmation({
                 type="button"
                 buttonVariant="text"
                 variant="destructive"
-                title={isMutating ? '...' : t('confirmDelete')}
+                title={t('confirmDelete')}
                 onClick={onConfirm}
                 disabled={isMutating}
+                loading={isMutating}
                 className="flex-1 rounded-xl bg-bg-danger font-bold text-text-inverse py-3.5 px-4"
               />
             </div>

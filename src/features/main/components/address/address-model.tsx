@@ -15,13 +15,6 @@ interface AddressBookModalProps {
   isOpen?: boolean;
   onOpenChange?: (open: boolean) => void;
 }
-interface Props {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-  onClose: () => void;
-  onConfirm: () => void;
-  isMutating?: boolean;
-}
 
 type AddressView = 'list' | 'add' | 'edit';
 
@@ -113,32 +106,12 @@ export function AddressBookModal({
       <Dialog open={isOpen} onOpenChange={handleOpenChange}>
         <DialogContent
           showCloseButton={false}
-          className="flex h-[650px] w-[calc(100vw-32px)] max-w-[850px] flex-col gap-6 overflow-hidden rounded-2xl border border-border-soft bg-bg-plain p-6 ring-1 ring-border-soft sm:max-w-[850px]"
+          className="flex h-160 w-full !max-w-4xl flex-col gap-6 overflow-hidden rounded-2xl border border-border-soft bg-bg-plain p-6 ring-1 ring-border-soft"
         >
           {renderContent()}
         </DialogContent>
       </Dialog>
-      {/* 
-      <Dialog
-        open={isDeleteOpen}
-        onOpenChange={(open) => {
-          if (!open) {
-            handleDeleteClose();
-          } else {
-            setIsDeleteOpen(true);
-          }
-        }}
-      >
-      <DialogContent
-  showCloseButton={false}
-  className="!w-xl !max-w-4xl rounded-4xl border border-border-soft bg-bg-plain p-8 shadow-xl ring-1 ring-border-soft"
-> <AddressDeleteConfirmation
-            onClose={handleDeleteClose}
-            onConfirm={handleDeleteConfirm}
-            isMutating={isMutating}
-          />
-        </DialogContent>
-      </Dialog> */}
+
       <AddressDeleteConfirmation
         open={isDeleteOpen}
         onOpenChange={setIsDeleteOpen}

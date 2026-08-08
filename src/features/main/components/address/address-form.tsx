@@ -91,7 +91,7 @@ export function AddressForm({ mode, initialData, onBack }: AddressFormProps) {
       <form onSubmit={handleSubmit(onSubmit)} className="flex min-h-0 flex-1 flex-col  ">
         {step === 1 ? (
           <div className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto pr-2 animate-in fade-in duration-300">
-            <h3 className="  text-lg font-medium text-text-primary ">{t('add.step1Title')}</h3>
+            <h3 className="  text-2xl font-medium text-text-primary ">{t('add.step1Title')}</h3>
             <div className="space-y-2">
               <Controller
                 name="city"
@@ -199,7 +199,7 @@ export function AddressForm({ mode, initialData, onBack }: AddressFormProps) {
               loading={isMutating}
               disabled={watch('latitude') === null || watch('longitude') === null}
               onClick={handleSubmit(onSubmit)}
-              title={mode === 'add' ? t('addAddress') : t('save')}
+              title={mode === 'add' ? t('save') : t('updateAddress')}
               className="h-14 w-full rounded-xl text-lg font-bold"
             />
           </div>
