@@ -6,8 +6,9 @@ import {
   CreateAddressRequest,
   UpdateAddressRequest,
   GetAddressesResponse,
-  ApiErrorResponse,
-} from '../types/address.types';
+  ApiResponse
+
+} from '../types/address-model';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -15,28 +16,6 @@ if (!API_URL) {
   throw new Error('NEXT_PUBLIC_API_URL is not defined');
 }
 
-interface ApiResponse<T> {
-  status: boolean;
-  code: number;
-  payload: T;
-}
-
-function formatApiError(errorData: ApiErrorResponse | null): string {
-  if (errorData?.errors?.length) {
-    const details = errorData.errors
-      .map((err) => {
-        const field = err.path ?? 'field';
-        const message = err.message ?? err.messages?.[0] ?? 'Invalid value';
-
-        return `${field}: ${message}`;
-      })
-      .join(' | ');
-
-    return `${errorData.message ? `${errorData.message}: ` : ''}${details}`;
-  }
-
-  return errorData?.message || 'Address API Error';
-}
 
 async function addressFetch<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
   const token = await getAuthToken();
@@ -53,7 +32,7 @@ async function addressFetch<T>(endpoint: string, options: RequestInit = {}): Pro
 
   if (!response.ok) {
     const errorData = await response.json().catch(() => null);
-    throw new Error(formatApiError(errorData));
+    throw new Error(errorData?.message || 'Address API Error');
   }
 
   const data: ApiResponse<T> = await response.json();

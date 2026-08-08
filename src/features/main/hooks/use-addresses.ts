@@ -9,9 +9,9 @@ import {
   createAddressAction,
   updateAddressAction,
   deleteAddressAction,
-} from '../api/address.actions';
+} from '../api/address-model.api';
 
-import type { CreateAddressRequest, UpdateAddressRequest } from '../types/address.types';
+import type { CreateAddressRequest, UpdateAddressRequest } from '../types/address-model';
 
 export const addressesKeys = {
   all: ['addresses'] as const,

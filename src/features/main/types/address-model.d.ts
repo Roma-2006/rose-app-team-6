@@ -19,28 +19,20 @@ export interface CreateAddressRequest {
   isPrimary: boolean;
 }
 
-export type UpdateAddressRequest = Partial<CreateAddressRequest>;
+ type UpdateAddressRequest = Partial<CreateAddressRequest>;
 
-export interface ApiResponse<T> {
-  payload: T;
-  message?: string;
-  status?: number;
-}
 
-export interface GetAddressesResponse {
+
+ interface GetAddressesResponse {
   status: boolean;
   code: number;
   payload: {
     addresses: Address[];
   };
 }
-export interface ApiError {
-  path?: string;
-  message?: string;
-  messages?: string[];
-}
 
-export interface ApiErrorResponse {
-  message?: string;
-  errors?: ApiError[];
+interface ApiResponse<T> {
+  status: boolean;
+  code: number;
+  payload: T;
 }

@@ -1,5 +1,5 @@
 import { MapPin, Phone, Pencil, Trash2 } from 'lucide-react';
-import { Address } from '../../types/address.types';
+import { Address } from '../../types/address-model.d';
 import { Button } from '@/shared/components/ui/button';
 
 interface Props {

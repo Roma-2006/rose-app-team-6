@@ -26,7 +26,7 @@ export const BestSellingSectionClient = ({ products }: BestSellingSectionClientP
           <p className="text-base font-bold uppercase tracking-widest text-text-secondary text-start w-full">
             {t('badge')}
           </p>
-
+         {/* Description */}
           <h2 className="w-full text-start text-3xl font-bold leading-tight">
             <span className="text-text-secondary">{t('titlePart1')} </span>
             <span className="text-text-primary">{t('titlePart2')} </span>

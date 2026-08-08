@@ -4,7 +4,7 @@ import { AddressCard } from './address-card';
 import { AddressEmpty } from './address-empty';
 import { useTranslations } from 'next-intl';
 
-import { Address } from '../../types/address.types';
+import { Address } from '../../types/address-model';
 
 interface AddressListProps {
   isLoading: boolean;

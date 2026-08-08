@@ -6,10 +6,10 @@ import { useAddresses } from '../../hooks/use-addresses';
 
 import { AddressForm } from './address-form';
 import { AddressDeleteConfirmation } from './address-delete-confirmation';
-import { Address } from '../../types/address.types';
+import { Address } from '../../types/address-model.d';
 
 import { Dialog, DialogContent } from '@/shared/components/ui/dialog';
-import { AddressList } from './address-list';
+import { AddressList } from './address-book-list';
 
 interface AddressBookModalProps {
   isOpen?: boolean;

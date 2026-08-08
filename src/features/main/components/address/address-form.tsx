@@ -9,7 +9,7 @@ import { Textarea } from '@/shared/components/ui/textarea';
 import CustomInput from '@/shared/components/custom-input';
 import { AddressMap } from './address-map';
 import { AddressProgress } from './address-progress';
-import { Address, CreateAddressRequest } from '../../types/address.types';
+import { Address, CreateAddressRequest } from '../../types/address-model';
 import { useAddresses } from '../../hooks/use-addresses';
 import { Value as PhoneValue } from 'react-phone-number-input';
 import { PhoneVariant } from '@/shared/components/ui/phone-variant.';
