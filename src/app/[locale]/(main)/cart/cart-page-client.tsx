@@ -15,6 +15,7 @@ import { useCart } from '@/features/main/hooks/use-cart';
 import { Product } from '@/features/main/types/products';
 import { Carousel } from '@/features/main/components/shared/carousel';
 import { RawCartItem } from '@/features/main/types/raw-cart-item';
+import OrderSummaryPanel from '@/features/main/components/order-summary/order-summary-panel';
 
 interface CartPageProps {
   suggestedProducts: Product[];
@@ -119,7 +120,7 @@ export default function CartPageClient({ suggestedProducts }: CartPageProps) {
         {/* Order Summary */}
         <aside className="lg:col-span-1">
           <div className="border border-dashed border-border-muted p-6 rounded-lg bg-bg-muted/20 text-center text-text-muted">
-            [ Order Summary Panel Slot ]
+            <OrderSummaryPanel subtotal={500} />
           </div>
         </aside>
       </div>

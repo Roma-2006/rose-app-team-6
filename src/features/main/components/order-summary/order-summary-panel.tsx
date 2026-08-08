@@ -4,6 +4,9 @@ import CouponForm from './order-summary-form';
 import { ICouponBackendResponse, IOrderSummaryPanelProps } from '../../types/order-summary';
 import AppliedCouponsBox from './applied-coupons-box';
 import TotalPrice from './total-price';
+import { Button } from '@/shared/components/ui/button';
+import { MoveRight } from 'lucide-react';
+import { Link } from '@/i18n/navigation';
 
 export default function OrderSummaryPanel({
   subtotal,
@@ -50,6 +53,17 @@ export default function OrderSummaryPanel({
         currency="EGP"
         isRecalculating={false}
       />
+
+      <Button
+        type="submit"
+        buttonVariant="text"
+        variant="primary"
+        title="Checkout"
+        rightIcon={<MoveRight size={20} />}
+        className="w-full  mt-6 py-3"
+      >
+        <Link href="/checkout"></Link>
+      </Button>
     </section>
   );
 }
