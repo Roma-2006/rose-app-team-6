@@ -124,7 +124,7 @@ export default function ProductsYouMayLike({ cartItems, isLoadingCart }: IProduc
                   <ProductCardSkeleton />
                 </div>
               ))
-            : suggestedProducts.slice(0, 6).map((product) => (
+            : suggestedProducts.map((product) => (
                 <div key={product.id} className="snap-start">
                   <ProductCard product={product} />
                 </div>

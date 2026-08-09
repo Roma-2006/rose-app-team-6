@@ -5,7 +5,7 @@ import { ICouponBackendResponse, IOrderSummaryPanelProps } from '../../types/ord
 import AppliedCouponsBox from './applied-coupons-box';
 import TotalPrice from './total-price';
 import { Button } from '@/shared/components/ui/button';
-import { MoveRight } from 'lucide-react';
+import { MoveRight, MoveLeft } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 
@@ -15,7 +15,7 @@ export default function OrderSummaryPanel({
   className,
 }: IOrderSummaryPanelProps) {
   //Transelation
-  const tButton = useTranslations('button');
+  const tButton = useTranslations('cart');
 
   // Variables
   const isEditable = variant === 'editable';
@@ -37,8 +37,8 @@ export default function OrderSummaryPanel({
   };
 
   return (
-    <section className={`w-full max-w-95 max-h-111 gap-4 flex flex-col ${className}`}>
-      <h5 className="sec-title text-black text-3xl font-semibold">Summary</h5>
+    <section className={`w-full max-w-114 max-h-114 gap-4 flex flex-col ${className}`}>
+      <h5 className="sec-title text-text-plain text-3xl font-semibold">Summary</h5>
 
       {isEditable && (
         <CouponForm subtotal={subtotal} onValidCouponApplied={handleApplyValidCoupon} />
@@ -63,8 +63,8 @@ export default function OrderSummaryPanel({
         buttonVariant="text"
         variant="primary"
         title={tButton('checkout')}
-        rightIcon={<MoveRight size={20} />}
-        className="w-full  mt-6 py-3"
+        rightIcon={<MoveRight size={20} className="rtl:rotate-180 transition-transform" />}
+        className="w-full  mt-6 py-3 "
       >
         <Link href="/checkout"></Link>
       </Button>

@@ -12,9 +12,8 @@
     "confirm": "Confirm",
     "next": "Next",
      "add-review":"Add Review",
-    "adding":"Adding...",
-    "applyCoupon":"Apply",
-    "checkout":"Checkout"
+    "adding":"Adding..."
+    
 
 
   },
@@ -407,6 +406,8 @@
     "NocouponApplied":"No coupons applied",
     "subtotal":"Subtotal",
     "total ":"Total",
+    "applyCoupon":"Apply",
+    "checkout":"Checkout",
     "products":"products",
     "clearCart": "Clear Cart",
     "confirmClear": "Are you sure you want to clear your cart?",

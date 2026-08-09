@@ -12,10 +12,8 @@
     "confirm": "تأكيد",
     "next": "التالي",
     "add-review": "أضف تقييمًا",
-    "adding": "إضافة...",
-   "applyCoupon":"تطبيق",
-  "checkout":"المتابعة للدفع"
-
+    "adding": "إضافة..."
+   
 
   },
   "common": {
@@ -419,6 +417,8 @@
     "NocouponApplied":"لم يتم تطبيق أي كوبونات",
     "subtotal":"المجموع الفرعي",
     "total ":"الإجمالي",
+    "applyCoupon":"تطبيق",
+  "checkout":"المتابعة للدفع",
     "products":"منتاجات",
     "clearCart": "إفراغ السلة",
     "confirmClear": "هل أنت أصلًا متاكد من إفراغ السلة؟",

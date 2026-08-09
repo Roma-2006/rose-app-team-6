@@ -57,8 +57,7 @@ const LOCAL_COUPONS_DATABASE: ICouponBackendResponse[] = [
 
 export default function CouponForm({ subtotal, onValidCouponApplied }: ICouponFormProps) {
   //Transelation
-  const tSummary = useTranslations('cart');
-  const tButton = useTranslations('button');
+  const tForm = useTranslations('cart');
 
   // States
   const [couponInput, setCouponInput] = useState('');
@@ -106,7 +105,7 @@ export default function CouponForm({ subtotal, onValidCouponApplied }: ICouponFo
           variant="default"
           label=" "
           value={couponInput}
-          placeholder={tSummary('couponPlaceholder')}
+          placeholder={tForm('couponPlaceholder')}
           onChange={(e) => {
             setCouponInput(e.target.value);
             if (errorMessage) setErrorMessage(null);
@@ -118,7 +117,7 @@ export default function CouponForm({ subtotal, onValidCouponApplied }: ICouponFo
           buttonVariant="text"
           variant="primary"
           disabled={isButtonLoading}
-          title={tButton('applyCoupon')}
+          title={tForm('applyCoupon')}
           leftIcon={<TicketPercent size={20} />}
           loading={isButtonLoading}
           className="w-40  mt-6 py-3"

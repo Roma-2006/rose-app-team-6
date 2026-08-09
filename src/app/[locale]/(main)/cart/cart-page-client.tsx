@@ -17,7 +17,6 @@ import { Carousel } from '@/features/main/components/shared/carousel';
 import { RawCartItem } from '@/features/main/types/raw-cart-item';
 import OrderSummaryPanel from '@/features/main/components/order-summary/order-summary-panel';
 import ProductsYouMayLike from '@/features/main/components/products/products-you-may-like';
-
 interface CartPageProps {
   suggestedProducts: Product[];
 }
@@ -66,11 +65,14 @@ export default function CartPageClient({ suggestedProducts }: CartPageProps) {
       maxStock: resolvedMaxStock,
     };
   });
-
+  // Calculate cart subtotal
+  const subtotal = formattedItems.reduce((total, item) => {
+    return total + item.price * item.quantity;
+  }, 0);
   return (
     <main className=" mx-auto px-4 py-8">
       {/* 2 Columns Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
         <section className="lg:col-span-2 space-y-6">
           <div className="flex items-center justify-between pb-4">
             <div className="flex gap-2 items-baseline">
@@ -120,8 +122,8 @@ export default function CartPageClient({ suggestedProducts }: CartPageProps) {
 
         {/* Order Summary */}
         <aside className="lg:col-span-1">
-          <div className="border border-dashed border-border-muted p-6 rounded-lg bg-bg-muted/20 text-center text-text-muted">
-            <OrderSummaryPanel subtotal={500} />
+          <div>
+            <OrderSummaryPanel subtotal={subtotal} />
           </div>
         </aside>
       </div>
