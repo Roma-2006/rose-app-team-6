@@ -99,9 +99,9 @@ export default function CouponForm({ subtotal, onValidCouponApplied }: ICouponFo
 
   return (
     <div className="  flex flex-col gap-1.5">
-      <form onSubmit={handleApply} className="flex gap-3 w-106.5 w-full justify-between">
+      <form onSubmit={handleApply} className="flex gap-2.5 w-106.5 w-full justify-between">
         <CustomInput
-          className=" w-73  "
+          className=" w-77  "
           variant="default"
           label=" "
           value={couponInput}
@@ -120,7 +120,7 @@ export default function CouponForm({ subtotal, onValidCouponApplied }: ICouponFo
           title={tForm('applyCoupon')}
           leftIcon={<TicketPercent size={20} />}
           loading={isButtonLoading}
-          className="w-40  mt-6 py-3"
+          className="w-30 text-xs  mt-6 py-3"
         ></Button>
       </form>
 

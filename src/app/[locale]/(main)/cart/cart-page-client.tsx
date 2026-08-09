@@ -13,7 +13,6 @@ import ClearCartDialog from '@/features/main/components/cart/clear-cart-dialog';
 import SecTitle from '@/features/main/components/shared/section-title';
 import { useCart } from '@/features/main/hooks/use-cart';
 import { Product } from '@/features/main/types/products';
-import { Carousel } from '@/features/main/components/shared/carousel';
 import { RawCartItem } from '@/features/main/types/raw-cart-item';
 import OrderSummaryPanel from '@/features/main/components/order-summary/order-summary-panel';
 import ProductsYouMayLike from '@/features/main/components/products/products-you-may-like';

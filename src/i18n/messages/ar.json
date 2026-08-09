@@ -10,9 +10,8 @@
     "save": "حفظ",
     "delete": "حذف",
     "confirm": "تأكيد",
-    "next": "التالي",
-    "add-review": "أضف تقييمًا",
-    "adding": "إضافة..."
+    "next": "التالي"
+    
    
 
   },
@@ -398,7 +397,9 @@
       "title": "العنوان",
       "review": "اكتب رأيك",
       "text-area-placeholder": "ما رأيك في هذا المنتج؟",
-      "login-to-review": "يرجى تسجيل الدخول لتتمكن من تقييم المنتج"
+      "login-to-review": "يرجى تسجيل الدخول لتتمكن من تقييم المنتج",
+      "add-review": "أضف تقييمًا",
+     "adding": "إضافة..."
     },
     "related-products": {
       "sec-title": "منتجات ذات صلة"
@@ -417,7 +418,7 @@
     "NocouponApplied":"لم يتم تطبيق أي كوبونات",
     "subtotal":"المجموع الفرعي",
     "total ":"الإجمالي",
-    "applyCoupon":"تطبيق",
+    "applyCoupon":"تطبيق الكوبون",
   "checkout":"المتابعة للدفع",
     "products":"منتاجات",
     "clearCart": "إفراغ السلة",

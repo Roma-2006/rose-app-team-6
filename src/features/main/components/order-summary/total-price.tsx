@@ -54,8 +54,8 @@ export default function TotalPrice({
           )}
 
           <div className="flex justify-between items-baseline pt-2 border-t border-border-soft">
-            <span className="text-2xl font-bold text-text-primary">{tSummary('total')}</span>
-            <span className="text-2xl font-bold text-text-primary tracking-tight">
+            <span className="text-1xl font-bold text-text-primary">{tSummary('total')}</span>
+            <span className="text-1xl font-bold text-text-primary tracking-tight">
               {total.toFixed(0)} {currency}
             </span>
           </div>

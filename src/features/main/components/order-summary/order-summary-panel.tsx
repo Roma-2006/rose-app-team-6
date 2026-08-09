@@ -58,16 +58,14 @@ export default function OrderSummaryPanel({
         isRecalculating={false}
       />
 
-      <Button
-        type="submit"
-        buttonVariant="text"
-        variant="primary"
-        title={tButton('checkout')}
-        rightIcon={<MoveRight size={20} className="rtl:rotate-180 transition-transform" />}
-        className="w-full  mt-6 py-3 "
+      <Link
+        href="/checkout"
+        className="inline-flex text-center justify-center items-center gap-2 px-6 py-3 bg-bg-primary-saturated hover:bg-rose-950 text-white font-medium text-sm rounded-xl transition-colors shadow-sm"
       >
-        <Link href="/checkout"></Link>
-      </Button>
+        <span>{tButton('checkout')}</span>
+
+        <MoveRight size={20} className="rtl:rotate-180 transition-transform" />
+      </Link>
     </section>
   );
 }

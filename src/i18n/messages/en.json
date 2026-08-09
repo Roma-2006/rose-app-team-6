@@ -10,9 +10,8 @@
     "save": "Save",
     "delete": "Delete",
     "confirm": "Confirm",
-    "next": "Next",
-     "add-review":"Add Review",
-    "adding":"Adding..."
+    "next": "Next"
+    
     
 
 
@@ -387,7 +386,9 @@
       "title": "Title",
       "review": "Review",
       "text-area-placeholder": "What do you think of this product?",
-      "login-to-review": "Please login to be able to review the product"
+      "login-to-review": "Please login to be able to review the product",
+       "add-review":"Add Review",
+       "adding":"Adding..."
     },
     "related-products": {
       "sec-title": "Related Products"
@@ -406,7 +407,7 @@
     "NocouponApplied":"No coupons applied",
     "subtotal":"Subtotal",
     "total ":"Total",
-    "applyCoupon":"Apply",
+    "applyCoupon":"Apply Coupon",
     "checkout":"Checkout",
     "products":"products",
     "clearCart": "Clear Cart",
