@@ -14,7 +14,8 @@ export default function Stepper({ currentStep, numberOfSteps = 4, type = 'start'
   const locale = useLocale();
   const isRtl = locale === 'ar';
 
-  const formatStepNumber = (num: number) => (isRtl ? num.toLocaleString('ar-EG') : num.toString());
+  const formatStepNumber = (num: number) =>
+    isRtl ? num.toString().replace(/\d/g, (d) => '٠١٢٣٤٥٦٧٨٩'[+d]) : num.toString();
 
   const renderDot = (step: number) => {
     const isCompletedOrCurrent = step <= currentStep;

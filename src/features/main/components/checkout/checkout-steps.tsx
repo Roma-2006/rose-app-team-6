@@ -1,56 +1,56 @@
 'use client';
 
-// states
 import React, { useState } from 'react';
 
-// lib
-import { useTranslations } from 'next-intl';
-
-// relatives
 import { CheckoutStepsProps } from '@/features/main/types/checkout.d';
 import { Address } from '@/features/main/types/address.d';
+import { ICouponBackendResponse } from '@/features/main/types/order-summary';
 import Stepper from '@/shared/components/custom-ui/stepper';
+
 import ShippingAddressStep from './address/shipping-address/shipping-address-step';
-import { Button } from '@/shared/components/ui/button';
-import { ArrowLeft } from 'lucide-react';
+import { CheckoutPaymentStep } from './payment/payment';
+import OrderSummaryPanel from '../order-summary/order-summary-panel';
 
 const CheckoutSteps = ({ initialAddresses, initialAddressesError }: CheckoutStepsProps) => {
-  // translations
-  const t = useTranslations('checkout');
-  // states
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState<1 | 2>(1);
+
   const [addresses, setAddresses] = useState<Address[]>(initialAddresses);
+
   const [selectedAddressId, setSelectedAddressId] = useState<string | null>(() => {
-    const primary = initialAddresses.find((a) => a.isPrimary);
-    if (primary) return primary.id;
-    if (initialAddresses.length === 1) return initialAddresses[0].id;
-    return null;
+    const primary = initialAddresses.find((address) => address.isPrimary);
+    return primary?.id ?? initialAddresses[0]?.id ?? null;
   });
 
-  // functions
+  const [appliedCoupons, setAppliedCoupons] = useState<ICouponBackendResponse[]>([]);
 
   const handleAddressAdded = (newAddress: Address) => {
     setAddresses((prev) => [...prev, newAddress]);
     setSelectedAddressId(newAddress.id);
   };
 
-  const handelNextStep = () => {
-    if (initialAddresses && initialAddresses.length > 0) {
-      setCurrentStep((prev) => prev + 1);
-    }
+  const handleApplyCoupon = (coupon: ICouponBackendResponse) => {
+    const isAlreadyApplied = appliedCoupons.some((c) => c.id === coupon.id);
+    if (isAlreadyApplied) return;
+    setAppliedCoupons((prev) => [...prev, coupon]);
+  };
+
+  const handleRemoveCoupon = (id: string) => {
+    setAppliedCoupons((prev) => prev.filter((c) => c.id !== id));
+  };
+
+  const handleNextStep = () => {
+    if (!selectedAddressId) return;
+    setCurrentStep(2);
   };
 
   const handleBackStep = () => {
-    if (currentStep > 1) {
-      setCurrentStep((prev) => prev - 1);
-    }
+    setCurrentStep(1);
   };
 
   return (
-    <div className=" flex gap-10 justify-between mx-auto max-w-7xl">
-      <div className="flex flex-col gap-6 max-w-195.5 w-full ">
-        <Stepper currentStep={currentStep} numberOfSteps={2} type="center" />
-        {/* <Stepper currentStep={currentStep} numberOfSteps={2} /> */}
+    <div className="flex gap-6">
+      <div className="flex-1">
+        <Stepper currentStep={currentStep} />
 
         {currentStep === 1 && (
           <ShippingAddressStep
@@ -59,26 +59,25 @@ const CheckoutSteps = ({ initialAddresses, initialAddressesError }: CheckoutStep
             selectedAddressId={selectedAddressId}
             onSelectAddress={setSelectedAddressId}
             onAddressAdded={handleAddressAdded}
-            onNext={handelNextStep}
+            onNext={handleNextStep}
           />
         )}
 
         {currentStep === 2 && (
-          <Button
-            variant="primary"
-            buttonVariant="text"
-            // disabled={!canProceed}
-            onClick={handleBackStep}
-            title={t('back')}
-            className="self-end"
-            leftIcon={<ArrowLeft size={20} />}
+          <CheckoutPaymentStep
+            selectedAddressId={selectedAddressId}
+            couponCode={appliedCoupons[0]?.code}
+            onBack={handleBackStep}
           />
         )}
       </div>
-      <aside className="w-121.25  flex flex-col gap-4 bg-bg-soft">
-        {/* <OrderSummary /> */}
-        <div className="rounded-2xl bg-bg-plain p-4 text-text-soft">Order summary (S5-02)</div>
-      </aside>
+
+      <OrderSummaryPanel
+        subtotal={500}
+        appliedCoupons={appliedCoupons}
+        onApplyCoupon={handleApplyCoupon}
+        onRemoveCoupon={handleRemoveCoupon}
+      />
     </div>
   );
 };

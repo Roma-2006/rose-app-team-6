@@ -5,6 +5,7 @@ import { authOptions } from '@/auth';
 import { getAddresses } from '@/features/main/api/address.api';
 
 import CheckoutSteps from '@/features/main/components/checkout/checkout-steps';
+import OrderSummaryPanel from '@/features/main/components/order-summary/order-summary-panel';
 
 export default async function CheckoutPage() {
   const session = await getServerSession(authOptions);
