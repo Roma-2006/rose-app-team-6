@@ -36,9 +36,6 @@ export const useCart = ({ initialItems }: UseCartOptions = {}) => {
   const isAuthenticated = status === 'authenticated';
   const token = session?.token;
 
-  // Hydration-safe subscription to the guest cart: the server snapshot is an
-  // empty array, and the client snapshot reads localStorage only after
-  // hydration. No state is set synchronously in an effect.
   const subscribeToCartEvents = useCallback((onStoreChange: () => void) => {
     if (typeof window === 'undefined') return () => {};
     window.addEventListener(CART_STORAGE_EVENT, onStoreChange);
