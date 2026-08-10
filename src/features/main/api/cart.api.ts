@@ -11,26 +11,6 @@ async function getHeaders() {
   };
 }
 
-export async function getCartAction() {
-  const headers = await getHeaders();
-  console.log('[cart] headers:', headers);
-  console.log('[cart] url:', `${process.env.NEXT_PUBLIC_API_URL}/cart`);
-
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cart`, {
-    method: 'GET',
-    headers,
-    cache: 'no-store',
-  });
-
-  console.log('[cart] status:', response.status);
-
-  if (!response.ok) {
-    const errorBody = await response.text();
-    console.log('[cart] error body:', errorBody);
-    throw new Error(`Failed to fetch cart: ${response.status} ${errorBody}`);
-  }
-  return response.json();
-}
 export async function addToCartAction(productId: string, quantity: number = 1) {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cart`, {
     method: 'POST',

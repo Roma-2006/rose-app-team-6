@@ -407,20 +407,20 @@
   },
   
   "cart": {
-    "title": "سله",
+    "title": "سلة التسوق",
      "title-2": " منتجات قد تعجبك",
-    "products":"منتاجات",
+    "products":"منتجات",
     "clearCart": "إفراغ السلة",
-    "confirmClear": "هل أنت أصلًا متاكد من إفراغ السلة؟",
-    "empty": "سلتك فارغة، تحب تجرب تتسوق؟",
+    "confirmClear": "هل أنت متأكد من إفراغ السلة؟",
+    "empty": "سلتك فارغة",
     "emptyDescription": "لم تقم بإضافة أي منتجات إلى سلة التسوق الخاصة بك بعد.",
     "continueShopping": "متابعة التسوق",
-    "remove": "حذف",
+    "remove": " إزالة",
     "outOfStock": "نفدت الكمية",
     "ratings": "تقييمات",
     "rating": "التقييم"
   },
-  "button": {
+  "button-cart": {
     "cancel": "إلغاء",
     "confirm": "تأكيد"
   }

@@ -1,7 +1,7 @@
 import { getLocale, getTranslations } from 'next-intl/server';
 import { ArrowRight } from 'lucide-react';
 
-import { ProductCardSkeleton } from './product-card-skelton';
+import { ProductCardSkeleton } from '../../skeleton/product-card-skelton';
 
 const HOME_OCCASIONS = ['Wedding', 'Anniversary', 'Birthday', 'Engagement'];
 

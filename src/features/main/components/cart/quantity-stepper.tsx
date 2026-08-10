@@ -13,6 +13,7 @@ interface QuantityStepperProps {
 
 export default function QuantityStepper({
   quantity,
+  maxStock,
   onIncrement,
   onDecrement,
   disabled = false,
@@ -26,7 +27,7 @@ export default function QuantityStepper({
         iconOnly={<Minus className="h-4 w-4" />}
         className="h-12 w-12  bg-pink-100 text-rose-700 hover:bg-pink-200 border-none rounded-md"
         onClick={onDecrement}
-        disabled={disabled}
+        disabled={disabled || quantity <= 1}
       />
 
       <span className="w-25 h-11  text-center pr-17 text-text-muted text-sm font-semibold border border-border-plain rounded-md py-2">
@@ -39,7 +40,7 @@ export default function QuantityStepper({
         iconOnly={<Plus className="h-4 w-4" />}
         className="h-12 w-12  bg-pink-100 text-rose-700 hover:bg-pink-200 border-none rounded-md"
         onClick={onIncrement}
-        disabled={disabled}
+        disabled={disabled || quantity >= maxStock}
       />
     </div>
   );
