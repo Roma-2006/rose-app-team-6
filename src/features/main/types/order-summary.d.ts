@@ -21,6 +21,7 @@ export interface ICouponFormData {
 export interface ICouponFormProps {
   subtotal: number;
   onValidCouponApplied: (coupon: ICouponBackendResponse) => void;
+  onErrorTriggered: (msg: string | null) => void;
 }
 
 export interface IApplyValidCouponProps {
@@ -32,6 +33,7 @@ export interface IAppliedCouponsBoxProps {
   onRemoveCoupon: (id: string) => void;
   currency?: string;
   variant?: 'editable' | 'read-only';
+  errorMessage?: string | null;
 }
 
 export interface ITotalPriceProps {

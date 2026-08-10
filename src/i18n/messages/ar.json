@@ -413,6 +413,8 @@
     "title": "سله",
     "title-2": " منتجات قد تعجبك",
     "couponPlaceholder":"رمز الكوبون",
+   "couponLabel":"",
+
     "invalidCoupon":"كوبون غير صالح أو منتهي الصلاحية",
     "couponApplied":"تم تطبيق الكوبون!",
     "NocouponApplied":"لم يتم تطبيق أي كوبونات",

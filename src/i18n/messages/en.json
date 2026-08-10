@@ -402,6 +402,7 @@
     "title": " Cart",
     "title-2": " Products You May Like",
     "couponPlaceholder":"Coupon Code",
+    "couponLabel":"",
     "invalidCoupon":"Invalid or expired coupon",
     "couponApplied":"Coupon applied",
     "NocouponApplied":"No coupons applied",

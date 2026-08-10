@@ -28,7 +28,7 @@ export default function TotalPrice({
   const total = Math.max(0, subtotal - finalDiscount);
 
   return (
-    <div className="w-full space-y-4    font-sans">
+    <div className="w-full space-y-4 mb-2.5   font-sans">
       <div className="flex justify-between text-lg font-medium text-text-plain">
         <span>{tSummary('subtotal')}</span>
         <span className="font-semibold text-black">

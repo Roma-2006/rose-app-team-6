@@ -7,6 +7,7 @@ export default function AppliedCouponsBox({
   onRemoveCoupon,
   currency = 'EGP',
   variant = 'editable',
+  errorMessage = null,
 }: IAppliedCouponsBoxProps) {
   //Transelation
   const tSummary = useTranslations('cart');
@@ -17,11 +18,7 @@ export default function AppliedCouponsBox({
 
   return (
     <div className="w-full flex flex-col h-61 gap-1 items-center justify-center border border-border-soft rounded-xl p-5 mb-1 transition-all duration-200 ">
-      {!hasCoupons ? (
-        <p className="text-text-muted text-sm italic font-semibold tracking-wide select-none">
-          {tSummary('NocouponApplied')}
-        </p>
-      ) : (
+      {hasCoupons ? (
         <div className="w-60  flex flex-col gap-2.5">
           {appliedCoupons.map((coupon) => (
             <div
@@ -50,6 +47,17 @@ export default function AppliedCouponsBox({
             </div>
           ))}
         </div>
+      ) : errorMessage ? (
+        <p
+          className="text-text-danger text-sm font-semibold tracking-wide text-center"
+          role="alert"
+        >
+          {errorMessage}
+        </p>
+      ) : (
+        <p className="text-text-muted text-sm italic font-semibold tracking-wide select-none">
+          {tSummary('NocouponApplied')}
+        </p>
       )}
     </div>
   );
