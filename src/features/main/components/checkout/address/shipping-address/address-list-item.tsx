@@ -18,10 +18,10 @@ const AddressListItem = ({ address, isSelected, onSelect }: AddressListItemProps
       onClick={() => onSelect(address.id)}
       className={cn(
         'w-full min-h-22.75 flex gap-1.5 justify-between items-center rounded-2xl px-4 py-3 text-start transition-colors',
-        isSelected ? 'bg-bg-primary-saturated' : 'bg-bg-plain border-1 border-border-soft'
+        isSelected ? 'bg-bg-primary-saturated' : 'bg-bg-plain border border-border-soft'
       )}
     >
-      <div className="flex flex-col gap-1.5">
+      <div>
         <h2
           className={cn(
             'font-semibold text-2xl',
@@ -30,6 +30,7 @@ const AddressListItem = ({ address, isSelected, onSelect }: AddressListItemProps
         >
           {address.city}
         </h2>
+
         <p
           className={cn(
             'text-[16px] font-medium rounded-2xl py-1 px-3 w-fit',
@@ -41,15 +42,19 @@ const AddressListItem = ({ address, isSelected, onSelect }: AddressListItemProps
       </div>
 
       {address.phone && (
-        <div className="flex gap-1.5 items-center shrink-0 self-start ">
+        <div className="flex gap-1.5 items-center shrink-0 self-start">
           <div
             className={cn(
               'w-7.5 h-7.5 rounded-full flex items-center justify-center',
               isSelected ? 'bg-bg-subtle' : 'bg-bg-primary-saturated'
             )}
           >
-            <Phone size={20} />
+            <Phone
+              size={20}
+              className={cn(isSelected ? 'text-bg-primary-saturated' : 'text-bg-subtle')}
+            />
           </div>
+
           <p
             className={cn(
               'text-lg font-medium',

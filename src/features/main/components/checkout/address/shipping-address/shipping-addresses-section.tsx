@@ -1,7 +1,8 @@
 'use client';
-
+// lib
 import { useTranslations } from 'next-intl';
 
+// relatives
 import { ShippingAddressSectionProps } from '@/features/main/types/address.d';
 import { Button } from '@/shared/components/ui/button';
 import AddressList from './address-list';
@@ -15,6 +16,7 @@ const ShippingAddressesSection = ({
   onSelectAddress,
   onAddNewAddress,
 }: ShippingAddressSectionProps) => {
+  // translations
   const t = useTranslations('checkout.shipping-address');
 
   return (
@@ -24,7 +26,7 @@ const ShippingAddressesSection = ({
       {isLoading && <AddressListSkeleton />}
 
       {!isLoading && isError && (
-        <p className="text-text-danger text-lg py-6 text-center">{t('load-error ')}</p>
+        <p className="text-text-danger text-lg py-6 text-center">{t('load-error')}</p>
       )}
 
       {!isLoading && !isError && addresses.length === 0 && (

@@ -1,33 +1,44 @@
-import { redirect } from 'next/navigation';
 import { getServerSession } from 'next-auth';
+import { getLocale } from 'next-intl/server';
+import { redirect } from '@/i18n/navigation';
 
 import { authOptions } from '@/auth';
 import { getAddresses } from '@/features/main/api/address.api';
-
 import CheckoutSteps from '@/features/main/components/checkout/checkout-steps';
 
 export default async function CheckoutPage() {
+  // Auth
   const session = await getServerSession(authOptions);
 
+  // Locale
+  const locale = await getLocale();
+
   if (!session) {
-    redirect('/login');
+    redirect({
+      href: {
+        pathname: '/login',
+        query: {
+          callbackUrl: '/checkout',
+        },
+      },
+      locale,
+    });
   }
 
+  // Addresses
   let initialAddresses: Awaited<ReturnType<typeof getAddresses>> = [];
   let initialAddressesError = false;
 
   try {
-    initialAddresses = await getAddresses(session.token as string);
+    initialAddresses = await getAddresses(session?.token as string);
   } catch {
     initialAddressesError = true;
   }
 
   return (
-    <main className="w-min-h-screen ">
-      <CheckoutSteps
-        initialAddresses={initialAddresses}
-        initialAddressesError={initialAddressesError}
-      />
-    </main>
+    <CheckoutSteps
+      initialAddresses={initialAddresses}
+      initialAddressesError={initialAddressesError}
+    />
   );
 }

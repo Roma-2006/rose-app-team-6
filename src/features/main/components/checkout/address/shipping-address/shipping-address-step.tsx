@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+// lib
 import { useTranslations } from 'next-intl';
-
+// relatives
 import { Address } from '@/features/main/types/address.d';
 import { Button } from '@/shared/components/ui/button';
 import ShippingAddressesSection from './shipping-addresses-section';
@@ -25,11 +26,17 @@ const ShippingAddressStep = ({
   onAddressAdded,
   onNext,
 }: ShippingAddressStepProps) => {
+  // translations
   const t = useTranslations('checkout');
+
+  // states
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // VALIDATION: at least one address must be selected before Next
-  const canProceed = Boolean(selectedAddressId);
+  // functions
+  // Functions
+  const handleAddNewAddress = () => {
+    setIsModalOpen(true);
+  };
 
   return (
     <div className="flex flex-col lg:flex-row gap-8 w-full">
@@ -39,7 +46,7 @@ const ShippingAddressStep = ({
           isError={isError}
           selectedAddressId={selectedAddressId}
           onSelectAddress={onSelectAddress}
-          onAddNewAddress={() => setIsModalOpen(true)}
+          onAddNewAddress={handleAddNewAddress}
         />
 
         <Button

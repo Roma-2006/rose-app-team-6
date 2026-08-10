@@ -1,5 +1,5 @@
 import { TProductsResponse } from '@/features/main/types/products';
-import { Response } from '../../../shared/types/api';
+import { Response } from '@/shared/types/api';
 import { GetProductsParams } from '@/features/main/types/product-query';
 
 export async function getProducts(params: GetProductsParams = {}) {

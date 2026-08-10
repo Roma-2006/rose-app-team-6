@@ -3,6 +3,10 @@
 // states
 import React, { useState } from 'react';
 
+// navigation
+import { useRouter, usePathname } from '@/i18n/navigation';
+import { useSearchParams } from 'next/navigation';
+
 // lib
 import { useTranslations } from 'next-intl';
 
@@ -15,42 +19,41 @@ import { Button } from '@/shared/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 
 const CheckoutSteps = ({ initialAddresses, initialAddressesError }: CheckoutStepsProps) => {
-  // translations
+  // Translations
   const t = useTranslations('checkout');
-  // states
-  const [currentStep, setCurrentStep] = useState(1);
-  const [addresses, setAddresses] = useState<Address[]>(initialAddresses);
-  const [selectedAddressId, setSelectedAddressId] = useState<string | null>(() => {
-    const primary = initialAddresses.find((a) => a.isPrimary);
-    if (primary) return primary.id;
-    if (initialAddresses.length === 1) return initialAddresses[0].id;
-    return null;
-  });
 
-  // functions
+  // Navigation
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const currentStep = searchParams.get('step') === '2' ? 2 : 1;
+  const addressIdFromUrl = searchParams.get('addressId');
+
+  // State
+  const [addresses, setAddresses] = useState<Address[]>(initialAddresses);
+  const [selectedAddressId, setSelectedAddressId] = useState<string | null>(addressIdFromUrl);
+
+  // Functions
 
   const handleAddressAdded = (newAddress: Address) => {
     setAddresses((prev) => [...prev, newAddress]);
     setSelectedAddressId(newAddress.id);
   };
 
-  const handelNextStep = () => {
-    if (initialAddresses && initialAddresses.length > 0) {
-      setCurrentStep((prev) => prev + 1);
-    }
+  const handleNextStep = () => {
+    if (!selectedAddressId) return;
+
+    router.push(`${pathname}?step=2&addressId=${encodeURIComponent(selectedAddressId)}`);
   };
 
   const handleBackStep = () => {
-    if (currentStep > 1) {
-      setCurrentStep((prev) => prev - 1);
-    }
+    router.push(`${pathname}?step=1`);
   };
-
   return (
     <div className=" flex gap-10 justify-between mx-auto max-w-7xl">
       <div className="flex flex-col gap-6 max-w-195.5 w-full ">
         <Stepper currentStep={currentStep} numberOfSteps={2} type="center" />
-        {/* <Stepper currentStep={currentStep} numberOfSteps={2} /> */}
 
         {currentStep === 1 && (
           <ShippingAddressStep
@@ -59,7 +62,7 @@ const CheckoutSteps = ({ initialAddresses, initialAddressesError }: CheckoutStep
             selectedAddressId={selectedAddressId}
             onSelectAddress={setSelectedAddressId}
             onAddressAdded={handleAddressAdded}
-            onNext={handelNextStep}
+            onNext={handleNextStep}
           />
         )}
 
@@ -67,7 +70,6 @@ const CheckoutSteps = ({ initialAddresses, initialAddressesError }: CheckoutStep
           <Button
             variant="primary"
             buttonVariant="text"
-            // disabled={!canProceed}
             onClick={handleBackStep}
             title={t('back')}
             className="self-end"
