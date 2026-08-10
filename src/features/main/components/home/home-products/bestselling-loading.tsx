@@ -1,5 +1,4 @@
-import { ProductCardSkeleton } from './product-card-skelton';
-
+import { ProductCardSkeleton } from '../../skeleton/product-card-skelton';
 export const BestSellingSectionLoading = () => {
   return (
     <section className="w-full mt-16">

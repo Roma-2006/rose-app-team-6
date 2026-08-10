@@ -26,6 +26,13 @@ export default function CartItemRow({ item, onUpdateQuantity, onRemove }: CartIt
   const t = useTranslations('cart');
   const isOutOfStock = item.maxStock === 0;
 
+  const handleUpdateQuantity = (nextQuantity: number) => {
+    // Clamp at the update boundary so persisted state never contains a
+    // quantity below 1 or above the product's actual stock.
+    const safeQuantity = Math.min(Math.max(nextQuantity, 1), item.maxStock);
+    onUpdateQuantity?.(item.id, safeQuantity);
+  };
+
   return (
     <div className="flex items-center gap-4 border-b border-border-plain py-4 w-full">
       {/* Product Image */}
@@ -84,8 +91,8 @@ export default function CartItemRow({ item, onUpdateQuantity, onRemove }: CartIt
             quantity={item.quantity}
             maxStock={item.maxStock}
             disabled={isOutOfStock}
-            onIncrement={() => onUpdateQuantity?.(item.id, item.quantity + 1)}
-            onDecrement={() => onUpdateQuantity?.(item.id, item.quantity - 1)}
+            onIncrement={() => handleUpdateQuantity(item.quantity + 1)}
+            onDecrement={() => handleUpdateQuantity(item.quantity - 1)}
           />
         </div>
       </div>
