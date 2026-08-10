@@ -11,6 +11,7 @@ import {
   removeFromLocalCart,
   clearLocalCart,
   CART_STORAGE_EVENT,
+  getLocalCartServerSnapshot,
 } from '../lib/storage';
 import type { LocalCartItem, LocalCartProduct } from '../types/local-cart';
 import { getCart } from '../api/cart';
@@ -27,9 +28,7 @@ export type CartItem = ServerCartItem | LocalCartItem;
 interface UseCartOptions {
   initialItems?: GetCartResponse;
 }
-const EMPTY_CART: LocalCartItem[] = [];
 
-const getServerCartSnapshot = () => EMPTY_CART;
 export const useCart = ({ initialItems }: UseCartOptions = {}) => {
   const { data: session, status } = useSession();
   const queryClient = useQueryClient();
@@ -48,9 +47,8 @@ export const useCart = ({ initialItems }: UseCartOptions = {}) => {
   const localItems = useSyncExternalStore(
     subscribeToCartEvents,
     getLocalCartSnapshot,
-    getServerCartSnapshot
+    getLocalCartServerSnapshot
   );
-
   const cartQuery = useQuery<GetCartResponse>({
     queryKey: ['cart'],
     queryFn: () => getCart(token as string),
@@ -58,7 +56,7 @@ export const useCart = ({ initialItems }: UseCartOptions = {}) => {
     initialData: initialItems,
   });
 
-  const serverItems: ServerCartItem[] = cartQuery.data ?? [];
+  const serverItems: ServerCartItem[] = cartQuery.data?.payload?.cartItems ?? [];
 
   const isGuest = !isAuthenticated;
   const cartItems: CartItem[] = isGuest ? localItems : serverItems;

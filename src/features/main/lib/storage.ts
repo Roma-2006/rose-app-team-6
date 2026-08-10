@@ -19,12 +19,11 @@ export const getLocalCart = (): LocalCartItem[] => {
   }
 };
 
-// Cached snapshot for `useSyncExternalStore`: returns a stable array reference
-// so React does not treat every read as a store change. The value is re-parsed
-// only when the raw localStorage payload actually changes.
 let localCartSnapshot: LocalCartItem[] = [];
 let localCartSnapshotKey = '';
+const EMPTY_CART_SNAPSHOT: LocalCartItem[] = [];
 
+export const getLocalCartServerSnapshot = (): LocalCartItem[] => EMPTY_CART_SNAPSHOT;
 export const getLocalCartSnapshot = (): LocalCartItem[] => {
   if (typeof window === 'undefined') {
     return localCartSnapshot;

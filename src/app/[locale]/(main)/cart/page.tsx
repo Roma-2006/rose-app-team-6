@@ -11,7 +11,11 @@ export default async function Page() {
     sortOrder: 'desc',
   });
 
-  let initialCart: GetCartResponse = [];
+  let initialCart: GetCartResponse = {
+    payload: {
+      cartItems: [],
+    },
+  };
   try {
     const token = await getAuthToken();
     initialCart = await getCart(token);
