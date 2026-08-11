@@ -19,9 +19,11 @@ export async function findValidCouponAction(code: string): Promise<ICouponBacken
     const data = await res.json();
 
     const coupons: ICouponBackendResponse[] = data?.payload?.data || [];
-
+    console.log('--- Coupons found from API search ---', coupons);
     const matched = coupons.find((coupon) => coupon.code === code.toUpperCase());
     if (!matched) return null;
+    console.log(`❌ No exact match found for coupon code: ${code}`);
+    console.log('✅ Exact Matched Coupon found:', matched);
 
     return {
       ...matched,

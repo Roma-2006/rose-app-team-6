@@ -47,8 +47,7 @@ export default function TotalPrice({
               <div className="flex-grow border-t border-dashed border-border-soft"></div>
               {/* تم إصلاح الألوان هنا لتتوافق مع الوضع الداكن وبطريقة نظيفة */}
               <span className="flex-shrink mx-4 text-xs font-bold text-text-danger bg-bg-primary px-2.5 py-0.5 rounded-full border border-border-soft">
-                - {finalDiscount.toLocaleString()} {currency}{' '}
-                {tSummary('discountApplied') || 'Discount'}
+                - {finalDiscount.toLocaleString()} {currency} {tSummary('discountApplied')}
               </span>
               <div className="flex-grow border-t border-dashed border-border-soft"></div>
             </div>
