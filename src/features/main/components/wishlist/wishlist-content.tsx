@@ -10,14 +10,21 @@ import { useTranslations } from 'next-intl';
 import Modal from '@/shared/components/custom-ui/modal';
 import { AlertDialog, AlertDialogTrigger } from '@/shared/components/ui/alert-dialog';
 import ClearConfirmation from '@/shared/components/custom-ui/clear-confirmation';
+import { useState } from 'react';
 export default function WishlistContent() {
   //Translations
   const t = useTranslations('products');
   //Hooks
   const { wishlistItems, isLoading, error, wishlistCount, clearWishlist, loadingClearWishlist } =
     useWishlist();
+  const [isClearDialogOpen, setIsClearDialogOpen] = useState(false);
   const locale = useLocale();
   const isRTL = locale === 'ar';
+  //Function
+  const handleClearWishlist = async () => {
+    await clearWishlist();
+    setIsClearDialogOpen(false);
+  };
   return (
     <>
       <div className="flex flex-wrap gap-2 justify-between items-center">
@@ -27,7 +34,7 @@ export default function WishlistContent() {
           <span className="text-base font-normal terxt-text-muted ">{wishlistCount}items</span>
         </h1>
         {wishlistItems.length > 0 && (
-          <AlertDialog>
+          <AlertDialog open={isClearDialogOpen} onOpenChange={setIsClearDialogOpen}>
             <AlertDialogTrigger
               render={
                 <Button
@@ -40,7 +47,7 @@ export default function WishlistContent() {
             />
             <Modal>
               <ClearConfirmation
-                onClick={clearWishlist}
+                onClick={handleClearWishlist}
                 icon={<BrushCleaning size={29} />}
                 title={t('wishlist.clear-wishlist-confirmation')}
                 cancelButtonTitle="button.cancel"

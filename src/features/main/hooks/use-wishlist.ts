@@ -136,7 +136,7 @@ export const useWishlist = (productId?: string) => {
     error: wishlistQuery.error,
     removeItemFromWishlidstMutation: removeItemFromWishlidstMutation.mutate,
     //clearMutation
-    clearWishlist: clearWishlistMutation.mutate,
+    clearWishlist: clearWishlistMutation.mutateAsync,
     loadingClearWishlist: clearWishlistMutation.isPending,
   };
 };
