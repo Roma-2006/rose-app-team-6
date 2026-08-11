@@ -399,7 +399,7 @@
   },
   
   "cart": {
-    "title": " Cart",
+    "title": " Shopping Cart",
     "title-2": " Products You May Like",
     "couponPlaceholder":"Coupon Code",
     "couponLabel":"",
@@ -412,10 +412,10 @@
     "checkout":"Checkout",
     "products":"products",
     "clearCart": "Clear Cart",
-    "confirmClear": "Are you sure you want to clear your cart?",
+    "confirmClear": " Are you sure you want to clear your cart?",
     "emptyDescription": "You haven't added any products to your shopping cart yet.",
     "continueShopping": "Continue Shopping",
-     "empty": "Your cart is empty, wanna try shopping?",
+     "empty": "Your cart is empty",
     "remove": "Remove",
     "outOfStock": "Out of stock",
     "ratings": "ratings",

@@ -2,115 +2,61 @@
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
-import { useState, useEffect, useCallback } from 'react';
+import { useSyncExternalStore, useCallback } from 'react';
 
 import {
-  getLocalCart,
+  getLocalCartSnapshot,
   addToLocalCart,
   updateLocalCartQuantity,
   removeFromLocalCart,
   clearLocalCart,
   CART_STORAGE_EVENT,
+  getLocalCartServerSnapshot,
 } from '../lib/storage';
 import type { LocalCartItem, LocalCartProduct } from '../types/local-cart';
+import { getCart } from '../api/cart';
 import {
   addToCartAction,
-  getCartAction,
   updateCartQuantityAction,
   removeFromCartAction,
   clearCartAction,
 } from '../api/cart.api';
+import type { ServerCartItem, GetCartResponse } from '../types/server-cart';
 
-export interface ServerCartCategory {
-  id: string;
-  categoryId?: string;
-}
-
-export interface ServerCartProduct {
-  id: string;
-  category?: ServerCartCategory;
-  categoryId?: string;
-  cover?: string;
-  createdAt?: string;
-  deletedAt?: string | null;
-  description?: string;
-  discountType?: string;
-  discountValue?: string;
-  gallery?: string;
-  immutable?: boolean;
-  price: string;
-  rating?: number;
-  ratings?: number;
-  stock?: number;
-  subCategory?: ServerCartCategory;
-  subCategoryId?: string;
-  title: string;
-  updatedAt?: string;
-}
-
-export interface ServerCartItem {
-  id: string;
-  createdAt?: string;
-  updatedAt?: string;
-  userId?: string;
-  productId: string;
-  quantity: number;
-  product: ServerCartProduct;
-}
-
-// The API returns a plain array of cart items. Some earlier/other
-// endpoints in this codebase wrap results in a `payload` envelope, so we
-// stay defensive and support that shape too.
-interface ServerCartPayload {
-  cartItems?: ServerCartItem[];
-  products?: ServerCartItem[];
-}
-
-type GetCartResponse =
-  | ServerCartItem[]
-  | {
-      payload?: ServerCartPayload;
-      cartItems?: ServerCartItem[];
-    };
-
-// Items returned to consumers of this hook are either the server shape
-// (when authenticated) or the local/guest shape (when a guest).
 export type CartItem = ServerCartItem | LocalCartItem;
 
-export const useCart = () => {
+interface UseCartOptions {
+  initialItems?: GetCartResponse;
+}
+
+export const useCart = ({ initialItems }: UseCartOptions = {}) => {
   const { data: session, status } = useSession();
   const queryClient = useQueryClient();
   const isAuthenticated = status === 'authenticated';
   const token = session?.token;
 
-  const [localItems, setLocalItems] = useState<LocalCartItem[]>(() =>
-    typeof window !== 'undefined' ? getLocalCart() : []
+  // Hydration-safe subscription to the guest cart: the server snapshot is an
+  // empty array, and the client snapshot reads localStorage only after
+  // hydration. No state is set synchronously in an effect.
+  const subscribeToCartEvents = useCallback((onStoreChange: () => void) => {
+    if (typeof window === 'undefined') return () => {};
+    window.addEventListener(CART_STORAGE_EVENT, onStoreChange);
+    return () => window.removeEventListener(CART_STORAGE_EVENT, onStoreChange);
+  }, []);
+
+  const localItems = useSyncExternalStore(
+    subscribeToCartEvents,
+    getLocalCartSnapshot,
+    getLocalCartServerSnapshot
   );
-
-  useEffect(() => {
-    if (!isAuthenticated) {
-      const handleGuestCartChange = () => setLocalItems(getLocalCart());
-      window.addEventListener(CART_STORAGE_EVENT, handleGuestCartChange);
-
-      return () => {
-        window.removeEventListener(CART_STORAGE_EVENT, handleGuestCartChange);
-      };
-    }
-    return undefined;
-  }, [isAuthenticated]);
-
   const cartQuery = useQuery<GetCartResponse>({
     queryKey: ['cart'],
-    queryFn: () => getCartAction(),
+    queryFn: () => getCart(token as string),
     enabled: isAuthenticated && !!token,
+    initialData: initialItems,
   });
 
-  const serverItems: ServerCartItem[] = Array.isArray(cartQuery.data)
-    ? cartQuery.data
-    : cartQuery.data?.payload?.cartItems ||
-      cartQuery.data?.payload?.products ||
-      cartQuery.data?.cartItems ||
-      [];
+  const serverItems: ServerCartItem[] = cartQuery.data?.payload?.cartItems ?? [];
 
   const isGuest = !isAuthenticated;
   const cartItems: CartItem[] = isGuest ? localItems : serverItems;
@@ -133,8 +79,7 @@ export const useCart = () => {
       if (!productId) throw new Error('Product id is required');
 
       if (isGuest) {
-        const updated = addToLocalCart(productId, quantity, product);
-        setLocalItems([...updated]);
+        addToLocalCart(productId, quantity, product);
         return { success: true };
       }
 
@@ -158,8 +103,7 @@ export const useCart = () => {
   const updateQuantityMutation = useMutation({
     mutationFn: async ({ id, newQuantity }: { id: string; newQuantity: number }) => {
       if (isGuest) {
-        const updated = updateLocalCartQuantity(id, newQuantity);
-        setLocalItems([...updated]);
+        updateLocalCartQuantity(id, newQuantity);
         return { success: true };
       }
       return updateCartQuantityAction(id, newQuantity);
@@ -174,8 +118,7 @@ export const useCart = () => {
   const removeFromCartMutation = useMutation({
     mutationFn: async (id: string) => {
       if (isGuest) {
-        const updated = removeFromLocalCart(id);
-        setLocalItems([...updated]);
+        removeFromLocalCart(id);
         return { success: true };
       }
       return removeFromCartAction(id);
@@ -191,7 +134,6 @@ export const useCart = () => {
     mutationFn: async () => {
       if (isGuest) {
         clearLocalCart();
-        setLocalItems([]);
         return { success: true };
       }
       return clearCartAction();

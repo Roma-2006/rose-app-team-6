@@ -5,17 +5,17 @@ import { Link } from '@/i18n/navigation';
 import { ArrowLeft, ArrowRight, BrushCleaning } from 'lucide-react';
 import { useTranslations, useLocale } from 'next-intl';
 import { ProductCard } from '@/features/main/components/home/home-products/Product-card';
-import { ProductCardSkeleton } from '@/features/main/components/home/home-products/product-card-skelton';
 import CartItemRow, { CartItemType } from '@/features/main/components/cart/cart-item-row';
 import CartEmptyState from '@/features/main/components/cart/cart-empty';
-import CartSkeleton from '@/shared/components/skeleton/cart-skeleton';
 import ClearCartDialog from '@/features/main/components/cart/clear-cart-dialog';
 import SecTitle from '@/features/main/components/shared/section-title';
 import { useCart } from '@/features/main/hooks/use-cart';
 import { Product } from '@/features/main/types/products';
+import { Carousel } from '@/features/main/components/shared/carousel';
 import { RawCartItem } from '@/features/main/types/raw-cart-item';
 import OrderSummaryPanel from '@/features/main/components/order-summary/order-summary-panel';
-import ProductsYouMayLike from '@/features/main/components/products/products-you-may-like';
+import { ProductCardSkeleton } from '@/features/main/components/skeleton/product-card-skelton';
+import CartSkeleton from '@/features/main/components/skeleton/cart-skeleton';
 interface CartPageProps {
   suggestedProducts: Product[];
 }
@@ -128,7 +128,26 @@ export default function CartPageClient({ suggestedProducts }: CartPageProps) {
       </div>
 
       {/* Products You May Like Carousel */}
-      <ProductsYouMayLike cartItems={rawItems} isLoadingCart={isLoading} />
+      <section className="mt-16 ">
+        <div className="mb-8">
+          <SecTitle text={t('title-2')} />
+        </div>
+        <div className=" flex-1 w-full">
+          <Carousel>
+            {isLoading
+              ? [...Array(4)].map((_, i) => (
+                  <div key={i} className="snap-start  ">
+                    <ProductCardSkeleton />
+                  </div>
+                ))
+              : suggestedProducts.map((product) => (
+                  <div key={product.id} className="snap-start  ">
+                    <ProductCard product={product} />
+                  </div>
+                ))}
+          </Carousel>
+        </div>
+      </section>
 
       {/* Confirmation Dialog */}
       <ClearCartDialog
