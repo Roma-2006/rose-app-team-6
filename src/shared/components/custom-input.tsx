@@ -61,7 +61,6 @@ export default function CustomInput({
   //determine language
   const locale = useLocale();
   const computedIsRtl = isRtl !== undefined ? isRtl : locale === 'ar';
-  const tLogin = useTranslations('auth.login');
   const tInput = useTranslations('custom-input');
 
   let defaultLabel = '';
