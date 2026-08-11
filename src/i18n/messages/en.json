@@ -439,11 +439,13 @@
   "cart": {
     "title": " Shopping Cart",
     "title-2": " Products You May Like",
+    "summary":"Summary",
     "couponPlaceholder":"Coupon Code",
     "couponLabel":"",
     "invalidCoupon":"Invalid or expired coupon",
     "couponApplied":"Coupon applied",
     "NocouponApplied":"No coupons applied",
+    "couponAlreadyApplied":"Coupon already applied",
     "subtotal":"Subtotal",
     "total ":"Total",
     "applyCoupon":"Apply Coupon",

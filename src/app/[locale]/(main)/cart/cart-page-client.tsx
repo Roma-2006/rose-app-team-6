@@ -16,6 +16,8 @@ import { RawCartItem } from '@/features/main/types/raw-cart-item';
 import OrderSummaryPanel from '@/features/main/components/order-summary/order-summary-panel';
 import { ProductCardSkeleton } from '@/features/main/components/skeleton/product-card-skelton';
 import CartSkeleton from '@/features/main/components/skeleton/cart-skeleton';
+import { ICouponBackendResponse } from '@/features/main/types/order-summary';
+import ProductsYouMayLike from '@/features/main/components/products/products-you-may-like';
 interface CartPageProps {
   suggestedProducts: Product[];
 }
@@ -26,8 +28,9 @@ export default function CartPageClient({ suggestedProducts }: CartPageProps) {
   const isRtl = locale === 'ar';
 
   const [isClearDialogOpen, setIsClearDialogOpen] = useState(false);
-
   const { cartItems, isLoading, updateQuantity, removeFromCart, clearCart } = useCart();
+
+  const [appliedCoupons, setAppliedCoupons] = useState<ICouponBackendResponse[]>([]);
 
   const rawItems = (cartItems ?? []) as RawCartItem[];
 
@@ -68,6 +71,12 @@ export default function CartPageClient({ suggestedProducts }: CartPageProps) {
   const subtotal = formattedItems.reduce((total, item) => {
     return total + item.price * item.quantity;
   }, 0);
+  const handleApplyCoupon = (coupon: ICouponBackendResponse) => {
+    setAppliedCoupons((prev) => [...prev, coupon]);
+  };
+  const handleRemoveCoupon = (id: string) => {
+    setAppliedCoupons((prev) => prev.filter((coupon) => coupon.id !== id));
+  };
   return (
     <main className=" mx-auto px-4 py-8">
       {/* 2 Columns Layout */}
@@ -122,32 +131,17 @@ export default function CartPageClient({ suggestedProducts }: CartPageProps) {
         {/* Order Summary */}
         <aside className="lg:col-span-1">
           <div>
-            <OrderSummaryPanel subtotal={subtotal} />
+            <OrderSummaryPanel
+              subtotal={subtotal}
+              appliedCoupons={appliedCoupons}
+              onApplyCoupon={handleApplyCoupon}
+              onRemoveCoupon={handleRemoveCoupon}
+            />
           </div>
         </aside>
       </div>
 
-      {/* Products You May Like Carousel */}
-      <section className="mt-16 ">
-        <div className="mb-8">
-          <SecTitle text={t('title-2')} />
-        </div>
-        <div className=" flex-1 w-full">
-          <Carousel>
-            {isLoading
-              ? [...Array(4)].map((_, i) => (
-                  <div key={i} className="snap-start  ">
-                    <ProductCardSkeleton />
-                  </div>
-                ))
-              : suggestedProducts.map((product) => (
-                  <div key={product.id} className="snap-start  ">
-                    <ProductCard product={product} />
-                  </div>
-                ))}
-          </Carousel>
-        </div>
-      </section>
+      <ProductsYouMayLike products={suggestedProducts} isLoading={isLoading} />
 
       {/* Confirmation Dialog */}
       <ClearCartDialog

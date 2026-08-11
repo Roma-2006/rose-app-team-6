@@ -11,34 +11,40 @@ import { useTranslations } from 'next-intl';
 export default function OrderSummaryPanel({
   subtotal,
   variant = 'editable',
-  className,
+  className = '',
+  appliedCoupons = [],
+  onApplyCoupon,
+  onRemoveCoupon,
 }: IOrderSummaryPanelProps) {
   //Transelation
-  const tButton = useTranslations('cart');
+  const tCart = useTranslations('cart');
 
   // Variables
   const isEditable = variant === 'editable';
 
   // States
-
-  const [storedValidCoupons, setstoredValidCoupons] = useState<ICouponBackendResponse[]>([]);
   const [couponError, setCouponError] = useState<string | null>(null);
 
   // Functions
+
   const handleApplyValidCoupon = (coupon: ICouponBackendResponse) => {
-    const isAlreadyApplied = storedValidCoupons.some((c) => c.id === coupon.id);
-    if (isAlreadyApplied) return;
+    const isAlreadyApplied = appliedCoupons.some((c) => c.id === coupon.id);
+    if (isAlreadyApplied) {
+      setCouponError(tCart('couponAlreadyApplied'));
+      return;
+    }
 
-    setstoredValidCoupons((prev) => [...prev, coupon]);
-  };
-
-  const handleRemoveCoupon = (id: string) => {
-    setstoredValidCoupons((prev) => prev.filter((coupon) => coupon.id !== id));
+    if (onApplyCoupon) {
+      onApplyCoupon(coupon);
+    }
+    setCouponError(null);
   };
 
   return (
     <section className={`w-full max-w-114 max-h-114 gap-2.5 flex flex-col ${className}`}>
-      <h5 className="sec-title text-text-plain text-3xl mb-7.5 font-semibold">Summary</h5>
+      <h5 className="sec-title text-text-plain text-3xl mb-7.5 font-semibold">
+        {tCart('summary')}
+      </h5>
 
       {isEditable && (
         <CouponForm
@@ -49,8 +55,8 @@ export default function OrderSummaryPanel({
       )}
 
       <AppliedCouponsBox
-        appliedCoupons={storedValidCoupons}
-        onRemoveCoupon={handleRemoveCoupon}
+        appliedCoupons={appliedCoupons}
+        onRemoveCoupon={onRemoveCoupon || (() => {})}
         currency="EGP"
         variant={variant}
         errorMessage={couponError}
@@ -58,16 +64,15 @@ export default function OrderSummaryPanel({
 
       <TotalPrice
         subtotal={subtotal}
-        appliedCoupons={storedValidCoupons}
+        appliedCoupons={appliedCoupons}
         currency="EGP"
         isRecalculating={false}
       />
-
       <Link
         href="/checkout"
         className="inline-flex text-center justify-center mb-8  items-center gap-2 px-6 py-3 bg-bg-primary-saturated hover:bg-rose-950 text-white font-medium text-sm rounded-xl transition-colors shadow-sm"
       >
-        <span>{tButton('checkout')}</span>
+        <span>{tCart('checkout')}</span>
 
         <MoveRight size={20} className="rtl:rotate-180 transition-transform" />
       </Link>

@@ -443,6 +443,8 @@
     "invalidCoupon":"كوبون غير صالح أو منتهي الصلاحية",
     "couponApplied":"تم تطبيق الكوبون!",
     "NocouponApplied":"لم يتم تطبيق أي كوبونات",
+    "couponAlreadyApplied":"تم تطبيق الكوبون بالفعل",
+    "summary":"الموجز",
     "subtotal":"المجموع الفرعي",
     "total ":"الإجمالي",
     "applyCoupon":"تطبيق الكوبون",
