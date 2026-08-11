@@ -18,6 +18,7 @@ import {
   removeFromWishlistAction,
   clearWishlist,
 } from '../api/wishlist.api';
+import { toast } from 'sonner';
 
 export const useWishlist = (productId?: string) => {
   const { data: session, status } = useSession();
@@ -118,6 +119,10 @@ export const useWishlist = (productId?: string) => {
       await queryClient.invalidateQueries({
         queryKey: ['wishlist'],
       });
+      toast.success('Wishlist cleared successfully');
+    },
+    onError: (error) => {
+      toast.error(error.message);
     },
   });
   return {
@@ -132,5 +137,6 @@ export const useWishlist = (productId?: string) => {
     removeItemFromWishlidstMutation: removeItemFromWishlidstMutation.mutate,
     //clearMutation
     clearWishlist: clearWishlistMutation.mutate,
+    loadingClearWishlist: clearWishlistMutation.isPending,
   };
 };

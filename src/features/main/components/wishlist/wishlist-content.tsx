@@ -7,7 +7,6 @@ import { MoveLeft, MoveRight, FolderHeart, BrushCleaning } from 'lucide-react';
 import { useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
 import Modal from '@/shared/components/custom-ui/modal';
 import { AlertDialog, AlertDialogTrigger } from '@/shared/components/ui/alert-dialog';
 import ClearConfirmation from '@/shared/components/custom-ui/clear-confirmation';
@@ -15,7 +14,8 @@ export default function WishlistContent() {
   //Translations
   const t = useTranslations('products');
   //Hooks
-  const { wishlistItems, isLoading, error, wishlistCount, clearWishlist } = useWishlist();
+  const { wishlistItems, isLoading, error, wishlistCount, clearWishlist, loadingClearWishlist } =
+    useWishlist();
   const locale = useLocale();
   const isRTL = locale === 'ar';
   return (
@@ -26,27 +26,30 @@ export default function WishlistContent() {
           {t('wishlist.title')}{' '}
           <span className="text-base font-normal terxt-text-muted ">{wishlistCount}items</span>
         </h1>
-        <AlertDialog>
-          <AlertDialogTrigger
-            render={
-              <Button
-                variant="destructive"
-                buttonVariant="text"
-                title="products.wishlist.clear"
-                leftIcon={<BrushCleaning size={20} />}
-              />
-            }
-          />
-          <Modal>
-            <ClearConfirmation
-              onClick={clearWishlist}
-              icon={<BrushCleaning size={29} />}
-              title={t('wishlist.clear-wishlist-confirmation')}
-              cancelButtonTitle="button.cancel"
-              confirmButtonTitle="button.confirm"
+        {wishlistItems.length > 0 && (
+          <AlertDialog>
+            <AlertDialogTrigger
+              render={
+                <Button
+                  variant="destructive"
+                  buttonVariant="text"
+                  title="products.wishlist.clear"
+                  leftIcon={<BrushCleaning size={20} />}
+                />
+              }
             />
-          </Modal>
-        </AlertDialog>
+            <Modal>
+              <ClearConfirmation
+                onClick={clearWishlist}
+                icon={<BrushCleaning size={29} />}
+                title={t('wishlist.clear-wishlist-confirmation')}
+                cancelButtonTitle="button.cancel"
+                confirmButtonTitle="button.confirm"
+                loading={loadingClearWishlist}
+              />
+            </Modal>
+          </AlertDialog>
+        )}
       </div>
       {isLoading ? (
         <WishlistItemSkeleton />

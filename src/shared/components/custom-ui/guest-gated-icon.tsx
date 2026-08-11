@@ -12,7 +12,7 @@ export default function GuestGatedIcon({
   }
   return (
     <Link
-      href={type === 'wishlist' ? '/products/wishlist' : type === 'cart' ? '/products/cart' : ''}
+      href={type === 'wishlist' ? '/wishlist' : type === 'cart' ? '/cart' : ''}
       className="relative"
     >
       {children}
