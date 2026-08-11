@@ -47,6 +47,9 @@ export interface IOrderSummaryPanelProps {
   subtotal: number;
   variant?: 'editable' | 'read-only';
   className?: string;
+  appliedCoupons?: ICouponBackendResponse[];
+  onApplyCoupon?: (coupon: ICouponBackendResponse) => void;
+  onRemoveCoupon?: (id: string) => void;
 }
 interface IValidationResult {
   isValid: boolean;
