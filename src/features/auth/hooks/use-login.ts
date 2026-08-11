@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { TLoginData } from '../types/auth';
 import { useRouter } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
-import { syncGuestDataToServer } from '@/features/dashboard/lib/guest-data';
+import { syncGuestDataToServer } from '@/features/main/lib/guest-data';
 import { useQueryClient } from '@tanstack/react-query';
 
 export default function useLogin() {

@@ -28,6 +28,7 @@
   "header": {
     "search-placeholder": "ما الهدية المميزة التي تبحث عنها؟",
     "login": "تسجيل الدخول",
+     "register": "إنشاء حساب",
     "search-default": "منتجات قد تعجبك",
     "search-empty": "لا توجد منتجات",
     "search-error": "فشل البحث. حاول مجدداً.",

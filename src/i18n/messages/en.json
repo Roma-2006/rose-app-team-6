@@ -28,6 +28,7 @@
   "header": {
     "search-placeholder": "Search for products…",
     "login": "Login",
+     "register": "Register",
     "search-default": "Products you may like",
     "search-empty": "No products found",
     "search-error": "Search failed. Try again."
