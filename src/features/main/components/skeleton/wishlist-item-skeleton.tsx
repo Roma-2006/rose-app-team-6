@@ -25,7 +25,7 @@ export default function WishlistItemSkeleton() {
 
         <div className="flex flex-col justify-between">
           {/* Delete icon */}
-          <Skeleton className="h-10 w-10 rounded" />
+          <Skeleton className="h-10 w-10 rounded ml-auto" />
 
           {/* Button */}
           <Skeleton className="h-10 w-32 rounded" />

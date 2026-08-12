@@ -11,12 +11,22 @@ import Modal from '@/shared/components/custom-ui/modal';
 import { AlertDialog, AlertDialogTrigger } from '@/shared/components/ui/alert-dialog';
 import ClearConfirmation from '@/shared/components/custom-ui/clear-confirmation';
 import { useState } from 'react';
-export default function WishlistContent() {
+import { WishlistContentProps } from '../../types/wishlist';
+export default function WishlistContent({ initialWishlist }: WishlistContentProps) {
   //Translations
   const t = useTranslations('products');
   //Hooks
-  const { wishlistItems, isLoading, error, wishlistCount, clearWishlist, loadingClearWishlist } =
-    useWishlist();
+  const {
+    wishlistItems,
+    isLoading,
+    isFetching,
+    error,
+    wishlistCount,
+    clearWishlist,
+    loadingClearWishlist,
+    refetch,
+    isError,
+  } = useWishlist(undefined, initialWishlist);
   const [isClearDialogOpen, setIsClearDialogOpen] = useState(false);
   const locale = useLocale();
   const isRTL = locale === 'ar';
@@ -31,7 +41,10 @@ export default function WishlistContent() {
         <h1 className="font-bold text-5xl text-text-plain flex items-end gap-3.75">
           <FolderHeart size={60} />
           {t('wishlist.title')}{' '}
-          <span className="text-base font-normal terxt-text-muted ">{wishlistCount}items</span>
+          <span className="text-base font-normal text-text-muted ">
+            {' '}
+            {t('wishlist.items-count', { count: wishlistCount })}
+          </span>
         </h1>
         {wishlistItems.length > 0 && (
           <AlertDialog open={isClearDialogOpen} onOpenChange={setIsClearDialogOpen}>
@@ -60,16 +73,25 @@ export default function WishlistContent() {
       </div>
       {isLoading ? (
         <WishlistItemSkeleton />
+      ) : isError ? (
+        <div className="text-center text-2xl font-bold min-h-80 mt-6">
+          <p className="mb-3">{error?.message}</p>
+          <Button
+            buttonVariant="text"
+            variant="primary"
+            title="button.retry"
+            onClick={() => refetch()}
+            loading={isFetching}
+          />
+        </div>
       ) : wishlistItems.length > 0 ? (
         <div className="flex flex-col gap-5 border-t border-border-subtle my-4">
           {wishlistItems.map((item) => (
             <WishlistItem key={item.id} wishlistItem={item} />
           ))}
         </div>
-      ) : wishlistItems.length === 0 ? (
-        <p className="text-center text-3xl font-bold min-h-80 mt-6">{t('wishlist.empty')}</p>
       ) : (
-        error && <p>{error.message}</p>
+        <p className="text-center text-2xl font-bold min-h-80 mt-6">{t('wishlist.empty')}</p>
       )}
       <Link href="/products">
         <Button

@@ -12,12 +12,16 @@ export default function ProductPrice({ product }: ProductPriceProps) {
     <span className="flex gap-2 items-end">
       <span className="font-bold text-3xl text-text-plain">
         {discountedPrice.toFixed(2)}
-        <span className="text-xl font-semibold ">{t('products.filter.currency.egp')}</span>
+        <span className="text-2xl font-semibold ltr:pl-1 rtl:pr-1">
+          {t('products.filter.currency.egp')}
+        </span>
       </span>
       {hasDiscount && (
-        <span className="line-through text-sm text-text-muted">
+        <span className="line-through text-lg text-text-muted font-medium">
           {Number(product.price).toFixed(2)}
-          <span>{t('products.filter.currency.egp')}</span>
+          <span className="ltr:pl-1 rtl:pr-1 text-sm font-medium ">
+            {t('products.filter.currency.egp')}
+          </span>
         </span>
       )}
     </span>
