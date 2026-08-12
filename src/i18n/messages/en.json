@@ -375,6 +375,8 @@
   "products": {
     "addToCart": "Add to cart",
     "outOfStock": "Out of stock",
+    "in-stock":"In Stock",
+    "no-ratings": "No ratings yet",
     "product-card": {
       "new": "New",
       "outOfStock": "Out of stock"
@@ -430,7 +432,17 @@
     },
     "related-products": {
       "sec-title": "Related Products"
-    }
+    },
+    "wishlist":{
+      "title":"Wishlist",
+      "empty":" Your wishlist is empty ",
+      "browse":"Browse products ",
+      "remove":"Remove from wishlist ",
+      "clear":"Clear Wishlist",
+      "continue-shopping":"Continue Shopping",
+      "explore-similar-products":"Explore Similar Products",
+      "clear-wishlist-confirmation":"Are you sure you want to clear your Wishlist?"
+  }
   },
 
     "address": {

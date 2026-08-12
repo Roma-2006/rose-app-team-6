@@ -1,11 +1,11 @@
+import { Product } from './products';
+
 interface WishlistItem {
   id: string;
   userId: string;
   productId: string;
   createdAt: string;
-  product: {
-    id: string;
-  };
+  product: Product;
 }
 interface GetWishlistResponse {
   status: boolean;
@@ -14,3 +14,6 @@ interface GetWishlistResponse {
     wishlistItems: WishlistItem[];
   };
 }
+export type TWishlistItemProps = {
+  wishlistItem: WishlistItem | LocalWishlistItem;
+};

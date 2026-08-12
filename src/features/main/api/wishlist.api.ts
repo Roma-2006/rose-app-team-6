@@ -1,10 +1,10 @@
 'use server';
 
 import { getAuthToken } from '../lib/get-auth-token';
+import { GetWishlistResponse } from '../types/wishlist';
 
 export async function getWishlistAction(): Promise<GetWishlistResponse> {
   const token = await getAuthToken();
-
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/wishlist`, {
     method: 'GET',
     headers: {
@@ -50,6 +50,25 @@ export async function removeFromWishlistAction(itemId: string) {
   const token = await getAuthToken();
 
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/wishlist/${itemId}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      accept: 'application/json',
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to remove product from wishlist');
+  }
+
+  return response.json();
+}
+
+//ClearWishlist
+export async function clearWishlist() {
+  const token = await getAuthToken();
+
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/wishlist`, {
     method: 'DELETE',
     headers: {
       Authorization: `Bearer ${token}`,

@@ -39,18 +39,21 @@ export default function Header() {
         </div>
         <div className="flex">
           <UserAuthAction isAuthenticated={isAuthenticated} />
-          <span className="flex items-center gap-2.5 px-4 border-r border-l border-border-muted">
-            <GuestGatedIcon isAuthenticated={isAuthenticated} badgeCount={wishlistCount}>
+          <span className=" flex items-center gap-2.5 px-4 border-r border-l  border-border-muted">
+            <GuestGatedIcon
+              isAuthenticated={isAuthenticated}
+              badgeCount={wishlistCount}
+              type="wishlist"
+            >
               <Heart size={24} />
             </GuestGatedIcon>
-
-            {/* Link Cart */}
-            <Link href="/cart" aria-label="Shopping Cart">
-              <GuestGatedIcon isAuthenticated={isAuthenticated} badgeCount={uniqueItemsCount}>
-                <ShoppingCart size={24} />
-              </GuestGatedIcon>
-            </Link>
-
+            <GuestGatedIcon
+              isAuthenticated={isAuthenticated}
+              badgeCount={uniqueItemsCount}
+              type="cart"
+            >
+              <ShoppingCart size={24} />
+            </GuestGatedIcon>
             <Bell size={24} />
           </span>
           <span className="flex ltr:pl-4 rtl:pr-4 gap-2.5">

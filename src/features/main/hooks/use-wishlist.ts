@@ -3,7 +3,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
 import { useState, useEffect } from 'react';
-
+import { useRouter } from '@/i18n/navigation';
 import {
   getLocalWishlist,
   addToLocalWishlist,
@@ -16,11 +16,13 @@ import {
   addToWishlistAction,
   getWishlistAction,
   removeFromWishlistAction,
+  clearWishlist,
 } from '../api/wishlist.api';
 
 export const useWishlist = (productId?: string) => {
   const { data: session, status } = useSession();
   const queryClient = useQueryClient();
+  const router = useRouter();
   const isAuthenticated = status === 'authenticated';
   const token = session?.token;
 
@@ -100,7 +102,24 @@ export const useWishlist = (productId?: string) => {
       }
     },
   });
-
+  // remove item from wishlist
+  const removeItemFromWishlidstMutation = useMutation({
+    mutationFn: (itemId: string) => removeFromWishlistAction(itemId),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ['wishlist'],
+      });
+    },
+  });
+  //ClearWishlist
+  const clearWishlistMutation = useMutation({
+    mutationFn: () => clearWishlist(),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ['wishlist'],
+      });
+    },
+  });
   return {
     wishlistItems,
     wishlistCount: wishlistItems.length,
@@ -109,5 +128,9 @@ export const useWishlist = (productId?: string) => {
     isPending: toggleWishlistMutation.isPending,
     isLoading: isAuthenticated ? wishlistQuery.isLoading : false,
     isError: isAuthenticated ? wishlistQuery.isError : false,
+    error: wishlistQuery.error,
+    removeItemFromWishlidstMutation: removeItemFromWishlidstMutation.mutate,
+    //clearMutation
+    clearWishlist: clearWishlistMutation.mutate,
   };
 };

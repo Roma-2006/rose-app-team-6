@@ -6,6 +6,7 @@ export default function GuestGatedIcon({
   isAuthenticated,
   children,
   badgeCount,
+  type,
 }: TGuestGatedIconProps) {
   if (!isAuthenticated) {
     return (
@@ -20,12 +21,15 @@ export default function GuestGatedIcon({
   }
 
   return (
-    <span className="relative">
+    <Link
+      href={type === 'wishlist' ? '/products/wishlist' : type === 'cart' ? '/products/cart' : ''}
+      className="relative"
+    >
       {children}
 
       {badgeCount !== undefined && badgeCount > 0 && (
         <Badge className="absolute -right-3 -top-3">{badgeCount}</Badge>
       )}
-    </span>
+    </Link>
   );
 }

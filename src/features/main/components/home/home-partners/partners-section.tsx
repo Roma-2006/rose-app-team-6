@@ -14,7 +14,7 @@ export default async function PartnersSection() {
   const tPartners = await getTranslations('home.partners');
 
   return (
-    <section className=" py-10  h-51.5 w-full bg-bg-primary-fade mx-4 gap-10 flex flex-col items-center justify-center  ">
+    <section className=" py-10  h-51.5 w-full bg-bg-primary-fade  gap-10 flex flex-col items-center justify-center  ">
       {/* Parteners Header */}
       <header className=" Parteners-header text-center ">
         <h3 className="text-3xl font-bold text-text-primary">
