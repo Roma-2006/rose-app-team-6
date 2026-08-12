@@ -38,10 +38,10 @@ export default function Header() {
         <div className="flex">
           <UserAuthAction isAuthenticated={isAuthenticated} />
           <span className=" flex items-center gap-2.5 px-4 border-r border-l  border-border-muted">
-            <GuestGatedIcon isAuthenticated={isAuthenticated} badgeCount={wishlistCount}>
+            <GuestGatedIcon badgeCount={wishlistCount} href="/wishlist">
               <Heart size={24} />
             </GuestGatedIcon>
-            <GuestGatedIcon isAuthenticated={isAuthenticated} badgeCount={uniqueItemsCount}>
+            <GuestGatedIcon badgeCount={uniqueItemsCount} href="/cart">
               <ShoppingCart size={24} />
             </GuestGatedIcon>
             <Bell size={24} />

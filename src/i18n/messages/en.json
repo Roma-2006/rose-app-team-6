@@ -12,7 +12,8 @@
     "confirm": "Confirm",
     "next": "Next",
      "add-review":"Add Review",
-    "adding":"Adding..."
+    "adding":"Adding...",
+    "retry":"Retry"
   },
   "common": {
     "select": {
@@ -333,6 +334,8 @@
   "products": {
     "addToCart": "Add to cart",
     "outOfStock": "Out of stock",
+    "in-stock":"In Stock",
+    "no-ratings": "No ratings yet",
     "product-card": {
       "new": "New",
       "outOfStock": "Out of stock"
@@ -388,7 +391,18 @@
     },
     "related-products": {
       "sec-title": "Related Products"
-    }
+    },
+    "wishlist":{
+      "title":"Wishlist",
+      "empty":" Your wishlist is empty ",
+      "browse":"Browse products ",
+      "remove":"Remove from wishlist ",
+      "clear":"Clear Wishlist",
+      "continue-shopping":"Continue Shopping",
+      "explore-similar-products":"Explore Similar Products",
+      "clear-wishlist-confirmation":"Are you sure you want to clear your Wishlist?",
+      "items-count": "{count, plural, =0 {No items} one {# item} other {# items}}"
+  }
   },
   "grid": {
     "product-empty": "No products found matching your filters."
