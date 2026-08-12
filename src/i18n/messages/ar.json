@@ -480,6 +480,8 @@
     "deleteConfirm": "هل أنت متأكد من رغبتك في حذف هذا العنوان؟",
     "confirmDelete": "حذف",
     "cancel": "إلغاء",
+    "geolocationNotSupported": "المتصفح الخاص بك لا يدعم تحديد الموقع.",
+    "locationError": "تعذر الحصول على موقعك.",
     "placeholder": {
       "city": "أدخل اسم المدينة",
       "street": "أدخل تفاصيل العنوان (البناية، الدور، رقم الشقة...)"
@@ -506,6 +508,43 @@
     "ratings": "تقييمات",
     "rating": "التقييم"
   },
+
+  
+  "orders": {
+    "title": "الطلبات",
+    "orderPrefix": "طلب",
+    "createdAt": "تم الإنشاء في",
+    "totalPrice": "السعر الإجمالي",
+    "currency": "ج.م",
+    "paymentMethod": "طريقة الدفع",
+    "deliveryStatus": "حالة التوصيل",
+    "orderItems": "عناصر الطلب",
+    "rating": "التقييم",
+    "ratingsCount": "تقييمات",
+    "showAll": "عرض الكل",
+    "showLess": "عرض أقل",
+    "error": "حدث خطأ أثناء تحميل طلباتك.",
+    "retry": "إعادة المحاولة",
+    "noOrders": "لا توجد لديك أي طلبات حتى الآن.",
+
+    "methods": {
+      "CASH": "نقدًا",
+      "CREDIT_CARD": "بطاقة ائتمان"
+    },
+
+    "status": {
+      "label": "الحالة"
+  
+    },
+
+    "deliveryStatusValues": {
+      "PENDING": "قيد الانتظار",
+      "SHIPPED": "تم الشحن",
+      "DELIVERED": "تم التوصيل",
+      "CANCELED": "ملغي"
+    }
+  },
+
   "button-cart": {
     "cancel": "إلغاء",
     "confirm": "تأكيد"

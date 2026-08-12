@@ -1,45 +1,48 @@
 'use client';
 
+import { useJsApiLoader, GoogleMap, Marker } from '@react-google-maps/api';
 import { Button } from '@/shared/components/ui/button';
 import { MapPin } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-
-export interface AddressLocation {
-  lat: number;
-  lng: number;
-}
+import { toast } from 'sonner';
 
 interface AddressMapProps {
-  location: AddressLocation | null;
-  onLocationChange: (location: AddressLocation) => void;
+  location: { lat: number; lng: number } | null;
+  onLocationChange: (location: { lat: number; lng: number }) => void;
 }
+
+const DEFAULT_MAP_CENTER = {
+  lat: 30.0444,
+  lng: 31.2357,
+};
+
+const MAP_CONTAINER_STYLE = {
+  width: '100%',
+  height: '340px',
+};
 
 export function AddressMap({ location, onLocationChange }: AddressMapProps) {
   const t = useTranslations('address');
+
+  const { isLoaded } = useJsApiLoader({
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!,
+  });
+
   const handleFindLocation = () => {
     if (!navigator.geolocation) {
-      alert('Geolocation is not supported by your browser.');
+      toast.error(t('Geolocation is not supported by your browser.'));
       return;
     }
 
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        const latitude = position.coords.latitude;
-        const longitude = position.coords.longitude;
-
         onLocationChange({
-          lat: latitude,
-          lng: longitude,
-        });
-
-        console.log({
-          latitude,
-          longitude,
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
         });
       },
-      (error) => {
-        console.error(error);
-        alert('Unable to retrieve your location.');
+      () => {
+        toast.error(t('Unable to retrieve your location.'));
       },
       {
         enableHighAccuracy: true,
@@ -49,6 +52,11 @@ export function AddressMap({ location, onLocationChange }: AddressMapProps) {
     );
   };
 
+  if (!isLoaded) {
+    return <div className="h-85 w-full animate-pulse rounded-2xl bg-bg-muted" />;
+  }
+
+  const center = location ?? DEFAULT_MAP_CENTER;
   return (
     <div className="space-y-4">
       <div className="relative w-full overflow-hidden rounded-2xl border border-border-muted">
@@ -59,17 +67,37 @@ export function AddressMap({ location, onLocationChange }: AddressMapProps) {
           buttonVariant="text"
           title={t('findMyLocation')}
           leftIcon={<MapPin className="h-4 w-4 text-text-danger" />}
-          className="absolute right-4 top-4 z-10 h-10 w-auto px-4 bg-bg-plain border border-border-primary text-text-primary hover:bg-bg-muted  "
+          className="absolute right-4 top-4 z-10 h-10 w-auto border border-border-primary bg-bg-plain px-4 text-text-primary hover:bg-bg-muted"
         />
 
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d55251.336634842475!2d31.29969216459247!3d30.059556316745375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583fa60b21beeb%3A0x79dfb296e8423bba!2z2KfZhNmC2KfZh9ix2KnYjCDZhdit2KfZgdi42Kkg2KfZhNmC2KfZh9ix2KnigKw!5e0!3m2!1sar!2seg!4v1785960468826!5m2!1sar!2seg"
-          className="h-85 w-full border-0"
-          loading="lazy"
-          allowFullScreen
-          referrerPolicy="strict-origin-when-cross-origin"
-          title="Address Location"
-        />
+        <GoogleMap
+          mapContainerStyle={MAP_CONTAINER_STYLE}
+          center={center}
+          zoom={13}
+          onClick={(event) => {
+            if (!event.latLng) return;
+
+            onLocationChange({
+              lat: event.latLng.lat(),
+              lng: event.latLng.lng(),
+            });
+          }}
+        >
+          {location && (
+            <Marker
+              position={location}
+              draggable
+              onDragEnd={(event) => {
+                if (!event.latLng) return;
+
+                onLocationChange({
+                  lat: event.latLng.lat(),
+                  lng: event.latLng.lng(),
+                });
+              }}
+            />
+          )}
+        </GoogleMap>
       </div>
     </div>
   );

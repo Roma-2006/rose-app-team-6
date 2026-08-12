@@ -22,30 +22,15 @@ export function OrdersList() {
     );
   }
 
-  if (isError) {
-    return (
-      <div className="flex flex-col items-center gap-4 py-12 text-center">
-        <p className="font-medium text-destructive">{t('error')}</p>
-
-        <button
-          type="button"
-          className="rounded-lg bg-primary px-5 py-2 text-sm font-medium text-white"
-        >
-          {t('retry')}
-        </button>
-      </div>
-    );
-  }
-
   if (orders.length === 0) {
     return <div className="py-12 text-center text-text-muted">{t('noOrders')}</div>;
   }
 
   return (
-    <section className="flex flex-col gap-6">
-      <h1 className="text-4xl font-bold text-text-primary">{t('title')}</h1>
+    <section className="w-full ">
+      <h1 className="mb-6 text-4xl font-bold text-text-primary">{t('title')}</h1>
 
-      <div className="flex max-h-[3xl] flex-col gap-6 overflow-y-auto pe-2">
+      <div className="flex w-full flex-col gap-4">
         {orders.map((order) => (
           <OrderCard key={order.id} order={order} />
         ))}

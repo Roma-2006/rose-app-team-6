@@ -455,6 +455,8 @@
     "deleteConfirm": "Are you sure you want to delete this address?",
     "confirmDelete": "Delete",
     "cancel": "Cancel",
+    "geolocationNotSupported": "Geolocation is not supported by your browser.",
+    "locationError": "Unable to retrieve your location.",
     "placeholder": {
       "city": "Enter city name",
       "street": "Enter your full address (building, floor, apartment...)"
@@ -482,6 +484,43 @@
     "ratings": "ratings",
     "rating": "Rating"
   },
+
+  
+  "orders": {
+    "title": "Orders",
+    "orderPrefix": "Order",
+    "createdAt": "Created in",
+    "totalPrice": "Total Price",
+    "currency": "EGP",
+    "paymentMethod": "Payment Method",
+    "deliveryStatus": "Delivery Status",
+    "orderItems": "Order Items",
+    "rating": "Rating",
+    "ratingsCount": "ratings",
+    "showAll": "Show All",
+    "showLess": "Show Less",
+    "error": "Something went wrong while loading your orders.",
+    "retry": "Retry",
+    "noOrders": "You have no orders yet.",
+
+    "methods": {
+      "CASH": "Cash",
+      "CREDIT_CARD": "Credit Card"
+    },
+
+    "status": {
+      "label": "Status"
+
+    },
+
+    "deliveryStatusValues": {
+      "PENDING": "Pending",
+      "SHIPPED": "Shipped",
+      "DELIVERED": "Delivered",
+      "CANCELED": "Canceled"
+    }
+  },
+
   "button": {
     "cancel": "Cancel",
     "confirm": "Confirm"

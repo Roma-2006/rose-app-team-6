@@ -7,11 +7,8 @@ export type PaymentMethod = 'CASH_ON_DELIVERY' | 'CREDIT_CARD';
 export interface ProductSummary {
   id: string;
   title: string;
-  rating: number;
-  ratings: number;
   cover: string;
 }
-
 export interface OrderItem {
   id: string;
   orderId: string;
