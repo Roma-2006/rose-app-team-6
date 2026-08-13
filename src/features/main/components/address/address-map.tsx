@@ -200,7 +200,7 @@ export function AddressMap({ mode, initialPosition, onBack, onConfirm }: Address
           onClick={handleConfirm}
           variant="primary"
           buttonVariant="text"
-          title={mode === 'edit' ? t('updateLocation') : t('confirmLocation')}
+          title={mode === 'edit' ? t('UpdateLocation') : t('confirmLocation')}
           className="h-14 flex-1 rounded-xl text-lg font-bold"
         />
       </div>

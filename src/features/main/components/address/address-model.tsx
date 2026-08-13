@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { Trash2 } from 'lucide-react';
+import { Trash2, X } from 'lucide-react';
 
 import { useAddresses } from '../../hooks/use-addresses';
 import { AddressFormValues } from '../../schemas/address.schema';
@@ -16,6 +16,7 @@ import { AlertDialog } from '@/shared/components/ui/alert-dialog';
 import Modal from '@/shared/components/custom-ui/modal';
 import ClearConfirmation from '@/shared/components/custom-ui/clear-confirmation';
 import { AddressProgress } from './address-progress';
+import { Button } from '@/shared/components/ui/button';
 
 interface AddressBookModalProps {
   isOpen?: boolean;
@@ -101,10 +102,6 @@ export function AddressBookModal({
     setView('map');
   };
 
-  const handleMapBack = () => {
-    setView('form');
-  };
-
   const handleMapConfirm = async (position: { lat: number; lng: number }) => {
     if (!formData) return;
 
@@ -133,6 +130,16 @@ export function AddressBookModal({
     <>
       <AlertDialog open={isOpen} onOpenChange={handleOpenChange}>
         <Modal className="flex h-160 w-full !max-w-4xl flex-col gap-6 overflow-hidden rounded-2xl border border-border-soft bg-bg-plain p-6 ring-1 ring-border-soft">
+          <Button
+            type="button"
+            buttonVariant="icon"
+            variant="ghost"
+            onClick={() => handleOpenChange(false)}
+            className="absolute right-4 top-4 z-20 text-text-muted hover:text-text-plain"
+            aria-label="Close"
+            iconOnly={<X size={20} />}
+          />
+
           {(view === 'form' || view === 'map') && (
             <>
               <h2 className="shrink-0 text-2xl font-bold text-text-plain">
@@ -205,9 +212,9 @@ export function AddressBookModal({
         <Modal>
           <ClearConfirmation
             icon={<Trash2 className="text-destructive" size={32} />}
-            title={t('deleteAddressTitle')}
+            title={t('deleteConfirm')}
             cancelButtonTitle={t('cancel')}
-            confirmButtonTitle={t('delete')}
+            confirmButtonTitle={t('confirmDelete')}
             onClick={handleDeleteConfirm}
           />
         </Modal>

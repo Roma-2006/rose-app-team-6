@@ -18,7 +18,7 @@ export function AddressList({ addresses, isLoading, onAdd, onEdit, onDelete }: A
   const t = useTranslations('address');
 
   return (
-    <div className="relative flex h-full min-h-0 w-full flex-col">
+    <div className="relative flex h-full min-h-0 w-full flex-col mt-8">
       <div className="flex items-center justify-between border-b border-border-muted pb-4">
         <h1 className="text-3xl font-bold text-text-plain">{t('modal.title')}</h1>
         <div className="flex items-center gap-3">
