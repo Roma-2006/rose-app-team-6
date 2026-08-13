@@ -1,7 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 
 import { OrderCard } from './order-card';
-import { getOrdersWithProductDetails } from '../../lib/orders-server';
+import { getOrdersWithProductDetails } from '../../services/orders.server';
 
 export async function OrdersList() {
   const t = await getTranslations('orders');
