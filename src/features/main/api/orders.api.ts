@@ -1,17 +1,12 @@
-import { IOrder } from '../types/payment';
+import { Order, OrdersMetadata } from '../types/order';
 
 export interface OrdersApiResponse {
   status: boolean;
   code: number;
   message?: string;
   payload: {
-    data: IOrder[];
-    metadata: {
-      page: number;
-      limit: number;
-      total: number;
-      totalPages: number;
-    };
+    data: Order[];
+    metadata: OrdersMetadata;
   };
 }
 

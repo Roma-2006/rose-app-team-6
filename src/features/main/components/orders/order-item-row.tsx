@@ -1,10 +1,7 @@
-'use client';
-
 import Image from 'next/image';
 import { Star } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
-import { useProductDetails } from '../../hooks/use-product-details';
 import { OrderItem } from '../../types/order';
 
 interface OrderItemRowProps {
@@ -14,12 +11,7 @@ interface OrderItemRowProps {
 export function OrderItemRow({ item }: OrderItemRowProps) {
   const t = useTranslations('orders');
 
-  const { product, quantity, price } = item;
-
-  const { data } = useProductDetails(product.id);
-
-  const productDetails = data?.payload?.product;
-
+  const { product, quantity, price, productDetails } = item;
   return (
     <div className="flex items-start gap-4 rounded-lg bg-bg-subtle">
       <div className="relative h-36 w-28 shrink-0 overflow-hidden rounded-md border border-bg-muted">
@@ -30,12 +22,12 @@ export function OrderItemRow({ item }: OrderItemRowProps) {
         <h4 className="font-semibold text-primary">{product.title}</h4>
 
         {productDetails && (
-          <div className="flex items-center gap-1 text-sm text-text-muted">
-            <Star className="fill-yellow-400 text-yellow-400" size={14} />
+          <div className="flex items-center gap-1 text-base text-text-muted">
+            <Star className="fill-text-warning text-text-warning" size={14} />
 
-            <span>
+            <span className="text-text-plain">
               {t('rating')}: {productDetails.rating}/5 (
-              <span className="text-blue-600">
+              <span className="text-text-info">
                 {productDetails.ratings} {t('ratingsCount')}
               </span>
               )
@@ -43,14 +35,14 @@ export function OrderItemRow({ item }: OrderItemRowProps) {
           </div>
         )}
 
-        <div className="mt-2 flex items-baseline gap-1">
-          <span className="text-sm text-text-muted">(x{quantity})</span>
+        <div className="mt-8 flex items-baseline gap-2">
+          <span className="text-sm text-text-primary">(x{quantity})</span>
 
-          <span className="text-lg font-bold text-text-primary">
+          <span className="text-lg font-bold text-text-plain">
             {Number(price).toLocaleString()}
           </span>
 
-          <span className="text-sm text-text-muted">{t('currency')}</span>
+          <span className="text-sm text-text-plain">{t('currency')}</span>
         </div>
       </div>
     </div>

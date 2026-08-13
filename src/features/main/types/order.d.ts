@@ -1,6 +1,6 @@
-export type OrderStatus = 'PENDING' | 'IN_PROGRESS' | 'SHIPPED' | 'DELIVERED' | 'CANCELLED';
+export type OrderStatus = 'PENDING' | 'IN_PROGRESS' | 'Done' | 'CANCELLED';
 
-export type PaymentStatus = 'PENDING' | 'PAID' | 'FAILED';
+export type PaymentStatus = 'PENDING' | 'PAID' | 'FAILED' | 'PROCESSING';
 
 export type PaymentMethod = 'CASH_ON_DELIVERY' | 'CREDIT_CARD';
 
@@ -16,6 +16,7 @@ export interface OrderItem {
   quantity: number;
   price: string;
   product: ProductSummary;
+  productDetails?: ProductDetails | null;
 }
 
 export interface Order {
@@ -43,10 +44,6 @@ export interface Order {
 
   orderItems: OrderItem[];
 
-  /**
-   * Backend does not currently return orderNumber.
-   * Keep this optional in case backend adds it later.
-   */
   orderNumber?: string;
 }
 

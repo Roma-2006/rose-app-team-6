@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { isValidPhoneNumber } from 'react-phone-number-input';
 
 export const addressSchema = z.object({
+  title: z.string().min(1, 'Title is required'),
   city: z.string().min(1, 'City is required'),
   street: z.string().min(1, 'Full address is required'),
   phone: z.string().refine((val) => isValidPhoneNumber(val), {

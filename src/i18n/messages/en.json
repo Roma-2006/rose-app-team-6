@@ -450,16 +450,19 @@
       "title": "My Addresses"
     },
     "add": {
-      "title": "Add New Address",
+      "title": "Add a New Address",
       "step1Title": "Enter Address Details",
       "step2Title": "Find Your Location"
     },
-    "editTitle": "Edit Address",
+    "editTitle": "Update Address Info",
+    "title":"title",
     "city": "City",
-    "details": "Address Details",
+    "details": "Address ",
     "phone": "Phone Number",
     "next": "Next",
     "save": "Add Address",
+     "confirmLocation":"Add Address",
+     "UpdateLocation":"Update Address",
     "updateAddress": "Update Address",
     "addAddress": "Add a New Address",
     "empty": "You don't have any saved addresses yet.",

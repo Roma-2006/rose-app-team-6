@@ -1,5 +1,5 @@
 import { Button } from '@/shared/components/ui/button';
-import { AddressSkeleton } from './address-skeleton';
+import { AddressSkeleton } from '../skeleton/address-skeleton';
 import { AddressCard } from './address-card';
 import { AddressEmpty } from './address-empty';
 import { useTranslations } from 'next-intl';
@@ -21,13 +21,15 @@ export function AddressList({ addresses, isLoading, onAdd, onEdit, onDelete }: A
     <div className="relative flex h-full min-h-0 w-full flex-col">
       <div className="flex items-center justify-between border-b border-border-muted pb-4">
         <h1 className="text-3xl font-bold text-text-plain">{t('modal.title')}</h1>
-        <Button
-          buttonVariant="text"
-          variant="softPink"
-          title={t('addAddress')}
-          onClick={onAdd}
-          className="px-4 py-3.5"
-        />
+        <div className="flex items-center gap-3">
+          <Button
+            buttonVariant="text"
+            variant="softPink"
+            title={t('addAddress')}
+            onClick={onAdd}
+            className="px-4 py-3.5"
+          />
+        </div>
       </div>
 
       {isLoading ? (

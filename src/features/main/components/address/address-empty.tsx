@@ -18,7 +18,7 @@ export function AddressEmpty({ onAdd }: { onAdd: () => void }) {
         variant="ghost"
         title={t('addAddress')}
         onClick={onAdd}
-        className="text-lg font-bold text-text-danger hover:underline"
+        className="text-lg font-bold text-text-danger "
       />
     </div>
   );

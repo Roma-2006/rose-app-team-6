@@ -40,7 +40,7 @@ export const BestSellingSectionClient = ({ products }: BestSellingSectionClientP
           <Button
             buttonVariant="text"
             variant="primary"
-            title="home.bestSelling.exploreButton"
+            title={t('exploreButton')}
             rightIcon={
               isRtl ? (
                 <ArrowLeft

@@ -10,7 +10,7 @@ interface Props {
 
 export function AddressCard({ address, onEdit, onDelete }: Props) {
   return (
-    <div className="relative max-w-3xl rounded-2xl border border-border-soft pt-6 transition-all hover:border-border-primary hover:shadow-lg pr-9 pb-5 pl-4 mt-8 overflow-visible ">
+    <div className="relative  max-w-4xl rounded-2xl border border-border-soft pt-6 transition-all hover:border-border-primary hover:shadow-lg pr-9 mr-5 pb-5 pl-4 mt-8 overflow-visible ">
       {/* Floating Title */}
       <span className="absolute -top-3 left-6 bg-bg-plain px-2 text-text-primary font-bold text-lg">
         {address.title}
@@ -26,6 +26,7 @@ export function AddressCard({ address, onEdit, onDelete }: Props) {
           </div>
 
           {/* Address Pill */}
+
           <div className="w-fit max-w-[80%] break-words rounded-2xl bg-bg-muted px-5 py-2 text-sm font-medium text-text-plain">
             {address.street}
           </div>
@@ -38,7 +39,7 @@ export function AddressCard({ address, onEdit, onDelete }: Props) {
       </div>
 
       {/* buttons */}
-      <div className="absolute top-1/2 right-0 z-30 flex -translate-y-1/3 translate-x-1/3 flex-col gap-2">
+      <div className="absolute right-0 top-1/2 z-30 flex -translate-y-1/2 translate-x-1/2 flex-col gap-2">
         {/* edit */}
         <Button
           type="button"

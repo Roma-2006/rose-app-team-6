@@ -19,7 +19,7 @@ export function AddressProgress({ step }: AddressProgressProps) {
       <div className="relative flex w-full justify-around items-center">
         {/* step 1 */}
         <div
-          className={`flex size-9 shrink-0 items-center justify-center rounded-full font-bold z-10 transition-colors ${
+          className={`flex size-7 shrink-0 items-center justify-center rounded-full font-bold z-10 transition-colors ${
             step >= 1 ? 'bg-bg-primary-saturated text-text-inverse' : 'bg-bg-muted text-text-soft'
           }`}
         >
@@ -28,7 +28,7 @@ export function AddressProgress({ step }: AddressProgressProps) {
 
         {/* step 2 */}
         <div
-          className={`flex size-9 shrink-0 items-center justify-center rounded-full font-bold z-10 transition-colors ${
+          className={`flex size-7 shrink-0 items-center justify-center rounded-full font-bold z-10 transition-colors ${
             step >= 2 ? 'bg-bg-primary-saturated text-text-inverse' : 'bg-bg-muted text-text-soft'
           }`}
         >

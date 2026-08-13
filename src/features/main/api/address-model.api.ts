@@ -23,14 +23,26 @@ async function addressFetch<T>(endpoint: string, options: RequestInit = {}): Pro
     headers: {
       Authorization: `Bearer ${token}`,
       accept: 'application/json',
-      ...(options.body && { 'Content-Type': 'application/json' }),
+      ...(options.body && {
+        'Content-Type': 'application/json',
+      }),
       ...options.headers,
     },
   });
 
   if (!response.ok) {
     const errorData = await response.json().catch(() => null);
-    throw new Error(errorData?.message || 'Address API Error');
+
+    console.error('ADDRESS API ERROR:', {
+      endpoint,
+      method: options.method,
+      status: response.status,
+      errorData,
+    });
+
+    throw new Error(
+      errorData?.message || errorData?.error || `Address API Error: ${response.status}`
+    );
   }
 
   const data: ApiResponse<T> = await response.json();
@@ -64,6 +76,7 @@ export async function updateAddressAction(
 }
 
 export async function deleteAddressAction(id: string): Promise<void> {
+  console.log('DELETE ADDRESS ID:', id);
   return addressFetch<void>(`/addresses/${id}`, {
     method: 'DELETE',
   });

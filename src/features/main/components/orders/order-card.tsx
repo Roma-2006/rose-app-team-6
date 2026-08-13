@@ -1,48 +1,44 @@
 import { useTranslations } from 'next-intl';
-import { CreditCard, Wallet, Truck, PackageCheck, XCircle, Clock } from 'lucide-react';
+import { CreditCard, Wallet, Truck, CheckCheck } from 'lucide-react';
 
 import { Badge } from '@/shared/components/ui/badge';
 
 import { OrderItemsContainer } from './order-items-container';
 import { Order } from '../../types/order';
 
-interface OrderCardProps {
-  order: Order;
-}
-
-export function OrderCard({ order }: OrderCardProps) {
+export function OrderCard({ order }: { order: Order }) {
   const t = useTranslations('orders');
 
   const isPaid = order.paymentStatus === 'PAID';
 
   const isDelivered = Number(order.shipping) > 0;
 
-  // Top-level order status badge (e.g. IN_PROGRESS / DONE / CANCELED)
+  //  order status badge
   const getStatusClassName = () => {
     switch (order.status) {
       case 'IN_PROGRESS':
-        return 'bg-blue-100 text-blue-700';
+        return 'bg-bg-info text-text-inverse';
 
-      case 'DELIVERED':
-        return 'bg-green-100 text-green-700';
+      case 'Done':
+        return 'bg-bg-success text-text-inverse';
 
       case 'CANCELLED':
-        return 'bg-red-100 text-red-700';
+        return 'bg-bg-danger text-text-inverse';
 
       default:
-        return 'bg-yellow-100 text-yellow-700';
+        return 'bg-bg-warning text-text-inverse';
     }
   };
 
   return (
-    <div className="overflow-hidden rounded-xl border border-bg-muted bg-bg-soft shadow-sm">
+    <div className="overflow-hidden rounded-xl  bg-bg-muted shadow-sm">
       {/* Header */}
-      <header className="flex flex-wrap items-center justify-between gap-2 bg-bg-primary px-6 py-4 text-white">
-        <h3 className="text-lg font-bold">
+      <header className="flex flex-wrap items-center justify-between gap-2 bg-bg-primary-saturated px-6 py-4 text-text-inverse">
+        <h3 className="text-2xl font-semibold">
           {t('orderPrefix')} # {order.id}
         </h3>
 
-        <span className="text-sm opacity-90">
+        <span className="text-base font-semibold  opacity-90">
           {t('createdAt')}:{' '}
           {new Date(order.createdAt).toLocaleString('en-US', {
             day: '2-digit',
@@ -55,53 +51,73 @@ export function OrderCard({ order }: OrderCardProps) {
       </header>
 
       {/* Summary */}
-      <div className="grid grid-cols-1 gap-6 border-b border-bg-muted px-6 pt-6 pb-4 md:grid-cols-2">
-        {/* Left column: price, payment method, delivery status */}
-        <div className="flex flex-col gap-3  ">
-          <div className="flex flex-wrap items-center gap-3 pb-3 ">
-            <span className="text-xl font-bold text-text-primary ">
+      <div className="px-6 pt-6">
+        <div className="flex items-center justify-between border-b  border-border-soft pb-4 mb-4">
+          <div className="flex items-center gap-3">
+            <span className="text-2xl font-bold text-text-plain ">
               {t('totalPrice')}: {Number(order.total).toLocaleString()} {t('currency')}
             </span>
 
-            <Badge className={isPaid ? 'bg-green-500 text-white' : 'bg-yellow-500 text-white'}>
+            <Badge
+              className={
+                isPaid ? 'bg-bg-success text-text-inverse' : 'bg-bg-warning text-text-inverse'
+              }
+            >
               {order.paymentStatus}
             </Badge>
           </div>
 
-          <div className="flex items-center gap-2 text-sm text-text-muted">
-            <span>{t('paymentMethod')}:</span>
-
-            {order.paymentMethod === 'CREDIT_CARD' ? (
-              <CreditCard size={16} />
-            ) : (
-              <Wallet size={16} />
-            )}
-
-            <span>{order.paymentMethod}</span>
-          </div>
-
-          <div className="flex items-center gap-2 text-sm">
-            <span className="flex items-center gap-2 text-text-muted">{t('deliveryStatus')}:</span>
-
-            <span
-              className={isDelivered ? 'font-medium text-green-600' : 'font-medium text-yellow-600'}
-            >
-              {isDelivered ? 'Delivered' : 'Pending'}
-            </span>
+          <div className="flex items-center gap-2">
+            <span className="font-semibold text-text-plain text-base">{t('status.label')}:</span>
+            <Badge className={getStatusClassName()}>{order.status}</Badge>
           </div>
         </div>
 
-        {/* Right column */}
-        <div className="flex items-start gap-2 md:justify-end">
-          <span className="text-sm font-medium text-text-muted">{t('status.label')}:</span>
+        <div className="grid grid-cols-2 gap-6 pb-4">
+          <div className="flex flex-col gap-3">
+            <div className="flex items-center font-semibold text-text-plain gap-2 text-base">
+              <span>{t('paymentMethod')}:</span>
 
-          <Badge className={getStatusClassName()}>{order.status}</Badge>
+              {order.paymentMethod === 'CREDIT_CARD' ? (
+                <CreditCard size={16} className="text-text-soft" />
+              ) : (
+                <Wallet size={16} className="text-text-soft" />
+              )}
+              <span className="text-base text-text-soft">{order.paymentMethod}</span>
+            </div>
+
+            <div className="flex items-center gap-2 text-sm">
+              <span className="flex items-center gap-2 font-semibold text-text-plain text-base">
+                {t('deliveryStatus')}:
+              </span>
+
+              <span
+                className={
+                  isDelivered
+                    ? 'flex items-center gap-1 font-medium text-text-success'
+                    : 'flex items-center gap-1 font-medium text-text-warning'
+                }
+              >
+                {isDelivered ? (
+                  <>
+                    <CheckCheck size={16} />
+                    Delivered
+                  </>
+                ) : (
+                  <>
+                    <Truck size={16} />
+                    Pending
+                  </>
+                )}
+              </span>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Items */}
-      <div className="p-2">
-        <p className="px-4 py-2 text-sm   text-text-muted">{t('orderItems')}</p>
+      <div className="pl-2">
+        <p className="px-4 py-2 font-semibold text-text-plain text-base">{t('orderItems')}:</p>
 
         <OrderItemsContainer items={order.orderItems} />
       </div>

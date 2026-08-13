@@ -11,9 +11,5 @@ export default async function OrdersPage() {
     redirect('/login');
   }
 
-  return (
-    <main className="w-full px-6 py-2 lg:px-14">
-      <OrdersList />
-    </main>
-  );
+  return <OrdersList />;
 }
