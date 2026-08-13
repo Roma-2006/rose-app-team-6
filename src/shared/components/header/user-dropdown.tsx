@@ -22,12 +22,10 @@ interface userMenuProps {
 }
 
 const UserDropdown = ({ user }: userMenuProps) => {
-  // const { data: session, status } = useSession();
+  // Translations
   const t = useTranslations('header.user-menu');
 
-  // if (status === 'loading') return null;
-  // if (!session) return null;
-
+  // functions
   const handleSignout = () => {
     signOut();
   };

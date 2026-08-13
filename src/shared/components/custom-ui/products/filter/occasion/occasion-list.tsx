@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import OccasionItem from './occasion-item';
-import OccasionItemSkeleton from './occasion-skelton';
+import OccasionItemSkeleton from '../../../../skeleton/occasion-skelton';
 import ResetButton from '../general/reset-button';
 import { getOccasions } from '@/shared/api/products/filter/occasion.api';
 import { Occasion } from '@/shared/types/products/filter/occasion';
