@@ -11,8 +11,8 @@
     "delete": "Delete",
     "confirm": "Confirm",
     "next": "Next",
-     "add-review":"Add Review",
-    "adding":"Adding..."
+    "add-review": "Add Review",
+    "adding": "Adding..."
   },
   "common": {
     "select": {
@@ -30,7 +30,25 @@
     "login": "Login",
     "search-default": "Products you may like",
     "search-empty": "No products found",
-    "search-error": "Search failed. Try again."
+    "search-error": "Search failed. Try again.",
+    "notifications": {
+      "title": "Notifications ({count})",
+      "no-notifications": "No notifications found",
+      "clear-all": "Clear All",
+      "mark-all-as-read": "Mark All as Read",
+      "notification-settings": {
+        "mark-as-read": "Mark as Read",
+        "delete": "Delete"
+      }
+    },
+    "user-menu": {
+      "title": "Hello",
+      "account": "Account",
+      "addresses": "Addresses",
+      "orders": "Orders",
+      "dashboard": "Dashboard",
+      "logout": "Logout"
+    }
   },
   "nav": {
     "home": "Home",
@@ -283,9 +301,7 @@
         "part3": "Gift Boxes for Your",
         "part4": "Special",
         "part5": "Moments"
-        
       }
-      
     },
     "gallery": {
       "label": "Gallery",
@@ -309,16 +325,40 @@
   },
   "custom-input": {
     "default": {
-      "first-name": { "label": "First name", "placeholder": "zoe" },
-      "last-name": { "label": "Last name", "placeholder": "Jonathan" },
-      "user-name": { "label": "UserName", "placeholder": "zoe123" },
-      "review-title": { "label": "Title", "placeholder": "Enter review title" }
+      "first-name": {
+        "label": "First name",
+        "placeholder": "zoe"
+      },
+      "last-name": {
+        "label": "Last name",
+        "placeholder": "Jonathan"
+      },
+      "user-name": {
+        "label": "UserName",
+        "placeholder": "zoe123"
+      },
+      "review-title": {
+        "label": "Title",
+        "placeholder": "Enter review title"
+      }
     },
-    "number": { "label": "Number", "placeholder": "0" },
-    "search": { "label": "Search", "placeholder": "Search..." },
+    "number": {
+      "label": "Number",
+      "placeholder": "0"
+    },
+    "search": {
+      "label": "Search",
+      "placeholder": "Search..."
+    },
     "password": {
-      "password": { "label": "Password", "placeholder": "*********" },
-      "confirm-Password": { "label": "Confirm Password", "placeholder": "*********" }
+      "password": {
+        "label": "Password",
+        "placeholder": "*********"
+      },
+      "confirm-Password": {
+        "label": "Confirm Password",
+        "placeholder": "*********"
+      }
     },
     "file": {
       "label": "File",
@@ -326,8 +366,14 @@
       "btn-text": "Upload File",
       "error-type": "File type not accepted."
     },
-    "phone": { "label": "Phone", "placeholder": "1012345678" },
-    "email": { "label": "Email", "placeholder": "user@example.com" },
+    "phone": {
+      "label": "Phone",
+      "placeholder": "1012345678"
+    },
+    "email": {
+      "label": "Email",
+      "placeholder": "user@example.com"
+    },
     "nice-to-have-you-here": "nice to have you here"
   },
   "products": {

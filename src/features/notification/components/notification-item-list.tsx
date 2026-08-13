@@ -5,7 +5,7 @@ import Link from 'next/link';
 import type { NotificationItemProps } from '../types/notification';
 import { cn } from '@/shared/lib/utils/tailwind-cn';
 
-const NotificationItemList = ({ notification }: NotificationItemProps) => {
+const NotificationItemList = ({ notification, onRead, onDelete }: NotificationItemProps) => {
   const [isRead, setIsRead] = useState(notification.isRead);
 
   return (
@@ -16,7 +16,7 @@ const NotificationItemList = ({ notification }: NotificationItemProps) => {
         notification.isRead ? 'bg-bg-soft' : 'bg-bg-plain'
       )}
     >
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between">
         <h3 className="font-semibold size-4 text-text-plain w-fit">{notification.title}</h3>
         <NotificationMenu isRead={isRead} setIsRead={setIsRead} notificationId={notification.id} />
       </div>

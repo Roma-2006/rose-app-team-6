@@ -14,6 +14,7 @@ type HelloButtonProps = Omit<
 };
 
 function HelloButton({ name, className, variant, ...props }: HelloButtonProps) {
+  // Translations
   const t = useTranslations();
 
   return (
