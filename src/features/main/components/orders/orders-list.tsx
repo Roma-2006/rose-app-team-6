@@ -14,7 +14,7 @@ export async function OrdersList() {
 
   return (
     <section className="w-full ">
-      <h1 className="mb-6 text-5xl font-bold text-text-primary">{t('title')}</h1>
+      <h1 className="mb-8 text-5xl font-bold text-text-plain">{t('title')}</h1>
 
       <div className="flex w-full flex-col gap-4">
         {orders.map((order) => (

@@ -83,7 +83,7 @@ export function OrderCard({ order }: { order: Order }) {
               ) : (
                 <Wallet size={16} className="text-text-soft" />
               )}
-              <span className="text-base text-text-soft">{order.paymentMethod}</span>
+              <span className="text-sm text-text-soft">{order.paymentMethod}</span>
             </div>
 
             <div className="flex items-center gap-2 text-sm">

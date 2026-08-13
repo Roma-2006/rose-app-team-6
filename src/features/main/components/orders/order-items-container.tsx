@@ -22,7 +22,7 @@ export function OrderItemsContainer({ items }: OrderItemsContainerProps) {
   const hasHiddenItems = items.length > FULLY_VISIBLE_COUNT;
 
   return (
-    <div className="flex flex-col rounded-2xl bg-bg-plain">
+    <div className="flex flex-col rounded-2xl bg-bg-plain w-auto mr-8 mb-4 ">
       <div
         className={`relative grid grid-cols-1 gap-4 p-4 sm:grid-cols-2 ${
           !isExpanded ? 'max-h-62 overflow-hidden' : ''
