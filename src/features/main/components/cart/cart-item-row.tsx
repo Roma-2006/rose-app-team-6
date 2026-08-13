@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { Star, Trash2 } from 'lucide-react';
 import QuantityStepper from './quantity-stepper';
 import { useTranslations } from 'next-intl';
-
+import { Button } from '@/shared/components/ui/button';
 export interface CartItemType {
   id: string;
   title: string;
@@ -64,14 +64,15 @@ export default function CartItemRow({ item, onUpdateQuantity, onRemove }: CartIt
           </div>
 
           {/* Remove Button */}
-          <button
-            type="button"
+          <Button
+            variant="outline"
+            buttonVariant="icon"
+            iconOnly={<Trash2 className="h-3.5 w-3.5" />}
+            className="px-3 py-3 bg-bg-danger hover:bg-bg-danger-saturated text-white border-none rounded-lg text-xs font-medium transition-colors shadow-sm"
             onClick={() => onRemove?.(item.id)}
-            className="flex items-center gap-1.5 px-3 py-3 bg-bg-danger hover:bg-bg-danger-saturated text-white rounded-lg text-xs font-medium transition-colors shadow-sm"
           >
-            <Trash2 className="h-3.5 w-3.5" />
             <span>{t('remove')}</span>
-          </button>
+          </Button>
         </div>
 
         {/* Pricing and Stepper */}
