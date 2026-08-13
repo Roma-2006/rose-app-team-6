@@ -101,12 +101,13 @@ function Button(props: ButtonPrimitive.Props & VariantProps<typeof buttonVariant
       ) : props.loading ? (
         <>
           {t('button.loading')}
+
           <LoaderCircle className="animate-spin" size={18} />
         </>
       ) : (
         <>
           {isText && props.leftIcon}
-          {isIcon ? props.iconOnly : isText ? props.title : props.number}
+          {isIcon ? props.iconOnly : isText ? t(props.title!) : props.number}
           {isText && props.rightIcon}
         </>
       )}

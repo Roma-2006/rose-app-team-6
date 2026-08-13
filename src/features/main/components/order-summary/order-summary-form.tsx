@@ -35,7 +35,12 @@ export default function CouponForm({
 
     try {
       const coupon = await findValidCouponAction(cleanCouponCode);
-
+      console.log('=== API COUPON DATA ===', {
+        code: coupon?.code,
+        validUntil: coupon?.validUntil,
+        minPurchase: coupon?.minPurchase,
+        subtotalPassed: subtotal,
+      });
       if (!coupon) {
         onErrorTriggered(tForm('invalidCoupon'));
         return;
@@ -91,12 +96,12 @@ export default function CouponForm({
         type="submit"
         buttonVariant="text"
         variant="primary"
-        disabled={isButtonLoading}
-        title={tForm('applyCoupon')}
+        title="cart.applyCoupon"
         leftIcon={<TicketPercent size={20} />}
         loading={isButtonLoading}
-        className="w-27 text-xs mt-0.0.5  py-5.75"
-      ></Button>
+        className="w-27 text-xs   py-3.5"
+        aria-label={tForm('applyCoupon')}
+      />
     </form>
   );
 }
