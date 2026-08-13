@@ -1,4 +1,4 @@
-export interface ICouponBackendResponse {
+export interface CouponBackendResponse {
   id: string;
   code: string;
   type: 'PERCENT' | 'FIXED';
@@ -14,21 +14,21 @@ export interface ICouponBackendResponse {
   updatedAt: string;
 }
 
-export interface ICouponFormData {
+export interface CouponFormData {
   couponCode: string;
 }
 
-export interface ICouponFormProps {
+export interface CouponFormProps {
   subtotal: number;
   onValidCouponApplied: (coupon: ICouponBackendResponse) => void;
   onErrorTriggered: (msg: string | null) => void;
 }
 
-export interface IApplyValidCouponProps {
+export interface ApplyValidCouponProps {
   IValidCoupon: (code: string, id: string, discount: number) => void;
 }
 
-export interface IAppliedCouponsBoxProps {
+export interface AppliedCouponsBoxProps {
   appliedCoupons: ICouponBackendResponse[];
   onRemoveCoupon: (id: string) => void;
   currency?: string;
@@ -36,22 +36,22 @@ export interface IAppliedCouponsBoxProps {
   errorMessage?: string | null;
 }
 
-export interface ITotalPriceProps {
+export interface TotalPriceProps {
   subtotal: number;
-  appliedCoupons: ICouponBackendResponse[];
+  appliedCoupons: CouponBackendResponse[];
   currency?: string;
   isRecalculating: boolean;
 }
 
-export interface IOrderSummaryPanelProps {
+export interface OrderSummaryPanelProps {
   subtotal: number;
   variant?: 'editable' | 'read-only';
   className?: string;
-  appliedCoupons?: ICouponBackendResponse[];
+  appliedCoupons?: CouponBackendResponse[];
   onApplyCoupon?: (coupon: ICouponBackendResponse) => void;
   onRemoveCoupon?: (id: string) => void;
 }
-interface IValidationResult {
+interface ValidationResult {
   isValid: boolean;
   message: string | null;
 }

@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import CouponForm from './order-summary-form';
-import { ICouponBackendResponse, IOrderSummaryPanelProps } from '../../types/order-summary';
+import { CouponBackendResponse, OrderSummaryPanelProps } from '../../types/order-summary';
 import AppliedCouponsBox from './applied-coupons-box';
 import TotalPrice from './total-price';
 import { MoveRight } from 'lucide-react';
@@ -15,7 +15,7 @@ export default function OrderSummaryPanel({
   appliedCoupons = [],
   onApplyCoupon,
   onRemoveCoupon,
-}: IOrderSummaryPanelProps) {
+}: OrderSummaryPanelProps) {
   //Transelation
   const tCart = useTranslations('cart');
 
@@ -27,7 +27,7 @@ export default function OrderSummaryPanel({
 
   // Functions
 
-  const handleApplyValidCoupon = (coupon: ICouponBackendResponse) => {
+  const handleApplyValidCoupon = (coupon: CouponBackendResponse) => {
     const isAlreadyApplied = appliedCoupons.some((c) => c.id === coupon.id);
     if (isAlreadyApplied) {
       setCouponError(tCart('couponAlreadyApplied'));

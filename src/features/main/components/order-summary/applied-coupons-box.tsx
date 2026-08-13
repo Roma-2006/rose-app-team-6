@@ -1,5 +1,5 @@
 import React from 'react';
-import { IAppliedCouponsBoxProps } from '../../types/order-summary';
+import { AppliedCouponsBoxProps } from '../../types/order-summary';
 import { useTranslations } from 'next-intl';
 
 export default function AppliedCouponsBox({
@@ -8,11 +8,11 @@ export default function AppliedCouponsBox({
   currency = 'EGP',
   variant = 'editable',
   errorMessage = null,
-}: IAppliedCouponsBoxProps) {
+}: AppliedCouponsBoxProps) {
   //Transelation
   const tSummary = useTranslations('cart');
 
-  // Variables
+  // Variables (derived)
   const hasCoupons = appliedCoupons.length > 0;
   const isEditable = variant === 'editable';
 

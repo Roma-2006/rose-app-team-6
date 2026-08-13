@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { ICouponBackendResponse, ICouponFormProps } from '../../types/order-summary';
+import { CouponFormProps } from '../../types/order-summary';
 import CustomInput from '@/shared/components/custom-input';
 import { Button } from '@/shared/components/ui/button';
 import { TicketPercent } from 'lucide-react';
@@ -11,7 +11,7 @@ export default function CouponForm({
   subtotal,
   onValidCouponApplied,
   onErrorTriggered,
-}: ICouponFormProps) {
+}: CouponFormProps) {
   //Transelation
   const tForm = useTranslations('cart');
 
@@ -19,13 +19,14 @@ export default function CouponForm({
   const [couponInput, setCouponInput] = useState('');
   const [isButtonLoading, setIsButtonLoading] = useState(false);
 
-  // Functions
-  const handleApply = async (e: React.FormEvent) => {
-    e.preventDefault();
+  // Functions (handlers)
+
+  const handleApplyCoupon = async (event: React.FormEvent) => {
+    event.preventDefault();
     onErrorTriggered(null);
 
-    const cleanCoupon = couponInput.trim().toUpperCase();
-    if (!cleanCoupon) {
+    const cleanCouponCode = couponInput.trim().toUpperCase();
+    if (!cleanCouponCode) {
       onErrorTriggered(tForm('invalidCoupon'));
       return;
     }
@@ -33,25 +34,30 @@ export default function CouponForm({
     setIsButtonLoading(true);
 
     try {
-      const coupon = await findValidCouponAction(cleanCoupon);
+      const coupon = await findValidCouponAction(cleanCouponCode);
 
       if (!coupon) {
         onErrorTriggered(tForm('invalidCoupon'));
         return;
       }
 
-      const now = new Date();
-      if (now < new Date(coupon.validFrom) || now > new Date(coupon.validUntil)) {
+      const currentDate = new Date();
+      const isBeforeStart = currentDate < new Date(coupon.validFrom);
+      const isAfterEnd = currentDate > new Date(coupon.validUntil);
+      if (isBeforeStart || isAfterEnd) {
         onErrorTriggered(tForm('invalidCoupon'));
         return;
       }
 
-      if (coupon.usageLimit !== null && coupon.usedCount >= coupon.usageLimit) {
+      const isUsageLimitExceeded =
+        coupon.usageLimit !== null && coupon.usedCount >= coupon.usageLimit;
+      if (isUsageLimitExceeded) {
         onErrorTriggered(tForm('invalidCoupon'));
         return;
       }
 
-      if (coupon.minPurchase !== null && subtotal < coupon.minPurchase) {
+      const isMinimumPurchaseNotMet = coupon.minPurchase !== null && subtotal < coupon.minPurchase;
+      if (isMinimumPurchaseNotMet) {
         onErrorTriggered(tForm('invalidCoupon'));
         return;
       }
@@ -67,7 +73,7 @@ export default function CouponForm({
   };
 
   return (
-    <form onSubmit={handleApply} className="flex gap-2.5 w-106.5 w-full justify-between">
+    <form onSubmit={handleApplyCoupon} className="flex gap-2.5 w-106.5 w-full justify-between">
       <CustomInput
         className=" w-77 h-9 mt-0.5"
         variant="default"
