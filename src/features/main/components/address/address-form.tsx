@@ -91,7 +91,7 @@ export function AddressForm({ mode, initialData, onBack, onContinue }: AddressFo
                   {...field}
                   variant="default"
                   label={t('city')}
-                  placeholder="Enter city name"
+                  placeholder={t('cityplaceholder')}
                   error={fieldState.invalid}
                   errorMessage={fieldState.error?.message}
                 />
@@ -109,10 +109,10 @@ export function AddressForm({ mode, initialData, onBack, onContinue }: AddressFo
                   <Textarea
                     {...field}
                     ref={field.ref}
-                    placeholder="Enter your full address"
+                    placeholder={t('addressplaceholder')}
                     error={errors.street?.message}
-                    // maxLength={200}
-                    // showCount
+                    maxLength={200}
+                    showCount
                   />
                 )}
               />
