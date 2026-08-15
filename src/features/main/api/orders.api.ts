@@ -1,14 +1,4 @@
-import { Order, OrdersMetadata } from '../types/order';
-
-export interface OrdersApiResponse {
-  status: boolean;
-  code: number;
-  message?: string;
-  payload: {
-    data: Order[];
-    metadata: OrdersMetadata;
-  };
-}
+import { Order, OrdersApiResponse, OrdersMetadata } from '../types/order';
 
 export async function getOrders(token: string): Promise<OrdersApiResponse> {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/orders?page=1&limit=20`, {

@@ -62,3 +62,13 @@ export interface OrdersResponse {
     metadata: OrdersMetadata;
   };
 }
+
+export interface OrdersApiResponse {
+  status: boolean;
+  code: number;
+  message?: string;
+  payload: {
+    data: Order[];
+    metadata: OrdersMetadata;
+  };
+}
