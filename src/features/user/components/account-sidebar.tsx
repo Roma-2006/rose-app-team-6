@@ -20,20 +20,20 @@ export default function AccountSidebar({ activeTab, onLogout }: AccountSidebarPr
   const navItems: NavItem[] = [
     {
       id: 'profile',
-      title: 'sidebar.profile',
-      leftIcon: <UserRoundPen className="-scale-x-100" />,
+      title: 'change-password.sidebar.profile-tab',
+      leftIcon: <UserRoundPen className="w-6 h-6" />,
       href: '?tab=profile',
     },
     {
       id: 'password',
-      title: 'sidebar.password',
-      leftIcon: <Lock className="-scale-x-100" />,
+      title: 'change-password.sidebar.password-tab',
+      leftIcon: <Lock className="w-6 h-6" />,
       href: '?tab=password',
     },
   ];
   return (
     <nav
-      className="w-66.75 h-158.5 border border-border-muted p-4 flex flex-col justify-between rounded-xl shadow-sm bg-bg-plain select-none"
+      className="w-[25%] h-158.5 border border-border-muted p-4   flex flex-col justify-between rounded-xl shadow-sm bg-bg-plain select-none"
       aria-label="Account management navigation"
     >
       {/* Top Section: Navigation Items */}
@@ -48,7 +48,7 @@ export default function AccountSidebar({ activeTab, onLogout }: AccountSidebarPr
                 variant="ghost"
                 title={item.title}
                 leftIcon={item.leftIcon}
-                className={`w-full justify-start gap-3 px-4 py-3.5 rounded-xl transition-all text-lg font-medium ${
+                className={`w-full justify-start gap-3 px-4 py-3.5 rounded-xl transition-all text-sm font-medium ${
                   isActive ? 'bg-bg-inverse text-text-inverse' : 'text-text-plain'
                 }`}
               />
@@ -62,7 +62,7 @@ export default function AccountSidebar({ activeTab, onLogout }: AccountSidebarPr
         <Button
           buttonVariant="text"
           variant="ghost"
-          title="logout"
+          title="change-password.sidebar.logout"
           leftIcon={<LogOut className="w-8 h-9 rotate-180" />}
           onClick={onLogout}
           className="w-full justify-start gap-3 px-4 py-3.5 rounded-xl transition-all text-lg font-medium bg-bg-muted text-text-danger border-none"

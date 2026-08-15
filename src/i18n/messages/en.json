@@ -392,5 +392,25 @@
   },
   "grid": {
     "product-empty": "No products found matching your filters."
+  },
+  "change-password": {
+   "sidebar":{
+     "profile-tab":"profile", 
+     "password-tab":"Change Password",
+     "logout" :"Logout"
+   },
+    "old-password": "Current Password",
+    "new-password": "New Password",
+    "confirm-password": "Confirm New Password",
+    "submit-button": "Change Password",
+    "success-message": "Password changed successfully.",
+    "error-message": "Failed to change password. Please try again.",
+    "validation": {
+      "old-password-required": "Old password is required.",
+      "new-password-required": "New password is required.",
+      "confirm-password-required": "Confirm password is required.",
+      "passwords-do-not-match": "New password and confirm password do not match."
+    }
   }
+
 }
