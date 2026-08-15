@@ -473,6 +473,7 @@
     "deleteConfirm": "Are you sure you want to delete this address?",
     "confirmDelete": "Delete",
     "cancel": "Cancel",
+    "saving":"saving",
     "geolocationNotSupported": "Geolocation is not supported by your browser.",
     "locationError": "Unable to retrieve your location.",
     "placeholder": {

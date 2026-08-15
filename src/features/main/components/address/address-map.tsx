@@ -7,7 +7,6 @@ import { useLocale, useTranslations } from 'next-intl';
 import { toast } from 'sonner';
 
 import { Button } from '@/shared/components/ui/button';
-import { AddressProgress } from './address-progress';
 
 interface AddressMapProps {
   mode: 'add' | 'edit';
@@ -17,6 +16,8 @@ interface AddressMapProps {
   };
   onBack: () => void;
   onConfirm: (position: { lat: number; lng: number }) => void;
+
+  isSubmitting?: boolean;
 }
 
 const DEFAULT_MAP_CENTER = {
@@ -29,13 +30,21 @@ const MAP_CONTAINER_STYLE = {
   height: '100%',
 };
 
-export function AddressMap({ mode, initialPosition, onBack, onConfirm }: AddressMapProps) {
+export function AddressMap({
+  mode,
+  initialPosition,
+  onBack,
+  onConfirm,
+  isSubmitting = false,
+}: AddressMapProps) {
   const t = useTranslations('address');
   const locale = useLocale();
 
   const isRtl = locale === 'ar';
 
   const [position, setPosition] = useState(initialPosition ?? DEFAULT_MAP_CENTER);
+
+  const [hasPin, setHasPin] = useState(Boolean(initialPosition));
 
   const [map, setMap] = useState<google.maps.Map | null>(null);
 
@@ -53,6 +62,7 @@ export function AddressMap({ mode, initialPosition, onBack, onConfirm }: Address
 
   const handleLocationChange = (location: { lat: number; lng: number }) => {
     setPosition(location);
+    setHasPin(true);
 
     map?.panTo(location);
   };
@@ -90,12 +100,13 @@ export function AddressMap({ mode, initialPosition, onBack, onConfirm }: Address
         };
 
         setPosition(newPosition);
+        setHasPin(true);
 
         map?.panTo(newPosition);
         map?.setZoom(17);
       },
       () => {
-        toast.error(t('unableToRetrieveLocation'));
+        toast.error(t('locationDenied'));
       },
       {
         enableHighAccuracy: true,
@@ -106,6 +117,8 @@ export function AddressMap({ mode, initialPosition, onBack, onConfirm }: Address
   };
 
   const handleConfirm = () => {
+    if (!hasPin || isSubmitting) return;
+
     onConfirm(position);
   };
 
@@ -128,6 +141,7 @@ export function AddressMap({ mode, initialPosition, onBack, onConfirm }: Address
         <Button
           type="button"
           onClick={onBack}
+          disabled={isSubmitting}
           variant="primary"
           buttonVariant="icon"
           className="h-10 w-10 shrink-0 rounded-full"
@@ -184,11 +198,15 @@ export function AddressMap({ mode, initialPosition, onBack, onConfirm }: Address
         />
       </div>
 
+      {/* Pin-required hint  */}
+      {!hasPin && <p className="text-xs text-text-danger">{t('pinRequired')}</p>}
+
       {/* Actions */}
       <div className="flex gap-3 pt-1">
         <Button
           type="button"
           onClick={onBack}
+          disabled={isSubmitting}
           variant="outline"
           buttonVariant="text"
           title={t('cancel')}
@@ -198,9 +216,16 @@ export function AddressMap({ mode, initialPosition, onBack, onConfirm }: Address
         <Button
           type="button"
           onClick={handleConfirm}
+          disabled={!hasPin || isSubmitting}
           variant="primary"
           buttonVariant="text"
-          title={mode === 'edit' ? t('UpdateLocation') : t('confirmLocation')}
+          title={
+            isSubmitting
+              ? t('saving')
+              : mode === 'edit'
+                ? t('UpdateLocation')
+                : t('confirmLocation')
+          }
           className="h-14 flex-1 rounded-xl text-lg font-bold"
         />
       </div>

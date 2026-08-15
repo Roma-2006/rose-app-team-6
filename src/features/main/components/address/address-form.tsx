@@ -1,5 +1,6 @@
 'use client';
 
+import { useMemo } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations, useLocale } from 'next-intl';
@@ -8,14 +9,17 @@ import { addressSchema, AddressFormValues } from '../../schemas/address.schema';
 
 import { Textarea } from '@/shared/components/ui/textarea';
 import CustomInput from '@/shared/components/custom-input';
-import { Address } from '../../types/address-model';
 import { PhoneVariant } from '@/shared/components/ui/phone-variant.';
 import { Button } from '@/shared/components/ui/button';
-import { AddressProgress } from './address-progress';
+import { Address, CreateAddressRequest } from '../../types/address-model';
 
+export type AddressFormInitialData = Pick<Address, 'title' | 'city' | 'street' | 'phone'> & {
+  latitude: Address['latitude'] | CreateAddressRequest['latitude'] | null;
+  longitude: Address['longitude'] | CreateAddressRequest['longitude'] | null;
+};
 interface AddressFormProps {
   mode: 'add' | 'edit';
-  initialData: Address | null;
+  initialData: AddressFormInitialData | null;
   onBack?: () => void;
   onContinue: (data: AddressFormValues) => void;
 }
@@ -39,8 +43,8 @@ export function AddressForm({ mode, initialData, onBack, onContinue }: AddressFo
           city: initialData.city,
           street: initialData.street,
           phone: initialData.phone,
-          latitude: Number(initialData.latitude),
-          longitude: Number(initialData.longitude),
+          latitude: initialData.latitude === null ? null : Number(initialData.latitude),
+          longitude: initialData.longitude === null ? null : Number(initialData.longitude),
         }
       : {
           title: '',

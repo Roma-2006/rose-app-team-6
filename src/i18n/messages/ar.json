@@ -498,6 +498,7 @@
     "deleteConfirm": "هل أنت متأكد من رغبتك في حذف هذا العنوان؟",
     "confirmDelete": "حذف",
     "cancel": "إلغاء",
+    "saving":"حفظ",
     "geolocationNotSupported": "المتصفح الخاص بك لا يدعم تحديد الموقع.",
     "locationError": "تعذر الحصول على موقعك.",
     "placeholder": {

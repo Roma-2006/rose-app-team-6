@@ -19,9 +19,9 @@ export interface CreateAddressRequest {
   isPrimary: boolean;
 }
 
-type UpdateAddressRequest = Partial<CreateAddressRequest>;
+export type UpdateAddressRequest = Partial<CreateAddressRequest>;
 
-interface GetAddressesResponse {
+export interface GetAddressesResponse {
   status: boolean;
   code: number;
   payload: {
@@ -29,7 +29,7 @@ interface GetAddressesResponse {
   };
 }
 
-interface ApiResponse<T> {
+export interface ApiResponse<T> {
   status: boolean;
   code: number;
   payload: T;

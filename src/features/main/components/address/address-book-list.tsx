@@ -8,13 +8,23 @@ import { Address } from '../../types/address-model';
 
 interface AddressListProps {
   isLoading: boolean;
+  isError?: boolean;
   addresses: Address[];
   onAdd: () => void;
   onEdit: (address: Address) => void;
   onDelete: (address: Address) => void;
+  onRetry?: () => void;
 }
 
-export function AddressList({ addresses, isLoading, onAdd, onEdit, onDelete }: AddressListProps) {
+export function AddressList({
+  addresses,
+  isLoading,
+  isError,
+  onAdd,
+  onEdit,
+  onDelete,
+  onRetry,
+}: AddressListProps) {
   const t = useTranslations('address');
 
   return (
@@ -34,6 +44,19 @@ export function AddressList({ addresses, isLoading, onAdd, onEdit, onDelete }: A
 
       {isLoading ? (
         <AddressSkeleton />
+      ) : isError ? (
+        <div className="flex flex-1 flex-col items-center justify-center gap-3 py-16 text-center">
+          <p className="max-w-xs text-text-danger">{t('loadError')}</p>
+          {onRetry && (
+            <Button
+              type="button"
+              buttonVariant="text"
+              variant="outline"
+              title={t('retry')}
+              onClick={onRetry}
+            />
+          )}
+        </div>
       ) : addresses.length === 0 ? (
         <AddressEmpty onAdd={onAdd} />
       ) : (

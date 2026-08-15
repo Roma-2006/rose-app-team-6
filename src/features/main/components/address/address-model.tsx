@@ -8,7 +8,7 @@ import { useAddresses } from '../../hooks/use-addresses';
 import { AddressFormValues } from '../../schemas/address.schema';
 import { Address } from '../../types/address-model';
 
-import { AddressForm } from './address-form';
+import { AddressForm, AddressFormInitialData } from './address-form';
 import { AddressList } from './address-book-list';
 import { AddressMap } from './address-map';
 
@@ -31,7 +31,22 @@ export function AddressBookModal({
 }: AddressBookModalProps) {
   const t = useTranslations('address');
 
-  const { addresses, isLoading, createAddress, updateAddress, deleteAddress } = useAddresses();
+  const {
+    addresses,
+    isLoading,
+    isError,
+    refetch,
+    createAddress,
+    updateAddress,
+    deleteAddress,
+    isCreating,
+    isUpdating,
+    isDeleting,
+  } = useAddresses();
+
+  const isSavingAddress = isCreating || isUpdating;
+
+  const isMutating = isSavingAddress || isDeleting;
 
   const [internalIsOpen, setInternalIsOpen] = useState(false);
 
@@ -56,6 +71,8 @@ export function AddressBookModal({
   };
 
   const handleOpenChange = (nextOpen: boolean) => {
+    if (!nextOpen && isMutating) return;
+
     if (onOpenChange) {
       onOpenChange(nextOpen);
     } else {
@@ -73,6 +90,8 @@ export function AddressBookModal({
   };
 
   const handleDeleteClose = () => {
+    if (isDeleting) return;
+
     setIsDeleteOpen(false);
     setDeletingId(null);
   };
@@ -80,10 +99,33 @@ export function AddressBookModal({
   const handleDeleteConfirm = async () => {
     if (!deletingId) return;
 
-    await deleteAddress(deletingId);
-
-    handleDeleteClose();
+    try {
+      await deleteAddress(deletingId);
+      handleDeleteClose();
+    } catch {
+      // Error toast is already shown by useAddresses
+    }
   };
+
+  const formInitialData: AddressFormInitialData | null = formData
+    ? {
+        title: formData.title,
+        city: formData.city,
+        street: formData.street,
+        phone: formData.phone,
+        latitude: selectedAddress?.latitude ?? formData.latitude,
+        longitude: selectedAddress?.longitude ?? formData.longitude,
+      }
+    : selectedAddress
+      ? {
+          title: selectedAddress.title,
+          city: selectedAddress.city,
+          street: selectedAddress.street,
+          phone: selectedAddress.phone,
+          latitude: selectedAddress.latitude,
+          longitude: selectedAddress.longitude,
+        }
+      : null;
 
   const handleAdd = () => {
     setSelectedAddress(null);
@@ -126,6 +168,7 @@ export function AddressBookModal({
       setView('list');
     } catch {}
   };
+
   return (
     <>
       <AlertDialog open={isOpen} onOpenChange={handleOpenChange}>
@@ -135,6 +178,7 @@ export function AddressBookModal({
             buttonVariant="icon"
             variant="ghost"
             onClick={() => handleOpenChange(false)}
+            disabled={isMutating}
             className="absolute right-4 top-4 z-20 text-text-muted hover:text-text-plain"
             aria-label="Close"
             iconOnly={<X size={20} />}
@@ -156,9 +200,11 @@ export function AddressBookModal({
             <AddressList
               addresses={addresses}
               isLoading={isLoading}
+              isError={isError}
               onAdd={handleAdd}
               onEdit={handleEdit}
               onDelete={handleDeleteOpen}
+              onRetry={refetch}
             />
           )}
 
@@ -167,7 +213,7 @@ export function AddressBookModal({
               <>
                 <AddressForm
                   mode={selectedAddress ? 'edit' : 'add'}
-                  initialData={selectedAddress}
+                  initialData={formInitialData}
                   onBack={() => {
                     setFormData(null);
                     setSelectedAddress(null);
@@ -189,6 +235,7 @@ export function AddressBookModal({
                       }
                     : undefined
                 }
+                isSubmitting={isSavingAddress}
                 onBack={() => {
                   setView('form');
                 }}
@@ -202,6 +249,8 @@ export function AddressBookModal({
       <AlertDialog
         open={isDeleteOpen}
         onOpenChange={(open) => {
+          if (!open && isDeleting) return;
+
           setIsDeleteOpen(open);
 
           if (!open) {
