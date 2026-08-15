@@ -54,15 +54,6 @@ export interface OrdersMetadata {
   totalPages: number;
 }
 
-export interface OrdersResponse {
-  status: boolean;
-  code: number;
-  payload: {
-    data: Order[];
-    metadata: OrdersMetadata;
-  };
-}
-
 export interface OrdersApiResponse {
   status: boolean;
   code: number;
