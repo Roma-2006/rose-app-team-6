@@ -10,4 +10,5 @@ export type ClearConfirmationModalProps = {
   cancelButtonTitle: string;
   confirmButtonTitle: string;
   onClick?: () => void;
+  loading?: boolean;
 };

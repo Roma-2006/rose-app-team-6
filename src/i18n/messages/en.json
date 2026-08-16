@@ -11,8 +11,9 @@
     "delete": "Delete",
     "confirm": "Confirm",
     "next": "Next",
-    "add-review": "Add Review",
-    "adding": "Adding..."
+     "add-review":"Add Review",
+    "adding":"Adding...",
+    "retry":"Retry"
   },
   "common": {
     "select": {
@@ -441,7 +442,8 @@
       "clear":"Clear Wishlist",
       "continue-shopping":"Continue Shopping",
       "explore-similar-products":"Explore Similar Products",
-      "clear-wishlist-confirmation":"Are you sure you want to clear your Wishlist?"
+      "clear-wishlist-confirmation":"Are you sure you want to clear your Wishlist?",
+      "items-count": "{count, plural, =0 {No items} one {# item} other {# items}}"
   }
   },
 

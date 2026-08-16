@@ -19,7 +19,7 @@ export default function WishlistItem({ wishlistItem }: TWishlistItemProps) {
   const isStock = Number(wishlistItem.product.stock) > 0;
   //Hooks
   const { addToCart, isAdding } = useProductActions(wishlistItem.product.id);
-  const { removeItemFromWishlidstMutation } = useWishlist();
+  const { removeItemFromWishlistMutation } = useWishlist();
   //Function
   const handleExplore = () => {
     const categoryId = wishlistItem.product.category?.id;
@@ -48,20 +48,22 @@ export default function WishlistItem({ wishlistItem }: TWishlistItemProps) {
             >
               {isStock ? t('products.in-stock') : t('products.outOfStock')}
             </span>
-            <h2>{wishlistItem.product.title}</h2>
-            <span className="inline-flex items-center gap-2 px-1.5 py-1 rounded bg-bg-warning text-text-plain">
-              <Star size={16} fill="black" color="black" />
-              {Number(wishlistItem.product.rating) > 0
-                ? Number(wishlistItem.product.rating).toFixed(1)
-                : Number(wishlistItem.product.rating)}
-              /5
-            </span>
-            {wishlistItem.product.ratings > 0 && (
-              <span className="text-text-info text-sm font-medium">
-                {' '}
-                ({wishlistItem.product.ratings} {t('products.filter.rating.subtitle')})
+            <h2 className="mt-1.5 mb-2">{wishlistItem.product.title}</h2>
+            <span className="flex items-center gap-1.5">
+              <span className="inline-flex items-center gap-2 px-1.5 py-1 h-6 min:w-17 rounded bg-bg-warning text-text-plain">
+                <Star size={16} fill="black" color="black" />
+                {Number(wishlistItem.product.rating) > 0
+                  ? Number(wishlistItem.product.rating).toFixed(1)
+                  : Number(wishlistItem.product.rating)}
+                /5
               </span>
-            )}
+              {wishlistItem.product.ratings > 0 && (
+                <span className="text-text-info text-sm font-medium">
+                  {' '}
+                  ({wishlistItem.product.ratings} {t('products.filter.rating.subtitle')})
+                </span>
+              )}
+            </span>
           </div>
           <div>
             <ProductPrice product={wishlistItem.product} />
@@ -73,7 +75,7 @@ export default function WishlistItem({ wishlistItem }: TWishlistItemProps) {
             variant="danger"
             iconOnly={<Trash2 />}
             className="ml-auto"
-            onClick={() => removeItemFromWishlidstMutation(wishlistItem.id)}
+            onClick={() => removeItemFromWishlistMutation(wishlistItem.id)}
           />
           {isStock ? (
             <Button

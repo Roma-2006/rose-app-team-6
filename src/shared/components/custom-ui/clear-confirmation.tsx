@@ -7,7 +7,6 @@ import {
   AlertDialogTitle,
 } from '@/shared/components/ui/alert-dialog';
 import { ClearConfirmationModalProps } from '@/shared/types/modal';
-import { Button } from '@base-ui/react';
 import { X } from 'lucide-react';
 export default function ClearConfirmation({
   icon,
@@ -15,6 +14,7 @@ export default function ClearConfirmation({
   cancelButtonTitle,
   confirmButtonTitle,
   onClick,
+  loading,
 }: ClearConfirmationModalProps) {
   return (
     <>
@@ -56,6 +56,7 @@ export default function ClearConfirmation({
           title={confirmButtonTitle}
           variant="destructive"
           onClick={onClick}
+          loading={loading}
         />
       </AlertDialogFooter>
     </>

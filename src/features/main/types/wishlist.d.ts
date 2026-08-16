@@ -1,5 +1,4 @@
 import { Product } from './products';
-
 interface WishlistItem {
   id: string;
   userId: string;
@@ -17,3 +16,6 @@ interface GetWishlistResponse {
 export type TWishlistItemProps = {
   wishlistItem: WishlistItem | LocalWishlistItem;
 };
+interface WishlistContentProps {
+  initialWishlist: GetWishlistResponse;
+}
