@@ -1,4 +1,4 @@
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { CreditCard, Wallet, Truck, CheckCheck } from 'lucide-react';
 
 import { Badge } from '@/shared/components/ui/badge';
@@ -8,21 +8,28 @@ import { Order } from '../../types/order';
 
 export function OrderCard({ order }: { order: Order }) {
   const t = useTranslations('orders');
+  const locale = useLocale();
 
-  const isPaid = order.paymentStatus === 'PAID';
+  const isPaid = order.paymentStatus === 'SUCCEEDED';
 
-  const isDelivered = Number(order.shipping) > 0;
+  const isDelivered = order.status === 'DELIVERED';
 
   //  order status badge
   const getStatusClassName = () => {
     switch (order.status) {
-      case 'IN_PROGRESS':
+      case 'PENDING':
+        return 'bg-bg-warning text-text-inverse';
+
+      case 'CONFIRMED':
+      case 'PROCESSING':
+      case 'SHIPPED':
         return 'bg-bg-info text-text-inverse';
 
-      case 'Done':
+      case 'DELIVERED':
         return 'bg-bg-success text-text-inverse';
 
       case 'CANCELLED':
+      case 'REFUNDED':
         return 'bg-bg-danger text-text-inverse';
 
       default:
@@ -40,7 +47,7 @@ export function OrderCard({ order }: { order: Order }) {
 
         <span className="text-base font-semibold  opacity-90">
           {t('createdAt')}:{' '}
-          {new Date(order.createdAt).toLocaleString('en-US', {
+          {new Date(order.createdAt).toLocaleString(locale, {
             day: '2-digit',
             month: 'long',
             year: 'numeric',
@@ -55,7 +62,7 @@ export function OrderCard({ order }: { order: Order }) {
         <div className="flex items-center justify-between border-b  border-border-soft pb-4 mb-4">
           <div className="flex items-center gap-3">
             <span className="text-2xl font-bold text-text-plain ">
-              {t('totalPrice')}: {Number(order.total).toLocaleString()} {t('currency')}
+              {t('totalPrice')}: {Number(order.total).toLocaleString(locale)} {t('currency')}
             </span>
 
             <Badge

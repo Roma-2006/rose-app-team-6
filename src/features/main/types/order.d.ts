@@ -1,6 +1,19 @@
-export type OrderStatus = 'PENDING' | 'IN_PROGRESS' | 'Done' | 'CANCELLED';
+export type OrderStatus =
+  | 'PENDING'
+  | 'CONFIRMED'
+  | 'PROCESSING'
+  | 'SHIPPED'
+  | 'DELIVERED'
+  | 'CANCELLED'
+  | 'REFUNDED';
 
-export type PaymentStatus = 'PENDING' | 'PAID' | 'FAILED' | 'PROCESSING';
+export type PaymentStatus =
+  | 'PENDING'
+  | 'PROCESSING'
+  | 'SUCCEEDED'
+  | 'FAILED'
+  | 'REFUNDED'
+  | 'CANCELLED';
 
 export type PaymentMethod = 'CASH_ON_DELIVERY' | 'CREDIT_CARD';
 

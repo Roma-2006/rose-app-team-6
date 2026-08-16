@@ -2,7 +2,7 @@ import 'server-only';
 
 import { getServerSession } from 'next-auth';
 
-import { getOrders } from '../api/orders.api';
+import { getAllOrders } from '../api/orders.api';
 import { getProductById } from '../api/product-details.api';
 import { Order } from '../types/order';
 import { authOptions } from '@/auth';
@@ -16,9 +16,9 @@ export async function getOrdersWithProductDetails(): Promise<Order[]> {
     throw new Error('Not authenticated');
   }
 
-  const ordersResponse = await getOrders(token);
+  const ordersResponse = await getAllOrders(token);
 
-  const orders = ordersResponse.payload.data;
+  const orders = ordersResponse.data;
 
   const productIds = Array.from(
     new Set(orders.flatMap((order) => order.orderItems.map((item) => item.product.id)))
