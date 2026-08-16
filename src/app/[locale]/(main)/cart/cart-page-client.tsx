@@ -16,7 +16,7 @@ import { RawCartItem } from '@/features/main/types/raw-cart-item';
 import OrderSummaryPanel from '@/features/main/components/order-summary/order-summary-panel';
 import { ProductCardSkeleton } from '@/features/main/components/skeleton/product-card-skelton';
 import CartSkeleton from '@/features/main/components/skeleton/cart-skeleton';
-import { ICouponBackendResponse } from '@/features/main/types/order-summary';
+import { CouponBackendResponse } from '@/features/main/types/order-summary';
 import ProductsYouMayLike from '@/features/main/components/products/products-you-may-like';
 interface CartPageProps {
   suggestedProducts: Product[];
@@ -30,7 +30,7 @@ export default function CartPageClient({ suggestedProducts }: CartPageProps) {
   const [isClearDialogOpen, setIsClearDialogOpen] = useState(false);
   const { cartItems, isLoading, updateQuantity, removeFromCart, clearCart } = useCart();
 
-  const [appliedCoupons, setAppliedCoupons] = useState<ICouponBackendResponse[]>([]);
+  const [appliedCoupons, setAppliedCoupons] = useState<CouponBackendResponse[]>([]);
 
   const rawItems = (cartItems ?? []) as RawCartItem[];
 
@@ -71,7 +71,7 @@ export default function CartPageClient({ suggestedProducts }: CartPageProps) {
   const subtotal = formattedItems.reduce((total, item) => {
     return total + item.price * item.quantity;
   }, 0);
-  const handleApplyCoupon = (coupon: ICouponBackendResponse) => {
+  const handleApplyCoupon = (coupon: CouponBackendResponse) => {
     setAppliedCoupons((prev) => [...prev, coupon]);
   };
   const handleRemoveCoupon = (id: string) => {
