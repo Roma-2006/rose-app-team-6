@@ -34,18 +34,18 @@
     "search-error": "فشل البحث. حاول مجدداً.",
     "notifications": {
       "title": "الإشعارات ({count})",
-      "noNotifications": "لا توجد إشعارات حتى الآن",
-      "clearAll": "مسح جميع الإشعارات",
-      "markAllAsRead": "تعيين الكل كمقروء",
-      "notificationSettings": {
-        "markAsRead": "تعيين كمقروء",
+      "no-notifications": "لا توجد إشعارات حتى الآن",
+      "clear-all": "مسح جميع الإشعارات",
+      "mark-all-as-read": "تعيين الكل كمقروء",
+      "notification-settings": {
+        "mark-as-read": "تعيين كمقروء",
         "delete": "حذف"
       }
     },
-    "userMenu": {
-      "title": "مرحبا ",
+    "user-menu": {
+      "title": "مرحبا",
       "account": "حسابي",
-      "addresses": "عناويني",
+      "address": "عناويني",
       "orders": "طلباتي",
       "dashboard": "لوحة التحكم",
       "logout": "تسجيل الخروج"
@@ -207,7 +207,6 @@
     }
   },
   "home": {
-    
     "hero-aside": {
       "badge": "ابتداءً من 10.99 جنيه",
       "title": "هدايا مميزة للأشخاص الذين تحبهم",
@@ -297,8 +296,7 @@
         "part3": "صناديق الهدايا لمناسباتك",
         "part4": "لمناسباتك",
         "part5": "الخاصة"
-        }
-        
+      }
     },
     "gallery": {
       "label": "المعرض",
@@ -322,16 +320,40 @@
   },
   "custom-input": {
     "default": {
-      "first-name": { "label": "الاسم الأول", "placeholder": "Jonathan" },
-      "last-name": { "label": "الاسم الأخير", "placeholder": "Adrian" },
-      "user-name": { "label": "اسم المستخدم", "placeholder": "Jonathan" },
-      "review-title": { "label": "العنوان", "placeholder": "ادخل عنوان التقييم" }
+      "first-name": {
+        "label": "الاسم الأول",
+        "placeholder": "Jonathan"
+      },
+      "last-name": {
+        "label": "الاسم الأخير",
+        "placeholder": "Adrian"
+      },
+      "user-name": {
+        "label": "اسم المستخدم",
+        "placeholder": "Jonathan"
+      },
+      "review-title": {
+        "label": "العنوان",
+        "placeholder": "ادخل عنوان التقييم"
+      }
     },
-    "number": { "label": "الرقم", "placeholder": "0" },
-    "search": { "label": "بحث", "placeholder": "ابحث هنا..." },
+    "number": {
+      "label": "الرقم",
+      "placeholder": "0"
+    },
+    "search": {
+      "label": "بحث",
+      "placeholder": "ابحث هنا..."
+    },
     "password": {
-      "password": { "label": "كلمة المرور", "placeholder": "*********" },
-      "confirm-Password": { "label": "تأكيد كلمة المرور", "placeholder": "*********" }
+      "password": {
+        "label": "كلمة المرور",
+        "placeholder": "*********"
+      },
+      "confirm-Password": {
+        "label": "تأكيد كلمة المرور",
+        "placeholder": "*********"
+      }
     },
     "file": {
       "label": "الملف",
@@ -339,8 +361,14 @@
       "btn-text": "رفع ملف",
       "error-type": "صيغة الملف غير مدعومة."
     },
-    "phone": { "label": "رقم الهاتف", "placeholder": "1012345678" },
-    "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" },
+    "phone": {
+      "label": "رقم الهاتف",
+      "placeholder": "1012345678"
+    },
+    "email": {
+      "label": "البريد الإلكتروني",
+      "placeholder": "user@example.com"
+    },
     "nice-to-have-you-here": "جميل أنك هنا"
   },
   "products": {

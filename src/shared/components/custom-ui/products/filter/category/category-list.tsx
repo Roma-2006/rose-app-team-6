@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import CategoryItem from './category-item';
-import CategoryItemSkeleton from './category-skeleton';
+import CategoryItemSkeleton from '../../../../skeleton/category-skeleton';
 import ResetButton from '../general/reset-button';
 import { getCategories } from '@/shared/api/products/filter/category.api';
 import {

@@ -3,14 +3,15 @@ import { LanguageSwitcherAuth } from '@/features/auth/components/language-switch
 import { Link } from '@/i18n/navigation';
 import { Bell, Heart, ShoppingCart } from 'lucide-react';
 import Image from 'next/image';
-import SecondaryNavigation from './secondary-navigation';
+import SecondaryNavigation from '../custom-ui/secondary-navigation';
 import { useSession } from 'next-auth/react';
-import HeaderSearchInput from './header-search-input';
-import GuestGatedIcon from './guest-gated-icon';
-import UserAuthAction from './user-auth-action';
+import HeaderSearchInput from '../custom-ui/header-search-input';
+import GuestGatedIcon from '../custom-ui/guest-gated-icon';
+import UserAuthAction from '../custom-ui/user-auth-action';
 import { ThemeToggle } from '../theme';
 import { useCart } from '@/features/main/hooks/use-cart';
 import { useWishlist } from '@/features/main/hooks/use-wishlist';
+import NotificationsList from '@/features/notification/components/notifications-list';
 
 export default function Header() {
   const session = useSession();
@@ -44,7 +45,7 @@ export default function Header() {
             <GuestGatedIcon badgeCount={uniqueItemsCount} href="/cart">
               <ShoppingCart size={24} />
             </GuestGatedIcon>
-            <Bell size={24} />
+            {isAuthenticated && <NotificationsList />}
           </span>
           <span className={` flex ltr:pl-4 rtl:pr-4 gap-2.5 `}>
             <LanguageSwitcherAuth />
