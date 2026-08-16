@@ -9,13 +9,14 @@ import { FieldGroup } from '@/shared/components/ui/field';
 import CustomInput from '@/shared/components/custom-input';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/shared/components/ui/button';
+import { useChangePassword } from '../hooks/use-change-pass';
 
 type FormValues = z.infer<typeof CHANGE_PASS_SCHEMA>;
 
-// const { Changepassword, isPending } = useChangePassword();
-
 export default function ChangePassword() {
   const t = useTranslations('change-password');
+
+  const { changePassword, isLoading } = useChangePassword();
 
   const form = useForm<FormValues>({
     resolver: zodResolver(CHANGE_PASS_SCHEMA),
@@ -27,7 +28,11 @@ export default function ChangePassword() {
   });
 
   const onSubmit = (data: FormValues) => {
-    // Changepassword(data);
+    changePassword({
+      oldPassword: data.oldPassword,
+      newPassword: data.newPassword,
+      confirmNewPassword: data.confirmNewPassword,
+    });
   };
 
   return (
@@ -83,7 +88,7 @@ export default function ChangePassword() {
         type="submit"
         buttonVariant="text"
         variant="primary"
-        //  loading={isPending}
+        loading={isLoading}
         title="change-password.submit-button"
       />
     </form>
