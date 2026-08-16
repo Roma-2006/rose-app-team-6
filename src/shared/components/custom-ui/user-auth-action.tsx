@@ -12,7 +12,6 @@ export default function UserAuthAction({ isAuthenticated }: TUserAuthActionProps
   // Session
   const { data: session } = useSession();
   if (!session) return null;
-
   if (!isAuthenticated) {
     return (
       <Link

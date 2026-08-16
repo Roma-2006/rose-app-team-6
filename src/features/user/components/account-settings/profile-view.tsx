@@ -21,6 +21,7 @@ import { ValidationError } from '@/shared/types/api';
 import AuthError from '@/features/auth/components/shared/auth-error';
 import { toast } from 'sonner';
 import useDeleteProfile from '../../hooks/use-delete-profile';
+import Avatar from '@/shared/components/custom-ui/avatar';
 export default function ProfileView({ user }: { user: TUser }) {
   //Translations
   const t = useTranslations();
@@ -80,18 +81,7 @@ export default function ProfileView({ user }: { user: TUser }) {
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <div className="flex gap-4 items-center">
           <div className="relative w-32 h-32 aspect-square rounded-full ">
-            {imageSrc ? (
-              <Image
-                src={imageSrc}
-                alt="Profile photo"
-                fill
-                className="object-cover rounded-full"
-              />
-            ) : (
-              <div className="w-full h-full rounded-full flex items-center justify-center bg-bg-primary text-text-inverse text-3xl font-semibold">
-                {user?.firstName?.charAt(0).toUpperCase()}
-              </div>
-            )}
+            <Avatar src={imageSrc} alt="Profile photo" fallback={user?.firstName} size={128} />
             <label
               htmlFor="profile-image"
               className="absolute bottom-0 right-0 cursor-pointer w-8  h-8 rounded-full bg-zinc-100 border border-border-muted flex justify-center items-center"

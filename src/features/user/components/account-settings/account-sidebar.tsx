@@ -48,7 +48,7 @@ export default function AccountSidebar({ activeTab, onLogout }: AccountSidebarPr
       <div className="w-auto lg:w-full">
         <Button
           buttonVariant="text"
-          variant="subtle"
+          variant="ghost"
           title="account-settings.sidebar.logout"
           leftIcon={<LogOut className="w-5 h-5 lg:w-8 lg:h-9 rotate-180" />}
           onClick={onLogout}

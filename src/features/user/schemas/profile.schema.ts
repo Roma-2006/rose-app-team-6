@@ -9,7 +9,7 @@ export const profileSchema = z
       .string()
       .trim()
       .nonempty('errors.phone')
-      .regex(/^\+[1-9]\d{0,3}\s?\d{7,14}$/, 'user-info.errors.invalid-phone-number'),
+      .regex(/^\+[1-9]\d{0,3}\s?\d{7,14}$/, 'errors.invalid-phone-number'),
   })
   .strict()
   .partial();

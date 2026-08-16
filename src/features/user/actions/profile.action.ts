@@ -22,7 +22,7 @@ export async function updateProfileAction({ fields }: { fields: ProfileFields })
 //Delete
 export async function deleteProfileAction() {
   const token = await getAuthToken();
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/profile`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/account`, {
     method: 'DELETE',
     headers: {
       Authorization: `Bearer ${token}`,
