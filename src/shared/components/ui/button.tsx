@@ -19,6 +19,7 @@ const buttonVariants = cva(
         link: 'bg-bg-subtle border border-border-subtle text-text-plain',
         softPink: 'bg-soft-pink-50 text-maroon-600 hover:bg-soft-pink-100 shadow-sm border-none',
         danger: 'bg-bg-danger-fade text-text-danger',
+        account: `w-full justify-center lg:justify-start gap-2 lg:gap-3 px-2 lg:px-4 py-2.5 lg:py-3.5 rounded-lg lg:rounded-xl transition-all text-xs sm:text-sm font-medium`,
       },
       size: {
         custom: 'py-3.5 px-4 gap-1.5',

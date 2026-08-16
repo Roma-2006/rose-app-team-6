@@ -1,4 +1,4 @@
-import 'server-only';
+// import 'server-only';
 import { HEADERS } from '@/shared/constants/api.constants';
 import { Response } from '@/shared/types/api';
 import { LoginResponse, TLoginData } from '../types/auth';

@@ -406,5 +406,45 @@
   },
   "grid": {
     "product-empty": "No products found matching your filters."
+  },
+  "account-settings":{
+    "title":"Account Settings",
+    "sidebar":{
+     "profile-tab":"profile", 
+     "password-tab":"Change Password",
+     "logout" :"Logout"
+    },
+    "profile":{
+      "upload-photo": "Upload Photo",
+      "upload-photo-description": "You can upload a .jpg, .png, or .gif photo with max size of 5MB.",
+      "save-changes":"Save Changes",
+      "delete-my-account":"Delete My Account",
+      "delete-account-confirmation":"Are you sure you want to delete your account?",
+      "permanent-warning":"This action is permanent and cannot be undone.",
+      "first-name": "First Name",
+      "last-name": "Last Name",
+      "email": "Email (cannot be changed)",
+      "phone": "Phone",
+      "gender": "Gender",
+      "update-success": "Profile updated successfully",
+      "update-error": "Failed to update profile. Please try again.",
+      "photoTooLarge": "Image must be under 2MB",
+      "invalidPhoto": "Please upload a valid image file",
+      "confirm": "Delete My Account",
+      "cancel": "Cancel",
+      "delete-success": "Your account has been deleted.",
+      "delete-error": "Failed to delete account. Please try again.",
+      "pending-orders":"You have pending orders. Please complete or cancel them before deleting your account.",
+      "no-changes": "No changes to save.",
+      "errors": {
+          "first-name": "First Name is required",
+          "last-name": "Last Name is required",
+          "phone": "Phone is required",
+          "invalid-phone-number": "Invalid phone number"
+      }
+    },
+    "change-password":{
+
   }
+}
 }

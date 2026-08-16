@@ -418,5 +418,45 @@
   },
   "grid": {
     "product-empty": "لا توجد منتجات تطابق خيارات البحث."
-  }
+  },
+  "account-settings":{
+    "title": "إعدادات الحساب",
+    "sidebar":{
+     "profile-tab":"الملف الشخصي", 
+     "password-tab": "تغيير كلمة المرور",
+     "logout" :"تسجيل الخروج"
+    },
+    "profile":{
+      "upload-photo": "رفع صورة",
+      "upload-photo-description": "يمكنك رفع صورة بصيغة .jpg أو .png أو .gif، بحد أقصى 5 ميجابايت.",
+      "save-changes": "حفظ التغييرات",
+      "delete-my-account": "حذف حسابي",
+      "delete-account-confirmation":"   هل انت متأكد أنك تريد مسح حسابك؟",
+      "permanent-warning":"هذا الإجراء نهائي ولا يمكن التراجع عنه.",
+      "first-name": "الاسم الأول",
+      "last-name": "اسم العائلة",
+      "email": "البريد الإلكتروني (لا يمكن تغييره)",
+      "phone": "رقم الهاتف",
+      "gender": "النوع",
+      "update-success": "تم تحديث الملف الشخصي بنجاح",
+      "update-error": "فشل تحديث الملف الشخصي. يرجى المحاولة مرة أخرى.",
+      "photoTooLarge": "يجب ألا يتجاوز حجم الصورة 2 ميجابايت",
+      "invalidPhoto": "يرجى رفع ملف صورة صالح",
+      "confirm": "حذف حسابي",
+      "cancel": "إلغاء",
+      "delete-success": "تم حذف حسابك.",
+      "delete-error": "فشل حذف الحساب. يرجى المحاولة مرة أخرى.",
+      "pending-orders": "لديك طلبات معلقة. يرجى إكمالها أو إلغاؤها قبل حذف حسابك.",
+      "no-changes": "لا توجد تغييرات لحفظها.",
+      "errors": {
+          "first-name": "الاسم الأول مطلوب",
+          "last-name": "اسم العائلة مطلوب",
+          "phone": "رقم الهاتف مطلوب",
+          "invalid-phone-number": "رقم الهاتف غير صالح"
+      }
+    },
+    "change-password":{
+
+    }
+}
 }
