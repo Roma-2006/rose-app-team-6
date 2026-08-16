@@ -23,8 +23,18 @@ const PriceFilter = () => {
   const [minPrice, setMinPrice] = useState(urlMinPrice);
   const [maxPrice, setMaxPrice] = useState(urlMaxPrice);
 
-  const [syncedMin, setSyncedMin] = useState(urlMinPrice);
-  const [syncedMax, setSyncedMax] = useState(urlMaxPrice);
+  const [prevUrlMinPrice, setPrevUrlMinPrice] = useState(urlMinPrice);
+  const [prevUrlMaxPrice, setPrevUrlMaxPrice] = useState(urlMaxPrice);
+
+  if (urlMinPrice !== prevUrlMinPrice) {
+    setPrevUrlMinPrice(urlMinPrice);
+    setMinPrice(urlMinPrice);
+  }
+
+  if (urlMaxPrice !== prevUrlMaxPrice) {
+    setPrevUrlMaxPrice(urlMaxPrice);
+    setMaxPrice(urlMaxPrice);
+  }
 
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -32,14 +42,21 @@ const PriceFilter = () => {
   const pushPrice = (nextMin: string, nextMax: string) => {
     const params = new URLSearchParams(searchParams.toString());
 
-    nextMin ? params.set('minPrice', nextMin) : params.delete('minPrice');
-    nextMax ? params.set('maxPrice', nextMax) : params.delete('maxPrice');
+    if (nextMin) {
+      params.set('minPrice', nextMin);
+    } else {
+      params.delete('minPrice');
+    }
+
+    if (nextMax) {
+      params.set('maxPrice', nextMax);
+    } else {
+      params.delete('maxPrice');
+    }
+
     params.set('page', '1');
 
-    const nextUrl = `${pathname}?${params.toString()}`;
-    setSyncedMin(nextMin);
-    setSyncedMax(nextMax);
-    router.push(nextUrl, { scroll: false });
+    router.push(`${pathname}?${params.toString()}`, { scroll: false });
   };
 
   const scheduleDebouncedPush = (nextMin: string, nextMax: string) => {
@@ -47,25 +64,25 @@ const PriceFilter = () => {
     debounceRef.current = setTimeout(() => pushPrice(nextMin, nextMax), DEBOUNCE_MS);
   };
 
+  const isBound = (value: string) => value !== '' && Number(value) !== 0;
+
   const handleMinChange = (value: string) => {
+    if (isBound(value) && isBound(maxPrice) && Number(value) > Number(maxPrice)) {
+      return;
+    }
+
     setMinPrice(value);
     scheduleDebouncedPush(value, maxPrice);
   };
 
   const handleMaxChange = (value: string) => {
+    if (isBound(value) && isBound(minPrice) && Number(value) < Number(minPrice)) {
+      return;
+    }
+
     setMaxPrice(value);
     scheduleDebouncedPush(minPrice, value);
   };
-
-  // Effects
-  if (urlMinPrice !== syncedMin) {
-    setSyncedMin(urlMinPrice);
-    setMinPrice(urlMinPrice);
-  }
-  if (urlMaxPrice !== syncedMax) {
-    setSyncedMax(urlMaxPrice);
-    setMaxPrice(urlMaxPrice);
-  }
 
   return (
     <div className="w-full pt-2.5 pb-5 border-b border-border-muted">

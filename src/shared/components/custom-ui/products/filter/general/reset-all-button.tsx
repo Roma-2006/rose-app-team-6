@@ -1,8 +1,9 @@
 'use client';
-
+// libraries
 import { usePathname, useRouter } from '@/i18n/navigation';
 import { useSearchParams } from 'next/navigation';
 import { RotateCcw } from 'lucide-react';
+// relevants
 import { Button } from '@/shared/components/ui/button';
 import { FILTER_PARAM_KEYS } from '@/shared/constants/filter.constants';
 

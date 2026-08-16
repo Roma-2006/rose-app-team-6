@@ -31,15 +31,15 @@
     "search-error": "Search failed. Try again.",
     "notifications": {
       "title": "Notifications ({count})",
-      "noNotifications": "No notifications to display",
-      "clearAll": "Clear all notifications",
-      "markAllAsRead": "Mark all as read",
-      "notificationSettings": {
-        "markAsRead": "Mark as read",
+      "no-notifications": "No notifications to display",
+      "clear-all": "Clear all notifications",
+      "mark-all-as-read": "Mark all as read",
+      "notification-settings": {
+        "mark-as-read": "Mark as read",
         "delete": "Delete"
       }
     },
-    "userMenu": {
+    "user-menu": {
       "title": "Hello",
       "account": "Account",
       "addresses": "Adresses",
