@@ -1,0 +1,20 @@
+export type RawCartProduct = {
+  id?: string;
+  _id?: string;
+  title?: string;
+  name?: string;
+  cover?: string;
+  imageCover?: string;
+  image?: string;
+  images?: string[];
+  price?: number;
+  priceAfterDiscount?: number;
+  rating?: number;
+  ratings?: number;
+  ratingsAverage?: number;
+  ratingCount?: number;
+  ratingsQuantity?: number;
+  quantity?: number;
+  stock?: number;
+  maxStock?: number;
+};

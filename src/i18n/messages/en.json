@@ -4,7 +4,7 @@
     "title": "Welcome to Rose App"
   },
   "button": {
-    "loading": "Loading...",
+    "loading":"Loading...",
     "submit": "Submit",
     "cancel": "Cancel",
     "save": "Save",
@@ -308,7 +308,9 @@
     "placeholder": "Enter your name..."
   },
   "custom-input": {
+    
     "default": {
+      
       "first-name": { "label": "First name", "placeholder": "zoe" },
       "last-name": { "label": "Last name", "placeholder": "Jonathan" },
       "user-name": { "label": "UserName", "placeholder": "zoe123" },
@@ -317,12 +319,13 @@
     "number": { "label": "Number", "placeholder": "0" },
     "search": { "label": "Search", "placeholder": "Search..." },
     "password": {
+        "label": "Password",
+      "placeholder": "Enter password",
       "password": { "label": "Password", "placeholder": "*********" },
       "confirm-Password": { "label": "Confirm Password", "placeholder": "*********" }
     },
     "file": {
-      "label": "File",
-      "placeholder": "Upload file",
+      
       "btn-text": "Upload File",
       "error-type": "File type not accepted."
     },
@@ -410,7 +413,36 @@
       "new-password-required": "New password is required.",
       "confirm-password-required": "Confirm password is required.",
       "passwords-do-not-match": "New password and confirm password do not match."
-    }
+    }},
+  
+  "cart": {
+    "title": " Shopping Cart",
+    "title-2": " Products You May Like",
+    "summary":"Summary",
+    "couponPlaceholder":"Coupon Code",
+    "couponLabel":"",
+    "invalidCoupon":"Invalid or expired coupon",
+    "couponApplied":"Coupon applied",
+    "NocouponApplied":"No coupons applied",
+    "couponAlreadyApplied":"Coupon already applied",
+    "subtotal":"Subtotal",
+    "total":"Total",
+    "applyCoupon":"Apply Coupon",
+    "checkout":"Checkout",
+    "products":"products",
+    "clearCart": "Clear Cart",
+    "confirmClear": " Are you sure you want to clear your cart?",
+    "emptyDescription": "You haven't added any products to your shopping cart yet.",
+    "continueShopping": "Continue Shopping",
+     "empty": "Your cart is empty",
+    "remove": "Remove",
+    "outOfStock": "Out of stock",
+    "ratings": "ratings",
+    "rating": "Rating"
+  },
+  "button": {
+    "cancel": "Cancel",
+    "confirm": "Confirm"
   }
 
 }

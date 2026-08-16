@@ -1,4 +1,4 @@
-import { ProductCardSkeleton } from '../home/home-products/product-card-skelton';
+import { ProductCardSkeleton } from './product-card-skelton';
 
 export function ProductGridSkeleton() {
   return (
