@@ -24,7 +24,8 @@ export async function findValidCouponAction(code: string): Promise<CouponBackend
 
   try {
     const cleanCode = code.trim().toUpperCase();
-    const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/coupons?isActive=true&search=${encodeURIComponent(cleanCode)}`;
+
+    const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/coupons?search=${encodeURIComponent(cleanCode)}`;
 
     const response = await fetch(apiUrl, {
       headers: { Accept: 'application/json' },
@@ -39,7 +40,6 @@ export async function findValidCouponAction(code: string): Promise<CouponBackend
     const payload = (rawData as { payload: { data?: unknown[] } }).payload;
     const coupons = payload?.data || [];
 
-    // تم استبدال any بنوع صريح وآمن تماماً لتخطي خطأ الـ Lint
     const matchedCoupon = coupons.find(
       (item: unknown): item is RawCouponItem =>
         typeof item === 'object' && item !== null && 'code' in item && item.code === cleanCode
@@ -52,9 +52,18 @@ export async function findValidCouponAction(code: string): Promise<CouponBackend
       code: matchedCoupon.code,
       type: matchedCoupon.type,
       value: Number(matchedCoupon.value),
-      minPurchase: matchedCoupon.minPurchase !== null ? Number(matchedCoupon.minPurchase) : null,
-      maxDiscount: matchedCoupon.maxDiscount !== null ? Number(matchedCoupon.maxDiscount) : null,
-      usageLimit: matchedCoupon.usageLimit !== null ? Number(matchedCoupon.usageLimit) : null,
+      minPurchase:
+        matchedCoupon.minPurchase !== null && matchedCoupon.minPurchase !== undefined
+          ? Number(matchedCoupon.minPurchase)
+          : null,
+      maxDiscount:
+        matchedCoupon.maxDiscount !== null && matchedCoupon.maxDiscount !== undefined
+          ? Number(matchedCoupon.maxDiscount)
+          : null,
+      usageLimit:
+        matchedCoupon.usageLimit !== null && matchedCoupon.usageLimit !== undefined
+          ? Number(matchedCoupon.usageLimit)
+          : null,
       usedCount: Number(matchedCoupon.usedCount),
       validFrom: matchedCoupon.validFrom,
       validUntil: matchedCoupon.validUntil,

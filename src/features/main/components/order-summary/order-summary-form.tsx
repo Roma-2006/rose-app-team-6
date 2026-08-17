@@ -47,15 +47,27 @@ export default function CouponForm({
         return;
       }
 
-      //Check if the coupon is valid
+      // Check Activation
+      if (!coupon.isActive) {
+        onErrorTriggered(tForm('couponDisabled'));
+        return;
+      }
+
+      // Check Expiration
       const currentDate = new Date();
+      if (currentDate > new Date(coupon.validUntil)) {
+        onErrorTriggered(tForm('couponExpired'));
+        return;
+      }
+
+      // Check Not Started Yet
       const isBeforeStart = currentDate < new Date(coupon.validFrom);
-      const isAfterEnd = currentDate > new Date(coupon.validUntil);
-      if (isBeforeStart || isAfterEnd) {
+      if (isBeforeStart) {
         onErrorTriggered(tForm('invalidCoupon'));
         return;
       }
 
+      // Usage Volume Cap Check
       const isUsageLimitExceeded =
         coupon.usageLimit !== null && coupon.usedCount >= coupon.usageLimit;
       if (isUsageLimitExceeded) {
@@ -63,6 +75,7 @@ export default function CouponForm({
         return;
       }
 
+      //Order Value Check
       const isMinimumPurchaseNotMet = coupon.minPurchase !== null && subtotal < coupon.minPurchase;
       if (isMinimumPurchaseNotMet) {
         onErrorTriggered(tForm('invalidCoupon'));
