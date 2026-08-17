@@ -29,14 +29,14 @@ export default function ChangePassword() {
 
   const onSubmit = (data: FormValues) => {
     changePassword({
-      oldPassword: data.oldPassword,
+      currentPassword: data.oldPassword,
       newPassword: data.newPassword,
-      confirmNewPassword: data.confirmNewPassword,
+      confirmPassword: data.confirmNewPassword,
     });
   };
 
   return (
-    <form onSubmit={form.handleSubmit(onSubmit)} className=" w-full">
+    <form onSubmit={form.handleSubmit(onSubmit)} className=" w-full flex flex-col">
       <FieldGroup>
         <Controller
           name="oldPassword"
@@ -64,6 +64,7 @@ export default function ChangePassword() {
               error={fieldState.invalid}
               label={t('change-password.new-password')}
               errorMessage={fieldState.error?.message}
+              className="before:content-[''] before:block before:w-full before:h-[1px] before:bg-bg-muted before:mb-6 before:mt-2"
             />
           )}
         />
@@ -85,6 +86,7 @@ export default function ChangePassword() {
       </FieldGroup>
 
       <Button
+        className="w-[30%] self-end mt-15"
         type="submit"
         buttonVariant="text"
         variant="primary"

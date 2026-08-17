@@ -2,7 +2,6 @@
 
 import { useTranslations } from 'next-intl';
 import OccasionItem from './occasion-item';
-import OccasionItemSkeleton from '../../../../skeleton/occasion-skelton';
 import ResetButton from '../general/reset-button';
 import { getOccasions } from '@/shared/api/products/filter/occasion.api';
 import { Occasion } from '@/shared/types/products/filter/occasion';
@@ -12,6 +11,7 @@ import {
   NEXT_PAGE_SKELETON_COUNT,
 } from '@/shared/constants/filter.constants';
 import { useInfiniteFilterList } from '@/features/main/hooks/use-infinity-filter';
+import OccasionItemSkeleton from '@/features/main/components/skeleton/occasion-skelton';
 
 const OccasionList = () => {
   // Translation

@@ -1,5 +1,5 @@
 export interface ChangePasswordPayload {
-  oldPassword: string;
+  currentPassword: string;
   newPassword: string;
-  confirmNewPassword: string;
+  confirmPassword: string;
 }

@@ -490,7 +490,7 @@
     "ratings": "ratings",
     "rating": "Rating"
   },
-  "button": {
+  "button-cart": {
     "cancel": "Cancel",
     "confirm": "Confirm"
   },
@@ -531,9 +531,7 @@
           "phone": "Phone is required",
           "invalid-phone-number": "Invalid phone number"
       }
-    },
-    "change-password":{
-
-  }
+    }
+  
 }
 }

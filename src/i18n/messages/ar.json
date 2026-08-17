@@ -534,9 +534,6 @@
           "phone": "رقم الهاتف مطلوب",
           "invalid-phone-number": "رقم الهاتف غير صالح"
       }
-    },
-    "change-password":{
-
     }
 }
 }
