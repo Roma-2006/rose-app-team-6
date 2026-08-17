@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import CategoryItem from './category-item';
-import CategoryItemSkeleton from './category-skeleton';
+import CategoryItemSkeleton from '../../../../skeleton/category-skeleton';
 import ResetButton from '../general/reset-button';
 import { getCategories } from '@/shared/api/products/filter/category.api';
 import {
@@ -10,7 +10,7 @@ import {
   SKELETON_COUNT,
   NEXT_PAGE_SKELETON_COUNT,
 } from '@/shared/constants/filter.constants';
-import { useInfiniteFilterList } from '@/features/dashboard/hooks/use-infinity-filter';
+import { useInfiniteFilterList } from '@/features/main/hooks/use-infinity-filter';
 
 const CategoryList = () => {
   // Translation

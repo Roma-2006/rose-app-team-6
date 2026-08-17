@@ -61,7 +61,6 @@ export default function CustomInput({
   //determine language
   const locale = useLocale();
   const computedIsRtl = isRtl !== undefined ? isRtl : locale === 'ar';
-  const tLogin = useTranslations('auth.login');
   const tInput = useTranslations('custom-input');
 
   let defaultLabel = '';
@@ -75,7 +74,11 @@ export default function CustomInput({
   } else if (variant === 'password' && subVariant) {
     defaultLabel = tInput(`password.${subVariant}.label`);
     defaultPlaceholder = tInput(`password.${subVariant}.placeholder`);
-    // file , phone , number , search & email
+    //search
+  } else if (variant === 'search') {
+    defaultLabel = '';
+    defaultPlaceholder = tInput('search.placeholder');
+    // file , phone , number & email
   } else {
     defaultLabel = tInput(`${variant}.label`);
     defaultPlaceholder = tInput(`${variant}.placeholder`);
