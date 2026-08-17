@@ -11,14 +11,15 @@ import { useTranslations } from 'next-intl';
 import { Button } from '@/shared/components/ui/button';
 import { useChangePassword } from '../../hooks/use-change-pass';
 
-type FormValues = z.infer<typeof CHANGE_PASS_SCHEMA>;
+type FormValues = z.infer<ReturnType<typeof CHANGE_PASS_SCHEMA>>;
 
 export default function ChangePassword() {
-  const t = useTranslations('change-password');
+  const t = useTranslations();
   const { changePassword, isLoading } = useChangePassword();
 
+  const schemaInstance = CHANGE_PASS_SCHEMA(t);
   const form = useForm<FormValues>({
-    resolver: zodResolver(CHANGE_PASS_SCHEMA),
+    resolver: zodResolver(schemaInstance),
     defaultValues: {
       oldPassword: '',
       newPassword: '',
@@ -46,7 +47,7 @@ export default function ChangePassword() {
               variant="password"
               subVariant="password"
               error={fieldState.invalid}
-              label={t('old-password')}
+              label={t('change-password.old-password')}
               errorMessage={fieldState.error?.message}
             />
           )}
@@ -61,7 +62,7 @@ export default function ChangePassword() {
               variant="password"
               subVariant="password"
               error={fieldState.invalid}
-              label={t('new-password')}
+              label={t('change-password.new-password')}
               errorMessage={fieldState.error?.message}
             />
           )}
@@ -76,7 +77,7 @@ export default function ChangePassword() {
               aria-invalid={fieldState.invalid}
               variant="password"
               subVariant="password"
-              label={t('confirm-password')}
+              label={t('change-password.confirm-password')}
               errorMessage={fieldState.error?.message}
             />
           )}

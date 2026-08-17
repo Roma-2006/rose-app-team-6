@@ -1,8 +1,8 @@
-'use server';
 import type { TranslationValues } from 'next-intl';
 import z from 'zod';
-type Translate = (key: string, values?: TranslationValues) => string;
-
+type Translate = {
+  (key: string, values?: Record<string, string | number | Date>): string;
+};
 export const CHANGE_PASS_SCHEMA = (t: Translate) =>
   z
     .object({
