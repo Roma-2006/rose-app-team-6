@@ -13,6 +13,7 @@
     "next": "Next",
      "add-review":"Add Review",
     "adding":"Adding..."
+    
   },
   "common": {
     "select": {
@@ -422,7 +423,7 @@
     "ratings": "ratings",
     "rating": "Rating"
   },
-  "button": {
+  "button-cart": {
     "cancel": "Cancel",
     "confirm": "Confirm"
   }

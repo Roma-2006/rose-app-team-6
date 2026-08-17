@@ -7,6 +7,7 @@ import { TicketPercent } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { findValidCouponAction } from '../../actions/coupon.action';
 
+//Enter coupon
 export default function CouponForm({
   subtotal,
   onValidCouponApplied,
@@ -46,6 +47,7 @@ export default function CouponForm({
         return;
       }
 
+      //Check if the coupon is valid
       const currentDate = new Date();
       const isBeforeStart = currentDate < new Date(coupon.validFrom);
       const isAfterEnd = currentDate > new Date(coupon.validUntil);
