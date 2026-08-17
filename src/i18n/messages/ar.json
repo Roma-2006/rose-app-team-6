@@ -10,9 +10,8 @@
     "save": "حفظ",
     "delete": "حذف",
     "confirm": "تأكيد",
-    "next": "التالي",
-    "add-review": "أضف تقييمًا",
-    "adding": "إضافة..."
+    "next": "التالي"
+    
   },
   "common": {
     "select": {
@@ -392,6 +391,8 @@
       "ratingsCount": "({count} تقييم)"
     },
     "add-review": {
+     "add-review": "أضف تقييمًا",
+     "adding": "إضافة...",
       "rating": "تقييمك",
       "title": "العنوان",
       "review": "اكتب رأيك",

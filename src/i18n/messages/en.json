@@ -10,9 +10,8 @@
     "save": "Save",
     "delete": "Delete",
     "confirm": "Confirm",
-    "next": "Next",
-     "add-review":"Add Review",
-    "adding":"Adding..."
+    "next": "Next"
+    
   },
   "common": {
     "select": {
@@ -372,6 +371,7 @@
       }
     },
     "product-reviews": {
+   
       "title": "Product Reviews",
       "empty": "No reviews yet.",
       "loading": "Loading reviews...",
@@ -383,6 +383,8 @@
       "ratingsCount": "({count} ratings)"
     },
     "add-review": {
+      "add-review":"Add Review",
+      "adding":"Adding...",
       "rating": "Your rating",
       "title": "Title",
       "review": "Review",
