@@ -10,8 +10,15 @@
     "save": "Save",
     "delete": "Delete",
     "confirm": "Confirm",
+<<<<<<< HEAD
     "next": "Next"
     
+=======
+    "next": "Next",
+     "add-review":"Add Review",
+    "adding":"Adding...",
+    "retry":"Retry"
+>>>>>>> e0f7806988e0c3ad5bec0cbd9da82b0f172ba37f
   },
   "common": {
     "select": {
@@ -29,7 +36,25 @@
     "login": "Login",
     "search-default": "Products you may like",
     "search-empty": "No products found",
-    "search-error": "Search failed. Try again."
+    "search-error": "Search failed. Try again.",
+    "notifications": {
+      "title": "Notifications ({count})",
+      "no-notifications": "No notifications found",
+      "clear-all": "Clear All",
+      "mark-all-as-read": "Mark All as Read",
+      "notification-settings": {
+        "mark-as-read": "Mark as Read",
+        "delete": "Delete"
+      }
+    },
+    "user-menu": {
+      "title": "Hello",
+      "account": "Account",
+      "addresses": "Addresses",
+      "orders": "Orders",
+      "dashboard": "Dashboard",
+      "logout": "Logout"
+    }
   },
   "nav": {
     "home": "Home",
@@ -282,9 +307,7 @@
         "part3": "Gift Boxes for Your",
         "part4": "Special",
         "part5": "Moments"
-        
       }
-      
     },
     "gallery": {
       "label": "Gallery",
@@ -309,32 +332,76 @@
   "custom-input": {
     
     "default": {
+<<<<<<< HEAD
       
       "first-name": { "label": "First name", "placeholder": "zoe" },
       "last-name": { "label": "Last name", "placeholder": "Jonathan" },
       "user-name": { "label": "UserName", "placeholder": "zoe123" },
       "review-title": { "label": "Title", "placeholder": "Enter review title" }
+=======
+      "first-name": {
+        "label": "First name",
+        "placeholder": "zoe"
+      },
+      "last-name": {
+        "label": "Last name",
+        "placeholder": "Jonathan"
+      },
+      "user-name": {
+        "label": "UserName",
+        "placeholder": "zoe123"
+      },
+      "review-title": {
+        "label": "Title",
+        "placeholder": "Enter review title"
+      }
     },
-    "number": { "label": "Number", "placeholder": "0" },
-    "search": { "label": "Search", "placeholder": "Search..." },
+    "number": {
+      "label": "Number",
+      "placeholder": "0"
+    },
+    "search": {
+      "label": "Search",
+      "placeholder": "Search..."
+>>>>>>> e0f7806988e0c3ad5bec0cbd9da82b0f172ba37f
+    },
     "password": {
+<<<<<<< HEAD
         "label": "Password",
       "placeholder": "Enter password",
       "password": { "label": "Password", "placeholder": "*********" },
       "confirm-Password": { "label": "Confirm Password", "placeholder": "*********" }
+=======
+      "password": {
+        "label": "Password",
+        "placeholder": "*********"
+      },
+      "confirm-Password": {
+        "label": "Confirm Password",
+        "placeholder": "*********"
+      }
+>>>>>>> e0f7806988e0c3ad5bec0cbd9da82b0f172ba37f
     },
     "file": {
       
       "btn-text": "Upload File",
       "error-type": "File type not accepted."
     },
-    "phone": { "label": "Phone", "placeholder": "1012345678" },
-    "email": { "label": "Email", "placeholder": "user@example.com" },
+    "phone": {
+      "label": "Phone",
+      "placeholder": "1012345678"
+    },
+    "email": {
+      "label": "Email",
+      "placeholder": "user@example.com"
+    },
     "nice-to-have-you-here": "nice to have you here"
   },
   "products": {
     "addToCart": "Add to cart",
     "outOfStock": "Out of stock",
+    "in-stock":"In Stock",
+    "no-ratings": "No ratings yet",
     "product-card": {
       "new": "New",
       "outOfStock": "Out of stock"
@@ -393,11 +460,23 @@
     },
     "related-products": {
       "sec-title": "Related Products"
-    }
+    },
+    "wishlist":{
+      "title":"Wishlist",
+      "empty":" Your wishlist is empty ",
+      "browse":"Browse products ",
+      "remove":"Remove from wishlist ",
+      "clear":"Clear Wishlist",
+      "continue-shopping":"Continue Shopping",
+      "explore-similar-products":"Explore Similar Products",
+      "clear-wishlist-confirmation":"Are you sure you want to clear your Wishlist?",
+      "items-count": "{count, plural, =0 {No items} one {# item} other {# items}}"
+  }
   },
   "grid": {
     "product-empty": "No products found matching your filters."
   },
+<<<<<<< HEAD
   "change-password": {
    "sidebar":{
      "profile-tab":"profile", 
@@ -448,3 +527,46 @@
   }
 
 }
+=======
+  "account-settings":{
+    "title":"Account Settings",
+    "sidebar":{
+     "profile-tab":"profile", 
+     "password-tab":"Change Password",
+     "logout" :"Logout"
+    },
+    "profile":{
+      "upload-photo": "Upload Photo",
+      "upload-photo-description": "You can upload a .jpg, .png, or .gif photo with max size of 5MB.",
+      "save-changes":"Save Changes",
+      "delete-my-account":"Delete My Account",
+      "delete-account-confirmation":"Are you sure you want to delete your account?",
+      "permanent-warning":"This action is permanent and cannot be undone.",
+      "first-name": "First Name",
+      "last-name": "Last Name",
+      "email": "Email (cannot be changed)",
+      "phone": "Phone",
+      "gender": "Gender",
+      "update-success": "Profile updated successfully",
+      "update-error": "Failed to update profile. Please try again.",
+      "photoTooLarge": "Image must be under 2MB",
+      "invalidPhoto": "Please upload a valid image file",
+      "confirm": "Delete My Account",
+      "cancel": "Cancel",
+      "delete-success": "Your account has been deleted.",
+      "delete-error": "Failed to delete account. Please try again.",
+      "pending-orders":"You have pending orders. Please complete or cancel them before deleting your account.",
+      "no-changes": "No changes to save.",
+      "errors": {
+          "first-name": "First Name is required",
+          "last-name": "Last Name is required",
+          "phone": "Phone is required",
+          "invalid-phone-number": "Invalid phone number"
+      }
+    },
+    "change-password":{
+
+  }
+}
+}
+>>>>>>> e0f7806988e0c3ad5bec0cbd9da82b0f172ba37f

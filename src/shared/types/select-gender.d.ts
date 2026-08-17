@@ -1,4 +1,5 @@
 export type TSelectGenderProps = {
   value: string;
-  onChange: (value: string | null) => void;
+  onChange?: (value: string | null) => void;
+  disabled?: boolean;
 };
