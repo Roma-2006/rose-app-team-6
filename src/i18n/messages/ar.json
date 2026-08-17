@@ -10,15 +10,10 @@
     "save": "حفظ",
     "delete": "حذف",
     "confirm": "تأكيد",
-<<<<<<< HEAD
-    "next": "التالي"
-    
-=======
     "next": "التالي",
     "add-review": "أضف تقييمًا",
     "adding": "إضافة...",
     "retry":"إعادة المحاولة"
->>>>>>> e0f7806988e0c3ad5bec0cbd9da82b0f172ba37f
   },
   "common": {
     "select": {
@@ -454,7 +449,6 @@
   "grid": {
     "product-empty": "لا توجد منتجات تطابق خيارات البحث."
   },
-<<<<<<< HEAD
    "change-password": {
      "sidebar":{
      "profile-tab":"الملف الشخصي", 
@@ -502,10 +496,9 @@
   "button-cart": {
     "cancel": "إلغاء",
     "confirm": "تأكيد"
-  }
+  },
 
-}
-=======
+
   "account-settings":{
     "title": "إعدادات الحساب",
     "sidebar":{
@@ -547,4 +540,3 @@
     }
 }
 }
->>>>>>> e0f7806988e0c3ad5bec0cbd9da82b0f172ba37f

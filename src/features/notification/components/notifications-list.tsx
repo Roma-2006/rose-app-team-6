@@ -21,7 +21,7 @@ import NotificationItemList from './notification-item-list';
 import { Button } from '@/shared/components/ui/button';
 import { Bell, CheckCheck, BellOff, BrushCleaning, BellRing } from 'lucide-react';
 import { useNotifications } from '../hooks/use-notification';
-import NotificationListSkeleton from '../../../shared/components/skeleton/notification-skeleton';
+import NotificationListSkeleton from '@/features/main/components/skeleton/notification-skeleton';
 
 const MAX_DISPLAYED_COUNT = 99;
 const NEXT_PAGE_SKELETON_COUNT = 1;

@@ -10,15 +10,10 @@
     "save": "Save",
     "delete": "Delete",
     "confirm": "Confirm",
-<<<<<<< HEAD
-    "next": "Next"
-    
-=======
     "next": "Next",
      "add-review":"Add Review",
     "adding":"Adding...",
     "retry":"Retry"
->>>>>>> e0f7806988e0c3ad5bec0cbd9da82b0f172ba37f
   },
   "common": {
     "select": {
@@ -332,29 +327,14 @@
   "custom-input": {
     
     "default": {
-<<<<<<< HEAD
       
       "first-name": { "label": "First name", "placeholder": "zoe" },
       "last-name": { "label": "Last name", "placeholder": "Jonathan" },
       "user-name": { "label": "UserName", "placeholder": "zoe123" },
       "review-title": { "label": "Title", "placeholder": "Enter review title" }
-=======
-      "first-name": {
-        "label": "First name",
-        "placeholder": "zoe"
-      },
-      "last-name": {
-        "label": "Last name",
-        "placeholder": "Jonathan"
-      },
-      "user-name": {
-        "label": "UserName",
-        "placeholder": "zoe123"
-      },
-      "review-title": {
-        "label": "Title",
-        "placeholder": "Enter review title"
-      }
+      
+     
+     
     },
     "number": {
       "label": "Number",
@@ -363,24 +343,14 @@
     "search": {
       "label": "Search",
       "placeholder": "Search..."
->>>>>>> e0f7806988e0c3ad5bec0cbd9da82b0f172ba37f
     },
     "password": {
-<<<<<<< HEAD
         "label": "Password",
       "placeholder": "Enter password",
       "password": { "label": "Password", "placeholder": "*********" },
       "confirm-Password": { "label": "Confirm Password", "placeholder": "*********" }
-=======
-      "password": {
-        "label": "Password",
-        "placeholder": "*********"
-      },
-      "confirm-Password": {
-        "label": "Confirm Password",
-        "placeholder": "*********"
-      }
->>>>>>> e0f7806988e0c3ad5bec0cbd9da82b0f172ba37f
+     
+    
     },
     "file": {
       
@@ -476,7 +446,6 @@
   "grid": {
     "product-empty": "No products found matching your filters."
   },
-<<<<<<< HEAD
   "change-password": {
    "sidebar":{
      "profile-tab":"profile", 
@@ -524,10 +493,9 @@
   "button": {
     "cancel": "Cancel",
     "confirm": "Confirm"
-  }
+  },
 
-}
-=======
+
   "account-settings":{
     "title":"Account Settings",
     "sidebar":{
@@ -569,4 +537,3 @@
   }
 }
 }
->>>>>>> e0f7806988e0c3ad5bec0cbd9da82b0f172ba37f
