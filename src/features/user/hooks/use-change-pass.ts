@@ -15,16 +15,18 @@ interface UseChangePasswordResult {
 }
 
 export function useChangePassword(): UseChangePasswordResult {
+  // Mutation
   const mutation = useMutation<string, Error, ChangePasswordPayload>({
     mutationFn: async (data: ChangePasswordPayload) => {
       return await changePasswordAction(data);
     },
     onSuccess: () => {
-      console.log('✅ Password updated via Server Action + React Query');
       signOut({ callbackUrl: '/login' });
     },
     onError: (error: Error) => {
-      console.error('❌ Mutation Error:', error.message);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('❌ Mutation Error:', error.message);
+      }
     },
   });
 

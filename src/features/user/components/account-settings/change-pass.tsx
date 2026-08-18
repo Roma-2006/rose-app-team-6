@@ -14,9 +14,13 @@ import { useChangePassword } from '../../hooks/use-change-pass';
 type FormValues = z.infer<ReturnType<typeof CHANGE_PASS_SCHEMA>>;
 
 export default function ChangePassword() {
+  // Translation
   const t = useTranslations();
+
+  // Custom hooks
   const { changePassword, isLoading } = useChangePassword();
 
+  // Form
   const schemaInstance = CHANGE_PASS_SCHEMA(t);
   const form = useForm<FormValues>({
     resolver: zodResolver(schemaInstance),
@@ -27,6 +31,7 @@ export default function ChangePassword() {
     },
   });
 
+  // Functions (handlers)
   const onSubmit = (data: FormValues) => {
     changePassword({
       currentPassword: data.oldPassword,

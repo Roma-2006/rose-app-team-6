@@ -11,12 +11,10 @@ export async function changePasswordAction(formData: ChangePasswordPayload): Pro
     throw new Error('Unauthorized access. Please log in again.');
   }
 
-  // 1. Updated: Use confirmPassword instead of confirmNewPassword
   if (formData.newPassword !== formData.confirmPassword) {
     throw new Error('New passwords do not match.');
   }
 
-  // 2. Updated: Send clean payload to backend
   const response: Response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/users/change-password`,
     {
