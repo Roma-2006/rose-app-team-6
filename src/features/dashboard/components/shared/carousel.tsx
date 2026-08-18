@@ -53,7 +53,7 @@ export const Carousel = ({ children, gap = 24, fallbackStep = 312 }: CarouselPro
 
       <button
         onClick={() => scroll('next')}
-        className="absolute -right-5 rtl:-left-5 rtl:right-auto top-[161px] z-20 w-9 h-9 bg-bg-primary rounded-full flex justify-center items-center text-text-inverse shadow-lg "
+        className="absolute right-0 md:-right-5 left-0 rtl:md:-left-5 rtl:right-auto top-[161px] z-20 w-9 h-9 bg-bg-primary rounded-full flex justify-center items-center text-text-inverse shadow-lg "
       >
         {isRtl ? <ChevronLeft size={20} /> : <ChevronRight size={20} />}
       </button>

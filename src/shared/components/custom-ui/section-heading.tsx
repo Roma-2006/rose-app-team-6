@@ -6,9 +6,9 @@ interface SectionTitleProps {
 export default function SectionTitle({ title, className = '' }: SectionTitleProps) {
   return (
     <div className={['relative inline-block', className].filter(Boolean).join(' ')}>
-      <div className="absolute start-0 top-6 w-40 h-4 bg-bg-secondary-faint rtl:rounded-l-full ltr:rounded-r-full" />
+      <div className="absolute start-0 top-6 w-40 h-3 md:h-4 bg-bg-secondary-faint rtl:rounded-l-full ltr:rounded-r-full" />
 
-      <h2 className="relative z-10 text-text-primary text-4xl font-bold font-['Sarabun'] leading-9">
+      <h2 className="relative z-10 text-text-primary text-xl md:text-4xl font-bold font-['Sarabun'] leading-9">
         {title}
       </h2>
 

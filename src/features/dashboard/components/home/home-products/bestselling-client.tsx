@@ -24,14 +24,14 @@ export const BestSellingSectionClient = ({
   const t = useTranslations('home.bestSelling');
 
   return (
-    <section className=" w-full mt-16">
+    <section className=" w-full mt-2 md:mt-16">
       <div className="flex flex-col lg:flex-row lg:items-start gap-9">
         <div className="w-80 shrink-0 flex flex-col items-start gap-3">
           <p className="text-base font-bold uppercase tracking-widest text-text-secondary text-start w-full">
             {t('badge')}
           </p>
 
-          <h2 className="w-full text-start text-3xl font-bold leading-tight">
+          <h2 className="w-full text-start   text-xl md:text-3xl font-bold leading-tight">
             <span className="text-text-secondary">{t('titlePart1')} </span>
             <span className="text-text-primary">{t('titlePart2')} </span>
             <span className="text-text-secondary">{t('titlePart3')} </span>

@@ -54,7 +54,7 @@ export const ProductCard = ({
 
   return (
     <div className="flex justify-center">
-      <div className="w-72 h-auto rounded-2xl flex flex-col gap-6 cursor-pointer group relative">
+      <div className="w-full sm:w-72 h-auto rounded-2xl flex flex-col gap-6 cursor-pointer group relative">
         {/* Wishlist Button  */}
         <Button
           variant={isInWishlist ? 'primary' : 'outline'}

@@ -4,15 +4,15 @@ import { useTranslations } from 'next-intl';
 export default function ServiceFeatures() {
   const t = useTranslations('home');
   return (
-    <div className="rounded-2xl bg-bg-secondary-fade p-6 min-h-36 flex items-center justify-center">
-      <div className="grid grid-cols-2 gap-6 lg:grid-cols-4 w-full items-center justify-items-center">
+    <div className="rounded-2xl bg-bg-secondary-fade p-4 md:p-6 min-h-36 flex items-center justify-center">
+      <div className="grid grid-cols-1 gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-4 w-full items-center justify-start md:justify-center">
         {features.map((feature) => {
           const Icon = feature.icon;
 
           return (
             <div
               key={feature.id}
-              className="flex items-center justify-center gap-4 w-full max-w-xs"
+              className="flex items-center justify-start md:justify-center gap-2 md:gap-6 w-full max-w-xs"
             >
               {/* ICON*/}
               <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-bg-primary-saturated text-text-plain">

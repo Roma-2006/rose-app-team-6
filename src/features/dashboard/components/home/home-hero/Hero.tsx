@@ -5,8 +5,8 @@ import ServiceFeatures from './service-features';
 
 export default function Hero() {
   return (
-    <section className="mx-auto max-w-7xl px-4 py-8">
-      <div className="grid gap-4 lg:grid-cols-4 ">
+    <section className="mx-auto max-w-7xl px-2 md:px-4 py-2 md:py-8">
+      <div className="grid gap-4 lg:grid-cols-4">
         <div className="lg:col-span-1">
           <HeroAside />
         </div>

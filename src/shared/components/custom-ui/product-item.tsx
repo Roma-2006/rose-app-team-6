@@ -35,7 +35,7 @@ export default function ProductItem({ product, search }: TProductItemProps) {
               : product.title}
           </h2>
           <span className="flex gap-2 items-end">
-            <span className="font-bold text-3xl text-text-plain">
+            <span className="font-bold   text-xl md:text-3xl text-text-plain">
               {discountedPrice.toFixed(2)}
               <span className="text-xl font-semibold ">{t('products.filter.currency.egp')}</span>
             </span>

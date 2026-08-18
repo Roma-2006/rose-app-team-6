@@ -10,10 +10,10 @@ export default function UserAuthAction({ isAuthenticated }: TUserAuthActionProps
     return (
       <Link
         href="/login"
-        className="flex items-center   gap-1.5  text-foreground hover:text-primary transition-colors"
+        className="flex items-center px-2  md:px-4    gap-1.5  text-foreground hover:text-primary transition-colors"
       >
         <User size={20} />
-        <span>{t('header.login')}</span>
+        <span className="hidden md:block">{t('header.login')}</span>
       </Link>
     );
   }

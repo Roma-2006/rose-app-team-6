@@ -43,8 +43,8 @@ const MostPopularSectionContent = async ({ occasionId }: MostPopularSectionProps
   }
 
   return (
-    <section className="w-full mt-16">
-      <div className="flex justify-between items-end pb-10">
+    <section className="w-full mt-2 md:mt-16">
+      <div className="flex justify-between items-end  pb-2 md:pb-10 flex-wrap gap-2 md:gap-0">
         <SectionTitle title={t('mostPopular')} />
         {/* Right Side: Occasion Tabs */}
         <div className="flex items-center gap-6">

@@ -8,10 +8,10 @@ interface SecTitleProps {
 export default function SecTitle({ text, className = '' }: SecTitleProps) {
   return (
     <header className={className}>
-      <h3 className="w-full text-4xl font-bold text-text-primary capitalize">
+      <h3 className="w-full text-xl md:text-4xl font-bold text-text-primary capitalize">
         <span
           className="relative inline-block  
-          before:content-[''] before:absolute before:left-0
+         content-[] md:before:content-[''] before:absolute before:left-0
             before:top-10.5 before:h-0.5
            before:w-[28.5%] before:bg-bg-danger 
 

@@ -3,7 +3,7 @@ import LinkComponent from './link-component';
 
 export default function SecondaryNavigation() {
   return (
-    <nav className="flex flex-wrap justify-center items-center gap-4 bg-bg-primary-saturated ">
+    <nav className="flex flex-nowrap md:flex-wrap justify-start md:justify-center items-center   gap-1 md:gap-4 bg-bg-primary-saturated ">
       <LinkComponent
         href="/"
         title="nav.home"

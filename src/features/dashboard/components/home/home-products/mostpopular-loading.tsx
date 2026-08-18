@@ -11,8 +11,8 @@ export default async function MostPopularSectionLoading() {
   const isRtl = locale === 'ar';
 
   return (
-    <section className="w-full mt-16">
-      <div className="flex justify-between items-end pb-10">
+    <section className="w-full mt-2 md:mt-16">
+      <div className="flex justify-between items-end  pb-2 md:pb-10 flex-wrap gap-2 md:gap-0">
         <div className="relative inline-block">
           {/* Pink background */}
           <div
@@ -21,7 +21,7 @@ export default async function MostPopularSectionLoading() {
             }`}
           />
           {/* Title */}
-          <h2 className="relative z-10  text-text-primary text-4xl font-bold font-['Sarabun'] leading-9">
+          <h2 className="relative z-10  text-text-primary text-xl md:text-4xl font-bold font-['Sarabun'] leading-9">
             {t('mostPopular')}
           </h2>
 

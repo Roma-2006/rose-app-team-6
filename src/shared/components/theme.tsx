@@ -61,7 +61,7 @@ export function ThemeToggle() {
             aria-pressed={activeTheme === option}
             aria-label={LABELS[locale][option]}
             className={[
-              'flex items-center rounded-full p-3 text-text-plain transition-colors',
+              'flex items-center rounded-full p-1 md:p-3 text-text-plain transition-colors',
               activeTheme === option ? 'bg-bg-muted' : '',
             ].join(' ')}
           >

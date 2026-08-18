@@ -9,7 +9,7 @@ export default async function AboutSection() {
   const tAbout = await getTranslations('home.about');
 
   return (
-    <section className="max-w-7xl   h-97.5 w-full mx-auto flex items-center justify-center gap-19 px-4 my-16 mb-33.5">
+    <section className="flex gap-4 md:gap-19 h-full items-center justify-center flex-wrap md:flex-nowrap max-w-7xl mb-2 md:mb-33.5 md:h-97.5 mx-auto my-2 md:my-16 px-2 md:px-4 w-full">
       {/* About Images */}
       <div className="about-images grid grid-cols-12 gap-3 w-full h-full    items-center">
         <div className="relative col-span-7 aspect-[4/5]  w-full">
@@ -30,7 +30,7 @@ export default async function AboutSection() {
               alt="purple box"
               fill
               sizes="210px"
-              className="object-cover w-82.5 h-94"
+              className="object-cover w-82.5 h-20  md:h-94"
               priority
             />
           </div>
@@ -62,7 +62,7 @@ export default async function AboutSection() {
       </div>
 
       {/* About Content  */}
-      <div className="about-content flex flex-col  text-start items-start  gap-6 w-130">
+      <div className="about-content flex flex-col  text-start items-start  gap-6 w-full md:w-130">
         <SecHeader text={tAbout('label')} />
 
         <div className="content-text items-start flex flex-col   gap-2">
@@ -80,7 +80,7 @@ export default async function AboutSection() {
           </p>
         </div>
         <Button variant="primary" title="home.about.discover" buttonVariant="text" />
-        <ul className="flex flex-row flex-wrap items-center w-140 h-21 gap-4 text-left">
+        <ul className="flex flex-row flex-wrap items-center w-full md:w-140 md:h-21 gap-4 text-left">
           <li className=" flex gap-2  w-60 ">
             <Check className="text-text-primary w-5 h-5" />
             <p className="text-xs text-text-plain">Competitive Prices & Easy Shopping</p>

@@ -20,7 +20,7 @@ export default function Header() {
   const { wishlistCount } = useWishlist();
   return (
     <header className="sticky top-0 z-50 bg-bg-plain">
-      <div className=" flex flex-col md:flex-row  items-center py-4.5 px-9 gap-4 ">
+      <div className="flex flex-col items-center gap-4 px-3 py-4.5 md:flex-row md:px-9">
         <div className="flex w-full md:grow items-center gap-4">
           <Link href="/" className="w-21.25 h-20 relative">
             <Image
@@ -35,9 +35,9 @@ export default function Header() {
             <HeaderSearchInput />
           </div>
         </div>
-        <div className="flex">
+        <div className="flex justify-start md:justify-center w-full">
           <UserAuthAction isAuthenticated={isAuthenticated} />
-          <span className=" flex items-center gap-2.5 px-4 border-r border-l  border-border-muted">
+          <span className=" flex items-center gap-2.5 px-2  md:px-4 border-r border-l  border-border-muted">
             <GuestGatedIcon isAuthenticated={isAuthenticated} badgeCount={wishlistCount}>
               <Heart size={24} />
             </GuestGatedIcon>
@@ -46,7 +46,9 @@ export default function Header() {
             </GuestGatedIcon>
             <Bell size={24} />
           </span>
-          <span className={` flex ltr:pl-4 rtl:pr-4 gap-2.5 `}>
+          <span
+            className={` flex ltr:pl-2 ltr:md:pl-4 rtl:pr-2 rtl:md:pr-4 gap-2.5 md:grow-0 flex-1 justify-between md:justify-start j`}
+          >
             <LanguageSwitcherAuth />
             <ThemeToggle />
           </span>

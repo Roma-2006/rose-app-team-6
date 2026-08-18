@@ -27,7 +27,7 @@ export default function OverallReview({ product }: OverallReviewProps) {
         />
 
         {/* Section Title */}
-        <h2 className="relative z-10 font-['Sarabun'] text-4xl font-bold leading-9 text-text-primary">
+        <h2 className="relative z-10 font-['Sarabun'] text-xl md:text-4xl font-bold leading-9 text-text-primary">
           {t('title')}
         </h2>
 
