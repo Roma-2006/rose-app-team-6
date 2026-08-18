@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { getProducts } from '@/features/dashboard/api/product.api';
+import { getProducts } from '@/features/main/api/product.api';
 import { BestSellingSectionClient } from './bestselling-client';
 import { BestSellingSectionLoading } from './bestselling-loading';
 

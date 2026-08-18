@@ -1,6 +1,6 @@
-import AllProducts from '@/features/dashboard/components/products/all-products';
-import { ProductGridSkeleton } from '@/features/dashboard/components/products/product-grid-skeleton';
-import { TProductsPageProps } from '@/features/dashboard/types/products';
+import AllProducts from '@/features/main/components/products/all-products';
+import { ProductGridSkeleton } from '@/features/main/components/products/product-grid-skeleton';
+import { TProductsPageProps } from '@/features/main/types/products';
 import { Suspense } from 'react';
 import Filter from '@/shared/components/custom-ui/products/filter/general/filter';
 

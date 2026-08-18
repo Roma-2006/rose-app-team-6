@@ -13,9 +13,14 @@ import { Button } from '@/shared/components/ui/button';
 import { BaseCheckbox } from '@/shared/components/custom-ui/BaseCheckbox';
 import { Link } from '@/i18n/navigation';
 
-export default function LoginForm() {
+type LoginFormProps = {
+  variant?: 'page' | 'popover';
+};
+
+export default function LoginForm({ variant = 'page' }: LoginFormProps) {
   const tLogin = useTranslations('auth.login');
   const tInput = useTranslations('custom-input');
+
   const form = useForm<TLoginData>({
     resolver: zodResolver(LOGIN_SCHEMA(tLogin)),
     defaultValues: {
@@ -31,14 +36,19 @@ export default function LoginForm() {
     handleLogin(data);
   };
 
+  const isPopover = variant === 'popover';
+
   return (
     <>
       {status !== 'authenticated' && (
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="w-101.5   mb-7 flex flex-col justify-center     "
+          className={
+            isPopover ? 'flex w-full flex-col gap-4 ' : 'mb-7 flex w-101.5 flex-col justify-center'
+          }
         >
-          <FieldGroup>
+          <FieldGroup className="flex flex-col gap-4">
+            {/* Username  */}
             <Controller
               name="username"
               control={form.control}
@@ -50,7 +60,7 @@ export default function LoginForm() {
                   error={fieldState.invalid}
                   subVariant="user-name"
                   id="username"
-                  autoComplete="user-name"
+                  autoComplete="username"
                   placeholder={tInput('default.user-name.placeholder')}
                   label={tInput('default.user-name.label')}
                   errorMessage={fieldState.error?.message}
@@ -58,7 +68,8 @@ export default function LoginForm() {
               )}
             />
 
-            <div className="relative">
+            {/* Password */}
+            <div className="flex flex-col gap-1.5">
               <Controller
                 name="password"
                 control={form.control}
@@ -74,13 +85,13 @@ export default function LoginForm() {
                     placeholder={tInput('password.password.placeholder')}
                     label={tInput('password.password.label')}
                     errorMessage={fieldState.error?.message}
-                    className="mb-2.5 "
                   />
                 )}
               />
 
-              <div className="flex justify-end mb-2.5">
-                <Link href="forgot-password" className="text-sm font-semibold text-text-primary ">
+              {/* Forgot password */}
+              <div className="flex justify-end pt-1">
+                <Link href="/forgot-password" className="text-sm font-semibold text-text-primary">
                   {tLogin('forgot-password')}
                 </Link>
               </div>
@@ -89,23 +100,32 @@ export default function LoginForm() {
             {error && <ErrorAlert errorMessage={error || 'Something went wrong'} />}
           </FieldGroup>
 
-          <Controller
-            name="rememberMe"
-            control={form.control}
-            render={({ field, fieldState }) => (
-              <BaseCheckbox
-                value={Boolean(field.value)}
-                onChange={field.onChange}
-                error={fieldState.error?.message}
-                list={[{ id: 'remember-me', label: tLogin('rememberMe') }]}
-              />
-            )}
-          />
+          {/* Remember me */}
+          <div className="pt-1">
+            <Controller
+              name="rememberMe"
+              control={form.control}
+              render={({ field, fieldState }) => (
+                <BaseCheckbox
+                  value={Boolean(field.value)}
+                  onChange={field.onChange}
+                  error={fieldState.error?.message}
+                  list={[
+                    {
+                      id: 'remember-me',
+                      label: tLogin('rememberMe'),
+                    },
+                  ]}
+                />
+              )}
+            />
+          </div>
 
+          {/* Submit button */}
           <Button
             type="submit"
             variant="primary"
-            className="mt-9 w-full"
+            className={isPopover ? 'mt-2 h-11 w-full ' : 'mt-9 w-full'}
             title={tLogin('button')}
             buttonVariant="text"
             loading={isLoading}

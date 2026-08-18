@@ -1,4 +1,4 @@
-import { features } from '@/features/dashboard/constants/features';
+import { features } from '@/features/main/constants/features';
 import { useTranslations } from 'next-intl';
 
 export default function ServiceFeatures() {
