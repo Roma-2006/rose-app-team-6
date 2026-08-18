@@ -404,5 +404,36 @@
   },
   "grid": {
     "product-empty": "لا توجد منتجات تطابق خيارات البحث."
+  },
+  
+  "cart": {
+    "title": "سلة التسوق",
+     "title-2": " منتجات قد تعجبك",
+     "couponPlaceholder":"رمز الكوبون",
+   "couponLabel":"",
+    "invalidCoupon":"كوبون غير صالح أو منتهي الصلاحية",
+    "couponApplied":"تم تطبيق الكوبون!",
+    "NocouponApplied":"لم يتم تطبيق أي كوبونات",
+    "couponAlreadyApplied":"تم تطبيق الكوبون بالفعل",
+    "summary":"الموجز",
+    "subtotal":"المجموع الفرعي",
+    "total ":"الإجمالي",
+    "applyCoupon":"تطبيق الكوبون",
+  "checkout":"المتابعة للدفع",
+    "products":"منتجات",
+    "clearCart": "إفراغ السلة",
+    "confirmClear": "هل أنت متأكد من إفراغ السلة؟",
+    "empty": "سلتك فارغة",
+    "emptyDescription": "لم تقم بإضافة أي منتجات إلى سلة التسوق الخاصة بك بعد.",
+    "continueShopping": "متابعة التسوق",
+    "remove": " إزالة",
+    "outOfStock": "نفدت الكمية",
+    "ratings": "تقييمات",
+    "rating": "التقييم"
+  },
+  "button-cart": {
+    "cancel": "إلغاء",
+    "confirm": "تأكيد"
   }
+
 }

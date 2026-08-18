@@ -36,6 +36,7 @@ interface InputProps {
   max?: number;
   step?: number;
   accept?: string;
+  value?: string | number;
   onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
 }
 
@@ -49,6 +50,7 @@ export default function CustomInput({
   disabled = false,
   error = false,
   className = '',
+  value,
   id,
   min,
   max,
@@ -66,23 +68,32 @@ export default function CustomInput({
   let defaultLabel = '';
   let defaultPlaceholder = '';
 
-  if (variant === 'default' && subVariant) {
-    //first & last name
-    defaultLabel = tInput(`default.${subVariant}.label`);
-    defaultPlaceholder = tInput(`default.${subVariant}.placeholder`);
-    // password & confirm password
-  } else if (variant === 'password' && subVariant) {
-    defaultLabel = tInput(`password.${subVariant}.label`);
-    defaultPlaceholder = tInput(`password.${subVariant}.placeholder`);
-    //search
+  if (variant === 'default') {
+    if (subVariant) {
+      // first & last name
+      defaultLabel = tInput(`default.${subVariant}.label`);
+      defaultPlaceholder = tInput(`default.${subVariant}.placeholder`);
+    } else {
+      defaultLabel = tInput.has('default.label') ? tInput('default.label') : '';
+      defaultPlaceholder = tInput.has('default.placeholder') ? tInput('default.placeholder') : '';
+    }
+  } else if (variant === 'password') {
+    if (subVariant) {
+      defaultLabel = tInput(`password.${subVariant}.label`);
+      defaultPlaceholder = tInput(`password.${subVariant}.placeholder`);
+    } else {
+      defaultLabel = tInput('password.label');
+      defaultPlaceholder = tInput('password.placeholder');
+    }
   } else if (variant === 'search') {
     defaultLabel = '';
     defaultPlaceholder = tInput('search.placeholder');
-    // file , phone , number & email
   } else {
+    // file , phone , number & email
     defaultLabel = tInput(`${variant}.label`);
     defaultPlaceholder = tInput(`${variant}.placeholder`);
   }
+
   // Compute label and placeholder
 
   const computedLabel = label !== undefined ? label : defaultLabel;
@@ -100,11 +111,12 @@ export default function CustomInput({
 
   // Handle input changes for number and search variants
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = e.target.value;
+    if (!e || !e.target) return;
+    const val = e.target.value || '';
 
     if (variant === 'number') {
       const sanitized = val.replace(/[^0-9.-]/g, '');
-      if (e.target.value !== sanitized) {
+      if (val !== sanitized) {
         e.target.value = sanitized;
       }
     }
@@ -247,6 +259,7 @@ export default function CustomInput({
             ref={internalRef}
             type={getInputType()}
             id={id}
+            value={value}
             disabled={isDisabled}
             defaultValue={defaultValue as string | number | undefined}
             onChange={handleChange}
@@ -309,7 +322,7 @@ export default function CustomInput({
             max={max}
             step={step}
             placeholder={computedPlaceholder}
-            value={(props.value ?? defaultValue) as string | number | undefined} // إضافة تحويل النوع لحل خطأ TypeScript السابق
+            value={(value ?? defaultValue) as string | number | undefined}
             onChange={onChange}
             onBlur={props.onBlur}
             isRtl={computedIsRtl}
@@ -329,7 +342,7 @@ export default function CustomInput({
                  md:text-sm
                 ${inputStyle} `}
             placeholder={computedPlaceholder}
-            value={props.value as string}
+            value={value as string}
             onChange={(val) => {
               const syntheticEvent = {
                 target: { value: val || '', name: props.name || id, id },
