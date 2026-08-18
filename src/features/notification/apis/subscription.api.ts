@@ -7,7 +7,7 @@ import { saveSubscription } from './../actions/subscription.actions';
 import { PushSubscriptionRequestBody } from '../types/push-subscription';
 // import { HEADERS } from '@/shared/constants/api.constants';
 
-export async function subscribeToPush() {
+export async function subscribeToPush(vapidKey: string) {
   const reg = await navigator.serviceWorker.register('/sw.js');
   await navigator.serviceWorker.ready;
 
@@ -22,7 +22,7 @@ export async function subscribeToPush() {
 
   const subscription = await reg.pushManager.subscribe({
     userVisibleOnly: true,
-    applicationServerKey: urlBase64ToUint8Array(process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY || ''),
+    applicationServerKey: urlBase64ToUint8Array(vapidKey || ''),
   });
 
   const subscriptionJson = subscription.toJSON();

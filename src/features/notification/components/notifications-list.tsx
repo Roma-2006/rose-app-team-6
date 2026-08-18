@@ -37,6 +37,7 @@ const NotificationsList = () => {
     subscribe,
     unsubscribe,
     isSubscribed,
+    isPushConfigured,
     notifications = [],
     isLoading,
     unreadCount,
@@ -55,13 +56,15 @@ const NotificationsList = () => {
   // functions
 
   useEffect(() => {
+    if (!isPushConfigured) return;
+
     const checkSubscription = async () => {
       const subscribed = await isSubscribed();
       setIsSubscription(subscribed);
     };
 
     checkSubscription();
-  }, [isSubscribed]);
+  }, [isPushConfigured, isSubscribed]);
 
   useEffect(() => {
     const sentinel = loadMoreRef.current;
@@ -155,11 +158,12 @@ const NotificationsList = () => {
         <DropdownMenuGroup className="border border-none flex flex-col h-full min-h-0">
           <DropdownMenuLabel className="w-full h-13 shrink-0 bg-bg-primary-saturated text-text-inverse text-xl font-bold px-4 flex justify-between">
             {t('title', { count: notifications.length })}
-            {isSubscription ? (
-              <BellOff onClick={handleDisableNotifications} />
-            ) : (
-              <BellRing onClick={handleEnableNotifications} />
-            )}
+            {isPushConfigured &&
+              (isSubscription ? (
+                <BellOff onClick={handleDisableNotifications} />
+              ) : (
+                <BellRing onClick={handleEnableNotifications} />
+              ))}
           </DropdownMenuLabel>
           <div className="flex gap-2.5 p-2.5 w-full h-9.5 shrink-0 justify-between">
             <Button

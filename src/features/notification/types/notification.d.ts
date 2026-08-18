@@ -50,3 +50,13 @@ export interface NotificationItemProps {
   onRead: (notificationId: string) => void;
   onDelete: (notificationId: string) => void;
 }
+
+export interface UnreadCountPayload {
+  unreadCount: number;
+}
+
+export interface PushStatusPayload {
+  pushConfigured: boolean;
+  subscriptionCount: number;
+  unreadCount: number;
+}

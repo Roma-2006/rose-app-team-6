@@ -10,11 +10,10 @@ export const login = async (loginFields: TLoginData): Promise<Response<LoginResp
   const baseUrl = getApiBaseUrl();
   const identifier = loginFields.username.trim();
   const password = loginFields.password;
-  const rememberMe = loginFields.rememberMe;
 
   const candidatePayloads = [
-    { username: identifier, password, rememberMe },
-    ...(identifier.includes('@') ? [] : [{ email: identifier, password, rememberMe }]),
+    { username: identifier, password },
+    ...(identifier.includes('@') ? [] : [{ email: identifier, password }]),
   ];
 
   let lastPayload: BackendErrorResponse | null = null;
@@ -22,9 +21,7 @@ export const login = async (loginFields: TLoginData): Promise<Response<LoginResp
   for (const body of candidatePayloads) {
     const response = await fetch(`${baseUrl}${API_ENDPOINTS.login}`, {
       method: 'POST',
-      headers: {
-        ...HEADERS.jsonBody,
-      },
+      headers: { ...HEADERS.jsonBody },
       body: JSON.stringify(body),
     });
 

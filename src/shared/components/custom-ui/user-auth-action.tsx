@@ -11,13 +11,13 @@ export default function UserAuthAction({ isAuthenticated }: TUserAuthActionProps
 
   // Session
   const { data: session } = useSession();
-  if (!session) return null;
+  // if (!session) return null;
 
-  if (!isAuthenticated) {
+  if (!isAuthenticated || !session) {
     return (
       <Link
         href="/login"
-        className="flex items-center   gap-1.5  text-foreground hover:text-primary transition-colors"
+        className="flex items-center   gap-1.5  text-foreground hover:text-primary transition-colors w-fit px-4"
       >
         <User size={20} />
         <span>{t('header.login')}</span>

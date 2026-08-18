@@ -1,7 +1,7 @@
 'use client';
 import { LanguageSwitcherAuth } from '@/features/auth/components/language-switcher-auth';
 import { Link } from '@/i18n/navigation';
-import { Bell, Heart, ShoppingCart } from 'lucide-react';
+import { Heart, ShoppingCart } from 'lucide-react';
 import Image from 'next/image';
 import SecondaryNavigation from '../custom-ui/secondary-navigation';
 import { useSession } from 'next-auth/react';

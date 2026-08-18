@@ -1,6 +1,8 @@
 export const ENDPOINTS = {
   NOTIFICATIONS: '/notifications',
   VAPID_PUBLIC_KEY: '/notifications/vapid-public-key',
+  UNREADED_COUNT: '/notifications/unread-count',
+  PUSH_STATUS: '/notifications/push-status',
   PUSH_SUBSCRIPTIONS: '/notifications/subscriptions',
   UNSUBSCRIBE: '/notifications/subscriptions',
   READ_NOTIFICATION: '/notifications/:notificationId',

@@ -1,14 +1,14 @@
 'use client';
 
-import { useInfiniteQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { subscribeToPush } from '../apis/subscription.api';
 import { unsubscribeFromPush } from '../apis/unsubscription.api';
-// import { getVapidPublicKey } from '../apis/vapid-public-key.api';
+import { getVapidPublicKey } from '../apis/vapid-public-key.api';
 import { getNotifications } from '../apis/notification.api';
+import { getUnReadCount } from '../apis/unreaded-count.api';
 import { markNotificationAsRead, markAllNotificationsAsRead } from '../apis/read-notification.api';
 import { deleteAllNotifications, deleteNotification } from '../apis/delete-notification.api';
-// import urlBase64ToUint8Array from './../lib/url-base64-to-unit8array';
-// import type { PushSubscriptionRequestBody } from '../types/push-subscription';
+import { getPushStatus } from '../apis/push-status.api';
 import type { ReadNotificationRequestBody } from '../types/notification';
 import type { GetNotificationsParams } from '../types/notification';
 import { useSession } from 'next-auth/react';
@@ -18,7 +18,9 @@ export const notificationsKeys = {
   all: ['notifications'] as const,
   lists: () => [...notificationsKeys.all, 'list'] as const,
   list: (params: GetNotificationsParams) => [...notificationsKeys.lists(), params] as const,
+  unreadCount: () => [...notificationsKeys.all, 'unread-count'] as const,
   vapidKey: ['vapid-public-key'] as const,
+  pushStatus: () => [...notificationsKeys.all, 'push-status'] as const,
 };
 
 // ---------- Notifications list ----------
@@ -40,24 +42,43 @@ export function useNotificationsList(
   });
 }
 
-// ---------- VAPID key ----------
+// ---------- Unread count ----------
+export function useUnreadCount(token: string) {
+  return useQuery({
+    queryKey: notificationsKeys.unreadCount(),
+    queryFn: () => getUnReadCount(token),
+    enabled: !!token,
+    refetchInterval: 30_000,
+    refetchIntervalInBackground: false,
+  });
+}
 
-// export function useVapidPublicKey() {
-//   return useQuery({
-//     queryKey: notificationsKeys.vapidKey,
-//     // queryFn: getVapidPublicKey,
-//     staleTime: Infinity, // The VAPID key doesn't change during the session
-//     gcTime: Infinity,
-//     retry: false, // no retry on failure
-//   });
-// }
+// ---------- VAPID key ----------
+// Fetched from the server (step 3) — never read from a client env var.
+export function useVapidPublicKey() {
+  return useQuery({
+    queryKey: notificationsKeys.vapidKey,
+    queryFn: getVapidPublicKey,
+    staleTime: Infinity, // doesn't change during the session
+    gcTime: Infinity,
+    retry: false,
+  });
+}
+
+// ---------- Push status (gates the opt-in UI, step 2) ----------
+export function usePushStatus(token: string) {
+  return useQuery({
+    queryKey: notificationsKeys.pushStatus(),
+    queryFn: () => getPushStatus(token),
+    enabled: !!token,
+    staleTime: 5 * 60_000,
+  });
+}
 
 // ---------- Push subscription ----------
-
 export function usePushSubscription() {
-  // const { data: vapidKey } = useVapidPublicKey();
+  const queryClient = useQueryClient();
 
-  // use-notification.ts
   async function subscribe() {
     if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
       throw new Error('Push not supported in this browser');
@@ -66,8 +87,17 @@ export function usePushSubscription() {
     const permission = await Notification.requestPermission();
     if (permission !== 'granted') throw new Error('Permission denied');
 
-    // don't await serviceWorker.ready here — subscribeToPush handles registration
-    const subscription = await subscribeToPush();
+    const vapidKeyResponse = await queryClient.fetchQuery({
+      queryKey: notificationsKeys.vapidKey,
+      queryFn: getVapidPublicKey,
+      staleTime: Infinity,
+    });
+    const vapidKey = vapidKeyResponse.publicKey;
+
+    if (!vapidKey) throw new Error('VAPID public key unavailable — push is not configured');
+
+    // subscribeToPush handles serviceWorker registration + pushManager.subscribe
+    const subscription = await subscribeToPush(vapidKey);
     return subscription;
   }
 
@@ -94,7 +124,6 @@ export function usePushSubscription() {
 }
 
 // ---------- Mark as read / read all ----------
-
 export function useMarkNotificationAsRead() {
   const queryClient = useQueryClient();
 
@@ -108,6 +137,7 @@ export function useMarkNotificationAsRead() {
     }) => markNotificationAsRead(notificationId, body),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: notificationsKeys.lists() });
+      queryClient.invalidateQueries({ queryKey: notificationsKeys.unreadCount() });
     },
   });
 }
@@ -119,12 +149,12 @@ export function useMarkAllNotificationsAsRead() {
     mutationFn: markAllNotificationsAsRead,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: notificationsKeys.lists() });
+      queryClient.invalidateQueries({ queryKey: notificationsKeys.unreadCount() });
     },
   });
 }
 
 // ---------- Delete / Delete all ----------
-
 export function useDeleteNotification() {
   const queryClient = useQueryClient();
 
@@ -138,6 +168,7 @@ export function useDeleteNotification() {
     }) => deleteNotification(notificationId, body),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: notificationsKeys.lists() });
+      queryClient.invalidateQueries({ queryKey: notificationsKeys.unreadCount() });
     },
   });
 }
@@ -149,13 +180,14 @@ export function useDeleteAllNotifications() {
     mutationFn: deleteAllNotifications,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: notificationsKeys.lists() });
+      queryClient.invalidateQueries({ queryKey: notificationsKeys.unreadCount() });
     },
   });
 }
+
 /**
  * Single entry point for all notification operations.
- * Add future mutations/queries (e.g. useNotificationsList, useDeleteNotification)
- * as their own `use...` hooks above, then expose them here.
+ * Add future mutations/queries as their own `use...` hooks above, then expose them here.
  */
 export function useNotifications() {
   const markAsRead = useMarkNotificationAsRead();
@@ -176,8 +208,25 @@ export function useNotifications() {
     error: notificationsError,
   } = useNotificationsList({ limit: 10 }, session?.token || '');
 
+  const {
+    data: unreadCountData,
+    isLoading: isUnreadCountLoading,
+    isError: isUnreadCountError,
+  } = useUnreadCount(session?.token || '');
+
+  const { data: pushStatusData, isLoading: isPushStatusLoading } = usePushStatus(
+    session?.token || ''
+  );
+
   const notifications = data?.pages.flatMap((page) => page.data) ?? [];
-  const unreadCount = notifications.filter((n) => !n.isRead).length;
+  const unreadCount = unreadCountData?.status ? (unreadCountData.payload?.unreadCount ?? 0) : 0;
+
+  const isPushConfigured = pushStatusData?.status
+    ? (pushStatusData.payload?.pushConfigured ?? false)
+    : false;
+  const pushSubscriptionCount = pushStatusData?.status
+    ? (pushStatusData.payload?.subscriptionCount ?? 0)
+    : 0;
 
   return {
     markAsRead: markAsRead.mutate,
@@ -199,7 +248,13 @@ export function useNotifications() {
     subscribe,
     unsubscribe,
     isSubscribed,
+    isPushConfigured,
+    pushSubscriptionCount,
+    isPushStatusLoading,
+
     unreadCount,
+    isUnreadCountLoading,
+    isUnreadCountError,
     notifications,
 
     fetchNextPage,
