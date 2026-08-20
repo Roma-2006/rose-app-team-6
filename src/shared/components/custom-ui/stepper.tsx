@@ -22,15 +22,13 @@ export default function Stepper({ currentStep, numberOfSteps = 4, type = 'start'
 
     return (
       <div
-        className={`w-7 h-7 rounded-full border-2 shrink-0 transition-all duration-500 flex items-center justify-center ${
-          isCompletedOrCurrent
-            ? 'bg-bg-primary border-bg-primary-faint'
-            : 'bg-bg-primary-fade border-bg-primary-fade'
+        className={`w-7 h-7 rounded-full  shrink-0 transition-all duration-500 flex items-center justify-center ${
+          isCompletedOrCurrent ? 'bg-bg-primary ' : 'bg-bg-soft border-bg-primary-fade'
         }`}
       >
         <span
           className={`text-[14px] font-bold scale-80 ${
-            isCompletedOrCurrent ? 'text-white' : 'text-text-primary'
+            isCompletedOrCurrent ? 'text-white' : 'text-text-soft'
           }`}
         >
           {formatStepNumber(step)}
@@ -73,7 +71,7 @@ export default function Stepper({ currentStep, numberOfSteps = 4, type = 'start'
     return (
       <div className="w-full flex items-center" dir={isRtl ? 'rtl' : 'ltr'}>
         {/* leading line before the first step — always completed */}
-        <div className="flex-1 border-t-2 border-bg-primary transition-colors duration-500" />
+        <div className="flex-1 border-t-6 border-bg-primary transition-colors duration-500 rounded-l-full" />
 
         {steps.map((step, index) => {
           const isLineCompleted = step <= currentStep;
@@ -82,8 +80,8 @@ export default function Stepper({ currentStep, numberOfSteps = 4, type = 'start'
             <React.Fragment key={step}>
               {index !== 0 && (
                 <div
-                  className={`flex-1 border-t transition-colors duration-500 ${
-                    isLineCompleted ? 'border-bg-primary border-t-2' : 'border-bg-primary-faint'
+                  className={`flex-1 border-t-6 transition-colors duration-500 ${
+                    isLineCompleted ? 'border-bg-primary border-t-6' : 'border-bg-soft'
                   }`}
                 />
               )}
@@ -93,7 +91,7 @@ export default function Stepper({ currentStep, numberOfSteps = 4, type = 'start'
         })}
 
         {/* trailing line after the last step — always incomplete */}
-        <div className="flex-1 border-t border-bg-primary-faint transition-colors duration-500" />
+        <div className="flex-1 border-t-6 border-bg-soft transition-colors duration-500 rounded-r-full" />
       </div>
     );
   }

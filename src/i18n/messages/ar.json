@@ -342,6 +342,17 @@
     "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" },
     "nice-to-have-you-here": "جميل أنك هنا"
   },
+  "checkout": {
+    "shipping-address": {
+      "title": "عنوان الشحن",
+      "add-new-address": "إضافة عنوان جديد",
+      "or": "أو",
+      "load-error": "فشل تحميل العناوين.",
+      "no-addresses-error": "أضف عنوانك الأول للمتابعة"
+    },
+    "next": "التالي",
+    "back": "رجوع"
+  },
   "products": {
     "addToCart": "أضف إلى السلة",
     "outOfStock": "نفدت الكمية",
