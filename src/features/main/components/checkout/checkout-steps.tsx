@@ -1,7 +1,7 @@
 'use client';
 
-// states
 import React, { useState } from 'react';
+
 
 // navigation
 import { useRouter, usePathname } from '@/i18n/navigation';
@@ -11,14 +11,18 @@ import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
 // relatives
+
 import { CheckoutStepsProps } from '@/features/main/types/checkout.d';
 import { Address } from '@/features/main/types/address.d';
+import { CouponBackendResponse } from '@/features/main/types/order-summary';
 import Stepper from '@/shared/components/custom-ui/stepper';
+
 import ShippingAddressStep from './address/shipping-address/shipping-address-step';
-import { Button } from '@/shared/components/ui/button';
-import { ArrowLeft } from 'lucide-react';
+import { CheckoutPaymentStep } from './payment/payment';
+import OrderSummaryPanel from '../order-summary/order-summary-panel';
 
 const CheckoutSteps = ({ initialAddresses, initialAddressesError }: CheckoutStepsProps) => {
+
   // Translations
   const t = useTranslations('checkout');
 
@@ -36,10 +40,23 @@ const CheckoutSteps = ({ initialAddresses, initialAddressesError }: CheckoutStep
 
   // Functions
 
+  const [currentStep, setCurrentStep] = useState<1 | 2>(1);
+
+  const [addresses, setAddresses] = useState<Address[]>(initialAddresses);
+
+  const [selectedAddressId, setSelectedAddressId] = useState<string | null>(() => {
+    const primary = initialAddresses.find((address) => address.isPrimary);
+    return primary?.id ?? initialAddresses[0]?.id ?? null;
+  });
+
+  const [appliedCoupons, setAppliedCoupons] = useState<CouponBackendResponse[]>([]);
+
+
   const handleAddressAdded = (newAddress: Address) => {
     setAddresses((prev) => [...prev, newAddress]);
     setSelectedAddressId(newAddress.id);
   };
+
 
   const handleNextStep = () => {
     if (!selectedAddressId) return;
@@ -49,6 +66,25 @@ const CheckoutSteps = ({ initialAddresses, initialAddressesError }: CheckoutStep
 
   const handleBackStep = () => {
     router.push(`${pathname}?step=1`);
+
+  const handleApplyCoupon = (coupon: CouponBackendResponse) => {
+    const isAlreadyApplied = appliedCoupons.some((c) => c.id === coupon.id);
+    if (isAlreadyApplied) return;
+    setAppliedCoupons((prev) => [...prev, coupon]);
+  };
+
+  const handleRemoveCoupon = (id: string) => {
+    setAppliedCoupons((prev) => prev.filter((c) => c.id !== id));
+  };
+
+  const handleNextStep = () => {
+    if (!selectedAddressId) return;
+    setCurrentStep(2);
+  };
+
+  const handleBackStep = () => {
+    setCurrentStep(1);
+
   };
   return (
     <div className=" flex gap-10 justify-between mx-auto max-w-7xl">
@@ -67,20 +103,20 @@ const CheckoutSteps = ({ initialAddresses, initialAddressesError }: CheckoutStep
         )}
 
         {currentStep === 2 && (
-          <Button
-            variant="primary"
-            buttonVariant="text"
-            onClick={handleBackStep}
-            title={t('back')}
-            className="self-end"
-            leftIcon={<ArrowLeft size={20} className="rtl:rotate-180" />}
+          <CheckoutPaymentStep
+            selectedAddressId={selectedAddressId}
+            couponCode={appliedCoupons[0]?.code}
+            onBack={handleBackStep}
           />
         )}
       </div>
-      <aside className="w-121.25  flex flex-col gap-4 bg-bg-soft">
-        {/* <OrderSummary /> */}
-        <div className="rounded-2xl bg-bg-plain p-4 text-text-soft">Order summary (S5-02)</div>
-      </aside>
+
+      <OrderSummaryPanel
+        subtotal={500}
+        appliedCoupons={appliedCoupons}
+        onApplyCoupon={handleApplyCoupon}
+        onRemoveCoupon={handleRemoveCoupon}
+      />
     </div>
   );
 };
