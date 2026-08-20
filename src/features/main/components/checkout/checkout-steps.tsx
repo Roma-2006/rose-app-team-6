@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 
-
 // navigation
 import { useRouter, usePathname } from '@/i18n/navigation';
 import { useSearchParams } from 'next/navigation';
@@ -22,7 +21,6 @@ import { CheckoutPaymentStep } from './payment/payment';
 import OrderSummaryPanel from '../order-summary/order-summary-panel';
 
 const CheckoutSteps = ({ initialAddresses, initialAddressesError }: CheckoutStepsProps) => {
-
   // Translations
   const t = useTranslations('checkout');
 
@@ -31,42 +29,30 @@ const CheckoutSteps = ({ initialAddresses, initialAddressesError }: CheckoutStep
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const currentStep = searchParams.get('step') === '2' ? 2 : 1;
   const addressIdFromUrl = searchParams.get('addressId');
+  const step = Number(searchParams.get('step') ?? 1);
 
   // State
   const [addresses, setAddresses] = useState<Address[]>(initialAddresses);
   const [selectedAddressId, setSelectedAddressId] = useState<string | null>(addressIdFromUrl);
-
-  // Functions
-
-  const [currentStep, setCurrentStep] = useState<1 | 2>(1);
-
-  const [addresses, setAddresses] = useState<Address[]>(initialAddresses);
-
-  const [selectedAddressId, setSelectedAddressId] = useState<string | null>(() => {
-    const primary = initialAddresses.find((address) => address.isPrimary);
-    return primary?.id ?? initialAddresses[0]?.id ?? null;
-  });
-
+  const [currentStep, setCurrentStep] = useState<number>(step);
   const [appliedCoupons, setAppliedCoupons] = useState<CouponBackendResponse[]>([]);
 
+  // Functions
 
   const handleAddressAdded = (newAddress: Address) => {
     setAddresses((prev) => [...prev, newAddress]);
     setSelectedAddressId(newAddress.id);
   };
 
-
   const handleNextStep = () => {
     if (!selectedAddressId) return;
-
     router.push(`${pathname}?step=2&addressId=${encodeURIComponent(selectedAddressId)}`);
   };
 
   const handleBackStep = () => {
     router.push(`${pathname}?step=1`);
-
+  };
   const handleApplyCoupon = (coupon: CouponBackendResponse) => {
     const isAlreadyApplied = appliedCoupons.some((c) => c.id === coupon.id);
     if (isAlreadyApplied) return;
@@ -77,15 +63,6 @@ const CheckoutSteps = ({ initialAddresses, initialAddressesError }: CheckoutStep
     setAppliedCoupons((prev) => prev.filter((c) => c.id !== id));
   };
 
-  const handleNextStep = () => {
-    if (!selectedAddressId) return;
-    setCurrentStep(2);
-  };
-
-  const handleBackStep = () => {
-    setCurrentStep(1);
-
-  };
   return (
     <div className=" flex gap-10 justify-between mx-auto max-w-7xl">
       <div className="flex flex-col gap-6 max-w-195.5 w-full ">
