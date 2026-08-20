@@ -32,6 +32,7 @@ const AddressListItem = ({ address, isSelected, onSelect }: AddressListItemProps
         </h2>
 
         <p
+          dir="ltr"
           className={cn(
             'text-[16px] font-medium rounded-2xl py-1 px-3 w-fit',
             isSelected ? 'text-text-plain bg-bg-muted' : 'text-text-inverse bg-bg-inverse'
@@ -56,6 +57,7 @@ const AddressListItem = ({ address, isSelected, onSelect }: AddressListItemProps
           </div>
 
           <p
+            dir="ltr"
             className={cn(
               'text-lg font-medium',
               isSelected ? 'text-text-subtle' : 'text-text-default'

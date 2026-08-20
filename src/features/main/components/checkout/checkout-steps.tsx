@@ -73,7 +73,7 @@ const CheckoutSteps = ({ initialAddresses, initialAddressesError }: CheckoutStep
             onClick={handleBackStep}
             title={t('back')}
             className="self-end"
-            leftIcon={<ArrowLeft size={20} />}
+            leftIcon={<ArrowLeft size={20} className="rtl:rotate-180" />}
           />
         )}
       </div>

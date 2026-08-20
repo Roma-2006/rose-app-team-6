@@ -48,9 +48,12 @@ const ShippingAddressesSection = ({
             selectedAddressId={selectedAddressId}
             onSelectAddress={onSelectAddress}
           />
-
-          <span className="text-text-soft text-lg py-2.25 flex justify-center my-3">{t('or')}</span>
-
+          <div className="relative w-full h-fit py-2.25">
+            <div className="h-px w-full bg-bg-muted absolute"></div>
+            <span className="bg-bg-plain text-text-soft text-lg px-2.25 flex justify-center  absolute self-center justify-self-center">
+              {t('or')}
+            </span>
+          </div>
           <Button
             variant="secondary"
             buttonVariant="text"

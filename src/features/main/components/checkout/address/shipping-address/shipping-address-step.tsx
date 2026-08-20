@@ -32,7 +32,6 @@ const ShippingAddressStep = ({
   // states
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // functions
   // Functions
   const handleAddNewAddress = () => {
     setIsModalOpen(true);
@@ -52,11 +51,11 @@ const ShippingAddressStep = ({
         <Button
           variant="primary"
           buttonVariant="text"
-          // disabled={!canProceed}
+          disabled={!selectedAddressId}
           onClick={onNext}
           title={t('next')}
           className="self-end"
-          rightIcon={<ArrowRight size={20} />}
+          rightIcon={<ArrowRight size={20} className="rtl:rotate-180" />}
         />
       </div>
 
