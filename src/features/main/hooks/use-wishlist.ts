@@ -1,7 +1,7 @@
 'use client';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import {
   getLocalWishlist,
   addToLocalWishlist,
@@ -20,29 +20,22 @@ import { toast } from 'sonner';
 import { GetWishlistResponse } from '../types/wishlist';
 
 export const useWishlist = (productId?: string, initialWishlist?: GetWishlistResponse) => {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
   const queryClient = useQueryClient();
   const isAuthenticated = status === 'authenticated';
-  const token = session?.token;
-
-  const [localItems, setLocalItems] = useState<LocalWishlistItem[]>(() =>
-    typeof window !== 'undefined' ? getLocalWishlist() : []
-  );
 
   useEffect(() => {
     if (isAuthenticated) return;
 
     const handleGuestWishlistChange = () => {
-      setLocalItems(getLocalWishlist());
+      queryClient.invalidateQueries({ queryKey: ['wishlist', 'guest'] });
     };
 
     window.addEventListener(WISHLIST_STORAGE_EVENT, handleGuestWishlistChange);
+    return () => window.removeEventListener(WISHLIST_STORAGE_EVENT, handleGuestWishlistChange);
+  }, [isAuthenticated, queryClient]);
 
-    return () => {
-      window.removeEventListener(WISHLIST_STORAGE_EVENT, handleGuestWishlistChange);
-    };
-  }, [isAuthenticated]);
-
+  // Authenticated wishlist
   const wishlistQuery = useQuery<GetWishlistResponse>({
     queryKey: ['wishlist'],
     queryFn: async () => {
@@ -52,30 +45,34 @@ export const useWishlist = (productId?: string, initialWishlist?: GetWishlistRes
       }
       return response.json();
     },
-    enabled: isAuthenticated && !!token,
+    enabled: isAuthenticated,
     initialData: initialWishlist,
   });
 
-  const serverItems = wishlistQuery.data?.payload.wishlistItems ?? [];
-  const shouldUseGuestData =
-    !isAuthenticated ||
-    wishlistQuery.isPending ||
-    wishlistQuery.isLoading ||
-    wishlistQuery.isFetching;
+  // Guest wishlist
+  const guestWishlistQuery = useQuery<LocalWishlistItem[]>({
+    queryKey: ['wishlist', 'guest'],
+    queryFn: () => getLocalWishlist(),
+    enabled: !isAuthenticated,
+    initialData: typeof window !== 'undefined' ? getLocalWishlist() : [],
+    staleTime: 0,
+  });
 
-  const wishlistItems = shouldUseGuestData ? localItems : serverItems;
+  const wishlistItems = isAuthenticated
+    ? (wishlistQuery.data?.payload.wishlistItems ?? [])
+    : (guestWishlistQuery.data ?? []);
 
-  const isInWishlist = shouldUseGuestData
-    ? productId
+  const isInWishlist = isAuthenticated
+    ? wishlistItems.some((item) => item.productId === productId)
+    : productId
       ? isInLocalWishlist(productId)
-      : false
-    : wishlistItems.some((item) => item.productId === productId);
+      : false;
 
-  const existingItem = shouldUseGuestData
-    ? productId
-      ? (localItems.find((item) => item.productId === productId) ?? null)
-      : null
-    : wishlistItems.find((item) => item.productId === productId);
+  const existingItem = isAuthenticated
+    ? wishlistItems.find((item) => item.productId === productId)
+    : productId
+      ? (guestWishlistQuery.data?.find((item) => item.productId === productId) ?? null)
+      : null;
 
   const toggleWishlistMutation = useMutation({
     mutationFn: async ({ product }: { product?: LocalWishlistProduct } = {}) => {
@@ -83,67 +80,64 @@ export const useWishlist = (productId?: string, initialWishlist?: GetWishlistRes
         throw new Error('Product id is required');
       }
 
-      if (shouldUseGuestData) {
+      if (!isAuthenticated) {
         if (isInWishlist && existingItem) {
           const updated = removeFromLocalWishlist(existingItem.id);
-          setLocalItems([...updated]);
-        } else {
-          const updated = addToLocalWishlist(productId, product);
-          setLocalItems([...updated]);
+          return { success: true, items: updated };
         }
-
-        return Promise.resolve({ success: true });
+        const updated = addToLocalWishlist(productId, product);
+        return { success: true, items: updated };
       }
 
       if (isInWishlist && existingItem) {
         return removeFromWishlistAction(existingItem.id);
       }
-
       return addToWishlistAction(productId);
     },
-
     onSuccess: async () => {
-      if (!shouldUseGuestData) {
+      if (isAuthenticated) {
         await queryClient.invalidateQueries({ queryKey: ['wishlist'] });
+      } else {
+        await queryClient.invalidateQueries({ queryKey: ['wishlist', 'guest'] });
       }
     },
   });
+
   // remove item from wishlist
   const removeItemFromWishlistMutation = useMutation({
     mutationFn: async (itemId: string) => {
-      if (shouldUseGuestData) {
+      if (!isAuthenticated) {
         const updated = removeFromLocalWishlist(itemId);
-        setLocalItems([...updated]);
-        return { success: true };
+        return { success: true, items: updated };
       }
       return removeFromWishlistAction(itemId);
     },
     onSuccess: async () => {
-      if (!shouldUseGuestData) {
-        await queryClient.invalidateQueries({
-          queryKey: ['wishlist'],
-        });
+      if (isAuthenticated) {
+        await queryClient.invalidateQueries({ queryKey: ['wishlist'] });
+      } else {
+        await queryClient.invalidateQueries({ queryKey: ['wishlist', 'guest'] });
       }
     },
     onError: (error) => {
       toast.error(error.message);
     },
   });
+
   //ClearWishlist
   const clearWishlistMutation = useMutation({
     mutationFn: async () => {
-      if (shouldUseGuestData) {
+      if (!isAuthenticated) {
         clearLocalWishlist();
-        setLocalItems([]);
         return { success: true };
       }
       return clearWishlist();
     },
     onSuccess: async () => {
-      if (!shouldUseGuestData) {
-        await queryClient.invalidateQueries({
-          queryKey: ['wishlist'],
-        });
+      if (isAuthenticated) {
+        await queryClient.invalidateQueries({ queryKey: ['wishlist'] });
+      } else {
+        await queryClient.invalidateQueries({ queryKey: ['wishlist', 'guest'] });
       }
       toast.success('Wishlist cleared successfully');
     },
@@ -151,19 +145,19 @@ export const useWishlist = (productId?: string, initialWishlist?: GetWishlistRes
       toast.error(error.message);
     },
   });
+
   return {
     wishlistItems,
     wishlistCount: wishlistItems.length,
     isInWishlist,
     toggleWishlist: toggleWishlistMutation.mutate,
     isPending: toggleWishlistMutation.isPending,
-    isLoading: isAuthenticated ? wishlistQuery.isLoading : false,
-    isError: isAuthenticated ? wishlistQuery.isError : false,
-    error: wishlistQuery.error,
-    refetch: wishlistQuery.refetch,
-    isFetching: wishlistQuery.isFetching,
+    isLoading: isAuthenticated ? wishlistQuery.isLoading : guestWishlistQuery.isLoading,
+    isError: isAuthenticated ? wishlistQuery.isError : guestWishlistQuery.isError,
+    error: isAuthenticated ? wishlistQuery.error : guestWishlistQuery.error,
+    refetch: isAuthenticated ? wishlistQuery.refetch : guestWishlistQuery.refetch,
+    isFetching: isAuthenticated ? wishlistQuery.isFetching : guestWishlistQuery.isFetching,
     removeItemFromWishlistMutation: removeItemFromWishlistMutation.mutate,
-    //clearMutation
     clearWishlist: clearWishlistMutation.mutateAsync,
     loadingClearWishlist: clearWishlistMutation.isPending,
   };

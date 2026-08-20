@@ -1,5 +1,6 @@
 'use server';
 
+import { revalidateTag } from 'next/cache';
 import { getAuthToken } from '../lib/get-auth-token';
 
 export async function addToWishlistAction(productId: string) {
@@ -25,6 +26,8 @@ export async function addToWishlistAction(productId: string) {
     throw new Error('Failed to add product to wishlist');
   }
 
+  revalidateTag('wishlist', 'max');
+
   return response.json();
 }
 
@@ -43,6 +46,7 @@ export async function removeFromWishlistAction(itemId: string) {
     throw new Error('Failed to remove product from wishlist');
   }
 
+  revalidateTag('wishlist', 'max');
   return response.json();
 }
 
@@ -62,5 +66,6 @@ export async function clearWishlist() {
     throw new Error('Failed to remove product from wishlist');
   }
 
+  revalidateTag('wishlist', 'max');
   return response.json();
 }
