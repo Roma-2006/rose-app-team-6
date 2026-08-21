@@ -51,19 +51,22 @@ export function CheckoutPaymentStep({
       const order = await createOrderMutation.mutateAsync({
         addressId: selectedAddressId,
         paymentMethod,
+        successUrl: `${window.location.origin}/orders`,
         ...(couponCode && { couponCode }),
       });
 
-      if (paymentMethod === 'CASH_ON_DELIVERY') {
-        await clearCartAction();
-        toast.success(t('orderSuccess'));
-        router.replace('/orders');
+      if (paymentMethod === 'CREDIT_CARD') {
+        if (order.checkout?.checkoutUrl) {
+          window.location.href = order.checkout.checkoutUrl;
+          return;
+        }
 
+        toast.error(t('orderFailed'));
         return;
+      } else {
+        router.push(`/orders`);
       }
-
-      // CREDIT_CARD
-      // router.push(`/checkout/payment?orderId=${order.id}`);
+      toast.success(t('orderSuccess'));
     } catch (err) {
       console.error('[Checkout] Order failed:', err);
       toast.error(t('orderFailed'));
@@ -71,7 +74,7 @@ export function CheckoutPaymentStep({
   }
 
   return (
-    <section className="flex flex-col gap-6">
+    <section className="flex flex-col gap-6 py-4">
       <header className="flex flex-col gap-4">
         <Button
           variant="ghost"
@@ -92,7 +95,7 @@ export function CheckoutPaymentStep({
           selectedValue={paymentMethod}
           title={t('cashOnDelivery')}
           description={t('cashDescription')}
-          image="/assets/payment/cash-on-delivery.svg"
+          image="/assets/images/cash.png"
           imageAlt={t('cashOnDelivery')}
           onChange={handlePaymentMethodChange}
         />
@@ -102,7 +105,7 @@ export function CheckoutPaymentStep({
           selectedValue={paymentMethod}
           title={t('creditCard')}
           description={t('creditDescription')}
-          image="/assets/payment/credit-card.svg"
+          image="/assets/images/credit.png"
           imageAlt={t('creditCard')}
           onChange={handlePaymentMethodChange}
         />
