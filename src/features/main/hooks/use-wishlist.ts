@@ -53,15 +53,10 @@ export const useWishlist = (productId?: string, initialWishlist?: GetWishlistRes
       return response.json();
     },
     enabled: isAuthenticated && !!token,
-    initialData: initialWishlist,
   });
 
   const serverItems = wishlistQuery.data?.payload.wishlistItems ?? [];
-  const shouldUseGuestData =
-    !isAuthenticated ||
-    wishlistQuery.isPending ||
-    wishlistQuery.isLoading ||
-    wishlistQuery.isFetching;
+  const shouldUseGuestData = !isAuthenticated;
 
   const wishlistItems = shouldUseGuestData ? localItems : serverItems;
 
@@ -119,11 +114,7 @@ export const useWishlist = (productId?: string, initialWishlist?: GetWishlistRes
       return removeFromWishlistAction(itemId);
     },
     onSuccess: async () => {
-      if (!shouldUseGuestData) {
-        await queryClient.invalidateQueries({
-          queryKey: ['wishlist'],
-        });
-      }
+      toast.success('remove item successfully');
     },
     onError: (error) => {
       toast.error(error.message);
@@ -140,11 +131,6 @@ export const useWishlist = (productId?: string, initialWishlist?: GetWishlistRes
       return clearWishlist();
     },
     onSuccess: async () => {
-      if (!shouldUseGuestData) {
-        await queryClient.invalidateQueries({
-          queryKey: ['wishlist'],
-        });
-      }
       toast.success('Wishlist cleared successfully');
     },
     onError: (error) => {
@@ -157,11 +143,6 @@ export const useWishlist = (productId?: string, initialWishlist?: GetWishlistRes
     isInWishlist,
     toggleWishlist: toggleWishlistMutation.mutate,
     isPending: toggleWishlistMutation.isPending,
-    isLoading: isAuthenticated ? wishlistQuery.isLoading : false,
-    isError: isAuthenticated ? wishlistQuery.isError : false,
-    error: wishlistQuery.error,
-    refetch: wishlistQuery.refetch,
-    isFetching: wishlistQuery.isFetching,
     removeItemFromWishlistMutation: removeItemFromWishlistMutation.mutate,
     //clearMutation
     clearWishlist: clearWishlistMutation.mutateAsync,

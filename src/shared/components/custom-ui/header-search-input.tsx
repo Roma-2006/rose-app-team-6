@@ -1,3 +1,4 @@
+'use client';
 import { useTranslations } from 'next-intl';
 import CustomInput from '../custom-input';
 import ProductItem from './product-item';
