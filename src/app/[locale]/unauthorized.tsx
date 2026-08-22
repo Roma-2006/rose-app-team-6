@@ -19,7 +19,7 @@ export default function Unauthorized() {
       title={t('title')}
       description={t('description')}
       actionLabel={t('action')}
-      actionHref="/overview"
+      actionHref="/dashboard"
     />
   );
 }
