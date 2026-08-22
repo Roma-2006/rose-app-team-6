@@ -12,7 +12,8 @@
     "confirm": "تأكيد",
     "next": "التالي",
     "add-review": "أضف تقييمًا",
-    "adding": "إضافة..."
+    "adding": "إضافة...",
+    "retry":"إعادة المحاولة"
   },
   "common": {
     "select": {
@@ -356,6 +357,8 @@
   "products": {
     "addToCart": "أضف إلى السلة",
     "outOfStock": "نفدت الكمية",
+    "in-stock":"متوفر",
+    "no-ratings": "لا توجد تقييمات بعد",
     "product-card": {
       "new": "جديد",
       "outOfStock": "غير متوفر"
@@ -411,6 +414,17 @@
     },
     "related-products": {
       "sec-title": "منتجات ذات صلة"
+    },
+    "wishlist":{
+      "title":" قائمة المفضلة",
+      "empty":" قائمة المفضلة فارغة",
+      "browse":"تصفح المنتجات",
+      "remove":"إزالة من المفضلة",
+      "clear":"مسح قائمة المفضله",
+      "continue-shopping":"متابعة التسوق",
+      "explore-similar-products":"اكتشف منتجات مشابهة",
+      "clear-wishlist-confirmation":"هل أنت متأكد أنك تريد إفراغ قائمة المفضلة",
+      "items-count": "{count, plural, =0 {لا توجد عناصر} =1 {عنصر واحد} =2 {عنصران} few {# عناصر} many {# عنصرًا} other {# عنصر}}"
     }
   },
   "grid": {

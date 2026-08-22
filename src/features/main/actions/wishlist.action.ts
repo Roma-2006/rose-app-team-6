@@ -1,25 +1,7 @@
 'use server';
 
 import { getAuthToken } from '../lib/get-auth-token';
-
-export async function getWishlistAction(): Promise<GetWishlistResponse> {
-  const token = await getAuthToken();
-
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/wishlist`, {
-    method: 'GET',
-    headers: {
-      Authorization: `Bearer ${token}`,
-      accept: 'application/json',
-    },
-  });
-
-  if (!response.ok) {
-    throw new Error('Failed to fetch wishlist');
-  }
-
-  return response.json();
-}
-
+import { revalidatePath } from 'next/cache';
 export async function addToWishlistAction(productId: string) {
   const token = await getAuthToken();
 
@@ -42,7 +24,7 @@ export async function addToWishlistAction(productId: string) {
   if (!response.ok) {
     throw new Error('Failed to add product to wishlist');
   }
-
+  revalidatePath('/wishlist');
   return response.json();
 }
 
@@ -60,6 +42,25 @@ export async function removeFromWishlistAction(itemId: string) {
   if (!response.ok) {
     throw new Error('Failed to remove product from wishlist');
   }
+  revalidatePath('/wishlist');
+  return response.json();
+}
 
+//ClearWishlist
+export async function clearWishlist() {
+  const token = await getAuthToken();
+
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/wishlist`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      accept: 'application/json',
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to remove product from wishlist');
+  }
+  revalidatePath('/wishlist');
   return response.json();
 }

@@ -1,18 +1,15 @@
 'use client';
 import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
-import { ShoppingCart, HeartPlus, HeartMinus } from 'lucide-react';
+import { ShoppingCart, Star, HeartPlus, HeartMinus } from 'lucide-react';
 import { calculateDiscountedPrice } from '../../../utils/calculate-discount';
 import { useTranslations } from 'next-intl';
-
 import { useProductActions } from '../../../hooks/use-product-actions';
-
+import { Product } from '@/features/main/types/products';
+import type { LocalCartProduct } from '@/features/main/types/local-cart';
 import { Button } from '@/shared/components/ui/button';
-
 import RatingStarts from '@/shared/components/custom-ui/rating-stars';
 import { Badge } from '@/shared/components/ui/badge';
-import { Product } from '@/features/main/types/products';
-import { LocalCartProduct } from '@/features/main/types/local-cart';
 
 export const ProductCard = ({
   product,
@@ -53,7 +50,6 @@ export const ProductCard = ({
     product.id,
     productSnapshot
   );
-
   return (
     <div className="flex justify-center">
       <div className="w-72 h-96 rounded-2xl flex flex-col gap-6 cursor-pointer group relative">
