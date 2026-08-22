@@ -1,4 +1,4 @@
-import { heroCards } from '@/features/dashboard/constants/home';
+import { heroCards } from '@/features/main/constants/home';
 import CategoryCard from './category-card';
 
 export default function HeroCards() {

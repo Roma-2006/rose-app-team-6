@@ -6,8 +6,8 @@ import { calculateDiscountedPrice } from '../../../utils/calculate-discount';
 import { useTranslations } from 'next-intl';
 
 import { useProductActions } from '../../../hooks/use-product-actions';
-import { Product } from '@/features/dashboard/types/products';
-import type { LocalCartProduct } from '@/features/dashboard/types/local-cart';
+import { Product } from '@/features/main/types/products';
+import type { LocalCartProduct } from '@/features/main/types/local-cart';
 import { Button } from '@/shared/components/ui/button';
 
 export const ProductCard = ({

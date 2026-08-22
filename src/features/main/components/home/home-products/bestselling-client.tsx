@@ -7,7 +7,7 @@ import { Button } from '@/shared/components/ui/button';
 
 import { ProductCardSkeleton } from './product-card-skelton';
 import { ProductCard } from './Product-card';
-import { Product } from '@/features/dashboard/types/products';
+import { Product } from '@/features/main/types/products';
 import { Carousel } from '../../shared/carousel';
 
 interface BestSellingSectionClientProps {

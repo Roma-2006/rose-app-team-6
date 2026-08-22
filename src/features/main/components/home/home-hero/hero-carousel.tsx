@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 import { Card } from '@/shared/components/ui/card';
-import { slides } from '@/features/dashboard/constants/slides';
+import { slides } from '@/features/main/constants/slides';
 import { useTranslations } from 'next-intl';
 
 export default function HeroCarousel() {
