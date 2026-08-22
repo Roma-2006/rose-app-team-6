@@ -1,7 +1,7 @@
 'use client';
 
 import { useLocale, useTranslations } from 'next-intl';
-import RatingStars from './star-rating';
+import RatingStars from '../shared/star-rating';
 
 interface OverallReviewProps {
   product: {

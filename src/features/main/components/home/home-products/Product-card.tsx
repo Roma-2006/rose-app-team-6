@@ -26,8 +26,6 @@ export const ProductCard = ({
 
   const hasDiscount = product.discountType && Number(product.discountValue) > 0;
 
-  const ratingValue = Math.round(product.rating);
-
   const created = new Date(product.createdAt);
   const now = new Date();
 

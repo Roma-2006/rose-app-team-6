@@ -21,14 +21,14 @@ export default async function Header() {
   }
   return (
     <header className="sticky top-0 z-50 bg-bg-plain">
-      <div className=" flex flex-col md:flex-row  items-center py-4.5 px-9 gap-4 ">
+      <div className="flex flex-col md:flex-row items-center py-4.5 px-9 gap-4">
         <div className="flex w-full md:grow items-center gap-4">
           <Link href="/" className="w-21.25 h-20 relative">
             <Image
               src="/assets/images/logo.png"
               alt="Rose app logo"
               fill
-              className="object-cover object-center "
+              className="object-cover object-center"
             />
           </Link>
           {/* search input */}
