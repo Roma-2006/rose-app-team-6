@@ -82,7 +82,7 @@ const UserDropdown = ({ user }: userMenuProps) => {
           {!(user.role == 'USER') && (
             <DropdownMenuItem>
               <Link
-                href={`/dashboard`}
+                href={`/main`}
                 className="flex gap-2 w-full text-text-plain font-medium text-sm"
               >
                 <Settings className="size-4" />

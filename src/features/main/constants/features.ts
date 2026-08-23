@@ -1,4 +1,3 @@
-// features/dashboard/constants/features.ts
 import { Headset, RefreshCw, ShieldCheck, Truck } from 'lucide-react';
 
 export const features = [

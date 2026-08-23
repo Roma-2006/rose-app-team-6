@@ -11,9 +11,8 @@
     "delete": "Delete",
     "confirm": "Confirm",
     "next": "Next",
-     "add-review":"Add Review",
-    "adding":"Adding...",
-    "retry":"Retry"
+    "add-review": "Add Review",
+    "adding": "Adding..."
   },
   "common": {
     "select": {
@@ -551,7 +550,23 @@
       "placeholder": "Enter value"
     },"search":{
             "placeholder": "Enter value"
-
+    },
+  "dashboard": {
+    "notFound": {
+      "title": "This page does not exist.",
+      "description": "We couldn't find the page you're looking for. Make sure you've got the right link.",
+      "action": "Go to dashboard"
+    },
+    "unauthorized": {
+      "title": "You are not authorized to access this page.",
+      "description": "If you think this is wrong, please contact the support team.",
+      "action": "Go to homepage"
+    },
+    "error": {
+      "title": "Oops, something went wrong!",
+      "description": "We're working to get this fixed. Please refresh or try again shortly.",
+      "action": "Try again"
     }
   }
+}
 }
