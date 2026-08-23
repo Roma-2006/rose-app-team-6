@@ -2,8 +2,8 @@ import { useTranslations } from 'next-intl';
 import CustomInput from '../custom-input';
 import ProductItem from './product-item';
 import { useEffect, useRef, useState } from 'react';
-import useAllProducts from '@/features/dashboard/hooks/use-all-products';
 import ProductItemSkeleton from '../skeleton/product-item-skeleton';
+import useAllProducts from '@/features/main/hooks/use-all-products';
 
 export default function HeaderSearchInput() {
   const t = useTranslations();

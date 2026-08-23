@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
-import { getProducts } from '@/features/dashboard/api/product.api';
 import { BestSellingSectionClient } from './bestselling-client';
 import { BestSellingSectionLoading } from './bestselling-loading';
+import { getProducts } from '@/features/main/api/product.api';
 
 const BestSellingSectionContent = async () => {
   const products = await getProducts({
