@@ -1,9 +1,22 @@
+'use client';
+
+import { useEffect } from 'react';
+
+// Lib
 import { useTranslations } from 'next-intl';
+
+// Relatives
 import { StatusScreen } from '@/shared/components/custom-ui/status-screen';
 import Image from 'next/image';
 
-export default function NotFound() {
-  const t = useTranslations('dashboard.notFound');
+export default function Error({ error }: { error: Error & { digest?: string } }) {
+  // Translations
+  const t = useTranslations('dashboard.error');
+
+  // Functions
+  useEffect(() => {
+    console.error(error);
+  }, [error]);
 
   return (
     <StatusScreen
