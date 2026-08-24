@@ -13,13 +13,19 @@ export default function useLogin() {
   const [error, setError] = useState<string | null>(null);
   const { data: session, status } = useSession();
   const queryClient = useQueryClient();
+  const router = useRouter();
 
   useEffect(() => {
-    if (status === 'authenticated' && session?.token) {
-      syncGuestDataToServer(session.token, queryClient);
+    if (status !== 'authenticated' || !session?.token) return;
+    syncGuestDataToServer(session.token, queryClient);
+    // console.log('SESSION AFTER LOGIN:', session);
+    // console.log('ROLE AFTER LOGIN:', session?.user?.role);
+    if (session.user?.role === 'ADMIN') {
+      router.push('/dashboard');
+    } else {
+      router.push('/');
     }
-  }, [status, session?.token, queryClient]);
-  const router = useRouter();
+  }, [status, session?.token, session?.user?.role, queryClient, router]);
 
   const tLogin = useTranslations('auth.login');
 
@@ -49,15 +55,18 @@ export default function useLogin() {
         return;
       }
 
-      if (result?.ok) {
-        const rawCallbackUrl =
-          new URLSearchParams(window.location.search).get('callbackUrl') || '/';
-        const normalizedCallbackUrl = rawCallbackUrl.startsWith('/')
-          ? rawCallbackUrl.replace(/^\/([a-z]{2})(\/|$)/, '/$2')
-          : rawCallbackUrl;
+      // if (result?.ok) {
+      //   const rawCallbackUrl =
+      //     new URLSearchParams(window.location.search).get('callbackUrl') || '/';
+      //   const normalizedCallbackUrl = rawCallbackUrl.startsWith('/')
+      //     ? rawCallbackUrl.replace(/^\/([a-z]{2})(\/|$)/, '/$2')
+      //     : rawCallbackUrl;
 
+      //   router.refresh();
+      //   router.push(normalizedCallbackUrl || '/');
+      // }
+      if (result?.ok) {
         router.refresh();
-        router.push(normalizedCallbackUrl || '/');
       }
     } catch (error1) {
       setError((error1 as Error).message);
