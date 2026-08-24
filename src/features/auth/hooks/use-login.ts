@@ -18,8 +18,8 @@ export default function useLogin() {
   useEffect(() => {
     if (status !== 'authenticated' || !session?.token) return;
     syncGuestDataToServer(session.token, queryClient);
-    // console.log('SESSION AFTER LOGIN:', session);
-    // console.log('ROLE AFTER LOGIN:', session?.user?.role);
+    console.log('SESSION AFTER LOGIN:', session);
+    console.log('ROLE AFTER LOGIN:', session?.user?.role);
     if (session.user?.role === 'ADMIN') {
       router.push('/dashboard');
     } else {

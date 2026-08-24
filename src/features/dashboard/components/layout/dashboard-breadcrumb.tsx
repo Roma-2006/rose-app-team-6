@@ -38,7 +38,7 @@ export function DashboardBreadcrumbs() {
   if (crumbs.length === 0) return null;
 
   return (
-    <Breadcrumb className="w-full h-17.5 p-4 border-b border-border-muted self-center">
+    <Breadcrumb className="w-full h-17.5 p-4 border-b border-border-muted self-center bg-amber-400">
       <BreadcrumbList>
         {crumbs.map((crumb, index) => {
           const isLast = index === crumbs.length - 1;
