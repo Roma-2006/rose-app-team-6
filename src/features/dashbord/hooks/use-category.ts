@@ -7,15 +7,16 @@ import { deleteCategoryAction } from '../actions/categories/delete-category.acti
 export function useCategory() {
   const queryClient = useQueryClient();
 
-  // Mutation الإضافة
+  // 1. Mutation الإضافة
   const createMutation = useMutation({
     mutationFn: (data: CreateCategoryType) => createCategoryAction(data),
     onSuccess: () => {
+      // إجبار كاش المكونات على التحديث الفوري وتصفير الذاكرة المخزنة
       queryClient.invalidateQueries({ queryKey: ['categories'] });
     },
   });
 
-  // Mutation التعديل
+  // 2. Mutation التعديل
   const updateMutation = useMutation({
     mutationFn: ({ id, data }: { id: string; data: Partial<CreateCategoryType> }) =>
       updateCategoryAction({ id, data }),
@@ -24,9 +25,10 @@ export function useCategory() {
     },
   });
 
-  // Mutation الحذف
+  // 3. Mutation الحذف
   const deleteMutation = useMutation({
-    mutationFn: (id: string) => deleteCategoryAction(id),
+    // تعديل الـ Fn لتمرير الكائن المحتوي على المعرف والـ token
+    mutationFn: ({ id, token }: { id: string; token: string }) => deleteCategoryAction(id, token),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['categories'] });
     },
@@ -35,9 +37,14 @@ export function useCategory() {
   return {
     createCategory: createMutation.mutateAsync,
     isCreating: createMutation.isPending,
+    createError: createMutation.error,
+
     updateCategory: updateMutation.mutateAsync,
     isUpdating: updateMutation.isPending,
+    updateError: updateMutation.error,
+
     deleteCategory: deleteMutation.mutateAsync,
     isDeleting: deleteMutation.isPending,
+    deleteError: deleteMutation.error,
   };
 }

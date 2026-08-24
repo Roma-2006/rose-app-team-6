@@ -57,7 +57,16 @@ export default function CategoryTable({
       return;
 
     try {
-      await deleteCategory(id);
+      // 🛠️ قراءة الـ token من الـ localStorage لضمان التمرير الأمن وتفادي خطأ No Token Provided
+      const token = localStorage.getItem('token') || localStorage.getItem('accessToken') || '';
+
+      if (!token) {
+        alert('Your session has expired. Please log in again.');
+        return;
+      }
+
+      // تمرير الـ id والـ token سوياً للـ mutation كمخرجات مدمجة
+      await deleteCategory({ id, token });
       alert('Category deleted successfully!');
       router.refresh();
     } catch (err: unknown) {
