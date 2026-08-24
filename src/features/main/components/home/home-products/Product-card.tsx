@@ -6,12 +6,7 @@ import { calculateDiscountedPrice } from '../../../utils/calculate-discount';
 import { useTranslations } from 'next-intl';
 
 import { useProductActions } from '../../../hooks/use-product-actions';
-<<<<<<< HEAD
-import { Product } from '@/features/main/types/products';
-import type { LocalCartProduct } from '@/features/main/types/local-cart';
-=======
 
->>>>>>> 659edca08438c8fbdee261fbaa779f8ba3e26173
 import { Button } from '@/shared/components/ui/button';
 
 import RatingStarts from '@/shared/components/custom-ui/rating-stars';

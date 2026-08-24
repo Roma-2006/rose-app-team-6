@@ -7,10 +7,6 @@ import { Button } from '@/shared/components/ui/button';
 
 import { ProductCardSkeleton } from '../../skeleton/product-card-skelton';
 import { ProductCard } from './Product-card';
-<<<<<<< HEAD
-=======
-import { Product } from '@/features/main/types/products';
->>>>>>> 659edca08438c8fbdee261fbaa779f8ba3e26173
 import { Carousel } from '../../shared/carousel';
 import { Product } from '@/features/main/types/products';
 
