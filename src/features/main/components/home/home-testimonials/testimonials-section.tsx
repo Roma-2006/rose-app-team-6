@@ -54,7 +54,7 @@ export default async function TestimonialsSection() {
         {testimonials.map((item) => (
           <div
             key={item.id}
-            className="card  px-5 h-62.5 mx-7.5 gap-2.5 relative bg-white rounded-3xl  flex flex-col items-center text-center shadow-[0_10px_30px_rgba(0,0,0,0.04)]"
+            className="card  px-5 h-65 mx-7.5 gap-2.5 relative bg-white rounded-3xl  flex flex-col items-center text-center shadow-[0_10px_30px_rgba(0,0,0,0.04)]"
           >
             {/* Circular image */}
 

@@ -1,4 +1,8 @@
 import { Suspense } from 'react';
+<<<<<<< HEAD
+=======
+import { getProducts } from '@/features/main/api/product.api';
+>>>>>>> 659edca08438c8fbdee261fbaa779f8ba3e26173
 import { BestSellingSectionClient } from './bestselling-client';
 import { BestSellingSectionLoading } from './bestselling-loading';
 import { getProducts } from '@/features/main/api/product.api';

@@ -1,5 +1,9 @@
 import AllProducts from '@/features/main/components/products/all-products';
+<<<<<<< HEAD
 import { ProductGridSkeleton } from '@/features/main/components/products/product-grid-skeleton';
+=======
+import { ProductGridSkeleton } from '@/features/main/components/skeleton/product-grid-skeleton';
+>>>>>>> 659edca08438c8fbdee261fbaa779f8ba3e26173
 import { TProductsPageProps } from '@/features/main/types/products';
 import { Suspense } from 'react';
 import Filter from '@/shared/components/custom-ui/products/filter/general/filter';

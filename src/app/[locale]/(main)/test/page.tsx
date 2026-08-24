@@ -1,6 +1,10 @@
 'use client';
 import AboutSection from '@/features/main/components/home/home-about/about-section';
+<<<<<<< HEAD
 import { ProductCardSkeleton } from '@/features/main/components/home/home-products/product-card-skelton';
+=======
+import { ProductCardSkeleton } from '@/features/main/components/skeleton/product-card-skelton';
+>>>>>>> 659edca08438c8fbdee261fbaa779f8ba3e26173
 import SecHeader from '@/features/main/components/shared/section-header';
 import SecTitle from '@/features/main/components/shared/section-title';
 import { BaseCheckbox } from '@/shared/components/custom-ui/BaseCheckbox';
