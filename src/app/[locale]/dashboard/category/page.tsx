@@ -1,5 +1,5 @@
-import { getCategoriesAction } from '@/features/dashbord/actions/categories/get-categories.action';
-import CategoryTable from '@/features/dashbord/components/category-table';
+import { getCategoriesAction } from '@/features/dashboard/actions/categories/get-categories.action';
+import CategoryTable from '@/features/dashboard/components/categories/category-table';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/shared/components/ui/button';
 import { Plus } from 'lucide-react';

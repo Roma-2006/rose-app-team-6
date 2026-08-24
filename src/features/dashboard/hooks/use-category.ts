@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { CreateCategoryType } from '../types/categories';
+import { CreateCategoryType } from '../types/categories/categories';
 import { createCategoryAction } from '../actions/categories/create-category.action';
 import { updateCategoryAction } from '../actions/categories/update-category.action';
 import { deleteCategoryAction } from '../actions/categories/delete-category.action';

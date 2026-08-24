@@ -1,7 +1,7 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-import { CreateCategoryType } from '../../types/categories';
+import { CreateCategoryType } from '../../types/categories/categories';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 

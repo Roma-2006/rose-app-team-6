@@ -3,8 +3,8 @@
 import React, { useState, useEffect, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import { SquarePen, Trash2 } from 'lucide-react';
-import { CategoryTableProps } from '../types/categories';
-import { useCategory } from '../hooks/use-category';
+import { CategoryTableProps } from '../../types/categories/categories';
+import { useCategory } from '../../hooks/use-category';
 import CustomInput from '@/shared/components/custom-input';
 import { Link } from '@/i18n/navigation';
 import PaginationControls from './pagination';
