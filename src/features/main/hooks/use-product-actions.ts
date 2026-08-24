@@ -1,8 +1,8 @@
 'use client';
 
-import { LocalCartProduct } from '../types/local-cart';
-import { useCart } from './use-cart';
-import { useWishlist } from './use-wishlist';
+import { useCart } from '@/features/main/hooks/use-cart';
+import { useWishlist } from '@/features/main/hooks/use-wishlist';
+import type { LocalCartProduct } from '@/features/main/types/local-cart';
 
 export const useProductActions = (productId: string, product?: LocalCartProduct) => {
   const { addToCart: cartAction, isAdding, isInCart } = useCart();

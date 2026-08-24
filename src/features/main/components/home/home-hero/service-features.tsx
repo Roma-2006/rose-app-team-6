@@ -1,5 +1,5 @@
+import { features } from '@/features/main/constants/features';
 import { useTranslations } from 'next-intl';
-import { features } from 'process';
 
 export default function ServiceFeatures() {
   const t = useTranslations('home');
