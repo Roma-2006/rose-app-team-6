@@ -9,7 +9,7 @@ import { confirmEmailVerification } from '../../apis/confirm-email-verification.
 import { sendEmailVerification } from '../../apis/send-email-verification.api';
 import { maskEmail } from '../../utils/mask-email';
 import OTPSection from './otp-timer';
-import Stepper from '../../../../shared/components/custom-ui/stepper';
+import Stepper from '@/shared/components/custom-ui/stepper';
 import { useForm } from 'react-hook-form';
 import { otpSchema, OtpSchema } from '../../schemas/otp.schema';
 import { TOtpFormProps } from '../../types/register';

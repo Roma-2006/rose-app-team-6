@@ -1,23 +1,25 @@
 import React from 'react';
-import { IAppliedCouponsBoxProps } from '../../types/order-summary';
+import { AppliedCouponsBoxProps } from '../../types/order-summary';
+import { useTranslations } from 'next-intl';
 
+//Show applied coupons
 export default function AppliedCouponsBox({
   appliedCoupons,
   onRemoveCoupon,
   currency = 'EGP',
   variant = 'editable',
-}: IAppliedCouponsBoxProps) {
-  // Variables
+  errorMessage = null,
+}: AppliedCouponsBoxProps) {
+  //Transelation
+  const tSummary = useTranslations('cart');
+
+  // Variables (derived)
   const hasCoupons = appliedCoupons.length > 0;
   const isEditable = variant === 'editable';
 
   return (
     <div className="w-full flex flex-col h-61 gap-1 items-center justify-center border border-border-soft rounded-xl p-5 mb-1 transition-all duration-200 ">
-      {!hasCoupons ? (
-        <p className="text-text-muted text-sm italic font-semibold tracking-wide select-none">
-          No coupons applied
-        </p>
-      ) : (
+      {hasCoupons ? (
         <div className="w-60  flex flex-col gap-2.5">
           {appliedCoupons.map((coupon) => (
             <div
@@ -46,6 +48,17 @@ export default function AppliedCouponsBox({
             </div>
           ))}
         </div>
+      ) : errorMessage ? (
+        <p
+          className="text-text-danger text-sm font-semibold tracking-wide text-center"
+          role="alert"
+        >
+          {errorMessage}
+        </p>
+      ) : (
+        <p className="text-text-muted text-sm italic font-semibold tracking-wide select-none">
+          {tSummary('NocouponApplied')}
+        </p>
       )}
     </div>
   );

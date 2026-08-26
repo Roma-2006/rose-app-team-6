@@ -7,13 +7,10 @@ import ProductPrice from '@/shared/components/custom-ui/product-price';
 import { cn } from '@/shared/lib/utils/tailwind-cn';
 import { useRouter } from '@/i18n/navigation';
 import { useProductActions } from '../../hooks/use-product-actions';
+import { useWishlist } from '../../hooks/use-wishlist';
 import { TWishlistItemProps } from '../../types/wishlist';
 
-type WishlistItemProps = TWishlistItemProps & {
-  onRemove: (itemId: string) => void;
-};
-
-export default function WishlistItem({ wishlistItem, onRemove }: WishlistItemProps) {
+export default function WishlistItem({ wishlistItem }: TWishlistItemProps) {
   //Translations
   const t = useTranslations();
   //Navigation
@@ -22,6 +19,7 @@ export default function WishlistItem({ wishlistItem, onRemove }: WishlistItemPro
   const isStock = Number(wishlistItem.product.stock) > 0;
   //Hooks
   const { addToCart, isAdding } = useProductActions(wishlistItem.product.id);
+  const { removeItemFromWishlistMutation } = useWishlist();
   //Function
   const handleExplore = () => {
     const categoryId = wishlistItem.product.category?.id;
@@ -77,7 +75,7 @@ export default function WishlistItem({ wishlistItem, onRemove }: WishlistItemPro
             variant="danger"
             iconOnly={<Trash2 />}
             className="ml-auto"
-            onClick={() => onRemove(wishlistItem.id)}
+            onClick={() => removeItemFromWishlistMutation(wishlistItem.id)}
           />
           {isStock ? (
             <Button

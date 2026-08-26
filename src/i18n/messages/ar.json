@@ -34,15 +34,15 @@
     "search-error": "فشل البحث. حاول مجدداً.",
     "notifications": {
       "title": "الإشعارات ({count})",
-      "no-notifications": "لا توجد إشعارات حتى الآن",
-      "clear-all": "مسح جميع الإشعارات",
-      "mark-all-as-read": "تعيين الكل كمقروء",
-      "notification-settings": {
-        "mark-as-read": "تعيين كمقروء",
+      "noNotifications": "لا توجد إشعارات حتى الآن",
+      "clearAll": "مسح جميع الإشعارات",
+      "markAllAsRead": "تعيين الكل كمقروء",
+      "notificationSettings": {
+        "markAsRead": "تعيين كمقروء",
         "delete": "حذف"
       }
     },
-    "user-menu": {
+    "userMenu": {
       "title": "مرحبا ",
       "account": "حسابي",
       "addresses": "عناويني",
@@ -140,14 +140,7 @@
         "emailPlaceholder": "user@example.com",
         "continue": "متابعة",
         "footerText": "هل لديك حساب بالفعل؟ ",
-        "registerLink": "سجل الدخول ",
-        "errors": {
-          "email-required": "البريد الإلكتروني مطلوب.",
-          "invalid-email": "يرجى إدخال بريد إلكتروني صالح.",
-          "no-account": "لم يتم العثور على حساب بهذا البريد.",
-          "email-already-registered": "هذا البريد الإلكتروني مسجل بالفعل.",
-          "something-went-wrong": "حدث خطأ ما. يرجى المحاولة مرة أخرى."
-        }
+        "registerLink": "سجل الدخول "
       },
       "otp": {
         "title": "إنشاء حساب",
@@ -214,7 +207,7 @@
     }
   },
   "home": {
-    "discover": "اكتشف",
+    
     "hero-aside": {
       "badge": "ابتداءً من 10.99 جنيه",
       "title": "هدايا مميزة للأشخاص الذين تحبهم",
@@ -304,7 +297,8 @@
         "part3": "صناديق الهدايا لمناسباتك",
         "part4": "لمناسباتك",
         "part5": "الخاصة"
-      }
+        }
+        
     },
     "gallery": {
       "label": "المعرض",
@@ -354,20 +348,9 @@
       "title": "عنوان الشحن",
       "add-new-address": "إضافة عنوان جديد",
       "or": "أو",
-      "load-error ": "فشل تحميل العناوين.",
+      "load-error": "فشل تحميل العناوين.",
       "no-addresses-error": "أضف عنوانك الأول للمتابعة"
     },
-    "step2Title": "طريقة الدفع",
-    "cashOnDelivery": "الدفع عند الاستلام",
-    "creditCard": "بطاقة ائتمانية",
-    "placeOrder": "تقديم الطلب",
-    "orderSuccess": "تم تقديم طلبك بنجاح!",
-    "orderFailed": "فشل تقديم الطلب. حاول مجدداً.",
-    "selectPaymentMethod": "يرجى اختيار طريقة الدفع.",
-    "selectAddress": "يرجى اختيار عنوان التوصيل.",
-    "stepIndicator": "الخطوة {current} من {total}",
-    "cashDescription": "سيتم الدفع نقداً عند استلام الطلب.",
-    "creditDescription": "سيتم تحويلك بشكل آمن لإتمام عملية الدفع.",
     "next": "التالي",
     "back": "رجوع"
   },
@@ -519,6 +502,17 @@
   "cart": {
     "title": "سلة التسوق",
      "title-2": " منتجات قد تعجبك",
+     "couponPlaceholder":"رمز الكوبون",
+   "couponLabel":"",
+    "invalidCoupon":"كوبون غير صالح أو منتهي الصلاحية",
+    "couponApplied":"تم تطبيق الكوبون!",
+    "NocouponApplied":"لم يتم تطبيق أي كوبونات",
+    "couponAlreadyApplied":"تم تطبيق الكوبون بالفعل",
+    "summary":"الموجز",
+    "subtotal":"المجموع الفرعي",
+    "total ":"الإجمالي",
+    "applyCoupon":"تطبيق الكوبون",
+  "checkout":"المتابعة للدفع",
     "products":"منتجات",
     "clearCart": "إفراغ السلة",
     "confirmClear": "هل أنت متأكد من إفراغ السلة؟",
@@ -649,3 +643,4 @@
 }
 }
 }
+ 

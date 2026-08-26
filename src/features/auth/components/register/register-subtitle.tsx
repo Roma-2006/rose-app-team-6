@@ -1,5 +1,5 @@
 import { useTranslations } from 'next-intl';
-import Stepper from '../../../../shared/components/custom-ui/stepper';
+import Stepper from '@/shared/components/custom-ui/stepper';
 import { RegisterSubtitleProps } from '../../types/register';
 export default function RegisterSubtitle(props: RegisterSubtitleProps) {
   const t = useTranslations('auth.auth-register');
