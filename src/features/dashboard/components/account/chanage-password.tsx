@@ -84,7 +84,7 @@ export function ChangePasswordForm() {
               <Button
                 buttonVariant="text"
                 title={t('button')}
-                variant="destructive"
+                variant="primary"
                 type="submit"
                 loading={isLoading}
                 className={'font-medium px-8 py-3 rounded-lg text-sm'}
