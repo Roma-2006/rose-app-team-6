@@ -15,10 +15,13 @@ interface OrderItemsContainerProps {
 const FULLY_VISIBLE_COUNT = 2;
 
 export function OrderItemsContainer({ items }: OrderItemsContainerProps) {
+  // Translation
   const t = useTranslations('orders');
 
+  // State
   const [isExpanded, setIsExpanded] = useState(false);
 
+  // Variables
   const hasHiddenItems = items.length > FULLY_VISIBLE_COUNT;
 
   return (

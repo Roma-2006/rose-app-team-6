@@ -1,4 +1,4 @@
-import { AdminStatisticsResponse } from './types/statistics';
+import { AdminStatisticsResponse } from '../types/statistics';
 
 export interface GetAdminStatisticsParams {
   lowStockThreshold?: number;

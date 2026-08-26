@@ -471,6 +471,7 @@
     "phone": { "label": "رقم الهاتف", "placeholder": "1012345678" },
     "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" },
     "nice-to-have-you-here": "جميل أنك هنا"
+
   },
    "address": {
     "modal": {
@@ -594,6 +595,57 @@
     "title": "للأسف حدث خطأ ما ",
     "description": "نحن نعمل على حلها ، بالرجاء المحاولة مرة اخرى ",
     "action": "حاول مرة اخرى"
+  },
+     "statistics": {
+      "low-stock": {
+        "title": "منتجات أوشكت على النفاد",
+        "empty": "لا توجد منتجات منخفضة المخزون.",
+        "units": "منتج"
+      },
+      "stats": {
+        "products": "إجمالي المنتجات",
+        "orders": "إجمالي الطلبات",
+        "categories": "إجمالي الفئات",
+        "revenue": "إجمالي الإيرادات"
+      },
+      "categories": {
+        "title": "كل الفئات",
+        "empty": "لا توجد فئات حالياً.",
+        "units": "منتجات"
+      },
+      "top-selling": {
+        "title": "الأكثر مبيعاً",
+        "empty": "لا توجد بيانات مبيعات.",
+        "currency": "ج.م",
+        "units": "مبيعات"
+      }
+    },
+  "account": {
+  "change-password": {
+      "title": "تغيير كلمة المرور",
+        "button": "تغيير كلمة المرور",
+        "currentPassword": "كلمه المرور القديمه",
+        "newPassword": "كلمة المرور الجديدة",
+        "confirmPassword": "تأكيد كلمة المرور الجديدة",
+        "placeholders": {
+          "currentPassword": "أدخل كلمة المرور الحالية",
+          "newPassword": "أدخل كلمة المرور الجديدة",
+          "confirmPassword": "أعد كتابة كلمة المرور الجديدة"
+        },
+         
+    "success": "تم تغيير كلمة المرور بنجاح",
+    "errors": {
+      "something-went-wrong": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+      "current-password-required": "كلمة المرور الحالية مطلوبة",
+      "password-min-length": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل",
+      "password-uppercase": "يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل",
+      "password-lowercase": "يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل",
+      "password-number": "يجب أن تحتوي كلمة المرور على رقم واحد على الأقل",
+      "password-special": "يجب أن تحتوي كلمة المرور على رمز خاص واحد على الأقل",
+      "confirm-password": "يرجى تأكيد كلمة المرور",
+      "passwords-do-not-match": "كلمتا المرور غير متطابقتين"
+    }
   }
+}
 }
 }

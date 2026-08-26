@@ -25,14 +25,18 @@ export interface AdminStatisticsLowStockProduct {
   stock: number;
 }
 
+export interface AdminStatisticsPayload {
+  summary: AdminStatisticsSummary;
+  categories: AdminStatisticsCategory[];
+  orderStatus: AdminStatisticsOrderStatus;
+  revenue: AdminStatisticsRevenue;
+  topSellingProducts: AdminStatisticsTopProduct[];
+  lowStockProducts: AdminStatisticsLowStockProduct[];
+}
+
 export interface AdminStatisticsResponse {
   status: boolean;
   code: number;
   message?: string;
-  payload: {
-    summary: AdminStatisticsSummary;
-    categories: AdminStatisticsCategory[];
-    topSellingProducts: AdminStatisticsTopProduct[];
-    lowStockProducts: AdminStatisticsLowStockProduct[];
-  };
+  payload: AdminStatisticsPayload;
 }

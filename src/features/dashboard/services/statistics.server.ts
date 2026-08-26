@@ -1,18 +1,15 @@
+import 'server-only';
+
 import { getServerSession } from 'next-auth/next';
-import { getAdminStatistics, GetAdminStatisticsParams } from './statistics.api';
+import { getAdminStatistics, GetAdminStatisticsParams } from '../api/statistics.api';
 import { authOptions } from '@/auth';
 
 export async function getAdminStatisticsServer(params: GetAdminStatisticsParams = {}) {
   const session = await getServerSession(authOptions);
 
-  console.log('SESSION:', session);
-  console.log('TOKEN:', session?.token);
-
-  const token = session?.token;
-
-  if (!token) {
+  if (!session?.token) {
     throw new Error('Authentication required');
   }
 
-  return getAdminStatistics(token, params);
+  return getAdminStatistics(session.token, params);
 }

@@ -550,7 +550,8 @@
       "placeholder": "Enter value"
     },"search":{
             "placeholder": "Enter value"
-    },
+    }
+  },
   "dashboard": {
     "notFound": {
       "title": "This page does not exist.",
@@ -566,7 +567,65 @@
       "title": "Oops, something went wrong!",
       "description": "We're working to get this fixed. Please refresh or try again shortly.",
       "action": "Try again"
+    },
+     "statistics": {
+      "low-stock": {
+        "title": "Low Stock Products",
+        "empty": "No low-stock products found.",
+        "units": "Products"
+      },
+      "stats": {
+        "products": "Total products",
+        "orders": "Total orders",
+        "categories": "Total categories",
+        "revenue": "Total revenue"
+      },
+      "categories": {
+        "title": "All Categories",
+        "empty": "No categories found.",
+        "units": "Products"
+      },
+      "top-selling": {
+        "title": "Top Selling Products",
+        "empty": "No sales data found.",
+        "currency": "EGP",
+        "units": "Sales"
+      }
+    },
+
+  
+      "account":{
+ "change-password": {
+          "title": "Change Password",
+          "button": "Change Password",
+        "currentPassword": "Old Password",
+        "newPassword": "New Password",
+        "confirmPassword": "Confirm New Password",
+        "placeholders": {
+          "currentPassword": "Enter your current password",
+          "newPassword": "Enter your new password",
+          "confirmPassword": "Confirm your new password"
+              },
+           
+    "success": "Password changed successfully",
+    "errors": {
+      "something-went-wrong": "Something went wrong. Please try again.",
+      "current-password-required": "Current password is required",
+      "password-min-length": "Password must be at least 8 characters",
+      "password-uppercase": "Password must contain an uppercase letter",
+      "password-lowercase": "Password must contain a lowercase letter",
+      "password-number": "Password must contain a number",
+      "password-special": "Password must contain a special character",
+      "confirm-password": "Please confirm your password",
+      "passwords-do-not-match": "Passwords do not match"
     }
+
+
   }
-}
-}
+      }
+
+    }
+
+  }
+
+

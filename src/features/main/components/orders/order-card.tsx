@@ -7,14 +7,15 @@ import { OrderItemsContainer } from './order-items-container';
 import { Order } from '../../types/order';
 
 export function OrderCard({ order }: { order: Order }) {
+  // Translation
   const t = useTranslations('orders');
   const locale = useLocale();
 
+  // Variables
   const isPaid = order.paymentStatus === 'SUCCEEDED';
-
   const isDelivered = order.status === 'DELIVERED';
 
-  //  order status badge
+  // Functions
   const getStatusClassName = () => {
     switch (order.status) {
       case 'PENDING':
