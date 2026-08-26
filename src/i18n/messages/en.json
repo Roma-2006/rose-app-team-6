@@ -11,14 +11,9 @@
     "delete": "Delete",
     "confirm": "Confirm",
     "next": "Next",
-<<<<<<< HEAD
-    "add-review": "Add Review",
-    "adding": "Adding..."
-=======
      "add-review":"Add Review",
     "adding":"Adding...",
     "retry":"Retry"
->>>>>>> d004233bf6d01c0888b4d7c21caef530de966451
   },
   "common": {
     "select": {
