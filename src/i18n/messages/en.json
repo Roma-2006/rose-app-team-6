@@ -406,6 +406,12 @@
       "title": "Oops, something went wrong!",
       "description": "We're working to get this fixed. Please refresh or try again shortly.",
       "action": "Try again"
-    }
+    },
+    
+  "dashboard-title": {
+    "ordersStatus": "Orders Status",
+    "revenue": "Revenue"
   }
+}
+
 }
