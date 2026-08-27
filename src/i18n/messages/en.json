@@ -12,7 +12,8 @@
     "confirm": "Confirm",
     "next": "Next",
     "add-review": "Add Review",
-    "adding": "Adding..."
+    "adding": "Adding...",
+    "preview-website": "Preview Website"
   },
   "common": {
     "select": {
@@ -406,6 +407,19 @@
       "title": "Oops, something went wrong!",
       "description": "We're working to get this fixed. Please refresh or try again shortly.",
       "action": "Try again"
+    },
+    "account" : {
+      "delete-popover" : {
+        "title" : "Are you sure you want to delete your account?",
+        "description" : "This action is permanent and cannot be undone.",
+        "cancel-button" : "Nope, not doing it",
+        "confirm-button" : "Yes, delete",
+        "loading-button" : "Loading..."
+      },
+      "menu": {
+        "edit-button" : "Edit",
+        "delete-button" : "Delete"
+      }
     }
   }
 }
