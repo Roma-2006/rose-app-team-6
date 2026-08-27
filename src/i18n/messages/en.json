@@ -11,8 +11,9 @@
     "delete": "Delete",
     "confirm": "Confirm",
     "next": "Next",
-     "add-review":"Add Review",
-    "adding":"Adding..."
+    "add-review": "Add Review",
+    "adding": "Adding...",
+    "preview-website": "Preview Website"
   },
   "common": {
     "select": {
@@ -283,9 +284,7 @@
         "part3": "Gift Boxes for Your",
         "part4": "Special",
         "part5": "Moments"
-        
       }
-      
     },
     "gallery": {
       "label": "Gallery",
@@ -392,5 +391,35 @@
   },
   "grid": {
     "product-empty": "No products found matching your filters."
+  },
+  "dashboard": {
+    "notFound": {
+      "title": "This page does not exist.",
+      "description": "We couldn't find the page you're looking for. Make sure you've got the right link.",
+      "action": "Go to dashboard"
+    },
+    "unauthorized": {
+      "title": "You are not authorized to access this page.",
+      "description": "If you think this is wrong, please contact the support team.",
+      "action": "Go to homepage"
+    },
+    "error": {
+      "title": "Oops, something went wrong!",
+      "description": "We're working to get this fixed. Please refresh or try again shortly.",
+      "action": "Try again"
+    },
+    "account" : {
+      "delete-popover" : {
+        "title" : "Are you sure you want to delete your account?",
+        "description" : "This action is permanent and cannot be undone.",
+        "cancel-button" : "Nope, not doing it",
+        "confirm-button" : "Yes, delete",
+        "loading-button" : "Loading..."
+      },
+      "menu": {
+        "edit-button" : "Edit",
+        "delete-button" : "Delete"
+      }
+    }
   }
 }
