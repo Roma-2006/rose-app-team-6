@@ -12,7 +12,8 @@
     "confirm": "Confirm",
     "next": "Next",
     "add-review": "Add Review",
-    "adding": "Adding..."
+    "adding": "Adding...",
+    "edit":"Edit"
   },
   "common": {
     "select": {
@@ -406,6 +407,23 @@
       "title": "Oops, something went wrong!",
       "description": "We're working to get this fixed. Please refresh or try again shortly.",
       "action": "Try again"
+    },
+    "products":{
+      "title":"All Products",
+      "add-product":"Add a new product",
+      "delete-success": "Product deleted successfully.",
+      "delete-error": "Failed to delete product.",
+      "currency": {
+        "egp": "EGP"
+      },
+      "table":{
+        "name":"Name",
+        "price":"Price",
+        "stock":"Stock",
+        "sales":"Sales",
+        "ratings":"Ratings"
+      }
+
     }
   }
 }

@@ -11,7 +11,10 @@ import {
 import { ChevronLeftIcon, ChevronRightIcon, ChevronsRight, ChevronsLeft } from 'lucide-react';
 import { TProductMetaDataProps } from '../../types/products';
 import { useSearchParams } from 'next/navigation';
-export default function ProductPagination({ productMetaData }: TProductMetaDataProps) {
+export default function ProductPagination({
+  productMetaData,
+  isDashboard = false,
+}: TProductMetaDataProps) {
   // Navigation
   const searchParams = useSearchParams();
   // Variables
@@ -20,7 +23,9 @@ export default function ProductPagination({ productMetaData }: TProductMetaDataP
   const createPageUrl = (newPage: number) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set('page', String(newPage));
-    return `/products?${params.toString()}`;
+    return isDashboard
+      ? `/dashboard/product?${params.toString()}`
+      : `/products?${params.toString()}`;
   };
   const getPages = () => {
     const pages: (string | number)[] = [];
