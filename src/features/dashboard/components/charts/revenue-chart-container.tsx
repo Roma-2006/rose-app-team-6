@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useTransition } from 'react';
-import { getStatistics } from '../../api/statistics';
+import { getStatistics } from '../../apis/statistics';
 import { RevenueChart } from './revenue-chart';
 
 type RevenuePoint = {

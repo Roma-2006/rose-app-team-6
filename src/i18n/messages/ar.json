@@ -12,7 +12,8 @@
     "confirm": "تأكيد",
     "next": "التالي",
     "add-review": "أضف تقييمًا",
-    "adding": "إضافة..."
+    "adding": "إضافة...",
+    "preview-website": "عرض الصفحة" 
   },
   "common": {
     "select": {
@@ -421,11 +422,27 @@
     "description": "نحن نعمل على حلها ، بالرجاء المحاولة مرة اخرى ",
     "action": "حاول مرة اخرى"
   },
+
   
   "dashboard-title": {
     "ordersStatus": "حالة الطلبات",
     "revenue": "الإيرادات"
+  },
+
+      "account" :{
+     "delete-popover" : {
+        "title" : "هل أنت متأكد أنك تريد حذف الحساب؟",
+        "description" : "هذا الإجراء لا يمكن الرجوع فيه",
+        "cancel-button" : "لا ، لا تفعل ذلك",
+        "confirm-button" : "نعم ، احذف",
+        "loading-button" : "تحميل..."
+      },
+       "menu": {
+        "account-button" : "الحساب",
+        "logout-button" : "خروج"
+      }
+    }
   }
 
-}
+
 }

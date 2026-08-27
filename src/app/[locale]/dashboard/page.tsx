@@ -1,4 +1,4 @@
-import { getStatistics } from '@/features/dashboard/api/statistics';
+import { getStatistics } from '@/features/dashboard/apis/statistics';
 import { OrdersStatusChart } from '@/features/dashboard/components/charts/orders-status-chart';
 import { RevenueChart } from '@/features/dashboard/components/charts/revenue-chart';
 import { RevenueChartContainer } from '@/features/dashboard/components/charts/revenue-chart-container';
