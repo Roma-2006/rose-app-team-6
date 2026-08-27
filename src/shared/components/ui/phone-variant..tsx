@@ -135,7 +135,7 @@ const CountrySelect = ({
         </span>
       </PopoverTrigger>
 
-      <PopoverContent className="w-375 p-0" align="start">
+      <PopoverContent className="w-375 p-0 self-start">
         <Command dir={isRtl ? 'rtl' : 'ltr'}>
           <CommandInput
             value={searchValue}
