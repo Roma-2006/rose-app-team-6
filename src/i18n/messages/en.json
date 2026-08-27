@@ -11,9 +11,9 @@
     "delete": "Delete",
     "confirm": "Confirm",
     "next": "Next",
-     "add-review":"Add Review",
-    "adding":"Adding...",
-    "retry":"Retry"
+    "add-review": "Add Review",
+    "adding": "Adding...",
+    "preview-website": "Preview Website"
   },
   "common": {
     "select": {
@@ -605,6 +605,19 @@
       "password-special": "Password must contain a special character",
       "confirm-password": "Please confirm your password",
       "passwords-do-not-match": "Passwords do not match"
+    },
+    "account" : {
+      "delete-popover" : {
+        "title" : "Are you sure you want to delete your account?",
+        "description" : "This action is permanent and cannot be undone.",
+        "cancel-button" : "Nope, not doing it",
+        "confirm-button" : "Yes, delete",
+        "loading-button" : "Loading..."
+      },
+      "menu": {
+        "edit-button" : "Edit",
+        "delete-button" : "Delete"
+      }
     }
 
 

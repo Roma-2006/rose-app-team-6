@@ -13,7 +13,7 @@
     "next": "التالي",
     "add-review": "أضف تقييمًا",
     "adding": "إضافة...",
-    "retry":"إعادة المحاولة"
+    "preview-website": "عرض الصفحة" 
   },
   "common": {
     "select": {
@@ -638,8 +638,21 @@
       "password-special": "يجب أن تحتوي كلمة المرور على رمز خاص واحد على الأقل",
       "confirm-password": "يرجى تأكيد كلمة المرور",
       "passwords-do-not-match": "كلمتا المرور غير متطابقتين"
-    }
+    },
+  "account" :{
+     "delete-popover" : {
+        "title" : "هل أنت متأكد أنك تريد حذف الحساب؟",
+        "description" : "هذا الإجراء لا يمكن الرجوع فيه",
+        "cancel-button" : "لا ، لا تفعل ذلك",
+        "confirm-button" : "نعم ، احذف",
+        "loading-button" : "تحميل..."
+      },
+       "menu": {
+        "edit-button" : "تعديل",
+        "delete-button" : "حذف"
+      }
   }
+}
 }
 }
 }
