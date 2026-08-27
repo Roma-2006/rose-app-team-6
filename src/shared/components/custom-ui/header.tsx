@@ -9,8 +9,8 @@ import HeaderSearchInput from './header-search-input';
 import GuestGatedIcon from './guest-gated-icon';
 import UserAuthAction from './user-auth-action';
 import { ThemeToggle } from '../theme';
-import { useCart } from '@/features/dashboard/hooks/use-cart';
-import { useWishlist } from '@/features/dashboard/hooks/use-wishlist';
+import { useCart } from '@/features/main/hooks/use-cart';
+import { useWishlist } from '@/features/main/hooks/use-wishlist';
 
 export default function Header() {
   const session = useSession();
