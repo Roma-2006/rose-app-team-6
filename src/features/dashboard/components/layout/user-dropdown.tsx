@@ -14,7 +14,7 @@ import {
 import { DeleteAccountPopover } from './delete-account-popover';
 import { Link } from '@/i18n/navigation';
 
-import { UserDropdownProps } from '../../types/layout/account';
+import { UserDropdownProps } from '@/features/main/types/layout/account';
 
 export function UserDropdown({ trigger, onDelete, deleteLoading = false }: UserDropdownProps) {
   // Translation
@@ -40,7 +40,7 @@ export function UserDropdown({ trigger, onDelete, deleteLoading = false }: UserD
           {!(session?.data?.user.role == 'SUPER_ADMIN') && (
             <DropdownMenuItem
               variant="destructive"
-              onClick={() => signOut(true)}
+              onClick={() => signOut({ callbackUrl: '/login' })}
               className="text-black flex gap-1.5 hover:text-text-danger"
             >
               <LogOut size={16} />

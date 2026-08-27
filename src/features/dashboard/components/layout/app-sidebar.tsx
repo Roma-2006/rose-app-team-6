@@ -16,10 +16,11 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
 } from '@/shared/components/ui/sidebar';
-import { type SidebarNavItem } from '../../types/layout/sidebar';
+
 import { SidebarMobileNav } from './sidebar-mobile-nav';
 import { Button } from '@/shared/components/ui/button';
 import { UserProfileSection } from './user-profile-section';
+import { SidebarNavItem } from '@/features/main/types/layout/sidebar';
 
 const navItems: SidebarNavItem[] = [
   { title: 'Overview', href: '/dashboard', icon: LayoutGrid },

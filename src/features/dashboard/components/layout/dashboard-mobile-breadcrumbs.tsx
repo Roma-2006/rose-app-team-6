@@ -20,8 +20,8 @@ import {
 } from '@/shared/components/custom-ui/breadcrumb';
 import { UserDropdown } from '@/features/dashboard/components/layout/user-dropdown';
 import { useBreadcrumbContext } from '@/features/dashboard/context/breadcrumbs-context';
-import { BreadcrumbOverrideItem } from '@/features/dashboard/types/layout/breadcrumb';
-import { useDeleteAccount } from '@/features/dashboard/hooks/use-delete-account';
+import { useDeleteAccount } from '@/features/main/hooks/use-delete-account';
+import { BreadcrumbOverrideItem } from '@/features/main/types/layout/breadcrumb';
 
 export function DashboardHeaderMobile() {
   // State

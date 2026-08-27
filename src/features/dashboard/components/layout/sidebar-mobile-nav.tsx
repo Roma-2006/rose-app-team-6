@@ -6,7 +6,7 @@ import { useRender } from '@base-ui/react/use-render';
 import { type LucideIcon } from 'lucide-react';
 
 import { cn } from '@/shared/lib/utils/tailwind-cn';
-import { SidebarNavItem } from '../../types/layout/sidebar';
+import { SidebarNavItem } from '@/features/main/types/layout/sidebar';
 
 export interface SidebarMobileNavProps extends React.ComponentProps<'nav'> {
   items: SidebarNavItem[];

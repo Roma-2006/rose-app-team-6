@@ -6,8 +6,8 @@ import { MoreVertical, CircleUserRound } from 'lucide-react';
 
 import { cn } from '@/shared/lib/utils/tailwind-cn';
 import { UserDropdown } from './user-dropdown';
-import { UserProfileSectionProps } from '../../types/layout/account';
-import { useDeleteAccount } from '../../hooks/use-delete-account';
+import { UserProfileSectionProps } from '@/features/main/types/layout/account';
+import { useDeleteAccount } from '@/features/main/hooks/use-delete-account';
 
 export function UserProfileSection({ className }: UserProfileSectionProps) {
   // State

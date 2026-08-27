@@ -11,7 +11,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/shared/components/ui/popover';
-import { DeleteAccountPopoverProps } from '../../types/layout/account';
+import { DeleteAccountPopoverProps } from '@/features/main/types/layout/account';
 
 export function DeleteAccountPopover({
   trigger,

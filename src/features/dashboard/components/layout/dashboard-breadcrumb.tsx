@@ -15,7 +15,7 @@ import {
   BreadcrumbSeparator,
 } from '@/shared/components/custom-ui/breadcrumb';
 import { useBreadcrumbContext } from '@/features/dashboard/context/breadcrumbs-context';
-import { BreadcrumbOverrideItem } from '@/features/dashboard/types/layout/breadcrumb';
+import { BreadcrumbOverrideItem } from '@/features/main/types/layout/breadcrumb';
 
 export function DashboardBreadcrumbs() {
   // Variables
