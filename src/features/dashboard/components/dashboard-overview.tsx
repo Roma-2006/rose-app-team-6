@@ -47,13 +47,13 @@ async function DashboardOverviewData() {
       </div>
 
       {/* charts  */}
-      <div className="w-full p-4 sm:p-6">
+      <div className="w-full">
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
-          <div className="w-full lg:col-span-4 flex items-center justify-center rounded-2xl bg-white shadow-sm border border-gray-100">
+          <div className="w-full lg:col-span-4 flex items-center justify-center rounded-2xl bg-bg-plain shadow-sm border border-border-subtle">
             <OrdersStatusChart data={statistics.payload.orderStatus} />
           </div>
 
-          <div className="w-full lg:col-span-8 flex items-center justify-center rounded-2xl bg-white shadow-sm border border-gray-100">
+          <div className="w-full lg:col-span-8 flex items-center justify-center rounded-2xl bg-bg-plain shadow-sm border border-border-subtle">
             <RevenueChartContainer initialData={statistics.payload.revenue.points} />
           </div>
         </div>
