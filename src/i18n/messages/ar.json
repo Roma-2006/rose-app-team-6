@@ -13,7 +13,8 @@
     "next": "التالي",
     "add-review": "أضف تقييمًا",
     "adding": "إضافة...",
-    "edit": "تعديل"
+    "edit": "تعديل",
+    "preview-website": "عرض الصفحة" 
   },
   "common": {
     "select": {
@@ -437,6 +438,18 @@
         "sales": "المبيعات",
         "ratings": "التقييمات"
       }
-    }
-}
-}
+    },
+  "account" :{
+     "delete-popover" : {
+        "title" : "هل أنت متأكد أنك تريد حذف الحساب؟",
+        "description" : "هذا الإجراء لا يمكن الرجوع فيه",
+        "cancel-button" : "لا ، لا تفعل ذلك",
+        "confirm-button" : "نعم ، احذف",
+        "loading-button" : "تحميل..."
+      },
+       "menu": {
+        "edit-button" : "تعديل",
+        "delete-button" : "حذف"
+      }
+  }
+}}

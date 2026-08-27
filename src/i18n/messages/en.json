@@ -13,7 +13,8 @@
     "next": "Next",
     "add-review": "Add Review",
     "adding": "Adding...",
-    "edit":"Edit"
+    "edit":"Edit",
+    "preview-website": "Preview Website"
   },
   "common": {
     "select": {
@@ -422,8 +423,20 @@
         "stock":"Stock",
         "sales":"Sales",
         "ratings":"Ratings"
+      },
+    "account" : {
+      "delete-popover" : {
+        "title" : "Are you sure you want to delete your account?",
+        "description" : "This action is permanent and cannot be undone.",
+        "cancel-button" : "Nope, not doing it",
+        "confirm-button" : "Yes, delete",
+        "loading-button" : "Loading..."
+      },
+      "menu": {
+        "edit-button" : "Edit",
+        "delete-button" : "Delete"
       }
-
     }
+  }
   }
 }
