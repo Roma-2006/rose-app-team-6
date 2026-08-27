@@ -605,8 +605,9 @@
       "password-special": "Password must contain a special character",
       "confirm-password": "Please confirm your password",
       "passwords-do-not-match": "Passwords do not match"
-    },
-    "account" : {
+    }
+  },
+    
       "delete-popover" : {
         "title" : "Are you sure you want to delete your account?",
         "description" : "This action is permanent and cannot be undone.",
@@ -618,13 +619,17 @@
         "edit-button" : "Edit",
         "delete-button" : "Delete"
       }
-    }
-
-
-  }
-      }
-
     },
+
+
+    
+  
+    
+"dashboard-title": {
+    "ordersStatus": "Orders Status",
+    "revenue": "Revenue"
+  },
+   
 
   
 
@@ -635,3 +640,6 @@
   }
 
 }
+}
+
+
