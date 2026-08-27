@@ -24,7 +24,7 @@ export default function ProductPagination({
     const params = new URLSearchParams(searchParams.toString());
     params.set('page', String(newPage));
     return isDashboard
-      ? `/dashboard/product?${params.toString()}`
+      ? `/dashboard/products?${params.toString()}`
       : `/products?${params.toString()}`;
   };
   const getPages = () => {

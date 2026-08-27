@@ -14,7 +14,8 @@
     "add-review": "أضف تقييمًا",
     "adding": "إضافة...",
     "edit": "تعديل",
-    "preview-website": "عرض الصفحة" 
+    "preview-website": "عرض الصفحة" ,
+    "retry": "إعادة المحاولة"
   },
   "common": {
     "select": {

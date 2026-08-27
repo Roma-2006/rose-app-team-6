@@ -11,10 +11,22 @@ import { deleteProduct } from '../../actions/products.action';
 import { Product, TProductsResponse } from '@/features/main/types/products';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
+import { cn } from '@/shared/lib/utils/tailwind-cn';
+import { useState } from 'react';
 export default function AllproductsDash({ products }: { products: TProductsResponse }) {
+  //Translations
   const t = useTranslations('dashboard.products');
+  //Navigation
   const router = useRouter();
+  //Variables
+  const [search, setSearch] = useState('');
   const tableHeader = ['table.name', 'table.price', 'table.stock', 'table.sales', 'table.ratings'];
+  const filteredProducts = search.trim()
+    ? products.data.filter((product) =>
+        product.subCategory.title.toLowerCase().includes(search.toLowerCase())
+      )
+    : products.data;
+  //Mutation
   const {
     mutate: deleteProductMutation,
     isPending: isDeleting,
@@ -30,12 +42,13 @@ export default function AllproductsDash({ products }: { products: TProductsRespo
       toast.error(t('delete-error'));
     },
   });
+  //Function
   const handleDelete = (productId: string) => {
     console.log(productId);
     deleteProductMutation(productId);
   };
   const handleEdit = (productId: string) => {
-    router.push(`/dashboard/product/update-product?id=${productId}`);
+    router.push(`/dashboard/products/update-product?id=${productId}`);
   };
   return (
     <section className="flex flex-col gap-6">
@@ -47,17 +60,12 @@ export default function AllproductsDash({ products }: { products: TProductsRespo
             variant="primary"
             leftIcon={<Plus />}
             title="dashboard.products.add-product"
-            onClick={() => router.push('/dashboard/product/add-product')}
+            onClick={() => router.push('/dashboard/products/add-product')}
             responsiveIconOnly
           />
         </header>
-        <CustomInput
-          variant="search"
-          // onChange={(e) => setSearch(e.target.value)}
-          // onFocus={() => setDropdownOpen(true)}
-          // value={search}
-        />
-        <table className="[&_th]:p-2.5 [&_th]:pl-5  [&_td]:p-2.5 [&_td]:pl-5 ">
+        <CustomInput variant="search" onChange={(e) => setSearch(e.target.value)} value={search} />
+        <table className="table-fixed w-full [&_th]:p-2.5 [&_th]:pl-5  [&_td]:p-2.5 [&_td]:pl-5 ">
           <thead>
             <tr className=" bg-bg-muted">
               {tableHeader.map((e: string, index) => (
@@ -69,7 +77,7 @@ export default function AllproductsDash({ products }: { products: TProductsRespo
             </tr>
           </thead>
           <tbody>
-            {products.data.map((product) => {
+            {filteredProducts.map((product) => {
               const discountedPrice = Number(calculateDiscountedPrice(product));
               const sale = product.price - discountedPrice;
               return (
@@ -79,15 +87,15 @@ export default function AllproductsDash({ products }: { products: TProductsRespo
                 >
                   <td className="font-semibold">
                     {/* {product.category.title} */}
-                    {product.subCategory.title}
+                    {product.subCategory ? product.subCategory.title : product.category.title}
                   </td>
                   <td>
                     {discountedPrice.toFixed(2)} {t('currency.egp')}
                   </td>
-                  <td>{product.stock}</td>
-                  <td>{sale}</td>
+                  <td className={cn(product.stock <= 5 && 'text-text-danger')}>{product.stock}</td>
+                  <td>{sale.toFixed(0)}</td>
                   <td>
-                    {product.ratings}/5 <span>({product.rating})</span>
+                    {product.ratings}/5 <span>({product.rating.toFixed(0)})</span>
                   </td>
                   <td>
                     <div className="flex gap-2.5 items-center max-sm:hidden">
