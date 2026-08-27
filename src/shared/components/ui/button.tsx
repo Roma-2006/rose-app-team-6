@@ -28,7 +28,7 @@ const buttonVariants = cva(
         custom: 'py-3.5 px-4 gap-1.5',
         default:
           'h-9 gap-1.5 px-3 has-data-[icon=inline-end]:pr-2.5 has-data-[icon=inline-start]:pl-2.5',
-        xs: 'py-1 px-2 gap-1 text-xs',
+        xs: 'py-1 px-2 gap-1 text-xs w-16',
         sm: 'h-8 gap-1 px-3 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2',
         lg: 'h-10 gap-1.5 px-4 has-data-[icon=inline-end]:pr-3 has-data-[icon=inline-start]:pl-3',
         icon: 'size-9',

@@ -98,7 +98,7 @@ export default function AllproductsDash({ products }: { products: TProductsRespo
                     {product.ratings}/5 <span>({product.rating.toFixed(0)})</span>
                   </td>
                   <td>
-                    <div className="flex gap-2.5 items-center max-sm:hidden">
+                    <div className="flex flex-col xl:flex-row  justify-between items-center max-sm:hidden">
                       <Button
                         buttonVariant="text"
                         title="button.edit"
@@ -110,7 +110,7 @@ export default function AllproductsDash({ products }: { products: TProductsRespo
                       <Button
                         buttonVariant="text"
                         title="button.delete"
-                        leftIcon={<Trash size={16} />}
+                        leftIcon={<Trash size={14} />}
                         variant="danger"
                         size="xs"
                         onClick={() => handleDelete(product.id)}
