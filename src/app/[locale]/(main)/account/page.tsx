@@ -7,6 +7,7 @@ import { AccountPageProps } from '@/features/user/types/profile';
 import { getServerSession } from 'next-auth';
 import { getTranslations } from 'next-intl/server';
 import { redirect } from 'next/navigation';
+
 export default async function AccountPage({ searchParams }: AccountPageProps) {
   const session = await getServerSession(authOptions);
   if (!session) {
@@ -15,13 +16,11 @@ export default async function AccountPage({ searchParams }: AccountPageProps) {
 
   //Translations
   const t = await getTranslations();
-  const resolvedParams = await searchParams;
-  const tab = resolvedParams?.tab;
+  const { tab } = await searchParams;
   const activeTab = tab === 'password' ? 'password' : 'profile';
 
-  // Profile Data
+  //Profile Data
   const user = await getUserProfile();
-
   return (
     <div className="w-full mt-15.5">
       <h6 className="text-5xl font-bold mb-9 text-text-plain">{t('account-settings.title')}</h6>
