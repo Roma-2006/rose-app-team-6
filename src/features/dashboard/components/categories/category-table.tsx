@@ -1,13 +1,13 @@
 'use client';
 
-import React, { useState, useEffect, useTransition } from 'react';
-import { useRouter } from 'next/navigation';
+import React, { useState, useEffect, useTransition, useCallback } from 'react';
 import { SquarePen, Trash2 } from 'lucide-react';
 import { CategoryTableProps } from '../../types/categories/categories';
 import { useCategory } from '../../hooks/use-category';
 import CustomInput from '@/shared/components/custom-input';
-import { Link } from '@/i18n/navigation';
+import { useRouter, Link } from '@/i18n/navigation';
 import PaginationControls from './pagination';
+import { signOut, useSession } from 'next-auth/react';
 
 export default function CategoryTable({
   initialCategories,
@@ -16,26 +16,32 @@ export default function CategoryTable({
   currentSearch,
 }: CategoryTableProps) {
   const router = useRouter();
+  const { data: session } = useSession();
+
   const [search, setSearch] = useState(currentSearch);
   const [isPending, startTransition] = useTransition();
 
+  // 🛠️ استخدام الدالة القادمة من الـ Hook ليتفعل الـ isDeleting والتحديث التلقائي
   const { deleteCategory, isDeleting } = useCategory();
 
-  // دالة موحدة لتعديل البارامترات وتحديث مسار المتصفح الفعلي
-  const handleParamChange = (newPage: number, newSearch: string) => {
-    if (newPage < 1 || newPage > initialTotalPages) return;
+  // تغليف الدالة بـ useCallback لمنع الـ Infinite Loops واستقرار التصميم والأداء
+  const handleParamChange = useCallback(
+    (newPage: number, newSearch: string) => {
+      if (newPage < 1 || newPage > initialTotalPages) return;
 
-    startTransition(() => {
-      const params = new URLSearchParams();
-      params.set('page', newPage.toString());
+      startTransition(() => {
+        const params = new URLSearchParams();
+        params.set('page', newPage.toString());
 
-      if (newSearch.trim()) {
-        params.set('search', newSearch.trim().substring(0, 200));
-      }
+        if (newSearch.trim()) {
+          params.set('search', newSearch.trim().substring(0, 200));
+        }
 
-      router.push(`?${params.toString()}`, { scroll: false });
-    });
-  };
+        router.push(`?${params.toString()}`, { scroll: false });
+      });
+    },
+    [initialTotalPages, router]
+  );
 
   // آلية الـ Debounce لتأخير طلبات الفلترة أثناء كتابة نص البحث
   useEffect(() => {
@@ -46,31 +52,38 @@ export default function CategoryTable({
     }, 400);
 
     return () => clearTimeout(delayDebounceFn);
-  }, [search]);
+  }, [search, currentSearch, handleParamChange]);
 
-  const handleDeleteClick = async (id: string) => {
-    if (
-      !window.confirm(
-        'Are you sure you want to delete this category? This action cannot be undone.'
-      )
-    )
-      return;
-
+  const handleDeleteClick = async (id: string): Promise<void> => {
+    if (!id) return;
     try {
-      // 🛠️ قراءة الـ token من الـ localStorage لضمان التمرير الأمن وتفادي خطأ No Token Provided
-      const token = localStorage.getItem('token') || localStorage.getItem('accessToken') || '';
+      // 🛠️ التعديل الجذري: تمرير الـ id النصي المباشر (GUID) دون تغليفه داخل كائن ليتوافق مع شروط السيرفر
+      await deleteCategory(id);
 
-      if (!token) {
-        alert('Your session has expired. Please log in again.');
-        return;
-      }
-
-      // تمرير الـ id والـ token سوياً للـ mutation كمخرجات مدمجة
-      await deleteCategory({ id, token });
-      alert('Category deleted successfully!');
-      router.refresh();
+      startTransition(() => {
+        router.refresh();
+      });
     } catch (err: unknown) {
-      console.error('Delete operation failed:', err);
+      const msg = err instanceof Error ? err.message : String(err);
+
+      const isSessionError =
+        /expired|unauthorized|token|session/i.test(msg) ||
+        msg.includes('expired') ||
+        msg.includes('login again');
+
+      if (isSessionError) {
+        const currentPath = window.location.pathname + window.location.search;
+        const loginUrl = `/login?callbackUrl=${encodeURIComponent(currentPath)}`;
+
+        try {
+          await signOut({ redirect: false });
+          router.push(loginUrl);
+        } catch (signOutErr) {
+          window.location.assign(`/en${loginUrl}`);
+        }
+      } else {
+        alert(msg);
+      }
     }
   };
 
@@ -121,7 +134,7 @@ export default function CategoryTable({
                     </td>
                     <td className="px-6 py-1 text-right space-x-2 whitespace-nowrap">
                       <Link
-                        href={`/admin/categories/edit/${category.id}`}
+                        href={`/dashboard/category/${category.id}/update-category`}
                         className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-bg-info-fade text-text-info  rounded-md text-xs font-medium transition-colors"
                       >
                         <SquarePen size={12} /> Edit

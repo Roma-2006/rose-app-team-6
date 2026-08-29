@@ -1,5 +1,7 @@
 {
   "app-title": "تطبيق روز",
+    "Explore gifts": "Explore Gifts",
+
   "HomePage": {
     "title": "مرحبا بك في تطبيق روز"
   },
@@ -13,6 +15,7 @@
     "next": "التالي",
     "add-review": "أضف تقييمًا",
     "adding": "إضافة..."
+
   },
   "common": {
     "select": {

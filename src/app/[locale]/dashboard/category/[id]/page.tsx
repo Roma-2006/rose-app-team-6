@@ -1,124 +1,48 @@
-'use client';
+import { getCategoriesAction } from '@/features/dashboard/actions/categories/get-all-categories.action';
+import CategoryTable from '@/features/dashboard/components/categories/category-table';
+import { Link } from '@/i18n/navigation';
+import { Button } from '@/shared/components/ui/button';
+import { Plus } from 'lucide-react';
+import React from 'react';
 
-import React, { useState, useEffect } from 'react';
-import { useRouter, useParams } from 'next/navigation';
-import { Eye, ArrowLeft } from 'lucide-react';
+interface PageProps {
+  searchParams: Promise<{
+    page?: string;
+    search?: string;
+  }>;
+}
 
-export default function UpdateCategoryPage() {
-  const { id } = useParams() as { id: string };
-  const router = useRouter();
+export default async function CategoriesPage({ searchParams }: PageProps) {
+  // فك وعزل البارامترات مباشرة على السيرفر
+  const params = await searchParams;
+  const parsedPage = parseInt(params.page || '1', 10);
+  const currentPage = isNaN(parsedPage) || parsedPage < 1 ? 1 : parsedPage;
+  const searchKeyword = params.search || '';
 
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [loading, setLoading] = useState(true);
-  const [submitting, setSubmitting] = useState(false);
-
-  useEffect(() => {
-    const loadCategory = async () => {
-      try {
-        const response = await fetch(`/api/categories/${id}`);
-        const resData = await response.json();
-        if (resData.status && resData.payload) {
-          const parsed =
-            typeof resData.payload === 'string' ? JSON.parse(resData.payload) : resData.payload;
-          setTitle(parsed.title || '');
-          setDescription(parsed.description || '');
-        }
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    if (id) loadCategory();
-  }, [id]);
-
-  const handleUpdate = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      setSubmitting(true);
-      const response = await fetch(`/api/categories/${id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title, description }),
-      });
-
-      const resData = await response.json();
-      if (resData.status) {
-        router.push('/admin/categories');
-      } else {
-        alert(resData.message || 'Failed to update.');
-      }
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setSubmitting(false);
-    }
-  };
-
-  if (loading) return <div className="p-8 text-xs text-gray-400">Loading data...</div>;
+  const initialData = await getCategoriesAction(currentPage, searchKeyword, 12);
 
   return (
-    <main className="p-8 max-w-3xl mx-auto w-full">
-      <div className="flex items-center gap-2 text-xs text-gray-400 mb-6">
-        <button
-          type="button"
-          onClick={() => router.back()}
-          className="hover:text-gray-600 flex items-center gap-1"
-        >
-          <ArrowLeft size={14} /> Back
-        </button>
-        <span>/</span>
-        <span>Categories</span>
-        <span>/</span>
-        <span className="text-[#A32A38] font-medium">Update Category</span>
-      </div>
-
-      <h1 className="text-xl font-bold text-gray-900 mb-6">Update Category: {title}</h1>
-
-      <form
-        onSubmit={handleUpdate}
-        className="bg-white rounded-2xl border border-gray-100 p-8 shadow-sm space-y-5"
-      >
-        <div>
-          <label className="block text-xs font-semibold text-gray-600 mb-2">Title</label>
-          <input
-            type="text"
-            required
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            className="w-full px-4 py-2.5 text-sm border border-gray-200 rounded-xl focus:outline-none focus:border-[#A32A38] bg-gray-50/20"
+    <section className="flex flex-col gap-4.5 max-h-screen ">
+      <header className="w-full flex justify-between">
+        <h2 className="text-2xl font-semibold text-text-plain">All Categories</h2>
+        <Link href="/dashboard/category/add-category">
+          <Button
+            buttonVariant="text"
+            variant="primary"
+            title="button.submit"
+            leftIcon={<Plus />}
           />
-        </div>
+        </Link>
+      </header>
 
-        <div>
-          <label className="block text-xs font-semibold text-gray-600 mb-2">Description</label>
-          <textarea
-            rows={4}
-            required
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            className="w-full px-4 py-2.5 text-sm border border-gray-200 rounded-xl focus:outline-none focus:border-[#A32A38] bg-gray-50/20 resize-none"
-          />
-        </div>
-
-        <div className="flex justify-end">
-          <button
-            type="button"
-            className="text-xs text-blue-500 hover:text-blue-600 font-medium inline-flex items-center gap-1"
-          >
-            <Eye size={13} /> View Category image
-          </button>
-        </div>
-
-        <button
-          type="submit"
-          disabled={submitting}
-          className="w-full bg-[#A32A38] hover:bg-[#8A222E] text-white font-semibold text-sm py-3 rounded-xl transition-colors shadow-sm disabled:opacity-40"
-        >
-          {submitting ? 'Updating...' : 'Update Category'}
-        </button>
-      </form>
-    </main>
+      <main className=" ">
+        <CategoryTable
+          initialCategories={initialData.categories || []}
+          initialTotalPages={initialData.totalPages || 1}
+          currentPage={currentPage}
+          currentSearch={searchKeyword}
+        />
+      </main>
+    </section>
   );
 }

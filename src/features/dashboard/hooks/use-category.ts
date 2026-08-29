@@ -9,17 +9,23 @@ export function useCategory() {
 
   // 1. Mutation الإضافة
   const createMutation = useMutation({
-    mutationFn: (data: CreateCategoryType) => createCategoryAction(data),
+    mutationFn: async (data: CreateCategoryType) => {
+      const res = await createCategoryAction(data);
+      // الأكشن المحدث يرمي خطأ صريح تلقائياً في حال فشل الطلب
+      return res;
+    },
     onSuccess: () => {
-      // إجبار كاش المكونات على التحديث الفوري وتصفير الذاكرة المخزنة
       queryClient.invalidateQueries({ queryKey: ['categories'] });
     },
   });
 
   // 2. Mutation التعديل
   const updateMutation = useMutation({
-    mutationFn: ({ id, data }: { id: string; data: Partial<CreateCategoryType> }) =>
-      updateCategoryAction({ id, data }),
+    mutationFn: async ({ id, data }: { id: string; data: Partial<CreateCategoryType> }) => {
+      const res = await updateCategoryAction({ id, data });
+      if (!res.success) throw new Error(res.message);
+      return res;
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['categories'] });
     },
@@ -27,8 +33,12 @@ export function useCategory() {
 
   // 3. Mutation الحذف
   const deleteMutation = useMutation({
-    // تعديل الـ Fn لتمرير الكائن المحتوي على المعرف والـ token
-    mutationFn: ({ id, token }: { id: string; token: string }) => deleteCategoryAction(id, token),
+    mutationFn: async (id: string) => {
+      const res = await deleteCategoryAction(id);
+      // الأكشن يرجع نص عادي في حال النجاح ويرمي خطأ صريح في حال الفشل،
+      // لذا أزلنا فحص res.success لحماية الواجهة من الأخطاء الزائفة.
+      return res;
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['categories'] });
     },

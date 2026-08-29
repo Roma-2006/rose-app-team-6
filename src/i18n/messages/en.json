@@ -1,8 +1,12 @@
 {
   "app-title": "Rose App",
+    "Explore gifts": "Explore Gifts",
+
   "HomePage": {
     "title": "Welcome to Rose App"
   },
+
+
   "button": {
     "loading":"Loading...",
     "submit": "Submit",

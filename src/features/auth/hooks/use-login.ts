@@ -1,7 +1,7 @@
 'use client';
 
 import { signIn, signOut, useSession } from 'next-auth/react';
-import { useEffect, useState } from 'react';
+import { use, useEffect, useState } from 'react';
 import { TLoginData } from '../types/auth';
 import { useRouter } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
@@ -13,14 +13,17 @@ export default function useLogin() {
   const [error, setError] = useState<string | null>(null);
   const { data: session, status } = useSession();
   const queryClient = useQueryClient();
-
-  useEffect(() => {
-    if (status === 'authenticated' && session?.token) {
-      syncGuestDataToServer(session.token, queryClient);
-    }
-  }, [status, session?.token, queryClient]);
   const router = useRouter();
 
+  useEffect(() => {
+    if (status !== 'authenticated' || !session?.token) return;
+    syncGuestDataToServer(session.token, queryClient);
+    if (session.user?.role === 'ADMIN') {
+      router.push('/dashboard');
+    } else {
+      router.push('/');
+    }
+  }, [status, session?.token, session?.user?.role, queryClient, router]);
   const tLogin = useTranslations('auth.login');
 
   // handleLogin
