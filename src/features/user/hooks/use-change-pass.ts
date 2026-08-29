@@ -2,40 +2,46 @@
 
 import { useMutation, UseMutationResult } from '@tanstack/react-query';
 import { signOut } from 'next-auth/react';
-import { ChangePasswordPayload } from '../types/api';
+import { ChangePasswordPayload, ActionResponse } from '../types/api';
 import { changePasswordAction } from '../actions/change-pass.action';
 
 interface UseChangePasswordResult {
-  mutation: UseMutationResult<string, Error, ChangePasswordPayload>;
-  changePassword: (data: ChangePasswordPayload) => void;
+  mutation: UseMutationResult<ActionResponse, Error, ChangePasswordPayload>;
+  changePassword: (data: ChangePasswordPayload, options?: { onSuccess?: () => void }) => void;
   isLoading: boolean;
   isSuccess: boolean;
   isError: boolean;
-  error: Error | null;
+  error: string | null;
 }
 
 export function useChangePassword(): UseChangePasswordResult {
-  // Mutation
-  const mutation = useMutation<string, Error, ChangePasswordPayload>({
+  const mutation = useMutation<ActionResponse, Error, ChangePasswordPayload>({
     mutationFn: async (data: ChangePasswordPayload) => {
-      return await changePasswordAction(data);
+      const result = await changePasswordAction(data);
+      if (!result.success) {
+        throw new Error(result.message);
+      }
+      return result;
     },
     onSuccess: () => {
-      signOut({ callbackUrl: '/login' });
-    },
-    onError: (error: Error) => {
-      if (process.env.NODE_ENV === 'development') {
-        console.error('❌ Mutation Error:', error.message);
-      }
+      setTimeout(() => {
+        signOut({ callbackUrl: '/login' });
+      }, 1000);
     },
   });
 
   return {
     mutation,
-    changePassword: mutation.mutate,
+    changePassword: (data, options) => {
+      mutation.mutate(data, {
+        onSuccess: () => {
+          if (options?.onSuccess) options.onSuccess();
+        },
+      });
+    },
     isLoading: mutation.isPending,
     isSuccess: mutation.isSuccess,
     isError: mutation.isError,
-    error: mutation.error,
+    error: mutation.error ? mutation.error.message : null,
   };
 }

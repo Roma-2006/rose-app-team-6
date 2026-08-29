@@ -1,6 +1,6 @@
 'use server';
+import axios from './../../../node_modules/axios/index.d';
 import { getAuthToken } from '@/features/main/lib/get-auth-token';
-import axios from 'axios';
 import { Response } from '@/shared/types/api';
 import { UploadPhotoResponse } from '../types/product-price';
 export default async function uploadPhotoAction(formData: FormData) {
