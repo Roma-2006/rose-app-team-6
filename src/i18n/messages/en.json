@@ -468,9 +468,15 @@
     },
 
     
-  "dashboard-title": {
+  "dashboard-chart-title": {
     "ordersStatus": "Orders Status",
-    "revenue": "Revenue"
+    "revenue": "Revenue",
+    "lastweek":"Last Week",
+     "monthly":"Monthly",
+     "EGP":"EGP",
+     "completed": "Completed",
+    "inProgress": "In progress",
+    "canceled": "Canceled"
   },
     "account" : {
       "delete-popover" : {

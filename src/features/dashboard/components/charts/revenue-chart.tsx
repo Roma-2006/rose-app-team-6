@@ -4,7 +4,6 @@ import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from 'recharts';
 import { ChartContainer, ChartTooltip, type ChartConfig } from '@/shared/components/ui/chart';
 import { useTranslations } from 'next-intl';
 import { DashboardTitle } from '../../shared/dashboard-title';
-import { useState, useTransition } from 'react';
 
 const chartConfig = {
   revenue: {
@@ -29,7 +28,7 @@ type RevenueChartProps = {
 };
 
 export function RevenueChart({ data, period, onPeriodChange, isPending }: RevenueChartProps) {
-  const t = useTranslations('dashboard.dashboard-title');
+  const t = useTranslations('dashboard.dashboard-chart-title');
 
   return (
     <div className="w-full rounded-2xl bg-white p-6 border border-gray-100 shadow-sm">
@@ -44,7 +43,7 @@ export function RevenueChart({ data, period, onPeriodChange, isPending }: Revenu
             disabled={isPending}
             className={period === 'monthly' ? 'text-[#a81c1c]' : 'text-gray-800'}
           >
-            Monthly
+            {t('monthly')}
           </button>
 
           <button
@@ -53,13 +52,13 @@ export function RevenueChart({ data, period, onPeriodChange, isPending }: Revenu
             disabled={isPending}
             className={period === 'week' ? 'text-[#a81c1c]' : 'text-gray-800'}
           >
-            Last Week
+            {t('lastweek')}
           </button>
         </div>
       </div>
 
       {/* Chart Container  */}
-      <ChartContainer config={chartConfig} className="h-[320px] w-full">
+      <ChartContainer config={chartConfig} className="h-89 w-full">
         <AreaChart
           accessibilityLayer
           data={data}
@@ -104,7 +103,7 @@ export function RevenueChart({ data, period, onPeriodChange, isPending }: Revenu
                 return (
                   <div className="flex flex-col items-center">
                     <span className="mb-1 text-xs font-extrabold text-[#a81c1c]">
-                      {payload[0].value} EGP
+                      {payload[0].value} {t('EGP')}
                     </span>
                   </div>
                 );

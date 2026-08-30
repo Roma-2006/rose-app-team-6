@@ -1,7 +1,7 @@
 // Lib
-// import { getServerSession } from 'next-auth';
-// import { authOptions } from '@/auth';
-// import { redirect } from '@/i18n/navigation';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/auth';
+import { redirect } from '@/i18n/navigation';
 import { getLocale } from 'next-intl/server';
 
 // Relevants
@@ -12,12 +12,12 @@ import { AppSidebar } from '@/features/dashboard/components/layout/app-sidebar';
 import { SidebarProvider, SidebarInset } from '@/shared/components/ui/sidebar';
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
-  // const session = await getServerSession(authOptions);
-  // const locale = await getLocale();
+  const session = await getServerSession(authOptions);
+  const locale = await getLocale();
 
-  // if (!session || session?.user.role == 'USER') {
-  //   redirect({ href: '/', locale: locale });
-  // }
+  if (!session || session?.user.role == 'USER') {
+    redirect({ href: '/', locale: locale });
+  }
 
   return (
     <BreadcrumbProvider>

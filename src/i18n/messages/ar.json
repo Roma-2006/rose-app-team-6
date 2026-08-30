@@ -469,9 +469,15 @@
     "description": "نحن نعمل على حلها ، بالرجاء المحاولة مرة اخرى ",
     "action": "حاول مرة اخرى"
   },
-  "dashboard-title": {
+  "dashboard-chart-title": {
     "ordersStatus": "حالة الطلبات",
-    "revenue": "الإيرادات"
+    "revenue": "الإيرادات",
+     "lastweek":"الأسبوع الماضي",
+     "monthly":"شهري",
+     "EGP":"جنيه",
+     "completed": "مكتملة",
+    "inProgress": "قيد التنفيذ",
+    "canceled": "ملغاة"
   },
       "account" :{
      "delete-popover" : {
