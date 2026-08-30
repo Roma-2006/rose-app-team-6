@@ -19,12 +19,15 @@ const buttonVariants = cva(
         link: 'bg-bg-subtle border border-border-subtle text-text-plain',
         softPink: 'bg-soft-pink-50 text-maroon-600 hover:bg-soft-pink-100 shadow-sm border-none',
         danger: 'bg-bg-danger-fade text-text-danger',
+        ghostDanger: 'text-text-danger hover:bg-bg-soft  ',
+        blue: 'text-text-info bg-bg-info-fade',
+        ghostBlue: 'text-text-info hover:bg-bg-soft  ',
       },
       size: {
         custom: 'py-3.5 px-4 gap-1.5',
         default:
           'h-9 gap-1.5 px-3 has-data-[icon=inline-end]:pr-2.5 has-data-[icon=inline-start]:pl-2.5',
-        xs: "h-6 gap-1 px-2.5 text-xs has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2 [&_svg:not([class*='size-'])]:size-3",
+        xs: 'py-1 px-2 gap-1 text-xs w-16',
         sm: 'h-8 gap-1 px-3 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2',
         lg: 'h-10 gap-1.5 px-4 has-data-[icon=inline-end]:pr-3 has-data-[icon=inline-start]:pl-3',
         icon: 'size-9',
@@ -45,6 +48,7 @@ function Button(props: ButtonPrimitive.Props & VariantProps<typeof buttonVariant
   const isIcon = props.buttonVariant === 'icon';
   const isText = props.buttonVariant === 'text';
   const isNumber = props.buttonVariant === 'number';
+  const isResponsiveIconOnly = props.buttonVariant === 'text' && props.responsiveIconOnly;
   const getDomProps = () => {
     if (isIcon) {
       const {
@@ -90,8 +94,8 @@ function Button(props: ButtonPrimitive.Props & VariantProps<typeof buttonVariant
       className={cn(
         buttonVariants({
           variant: props.variant,
-          size: isIcon ? 'icon' : isText ? 'custom' : 'number',
-          className: props.className,
+          size: isIcon ? 'icon' : isText ? (props.size ?? 'custom') : 'number',
+          className: cn(props.className, isResponsiveIconOnly && 'max-sm:size-9'),
         })
       )}
       {...getDomProps()}
@@ -106,7 +110,17 @@ function Button(props: ButtonPrimitive.Props & VariantProps<typeof buttonVariant
       ) : (
         <>
           {isText && props.leftIcon}
-          {isIcon ? props.iconOnly : isText ? t(props.title!) : props.number}
+          {isIcon ? (
+            props.iconOnly
+          ) : isText ? (
+            isResponsiveIconOnly ? (
+              <span className="max-sm:hidden">{t(props.title!)}</span>
+            ) : (
+              t(props.title!)
+            )
+          ) : (
+            props.number
+          )}
           {isText && props.rightIcon}
         </>
       )}

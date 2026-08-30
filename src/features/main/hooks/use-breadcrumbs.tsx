@@ -9,11 +9,11 @@ import { BreadcrumbOverrideItem } from '@/features/dashboard/types/layout/breadc
 export function useBreadcrumbOverride(items: BreadcrumbOverrideItem[]) {
   // Variables
   const { setOverride } = useBreadcrumbContext();
-  const key = JSON.stringify(items);
 
   // Effects
   useEffect(() => {
     setOverride(items);
+
     return () => setOverride(null);
-  }, [key]);
+  }, [items, setOverride]);
 }

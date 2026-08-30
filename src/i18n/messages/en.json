@@ -15,9 +15,17 @@
     "delete": "Delete",
     "confirm": "Confirm",
     "next": "Next",
+<<<<<<< HEAD
      "add-review":"Add Review",
     "adding":"Adding..."
     
+=======
+    "add-review": "Add Review",
+    "adding": "Adding...",
+    "edit":"Edit",
+    "preview-website": "Preview Website",
+    "retry":"Retry"
+>>>>>>> 89eeab5bf888d58b9075d6992558ec2c155aa776
   },
   "common": {
     "select": {
@@ -426,7 +434,34 @@
       "delete":"Delete",
       "Category image":"Category image *",
       "Add Category":"Add Category",
-      "Update Category":"Update Category"
+      "Update Category":"Update Category"},
+    "products":{
+      "title":"All Products",
+      "add-product":"Add a new product",
+      "delete-success": "Product deleted successfully.",
+      "delete-error": "Failed to delete product.",
+      "currency": {
+        "egp": "EGP"
+      },
+      "table":{
+        "name":"Name",
+        "price":"Price",
+        "stock":"Stock",
+        "sales":"Sales",
+        "ratings":"Ratings"
+      },
+    "account" : {
+      "delete-popover" : {
+        "title" : "Are you sure you want to delete your account?",
+        "description" : "This action is permanent and cannot be undone.",
+        "cancel-button" : "Nope, not doing it",
+        "confirm-button" : "Yes, delete",
+        "loading-button" : "Loading..."
+      },
+      "menu": {
+        "edit-button" : "Edit",
+        "delete-button" : "Delete"
+      }
     }
   },
 
@@ -460,5 +495,9 @@
     "cancel": "Cancel",
     "confirm": "Confirm"
   }
+<<<<<<< HEAD
 
+=======
+  }
+>>>>>>> 89eeab5bf888d58b9075d6992558ec2c155aa776
 }

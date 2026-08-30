@@ -14,8 +14,10 @@
     "confirm": "تأكيد",
     "next": "التالي",
     "add-review": "أضف تقييمًا",
-    "adding": "إضافة..."
-
+    "adding": "إضافة...",
+    "edit": "تعديل",
+    "preview-website": "عرض الصفحة" ,
+    "retry": "إعادة المحاولة"
   },
   "common": {
     "select": {
@@ -436,7 +438,36 @@
       "Category image":"صورة الفئة *",
       "Add Category":"إضافة فئة",
       "Update Category":"تحديث فئة"
-    }
+    },
+     "products":{
+      "title":"كل المنتجات",
+      "add-product":"إضافة منتج جديد",
+      "delete-success": "تم حذف المنتج بنجاح.",
+      "delete-error": "حدث خطأ أثناء حذف المنتج.",
+      "currency": {
+        "egp": "جنيه مصري"
+      },
+      "table": {
+        "name": "الاسم",
+        "price": "السعر",
+        "stock": "المخزون",
+        "sales": "المبيعات",
+        "ratings": "التقييمات"
+      }
+    },
+  "account" :{
+     "delete-popover" : {
+        "title" : "هل أنت متأكد أنك تريد حذف الحساب؟",
+        "description" : "هذا الإجراء لا يمكن الرجوع فيه",
+        "cancel-button" : "لا ، لا تفعل ذلك",
+        "confirm-button" : "نعم ، احذف",
+        "loading-button" : "تحميل..."
+      },
+       "menu": {
+        "edit-button" : "تعديل",
+        "delete-button" : "حذف"
+      }
+  }
 },
   
   "cart": {
@@ -470,3 +501,7 @@
   }
 
 }
+  
+   
+   
+

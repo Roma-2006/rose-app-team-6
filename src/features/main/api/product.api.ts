@@ -2,7 +2,7 @@ import { TProductsResponse } from '@/features/main/types/products';
 import { Response } from '../../../shared/types/api';
 import { GetProductsParams } from '@/features/main/types/product-query';
 
-export async function getProducts(params: GetProductsParams = {}) {
+export async function getProducts(params: GetProductsParams = {}): Promise<TProductsResponse> {
   const url = new URL(`${process.env.NEXT_PUBLIC_API_URL}/products`);
 
   const {
@@ -36,10 +36,10 @@ export async function getProducts(params: GetProductsParams = {}) {
       url.searchParams.set(key, String(value));
     }
   });
-
+  console.log('REQUEST URL:', url.toString());
   const response = await fetch(url.toString());
   const result: Response<TProductsResponse> = await response.json();
-  if (!result.status) {
+  if (!result.status || !result.payload) {
     throw new Error('Failed to fetch products');
   }
   return result.payload;
