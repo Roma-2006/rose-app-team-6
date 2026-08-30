@@ -423,7 +423,20 @@
     "title": "للأسف حدث خطأ ما ",
     "description": "نحن نعمل على حلها ، بالرجاء المحاولة مرة اخرى ",
     "action": "حاول مرة اخرى"
-  }
+  },
+   "categories":{
+      "all-categories":"جميع الفئات",
+      "add-new-category":"أضف فئة جديدة",
+      "name":"الاسم",
+      "products":"المنتجات",
+      "categories-not-found":"لم يتم العثور على أي فئات مطابقة للبحث.",
+       "num-products":"منتجات",
+      "edit":"تعديل",
+      "delete":"حذف",
+      "Category image":"صورة الفئة *",
+      "Add Category":"إضافة فئة",
+      "Update Category":"تحديث فئة"
+    }
 },
   
   "cart": {

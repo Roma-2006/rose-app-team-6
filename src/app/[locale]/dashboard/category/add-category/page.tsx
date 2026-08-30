@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef, ChangeEvent, FormEvent } from 'react';
+import React, { useState, useRef, ChangeEvent, FormEvent, KeyboardEvent } from 'react';
 import { useRouter } from '@/i18n/navigation';
 import { useCategory } from '@/features/dashboard/hooks/use-category';
 import { Upload } from 'lucide-react';
@@ -15,60 +15,73 @@ interface SwaggerUploadSuccessPayload {
   };
 }
 
+const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+
 export default function AddCategoryPage() {
   const [name, setName] = useState<string>('');
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imageName, setImageName] = useState<string>('');
   const fileInputRef = useRef<HTMLInputElement>(null);
-
   const { createCategory, isCreating } = useCategory();
   const [uploading, setUploading] = useState<boolean>(false);
   const [localError, setLocalError] = useState<string | null>(null);
   const router = useRouter();
   const { data: session } = useSession();
+  const isPending = isCreating || uploading;
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0];
+    const file = e.target.files?.[0];
+    if (!file) return;
 
-      // 🛠️ فحص استباقي: التحقق من الامتدادات المسموحة في الـ Swagger لمنع الـ 500 الكارثية
-      const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
-      if (!allowedTypes.includes(file.type)) {
-        setLocalError('Invalid file type. Please choose a JPG, PNG, GIF, or WEBP image.');
-        setImageFile(null);
-        setImageName('');
-        return;
-      }
-
-      setLocalError(null);
-      setImageFile(file);
-      setImageName(file.name);
+    if (!ALLOWED_TYPES.includes(file.type)) {
+      setLocalError('Invalid file type. Please choose a JPG, PNG, GIF, or WEBP image.');
+      setImageFile(null);
+      setImageName('');
+      return;
     }
+
+    setLocalError(null);
+    setImageFile(file);
+    setImageName(file.name);
   };
 
   const triggerFileSelect = (): void => {
     fileInputRef.current?.click();
   };
 
+  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>): void => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      triggerFileSelect();
+    }
+  };
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
-    if (isCreating || uploading || !imageFile) {
-      if (!imageFile) setLocalError('Please choose a category image file first.');
+
+    if (!name.trim()) {
+      setLocalError('Category name cannot be empty.');
       return;
     }
+
+    if (!imageFile) {
+      setLocalError('Please choose a category image file first.');
+      return;
+    }
+
+    if (isPending) return;
 
     try {
       setLocalError(null);
       setUploading(true);
 
       const formData = new FormData();
-      formData.append('image', imageFile);
+      formData.append('image', imageFile); // ⚠️ Verify if Swagger expects 'image' or 'file'
 
-      const uploadResponse = await fetch('/api/upload', {
+      const uploadResponse = await fetch(`${API_BASE_URL}/upload`, {
         method: 'POST',
-        headers: {
-          ...(session?.token ? { Authorization: `Bearer ${session.token}` } : {}),
-        },
+        headers: session?.token ? { Authorization: `Bearer ${session.token}` } : {},
         body: formData,
       });
 
@@ -88,22 +101,17 @@ export default function AddCategoryPage() {
       }
 
       const payload: CreateCategoryType = {
-        title: name,
-        description: `Collection of premium products listed under ${name} category.`,
+        title: name.trim(),
+        description: `Collection of premium products listed under ${name.trim()} category.`,
         image: temporaryCacheImageUrl,
       };
 
       await createCategory(payload);
-
       router.refresh();
-      router.push('/dashboard/category');
+      router.push('/dashboard/catergory/[id]');
     } catch (err: unknown) {
       console.error('Category Creation Flow Error:', err);
-      if (err instanceof Error) {
-        setLocalError(err.message || 'Validation failed for category creation steps.');
-      } else {
-        setLocalError('An unexpected runtime error occurred.');
-      }
+      setLocalError(err instanceof Error ? err.message : 'An unexpected runtime error occurred.');
     } finally {
       setUploading(false);
     }

@@ -414,6 +414,19 @@
       "title": "Oops, something went wrong!",
       "description": "We're working to get this fixed. Please refresh or try again shortly.",
       "action": "Try again"
+    },
+    "categories":{
+      "all-categories":"All Categories",
+      "add-new-category":"Add a new category",
+      "name":"Name",
+      "products":"Products",
+      "categories-not-found":"No categories found matching filters.",
+       "num-products":"Products",
+      "edit":"Edit",
+      "delete":"Delete",
+      "Category image":"Category image *",
+      "Add Category":"Add Category",
+      "Update Category":"Update Category"
     }
   },
 

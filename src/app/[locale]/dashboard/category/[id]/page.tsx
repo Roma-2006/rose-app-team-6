@@ -3,6 +3,8 @@ import CategoryTable from '@/features/dashboard/components/categories/category-t
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/shared/components/ui/button';
 import { Plus } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import React from 'react';
 
 interface PageProps {
@@ -13,23 +15,25 @@ interface PageProps {
 }
 
 export default async function CategoriesPage({ searchParams }: PageProps) {
-  // فك وعزل البارامترات مباشرة على السيرفر
+  //Translation
+  const tDashboard = getTranslations('dashboard.categories');
+
+  //Variables
   const params = await searchParams;
   const parsedPage = parseInt(params.page || '1', 10);
   const currentPage = isNaN(parsedPage) || parsedPage < 1 ? 1 : parsedPage;
   const searchKeyword = params.search || '';
-
   const initialData = await getCategoriesAction(currentPage, searchKeyword, 12);
 
   return (
     <section className="flex flex-col gap-4.5 max-h-screen ">
       <header className="w-full flex justify-between">
-        <h2 className="text-2xl font-semibold text-text-plain">All Categories</h2>
+        <h2 className="text-2xl font-semibold text-text-plain">{tDashboard('all-categories')}</h2>
         <Link href="/dashboard/category/add-category">
           <Button
             buttonVariant="text"
             variant="primary"
-            title="button.submit"
+            title="dashboard.categories.add-new-category"
             leftIcon={<Plus />}
           />
         </Link>
