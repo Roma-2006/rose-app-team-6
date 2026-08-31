@@ -1,14 +1,12 @@
 import getUserProfile from '@/features/user/apis/get-user-profile.api';
-import ChangePasswordView from '@/features/user/components/account-settings/change-pass';
+
 import ProfileView from '@/features/user/components/account-settings/profile-view';
 import { AccountPageProps } from '@/features/user/types/profile';
 import { getTranslations } from 'next-intl/server';
-
-export default async function DashboardAccountPage({ searchParams }: AccountPageProps) {
+import Link from 'next/link';
+export default async function DashboardAccountPage() {
   // Translations
   const t = await getTranslations();
-  const { tab } = await searchParams;
-  const activeTab = tab === 'password' ? 'password' : 'profile';
 
   // Profile Data
   const user = await getUserProfile();
@@ -22,10 +20,9 @@ export default async function DashboardAccountPage({ searchParams }: AccountPage
 
       {/* Main Card Container Matching Design */}
       <div className="w-full rounded-2xl bg-white p-6 shadow-sm border border-gray-100 sm:p-8">
-        <main className="w-full">
-          {activeTab === 'profile' && <ProfileView user={user} />}
-          {/* {activeTab === 'password' && <ChangePasswordView />} */}
-        </main>
+        <div className="w-full">
+          <ProfileView user={user} />
+        </div>
       </div>
     </div>
   );

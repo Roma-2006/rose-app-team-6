@@ -322,7 +322,7 @@ export default function CustomInput({
             max={max}
             step={step}
             placeholder={computedPlaceholder}
-            value={(props.value ?? defaultValue) as string | number | undefined} // إضافة تحويل النوع لحل خطأ TypeScript السابق
+            value={(value ?? defaultValue) as string | number | undefined}
             onChange={onChange}
             onBlur={props.onBlur}
             isRtl={computedIsRtl}
@@ -342,7 +342,7 @@ export default function CustomInput({
                  md:text-sm
                 ${inputStyle} `}
             placeholder={computedPlaceholder}
-            value={props.value as string}
+            value={value as string}
             onChange={(val) => {
               const syntheticEvent = {
                 target: { value: val || '', name: props.name || id, id },

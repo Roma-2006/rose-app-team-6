@@ -2,6 +2,7 @@ import React from 'react';
 import { AppliedCouponsBoxProps } from '../../types/order-summary';
 import { useTranslations } from 'next-intl';
 
+//Show applied coupons
 export default function AppliedCouponsBox({
   appliedCoupons,
   onRemoveCoupon,

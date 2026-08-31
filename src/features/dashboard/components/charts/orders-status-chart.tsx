@@ -17,7 +17,7 @@ export function OrdersStatusChart({ data }: OrdersStatusChartProps) {
   const chartData = getChartData(data, t);
 
   return (
-    <div className="w-full rounded-2xl bg-white p-6 shadow-sm border border-gray-100">
+    <div className="w-full rounded-2xl bg-white p-6 shadow-sm border border-gray-100 ">
       {/* Title Header */}
       <div className="mb-6 text-start lg:text-center">
         <DashboardTitle title={t('ordersStatus')} />
@@ -26,7 +26,7 @@ export function OrdersStatusChart({ data }: OrdersStatusChartProps) {
       <div className="flex flex-row items-center justify-between gap-4 lg:flex-col lg:items-stretch">
         {/* Chart Container */}
         <div className="w-1/2 flex-shrink-0 lg:w-full lg:max-w-74 lg:mx-auto">
-          <ChartContainer config={CHART_CONFIG} className="mx-auto aspect-square min-h-43">
+          <ChartContainer config={CHART_CONFIG} className="mx-auto aspect-square min-h-50">
             <PieChart>
               <ChartTooltip content={<ChartTooltipContent nameKey="status" hideLabel />} />
 

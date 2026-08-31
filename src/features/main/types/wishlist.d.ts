@@ -17,5 +17,6 @@ export type TWishlistItemProps = {
   wishlistItem: WishlistItem | LocalWishlistItem;
 };
 interface WishlistContentProps {
-  initialWishlist: GetWishlistResponse;
+  wishlist?: GetWishlistResponse;
+  isAuthenticated: boolean;
 }

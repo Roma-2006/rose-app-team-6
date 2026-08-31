@@ -1,3 +1,4 @@
+'use client';
 import { Link } from '@/i18n/navigation';
 import { TUserAuthActionProps } from '@/shared/types/user-auth-action';
 import { User } from 'lucide-react';
@@ -11,7 +12,7 @@ export default function UserAuthAction({ isAuthenticated }: TUserAuthActionProps
 
   // Session
   const { data: session } = useSession();
-  if (!session) return null;
+
   if (!isAuthenticated) {
     return (
       <Link
@@ -23,6 +24,6 @@ export default function UserAuthAction({ isAuthenticated }: TUserAuthActionProps
       </Link>
     );
   }
-
+  if (!session) return null;
   return <UserDropdown user={session?.user} />;
 }

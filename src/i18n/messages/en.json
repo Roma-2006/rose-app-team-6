@@ -4,7 +4,7 @@
     "title": "Welcome to Rose App"
   },
   "button": {
-    "loading":"Loading...",
+    "loading": "Loading...",
     "submit": "Submit",
     "cancel": "Cancel",
     "save": "Save",
@@ -14,10 +14,9 @@
     "add-review": "Add Review",
     "adding": "Adding...",
     "preview-website": "Preview Website",
-    "retry":"Retry",
+    "retry": "Retry",
     "account-confirm": "Yes, delete",
     "account-cancel": "Nope, not doing it"
-
   },
   "common": {
     "select": {
@@ -275,8 +274,9 @@
     "bestSelling": {
       "badge": "Best Selling",
       "titlePart1": "Check Out",
-      "titlePart2": "What Everyone’s Buying",
-      "titlePart3": "Right Now",
+      "titlePart2": "What Everyone’s",
+      "titlePart3": "Buying",
+      "titlePart4": "Right Now",
       "description": "Not sure what to choose?\nStart with our best sellers, these are the gifts our customers keep coming back for.\nWhether you're celebrating a birthday, anniversary or wedding, our top picks are guaranteed to leave a lasting impression.",
       "exploreButton": "Explore gifts"
     },
@@ -329,16 +329,13 @@
     "placeholder": "Enter your name..."
   },
   "custom-input": {
-    
     "default": {
-      
+      "label": "Label",
+      "placeholder": "Enter value",
       "first-name": { "label": "First name", "placeholder": "zoe" },
       "last-name": { "label": "Last name", "placeholder": "Jonathan" },
       "user-name": { "label": "UserName", "placeholder": "zoe123" },
       "review-title": { "label": "Title", "placeholder": "Enter review title" }
-      
-     
-     
     },
     "number": {
       "label": "Number",
@@ -346,18 +343,15 @@
     },
     "search": {
       "label": "Search",
-      "placeholder": "Search..."
+      "placeholder": "Enter value"
     },
     "password": {
-        "label": "Password",
+      "label": "Password",
       "placeholder": "Enter password",
       "password": { "label": "Password", "placeholder": "*********" },
       "confirm-Password": { "label": "Confirm Password", "placeholder": "*********" }
-     
-    
     },
     "file": {
-      
       "btn-text": "Upload File",
       "error-type": "File type not accepted."
     },
@@ -371,10 +365,21 @@
     },
     "nice-to-have-you-here": "nice to have you here"
   },
+  "checkout": {
+    "shipping-address": {
+      "title": "Shipping Address",
+      "add-new-address": "Add New Address",
+      "or": "OR",
+      "load-error": "Failed to load addresses.",
+      "no-addresses-error": "Add your first address to continue"
+    },
+    "next": "Next",
+    "back": "Back"
+  },
   "products": {
     "addToCart": "Add to cart",
     "outOfStock": "Out of stock",
-    "in-stock":"In Stock",
+    "in-stock": "In Stock",
     "no-ratings": "No ratings yet",
     "product-card": {
       "new": "New",
@@ -412,7 +417,6 @@
       }
     },
     "product-reviews": {
-   
       "title": "Product Reviews",
       "empty": "No reviews yet.",
       "loading": "Loading reviews...",
@@ -424,8 +428,8 @@
       "ratingsCount": "({count} ratings)"
     },
     "add-review": {
-      "add-review":"Add Review",
-      "adding":"Adding...",
+      "add-review": "Add Review",
+      "adding": "Adding...",
       "rating": "Your rating",
       "title": "Title",
       "review": "Review",
@@ -435,17 +439,56 @@
     "related-products": {
       "sec-title": "Related Products"
     },
-    "wishlist":{
-      "title":"Wishlist",
-      "empty":" Your wishlist is empty ",
-      "browse":"Browse products ",
-      "remove":"Remove from wishlist ",
-      "clear":"Clear Wishlist",
-      "continue-shopping":"Continue Shopping",
-      "explore-similar-products":"Explore Similar Products",
-      "clear-wishlist-confirmation":"Are you sure you want to clear your Wishlist?",
+    "wishlist": {
+      "title": "Wishlist",
+      "empty": " Your wishlist is empty ",
+      "browse": "Browse products ",
+      "remove": "Remove from wishlist ",
+      "clear": "Clear Wishlist",
+      "continue-shopping": "Continue Shopping",
+      "explore-similar-products": "Explore Similar Products",
+      "clear-wishlist-confirmation": "Are you sure you want to clear your Wishlist?",
       "items-count": "{count, plural, =0 {No items} one {# item} other {# items}}"
-  }
+    }
+  },
+  "address": {
+    "modal": {
+      "title": "My Addresses"
+    },
+    "add": {
+      "title": "Add a New Address",
+      "step1Title": "Enter Address Details",
+      "step2Title": "Find Your Location"
+    },
+    "editTitle": "Update Address Info",
+    "title": "title",
+    "titlePlaceholder": "Enter Title",
+    "city": "City",
+    "cityplaceholder": "Enter city name",
+    "details": "Address ",
+    "addressplaceholder": "Enter your full address",
+    "phone": "Phone Number",
+    "next": "Next",
+    "save": "Add Address",
+    "confirmLocation": "Add Address",
+    "UpdateLocation": "Update Address",
+    "updateAddress": "Update Address",
+    "addAddress": "Add a New Address",
+    "empty": "You don't have any saved addresses yet.",
+    "findMyLocation": "Find my location",
+    "deleteConfirm": "Are you sure you want to delete this address?",
+    "confirmDelete": "Delete",
+    "cancel": "Cancel",
+    "saving": "saving",
+    "geolocationNotSupported": "Geolocation is not supported by your browser.",
+    "locationError": "Unable to retrieve your location.",
+    "placeholder": {
+      "city": "Enter city name",
+      "street": "Enter your full address (building, floor, apartment...)"
+    },
+    "added": "Address added successfully",
+    "updated": "Address updated successfully",
+    "deleted": "Address deleted successfully"
   },
   "grid": {
     "product-empty": "No products found matching your filters."
@@ -466,40 +509,90 @@
       "description": "We're working to get this fixed. Please refresh or try again shortly.",
       "action": "Try again"
     },
-
-    
-  "dashboard-chart-title": {
-    "ordersStatus": "Orders Status",
-    "revenue": "Revenue",
-    "lastweek":"Last Week",
-     "monthly":"Monthly",
-     "EGP":"EGP",
-     "completed": "Completed",
-    "inProgress": "In progress",
-    "canceled": "Canceled"
-  },
-    "account" : {
-      "delete-popover" : {
-        "title" : "Are you sure you want to delete your account?",
-        "description" : "This action is permanent and cannot be undone.",
-        "cancel-button" : "Nope, not doing it",
-        "confirm-button" : "Yes, delete",
-        "loading-button" : "Loading..."
+    "dashboard-chart-title": {
+      "ordersStatus": "Orders Status",
+      "revenue": "Revenue",
+      "lastweek": "Last Week",
+      "monthly": "Monthly",
+      "EGP": "EGP",
+      "completed": "Completed",
+      "inProgress": "In progress",
+      "canceled": "Canceled"
+    },
+    "dashboard-title": {
+      "ordersStatus": "Orders Status",
+      "revenue": "Revenue"
+    },
+    "statistics": {
+      "low-stock": {
+        "title": "Low Stock Products",
+        "empty": "No low-stock products found.",
+        "units": "Products"
+      },
+      "stats": {
+        "products": "Total products",
+        "orders": "Total orders",
+        "categories": "Total categories",
+        "revenue": "Total revenue"
+      },
+      "categories": {
+        "title": "All Categories",
+        "empty": "No categories found.",
+        "units": "Products"
+      },
+      "top-selling": {
+        "title": "Top Selling Products",
+        "empty": "No sales data found.",
+        "currency": "EGP",
+        "units": "Sales"
+      }
+    },
+    "account": {
+      "change-password": {
+        "title": "Change Password",
+        "button": "Change Password",
+        "currentPassword": "Old Password",
+        "newPassword": "New Password",
+        "confirmPassword": "Confirm New Password",
+        "placeholders": {
+          "currentPassword": "Enter your current password",
+          "newPassword": "Enter your new password",
+          "confirmPassword": "Confirm your new password"
+        },
+        "success": "Password changed successfully",
+        "errors": {
+          "something-went-wrong": "Something went wrong. Please try again.",
+          "current-password-required": "Current password is required",
+          "password-min-length": "Password must be at least 8 characters",
+          "password-uppercase": "Password must contain an uppercase letter",
+          "password-lowercase": "Password must contain a lowercase letter",
+          "password-number": "Password must contain a number",
+          "password-special": "Password must contain a special character",
+          "confirm-password": "Please confirm your password",
+          "passwords-do-not-match": "Passwords do not match"
+        }
+      },
+      "delete-popover": {
+        "title": "Are you sure you want to delete your account?",
+        "description": "This action is permanent and cannot be undone.",
+        "cancel-button": "Nope, not doing it",
+        "confirm-button": "Yes, delete",
+        "loading-button": "Loading..."
       },
       "menu": {
-        "account-button" : "Account",
-        "logout-button" : "Log Out"
+        "account-button": "Account",
+        "logout-button": "Log Out",
+        "edit-button": "Edit",
+        "delete-button": "Delete"
       }
-    }},
-
-
-
+    }
+  },
   "change-password": {
-   "sidebar":{
-     "profile-tab":"profile", 
-     "password-tab":"Change Password",
-     "logout" :"Logout"
-   },
+    "sidebar": {
+      "profile-tab": "profile",
+      "password-tab": "Change Password",
+      "logout": "Logout"
+    },
     "old-password": "Current Password",
     "new-password": "New Password",
     "confirm-password": "Confirm New Password",
@@ -511,28 +604,28 @@
       "new-password-required": "New password is required.",
       "confirm-password-required": "Confirm password is required.",
       "passwords-do-not-match": "New password and confirm password do not match."
-    }},
-  
+    }
+  },
   "cart": {
     "title": " Shopping Cart",
     "title-2": " Products You May Like",
-    "summary":"Summary",
-    "couponPlaceholder":"Coupon Code",
-    "couponLabel":"",
-    "invalidCoupon":"Invalid or expired coupon",
-    "couponApplied":"Coupon applied",
-    "NocouponApplied":"No coupons applied",
-    "couponAlreadyApplied":"Coupon already applied",
-    "subtotal":"Subtotal",
-    "total":"Total",
-    "applyCoupon":"Apply Coupon",
-    "checkout":"Checkout",
-    "products":"products",
+    "summary": "Summary",
+    "couponPlaceholder": "Coupon Code",
+    "couponLabel": "",
+    "invalidCoupon": "Invalid or expired coupon",
+    "couponApplied": "Coupon applied",
+    "NocouponApplied": "No coupons applied",
+    "couponAlreadyApplied": "Coupon already applied",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "applyCoupon": "Apply Coupon",
+    "checkout": "Checkout",
+    "products": "products",
     "clearCart": "Clear Cart",
     "confirmClear": " Are you sure you want to clear your cart?",
     "emptyDescription": "You haven't added any products to your shopping cart yet.",
     "continueShopping": "Continue Shopping",
-     "empty": "Your cart is empty",
+    "empty": "Your cart is empty",
     "remove": "Remove",
     "outOfStock": "Out of stock",
     "ratings": "ratings",
@@ -542,22 +635,20 @@
     "cancel": "Cancel",
     "confirm": "Confirm"
   },
-
-
-  "account-settings":{
-    "title":"Account Settings",
-    "sidebar":{
-     "profile-tab":"profile", 
-     "password-tab":"Change Password",
-     "logout" :"Logout"
+  "account-settings": {
+    "title": "Account Settings",
+    "sidebar": {
+      "profile-tab": "profile",
+      "password-tab": "Change Password",
+      "logout": "Logout"
     },
-    "profile":{
+    "profile": {
       "upload-photo": "Upload Photo",
       "upload-photo-description": "You can upload a .jpg, .png, or .gif photo with max size of 5MB.",
-      "save-changes":"Save Changes",
-      "delete-my-account":"Delete My Account",
-      "delete-account-confirmation":"Are you sure you want to delete your account?",
-      "permanent-warning":"This action is permanent and cannot be undone.",
+      "save-changes": "Save Changes",
+      "delete-my-account": "Delete My Account",
+      "delete-account-confirmation": "Are you sure you want to delete your account?",
+      "permanent-warning": "This action is permanent and cannot be undone.",
       "first-name": "First Name",
       "last-name": "Last Name",
       "email": "Email ",
@@ -567,18 +658,46 @@
       "update-error": "Failed to update profile. Please try again.",
       "photoTooLarge": "Image must be under 2MB",
       "invalidPhoto": "Please upload a valid image file",
-      
       "delete-success": "Your account has been deleted.",
       "delete-error": "Failed to delete account. Please try again.",
-      "pending-orders":"You have pending orders. Please complete or cancel them before deleting your account.",
+      "pending-orders": "You have pending orders. Please complete or cancel them before deleting your account.",
       "no-changes": "No changes to save.",
       "errors": {
-          "first-name": "First Name is required",
-          "last-name": "Last Name is required",
-          "phone": "Phone is required",
-          "invalid-phone-number": "Invalid phone number"
+        "first-name": "First Name is required",
+        "last-name": "Last Name is required",
+        "phone": "Phone is required",
+        "invalid-phone-number": "Invalid phone number"
       }
-    }}
-  
-  
+    }
+  },
+  "orders": {
+    "title": "Orders",
+    "orderPrefix": "Order",
+    "createdAt": "Created in",
+    "totalPrice": "Total Price",
+    "currency": "EGP",
+    "paymentMethod": "Payment Method",
+    "deliveryStatus": "Delivery Status",
+    "orderItems": "Order Items",
+    "rating": "Rating",
+    "ratingsCount": "ratings",
+    "showAll": "Show All",
+    "showLess": "Show Less",
+    "error": "Something went wrong while loading your orders.",
+    "retry": "Retry",
+    "noOrders": "You have no orders yet.",
+    "methods": {
+      "CASH": "Cash",
+      "CREDIT_CARD": "Credit Card"
+    },
+    "status": {
+      "label": "Status"
+    },
+    "deliveryStatusValues": {
+      "PENDING": "Pending",
+      "SHIPPED": "Shipped",
+      "DELIVERED": "Delivered",
+      "CANCELED": "Canceled"
+    }
+  }
 }

@@ -1,26 +1,24 @@
-'use client';
-
 import { LanguageSwitcherAuth } from '@/features/auth/components/language-switcher-auth';
+import { getWishlist } from '@/features/main/api/get-wishlist.api';
 import { Link } from '@/i18n/navigation';
-import { Bell, Heart, ShoppingCart } from 'lucide-react';
+
+import { getServerSession } from 'next-auth';
 import Image from 'next/image';
-import SecondaryNavigation from '../custom-ui/secondary-navigation';
-import { useSession } from 'next-auth/react';
 import HeaderSearchInput from '../custom-ui/header-search-input';
-import GuestGatedIcon from '../custom-ui/guest-gated-icon';
 import UserAuthAction from '../custom-ui/user-auth-action';
+import HeaderClient from '../custom-ui/header-client';
 import { ThemeToggle } from '../theme';
-import { useCart } from '@/features/main/hooks/use-cart';
-import { useWishlist } from '@/features/main/hooks/use-wishlist';
-import NotificationsList from '@/features/notification/components/notifications-list';
+import SecondaryNavigation from '../custom-ui/secondary-navigation';
+import { authOptions } from '@/auth';
 
-export default function Header() {
-  const session = useSession();
-  const userStatus = session.status;
-  const isAuthenticated = userStatus === 'authenticated';
-  const { uniqueItemsCount } = useCart();
-  const { wishlistCount } = useWishlist();
-
+export default async function Header() {
+  const session = await getServerSession(authOptions);
+  const isAuthenticated = !!session?.user;
+  let wishlistCount;
+  if (isAuthenticated) {
+    const wishlist = await getWishlist();
+    wishlistCount = wishlist.payload.wishlistItems.length;
+  }
   return (
     <header className="sticky top-0 z-50 bg-bg-plain">
       <div className="flex flex-col md:flex-row items-center py-4.5 px-9 gap-4">
@@ -40,16 +38,8 @@ export default function Header() {
         </div>
         <div className="flex">
           <UserAuthAction isAuthenticated={isAuthenticated} />
-          <span className=" flex items-center gap-2.5 px-4 border-r border-l  border-border-muted">
-            <GuestGatedIcon badgeCount={wishlistCount} href="/wishlist">
-              <Heart size={24} />
-            </GuestGatedIcon>
-            <GuestGatedIcon badgeCount={uniqueItemsCount} href="/cart">
-              <ShoppingCart size={24} />
-            </GuestGatedIcon>
-            {isAuthenticated && <NotificationsList />}
-          </span>
-          <span className="flex ltr:pl-4 rtl:pr-4 gap-2.5">
+          <HeaderClient isAuthenticated={isAuthenticated} serverWishlistCount={wishlistCount} />
+          <span className={` flex ltr:pl-4 rtl:pr-4 gap-2.5 `}>
             <LanguageSwitcherAuth />
             <ThemeToggle />
           </span>

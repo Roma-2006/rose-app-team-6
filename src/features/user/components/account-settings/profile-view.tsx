@@ -22,10 +22,13 @@ import { toast } from 'sonner';
 import useDeleteProfile from '../../hooks/use-delete-profile';
 import Avatar from '@/shared/components/custom-ui/avatar';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function ProfileView({ user }: { user: TUser }) {
   //Translations
   const t = useTranslations();
+  const pathname = usePathname();
+
   //State
   const [isUploading, setIsUploading] = useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
@@ -36,7 +39,7 @@ export default function ProfileView({ user }: { user: TUser }) {
   const { mutate: updateProfile, isPending } = useUpdateProfile(setErrors);
   const { mutate: deleteProfile, isPending: deleteLoading } = useDeleteProfile();
   const imageSrc = preview || user?.photo;
-
+  const isDashboard = pathname.includes('/dashboard');
   //Form
   const form = useForm<ProfileFields>({
     resolver: zodResolver(profileSchema),
@@ -212,6 +215,7 @@ export default function ProfileView({ user }: { user: TUser }) {
                   />
                 }
               />
+
               <Modal>
                 <ClearConfirmation
                   onClick={handleDeleteAccount}
@@ -225,12 +229,16 @@ export default function ProfileView({ user }: { user: TUser }) {
               </Modal>
             </AlertDialog>
 
-            <Link
-              href="/dashboard/account?tab=password"
-              className="text-sm font-semibold text-gray-700 hover:underline sm:hidden"
-            >
-              {t('account-settings.change-password.title') || 'Change Password'}
-            </Link>
+            {isDashboard && (
+              <Link href="/dashboard/account/change-password">
+                <Button
+                  buttonVariant="text"
+                  variant="ghost"
+                  title="change-password.submit-button"
+                  className="text-sm font-semibold text-gray-800 p-0 hover:bg-transparent hover:underline"
+                />
+              </Link>
+            )}
           </div>
 
           <Button

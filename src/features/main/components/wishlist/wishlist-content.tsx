@@ -1,7 +1,6 @@
 'use client';
 import WishlistItem from './wishlist-item';
 import { useWishlist } from '../../hooks/use-wishlist';
-import WishlistItemSkeleton from '../skeleton/wishlist-item-skeleton';
 import { Button } from '@/shared/components/ui/button';
 import { MoveLeft, MoveRight, FolderHeart, BrushCleaning } from 'lucide-react';
 import { useLocale } from 'next-intl';
@@ -12,21 +11,14 @@ import { AlertDialog, AlertDialogTrigger } from '@/shared/components/ui/alert-di
 import ClearConfirmation from '@/shared/components/custom-ui/clear-confirmation';
 import { useState } from 'react';
 import { WishlistContentProps } from '../../types/wishlist';
-export default function WishlistContent({ initialWishlist }: WishlistContentProps) {
+export default function WishlistContent({ wishlist, isAuthenticated }: WishlistContentProps) {
   //Translations
   const t = useTranslations('products');
   //Hooks
-  const {
-    wishlistItems,
-    isLoading,
-    isFetching,
-    error,
-    wishlistCount,
-    clearWishlist,
-    loadingClearWishlist,
-    refetch,
-    isError,
-  } = useWishlist(undefined, initialWishlist);
+  const serverItems = wishlist?.payload.wishlistItems ?? [];
+  const { wishlistItems: localItems, clearWishlist, loadingClearWishlist } = useWishlist();
+  const wishlistItems = isAuthenticated ? serverItems : localItems;
+  const wishlistCount = wishlistItems.length;
   const [isClearDialogOpen, setIsClearDialogOpen] = useState(false);
   const locale = useLocale();
   const isRTL = locale === 'ar';
@@ -71,20 +63,7 @@ export default function WishlistContent({ initialWishlist }: WishlistContentProp
           </AlertDialog>
         )}
       </div>
-      {isLoading ? (
-        <WishlistItemSkeleton />
-      ) : isError ? (
-        <div className="text-center text-2xl font-bold min-h-80 mt-6">
-          <p className="mb-3">{error?.message}</p>
-          <Button
-            buttonVariant="text"
-            variant="primary"
-            title="button.retry"
-            onClick={() => refetch()}
-            loading={isFetching}
-          />
-        </div>
-      ) : wishlistItems.length > 0 ? (
+      {wishlistItems.length > 0 ? (
         <div className="flex flex-col gap-5 border-t border-border-subtle my-4">
           {wishlistItems.map((item) => (
             <WishlistItem key={item.id} wishlistItem={item} />

@@ -58,7 +58,7 @@ export function RevenueChart({ data, period, onPeriodChange, isPending }: Revenu
       </div>
 
       {/* Chart Container  */}
-      <ChartContainer config={chartConfig} className="h-89 w-full">
+      <ChartContainer config={chartConfig} className="h-85 w-full">
         <AreaChart
           accessibilityLayer
           data={data}

@@ -2,6 +2,7 @@ import React from 'react';
 import { TotalPriceProps } from '../../types/order-summary';
 import { useTranslations } from 'next-intl';
 
+//Calculate and show totalPrice
 export default function TotalPrice({
   subtotal,
   appliedCoupons = [],
