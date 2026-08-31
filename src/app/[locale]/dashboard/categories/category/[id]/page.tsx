@@ -16,7 +16,7 @@ interface PageProps {
 
 export default async function CategoriesPage({ searchParams }: PageProps) {
   //Translation
-  const tDashboard = getTranslations('dashboard.categories');
+  const tDashboard = await getTranslations('dashboard.categories');
 
   //Variables
   const params = await searchParams;
@@ -28,13 +28,17 @@ export default async function CategoriesPage({ searchParams }: PageProps) {
   return (
     <section className="flex flex-col gap-4.5 max-h-screen ">
       <header className="w-full flex justify-between">
-        <h2 className="text-2xl font-semibold text-text-plain">{tDashboard('all-categories')}</h2>
-        <Link href="/dashboard/category/add-category">
+        <h2 className="text-2xl pt-1 font-semibold text-text-plain">
+          {tDashboard('all-categories')}
+        </h2>
+        <Link href="/dashboard/categories/add-category">
           <Button
             buttonVariant="text"
             variant="primary"
             title="dashboard.categories.add-new-category"
             leftIcon={<Plus />}
+            responsiveIconOnly
+            className="h-11"
           />
         </Link>
       </header>

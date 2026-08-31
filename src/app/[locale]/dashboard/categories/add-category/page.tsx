@@ -6,6 +6,9 @@ import { useCategory } from '@/features/dashboard/hooks/use-category';
 import { Upload } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import { CreateCategoryType } from '@/features/dashboard/types/categories/categories';
+import { useTranslations } from 'next-intl';
+import CustomInput from '@/shared/components/custom-input';
+import { Button } from '@/shared/components/ui/button';
 
 interface SwaggerUploadSuccessPayload {
   status: boolean;
@@ -15,10 +18,14 @@ interface SwaggerUploadSuccessPayload {
   };
 }
 
+// Variables
 const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export default function AddCategoryPage() {
+  //Translation
+  const tDashboard = useTranslations('dashboard.categories');
+  //States
   const [name, setName] = useState<string>('');
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imageName, setImageName] = useState<string>('');
@@ -30,6 +37,7 @@ export default function AddCategoryPage() {
   const { data: session } = useSession();
   const isPending = isCreating || uploading;
 
+  //Functions
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -77,7 +85,7 @@ export default function AddCategoryPage() {
       setUploading(true);
 
       const formData = new FormData();
-      formData.append('image', imageFile); // ⚠️ Verify if Swagger expects 'image' or 'file'
+      formData.append('image', imageFile);
 
       const uploadResponse = await fetch(`${API_BASE_URL}/upload`, {
         method: 'POST',
@@ -108,7 +116,7 @@ export default function AddCategoryPage() {
 
       await createCategory(payload);
       router.refresh();
-      router.push('/dashboard/catergory/[id]');
+      router.push('/dashboard/categories/catergory/[id]');
     } catch (err: unknown) {
       console.error('Category Creation Flow Error:', err);
       setLocalError(err instanceof Error ? err.message : 'An unexpected runtime error occurred.');
@@ -119,70 +127,70 @@ export default function AddCategoryPage() {
 
   return (
     <main className="p-8 max-w-3xl mx-auto w-full">
-      <div className="text-xs text-gray-400 mb-6 flex gap-2 items-center">
-        <span>Dashboard</span> <span>&gt;</span> <span>Categories</span> <span>&gt;</span>{' '}
-        <span className="text-[#A32A38] font-medium">Add Category</span>
-      </div>
+      <h1 className="text-xl font-bold text-text-default mb-6">{tDashboard('add-new-category')}</h1>
 
-      <h1 className="text-xl font-bold text-gray-900 mb-6">Add a New Category</h1>
-
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm space-y-5"
-      >
+      <form onSubmit={handleSubmit} className=" p-8    space-y-5">
         {localError && (
-          <div className="p-4 text-xs font-semibold text-[#A32A38] bg-red-50 border border-red-100 rounded-xl">
+          <div className="p-4 text-xs font-semibold text-text-danger bg-bg-red border border-border-danger rounded-xl">
             {localError}
           </div>
         )}
 
         <div>
-          <label className="block text-xs font-semibold text-gray-700 mb-2">Name *</label>
-          <input
-            type="text"
-            required
-            placeholder="Enter category name"
+          <CustomInput
+            variant="default"
+            id="category-name"
+            placeholder={tDashboard('add-category-placeholder')}
+            label={tDashboard('name')}
             value={name}
             onChange={(e: ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
-            className="w-full px-4 py-2.5 text-sm border border-gray-200 rounded-xl focus:outline-none focus:border-[#A32A38] bg-white transition-colors"
+            className="w-full"
           />
         </div>
 
         <div>
-          <label className="block text-xs font-semibold text-gray-700 mb-2">Category image *</label>
-          <div
+          {/* <div
             onClick={triggerFileSelect}
-            className="w-full flex justify-between items-center px-4 py-2.5 border border-gray-200 rounded-xl bg-white cursor-pointer hover:border-gray-300 transition-colors"
-          >
-            <input
+          > */}
+          {/* <input
               type="file"
               ref={fileInputRef}
               onChange={handleFileChange}
               accept="image/jpeg, image/png, image/gif, image/webp" // 🛠️ قفل الاختيار من نظام التشغيل لمنع رفع صيغ معطوبة
               className="hidden"
-            />
-            <span
-              className={`text-sm ${imageName ? 'text-gray-900 font-medium' : 'text-gray-300'}`}
+            /> */}
+          <CustomInput
+            onClick={triggerFileSelect}
+            variant="file"
+            ref={fileInputRef}
+            onChange={handleFileChange}
+            accept="image/jpeg, image/png, image/gif, image/webp"
+            label={tDashboard('category-image')}
+            className="w-full"
+          />
+          {/* <span
+              className={`text-sm ${imageName ? 'text-text-default font-medium' : 'text-gray-300'}`}
             >
               {imageName || 'No file chosen'}
-            </span>
-            <button
+            </span> */}
+          {/* <button
               type="button"
               className="text-xs text-[#A32A38] font-semibold flex items-center gap-1.5 hover:opacity-80 border-0 bg-transparent outline-none cursor-pointer"
             >
               <Upload size={14} className="stroke-[2.5]" />
               Upload file
-            </button>
-          </div>
+            </button> */}
         </div>
+        {/* </div> */}
 
-        <button
+        <Button
           type="submit"
+          buttonVariant="text"
+          variant="primary"
           disabled={isCreating || uploading}
-          className="w-full bg-[#A32A38] text-white py-3 rounded-xl text-sm font-semibold hover:bg-[#8A222E] transition-colors disabled:opacity-40 mt-4 cursor-pointer"
-        >
-          {isCreating || uploading ? 'Processing & Uploading...' : 'Add Category'}
-        </button>
+          title="dashboard.categories.add-category"
+          className="w-full h-13"
+        />
       </form>
     </main>
   );

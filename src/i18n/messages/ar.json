@@ -429,15 +429,18 @@
    "categories":{
       "all-categories":"جميع الفئات",
       "add-new-category":"أضف فئة جديدة",
-      "name":"الاسم",
+      "name":"الاسم *",
       "products":"المنتجات",
       "categories-not-found":"لم يتم العثور على أي فئات مطابقة للبحث.",
        "num-products":"منتجات",
       "edit":"تعديل",
       "delete":"حذف",
-      "Category image":"صورة الفئة *",
-      "Add Category":"إضافة فئة",
-      "Update Category":"تحديث فئة"
+      "category-image":"صورة الفئة *",
+       "view-category-image":"عرض صورة الفئة",
+      "add-category":"إضافة فئة",
+      "update-category":"تحديث الفئة",
+      "add-category-placeholder":"ادخل اسم الفئة"
+
     },
      "products":{
       "title":"كل المنتجات",

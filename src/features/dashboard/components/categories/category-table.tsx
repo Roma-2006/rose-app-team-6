@@ -135,7 +135,7 @@ export default function CategoryTable({
                     </td>
                     <td className="px-6 py-1 text-right space-x-2 whitespace-nowrap">
                       <Link
-                        href={`/dashboard/category/${category.id}/update-category`}
+                        href={`/dashboard/categories/category/${category.id}/update-category`}
                         className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-bg-info-fade text-text-info  rounded-md text-xs font-medium transition-colors"
                       >
                         <SquarePen size={12} /> {tDashboard('edit')}
@@ -143,12 +143,14 @@ export default function CategoryTable({
 
                       <Button
                         buttonVariant="text"
-                        variant="ghost"
+                        variant="danger"
                         size="xs"
+                        title="dashboard.categories.delete"
                         onClick={() => handleDeleteClick(category.id)}
                         disabled={isDeleting}
                         className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-bg-danger-fade text-text-danger  disabled:opacity-40 rounded-md text-xs font-medium transition-colors"
                         leftIcon={<Trash2 size={12} />}
+                        responsiveIconOnly
                       />
                     </td>
                   </tr>
@@ -159,7 +161,6 @@ export default function CategoryTable({
         </table>
       </div>
 
-      {/* 3. استدعاء مكون الترقيم المنفصل وتغذية أحداثه تلقائياً */}
       <PaginationControls
         currentPage={currentPage}
         totalPages={initialTotalPages}
