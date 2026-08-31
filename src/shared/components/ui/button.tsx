@@ -1,7 +1,6 @@
 import { Button as ButtonPrimitive } from '@base-ui/react/button';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/shared/lib/utils/tailwind-cn';
-// import { TButtonProps } from '@/shared/components/ui/button';
 import { LoaderCircle } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { TButtonProps } from '@/shared/types/button';
@@ -19,9 +18,11 @@ const buttonVariants = cva(
         destructive: 'bg-bg-danger text-text-inverse hover:bg-bg-danger-saturated',
         link: 'bg-bg-subtle border border-border-subtle text-text-plain',
         softPink: 'bg-soft-pink-50 text-maroon-600 hover:bg-soft-pink-100 shadow-sm border-none',
+        danger: 'bg-bg-danger-fade text-text-danger',
+        account: `w-full justify-center lg:justify-start gap-2 lg:gap-3 px-2 lg:px-4 py-2.5 lg:py-3.5 rounded-lg lg:rounded-xl transition-all text-xs sm:text-sm font-medium`,
       },
       size: {
-        custom: 'h-11 w-45.25 gap-1.5',
+        custom: 'py-3.5 px-4 gap-1.5',
         default:
           'h-9 gap-1.5 px-3 has-data-[icon=inline-end]:pr-2.5 has-data-[icon=inline-start]:pl-2.5',
         xs: "h-6 gap-1 px-2.5 text-xs has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2 [&_svg:not([class*='size-'])]:size-3",
@@ -106,7 +107,7 @@ function Button(props: ButtonPrimitive.Props & VariantProps<typeof buttonVariant
       ) : (
         <>
           {isText && props.leftIcon}
-          {isIcon ? props.iconOnly : isText ? t(props.title!) : props.number}
+          {isIcon ? props.iconOnly : isText ? (props.children ?? t(props.title!)) : props.number}
           {isText && props.rightIcon}
         </>
       )}
