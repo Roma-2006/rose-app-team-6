@@ -421,6 +421,7 @@
       "all-categories":"All Categories",
       "add-new-category":"Add a new category",
       "name":"Name *",
+      "name*":"Name",
       "products":"Products",
       "categories-not-found":"No categories found matching filters.",
        "num-products":"Products",

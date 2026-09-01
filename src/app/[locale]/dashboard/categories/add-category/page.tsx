@@ -126,12 +126,14 @@ export default function AddCategoryPage() {
   };
 
   return (
-    <main className="p-8 max-w-3xl mx-auto w-full">
-      <h1 className="text-xl font-bold text-text-default mb-6">{tDashboard('add-new-category')}</h1>
+    <main className="p-6 md:p-8 max-w-3xl mx-auto w-full flex flex-col min-h-[calc(100vh-120px)] md:min-h-0">
+      <h1 className="md:text-xl  text-lg font-bold text-text-default mb-6">
+        {tDashboard('add-new-category')}
+      </h1>
 
-      <form onSubmit={handleSubmit} className=" p-8    space-y-5">
+      <form onSubmit={handleSubmit} className="flex-1 flex flex-col p-4 md:p-8 space-y-5 ">
         {localError && (
-          <div className="p-4 text-xs font-semibold text-text-danger bg-bg-red border border-border-danger rounded-xl">
+          <div className="p-4 md:text-sm text-xs font-semibold text-text-danger bg-bg-danger border border-border-danger  rounded-xl">
             {localError}
           </div>
         )}
@@ -144,21 +146,11 @@ export default function AddCategoryPage() {
             label={tDashboard('name')}
             value={name}
             onChange={(e: ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
-            className="w-full"
+            className="w-full placeholder: md:text-lg text-xs"
           />
         </div>
 
         <div>
-          {/* <div
-            onClick={triggerFileSelect}
-          > */}
-          {/* <input
-              type="file"
-              ref={fileInputRef}
-              onChange={handleFileChange}
-              accept="image/jpeg, image/png, image/gif, image/webp" // 🛠️ قفل الاختيار من نظام التشغيل لمنع رفع صيغ معطوبة
-              className="hidden"
-            /> */}
           <CustomInput
             onClick={triggerFileSelect}
             variant="file"
@@ -166,22 +158,9 @@ export default function AddCategoryPage() {
             onChange={handleFileChange}
             accept="image/jpeg, image/png, image/gif, image/webp"
             label={tDashboard('category-image')}
-            className="w-full"
+            className="w-full placeholder: md:text-lg text-xs"
           />
-          {/* <span
-              className={`text-sm ${imageName ? 'text-text-default font-medium' : 'text-gray-300'}`}
-            >
-              {imageName || 'No file chosen'}
-            </span> */}
-          {/* <button
-              type="button"
-              className="text-xs text-[#A32A38] font-semibold flex items-center gap-1.5 hover:opacity-80 border-0 bg-transparent outline-none cursor-pointer"
-            >
-              <Upload size={14} className="stroke-[2.5]" />
-              Upload file
-            </button> */}
         </div>
-        {/* </div> */}
 
         <Button
           type="submit"
@@ -189,7 +168,7 @@ export default function AddCategoryPage() {
           variant="primary"
           disabled={isCreating || uploading}
           title="dashboard.categories.add-category"
-          className="w-full h-13"
+          className="w-full  md:h-13 h-11 mt-auto md:mt-17 "
         />
       </form>
     </main>

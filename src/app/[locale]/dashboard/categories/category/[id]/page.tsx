@@ -26,12 +26,12 @@ export default async function CategoriesPage({ searchParams }: PageProps) {
   const initialData = await getCategoriesAction(currentPage, searchKeyword, 12);
 
   return (
-    <section className="flex flex-col gap-4.5 max-h-screen ">
+    <section className=" flex flex-col w-full  md:p-0 gap-4.5 max-h-screen ">
       <header className="w-full flex justify-between">
-        <h2 className="text-2xl pt-1 font-semibold text-text-plain">
+        <h2 className=" text-xl  md:text-2xl pt-1 font-semibold text-text-plain">
           {tDashboard('all-categories')}
         </h2>
-        <Link href="/dashboard/categories/add-category">
+        <Link href="/dashboard/categories/category/[id]/add-category">
           <Button
             buttonVariant="text"
             variant="primary"
@@ -43,7 +43,7 @@ export default async function CategoriesPage({ searchParams }: PageProps) {
         </Link>
       </header>
 
-      <main className=" ">
+      <main className="w-full ">
         <CategoryTable
           initialCategories={initialData.categories || []}
           initialTotalPages={initialData.totalPages || 1}

@@ -10,6 +10,7 @@ import PaginationControls from './pagination';
 import { signOut, useSession } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/shared/components/ui/button';
+import EditDeleteDropdown from '../shared/edit-delete-dropdown';
 
 export default function CategoryTable({
   initialCategories,
@@ -100,15 +101,19 @@ export default function CategoryTable({
         />
       </div>
 
-      <div className=" w-full mt-4.5  ">
+      <div className="w-full mt-4.5 overflow-x-auto">
         <table className="w-full text-left ">
           <thead>
             <tr className="border-b border-border-subtle text-text-plain text-sm font-semibold">
-              <th className="px-6 py-1 text-left w-[20%]">{tDashboard('name')}</th>
-              <th className="px-6 py-1 text-left w-[20%]">{tDashboard('products')}</th>
+              <th className="px-4 md:px-6 py-2 text-left w-[20%] md:w-[40%]">
+                {tDashboard('name*')}
+              </th>
+              <th className="px-4 md:px-6 py-2 text-left w-[20%] md:w-[40%]">
+                {tDashboard('products')}
+              </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-zinc-100  text-sm">
+          <tbody className="divide-y divide-zinc-100 text-sm">
             {initialCategories.length === 0 ? (
               <tr>
                 <td colSpan={3} className="text-center py-12 text-text-soft font-medium">
@@ -120,38 +125,48 @@ export default function CategoryTable({
                 const rowKey = category.id ? `${category.id}-${index}` : `row-${index}`;
 
                 return (
-                  <tr
-                    key={rowKey}
-                    className={`hover:bg-bg-danger-faint transition-colors ${
-                      index === 1 ? '' : ''
-                    }`}
-                  >
-                    <td className="px-6 py-1 font-medium text-text-default whitespace-nowrap">
+                  <tr key={rowKey} className="hover:bg-bg-danger-faint transition-colors">
+                    <td className="px-4 md:px-6 py-3 font-medium text-text-default whitespace-nowrap">
                       {category.title}
                     </td>
-                    <td className="px-6 py-1 text-text-muted whitespace-nowrap">
-                      {category.productsCount ?? 0}
-                      {tDashboard('num-products')}
-                    </td>
-                    <td className="px-6 py-1 text-right space-x-2 whitespace-nowrap">
-                      <Link
-                        href={`/dashboard/categories/category/${category.id}/update-category`}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-bg-info-fade text-text-info  rounded-md text-xs font-medium transition-colors"
-                      >
-                        <SquarePen size={12} /> {tDashboard('edit')}
-                      </Link>
 
-                      <Button
-                        buttonVariant="text"
-                        variant="danger"
-                        size="xs"
-                        title="dashboard.categories.delete"
-                        onClick={() => handleDeleteClick(category.id)}
-                        disabled={isDeleting}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-bg-danger-fade text-text-danger  disabled:opacity-40 rounded-md text-xs font-medium transition-colors"
-                        leftIcon={<Trash2 size={12} />}
-                        responsiveIconOnly
-                      />
+                    <td className="px-4 md:px-6 py-3 text-text-muted whitespace-nowrap">
+                      {category.productsCount ?? 0} {tDashboard('num-products')}
+                    </td>
+
+                    <td className="px-4 md:px-6 py-3 text-right whitespace-nowrap">
+                      <div className="hidden md:flex justify-end gap-2">
+                        <Link
+                          href={`/dashboard/categories/category/${category.id}/update-category`}
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-bg-info-fade text-text-info rounded-md text-xs font-medium transition-colors"
+                        >
+                          <SquarePen size={12} /> {tDashboard('edit')}
+                        </Link>
+
+                        <Button
+                          buttonVariant="text"
+                          variant="danger"
+                          size="xs"
+                          title="dashboard.categories.delete"
+                          onClick={() => handleDeleteClick(category.id)}
+                          disabled={isDeleting}
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-bg-danger-fade text-text-danger disabled:opacity-40 rounded-md text-xs font-medium transition-colors"
+                          leftIcon={<Trash2 size={12} />}
+                          responsiveIconOnly
+                        />
+                      </div>
+
+                      <div className="block md:hidden">
+                        <EditDeleteDropdown
+                          isDeleting={isDeleting}
+                          handleEdit={() =>
+                            router.push(
+                              `/dashboard/categories/category/${category.id}/update-category`
+                            )
+                          }
+                          handleDelete={() => handleDeleteClick(category.id)}
+                        />
+                      </div>
                     </td>
                   </tr>
                 );

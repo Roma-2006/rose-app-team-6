@@ -430,6 +430,7 @@
       "all-categories":"جميع الفئات",
       "add-new-category":"أضف فئة جديدة",
       "name":"الاسم *",
+       "name*":"Name",
       "products":"المنتجات",
       "categories-not-found":"لم يتم العثور على أي فئات مطابقة للبحث.",
        "num-products":"منتجات",

@@ -115,15 +115,15 @@ export default function UpdateCategoryPage() {
   };
 
   return (
-    <main className="p-8 max-w-3xl mx-auto w-full">
-      <h1 className="text-xl font-bold text-text-default mb-6">
+    <main className="p-6 md:p-8 max-w-3xl mx-auto w-full flex flex-col min-h-[calc(100vh-120px)] md:min-h-0">
+      <h1 className="md:text-xl  text-lg font-bold text-text-default mb-6">
         {tDashboard('update-category')}
         {displayName ? `: ${displayName}` : ''}
       </h1>
 
-      <form onSubmit={handleUpdate} className="   p-8  space-y-5">
+      <form onSubmit={handleUpdate} className="flex-1 flex flex-col p-4 md:p-8 space-y-5 ">
         {localError && (
-          <div className="p-4 text-xs font-semibold text-text-danger bg-bg-danger border border-border-danger  rounded-xl">
+          <div className="p-4 md:text-sm text-xs font-semibold text-text-danger bg-bg-danger border border-border-danger  rounded-xl">
             {localError}
           </div>
         )}
@@ -137,16 +137,16 @@ export default function UpdateCategoryPage() {
             value={name}
             disabled={isUpdating}
             onChange={(e: ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
-            className="w-full"
+            className="w-full placeholder: md:text-lg text-xs"
           />
         </div>
 
-        <div className="flex justify-end">
+        <div className="flex border border-border-muted rounded-lg justify-start p-2  md:border-none  md:justify-end">
           <button
             type="button"
             onClick={handleViewImage}
             disabled={!imageUrl}
-            className="text-xs text-text-info  font-medium inline-flex items-center gap-1 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+            className="text-xs text-text-info  md:p-2 md:border  md:border-border-muted md:rounded-xl font-medium inline-flex items-center gap-1 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
           >
             <Eye size={13} /> {tDashboard('view-category-image')}
           </button>
@@ -158,7 +158,7 @@ export default function UpdateCategoryPage() {
           variant="primary"
           disabled={isUpdating || !name}
           title="dashboard.categories.update-category"
-          className="w-full h-13"
+          className="w-full  md:h-13 h-11 mt-auto md:mt-17 "
         />
       </form>
     </main>
