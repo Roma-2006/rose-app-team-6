@@ -4,12 +4,13 @@ import { revalidatePath } from 'next/cache';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/auth';
 import { CreateCategoryType } from '../../types/categories/categories';
+import { CreateOccasionType } from '../../types/occasions/occasions';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export async function createCategoryAction(data: CreateCategoryType): Promise<unknown> {
+export async function createOccasionAction(data: CreateOccasionType): Promise<unknown> {
   if (!data || Object.keys(data).length === 0) {
-    throw new Error('Invalid or empty category data provided.');
+    throw new Error('Invalid or empty occasion data provided.');
   }
 
   const controller = new AbortController();
@@ -51,16 +52,16 @@ export async function createCategoryAction(data: CreateCategoryType): Promise<un
           'Your session has expired or you do not have Admin clearance. Please log in again.'
         );
       }
-      throw new Error(resData?.message || `Failed to create category (HTTP ${response.status})`);
+      throw new Error(resData?.message || `Failed to create occasion (HTTP ${response.status})`);
     }
 
-    revalidatePath('/dashboard/category', 'page');
+    revalidatePath('/dashboard/occasion', 'page');
 
     return resData;
   } catch (error: unknown) {
     clearTimeout(timeoutId);
 
-    let errorMessage = 'Failed to create category';
+    let errorMessage = 'Failed to create occasion';
     if (error instanceof Error) {
       if (error.name === 'AbortError') {
         errorMessage = 'The core API network request timed out.';
@@ -69,7 +70,7 @@ export async function createCategoryAction(data: CreateCategoryType): Promise<un
       }
     }
 
-    console.error('Create Category Action Error:', errorMessage);
+    console.error('Create Occasion Action Error:', errorMessage);
     throw new Error(errorMessage);
   }
 }
