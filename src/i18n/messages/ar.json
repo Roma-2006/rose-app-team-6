@@ -449,24 +449,7 @@
   "grid": {
     "product-empty": "لا توجد منتجات تطابق خيارات البحث."
   },
-   "change-password": {
-     "sidebar":{
-     "profile-tab":"الملف الشخصي", 
-     "password-tab": "تغيير كلمة المرور",
-     "logout" :"تسجيل الخروج"
-   },
-    "old-password": "كلمة المرور الحالية",
-    "new-password": "كلمة المرور الجديدة",
-    "confirm-password": "تأكيد كلمة المرور الجديدة",
-    "submit-button": "تغيير كلمة المرور",
-    "success-message": "Password changed successfully.",
-    "error-message": "Failed to change password. Please try again.",
-    "validation": {
-      "old-password-required": "Old password is required.",
-      "new-password-required": "New password is required.",
-      "confirm-password-required": "Confirm password is required.",
-      "passwords-do-not-match": "New password and confirm password do not match."
-    }},
+   
   
   "cart": {
     "title": "سلة التسوق",
@@ -534,6 +517,24 @@
           "phone": "رقم الهاتف مطلوب",
           "invalid-phone-number": "رقم الهاتف غير صالح"
       }
-    }
+    },
+    "change-password": {
+     "sidebar":{
+     "profile-tab":"الملف الشخصي", 
+     "password-tab": "تغيير كلمة المرور",
+     "logout" :"تسجيل الخروج"
+   },
+    "old-password": "كلمة المرور الحالية",
+    "new-password": "كلمة المرور الجديدة",
+    "confirm-password": "تأكيد كلمة المرور الجديدة",
+    "submit-button": "تغيير كلمة المرور",
+    "success-message": "تم تغيير كلمة المرور بنجاح.",
+    "error-message": "فشل في تغيير كلمة المرور. يرجى المحاولة مرة أخرى.",
+    "validation": {
+      "old-password-required": "كلمة المرور الحالية مطلوبة.",
+      "new-password-required": "كلمة المرور الجديدة مطلوبة.",
+      "confirm-password-required": "تأكيد كلمة المرور الجديدة مطلوب.",
+      "passwords-do-not-match": "كلمة المرور الجديدة وتأكيد كلمة المرور لا تتطابق."
+    }}
 }
 }

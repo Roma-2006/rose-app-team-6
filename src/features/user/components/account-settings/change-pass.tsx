@@ -102,7 +102,7 @@ export default function ChangePassword() {
       )}
       {isSuccess && (
         <span className="text-sm font-medium text-text-success mt-4 self-start">
-          {t('account-settings.change-password.success')}
+          {t('account-settings.change-password.success-message')}
         </span>
       )}
       <Button
