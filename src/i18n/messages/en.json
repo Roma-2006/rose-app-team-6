@@ -12,7 +12,8 @@
     "confirm": "Confirm",
     "next": "Next",
      "add-review":"Add Review",
-    "adding":"Adding..."
+    "adding":"Adding...",
+    "retry":"Retry"
   },
   "common": {
     "select": {
@@ -31,7 +32,25 @@
      "register": "Register",
     "search-default": "Products you may like",
     "search-empty": "No products found",
-    "search-error": "Search failed. Try again."
+    "search-error": "Search failed. Try again.",
+    "notifications": {
+      "title": "Notifications ({count})",
+      "no-notifications": "No notifications yet",
+      "clear-all": "Clear all notifications",
+      "mark-all-as-read": "Mark all as read",
+      "notification-settings": {
+        "mark-as-read": "Mark as read",
+        "delete": "Delete"
+      }
+    },
+    "user-menu": {
+      "title": "Hello ",
+      "account": "My Account",
+      "addresses": "My Addresses",
+      "orders": "My Orders",
+      "dashboard": "Dashboard",
+      "logout": "Logout"
+    }
   },
   "nav": {
     "home": "Home",
@@ -132,6 +151,7 @@
         }
       },
       "otp": {
+        "title": "Create Account",
         "subtitle-1": "Enter Verification Code",
         "subtitle-2": "We have sent a 6-digit code to {email}",
         "resend": "Send a new code",
@@ -252,9 +272,10 @@
     },
     "bestSelling": {
       "badge": "Best Selling",
-      "titlePart1": "Check Out",
-      "titlePart2": "What Everyone’s Buying",
-      "titlePart3": "Right Now",
+        "titlePart1": "Check Out",
+      "titlePart2": "What Everyone’s",
+       "titlePart3": "Buying",
+      "titlePart4": "Right Now",
       "description": "Not sure what to choose?\nStart with our best sellers, these are the gifts our customers keep coming back for.\nWhether you're celebrating a birthday, anniversary or wedding, our top picks are guaranteed to leave a lasting impression.",
       "exploreButton": "Explore gifts"
     },
@@ -284,9 +305,7 @@
         "part3": "Gift Boxes for Your",
         "part4": "Special",
         "part5": "Moments"
-        
       }
-      
     },
     "gallery": {
       "label": "Gallery",
@@ -331,9 +350,35 @@
     "email": { "label": "Email", "placeholder": "user@example.com" },
     "nice-to-have-you-here": "nice to have you here"
   },
+
+  "checkout": {
+    "shipping-address": {
+      "title": "Shipping Address",
+      "add-new-address": "Add New Address",
+      "or": "OR",
+      "load-error ": "Failed to load addresses.",
+      "no-addresses-error": "Add your first address to continue"
+    },
+    "step2Title": "Payment Method",
+    "cashOnDelivery": "Cash on Delivery",
+    "creditCard": "Credit Card",
+    "placeOrder": "Place Order",
+    "orderSuccess": "Order placed successfully!",
+    "orderFailed": "Order failed. Please try again.",
+    "selectPaymentMethod": "Please select a payment method.",
+    "selectAddress": "Please select a delivery address.",
+    "stepIndicator": "Step {current} of {total}",
+    "cashDescription": "You'll pay in cash when your order is delivered.",
+    "creditDescription": "You'll be securely redirected to complete your payment.",
+    "next": "Next",
+    "back": "Back"
+  },
+ 
   "products": {
     "addToCart": "Add to cart",
     "outOfStock": "Out of stock",
+    "in-stock":"In Stock",
+    "no-ratings": "No ratings yet",
     "product-card": {
       "new": "New",
       "outOfStock": "Out of stock"
@@ -389,9 +434,125 @@
     },
     "related-products": {
       "sec-title": "Related Products"
-    }
+    },
+    "wishlist":{
+      "title":"Wishlist",
+      "empty":" Your wishlist is empty ",
+      "browse":"Browse products ",
+      "remove":"Remove from wishlist ",
+      "clear":"Clear Wishlist",
+      "continue-shopping":"Continue Shopping",
+      "explore-similar-products":"Explore Similar Products",
+      "clear-wishlist-confirmation":"Are you sure you want to clear your Wishlist?",
+      "items-count": "{count, plural, =0 {No items} one {# item} other {# items}}"
+  }
+  },
+
+    "address": {
+    "modal": {
+      "title": "My Addresses"
+    },
+    "add": {
+      "title": "Add a New Address",
+      "step1Title": "Enter Address Details",
+      "step2Title": "Find Your Location"
+    },
+    "editTitle": "Update Address Info",
+    "title":"title",
+    "titlePlaceholder":"Enter Title",
+    "city": "City",
+    "cityplaceholder":"Enter city name",
+    "details": "Address ",
+    "addressplaceholder":"Enter your full address",
+    "phone": "Phone Number",
+    "next": "Next",
+    "save": "Add Address",
+     "confirmLocation":"Add Address",
+     "UpdateLocation":"Update Address",
+    "updateAddress": "Update Address",
+    "addAddress": "Add a New Address",
+    "empty": "You don't have any saved addresses yet.",
+    "findMyLocation": "Find my location",
+    "deleteConfirm": "Are you sure you want to delete this address?",
+    "confirmDelete": "Delete",
+    "cancel": "Cancel",
+    "saving":"saving",
+    "geolocationNotSupported": "Geolocation is not supported by your browser.",
+    "locationError": "Unable to retrieve your location.",
+    "placeholder": {
+      "city": "Enter city name",
+      "street": "Enter your full address (building, floor, apartment...)"
+    },
+       
+    "added": "Address added successfully",
+    "updated": "Address updated successfully",
+    "deleted": "Address deleted successfully"
   },
   "grid": {
     "product-empty": "No products found matching your filters."
+  },
+  
+  "cart": {
+    "title": " Shopping Cart",
+    "title-2": " Products You May Like",
+    "products":"products",
+    "clearCart": "Clear Cart",
+    "confirmClear": " Are you sure you want to clear your cart?",
+    "emptyDescription": "You haven't added any products to your shopping cart yet.",
+    "continueShopping": "Continue Shopping",
+     "empty": "Your cart is empty",
+    "remove": "Remove",
+    "outOfStock": "Out of stock",
+    "ratings": "ratings",
+    "rating": "Rating"
+  },
+
+  
+  "orders": {
+    "title": "Orders",
+    "orderPrefix": "Order",
+    "createdAt": "Created in",
+    "totalPrice": "Total Price",
+    "currency": "EGP",
+    "paymentMethod": "Payment Method",
+    "deliveryStatus": "Delivery Status",
+    "orderItems": "Order Items",
+    "rating": "Rating",
+    "ratingsCount": "ratings",
+    "showAll": "Show All",
+    "showLess": "Show Less",
+    "error": "Something went wrong while loading your orders.",
+    "retry": "Retry",
+    "noOrders": "You have no orders yet.",
+
+    "methods": {
+      "CASH": "Cash",
+      "CREDIT_CARD": "Credit Card"
+    },
+
+    "status": {
+      "label": "Status"
+
+    },
+
+    "deliveryStatusValues": {
+      "PENDING": "Pending",
+      "SHIPPED": "Shipped",
+      "DELIVERED": "Delivered",
+      "CANCELED": "Canceled"
+    }
+  },
+
+  "button": {
+    "cancel": "Cancel",
+    "confirm": "Confirm"
+  },  "custom-input": {
+    "default": {
+      "label": "Label",
+      "placeholder": "Enter value"
+    },"search":{
+            "placeholder": "Enter value"
+
+    }
   }
 }

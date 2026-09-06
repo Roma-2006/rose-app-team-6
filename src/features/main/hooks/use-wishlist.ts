@@ -1,24 +1,25 @@
 'use client';
-
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
 import { useState, useEffect } from 'react';
-
 import {
   getLocalWishlist,
   addToLocalWishlist,
   removeFromLocalWishlist,
+  clearLocalWishlist,
   isInLocalWishlist,
   WISHLIST_STORAGE_EVENT,
 } from '../lib/storage';
 import type { LocalWishlistItem, LocalWishlistProduct } from '../types/local-wishlist';
 import {
   addToWishlistAction,
-  getWishlistAction,
   removeFromWishlistAction,
-} from '../api/wishlist.api';
+  clearWishlist,
+} from '../actions/wishlist.action';
+import { toast } from 'sonner';
+import { GetWishlistResponse } from '../types/wishlist';
 
-export const useWishlist = (productId?: string) => {
+export const useWishlist = (productId?: string, initialWishlist?: GetWishlistResponse) => {
   const { data: session, status } = useSession();
   const queryClient = useQueryClient();
   const isAuthenticated = status === 'authenticated';
@@ -42,18 +43,20 @@ export const useWishlist = (productId?: string) => {
     };
   }, [isAuthenticated]);
 
-  const wishlistQuery = useQuery({
+  const wishlistQuery = useQuery<GetWishlistResponse>({
     queryKey: ['wishlist'],
-    queryFn: () => getWishlistAction(),
+    queryFn: async () => {
+      const response = await fetch('/api/wishlist');
+      if (!response.ok) {
+        throw new Error('Failed to fetch wishlist');
+      }
+      return response.json();
+    },
     enabled: isAuthenticated && !!token,
   });
 
   const serverItems = wishlistQuery.data?.payload.wishlistItems ?? [];
-  const shouldUseGuestData =
-    !isAuthenticated ||
-    wishlistQuery.isPending ||
-    wishlistQuery.isLoading ||
-    wishlistQuery.isFetching;
+  const shouldUseGuestData = !isAuthenticated;
 
   const wishlistItems = shouldUseGuestData ? localItems : serverItems;
 
@@ -100,14 +103,49 @@ export const useWishlist = (productId?: string) => {
       }
     },
   });
-
+  // remove item from wishlist
+  const removeItemFromWishlistMutation = useMutation({
+    mutationFn: async (itemId: string) => {
+      if (shouldUseGuestData) {
+        const updated = removeFromLocalWishlist(itemId);
+        setLocalItems([...updated]);
+        return { success: true };
+      }
+      return removeFromWishlistAction(itemId);
+    },
+    onSuccess: async () => {
+      toast.success('remove item successfully');
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
+  //ClearWishlist
+  const clearWishlistMutation = useMutation({
+    mutationFn: async () => {
+      if (shouldUseGuestData) {
+        clearLocalWishlist();
+        setLocalItems([]);
+        return { success: true };
+      }
+      return clearWishlist();
+    },
+    onSuccess: async () => {
+      toast.success('Wishlist cleared successfully');
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
   return {
     wishlistItems,
     wishlistCount: wishlistItems.length,
     isInWishlist,
     toggleWishlist: toggleWishlistMutation.mutate,
     isPending: toggleWishlistMutation.isPending,
-    isLoading: isAuthenticated ? wishlistQuery.isLoading : false,
-    isError: isAuthenticated ? wishlistQuery.isError : false,
+    removeItemFromWishlistMutation: removeItemFromWishlistMutation.mutate,
+    //clearMutation
+    clearWishlist: clearWishlistMutation.mutateAsync,
+    loadingClearWishlist: clearWishlistMutation.isPending,
   };
 };

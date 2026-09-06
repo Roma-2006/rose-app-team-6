@@ -12,7 +12,8 @@
     "confirm": "تأكيد",
     "next": "التالي",
     "add-review": "أضف تقييمًا",
-    "adding": "إضافة..."
+    "adding": "إضافة...",
+    "retry":"إعادة المحاولة"
   },
   "common": {
     "select": {
@@ -34,15 +35,15 @@
     "search-error": "فشل البحث. حاول مجدداً.",
     "notifications": {
       "title": "الإشعارات ({count})",
-      "noNotifications": "لا توجد إشعارات حتى الآن",
-      "clearAll": "مسح جميع الإشعارات",
-      "markAllAsRead": "تعيين الكل كمقروء",
-      "notificationSettings": {
-        "markAsRead": "تعيين كمقروء",
+      "no-notifications": "لا توجد إشعارات حتى الآن",
+      "clear-all": "مسح جميع الإشعارات",
+      "mark-all-as-read": "تعيين الكل كمقروء",
+      "notification-settings": {
+        "mark-as-read": "تعيين كمقروء",
         "delete": "حذف"
       }
     },
-    "userMenu": {
+    "user-menu": {
       "title": "مرحبا ",
       "account": "حسابي",
       "addresses": "عناويني",
@@ -140,7 +141,14 @@
         "emailPlaceholder": "user@example.com",
         "continue": "متابعة",
         "footerText": "هل لديك حساب بالفعل؟ ",
-        "registerLink": "سجل الدخول "
+        "registerLink": "سجل الدخول ",
+        "errors": {
+          "email-required": "البريد الإلكتروني مطلوب.",
+          "invalid-email": "يرجى إدخال بريد إلكتروني صالح.",
+          "no-account": "لم يتم العثور على حساب بهذا البريد.",
+          "email-already-registered": "هذا البريد الإلكتروني مسجل بالفعل.",
+          "something-went-wrong": "حدث خطأ ما. يرجى المحاولة مرة أخرى."
+        }
       },
       "otp": {
         "title": "إنشاء حساب",
@@ -207,7 +215,7 @@
     }
   },
   "home": {
-    
+    "discover": "اكتشف",
     "hero-aside": {
       "badge": "ابتداءً من 10.99 جنيه",
       "title": "هدايا مميزة للأشخاص الذين تحبهم",
@@ -264,9 +272,9 @@
     },
     "bestSelling": {
       "badge": "الأكثر مبيعاً",
-      "titlePart1": "اكتشف",
-      "titlePart2": "ما يشتريه",
-      "titlePart3": "الجميع",
+     "titlePart1": "اكتشف",
+      "titlePart2": " ما يشتريه",
+       "titlePart3": "الجميع",
       "titlePart4": "في الوقت الحالي",
       "description": "لست متأكداً مما تختار؟\nابدأ بالأكثر مبيعاً لدينا، فهي الهدايا التي يعود عملاؤنا لطلبها دائماً.\nسواء كنت تحتفل بعيد ميلاد، ذكرى سنوية، أو زفاف، فإن اختياراتنا تضمن لك ترك انطباع لا يُنسى.",
       "exploreButton": "استكشف الهدايا"
@@ -297,8 +305,7 @@
         "part3": "صناديق الهدايا لمناسباتك",
         "part4": "لمناسباتك",
         "part5": "الخاصة"
-        }
-        
+      }
     },
     "gallery": {
       "label": "المعرض",
@@ -343,9 +350,34 @@
     "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" },
     "nice-to-have-you-here": "جميل أنك هنا"
   },
+  "checkout": {
+    "shipping-address": {
+      "title": "عنوان الشحن",
+      "add-new-address": "إضافة عنوان جديد",
+      "or": "أو",
+      "load-error ": "فشل تحميل العناوين.",
+      "no-addresses-error": "أضف عنوانك الأول للمتابعة"
+    },
+    "step2Title": "طريقة الدفع",
+    "cashOnDelivery": "الدفع عند الاستلام",
+    "creditCard": "بطاقة ائتمانية",
+    "placeOrder": "تقديم الطلب",
+    "orderSuccess": "تم تقديم طلبك بنجاح!",
+    "orderFailed": "فشل تقديم الطلب. حاول مجدداً.",
+    "selectPaymentMethod": "يرجى اختيار طريقة الدفع.",
+    "selectAddress": "يرجى اختيار عنوان التوصيل.",
+    "stepIndicator": "الخطوة {current} من {total}",
+    "cashDescription": "سيتم الدفع نقداً عند استلام الطلب.",
+    "creditDescription": "سيتم تحويلك بشكل آمن لإتمام عملية الدفع.",
+    "next": "التالي",
+    "back": "رجوع"
+  },
+
   "products": {
     "addToCart": "أضف إلى السلة",
     "outOfStock": "نفدت الكمية",
+    "in-stock":"متوفر",
+    "no-ratings": "لا توجد تقييمات بعد",
     "product-card": {
       "new": "جديد",
       "outOfStock": "غير متوفر"
@@ -401,9 +433,150 @@
     },
     "related-products": {
       "sec-title": "منتجات ذات صلة"
+    },
+    "wishlist":{
+      "title":" قائمة المفضلة",
+      "empty":" قائمة المفضلة فارغة",
+      "browse":"تصفح المنتجات",
+      "remove":"إزالة من المفضلة",
+      "clear":"مسح قائمة المفضله",
+      "continue-shopping":"متابعة التسوق",
+      "explore-similar-products":"اكتشف منتجات مشابهة",
+      "clear-wishlist-confirmation":"هل أنت متأكد أنك تريد إفراغ قائمة المفضلة",
+      "items-count": "{count, plural, =0 {لا توجد عناصر} =1 {عنصر واحد} =2 {عنصران} few {# عناصر} many {# عنصرًا} other {# عنصر}}"
     }
+  },
+  "input-component": {
+    "label": "الاسم بالكامل",
+    "placeholder": "أدخل اسمك هنا..."
+  },
+
+  "custom-input": {
+    "default": {
+      "first-name": { "label": "الاسم الأول", "placeholder": "Jonathan" },
+      "last-name": { "label": "الاسم الأخير", "placeholder": "Adrian" },
+      "user-name": { "label": " اسم المسخدم", "placeholder": "Jonathan" }
+    },
+    "number": { "label": "الرقم", "placeholder": "0" },
+    "search": { "label": "بحث", "placeholder": "ابحث هنا..." },
+    "password": {
+      "password": { "label": "كلمة المرور", "placeholder": "*********" },
+      "confirm-Password": { "label": "تأكيد كلمة المرور", "placeholder": "*********" }
+    },
+    "file": {
+      "label": "الملف",
+      "placeholder": "اختر ملف",
+      "btn-text": "رفع ملف",
+      "error-type": "صيغة الملف غير مدعومة."
+    },
+    "phone": { "label": "رقم الهاتف", "placeholder": "1012345678" },
+    "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" },
+    "nice-to-have-you-here": "جميل أنك هنا"
+  },
+   "address": {
+    "modal": {
+      "title": "عناوين التوصيل"
+    },
+    "add": {
+      "title": "إضافة عنوان جديد",
+      "step1Title": "إدخال تفاصيل العنوان",
+      "step2Title": "تحديد الموقع على الخريطة "
+    },
+    "editTitle": "تعديل العنوان",
+   "title": "العنوان",
+  "titlePlaceholder": "أدخل عنوانك",
+  "city": "المدينة",
+  "cityplaceholder": "أدخل اسم المدينة",
+  "details": "تفاصيل العنوان",
+  "addressplaceholder": "أدخل عنوانك بالكامل",
+    "phone": "رقم الهاتف",
+    "next": "الخطوة التالية",
+    "save": "اضاف العنوان",
+    "confirmLocation":"اضافه عنوان",
+     "UpdateLocation":"تحديث العنوان",
+    "updateAddress": "تحديث العنوان",
+    "addAddress": "إضافة العنوان",
+    "empty": "ليس لديك أي عناوين محفوظة حالياً.",
+    "findMyLocation": "تحديد موقعي الحالي",
+    "deleteConfirm": "هل أنت متأكد من رغبتك في حذف هذا العنوان؟",
+    "confirmDelete": "حذف",
+    "cancel": "إلغاء",
+    "saving":"حفظ",
+    "geolocationNotSupported": "المتصفح الخاص بك لا يدعم تحديد الموقع.",
+    "locationError": "تعذر الحصول على موقعك.",
+    "placeholder": {
+      "city": "أدخل اسم المدينة",
+      "street": "أدخل تفاصيل العنوان (البناية، الدور، رقم الشقة...)"
+    },
+      "added": "تم إضافة العنوان بنجاح",
+    "updated": "تم تحديث العنوان بنجاح",
+    "deleted": "تم حذف العنوان بنجاح"
   },
   "grid": {
     "product-empty": "لا توجد منتجات تطابق خيارات البحث."
+  },
+  
+  "cart": {
+    "title": "سلة التسوق",
+     "title-2": " منتجات قد تعجبك",
+    "products":"منتجات",
+    "clearCart": "إفراغ السلة",
+    "confirmClear": "هل أنت متأكد من إفراغ السلة؟",
+    "empty": "سلتك فارغة",
+    "emptyDescription": "لم تقم بإضافة أي منتجات إلى سلة التسوق الخاصة بك بعد.",
+    "continueShopping": "متابعة التسوق",
+    "remove": " إزالة",
+    "outOfStock": "نفدت الكمية",
+    "ratings": "تقييمات",
+    "rating": "التقييم"
+  },
+
+  
+  "orders": {
+    "title": "الطلبات",
+    "orderPrefix": "طلب",
+    "createdAt": "تم الإنشاء في",
+    "totalPrice": "السعر الإجمالي",
+    "currency": "ج.م",
+    "paymentMethod": "طريقة الدفع",
+    "deliveryStatus": "حالة التوصيل",
+    "orderItems": "عناصر الطلب",
+    "rating": "التقييم",
+    "ratingsCount": "تقييمات",
+    "showAll": "عرض الكل",
+    "showLess": "عرض أقل",
+    "error": "حدث خطأ أثناء تحميل طلباتك.",
+    "retry": "إعادة المحاولة",
+    "noOrders": "لا توجد لديك أي طلبات حتى الآن.",
+
+    "methods": {
+      "CASH": "نقدًا",
+      "CREDIT_CARD": "بطاقة ائتمان"
+    },
+
+    "status": {
+      "label": "الحالة"
+  
+    },
+
+    "deliveryStatusValues": {
+      "PENDING": "قيد الانتظار",
+      "SHIPPED": "تم الشحن",
+      "DELIVERED": "تم التوصيل",
+      "CANCELED": "ملغي"
+    }
+  },
+
+  "button-cart": {
+    "cancel": "إلغاء",
+    "confirm": "تأكيد"
+  },  "custom-input": {
+    "default": {
+      "label": "Label",
+      "placeholder": "Enter value"
+    },"search":{
+            "placeholder": "Enter value"
+
+    }
   }
 }
