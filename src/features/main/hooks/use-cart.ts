@@ -11,6 +11,7 @@ import {
   removeFromLocalCart,
   clearLocalCart,
   CART_STORAGE_EVENT,
+  getLocalCartServerSnapshot,
 } from '../lib/storage';
 import type { LocalCartItem, LocalCartProduct } from '../types/local-cart';
 import { getCart } from '../api/cart';
@@ -27,15 +28,16 @@ export type CartItem = ServerCartItem | LocalCartItem;
 interface UseCartOptions {
   initialItems?: GetCartResponse;
 }
-const EMPTY_CART: LocalCartItem[] = [];
 
-const getServerCartSnapshot = () => EMPTY_CART;
 export const useCart = ({ initialItems }: UseCartOptions = {}) => {
   const { data: session, status } = useSession();
   const queryClient = useQueryClient();
   const isAuthenticated = status === 'authenticated';
   const token = session?.token;
 
+  // Hydration-safe subscription to the guest cart: the server snapshot is an
+  // empty array, and the client snapshot reads localStorage only after
+  // hydration. No state is set synchronously in an effect.
   const subscribeToCartEvents = useCallback((onStoreChange: () => void) => {
     if (typeof window === 'undefined') return () => {};
     window.addEventListener(CART_STORAGE_EVENT, onStoreChange);
@@ -45,9 +47,8 @@ export const useCart = ({ initialItems }: UseCartOptions = {}) => {
   const localItems = useSyncExternalStore(
     subscribeToCartEvents,
     getLocalCartSnapshot,
-    getServerCartSnapshot
+    getLocalCartServerSnapshot
   );
-
   const cartQuery = useQuery<GetCartResponse>({
     queryKey: ['cart'],
     queryFn: () => getCart(token as string),
@@ -55,7 +56,7 @@ export const useCart = ({ initialItems }: UseCartOptions = {}) => {
     initialData: initialItems,
   });
 
-  const serverItems: ServerCartItem[] = cartQuery.data ?? [];
+  const serverItems: ServerCartItem[] = cartQuery.data?.payload?.cartItems ?? [];
 
   const isGuest = !isAuthenticated;
   const cartItems: CartItem[] = isGuest ? localItems : serverItems;

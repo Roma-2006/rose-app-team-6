@@ -35,4 +35,10 @@ export interface ServerCartItem {
   product: ServerCartProduct;
 }
 
-export type GetCartResponse = ServerCartItem[];
+export interface GetCartResponse {
+  message?: string;
+  status?: number;
+  payload?: {
+    cartItems?: ServerCartItem[];
+  };
+}
