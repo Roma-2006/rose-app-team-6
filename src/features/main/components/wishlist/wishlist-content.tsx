@@ -116,7 +116,7 @@ export default function WishlistContent({ initialWishlist }: WishlistContentProp
           </AlertDialog>
         )}
       </div>
-      {!isAuthenticated && guestWishlist.isLoading ? (
+      {!isAuthenticated && guestWishlist.isPending ? (
         <WishlistItemSkeleton />
       ) : wishlistItems.length > 0 ? (
         <div className="flex flex-col gap-5 border-t border-border-subtle my-4">
