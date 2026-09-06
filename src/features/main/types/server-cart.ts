@@ -34,11 +34,10 @@ export interface ServerCartItem {
   quantity: number;
   product: ServerCartProduct;
 }
-
-export interface GetCartResponse {
-  message?: string;
-  status?: number;
-  payload?: {
-    cartItems?: ServerCartItem[];
+export interface ServerCartResponse {
+  payload: {
+    cartItems: ServerCartItem[];
   };
 }
+
+export type GetCartResponse = ServerCartResponse;
