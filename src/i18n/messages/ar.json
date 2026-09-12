@@ -443,6 +443,23 @@
       "add-category-placeholder":"ادخل اسم الفئة"
 
     },
+   "occasions":{
+      "all-occasions":"جميع المناسبات",
+      "add-new-occasion":"أضف مناسبة جديدة",
+      "name":"الاسم *",
+       "name*":"Name",
+      "products":"المنتجات",
+      "occasions-not-found":"لم يتم العثور على أي مناسبات مطابقة للبحث.",
+       "num-products":"منتجات",
+      "edit":"تعديل",
+      "delete":"حذف",
+      "occasion-image":"صورة المناسبة *",
+       "view-occasion-image":"عرض صورة المناسبة",
+      "add-occasion":"إضافة مناسبة",
+      "update-occasion":"تحديث المناسبة",
+      "add-occasion-placeholder":"ادخل اسم المناسبة"
+
+    },
      "products":{
       "title":"كل المنتجات",
       "add-product":"إضافة منتج جديد",

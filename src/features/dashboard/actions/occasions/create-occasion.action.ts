@@ -3,7 +3,6 @@
 import { revalidatePath } from 'next/cache';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/auth';
-import { CreateCategoryType } from '../../types/categories/categories';
 import { CreateOccasionType } from '../../types/occasions/occasions';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;

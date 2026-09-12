@@ -3,6 +3,7 @@ interface Occasion {
   title: string;
   description?: string;
   image?: string;
+  productsCount?: number;
 }
 
 interface ApiResponse {

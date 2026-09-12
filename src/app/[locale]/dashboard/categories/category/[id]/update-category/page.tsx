@@ -5,10 +5,10 @@ import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import { Eye } from 'lucide-react';
 import { useCategory } from '@/features/dashboard/hooks/use-category';
-import { getCategoryByIdAction } from '@/features/dashboard/actions/get-category-by-id.action';
 import CustomInput from '@/shared/components/custom-input';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/shared/components/ui/button';
+import { getCategoryByIdAction } from '@/features/dashboard/actions/categories/get-category-by-id.action';
 
 // Strong type structure configuration mapping raw server responses cleanly without any
 interface ServerCategoryInfo {
@@ -44,7 +44,7 @@ export default function UpdateCategoryPage() {
   useEffect(() => {
     let isMounted = true;
 
-    const loadCategory = async (): Promise<void> => {
+    const loadOccasion = async (): Promise<void> => {
       if (!id) return;
       try {
         setLocalError(null);
@@ -52,30 +52,30 @@ export default function UpdateCategoryPage() {
 
         if (isMounted && res.success && res.data) {
           const wrappedData = res.data as ServerPayloadWrapper;
-          const activeCategory = wrappedData?.category;
+          const activeOccasion = wrappedData?.category;
 
-          const categoryTitle = activeCategory?.title || '';
-          const categoryImage = activeCategory?.image || '';
+          const OccasionTitle = activeOccasion?.title || '';
+          const OccasionImage = activeOccasion?.image || '';
 
-          if (categoryTitle) {
-            setName(categoryTitle);
-            setDisplayName(categoryTitle);
+          if (OccasionTitle) {
+            setName(OccasionTitle);
+            setDisplayName(OccasionTitle);
           }
-          if (categoryImage) {
-            setImageUrl(categoryImage);
+          if (OccasionImage) {
+            setImageUrl(OccasionImage);
           }
         } else if (isMounted && !res.success) {
-          setLocalError(res.message || 'Failed to fetch category data.');
+          setLocalError(res.message || 'Failed to fetch occasion data.');
         }
       } catch (err) {
         console.error('Error rendering fields:', err);
         if (isMounted) {
-          setLocalError('An error occurred while loading category.');
+          setLocalError('An error occurred while loading occasion.');
         }
       }
     };
 
-    loadCategory();
+    loadOccasion();
 
     return () => {
       isMounted = false;
@@ -87,7 +87,7 @@ export default function UpdateCategoryPage() {
     if (imageUrl) {
       window.open(imageUrl, '_blank', 'noopener,noreferrer');
     } else {
-      alert('No image path available for this target category item.');
+      alert('No image path available for this target occasion item.');
     }
   };
 

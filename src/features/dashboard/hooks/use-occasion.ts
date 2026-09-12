@@ -1,56 +1,56 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { CreateCategoryType } from '../types/categories/categories';
-import { createCategoryAction } from '../actions/categories/create-category.action';
-import { updateCategoryAction } from '../actions/categories/update-category.action';
-import { deleteCategoryAction } from '../actions/categories/delete-category.action';
+import { createOccasionAction } from '../actions/occasions/create-occasion.action';
+import { CreateOccasionType } from '../types/occasions/occasions';
+import { updateOccasionAction } from '../actions/occasions/update-occasion.action';
+import { deleteOccasionAction } from '../actions/occasions/delete-occasion.action';
 
 export function useOccasion() {
   const queryClient = useQueryClient();
 
   // 1. Mutation
   const createMutation = useMutation({
-    mutationFn: async (data: CreateCategoryType) => {
-      const res = await createCategoryAction(data);
+    mutationFn: async (data: CreateOccasionType) => {
+      const res = await createOccasionAction(data);
       return res;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['categories'] });
+      queryClient.invalidateQueries({ queryKey: ['occasions'] });
     },
   });
 
   // 2. Mutation
   const updateMutation = useMutation({
-    mutationFn: async ({ id, data }: { id: string; data: Partial<CreateCategoryType> }) => {
-      const res = await updateCategoryAction({ id, data });
+    mutationFn: async ({ id, data }: { id: string; data: Partial<CreateOccasionType> }) => {
+      const res = await updateOccasionAction({ id, data });
       if (!res.success) throw new Error(res.message);
       return res;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['categories'] });
+      queryClient.invalidateQueries({ queryKey: ['occasions'] });
     },
   });
 
   // 3. Mutation الحذف
   const deleteMutation = useMutation({
     mutationFn: async (id: string) => {
-      const res = await deleteCategoryAction(id);
+      const res = await deleteOccasionAction(id);
       return res;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['categories'] });
+      queryClient.invalidateQueries({ queryKey: ['occasions'] });
     },
   });
 
   return {
-    createCategory: createMutation.mutateAsync,
+    createOccasion: createMutation.mutateAsync,
     isCreating: createMutation.isPending,
     createError: createMutation.error,
 
-    updateCategory: updateMutation.mutateAsync,
+    updateOccasion: updateMutation.mutateAsync,
     isUpdating: updateMutation.isPending,
     updateError: updateMutation.error,
 
-    deleteCategory: deleteMutation.mutateAsync,
+    deleteOccasion: deleteMutation.mutateAsync,
     isDeleting: deleteMutation.isPending,
     deleteError: deleteMutation.error,
   };

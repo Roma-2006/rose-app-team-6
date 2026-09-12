@@ -1,5 +1,5 @@
-import { getCategoriesAction } from '@/features/dashboard/actions/categories/get-all-categories.action';
-import CategoryTable from '@/features/dashboard/components/categories/category-table';
+import { getOccasionsAction } from '@/features/dashboard/actions/occasions/get-all-occasions.action';
+import OccasionTable from '@/features/dashboard/components/occasions/occasion-table';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/shared/components/ui/button';
 import { Plus } from 'lucide-react';
@@ -13,28 +13,28 @@ interface PageProps {
   }>;
 }
 
-export default async function CategoriesPage({ searchParams }: PageProps) {
+export default async function OccasionsPage({ searchParams }: PageProps) {
   //Translation
-  const tDashboard = await getTranslations('dashboard.categories');
+  const tDashboard = await getTranslations('dashboard.Occasions');
 
   //Variables
   const params = await searchParams;
   const parsedPage = parseInt(params.page || '1', 10);
   const currentPage = isNaN(parsedPage) || parsedPage < 1 ? 1 : parsedPage;
   const searchKeyword = params.search || '';
-  const initialData = await getCategoriesAction(currentPage, searchKeyword, 12);
+  const initialData = await getOccasionsAction(currentPage, searchKeyword, 12);
 
   return (
     <section className=" flex flex-col w-full  md:p-0 gap-4.5 max-h-screen ">
       <header className="w-full flex justify-between">
         <h2 className=" text-xl  md:text-2xl pt-1 font-semibold text-text-plain">
-          {tDashboard('all-categories')}
+          {tDashboard('all-occasions')}
         </h2>
-        <Link href="/dashboard/categories/category/[id]/add-category">
+        <Link href="/dashboard/occasions/ocassion/[id]/add-occasion">
           <Button
             buttonVariant="text"
             variant="primary"
-            title="dashboard.categories.add-new-category"
+            title="dashboard.occasions.add-new-occasion"
             leftIcon={<Plus />}
             responsiveIconOnly
             className="h-11"
@@ -43,8 +43,8 @@ export default async function CategoriesPage({ searchParams }: PageProps) {
       </header>
 
       <main className="w-full ">
-        <CategoryTable
-          initialCategories={initialData.categories || []}
+        <OccasionTable
+          initialOccasions={initialData.occasions || []}
           initialTotalPages={initialData.totalPages || 1}
           currentPage={currentPage}
           currentSearch={searchKeyword}

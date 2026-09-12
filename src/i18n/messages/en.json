@@ -433,6 +433,22 @@
       "update-category":"Update Category",
       "add-category-placeholder":"Enter category name"
     },
+    "occasions":{
+      "all-occasions":"All Occasions",
+      "add-new-occasion":"Add a new occasion",
+      "name":"Name *",
+      "name*":"Name",
+      "products":"Products",
+      "occasions-not-found":"No occasions found matching filters.",
+       "num-products":"Products",
+      "edit":"Edit",
+      "delete":"Delete",
+      "occasion-image":"Occasion image *",
+      "view-occasion-image":"View occasion image",
+      "add-occasion":"Add Occasion",
+      "update-occasion":"Update Occasion",
+      "add-occasion-placeholder":"Enter occasion name"
+    },
     "products":{
       "title":"All Products",
       "add-product":"Add a new product",

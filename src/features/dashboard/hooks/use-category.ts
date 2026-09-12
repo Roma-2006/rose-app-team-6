@@ -3,15 +3,13 @@ import { CreateCategoryType } from '../types/categories/categories';
 import { createCategoryAction } from '../actions/categories/create-category.action';
 import { updateCategoryAction } from '../actions/categories/update-category.action';
 import { deleteCategoryAction } from '../actions/categories/delete-category.action';
-import { CreateOccasionType } from '../types/occasions/occasions';
-import { deleteOccasionAction } from '../actions/occasions/delete-occasion.action';
 
-export function useOccasion() {
+export function useCategory() {
   const queryClient = useQueryClient();
 
   // 1. Mutation
   const createMutation = useMutation({
-    mutationFn: async (data: CreateOccasionType) => {
+    mutationFn: async (data: CreateCategoryType) => {
       const res = await createCategoryAction(data);
       return res;
     },
@@ -22,7 +20,7 @@ export function useOccasion() {
 
   // 2. Mutation
   const updateMutation = useMutation({
-    mutationFn: async ({ id, data }: { id: string; data: Partial<CreateOccasionType> }) => {
+    mutationFn: async ({ id, data }: { id: string; data: Partial<CreateCategoryType> }) => {
       const res = await updateCategoryAction({ id, data });
       if (!res.success) throw new Error(res.message);
       return res;
@@ -35,7 +33,7 @@ export function useOccasion() {
   // 3. Mutation الحذف
   const deleteMutation = useMutation({
     mutationFn: async (id: string) => {
-      const res = await deleteOccasionAction(id);
+      const res = await deleteCategoryAction(id);
       return res;
     },
     onSuccess: () => {
@@ -44,15 +42,15 @@ export function useOccasion() {
   });
 
   return {
-    createOccasion: createMutation.mutateAsync,
+    createCategory: createMutation.mutateAsync,
     isCreating: createMutation.isPending,
     createError: createMutation.error,
 
-    updateOccasion: updateMutation.mutateAsync,
+    updateCategory: updateMutation.mutateAsync,
     isUpdating: updateMutation.isPending,
     updateError: updateMutation.error,
 
-    deleteOccasion: deleteMutation.mutateAsync,
+    deleteCategory: deleteMutation.mutateAsync,
     isDeleting: deleteMutation.isPending,
     deleteError: deleteMutation.error,
   };
