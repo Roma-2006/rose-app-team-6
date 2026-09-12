@@ -1,9 +1,9 @@
 import { useTranslations } from 'next-intl';
 
-import { AdminStatisticsTopProduct } from '@/features/main/types/statistics';
 import { formatNumber } from '../../utils/formatters';
+import { AdminStatisticsTopProduct } from '../../types/statistics';
 
-const rankBackgrounds = ['bg-amber-50', 'bg-bg-soft', 'bg-amber-800/25'];
+const rankBackgrounds = ['bg-bg-warning-fade', 'bg-bg-soft', 'bg-bg-danger-fade'];
 
 export function TopSellingProducts({ products }: { products: AdminStatisticsTopProduct[] }) {
   // Translation
@@ -17,7 +17,7 @@ export function TopSellingProducts({ products }: { products: AdminStatisticsTopP
       {products.length === 0 ? (
         <p className="px-5 py-6 text-center text-xs text-text-muted">{t('empty')}</p>
       ) : (
-        <div className="space-y-2 p-3">
+        <div className="max-h-80 overflow-y-auto md:max-h-56 space-y-2 p-3">
           {products.map((product, index) => (
             <div
               key={product.productId}
