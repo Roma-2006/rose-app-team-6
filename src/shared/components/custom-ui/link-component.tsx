@@ -1,3 +1,4 @@
+'use client';
 import { Link, usePathname } from '@/i18n/navigation';
 import { TLinkComponentProps } from '@/shared/types/link-component';
 import { useTranslations } from 'next-intl';

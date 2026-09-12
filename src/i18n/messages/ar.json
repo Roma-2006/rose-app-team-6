@@ -12,7 +12,11 @@
     "confirm": "تأكيد",
     "next": "التالي",
     "add-review": "أضف تقييمًا",
-    "adding": "إضافة..."
+    "adding": "إضافة...",
+    "preview-website": "عرض الصفحة",
+    "retry": "إعادة المحاولة",
+    "account-confirm": "نعم، احذف",
+    "account-cancel": "لا، لن أفعل"
   },
   "common": {
     "select": {
@@ -33,18 +37,18 @@
     "search-error": "فشل البحث. حاول مجدداً.",
     "notifications": {
       "title": "الإشعارات ({count})",
-      "noNotifications": "لا توجد إشعارات حتى الآن",
-      "clearAll": "مسح جميع الإشعارات",
-      "markAllAsRead": "تعيين الكل كمقروء",
-      "notificationSettings": {
-        "markAsRead": "تعيين كمقروء",
+      "no-notifications": "لا توجد إشعارات حتى الآن",
+      "clear-all": "مسح جميع الإشعارات",
+      "mark-all-as-read": "تعيين الكل كمقروء",
+      "notification-settings": {
+        "mark-as-read": "تعيين كمقروء",
         "delete": "حذف"
       }
     },
-    "userMenu": {
-      "title": "مرحبا ",
+    "user-menu": {
+      "title": "مرحبا",
       "account": "حسابي",
-      "addresses": "عناويني",
+      "address": "عناويني",
       "orders": "طلباتي",
       "dashboard": "لوحة التحكم",
       "logout": "تسجيل الخروج"
@@ -206,7 +210,6 @@
     }
   },
   "home": {
-    
     "hero-aside": {
       "badge": "ابتداءً من 10.99 جنيه",
       "title": "هدايا مميزة للأشخاص الذين تحبهم",
@@ -264,7 +267,7 @@
     "bestSelling": {
       "badge": "الأكثر مبيعاً",
       "titlePart1": "اكتشف",
-      "titlePart2": "ما يشتريه",
+      "titlePart2": " ما يشتريه",
       "titlePart3": "الجميع",
       "titlePart4": "في الوقت الحالي",
       "description": "لست متأكداً مما تختار؟\nابدأ بالأكثر مبيعاً لدينا، فهي الهدايا التي يعود عملاؤنا لطلبها دائماً.\nسواء كنت تحتفل بعيد ميلاد، ذكرى سنوية، أو زفاف، فإن اختياراتنا تضمن لك ترك انطباع لا يُنسى.",
@@ -296,8 +299,7 @@
         "part3": "صناديق الهدايا لمناسباتك",
         "part4": "لمناسباتك",
         "part5": "الخاصة"
-        }
-        
+      }
     },
     "gallery": {
       "label": "المعرض",
@@ -321,16 +323,42 @@
   },
   "custom-input": {
     "default": {
-      "first-name": { "label": "الاسم الأول", "placeholder": "Jonathan" },
-      "last-name": { "label": "الاسم الأخير", "placeholder": "Adrian" },
-      "user-name": { "label": "اسم المستخدم", "placeholder": "Jonathan" },
-      "review-title": { "label": "العنوان", "placeholder": "ادخل عنوان التقييم" }
+      "label": "العنوان",
+      "placeholder": "أدخل القيمة",
+      "first-name": {
+        "label": "الاسم الأول",
+        "placeholder": "Jonathan"
+      },
+      "last-name": {
+        "label": "الاسم الأخير",
+        "placeholder": "Adrian"
+      },
+      "user-name": {
+        "label": "اسم المستخدم",
+        "placeholder": "Jonathan"
+      },
+      "review-title": {
+        "label": "العنوان",
+        "placeholder": "ادخل عنوان التقييم"
+      }
     },
-    "number": { "label": "الرقم", "placeholder": "0" },
-    "search": { "label": "بحث", "placeholder": "ابحث هنا..." },
+    "number": {
+      "label": "الرقم",
+      "placeholder": "0"
+    },
+    "search": {
+      "label": "بحث",
+      "placeholder": "ابحث هنا..."
+    },
     "password": {
-      "password": { "label": "كلمة المرور", "placeholder": "*********" },
-      "confirm-Password": { "label": "تأكيد كلمة المرور", "placeholder": "*********" }
+      "password": {
+        "label": "كلمة المرور",
+        "placeholder": "*********"
+      },
+      "confirm-Password": {
+        "label": "تأكيد كلمة المرور",
+        "placeholder": "*********"
+      }
     },
     "file": {
       "label": "الملف",
@@ -338,13 +366,32 @@
       "btn-text": "رفع ملف",
       "error-type": "صيغة الملف غير مدعومة."
     },
-    "phone": { "label": "رقم الهاتف", "placeholder": "1012345678" },
-    "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" },
+    "phone": {
+      "label": "رقم الهاتف",
+      "placeholder": "1012345678"
+    },
+    "email": {
+      "label": "البريد الإلكتروني",
+      "placeholder": "user@example.com"
+    },
     "nice-to-have-you-here": "جميل أنك هنا"
+  },
+  "checkout": {
+    "shipping-address": {
+      "title": "عنوان الشحن",
+      "add-new-address": "إضافة عنوان جديد",
+      "or": "أو",
+      "load-error": "فشل تحميل العناوين.",
+      "no-addresses-error": "أضف عنوانك الأول للمتابعة"
+    },
+    "next": "التالي",
+    "back": "رجوع"
   },
   "products": {
     "addToCart": "أضف إلى السلة",
     "outOfStock": "نفدت الكمية",
+    "in-stock": "متوفر",
+    "no-ratings": "لا توجد تقييمات بعد",
     "product-card": {
       "new": "جديد",
       "outOfStock": "غير متوفر"
@@ -392,6 +439,8 @@
       "ratingsCount": "({count} تقييم)"
     },
     "add-review": {
+      "add-review": "أضف تقييمًا",
+      "adding": "إضافة...",
       "rating": "تقييمك",
       "title": "العنوان",
       "review": "اكتب رأيك",
@@ -400,9 +449,264 @@
     },
     "related-products": {
       "sec-title": "منتجات ذات صلة"
+    },
+    "wishlist": {
+      "title": "قائمة المفضلة",
+      "empty": "قائمة المفضلة فارغة",
+      "browse": "تصفح المنتجات",
+      "remove": "إزالة من المفضلة",
+      "clear": "مسح قائمة المفضله",
+      "continue-shopping": "متابعة التسوق",
+      "explore-similar-products": "اكتشف منتجات مشابهة",
+      "clear-wishlist-confirmation": "هل أنت متأكد أنك تريد إفراغ قائمة المفضلة",
+      "items-count": "{count, plural, =0 {لا توجد عناصر} =1 {عنصر واحد} =2 {عنصران} few {# عناصر} many {# عنصرًا} other {# عنصر}}"
     }
+  },
+  "address": {
+    "modal": {
+      "title": "عناوين التوصيل"
+    },
+    "add": {
+      "title": "إضافة عنوان جديد",
+      "step1Title": "إدخال تفاصيل العنوان",
+      "step2Title": "تحديد الموقع على الخريطة "
+    },
+    "editTitle": "تعديل العنوان",
+    "title": "العنوان",
+    "titlePlaceholder": "أدخل عنوانك",
+    "city": "المدينة",
+    "cityplaceholder": "أدخل اسم المدينة",
+    "details": "تفاصيل العنوان",
+    "addressplaceholder": "أدخل عنوانك بالكامل",
+    "phone": "رقم الهاتف",
+    "next": "الخطوة التالية",
+    "save": "اضاف العنوان",
+    "confirmLocation": "اضافه عنوان",
+    "UpdateLocation": "تحديث العنوان",
+    "updateAddress": "تحديث العنوان",
+    "addAddress": "إضافة العنوان",
+    "empty": "ليس لديك أي عناوين محفوظة حالياً.",
+    "findMyLocation": "تحديد موقعي الحالي",
+    "deleteConfirm": "هل أنت متأكد من رغبتك في حذف هذا العنوان؟",
+    "confirmDelete": "حذف",
+    "cancel": "إلغاء",
+    "saving": "حفظ",
+    "geolocationNotSupported": "المتصفح الخاص بك لا يدعم تحديد الموقع.",
+    "locationError": "تعذر الحصول على موقعك.",
+    "placeholder": {
+      "city": "أدخل اسم المدينة",
+      "street": "أدخل تفاصيل العنوان (البناية، الدور، رقم الشقة...)"
+    },
+    "added": "تم إضافة العنوان بنجاح",
+    "updated": "تم تحديث العنوان بنجاح",
+    "deleted": "تم حذف العنوان بنجاح"
   },
   "grid": {
     "product-empty": "لا توجد منتجات تطابق خيارات البحث."
+  },
+"dashboard": {
+    "notFound": {
+      "title": "هذه الصفحة غير موجودة.",
+      "description": "لا يمكن إيجاد هذه الصفحة، تأكد أنك على المسار الصحيح.",
+      "action": "الذهاب للوحة التحكم"
+    },
+    "unauthorized": {
+      "title": "لا يمكنك الوصول لتلك الصفحة.",
+      "description": "إذا كان هناك خطأ ما، تواصل مع فريق الدعم الفني.",
+      "action": "الذهاب للصفحة الرئيسية"
+    },
+    "error": {
+      "title": "للأسف حدث خطأ ما!",
+      "description": "نحن نعمل على حلها، بالرجاء المحاولة مرة أخرى.",
+      "action": "حاول مرة أخرى"
+    },
+    "dashboard-chart-title": {
+      "ordersStatus": "حالة الطلبات",
+      "revenue": "الإيرادات",
+      "lastweek": "الأسبوع الماضي",
+      "monthly": "شهري",
+      "EGP": "جنيه",
+      "completed": "مكتملة",
+      "inProgress": "قيد التنفيذ",
+      "canceled": "ملغاة"
+    },
+    "dashboard-title": {
+      "ordersStatus": "حالة الطلبات",
+      "revenue": "الإيرادات"
+    },
+    "statistics": {
+      "low-stock": {
+        "title": "منتجات منخفضة المخزون",
+        "empty": "لا توجد منتجات منخفضة المخزون.",
+        "units": "منتجات"
+      },
+      "stats": {
+        "products": "إجمالي المنتجات",
+        "orders": "إجمالي الطلبات",
+        "categories": "إجمالي الفئات",
+        "revenue": "إجمالي الإيرادات"
+      },
+      "categories": {
+        "title": "جميع الفئات",
+        "empty": "لا توجد فئات.",
+        "units": "منتج"
+      },
+      "top-selling": {
+        "title": "المنتجات الأكثر مبيعاً",
+        "empty": "لا توجد بيانات مبيعات.",
+        "currency": "جنيه",
+        "units": "مبيعات"
+      }
+    },
+    "account": {
+      "change-password": {
+        "title": "تغيير كلمة المرور",
+        "button": "تغيير كلمة المرور",
+        "currentPassword": "كلمة المرور القديمة",
+        "newPassword": "كلمة المرور الجديدة",
+        "confirmPassword": "تأكيد كلمة المرور الجديدة",
+        "placeholders": {
+          "currentPassword": "أدخل كلمة المرور الحالية",
+          "newPassword": "أدخل كلمة المرور الجديدة",
+          "confirmPassword": "تأكيد كلمة المرور الجديدة"
+        },
+        "success": "تم تغيير كلمة المرور بنجاح",
+        "errors": {
+          "something-went-wrong": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+          "current-password-required": "كلمة المرور الحالية مطلوبة",
+          "password-min-length": "يجب أن تكون كلمة المرور 8 أحرف على الأقل",
+          "password-uppercase": "يجب أن تحتوي كلمة المرور على حرف كبير",
+          "password-lowercase": "يجب أن تحتوي كلمة المرور على حرف صغير",
+          "password-number": "يجب أن تحتوي كلمة المرور على رقم",
+          "password-special": "يجب أن تحتوي كلمة المرور على رمز خاص",
+          "confirm-password": "يرجى تأكيد كلمة المرور",
+          "passwords-do-not-match": "كلمتا المرور غير متطابقتين"
+        }
+      },
+      "delete-popover": {
+        "title": "هل أنت متأكد أنك تريد حذف الحساب؟",
+        "description": "هذا الإجراء نهائي ولا يمكن الرجوع فيه.",
+        "cancel-button": "لا، لا تفعل ذلك",
+        "confirm-button": "نعم، احذف",
+        "loading-button": "جاري التحميل..."
+      },
+      "menu": {
+        "account-button": "الحساب",
+        "logout-button": "خروج",
+        "edit-button": "تعديل",
+        "delete-button": "حذف"
+      }
+    }
+  } 
+  ,
+  "change-password": {
+    "sidebar": {
+      "profile-tab": "الملف الشخصي",
+      "password-tab": "تغيير كلمة المرور",
+      "logout": "تسجيل الخروج"
+    },
+    "old-password": "كلمة المرور الحالية",
+    "new-password": "كلمة المرور الجديدة",
+    "confirm-password": "تأكيد كلمة المرور الجديدة",
+    "submit-button": "تغيير كلمة المرور",
+    "success-message": "تم تغيير كلمة المرور بنجاح.",
+    "error-message": "فشل تغيير كلمة المرور. يرجى المحاولة مرة أخرى.",
+    "validation": {
+      "old-password-required": "كلمة المرور القديمة مطلوبة.",
+      "new-password-required": "كلمة المرور الجديدة مطلوبة.",
+      "confirm-password-required": "تأكيد كلمة المرور مطلوب.",
+      "passwords-do-not-match": "كلمة المرور الجديدة وتأكيد كلمة المرور غير متطابقين."
+    }
+  },
+  "cart": {
+    "couponPlaceholder": "رمز الكوبون",
+    "couponLabel": "",
+    "invalidCoupon": "كوبون غير صالح أو منتهي الصلاحية",
+    "couponApplied": "تم تطبيق الكوبون!",
+    "NocouponApplied": "لم يتم تطبيق أي كوبونات",
+    "couponAlreadyApplied": "تم تطبيق الكوبون بالفعل",
+    "summary": "الموجز",
+    "subtotal": "المجموع الفرعي",
+    "total": "الإجمالي",
+    "applyCoupon": "تطبيق الكوبون",
+    "checkout": "المتابعة للدفع",
+    "products": "منتجات",
+    "clearCart": "إفراغ السلة",
+    "confirmClear": "هل أنت متأكد من إفراغ السلة؟",
+    "empty": "سلتك فارغة",
+    "emptyDescription": "لم تقم بإضافة أي منتجات إلى سلة التسوق الخاصة بك بعد.",
+    "continueShopping": "متابعة التسوق",
+    "remove": " إزالة",
+    "outOfStock": "نفدت الكمية",
+    "ratings": "تقييمات",
+    "rating": "التقييم"
+  },
+  "orders": {
+    "title": "الطلبات",
+    "orderPrefix": "طلب",
+    "createdAt": "تم الإنشاء في",
+    "totalPrice": "السعر الإجمالي",
+    "currency": "ج.م",
+    "paymentMethod": "طريقة الدفع",
+    "deliveryStatus": "حالة التوصيل",
+    "orderItems": "عناصر الطلب",
+    "rating": "التقييم",
+    "ratingsCount": "تقييمات",
+    "showAll": "عرض الكل",
+    "showLess": "عرض أقل",
+    "error": "حدث خطأ أثناء تحميل طلباتك.",
+    "retry": "إعادة المحاولة",
+    "noOrders": "لا توجد لديك أي طلبات حتى الآن.",
+    "methods": {
+      "CASH": "نقدًا",
+      "CREDIT_CARD": "بطاقة ائتمان"
+    },
+    "status": {
+      "label": "الحالة"
+    },
+    "deliveryStatusValues": {
+      "PENDING": "قيد الانتظار",
+      "SHIPPED": "تم الشحن",
+      "DELIVERED": "تم التوصيل",
+      "CANCELED": "ملغي"
+    }
+  },
+  "button-cart": {
+    "cancel": "إلغاء",
+    "confirm": "تأكيد"
+  },
+  "account-settings": {
+    "title": "إعدادات الحساب",
+    "sidebar": {
+      "password-tab": "تغيير كلمة المرور",
+      "logout": "تسجيل الخروج"
+    },
+    "profile": {
+      "upload-photo": "رفع صورة",
+      "upload-photo-description": "يمكنك رفع صورة بصيغة .jpg أو .png أو .gif، بحد أقصى 5 ميجابايت.",
+      "save-changes": "حفظ التغييرات",
+      "delete-my-account": "حذف حسابي",
+      "delete-account-confirmation": "هل انت متأكد أنك تريد مسح حسابك؟",
+      "permanent-warning": "هذا الإجراء نهائي ولا يمكن التراجع عنه.",
+      "first-name": "الاسم الأول",
+      "last-name": "اسم العائلة",
+      "email": "البريد الإلكتروني",
+      "phone": "رقم الهاتف",
+      "gender": "النوع",
+      "update-success": "تم تحديث الملف الشخصي بنجاح",
+      "update-error": "فشل تحديث الملف الشخصي. يرجى المحاولة مرة أخرى.",
+      "photoTooLarge": "يجب ألا يتجاوز حجم الصورة 2 ميجابايت",
+      "invalidPhoto": "يرجى رفع ملف صورة صالح",
+      "delete-success": "تم حذف حسابك.",
+      "delete-error": "فشل حذف الحساب. يرجى المحاولة مرة أخرى.",
+      "pending-orders": "لديك طلبات معلقة. يرجى إكمالها أو إلغاؤها قبل حذف حسابك.",
+      "no-changes": "لا توجد تغييرات لحفظها.",
+      "errors": {
+        "first-name": "الاسم الأول مطلوب",
+        "last-name": "اسم العائلة مطلوب",
+        "phone": "رقم الهاتف مطلوب",
+        "invalid-phone-number": "رقم الهاتف غير صالح"
+      }
+    }
   }
 }
