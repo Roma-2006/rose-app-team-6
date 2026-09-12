@@ -1,5 +1,7 @@
 {
   "app-title": "تطبيق روز",
+    "Explore gifts": "Explore Gifts",
+
   "HomePage": {
     "title": "مرحبا بك في تطبيق روز"
   },
@@ -12,7 +14,10 @@
     "confirm": "تأكيد",
     "next": "التالي",
     "add-review": "أضف تقييمًا",
-    "adding": "إضافة..."
+    "adding": "إضافة...",
+    "edit": "تعديل",
+    "preview-website": "عرض الصفحة" ,
+    "retry": "إعادة المحاولة"
   },
   "common": {
     "select": {
@@ -404,5 +409,120 @@
   },
   "grid": {
     "product-empty": "لا توجد منتجات تطابق خيارات البحث."
+  },
+  "dashboard": {
+  "notFound": {
+    "title": "هذه الصفحة غير موجودة",
+    "description": "لا يمكن ايجاد هذه الصفحة ، تأكد انك على المسار الصحيح",
+    "action":  " الذهاب للوحة التحكم"
+  },
+  "unauthorized": {
+    "title": "لا يمكنك الوصول لتلك الصفحة",
+    "description": "إذا كان هناك خطأ ما ، تواصل مع فريق الدعم الفني",
+    "action": "الذهاب للصفحة الرئيسية"
+  },
+  "error": {
+    "title": "للأسف حدث خطأ ما ",
+    "description": "نحن نعمل على حلها ، بالرجاء المحاولة مرة اخرى ",
+    "action": "حاول مرة اخرى"
+  },
+   "categories":{
+      "all-categories":"جميع الفئات",
+      "add-new-category":"أضف فئة جديدة",
+      "name":"الاسم *",
+       "name*":"Name",
+      "products":"المنتجات",
+      "categories-not-found":"لم يتم العثور على أي فئات مطابقة للبحث.",
+       "num-products":"منتجات",
+      "edit":"تعديل",
+      "delete":"حذف",
+      "category-image":"صورة الفئة *",
+       "view-category-image":"عرض صورة الفئة",
+      "add-category":"إضافة فئة",
+      "update-category":"تحديث الفئة",
+      "add-category-placeholder":"ادخل اسم الفئة"
+
+    },
+   "occasions":{
+      "all-occasions":"جميع المناسبات",
+      "add-new-occasion":"أضف مناسبة جديدة",
+      "name":"الاسم *",
+       "name*":"Name",
+      "products":"المنتجات",
+      "occasions-not-found":"لم يتم العثور على أي مناسبات مطابقة للبحث.",
+       "num-products":"منتجات",
+      "edit":"تعديل",
+      "delete":"حذف",
+      "occasion-image":"صورة المناسبة *",
+       "view-occasion-image":"عرض صورة المناسبة",
+      "add-occasion":"إضافة مناسبة",
+      "update-occasion":"تحديث المناسبة",
+      "add-occasion-placeholder":"ادخل اسم المناسبة"
+
+    },
+     "products":{
+      "title":"كل المنتجات",
+      "add-product":"إضافة منتج جديد",
+      "delete-success": "تم حذف المنتج بنجاح.",
+      "delete-error": "حدث خطأ أثناء حذف المنتج.",
+      "currency": {
+        "egp": "جنيه مصري"
+      },
+      "table": {
+        "name": "الاسم",
+        "price": "السعر",
+        "stock": "المخزون",
+        "sales": "المبيعات",
+        "ratings": "التقييمات"
+      }
+    },
+  "account" :{
+     "delete-popover" : {
+        "title" : "هل أنت متأكد أنك تريد حذف الحساب؟",
+        "description" : "هذا الإجراء لا يمكن الرجوع فيه",
+        "cancel-button" : "لا ، لا تفعل ذلك",
+        "confirm-button" : "نعم ، احذف",
+        "loading-button" : "تحميل..."
+      },
+       "menu": {
+        "edit-button" : "تعديل",
+        "delete-button" : "حذف"
+      }
   }
+},
+  
+  "cart": {
+    "title": "سلة التسوق",
+     "title-2": " منتجات قد تعجبك",
+     "couponPlaceholder":"رمز الكوبون",
+   "couponLabel":"",
+    "invalidCoupon":"كوبون غير صالح أو منتهي الصلاحية",
+    "couponApplied":"تم تطبيق الكوبون!",
+    "NocouponApplied":"لم يتم تطبيق أي كوبونات",
+    "couponAlreadyApplied":"تم تطبيق الكوبون بالفعل",
+    "summary":"الموجز",
+    "subtotal":"المجموع الفرعي",
+    "total ":"الإجمالي",
+    "applyCoupon":"تطبيق الكوبون",
+  "checkout":"المتابعة للدفع",
+    "products":"منتجات",
+    "clearCart": "إفراغ السلة",
+    "confirmClear": "هل أنت متأكد من إفراغ السلة؟",
+    "empty": "سلتك فارغة",
+    "emptyDescription": "لم تقم بإضافة أي منتجات إلى سلة التسوق الخاصة بك بعد.",
+    "continueShopping": "متابعة التسوق",
+    "remove": " إزالة",
+    "outOfStock": "نفدت الكمية",
+    "ratings": "تقييمات",
+    "rating": "التقييم"
+  },
+  "button-cart": {
+    "cancel": "إلغاء",
+    "confirm": "تأكيد"
+  }
+
 }
+  
+   
+   
+
