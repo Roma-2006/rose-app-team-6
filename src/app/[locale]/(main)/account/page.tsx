@@ -28,7 +28,7 @@ export default async function AccountPage({ searchParams }: AccountPageProps) {
       <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 ">
         <AccountSidebar activeTab={activeTab} />
         <main className=" w-full lg:flex-1 min-w-0">
-          {/* {activeTab === 'profile' && user && <ProfileView user={user} />} */}
+          {activeTab === 'profile' && user && <ProfileView user={user} />}
           {activeTab === 'password' && <ChangePasswordView />}
         </main>
       </div>
