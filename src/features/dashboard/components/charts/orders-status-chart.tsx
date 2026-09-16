@@ -17,7 +17,7 @@ export function OrdersStatusChart({ data }: OrdersStatusChartProps) {
   const chartData = getChartData(data, t);
 
   return (
-    <div className="w-full rounded-2xl bg-white p-6 shadow-sm border border-gray-100 ">
+    <div className="w-full rounded-2xl bg-bg-plain p-6 shadow-sm  ">
       {/* Title Header */}
       <div className="mb-6 text-start lg:text-center">
         <DashboardTitle title={t('ordersStatus')} />
@@ -59,10 +59,11 @@ export function OrdersStatusChart({ data }: OrdersStatusChartProps) {
             <div key={item.status} className="flex items-center justify-between text-xs sm:text-sm">
               <div className="flex items-center gap-2">
                 <span className="h-3 w-3 rounded-full" style={{ backgroundColor: item.fill }} />
-                <span className="font-semibold text-gray-700">{item.label}</span>
+                <span className="font-semibold text-text-plain">{item.label}</span>
               </div>
-              <div className="font-bold text-gray-900">
-                {item.value} <span className="font-semibold text-gray-900">({item.percent}%)</span>
+              <div className="font-bold text-text-plain">
+                {item.value}{' '}
+                <span className="font-semibold text-text-plain">({item.percent}%)</span>
               </div>
             </div>
           ))}

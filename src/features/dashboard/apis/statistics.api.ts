@@ -1,4 +1,4 @@
-'use server';
+'server-only';
 
 import { getAuthToken } from '@/features/main/lib/get-auth-token';
 import { AdminStatisticsResponse } from '@/features/main/types/statistics';
@@ -16,6 +16,10 @@ export async function getAdminStatistics(
   params: GetAdminStatisticsParams = {}
 ): Promise<AdminStatisticsResponse['payload']> {
   const token = await getAuthToken();
+
+  if (!token) {
+    throw new Error('Authentication required');
+  }
 
   const searchParams = new URLSearchParams({
     revenuePeriod: params.revenuePeriod ?? 'monthly',

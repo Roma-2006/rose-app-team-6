@@ -81,14 +81,14 @@ export default function ProfileView({ user }: { user: TUser }) {
 
   return (
     <FormProvider {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 ">
         {/* Photo Upload Section */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
           <div className="relative w-24 h-24 sm:w-28 sm:h-28 aspect-square rounded-full shrink-0">
             <Avatar src={imageSrc} alt="Profile photo" fallback={user?.firstName} size={112} />
             <label
               htmlFor="profile-image"
-              className="absolute bottom-0 right-0 cursor-pointer w-8 h-8 rounded-full bg-zinc-100 border border-border-muted flex justify-center items-center shadow-sm"
+              className="absolute bottom-0 right-0 cursor-pointer w-8 h-8 rounded-full bg-bg-muted border border-border-muted flex justify-center items-center shadow-sm"
             >
               {isUploading ? (
                 <LoaderCircle className="animate-spin text-gray-600" size={18} />
@@ -235,7 +235,7 @@ export default function ProfileView({ user }: { user: TUser }) {
                   buttonVariant="text"
                   variant="ghost"
                   title="change-password.submit-button"
-                  className="text-sm font-semibold text-gray-800 p-0 hover:bg-transparent hover:underline"
+                  className="text-sm font-semibold text-text-plain p-0 hover:bg-transparent hover:underline"
                 />
               </Link>
             )}

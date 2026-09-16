@@ -2,7 +2,7 @@
 
 import { useState, useTransition } from 'react';
 import { RevenueChart } from './revenue-chart';
-import { getAdminStatistics, type RevenuePeriod } from '../../apis/statistics.api';
+import type { RevenuePeriod } from '../../apis/statistics.api';
 
 type RevenuePoint = {
   period: string;
@@ -24,13 +24,20 @@ export function RevenueChartContainer({ initialData }: Props) {
 
     startTransition(async () => {
       try {
-        const statistics = await getAdminStatistics({
-          revenuePeriod: newPeriod,
+        const response = await fetch(`/api/admin/statistics?revenuePeriod=${newPeriod}`, {
+          method: 'GET',
+          cache: 'no-store',
         });
 
-        setData(statistics.revenue.points);
-      } catch (error) {
-        console.error('Failed to fetch statistics:', error);
+        if (!response.ok) {
+          throw new Error('Failed to fetch statistics');
+        }
+
+        const result = await response.json();
+
+        setData(result.payload.revenue.points);
+      } catch {
+        // Handle request failure
       }
     });
   };

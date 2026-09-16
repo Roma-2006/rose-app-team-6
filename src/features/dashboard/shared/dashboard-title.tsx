@@ -3,5 +3,5 @@ type DashboardTitleProps = {
 };
 
 export function DashboardTitle({ title }: DashboardTitleProps) {
-  return <h2 className=" font-semibold  text-2xl  w-full h-[29px] text-black ">{title}</h2>;
+  return <h2 className=" font-semibold  text-2xl  w-full h-[29px] text-text-plain">{title}</h2>;
 }

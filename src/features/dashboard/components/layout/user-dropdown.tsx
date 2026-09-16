@@ -31,7 +31,7 @@ export function UserDropdown({ trigger, onDelete, deleteLoading = false }: UserD
       <DropdownMenu>
         <DropdownMenuTrigger render={trigger as React.ReactElement} />
         <DropdownMenuContent align="end" sideOffset={8} className="min-w-40 bg-bg-plain">
-          <DropdownMenuItem className="text-black [&_svg]:text-bg-black ">
+          <DropdownMenuItem className="text-text-plain [&_svg]:text-bg-black ">
             <Link href={'/dashboard/account'} className="flex gap-1.5 ">
               <User size={16} />
               {t('account-button')}
@@ -41,7 +41,7 @@ export function UserDropdown({ trigger, onDelete, deleteLoading = false }: UserD
             <DropdownMenuItem
               variant="destructive"
               onClick={() => signOut({ callbackUrl: '/login' })}
-              className="text-black flex gap-1.5 hover:text-text-danger"
+              className="text-text-plain flex gap-1.5 hover:text-text-danger"
             >
               <LogOut size={16} />
               {t('logout-button')}
