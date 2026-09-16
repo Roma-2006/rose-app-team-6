@@ -48,7 +48,7 @@ export function UserProfileSection({ className }: UserProfileSectionProps) {
           <button
             type="button"
             aria-label="user-menu"
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-border-soft text-text-soft transition-colors"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-border-soft text-text-soft transition-colors "
           >
             <MoreVertical size={20} />
           </button>

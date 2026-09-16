@@ -1,4 +1,4 @@
-import 'server-only';
+'server-only';
 
 import { getAuthToken } from '@/features/main/lib/get-auth-token';
 import { AdminStatisticsResponse } from '../types/statistics';
