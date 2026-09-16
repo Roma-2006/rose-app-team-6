@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 
-import { getAdminStatisticsServer } from '../../services/statistics.server';
+import { getAdminStatistics } from '../../apis/statistics.api';
 import { StatsGrid } from './stat-card';
 import { CategoriesList } from './categories-list';
 import { TopSellingProducts } from './top-selling-products';
@@ -9,7 +9,6 @@ import { DashboardOverviewSkeleton } from '../skeleton/dashboard-overview-skelet
 import { formatNumber } from '../../utils/formatters';
 import { OrdersStatusChart } from './orders-status-chart';
 import { RevenueChartContainer } from './revenue-chart-container';
-import { getAdminStatistics } from '../../apis/statistics.api';
 
 const currencyFormatter = new Intl.NumberFormat('en-EG', {
   maximumFractionDigits: 0,
@@ -21,7 +20,7 @@ function formatRevenue(value: number, currency: string) {
 
 async function DashboardOverviewData() {
   // Query
-  const data = await getAdminStatisticsServer({
+  const data = await getAdminStatistics({
     lowStockThreshold: 20,
     topProductsLimit: 5,
     lowStockLimit: 20,
@@ -34,7 +33,7 @@ async function DashboardOverviewData() {
     categories: formatNumber(data.summary.totalCategories),
     revenue: formatRevenue(data.summary.totalRevenue, data.summary.currency),
   };
-  const statistics = await getAdminStatistics();
+
   return (
     <div className="space-y-6">
       <div className="grid gap-4 lg:grid-cols-12">
@@ -50,11 +49,11 @@ async function DashboardOverviewData() {
       <div className="w-full p-4 sm:p-6">
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
           <div className="w-full lg:col-span-3 flex items-center justify-center ">
-            <OrdersStatusChart data={statistics.orderStatus} />
+            <OrdersStatusChart data={data.orderStatus} />
           </div>
 
           <div className="w-full lg:col-span-9 flex items-center justify-center ">
-            <RevenueChartContainer initialData={statistics.revenue.points} />
+            <RevenueChartContainer initialData={data.revenue.points} />
           </div>
         </div>
       </div>

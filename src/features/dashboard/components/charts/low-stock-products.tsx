@@ -1,7 +1,8 @@
 import { useTranslations } from 'next-intl';
 
 import { formatNumber } from '../../utils/formatters';
-import { AdminStatisticsLowStockProduct } from '@/features/main/types/statistics';
+import { AdminStatisticsLowStockProduct } from '../../types/statistics';
+
 export function LowStockProducts({ products }: { products: AdminStatisticsLowStockProduct[] }) {
   // Translation
   const t = useTranslations('dashboard.statistics.low-stock');
@@ -14,7 +15,7 @@ export function LowStockProducts({ products }: { products: AdminStatisticsLowSto
       {products.length === 0 ? (
         <p className="px-5 py-6 text-center text-xs text-text-muted">{t('empty')}</p>
       ) : (
-        <div className="md:max-h-56 md:overflow-y-auto">
+        <div className="max-h-80 overflow-y-auto md:max-h-56">
           {products.map((product, index) => (
             <div
               key={product.id}
