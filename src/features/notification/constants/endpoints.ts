@@ -4,7 +4,7 @@ export const ENDPOINTS = {
   PUSH_SUBSCRIPTIONS: '/notifications/subscriptions',
   UNSUBSCRIBE: '/notifications/subscriptions',
   READ_NOTIFICATION: '/notifications/:notificationId',
-  READ_ALL_NOTIFICATIONS: '/notifications/read-all',
+  READ_ALL_NOTIFICATIONS: '/notifications/mark-all-read',
   DELETE_NOTIFICATION: '/notifications/:notificationId',
   DELETE_ALL_NOTIFICATIONS: '/notifications/clear-all',
 } as const;
