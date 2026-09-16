@@ -71,11 +71,6 @@ export default function ProfileView({ user }: { user: TUser }) {
       phone: user.phone ?? '',
     });
   }, [user]);
-  console.log({
-    preview,
-    userPhoto: user?.photo,
-    imageSrc,
-  });
   return (
     <FormProvider {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
