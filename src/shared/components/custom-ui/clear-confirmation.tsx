@@ -11,6 +11,7 @@ import { X } from 'lucide-react';
 export default function ClearConfirmation({
   icon,
   title,
+  subTitle,
   cancelButtonTitle,
   confirmButtonTitle,
   onClick,
@@ -42,6 +43,7 @@ export default function ClearConfirmation({
           </div>
           {title}
         </AlertDialogTitle>
+        {subTitle && <h2 className="text-text-primary font-normal text-base m-auto">{subTitle}</h2>}
       </AlertDialogHeader>
       <AlertDialogFooter>
         <AlertDialogCancel

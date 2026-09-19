@@ -21,7 +21,6 @@ export default function AddReviewForm({ isAuthenticated, productId }: IAddReview
   // Translation
   const tInput = useTranslations('custom-input');
   const tAddReview = useTranslations('products.add-review');
-  const tButton = useTranslations('button');
 
   // Navigation
   const router = useRouter();
@@ -136,9 +135,9 @@ export default function AddReviewForm({ isAuthenticated, productId }: IAddReview
           className="mt-9 w-full"
           loading={isPending}
           disabled={isPending || (!isAuthenticated && showLoginPrompt)}
-          title={tButton('add-review')}
+          title="products.add-review.add-review"
           onClick={handleAddReviewClick}
-        ></Button>
+        />
       </div>
 
       {!isAuthenticated && showLoginPrompt && (

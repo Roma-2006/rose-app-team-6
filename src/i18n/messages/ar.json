@@ -44,9 +44,9 @@
       }
     },
     "user-menu": {
-      "title": "مرحبا ",
+      "title": "مرحبا",
       "account": "حسابي",
-      "addresses": "عناويني",
+      "address": "عناويني",
       "orders": "طلباتي",
       "dashboard": "لوحة التحكم",
       "logout": "تسجيل الخروج"
@@ -141,14 +141,7 @@
         "emailPlaceholder": "user@example.com",
         "continue": "متابعة",
         "footerText": "هل لديك حساب بالفعل؟ ",
-        "registerLink": "سجل الدخول ",
-        "errors": {
-          "email-required": "البريد الإلكتروني مطلوب.",
-          "invalid-email": "يرجى إدخال بريد إلكتروني صالح.",
-          "no-account": "لم يتم العثور على حساب بهذا البريد.",
-          "email-already-registered": "هذا البريد الإلكتروني مسجل بالفعل.",
-          "something-went-wrong": "حدث خطأ ما. يرجى المحاولة مرة أخرى."
-        }
+        "registerLink": "سجل الدخول "
       },
       "otp": {
         "title": "إنشاء حساب",
@@ -215,7 +208,6 @@
     }
   },
   "home": {
-    "discover": "اكتشف",
     "hero-aside": {
       "badge": "ابتداءً من 10.99 جنيه",
       "title": "هدايا مميزة للأشخاص الذين تحبهم",
@@ -329,16 +321,40 @@
   },
   "custom-input": {
     "default": {
-      "first-name": { "label": "الاسم الأول", "placeholder": "Jonathan" },
-      "last-name": { "label": "الاسم الأخير", "placeholder": "Adrian" },
-      "user-name": { "label": "اسم المستخدم", "placeholder": "Jonathan" },
-      "review-title": { "label": "العنوان", "placeholder": "ادخل عنوان التقييم" }
+      "first-name": {
+        "label": "الاسم الأول",
+        "placeholder": "Jonathan"
+      },
+      "last-name": {
+        "label": "الاسم الأخير",
+        "placeholder": "Adrian"
+      },
+      "user-name": {
+        "label": "اسم المستخدم",
+        "placeholder": "Jonathan"
+      },
+      "review-title": {
+        "label": "العنوان",
+        "placeholder": "ادخل عنوان التقييم"
+      }
     },
-    "number": { "label": "الرقم", "placeholder": "0" },
-    "search": { "label": "بحث", "placeholder": "ابحث هنا..." },
+    "number": {
+      "label": "الرقم",
+      "placeholder": "0"
+    },
+    "search": {
+      "label": "بحث",
+      "placeholder": "ابحث هنا..."
+    },
     "password": {
-      "password": { "label": "كلمة المرور", "placeholder": "*********" },
-      "confirm-Password": { "label": "تأكيد كلمة المرور", "placeholder": "*********" }
+      "password": {
+        "label": "كلمة المرور",
+        "placeholder": "*********"
+      },
+      "confirm-Password": {
+        "label": "تأكيد كلمة المرور",
+        "placeholder": "*********"
+      }
     },
     "file": {
       "label": "الملف",
@@ -346,31 +362,15 @@
       "btn-text": "رفع ملف",
       "error-type": "صيغة الملف غير مدعومة."
     },
-    "phone": { "label": "رقم الهاتف", "placeholder": "1012345678" },
-    "email": { "label": "البريد الإلكتروني", "placeholder": "user@example.com" },
-    "nice-to-have-you-here": "جميل أنك هنا"
-  },
-  "checkout": {
-    "shipping-address": {
-      "title": "عنوان الشحن",
-      "add-new-address": "إضافة عنوان جديد",
-      "or": "أو",
-      "load-error ": "فشل تحميل العناوين.",
-      "no-addresses-error": "أضف عنوانك الأول للمتابعة"
+    "phone": {
+      "label": "رقم الهاتف",
+      "placeholder": "1012345678"
     },
-    "step2Title": "طريقة الدفع",
-    "cashOnDelivery": "الدفع عند الاستلام",
-    "creditCard": "بطاقة ائتمانية",
-    "placeOrder": "تقديم الطلب",
-    "orderSuccess": "تم تقديم طلبك بنجاح!",
-    "orderFailed": "فشل تقديم الطلب. حاول مجدداً.",
-    "selectPaymentMethod": "يرجى اختيار طريقة الدفع.",
-    "selectAddress": "يرجى اختيار عنوان التوصيل.",
-    "stepIndicator": "الخطوة {current} من {total}",
-    "cashDescription": "سيتم الدفع نقداً عند استلام الطلب.",
-    "creditDescription": "سيتم تحويلك بشكل آمن لإتمام عملية الدفع.",
-    "next": "التالي",
-    "back": "رجوع"
+    "email": {
+      "label": "البريد الإلكتروني",
+      "placeholder": "user@example.com"
+    },
+    "nice-to-have-you-here": "جميل أنك هنا"
   },
 
   "products": {
@@ -425,6 +425,8 @@
       "ratingsCount": "({count} تقييم)"
     },
     "add-review": {
+     "add-review": "أضف تقييمًا",
+     "adding": "إضافة...",
       "rating": "تقييمك",
       "title": "العنوان",
       "review": "اكتب رأيك",
@@ -515,10 +517,22 @@
   "grid": {
     "product-empty": "لا توجد منتجات تطابق خيارات البحث."
   },
+   
   
   "cart": {
     "title": "سلة التسوق",
      "title-2": " منتجات قد تعجبك",
+     "couponPlaceholder":"رمز الكوبون",
+   "couponLabel":"",
+    "invalidCoupon":"كوبون غير صالح أو منتهي الصلاحية",
+    "couponApplied":"تم تطبيق الكوبون!",
+    "NocouponApplied":"لم يتم تطبيق أي كوبونات",
+    "couponAlreadyApplied":"تم تطبيق الكوبون بالفعل",
+    "summary":"الموجز",
+    "subtotal":"المجموع الفرعي",
+    "total ":"الإجمالي",
+    "applyCoupon":"تطبيق الكوبون",
+  "checkout":"المتابعة للدفع",
     "products":"منتجات",
     "clearCart": "إفراغ السلة",
     "confirmClear": "هل أنت متأكد من إفراغ السلة؟",
@@ -570,13 +584,62 @@
   "button-cart": {
     "cancel": "إلغاء",
     "confirm": "تأكيد"
-  },  "custom-input": {
-    "default": {
-      "label": "Label",
-      "placeholder": "Enter value"
-    },"search":{
-            "placeholder": "Enter value"
+  },
 
-    }
-  }
+
+  "account-settings":{
+    "title": "إعدادات الحساب",
+    "sidebar":{
+     "profile-tab":"الملف الشخصي", 
+     "password-tab": "تغيير كلمة المرور",
+     "logout" :"تسجيل الخروج"
+    },
+    "profile":{
+      "upload-photo": "رفع صورة",
+      "upload-photo-description": "يمكنك رفع صورة بصيغة .jpg أو .png أو .gif، بحد أقصى 5 ميجابايت.",
+      "save-changes": "حفظ التغييرات",
+      "delete-my-account": "حذف حسابي",
+      "delete-account-confirmation":"   هل انت متأكد أنك تريد مسح حسابك؟",
+      "permanent-warning":"هذا الإجراء نهائي ولا يمكن التراجع عنه.",
+      "first-name": "الاسم الأول",
+      "last-name": "اسم العائلة",
+      "email": "البريد الإلكتروني (لا يمكن تغييره)",
+      "phone": "رقم الهاتف",
+      "gender": "النوع",
+      "update-success": "تم تحديث الملف الشخصي بنجاح",
+      "update-error": "فشل تحديث الملف الشخصي. يرجى المحاولة مرة أخرى.",
+      "photoTooLarge": "يجب ألا يتجاوز حجم الصورة 2 ميجابايت",
+      "invalidPhoto": "يرجى رفع ملف صورة صالح",
+      "confirm": "حذف حسابي",
+      "cancel": "إلغاء",
+      "delete-success": "تم حذف حسابك.",
+      "delete-error": "فشل حذف الحساب. يرجى المحاولة مرة أخرى.",
+      "pending-orders": "لديك طلبات معلقة. يرجى إكمالها أو إلغاؤها قبل حذف حسابك.",
+      "no-changes": "لا توجد تغييرات لحفظها.",
+      "errors": {
+          "first-name": "الاسم الأول مطلوب",
+          "last-name": "اسم العائلة مطلوب",
+          "phone": "رقم الهاتف مطلوب",
+          "invalid-phone-number": "رقم الهاتف غير صالح"
+      }
+    },
+    "change-password": {
+     "sidebar":{
+     "profile-tab":"الملف الشخصي", 
+     "password-tab": "تغيير كلمة المرور",
+     "logout" :"تسجيل الخروج"
+   },
+    "old-password": "كلمة المرور الحالية",
+    "new-password": "كلمة المرور الجديدة",
+    "confirm-password": "تأكيد كلمة المرور الجديدة",
+    "submit-button": "تغيير كلمة المرور",
+    "success-message": "تم تغيير كلمة المرور بنجاح.",
+    "error-message": "فشل في تغيير كلمة المرور. يرجى المحاولة مرة أخرى.",
+    "validation": {
+      "old-password-required": "كلمة المرور الحالية مطلوبة.",
+      "new-password-required": "كلمة المرور الجديدة مطلوبة.",
+      "confirm-password-required": "تأكيد كلمة المرور الجديدة مطلوب.",
+      "passwords-do-not-match": "كلمة المرور الجديدة وتأكيد كلمة المرور لا تتطابق."
+    }}
+}
 }

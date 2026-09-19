@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 
 import { CheckoutStepsProps } from '@/features/main/types/checkout.d';
 import { Address } from '@/features/main/types/address.d';
-import { ICouponBackendResponse } from '@/features/main/types/order-summary';
+import { CouponBackendResponse } from '@/features/main/types/order-summary';
 import Stepper from '@/shared/components/custom-ui/stepper';
 
 import ShippingAddressStep from './address/shipping-address/shipping-address-step';
@@ -21,14 +21,14 @@ const CheckoutSteps = ({ initialAddresses, initialAddressesError }: CheckoutStep
     return primary?.id ?? initialAddresses[0]?.id ?? null;
   });
 
-  const [appliedCoupons, setAppliedCoupons] = useState<ICouponBackendResponse[]>([]);
+  const [appliedCoupons, setAppliedCoupons] = useState<CouponBackendResponse[]>([]);
 
   const handleAddressAdded = (newAddress: Address) => {
     setAddresses((prev) => [...prev, newAddress]);
     setSelectedAddressId(newAddress.id);
   };
 
-  const handleApplyCoupon = (coupon: ICouponBackendResponse) => {
+  const handleApplyCoupon = (coupon: CouponBackendResponse) => {
     const isAlreadyApplied = appliedCoupons.some((c) => c.id === coupon.id);
     if (isAlreadyApplied) return;
     setAppliedCoupons((prev) => [...prev, coupon]);

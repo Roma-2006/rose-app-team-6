@@ -11,4 +11,5 @@ export type ClearConfirmationModalProps = {
   confirmButtonTitle: string;
   onClick?: () => void;
   loading?: boolean;
+  subTitle?: string;
 };

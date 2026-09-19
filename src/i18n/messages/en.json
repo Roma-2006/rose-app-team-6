@@ -4,7 +4,7 @@
     "title": "Welcome to Rose App"
   },
   "button": {
-    "loading": "Loading...",
+    "loading":"Loading...",
     "submit": "Submit",
     "cancel": "Cancel",
     "save": "Save",
@@ -35,19 +35,19 @@
     "search-error": "Search failed. Try again.",
     "notifications": {
       "title": "Notifications ({count})",
-      "no-notifications": "No notifications yet",
-      "clear-all": "Clear all notifications",
-      "mark-all-as-read": "Mark all as read",
+      "no-notifications": "No notifications found",
+      "clear-all": "Clear All",
+      "mark-all-as-read": "Mark All as Read",
       "notification-settings": {
-        "mark-as-read": "Mark as read",
+        "mark-as-read": "Mark as Read",
         "delete": "Delete"
       }
     },
     "user-menu": {
-      "title": "Hello ",
-      "account": "My Account",
-      "addresses": "My Addresses",
-      "orders": "My Orders",
+      "title": "Hello",
+      "account": "Account",
+      "addresses": "Addresses",
+      "orders": "Orders",
       "dashboard": "Dashboard",
       "logout": "Logout"
     }
@@ -151,7 +151,6 @@
         }
       },
       "otp": {
-        "title": "Create Account",
         "subtitle-1": "Enter Verification Code",
         "subtitle-2": "We have sent a 6-digit code to {email}",
         "resend": "Send a new code",
@@ -328,50 +327,47 @@
     "placeholder": "Enter your name..."
   },
   "custom-input": {
+    
     "default": {
+      
       "first-name": { "label": "First name", "placeholder": "zoe" },
       "last-name": { "label": "Last name", "placeholder": "Jonathan" },
       "user-name": { "label": "UserName", "placeholder": "zoe123" },
       "review-title": { "label": "Title", "placeholder": "Enter review title" }
+      
+     
+     
     },
-    "number": { "label": "Number", "placeholder": "0" },
-    "search": { "label": "Search", "placeholder": "Search..." },
+    "number": {
+      "label": "Number",
+      "placeholder": "0"
+    },
+    "search": {
+      "label": "Search",
+      "placeholder": "Search..."
+    },
     "password": {
+        "label": "Password",
+      "placeholder": "Enter password",
       "password": { "label": "Password", "placeholder": "*********" },
       "confirm-Password": { "label": "Confirm Password", "placeholder": "*********" }
+     
+    
     },
     "file": {
-      "label": "File",
-      "placeholder": "Upload file",
+      
       "btn-text": "Upload File",
       "error-type": "File type not accepted."
     },
-    "phone": { "label": "Phone", "placeholder": "1012345678" },
-    "email": { "label": "Email", "placeholder": "user@example.com" },
-    "nice-to-have-you-here": "nice to have you here"
-  },
-
-  "checkout": {
-    "shipping-address": {
-      "title": "Shipping Address",
-      "add-new-address": "Add New Address",
-      "or": "OR",
-      "load-error ": "Failed to load addresses.",
-      "no-addresses-error": "Add your first address to continue"
+    "phone": {
+      "label": "Phone",
+      "placeholder": "1012345678"
     },
-    "step2Title": "Payment Method",
-    "cashOnDelivery": "Cash on Delivery",
-    "creditCard": "Credit Card",
-    "placeOrder": "Place Order",
-    "orderSuccess": "Order placed successfully!",
-    "orderFailed": "Order failed. Please try again.",
-    "selectPaymentMethod": "Please select a payment method.",
-    "selectAddress": "Please select a delivery address.",
-    "stepIndicator": "Step {current} of {total}",
-    "cashDescription": "You'll pay in cash when your order is delivered.",
-    "creditDescription": "You'll be securely redirected to complete your payment.",
-    "next": "Next",
-    "back": "Back"
+    "email": {
+      "label": "Email",
+      "placeholder": "user@example.com"
+    },
+    "nice-to-have-you-here": "nice to have you here"
   },
  
   "products": {
@@ -415,6 +411,7 @@
       }
     },
     "product-reviews": {
+   
       "title": "Product Reviews",
       "empty": "No reviews yet.",
       "loading": "Loading reviews...",
@@ -426,6 +423,8 @@
       "ratingsCount": "({count} ratings)"
     },
     "add-review": {
+      "add-review":"Add Review",
+      "adding":"Adding...",
       "rating": "Your rating",
       "title": "Title",
       "review": "Review",
@@ -491,10 +490,22 @@
   "grid": {
     "product-empty": "No products found matching your filters."
   },
+ 
   
   "cart": {
     "title": " Shopping Cart",
     "title-2": " Products You May Like",
+    "summary":"Summary",
+    "couponPlaceholder":"Coupon Code",
+    "couponLabel":"",
+    "invalidCoupon":"Invalid or expired coupon",
+    "couponApplied":"Coupon applied",
+    "NocouponApplied":"No coupons applied",
+    "couponAlreadyApplied":"Coupon already applied",
+    "subtotal":"Subtotal",
+    "total":"Total",
+    "applyCoupon":"Apply Coupon",
+    "checkout":"Checkout",
     "products":"products",
     "clearCart": "Clear Cart",
     "confirmClear": " Are you sure you want to clear your cart?",
@@ -506,6 +517,7 @@
     "ratings": "ratings",
     "rating": "Rating"
   },
+  "button-cart": {
 
   
   "orders": {
@@ -546,13 +558,60 @@
   "button": {
     "cancel": "Cancel",
     "confirm": "Confirm"
-  },  "custom-input": {
-    "default": {
-      "label": "Label",
-      "placeholder": "Enter value"
-    },"search":{
-            "placeholder": "Enter value"
+  },
 
-    }
-  }
+
+  "account-settings":{
+    "title":"Account Settings",
+    "sidebar":{
+     "profile-tab":"profile", 
+     "password-tab":"Change Password",
+     "logout" :"Logout"
+    },
+    "profile":{
+      "upload-photo": "Upload Photo",
+      "upload-photo-description": "You can upload a .jpg, .png, or .gif photo with max size of 5MB.",
+      "save-changes":"Save Changes",
+      "delete-my-account":"Delete My Account",
+      "delete-account-confirmation":"Are you sure you want to delete your account?",
+      "permanent-warning":"This action is permanent and cannot be undone.",
+      "first-name": "First Name",
+      "last-name": "Last Name",
+      "email": "Email (cannot be changed)",
+      "phone": "Phone",
+      "gender": "Gender",
+      "update-success": "Profile updated successfully",
+      "update-error": "Failed to update profile. Please try again.",
+      "photoTooLarge": "Image must be under 2MB",
+      "invalidPhoto": "Please upload a valid image file",
+      "confirm": "Delete My Account",
+      "cancel": "Cancel",
+      "delete-success": "Your account has been deleted.",
+      "delete-error": "Failed to delete account. Please try again.",
+      "pending-orders":"You have pending orders. Please complete or cancel them before deleting your account.",
+      "no-changes": "No changes to save.",
+      "errors": {
+          "first-name": "First Name is required",
+          "last-name": "Last Name is required",
+          "phone": "Phone is required",
+          "invalid-phone-number": "Invalid phone number"
+      }
+    },
+     "change-password": {
+ 
+    "old-password": "Current Password",
+    "new-password": "New Password",
+    "confirm-password": "Confirm New Password",
+    "submit-button": "Change Password",
+    "success-message": "Password changed successfully.",
+    "error-message": "Failed to change password. Please try again.",
+    "validation": {
+      "old-password-required": "Old password is required.",
+      "new-password-required": "New password is required.",
+      "confirm-password-required": "Confirm password is required.",
+      "passwords-do-not-match": "New password and confirm password do not match."
+    }}
+
+  
 }
+  }}
