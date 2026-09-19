@@ -8,6 +8,7 @@ export async function getWishlist(): Promise<GetWishlistResponse> {
       Authorization: `Bearer ${token}`,
       accept: 'application/json',
     },
+    next: { tags: ['wishlist'] },
   });
 
   if (!response.ok) {

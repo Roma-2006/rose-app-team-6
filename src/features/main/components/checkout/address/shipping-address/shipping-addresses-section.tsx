@@ -6,6 +6,8 @@ import { ShippingAddressSectionProps } from '@/features/main/types/address.d';
 import { Button } from '@/shared/components/ui/button';
 import AddressList from './address-list';
 import AddressListSkeleton from './address-list-skeleton';
+import { AddressBookModal } from '../../../address/address-model';
+import { useState } from 'react';
 
 const ShippingAddressesSection = ({
   addresses,
@@ -16,7 +18,7 @@ const ShippingAddressesSection = ({
   onAddNewAddress,
 }: ShippingAddressSectionProps) => {
   const t = useTranslations('checkout.shipping-address');
-
+  const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
   return (
     <div className="flex flex-col gap-3 w-full justify-center">
       <h2 className="font-semibold text-text-plain text-3xl text-start">{t('title')}</h2>
@@ -52,10 +54,11 @@ const ShippingAddressesSection = ({
           <Button
             variant="secondary"
             buttonVariant="text"
-            onClick={onAddNewAddress}
+            onClick={() => setIsAddressModalOpen(true)}
             title={t('add-new-address')}
             className="self-center w-full text-center"
           />
+          <AddressBookModal isOpen={isAddressModalOpen} onOpenChange={setIsAddressModalOpen} />
         </>
       )}
     </div>

@@ -5,6 +5,7 @@ import { ICreateOrderPayload, IConfirmPaymentPayload } from '../types/payment';
 export async function createOrder(payload: ICreateOrderPayload) {
   const response = await fetch('/api/orders', {
     method: 'POST',
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
     },

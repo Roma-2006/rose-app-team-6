@@ -1,4 +1,7 @@
 'use client';
+import { useState, useTransition } from 'react';
+import { useSession } from 'next-auth/react';
+import { useRouter } from '@/i18n/navigation';
 import WishlistItem from './wishlist-item';
 import { useWishlist } from '../../hooks/use-wishlist';
 import WishlistItemSkeleton from '../skeleton/wishlist-item-skeleton';
@@ -10,31 +13,73 @@ import { useTranslations } from 'next-intl';
 import Modal from '@/shared/components/custom-ui/modal';
 import { AlertDialog, AlertDialogTrigger } from '@/shared/components/ui/alert-dialog';
 import ClearConfirmation from '@/shared/components/custom-ui/clear-confirmation';
-import { useState } from 'react';
+import { toast } from 'sonner';
+import {
+  removeFromWishlistAction,
+  clearWishlist as clearWishlistAction,
+} from '../../actions/wishlist.action';
 import { WishlistContentProps } from '../../types/wishlist';
+
 export default function WishlistContent({ initialWishlist }: WishlistContentProps) {
   //Translations
   const t = useTranslations('products');
-  //Hooks
-  const {
-    wishlistItems,
-    isLoading,
-    isFetching,
-    error,
-    wishlistCount,
-    clearWishlist,
-    loadingClearWishlist,
-    refetch,
-    isError,
-  } = useWishlist(undefined, initialWishlist);
+  //Session
+  const { status } = useSession();
+  const isAuthenticated = status === 'authenticated';
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+
+  // Authenticated
+
+  const serverItems = initialWishlist.payload.wishlistItems;
+
+  // Guest
+  const guestWishlist = useWishlist(undefined, initialWishlist);
+
+  const wishlistItems = isAuthenticated ? serverItems : guestWishlist.wishlistItems;
+  const wishlistCount = wishlistItems.length;
+
   const [isClearDialogOpen, setIsClearDialogOpen] = useState(false);
   const locale = useLocale();
   const isRTL = locale === 'ar';
+
   //Function
-  const handleClearWishlist = async () => {
-    await clearWishlist();
-    setIsClearDialogOpen(false);
+  const handleRemoveItem = async (itemId: string) => {
+    if (!isAuthenticated) {
+      guestWishlist.removeItemFromWishlistMutation(itemId);
+      return;
+    }
+    startTransition(async () => {
+      try {
+        await removeFromWishlistAction(itemId);
+        router.refresh();
+      } catch (error) {
+        toast.error((error as Error).message);
+      }
+    });
   };
+
+  const handleClearWishlist = async () => {
+    if (!isAuthenticated) {
+      await guestWishlist.clearWishlist();
+      setIsClearDialogOpen(false);
+      return;
+    }
+    startTransition(async () => {
+      try {
+        await clearWishlistAction();
+        toast.success('Wishlist cleared successfully');
+        router.refresh();
+      } catch (error) {
+        toast.error((error as Error).message);
+      } finally {
+        setIsClearDialogOpen(false);
+      }
+    });
+  };
+
+  const loadingClearWishlist = isAuthenticated ? isPending : guestWishlist.loadingClearWishlist;
+
   return (
     <>
       <div className="flex flex-wrap gap-2 justify-between items-center">
@@ -71,23 +116,12 @@ export default function WishlistContent({ initialWishlist }: WishlistContentProp
           </AlertDialog>
         )}
       </div>
-      {isLoading ? (
+      {!isAuthenticated && guestWishlist.isLoading ? (
         <WishlistItemSkeleton />
-      ) : isError ? (
-        <div className="text-center text-2xl font-bold min-h-80 mt-6">
-          <p className="mb-3">{error?.message}</p>
-          <Button
-            buttonVariant="text"
-            variant="primary"
-            title="button.retry"
-            onClick={() => refetch()}
-            loading={isFetching}
-          />
-        </div>
       ) : wishlistItems.length > 0 ? (
         <div className="flex flex-col gap-5 border-t border-border-subtle my-4">
           {wishlistItems.map((item) => (
-            <WishlistItem key={item.id} wishlistItem={item} />
+            <WishlistItem key={item.id} wishlistItem={item} onRemove={handleRemoveItem} />
           ))}
         </div>
       ) : (

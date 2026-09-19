@@ -15,5 +15,7 @@ export async function getCart(token: string): Promise<GetCartResponse> {
     throw new Error(`Failed to fetch cart: ${response.status} ${errorBody}`);
   }
 
-  return response.json();
+  const data = await response.json();
+
+  return data.payload.cartItems;
 }

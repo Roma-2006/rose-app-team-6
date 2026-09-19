@@ -1,5 +1,6 @@
 import { getAuthToken } from '@/features/main/lib/get-auth-token';
 import { NextRequest, NextResponse } from 'next/server';
+
 export async function POST(request: NextRequest) {
   try {
     const token = await getAuthToken();
@@ -37,7 +38,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         status: false,
-        message: 'Order failed. Please try again.',
+        message: 'Order failed',
       },
       { status: 500 }
     );
