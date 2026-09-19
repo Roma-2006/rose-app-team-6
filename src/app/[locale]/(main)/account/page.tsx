@@ -1,25 +1,22 @@
-import { authOptions } from '@/auth';
 import getUserProfile from '@/features/user/apis/get-user-profile.api';
 import AccountSidebar from '@/features/user/components/account-settings/account-sidebar';
 import ChangePasswordView from '@/features/user/components/account-settings/change-pass';
 import ProfileView from '@/features/user/components/account-settings/profile-view';
 import { AccountPageProps } from '@/features/user/types/profile';
 import { getServerSession } from 'next-auth';
-import { getTranslations } from 'next-intl/server';
-import { redirect } from 'next/navigation';
-import { getLocale } from 'next-intl/server';
+import { getTranslations, getLocale } from 'next-intl/server';
+import { redirect } from '@/i18n/navigation';
+import { authOptions } from '@/auth';
 export default async function AccountPage({ searchParams }: AccountPageProps) {
-  const locale = await getLocale();
-  const session = await getServerSession(authOptions);
-  if (!session) {
-    redirect(`/${locale}/login`);
-  }
-
   //Translations
   const t = await getTranslations();
   const { tab } = await searchParams;
+  const locale = await getLocale();
   const activeTab = tab === 'password' ? 'password' : 'profile';
-
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    redirect({ href: '/login', locale });
+  }
   //Profile Data
   const user = await getUserProfile();
   return (
