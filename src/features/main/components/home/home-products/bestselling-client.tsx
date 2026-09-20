@@ -5,7 +5,6 @@ import { useLocale, useTranslations } from 'next-intl';
 
 import { Button } from '@/shared/components/ui/button';
 
-import { ProductCardSkeleton } from '../../skeleton/product-card-skelton';
 import { ProductCard } from './Product-card';
 import { Product } from '@/features/main/types/products';
 import { Carousel } from '../../shared/carousel';
@@ -15,10 +14,7 @@ interface BestSellingSectionClientProps {
   isLoading?: boolean;
 }
 
-export const BestSellingSectionClient = ({
-  products,
-  isLoading = false,
-}: BestSellingSectionClientProps) => {
+export const BestSellingSectionClient = ({ products }: BestSellingSectionClientProps) => {
   const locale = useLocale();
   const isRtl = locale === 'ar';
   const t = useTranslations('home.bestSelling');
@@ -30,11 +26,12 @@ export const BestSellingSectionClient = ({
           <p className="text-base font-bold uppercase tracking-widest text-text-secondary text-start w-full">
             {t('badge')}
           </p>
-
+          {/* Description */}
           <h2 className="w-full text-start text-3xl font-bold leading-tight">
             <span className="text-text-secondary">{t('titlePart1')} </span>
             <span className="text-text-primary">{t('titlePart2')} </span>
             <span className="text-text-secondary">{t('titlePart3')} </span>
+            <span className="text-text-primary">{t('titlePart4')} </span>
           </h2>
 
           <p className="w-full text-start text-base leading-6 text-text-soft whitespace-pre-line">
@@ -43,7 +40,7 @@ export const BestSellingSectionClient = ({
           <Button
             buttonVariant="text"
             variant="primary"
-            title="home.bestSelling.exploreButton"
+            title={t('exploreButton')}
             rightIcon={
               isRtl ? (
                 <ArrowLeft
@@ -64,17 +61,11 @@ export const BestSellingSectionClient = ({
         {/* Right/Bottom Content */}
         <div className="relative flex-1 lg:max-w-5xl w-full">
           <Carousel>
-            {isLoading
-              ? [...Array(4)].map((_, i) => (
-                  <div key={i} className="snap-start">
-                    <ProductCardSkeleton />
-                  </div>
-                ))
-              : products?.map((product) => (
-                  <div key={product.id} className="snap-start">
-                    <ProductCard product={product} />
-                  </div>
-                ))}
+            {products?.map((product) => (
+              <div key={product.id} className="snap-start">
+                <ProductCard product={product} />
+              </div>
+            ))}
           </Carousel>
         </div>
       </div>

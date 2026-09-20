@@ -31,14 +31,12 @@ const CheckoutSteps = ({ initialAddresses, initialAddressesError }: CheckoutStep
   const searchParams = useSearchParams();
 
   const addressIdFromUrl = searchParams.get('addressId');
-  const step = Number(searchParams.get('step') ?? 1);
+  const currentStep = Number(searchParams.get('step') ?? 1);
 
   // State
   const [addresses, setAddresses] = useState<Address[]>(initialAddresses);
   const [selectedAddressId, setSelectedAddressId] = useState<string | null>(addressIdFromUrl);
-  const [currentStep, setCurrentStep] = useState<number>(step);
   const [appliedCoupons, setAppliedCoupons] = useState<CouponBackendResponse[]>([]);
-
   // Functions
 
   const handleAddressAdded = (newAddress: Address) => {

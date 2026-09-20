@@ -24,7 +24,9 @@ export async function addToWishlistAction(productId: string) {
   if (!response.ok) {
     throw new Error('Failed to add product to wishlist');
   }
+
   revalidatePath('/wishlist');
+
   return response.json();
 }
 
@@ -42,7 +44,9 @@ export async function removeFromWishlistAction(itemId: string) {
   if (!response.ok) {
     throw new Error('Failed to remove product from wishlist');
   }
+
   revalidatePath('/wishlist');
+
   return response.json();
 }
 
@@ -61,6 +65,8 @@ export async function clearWishlist() {
   if (!response.ok) {
     throw new Error('Failed to remove product from wishlist');
   }
+
   revalidatePath('/wishlist');
+
   return response.json();
 }

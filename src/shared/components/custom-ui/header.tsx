@@ -38,6 +38,7 @@ export default async function Header() {
         </div>
         <div className="flex">
           <UserAuthAction isAuthenticated={isAuthenticated} />
+
           <HeaderClient isAuthenticated={isAuthenticated} serverWishlistCount={wishlistCount} />
           <span className={` flex ltr:pl-4 rtl:pr-4 gap-2.5 `}>
             <LanguageSwitcherAuth />

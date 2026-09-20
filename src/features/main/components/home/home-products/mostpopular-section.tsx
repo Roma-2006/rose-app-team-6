@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { getLocale, getTranslations } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 
 import { ArrowRight } from 'lucide-react';
@@ -19,27 +19,46 @@ interface MostPopularSectionProps {
 
 const MostPopularSectionContent = async ({ occasionId }: MostPopularSectionProps) => {
   const t = await getTranslations('home.most-Popular');
-  await getLocale();
 
   let products: Product[] | undefined;
-  let visibleOccasions: Awaited<ReturnType<typeof getOccasions>> = [];
   let hasError = false;
 
   try {
-    const [productsResult, occasions] = await Promise.all([
-      getProducts({
-        limit: 12,
-        sortBy: 'mostPopular',
-        sortOrder: 'desc',
-        occasionId,
-      }),
-      getOccasions(),
-    ]);
+    const productsResult = await getProducts({
+      limit: 12,
+      sortBy: 'mostPopular',
+      sortOrder: 'desc',
+      occasionId,
+    });
 
     products = productsResult?.data;
-    visibleOccasions = occasions?.filter((occ) => HOME_OCCASIONS.includes(occ.title)) ?? [];
   } catch {
     hasError = true;
+  }
+
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      {hasError ? (
+        <div className="col-span-full text-center text-text-danger">{t('error')}</div>
+      ) : products?.length === 0 ? (
+        <div className="col-span-full text-center py-20 text-text-soft">{t('noProductsFound')}</div>
+      ) : (
+        products?.map((p) => <ProductCard key={p.id} product={p} />)
+      )}
+    </div>
+  );
+};
+
+export const MostPopularSection = async ({ occasionId }: MostPopularSectionProps) => {
+  const t = await getTranslations('home.most-Popular');
+
+  let visibleOccasions: Awaited<ReturnType<typeof getOccasions>> = [];
+
+  try {
+    const occasions = await getOccasions();
+    visibleOccasions = occasions?.filter((occ) => HOME_OCCASIONS.includes(occ.title)) ?? [];
+  } catch {
+    visibleOccasions = [];
   }
 
   return (
@@ -62,22 +81,13 @@ const MostPopularSectionContent = async ({ occasionId }: MostPopularSectionProps
           ))}
         </div>
       </div>
-      {/* Products Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {' '}
-        {hasError ? (
-          <div className="col-span-full text-center text-text-danger">{t('error')}</div>
-        ) : products?.length === 0 ? (
-          <div className="col-span-full text-center py-20 text-text-soft">
-            {t('noProductsFound')}
-          </div>
-        ) : (
-          products?.map((p) => <ProductCard key={p.id} product={p} />)
-        )}
-      </div>
+
+      {/* Products Grid  */}
+      <Suspense fallback={<MostPopularSectionLoading />}>
+        <MostPopularSectionContent occasionId={occasionId} />
+      </Suspense>
 
       {/* View More at the bottom right */}
-
       <div className="self-stretch flex justify-end items-center gap-2.5">
         <Link
           href="/products"
@@ -88,13 +98,5 @@ const MostPopularSectionContent = async ({ occasionId }: MostPopularSectionProps
         </Link>
       </div>
     </section>
-  );
-};
-
-export const MostPopularSection = ({ occasionId }: MostPopularSectionProps) => {
-  return (
-    <Suspense fallback={<MostPopularSectionLoading />}>
-      <MostPopularSectionContent occasionId={occasionId} />
-    </Suspense>
   );
 };

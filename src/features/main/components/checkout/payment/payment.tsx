@@ -24,7 +24,7 @@ export function CheckoutPaymentStep({
   onBack,
 }: CheckoutPaymentStepProps) {
   const router = useRouter();
-  const t = useTranslations('checkout.shipping-address');
+  const t = useTranslations('checkout');
 
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod | null>(null);
 

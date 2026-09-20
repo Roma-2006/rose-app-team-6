@@ -58,8 +58,6 @@ const ShippingAddressStep = ({
           rightIcon={<ArrowRight size={20} className="rtl:rotate-180" />}
         />
       </div>
-
-      {/* <ProductsCarousel /> */}
     </div>
   );
 };
