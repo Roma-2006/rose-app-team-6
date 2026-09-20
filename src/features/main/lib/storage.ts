@@ -19,6 +19,33 @@ export const getLocalCart = (): LocalCartItem[] => {
   }
 };
 
+let localCartSnapshot: LocalCartItem[] = [];
+let localCartSnapshotKey = '';
+const EMPTY_CART_SNAPSHOT: LocalCartItem[] = [];
+
+export const getLocalCartServerSnapshot = (): LocalCartItem[] => EMPTY_CART_SNAPSHOT;
+export const getLocalCartSnapshot = (): LocalCartItem[] => {
+  if (typeof window === 'undefined') {
+    return localCartSnapshot;
+  }
+  let raw: string | null = null;
+  try {
+    raw = localStorage.getItem(CART_KEY);
+  } catch {
+    raw = null;
+  }
+  const key = raw ?? '';
+  if (key !== localCartSnapshotKey) {
+    localCartSnapshotKey = key;
+    try {
+      localCartSnapshot = raw ? (JSON.parse(raw) as LocalCartItem[]) : [];
+    } catch {
+      localCartSnapshot = [];
+    }
+  }
+  return localCartSnapshot;
+};
+
 export const setLocalCart = (items: LocalCartItem[]): void => {
   if (typeof window === 'undefined') return;
   localStorage.setItem(CART_KEY, JSON.stringify(items));

@@ -46,7 +46,7 @@ export const Carousel = ({ children, gap = 24, fallbackStep = 312 }: CarouselPro
       <div
         ref={scrollRef}
         style={{ gap }}
-        className="flex overflow-x-auto hide-scrollbar snap-x snap-mandatory px-2"
+        className="flex  overflow-x-auto hide-scrollbar snap-x snap-mandatory px-2"
       >
         {children}
       </div>

@@ -64,7 +64,7 @@ export default function GallerySection() {
 
   return (
     <>
-      <section className="w-full max-w-7xl mx-auto px-4 mb-35 flex flex-col items-center justify-center bg-background">
+      <section className="w-full mx-auto  mb-35 flex flex-col items-center justify-center bg-background">
         {/* Gallery Header */}
         <header className="text-center">
           <SecHeader text={tGallery('label')} className="pb-2" />
@@ -72,7 +72,7 @@ export default function GallerySection() {
         </header>
 
         {/* grid system */}
-        <div className="w-full max-w-7xl mx-auto">
+        <div className="w-full  mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5 items-start w-full">
             {columnsData.map((column, columnIndex) => (
               <div

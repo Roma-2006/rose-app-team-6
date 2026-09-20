@@ -2,65 +2,53 @@
 
 import { getAuthToken } from '../lib/get-auth-token';
 
-export async function getCartAction(): Promise<GetCartResponse> {
+async function getHeaders() {
   const token = await getAuthToken();
-
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cart`, {
-    method: 'GET',
-    headers: {
-      Authorization: `Bearer ${token}`,
-      accept: 'application/json',
-    },
-  });
-
-  if (!response.ok) {
-    throw new Error('Failed to fetch cart');
-  }
-
-  return response.json();
+  return {
+    'Content-Type': 'application/json',
+    accept: 'application/json',
+    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+  };
 }
 
 export async function addToCartAction(productId: string, quantity: number = 1) {
-  const token = await getAuthToken();
-
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cart`, {
     method: 'POST',
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-      accept: 'application/json',
-    },
-    body: JSON.stringify({
-      productId,
-      quantity,
-    }),
+    headers: await getHeaders(),
+    body: JSON.stringify({ productId, quantity }),
   });
 
-  if (!response.ok) {
-    throw new Error('Failed to add product to cart');
-  }
-
+  if (!response.ok) throw new Error('Failed to add product');
   return response.json();
 }
 
 export async function updateCartQuantityAction(itemId: string, quantity: number) {
-  const token = await getAuthToken();
-
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cart/${itemId}`, {
     method: 'PATCH',
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-      accept: 'application/json',
-    },
-    body: JSON.stringify({
-      quantity,
-    }),
+    headers: await getHeaders(),
+    body: JSON.stringify({ quantity }),
   });
 
-  if (!response.ok) {
-    throw new Error('Failed to update cart quantity');
-  }
+  if (!response.ok) throw new Error('Failed to update quantity');
+  return response.json();
+}
 
+export async function removeFromCartAction(itemId: string) {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cart/${itemId}`, {
+    method: 'DELETE',
+    headers: await getHeaders(),
+  });
+
+  if (!response.ok) throw new Error('Failed to remove item');
+  return response.json();
+}
+
+export async function clearCartAction() {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cart`, {
+    method: 'DELETE',
+    headers: await getHeaders(),
+  });
+
+  if (!response.ok) throw new Error('Failed to clear cart');
   return response.json();
 }

@@ -9,7 +9,7 @@ const BestSellingSectionContent = async () => {
     sortBy: 'bestSelling',
     sortOrder: 'desc',
   });
-  return <BestSellingSectionClient products={products?.data} isLoading={false} />;
+  return <BestSellingSectionClient products={products?.data} />;
 };
 
 export const BestSellingSection = () => {

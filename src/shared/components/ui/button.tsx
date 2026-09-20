@@ -1,7 +1,6 @@
 import { Button as ButtonPrimitive } from '@base-ui/react/button';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/shared/lib/utils/tailwind-cn';
-// import { TButtonProps } from '@/shared/components/ui/button';
 import { LoaderCircle } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { TButtonProps } from '@/shared/types/button';
@@ -23,6 +22,7 @@ const buttonVariants = cva(
         ghostDanger: 'text-text-danger hover:bg-bg-soft  ',
         blue: 'text-text-info bg-bg-info-fade',
         ghostBlue: 'text-text-info hover:bg-bg-soft  ',
+        account: `w-full justify-center lg:justify-start gap-2 lg:gap-3 px-2 lg:px-4 py-2.5 lg:py-3.5 rounded-lg lg:rounded-xl transition-all text-xs sm:text-sm font-medium`,
       },
       size: {
         custom: 'py-3.5 px-4 gap-1.5',

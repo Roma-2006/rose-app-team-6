@@ -29,7 +29,6 @@ export async function getRelatedProducts({
   minRating,
 }: IRelatedProductsProps): Promise<Product[]> {
   try {
-    // Strategy 1: Full filters (category, price, rating)
     const params1 = new URLSearchParams();
     params1.append('limit', '25');
     if (subCategoryId) params1.append('subCategoryId', subCategoryId);
@@ -49,7 +48,6 @@ export async function getRelatedProducts({
       if (filtered.length > 0) return filtered.slice(0, 20);
     }
 
-    // Strategy 2: Category + subcategory only (drop price/rating)
     const params2 = new URLSearchParams();
     params2.append('limit', '25');
     if (subCategoryId) params2.append('subCategoryId', subCategoryId);
@@ -67,7 +65,6 @@ export async function getRelatedProducts({
       if (filtered.length > 0) return filtered.slice(0, 20);
     }
 
-    // Strategy 3: Price/rating range only (drop category)
     const params3 = new URLSearchParams();
     params3.append('limit', '25');
     if (minPrice !== undefined) params3.append('minPrice', minPrice.toString());
@@ -86,7 +83,6 @@ export async function getRelatedProducts({
       if (filtered.length > 0) return filtered.slice(0, 20);
     }
 
-    // Strategy 4: Just get top rated products
     const params4 = new URLSearchParams();
     params4.append('limit', '25');
     params4.append('minRating', '0');

@@ -8,10 +8,12 @@ export type TUser = {
   firstName: string;
   lastName: string;
   gender: 'FEMALE' | 'MALE';
+  photo?: string;
   emailVerified: boolean;
   phoneVerified: boolean;
   role: 'USER';
   createdAt: string;
+  updatedAt?: string;
 };
 import { USER_ROLES, USER_GENDER } from '../constants/user.constants';
 

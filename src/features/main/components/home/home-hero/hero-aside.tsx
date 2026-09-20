@@ -30,9 +30,9 @@ export default function HeroAside() {
           <Badge variant="softPink">{t('hero-aside.badge')}</Badge>
 
           {/* Heading */}
-          <h3 className="text-2xl lg:text-3xl font-bold text-white tracking-tight leading-tight">
+          <h2 className="text-2xl font-bold text-white tracking-tight leading-tight">
             {t('hero-aside.title')}
-          </h3>
+          </h2>
 
           {/* Button*/}
           <Button

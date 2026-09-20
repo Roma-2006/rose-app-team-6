@@ -2,50 +2,69 @@
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
-import { useState, useEffect, useCallback } from 'react';
+import { useSyncExternalStore, useCallback } from 'react';
 
-import { getLocalCart, addToLocalCart, CART_STORAGE_EVENT } from '../lib/storage';
+import {
+  getLocalCartSnapshot,
+  addToLocalCart,
+  updateLocalCartQuantity,
+  removeFromLocalCart,
+  clearLocalCart,
+  CART_STORAGE_EVENT,
+  getLocalCartServerSnapshot,
+} from '../lib/storage';
 import type { LocalCartItem, LocalCartProduct } from '../types/local-cart';
-import { addToCartAction, getCartAction, updateCartQuantityAction } from '../api/cart.api';
+import { getCart } from '../api/cart';
+import {
+  addToCartAction,
+  updateCartQuantityAction,
+  removeFromCartAction,
+  clearCartAction,
+} from '../api/cart.api';
+import type { ServerCartItem, GetCartResponse } from '../types/server-cart';
 
-export const useCart = () => {
+export type CartItem = ServerCartItem | LocalCartItem;
+
+interface UseCartOptions {
+  initialItems?: GetCartResponse;
+}
+
+export const useCart = ({ initialItems }: UseCartOptions = {}) => {
   const { data: session, status } = useSession();
   const queryClient = useQueryClient();
   const isAuthenticated = status === 'authenticated';
   const token = session?.token;
 
-  // State
-  //  Guest cart state
-  const [localItems, setLocalItems] = useState<LocalCartItem[]>(() =>
-    typeof window !== 'undefined' ? getLocalCart() : []
+  // Hydration-safe subscription to the guest cart: the server snapshot is an
+  // empty array, and the client snapshot reads localStorage only after
+  // hydration. No state is set synchronously in an effect.
+  const subscribeToCartEvents = useCallback((onStoreChange: () => void) => {
+    if (typeof window === 'undefined') return () => {};
+    window.addEventListener(CART_STORAGE_EVENT, onStoreChange);
+    return () => window.removeEventListener(CART_STORAGE_EVENT, onStoreChange);
+  }, []);
+
+  const localItems = useSyncExternalStore(
+    subscribeToCartEvents,
+    getLocalCartSnapshot,
+    getLocalCartServerSnapshot
   );
-
-  // Effects
-  // Listen for guest cart updates from localStorage
-  useEffect(() => {
-    if (!isAuthenticated) {
-      const handleGuestCartChange = () => setLocalItems(getLocalCart());
-      window.addEventListener(CART_STORAGE_EVENT, handleGuestCartChange);
-
-      return () => {
-        window.removeEventListener(CART_STORAGE_EVENT, handleGuestCartChange);
-      };
-    }
-
-    return undefined;
-  }, [isAuthenticated]);
-
-  const cartQuery = useQuery({
+  const cartQuery = useQuery<GetCartResponse>({
     queryKey: ['cart'],
-    queryFn: () => getCartAction(),
+    queryFn: () => getCart(token as string),
     enabled: isAuthenticated && !!token,
+    initialData: initialItems,
   });
 
-  const serverItems = cartQuery.data?.payload.cartItems ?? [];
-  const shouldUseGuestData =
-    !isAuthenticated || cartQuery.isPending || cartQuery.isLoading || cartQuery.isFetching;
+  const serverItems: ServerCartItem[] = cartQuery.data?.payload?.cartItems ?? [];
 
-  const cartItems = shouldUseGuestData ? localItems : serverItems;
+  const isGuest = !isAuthenticated;
+  const cartItems: CartItem[] = isGuest ? localItems : serverItems;
+
+  const getItemId = (item: CartItem): string | undefined =>
+    (item as ServerCartItem).productId ??
+    (item as ServerCartItem).product?.id ??
+    (item as LocalCartItem).productId;
 
   const addToCartMutation = useMutation({
     mutationFn: async ({
@@ -57,17 +76,16 @@ export const useCart = () => {
       quantity?: number;
       product?: LocalCartProduct;
     }) => {
-      if (!productId) {
-        throw new Error('Product id is required');
+      if (!productId) throw new Error('Product id is required');
+
+      if (isGuest) {
+        addToLocalCart(productId, quantity, product);
+        return { success: true };
       }
 
-      if (shouldUseGuestData) {
-        const updated = addToLocalCart(productId, quantity, product);
-        setLocalItems([...updated]);
-        return Promise.resolve({ success: true });
-      }
-
-      const existingItem = cartItems.find((item) => item.productId === productId);
+      const existingItem = (serverItems as ServerCartItem[]).find(
+        (item) => getItemId(item) === productId
+      );
 
       if (existingItem) {
         return updateCartQuantityAction(existingItem.id, existingItem.quantity + quantity);
@@ -75,24 +93,73 @@ export const useCart = () => {
 
       return addToCartAction(productId, quantity);
     },
-
     onSuccess: async () => {
-      if (!shouldUseGuestData) {
+      if (!isGuest) {
+        await queryClient.invalidateQueries({ queryKey: ['cart'] });
+      }
+    },
+  });
+
+  const updateQuantityMutation = useMutation({
+    mutationFn: async ({ id, newQuantity }: { id: string; newQuantity: number }) => {
+      if (isGuest) {
+        updateLocalCartQuantity(id, newQuantity);
+        return { success: true };
+      }
+      return updateCartQuantityAction(id, newQuantity);
+    },
+    onSuccess: async () => {
+      if (!isGuest) {
+        await queryClient.invalidateQueries({ queryKey: ['cart'] });
+      }
+    },
+  });
+
+  const removeFromCartMutation = useMutation({
+    mutationFn: async (id: string) => {
+      if (isGuest) {
+        removeFromLocalCart(id);
+        return { success: true };
+      }
+      return removeFromCartAction(id);
+    },
+    onSuccess: async () => {
+      if (!isGuest) {
+        await queryClient.invalidateQueries({ queryKey: ['cart'] });
+      }
+    },
+  });
+
+  const clearCartMutation = useMutation({
+    mutationFn: async () => {
+      if (isGuest) {
+        clearLocalCart();
+        return { success: true };
+      }
+      return clearCartAction();
+    },
+    onSuccess: async () => {
+      if (!isGuest) {
         await queryClient.invalidateQueries({ queryKey: ['cart'] });
       }
     },
   });
 
   const isInCart = useCallback(
-    (id: string) => cartItems.some((item) => item.productId === id),
+    (id: string) => cartItems.some((item) => getItemId(item) === id),
     [cartItems]
   );
 
   return {
     cartItems,
     uniqueItemsCount: cartItems.length,
+    isLoading: cartQuery.isLoading && isAuthenticated,
     addToCart: addToCartMutation.mutate,
     isAdding: addToCartMutation.isPending,
+    updateQuantity: (id: string, newQuantity: number) =>
+      updateQuantityMutation.mutate({ id, newQuantity }),
+    removeFromCart: removeFromCartMutation.mutate,
+    clearCart: clearCartMutation.mutate,
     isInCart,
   };
 };

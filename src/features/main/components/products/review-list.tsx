@@ -5,10 +5,11 @@ import { useTranslations } from 'next-intl';
 import { Skeleton } from '@/shared/components/ui/skeleton';
 import { useProductReviews } from '../../hooks/use-review-list';
 import { IProductReview } from '../../types/product-reviews';
-import RatingStars from './star-rating';
+import RatingStars from '../shared/star-rating';
 
 interface ReviewListProps {
   productId: string;
+
   initialReviews: IProductReview[];
   totalReviews: number;
 }
