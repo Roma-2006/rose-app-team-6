@@ -31,7 +31,6 @@ export default function CategoryCard({ image, badge, title, href }: CategoryCard
             setIsLoading(false);
           }}
         />
-
         {/* Gradient Overlay */}
         <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col gap-3 p-6 bg-gradient-to-t from-black/80 via-black/30 to-transparent">
           {/* Badge */}

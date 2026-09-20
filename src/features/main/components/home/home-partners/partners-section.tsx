@@ -17,9 +17,9 @@ export default async function PartnersSection() {
   const duplicatedLogos = [...logos, ...logos];
 
   return (
-    <section className="py-10 h-51.5 w-full bg-bg-primary-fade rounded-xl gap-10 flex flex-col items-center justify-center overflow-hidden">
-      {/* Partners Header */}
-      <header className="Partners-header text-center px-4">
+    <section className=" py-10  h-51.5 w-full bg-bg-primary-fade  gap-10 flex flex-col items-center justify-center  ">
+      {/* Parteners Header */}
+      <header className=" Parteners-header text-center ">
         <h3 className="text-3xl font-bold text-text-primary">
           {tPartners('title.part1')}{' '}
           <span className="text-text-secondary">{tPartners('title.part2')}</span>{' '}
