@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl';
 import { ShippingAddressSectionProps } from '@/features/main/types/address.d';
 import { Button } from '@/shared/components/ui/button';
 import AddressList from './address-list';
-import AddressListSkeleton from './address-list-skeleton';
+import AddressListSkeleton from '../../../skeleton/address-list-skeleton';
 
 const ShippingAddressesSection = ({
   addresses,

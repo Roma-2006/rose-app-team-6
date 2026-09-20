@@ -8,7 +8,7 @@ import { useTranslations } from 'next-intl';
 
 import { PaymentMethod } from '@/features/main/types/payment';
 import { useCreateOrder } from '@/features/main/hooks/use-payment';
-import { clearCartAction } from '@/features/main/api/cart.api';
+
 import { Button } from '@/shared/components/ui/button';
 import { PaymentMethodOption } from './PaymentMethodOption';
 
@@ -24,7 +24,7 @@ export function CheckoutPaymentStep({
   onBack,
 }: CheckoutPaymentStepProps) {
   const router = useRouter();
-  const t = useTranslations('checkout');
+  const t = useTranslations('checkout.shipping-address');
 
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod | null>(null);
 

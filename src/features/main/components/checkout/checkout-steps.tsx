@@ -13,12 +13,13 @@ import { useTranslations } from 'next-intl';
 
 import { CheckoutStepsProps } from '@/features/main/types/checkout.d';
 import { Address } from '@/features/main/types/address.d';
-import { CouponBackendResponse } from '@/features/main/types/order-summary';
+
 import Stepper from '@/shared/components/custom-ui/stepper';
 
 import ShippingAddressStep from './address/shipping-address/shipping-address-step';
 import { CheckoutPaymentStep } from './payment/payment';
 import OrderSummaryPanel from '../order-summary/order-summary-panel';
+import { CouponBackendResponse } from '../../types/order-summary';
 
 const CheckoutSteps = ({ initialAddresses, initialAddressesError }: CheckoutStepsProps) => {
   // Translations
