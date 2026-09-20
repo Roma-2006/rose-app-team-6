@@ -13,8 +13,9 @@
     "next": "Next",
     "add-review": "Add Review",
     "adding": "Adding...",
+    "edit":"Edit",
     "preview-website": "Preview Website",
-    "retry": "Retry",
+    "retry":"Retry",
     "account-confirm": "Yes, delete",
     "account-cancel": "Nope, not doing it"
   },
@@ -509,75 +510,99 @@
       "description": "We're working to get this fixed. Please refresh or try again shortly.",
       "action": "Try again"
     },
-    "dashboard-chart-title": {
-      "ordersStatus": "Orders Status",
-      "revenue": "Revenue",
-      "lastweek": "Last Week",
-      "monthly": "Monthly",
-      "EGP": "EGP",
-      "completed": "Completed",
-      "inProgress": "In progress",
-      "canceled": "Canceled"
+"products": {
+  "title": "All Products",
+  "add-product": "Add a new product",
+  "delete-success": "Product deleted successfully.",
+  "delete-error": "Failed to delete product.",
+  "currency": {
+    "egp": "EGP"
+  },
+  "table": {
+    "name": "Name",
+    "price": "Price",
+    "stock": "Stock",
+    "sales": "Sales",
+    "ratings": "Ratings"
+  }
+},
+"dashboard-chart-title": {
+  "ordersStatus": "Orders Status",
+  "revenue": "Revenue",
+  "lastweek": "Last Week",
+  "monthly": "Monthly",
+  "EGP": "EGP",
+  "completed": "Completed",
+  "inProgress": "In progress",
+  "canceled": "Canceled"
+},
+"dashboard-title": {
+  "ordersStatus": "Orders Status",
+  "revenue": "Revenue"
+},
+"statistics": {
+  "low-stock": {
+    "title": "Low Stock Products",
+    "empty": "No low-stock products found.",
+    "units": "Products"
+  },
+  "stats": {
+    "products": "Total products",
+    "orders": "Total orders",
+    "categories": "Total categories",
+    "revenue": "Total revenue"
+  },
+  "categories": {
+    "title": "All Categories",
+    "empty": "No categories found.",
+    "units": "Products"
+  },
+  "top-selling": {
+    "title": "Top Selling Products",
+    "empty": "No sales data found.",
+    "currency": "EGP",
+    "units": "Sales"
+  }
+},
+"account": {
+  "change-password": {
+    "title": "Change Password",
+    "button": "Change Password",
+    "currentPassword": "Old Password",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm New Password",
+    "placeholders": {
+      "currentPassword": "Enter your current password",
+      "newPassword": "Enter your new password",
+      "confirmPassword": "Confirm your new password"
     },
-    "dashboard-title": {
-      "ordersStatus": "Orders Status",
-      "revenue": "Revenue"
-    },
-    "statistics": {
-      "low-stock": {
-        "title": "Low Stock Products",
-        "empty": "No low-stock products found.",
-        "units": "Products"
-      },
-      "stats": {
-        "products": "Total products",
-        "orders": "Total orders",
-        "categories": "Total categories",
-        "revenue": "Total revenue"
-      },
-      "categories": {
-        "title": "All Categories",
-        "empty": "No categories found.",
-        "units": "Products"
-      },
-      "top-selling": {
-        "title": "Top Selling Products",
-        "empty": "No sales data found.",
-        "currency": "EGP",
-        "units": "Sales"
-      }
-    },
-    "account": {
-      "change-password": {
-        "title": "Change Password",
-        "button": "Change Password",
-        "currentPassword": "Old Password",
-        "newPassword": "New Password",
-        "confirmPassword": "Confirm New Password",
-        "placeholders": {
-          "currentPassword": "Enter your current password",
-          "newPassword": "Enter your new password",
-          "confirmPassword": "Confirm your new password"
-        },
-        "success": "Password changed successfully",
-        "errors": {
-          "something-went-wrong": "Something went wrong. Please try again.",
-          "current-password-required": "Current password is required",
-          "password-min-length": "Password must be at least 8 characters",
-          "password-uppercase": "Password must contain an uppercase letter",
-          "password-lowercase": "Password must contain a lowercase letter",
-          "password-number": "Password must contain a number",
-          "password-special": "Password must contain a special character",
-          "confirm-password": "Please confirm your password",
-          "passwords-do-not-match": "Passwords do not match"
-        }
-      },
-      "delete-popover": {
-        "title": "Are you sure you want to delete your account?",
-        "description": "This action is permanent and cannot be undone.",
-        "cancel-button": "Nope, not doing it",
-        "confirm-button": "Yes, delete",
-        "loading-button": "Loading..."
+    "success": "Password changed successfully",
+    "errors": {
+      "something-went-wrong": "Something went wrong. Please try again.",
+      "current-password-required": "Current password is required",
+      "password-min-length": "Password must be at least 8 characters",
+      "password-uppercase": "Password must contain an uppercase letter",
+      "password-lowercase": "Password must contain a lowercase letter",
+      "password-number": "Password must contain a number",
+      "password-special": "Password must contain a special character",
+      "confirm-password": "Please confirm your password",
+      "passwords-do-not-match": "Passwords do not match"
+    }
+  },
+  "delete-popover": {
+    "title": "Are you sure you want to delete your account?",
+    "description": "This action is permanent and cannot be undone.",
+    "cancel-button": "Nope, not doing it",
+    "confirm-button": "Yes, delete",
+    "loading-button": "Loading..."
+  }
+},
+"menu": {
+  "account-button": "Account",
+  "logout-button": "Log Out",
+  "edit-button": "Edit",
+  "delete-button": "Delete"
+}
       },
       "menu": {
         "account-button": "Account",
@@ -699,5 +724,6 @@
       "DELIVERED": "Delivered",
       "CANCELED": "Canceled"
     }
+  }
   }
 }

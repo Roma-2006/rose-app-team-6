@@ -30,7 +30,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
           <div className="md:hidden">
             <DashboardHeaderMobile />
           </div>
-          {children}
+          <div className="bg-bg-muted p-4 h-[994]">{children}</div>
         </SidebarInset>
       </SidebarProvider>
     </BreadcrumbProvider>

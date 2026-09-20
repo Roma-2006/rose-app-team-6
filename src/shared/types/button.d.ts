@@ -15,6 +15,9 @@ export type TBaseButtonProps = {
     | 'link'
     | 'softPink'
     | 'danger'
+    | 'blue'
+    | 'ghostBlue'
+    | 'ghostDanger'
     | 'account'
     | null
     | undefined;
@@ -25,6 +28,7 @@ export type TTextButton = TBaseButtonProps & {
   title?: string;
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
+  responsiveIconOnly?: boolean;
 };
 
 export type TIconButtonProps = TBaseButtonProps & {

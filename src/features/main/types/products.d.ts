@@ -70,6 +70,7 @@ export type TProductsResponse = {
 //productPagination
 export type TProductMetaDataProps = {
   productMetaData: TPaginationMetadata;
+  isDashboard?: boolean;
 };
 
 export interface IProductCount {
