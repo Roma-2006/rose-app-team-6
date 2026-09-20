@@ -10,7 +10,7 @@ import {
   SKELETON_COUNT,
   NEXT_PAGE_SKELETON_COUNT,
 } from '@/shared/constants/filter.constants';
-import { useInfiniteFilterList } from '@/features/dashboard/hooks/use-infinity-filter';
+import { useInfiniteFilterList } from '@/features/main/hooks/use-infinity-filter';
 
 const CategoryList = () => {
   // Translation

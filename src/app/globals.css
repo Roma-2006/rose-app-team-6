@@ -492,3 +492,20 @@ body {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 25s linear infinite;
+}
+
+
+[dir="rtl"] .animate-marquee {
+  animation-direction: reverse;
+}
