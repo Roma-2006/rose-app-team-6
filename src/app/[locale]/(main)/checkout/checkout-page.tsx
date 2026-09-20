@@ -37,7 +37,7 @@ export default async function CheckoutPage({ suggestedProducts }: CartPageProps)
   let initialAddressesError = false;
 
   try {
-    initialAddresses = await getAddresses(session.token as string);
+    initialAddresses = await getAddresses(session?.token as string);
   } catch {
     initialAddressesError = true;
   }
