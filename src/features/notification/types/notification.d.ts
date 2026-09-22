@@ -47,5 +47,6 @@ export interface NotificationsListProps {
 
 export interface NotificationItemProps {
   notification: Notification;
-  // onRead: (notificationId: string) => void;
+  onRead: (notificationId: string) => void;
+  onDelete: (notificationId: string) => void;
 }

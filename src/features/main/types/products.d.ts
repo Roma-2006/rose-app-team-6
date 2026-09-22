@@ -1,7 +1,7 @@
 import { GetProductsParams, ProductSortBy, SortOrder } from '@/shared/types/product-query';
 import { Product } from '@/shared/types/product.type';
 
-import type { Occasion } from '../../features/dashboard/types/occasion.type';
+import type { Occasion } from '../../features/main/types/occasion.type';
 
 export type ProductOccasion = {
   id: string;

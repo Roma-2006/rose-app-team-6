@@ -7,14 +7,16 @@ import {
 } from '@/shared/components/ui/select';
 import { TSelectGenderProps } from '@/shared/types/select-gender';
 import { useTranslations } from 'next-intl';
-
-export default function SelectGender({ value, onChange }: TSelectGenderProps) {
+import { cn } from '@/shared/lib/utils/tailwind-cn';
+export default function SelectGender({ value, onChange, disabled }: TSelectGenderProps) {
   const t = useTranslations('auth.auth-register.user-info');
   return (
     <div>
-      <label className="inline-block mb-2.5">{t('gender')}</label>
-      <Select value={value} onValueChange={onChange}>
-        <SelectTrigger>
+      <label className={cn('inline-block mb-2.5', disabled && 'text-zinc-400')}>
+        {t('gender')}
+      </label>
+      <Select value={value} onValueChange={onChange} disabled={disabled}>
+        <SelectTrigger disabled={disabled}>
           <SelectValue placeholder={t('gender-placeholder')} />
         </SelectTrigger>
         <SelectContent>
