@@ -1,15 +1,14 @@
 'use client';
-// lib
+
 import { useTranslations } from 'next-intl';
 
-// relatives
 import { ShippingAddressSectionProps } from '@/features/main/types/address.d';
 import { Button } from '@/shared/components/ui/button';
 import AddressList from './address-list';
 
 import { AddressBookModal } from '../../../address/address-model';
 import { useState } from 'react';
-import AddressListSkeleton from '../../../skeleton/address-list-skeleton';
+import AddressListSkeleton from './../../../skeleton/address-list-skeleton';
 
 const ShippingAddressesSection = ({
   addresses,
@@ -19,7 +18,6 @@ const ShippingAddressesSection = ({
   onSelectAddress,
   onAddNewAddress,
 }: ShippingAddressSectionProps) => {
-  // translations
   const t = useTranslations('checkout.shipping-address');
   const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
   return (
@@ -29,7 +27,7 @@ const ShippingAddressesSection = ({
       {isLoading && <AddressListSkeleton />}
 
       {!isLoading && isError && (
-        <p className="text-text-danger text-lg py-6 text-center">{t('load-error')}</p>
+        <p className="text-text-danger text-lg py-6 text-center">{t('load-error ')}</p>
       )}
 
       {!isLoading && !isError && addresses.length === 0 && (
@@ -51,12 +49,9 @@ const ShippingAddressesSection = ({
             selectedAddressId={selectedAddressId}
             onSelectAddress={onSelectAddress}
           />
-          <div className="relative w-full h-fit py-2.25">
-            <div className="h-px w-full bg-bg-muted absolute"></div>
-            <span className="bg-bg-plain text-text-soft text-lg px-2.25 flex justify-center  absolute self-center justify-self-center">
-              {t('or')}
-            </span>
-          </div>
+
+          <span className="text-text-soft text-lg py-2.25 flex justify-center my-3">{t('or')}</span>
+
           <Button
             variant="secondary"
             buttonVariant="text"

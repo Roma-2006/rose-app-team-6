@@ -9,7 +9,6 @@ export async function CreateReviewAction(
   data: IAddReviewFormData & { productId: string }
 ): Promise<IAddReviewActionResponse> {
   try {
-    // Retrieve the user's current session from the server.
     const session = await getServerSession(authOptions);
 
     // Verify the token...

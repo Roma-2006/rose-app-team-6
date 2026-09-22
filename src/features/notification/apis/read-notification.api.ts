@@ -36,6 +36,13 @@ export async function markNotificationAsRead(
     body: JSON.stringify(body),
   });
 
+  if (!res.ok) {
+    const errorResponse = await res.json();
+    throw new Error(
+      `Failed to mark notification as read: ${errorResponse.message || 'Unknown error'}`
+    );
+  }
+
   return res.json() as Promise<Response<string>>;
 }
 

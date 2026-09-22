@@ -2,7 +2,6 @@
 
 import { useTranslations } from 'next-intl';
 import CategoryItem from './category-item';
-import CategoryItemSkeleton from './category-skeleton';
 import ResetButton from '../general/reset-button';
 import { getCategories } from '@/shared/api/products/filter/category.api';
 import {
@@ -11,6 +10,7 @@ import {
   NEXT_PAGE_SKELETON_COUNT,
 } from '@/shared/constants/filter.constants';
 import { useInfiniteFilterList } from '@/features/main/hooks/use-infinity-filter';
+import CategoryItemSkeleton from '@/features/main/components/skeleton/category-skeleton';
 
 const CategoryList = () => {
   // Translation

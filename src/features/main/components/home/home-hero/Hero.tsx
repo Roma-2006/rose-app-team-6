@@ -5,7 +5,7 @@ import ServiceFeatures from './service-features';
 
 export default function Hero() {
   return (
-    <section>
+    <section className="mx-auto max-w-7xl px-4 ">
       <div className="grid gap-4 lg:grid-cols-4 ">
         <div className="lg:col-span-1">
           <HeroAside />
