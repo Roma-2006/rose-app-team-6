@@ -29,7 +29,6 @@ const UserDropdown = ({ user }: userMenuProps) => {
   const handleSignout = () => {
     signOut();
   };
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
@@ -57,7 +56,7 @@ const UserDropdown = ({ user }: userMenuProps) => {
           </DropdownMenuItem>
           <DropdownMenuSeparator className="bg-bg-muted"></DropdownMenuSeparator>
 
-          <DropdownMenuItem>
+          {/* <DropdownMenuItem>
             <Link
               href={`/address`}
               className="flex gap-2 w-full text-text-plain font-medium text-sm"
@@ -77,7 +76,7 @@ const UserDropdown = ({ user }: userMenuProps) => {
               {t('orders')}
             </Link>
           </DropdownMenuItem>
-          <DropdownMenuSeparator className="bg-bg-muted"></DropdownMenuSeparator>
+          <DropdownMenuSeparator className="bg-bg-muted"></DropdownMenuSeparator> */}
 
           {!(user.role == 'USER') && (
             <DropdownMenuItem>

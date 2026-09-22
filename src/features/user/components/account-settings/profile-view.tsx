@@ -78,7 +78,6 @@ export default function ProfileView({ user }: { user: TUser }) {
       phone: user.phone ?? '',
     });
   }, [user]);
-
   return (
     <FormProvider {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 ">

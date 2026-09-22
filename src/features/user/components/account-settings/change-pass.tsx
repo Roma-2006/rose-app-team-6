@@ -10,6 +10,7 @@ import CustomInput from '@/shared/components/custom-input';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/shared/components/ui/button';
 import { useChangePassword } from '../../hooks/use-change-pass';
+import { useMemo } from 'react';
 
 type FormValues = z.infer<ReturnType<typeof CHANGE_PASS_SCHEMA>>;
 
@@ -18,10 +19,11 @@ export default function ChangePassword() {
   const t = useTranslations();
 
   // Custom hooks
-  const { changePassword, isLoading } = useChangePassword();
+  const { changePassword, isLoading, isError, isSuccess, error } = useChangePassword();
 
   // Form
-  const schemaInstance = CHANGE_PASS_SCHEMA(t);
+  const schemaInstance = useMemo(() => CHANGE_PASS_SCHEMA(t), [t]);
+
   const form = useForm<FormValues>({
     resolver: zodResolver(schemaInstance),
     defaultValues: {
@@ -33,11 +35,16 @@ export default function ChangePassword() {
 
   // Functions (handlers)
   const onSubmit = (data: FormValues) => {
-    changePassword({
-      currentPassword: data.oldPassword,
-      newPassword: data.newPassword,
-      confirmPassword: data.confirmNewPassword,
-    });
+    changePassword(
+      {
+        currentPassword: data.oldPassword,
+        newPassword: data.newPassword,
+        confirmPassword: data.confirmNewPassword,
+      },
+      {
+        onSuccess: () => form.reset(),
+      }
+    );
   };
 
   return (
@@ -52,7 +59,7 @@ export default function ChangePassword() {
               variant="password"
               subVariant="password"
               error={fieldState.invalid}
-              label={t('change-password.old-password')}
+              label={t('account-settings.change-password.old-password')}
               errorMessage={fieldState.error?.message}
             />
           )}
@@ -67,7 +74,7 @@ export default function ChangePassword() {
               variant="password"
               subVariant="password"
               error={fieldState.invalid}
-              label={t('change-password.new-password')}
+              label={t('account-settings.change-password.new-password')}
               errorMessage={fieldState.error?.message}
               className="before:content-[''] before:block before:w-full before:h-[1px] before:bg-bg-muted before:mb-6 before:mt-2"
             />
@@ -83,20 +90,28 @@ export default function ChangePassword() {
               aria-invalid={fieldState.invalid}
               variant="password"
               subVariant="password"
-              label={t('change-password.confirm-password')}
+              label={t('account-settings.change-password.confirm-password')}
               errorMessage={fieldState.error?.message}
             />
           )}
         />
       </FieldGroup>
 
+      {isError && error && (
+        <span className="text-sm font-medium text-text-danger mt-4 self-start">{t(error)}</span>
+      )}
+      {isSuccess && (
+        <span className="text-sm font-medium text-text-success mt-4 self-start">
+          {t('account-settings.change-password.success-message')}
+        </span>
+      )}
       <Button
         className="w-[30%] self-end mt-15"
         type="submit"
         buttonVariant="text"
         variant="primary"
         loading={isLoading}
-        title="change-password.submit-button"
+        title="account-settings.change-password.submit-button"
       />
     </form>
   );
