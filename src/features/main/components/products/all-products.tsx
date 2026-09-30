@@ -58,11 +58,6 @@ export default async function AllProducts({ searchParams }: TAllProductsProps) {
   }
   // handle page greater than total pages
   if (products?.metadata && currentPage > products.metadata.totalPages) {
-    console.log('REDIRECTING');
-    console.log({
-      currentPage,
-      totalPages: products?.metadata?.totalPages,
-    });
     redirect({
       href: createPageUrl(products.metadata.totalPages),
       locale,

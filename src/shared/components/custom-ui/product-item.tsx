@@ -2,21 +2,19 @@ import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import RatingStarts from './rating-stars';
-import { calculateDiscountedPrice } from '@/features/main/utils/calculate-discount';
 import { TProductItemProps } from '@/features/main/types/product-item';
+import ProductPrice from './product-price';
 
 export default function ProductItem({ product, search }: TProductItemProps) {
   const t = useTranslations();
-  const discountedPrice = Number(calculateDiscountedPrice(product));
-  const hasDiscount = product.discountType && Number(product.discountValue) > 0;
   const safeSearch = search?.trim() ? search.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') : '';
   const regex = safeSearch ? new RegExp(`(${safeSearch})`, 'gi') : null;
   return (
     <Link
       href={`/products/${product.id}`}
-      className="border-t border-border-muted p-2.5 flex flex-col  items-center  sm:flex-row gap-4 "
+      className="border-t border-border-muted p-2.5 flex flex-col items-center md:items-start  sm:flex-row gap-4 "
     >
-      <div className="w-20 h-20 relative">
+      <div className="w-40 h-40 md:w-20 md:h-20 relative">
         <Image fill src={product.cover} className="rounded-lg" alt={product.title} />
       </div>
       <div className="flex flex-col lg:flex-row items-start justify-between grow ">
@@ -34,18 +32,7 @@ export default function ProductItem({ product, search }: TProductItemProps) {
                 )
               : product.title}
           </h2>
-          <span className="flex gap-2 items-end">
-            <span className="font-bold text-3xl text-text-plain">
-              {discountedPrice.toFixed(2)}
-              <span className="text-xl font-semibold ">{t('products.filter.currency.egp')}</span>
-            </span>
-            {hasDiscount && (
-              <span className="line-through text-sm text-text-muted">
-                {Number(product.price).toFixed(2)}
-                <span>{t('products.filter.currency.egp')}</span>
-              </span>
-            )}
-          </span>
+          <ProductPrice product={product} />
         </div>
         <div className="flex flex-col  md:flex-row gap-1.5 items-center">
           <div className="flex pt-2 md:pt-0">

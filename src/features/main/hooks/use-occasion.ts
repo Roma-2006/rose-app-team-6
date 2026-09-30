@@ -1,8 +1,8 @@
+import { createOccasionAction } from '@/features/dashboard/actions/occasions/create-occasion.action';
+import { deleteOccasionAction } from '@/features/dashboard/actions/occasions/delete-occasion.action';
+import { updateOccasionAction } from '@/features/dashboard/actions/occasions/update-occasion.action';
+import { CreateOccasionType } from '@/features/dashboard/types/occasions/occasions';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { createOccasionAction } from '../actions/occasions/create-occasion.action';
-import { CreateOccasionType } from '../types/occasions/occasions';
-import { updateOccasionAction } from '../actions/occasions/update-occasion.action';
-import { deleteOccasionAction } from '../actions/occasions/delete-occasion.action';
 
 export function useOccasion() {
   const queryClient = useQueryClient();

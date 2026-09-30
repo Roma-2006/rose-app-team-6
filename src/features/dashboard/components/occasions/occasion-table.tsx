@@ -4,13 +4,13 @@ import React, { useState, useEffect, useTransition, useCallback } from 'react';
 import { SquarePen, Trash2 } from 'lucide-react';
 import CustomInput from '@/shared/components/custom-input';
 import { useRouter, Link } from '@/i18n/navigation';
-import { signOut, useSession } from 'next-auth/react';
+import { signOut } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/shared/components/ui/button';
 import EditDeleteDropdown from '../shared/edit-delete-dropdown';
 import { OccasionTableProps } from '../../types/occasions/occasions';
-import { useOccasion } from '../../hooks/use-occasion';
 import PaginationControls from '../categories/pagination';
+import { useOccasion } from '@/features/main/hooks/use-occasion';
 
 export default function OccasionTable({
   initialOccasions,
@@ -22,7 +22,6 @@ export default function OccasionTable({
   const tDashboard = useTranslations('dashboard.occasions');
 
   const router = useRouter();
-  const { data: session } = useSession();
 
   const [search, setSearch] = useState(currentSearch);
   const [isPending, startTransition] = useTransition();
@@ -81,7 +80,7 @@ export default function OccasionTable({
         try {
           await signOut({ redirect: false });
           router.push(loginUrl);
-        } catch (signOutErr) {
+        } catch (_signOutErr) {
           window.location.assign(`/en${loginUrl}`);
         }
       } else {

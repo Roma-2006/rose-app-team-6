@@ -1,0 +1,51 @@
+import { LanguageSwitcherAuth } from '@/features/auth/components/language-switcher-auth';
+import { getWishlist } from '@/features/main/api/get-wishlist.api';
+import { Link } from '@/i18n/navigation';
+
+import { getServerSession } from 'next-auth';
+import Image from 'next/image';
+import HeaderSearchInput from '../custom-ui/header-search-input';
+import UserAuthAction from '../custom-ui/user-auth-action';
+import HeaderClient from '../custom-ui/header-client';
+import { ThemeToggle } from '../theme';
+import SecondaryNavigation from '../custom-ui/secondary-navigation';
+import { authOptions } from '@/auth';
+
+export default async function Header() {
+  const session = await getServerSession(authOptions);
+  const isAuthenticated = !!session?.user;
+  let wishlistCount;
+  if (isAuthenticated) {
+    const wishlist = await getWishlist();
+    wishlistCount = wishlist.payload.wishlistItems.length;
+  }
+  return (
+    <header className="sticky top-0 z-50 bg-bg-plain">
+      <div className="flex flex-col md:flex-row items-center py-4.5 px-9 gap-4">
+        <div className="flex w-full md:grow items-center gap-4">
+          <Link href="/" className="w-21.25 h-20 relative">
+            <Image
+              src="/assets/images/logo.png"
+              alt="Rose app logo"
+              fill
+              className="object-cover object-center"
+            />
+          </Link>
+          {/* search input */}
+          <div className="grow w-full">
+            <HeaderSearchInput />
+          </div>
+        </div>
+        <div className="flex">
+          <UserAuthAction isAuthenticated={isAuthenticated} />
+          <HeaderClient isAuthenticated={isAuthenticated} serverWishlistCount={wishlistCount} />
+          <span className={` flex ltr:pl-4 rtl:pr-4 gap-2.5 `}>
+            <LanguageSwitcherAuth />
+            <ThemeToggle />
+          </span>
+        </div>
+      </div>
+      <SecondaryNavigation />
+    </header>
+  );
+}

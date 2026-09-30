@@ -3,14 +3,14 @@
 import React, { useState, useEffect, useTransition, useCallback } from 'react';
 import { SquarePen, Trash2 } from 'lucide-react';
 import { CategoryTableProps } from '../../types/categories/categories';
-import { useCategory } from '../../hooks/use-category';
 import CustomInput from '@/shared/components/custom-input';
 import { useRouter, Link } from '@/i18n/navigation';
 import PaginationControls from './pagination';
-import { signOut, useSession } from 'next-auth/react';
-import { useTranslations } from 'next-intl';
+import { signOut } from 'next-auth/react';
+import { useLocale, useTranslations } from 'next-intl';
 import { Button } from '@/shared/components/ui/button';
 import EditDeleteDropdown from '../shared/edit-delete-dropdown';
+import { useCategory } from '@/features/main/hooks/use-category';
 
 export default function CategoryTable({
   initialCategories,
@@ -20,9 +20,9 @@ export default function CategoryTable({
 }: CategoryTableProps) {
   //Translation
   const tDashboard = useTranslations('dashboard.categories');
+  const locale = useLocale();
 
   const router = useRouter();
-  const { data: session } = useSession();
 
   const [search, setSearch] = useState(currentSearch);
   const [isPending, startTransition] = useTransition();
@@ -70,9 +70,7 @@ export default function CategoryTable({
       const msg = err instanceof Error ? err.message : String(err);
 
       const isSessionError =
-        /expired|unauthorized|token|session/i.test(msg) ||
-        msg.includes('expired') ||
-        msg.includes('login again');
+        /expired|unauthorized|token|session/i.test(msg) || msg.includes('login again');
 
       if (isSessionError) {
         const currentPath = window.location.pathname + window.location.search;
@@ -81,8 +79,8 @@ export default function CategoryTable({
         try {
           await signOut({ redirect: false });
           router.push(loginUrl);
-        } catch (signOutErr) {
-          window.location.assign(`/en${loginUrl}`);
+        } catch {
+          window.location.assign(`/${locale}${loginUrl}`);
         }
       } else {
         alert(msg);
@@ -111,6 +109,7 @@ export default function CategoryTable({
               <th className="px-4 md:px-6 py-2 text-left w-[20%] md:w-[40%]">
                 {tDashboard('products')}
               </th>
+              <th className="px-4 md:px-6 py-2 w-[20%]" />
             </tr>
           </thead>
           <tbody className="divide-y divide-zinc-100 text-sm">
@@ -147,7 +146,7 @@ export default function CategoryTable({
                           buttonVariant="text"
                           variant="danger"
                           size="xs"
-                          title="dashboard.categories.delete"
+                          title={tDashboard('delete')}
                           onClick={() => handleDeleteClick(category.id)}
                           disabled={isDeleting}
                           className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-bg-danger-fade text-text-danger disabled:opacity-40 rounded-md text-xs font-medium transition-colors"

@@ -1,7 +1,7 @@
 'use client';
 
 import { signIn, signOut, useSession } from 'next-auth/react';
-import { use, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { TLoginData } from '../types/auth';
 import { useRouter } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
@@ -14,6 +14,18 @@ export default function useLogin() {
   const { data: session, status } = useSession();
   const queryClient = useQueryClient();
   const router = useRouter();
+
+  useEffect(() => {
+    if (status !== 'authenticated' || !session?.token) return;
+    syncGuestDataToServer(session.token, queryClient);
+    console.log('SESSION AFTER LOGIN:', session);
+    console.log('ROLE AFTER LOGIN:', session?.user?.role);
+    if (session.user?.role === 'ADMIN') {
+      router.push('/dashboard');
+    } else {
+      router.push('/');
+    }
+  }, [status, session?.token, session?.user?.role, session, queryClient, router]);
 
   useEffect(() => {
     if (status !== 'authenticated' || !session?.token) return;
@@ -52,15 +64,18 @@ export default function useLogin() {
         return;
       }
 
-      if (result?.ok) {
-        const rawCallbackUrl =
-          new URLSearchParams(window.location.search).get('callbackUrl') || '/';
-        const normalizedCallbackUrl = rawCallbackUrl.startsWith('/')
-          ? rawCallbackUrl.replace(/^\/([a-z]{2})(\/|$)/, '/$2')
-          : rawCallbackUrl;
+      // if (result?.ok) {
+      //   const rawCallbackUrl =
+      //     new URLSearchParams(window.location.search).get('callbackUrl') || '/';
+      //   const normalizedCallbackUrl = rawCallbackUrl.startsWith('/')
+      //     ? rawCallbackUrl.replace(/^\/([a-z]{2})(\/|$)/, '/$2')
+      //     : rawCallbackUrl;
 
+      //   router.refresh();
+      //   router.push(normalizedCallbackUrl || '/');
+      // }
+      if (result?.ok) {
         router.refresh();
-        router.push(normalizedCallbackUrl || '/');
       }
     } catch (error1) {
       setError((error1 as Error).message);

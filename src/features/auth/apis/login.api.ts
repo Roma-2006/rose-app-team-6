@@ -1,4 +1,4 @@
-import 'server-only';
+// import 'server-only';
 import { HEADERS } from '@/shared/constants/api.constants';
 import { Response } from '@/shared/types/api';
 import { LoginResponse, TLoginData } from '../types/auth';
@@ -16,6 +16,7 @@ export const login = async (loginFields: TLoginData): Promise<Response<LoginResp
     body: JSON.stringify(body),
   });
   const payload = await response.json();
+
   if (!response.ok) {
     throw new Error(payload.message || 'Login failed');
   }

@@ -1,10 +1,10 @@
 'use client';
 
 import * as React from 'react';
-import { Pencil, Trash2 } from 'lucide-react';
+import { User, LogOut } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useSession } from 'next-auth/react';
-
+import { signOut } from 'next-auth/react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,7 +14,7 @@ import {
 import { DeleteAccountPopover } from './delete-account-popover';
 import { Link } from '@/i18n/navigation';
 
-import { UserDropdownProps } from '../../types/layout/account';
+import { UserDropdownProps } from '@/features/main/types/layout/account';
 
 export function UserDropdown({ trigger, onDelete, deleteLoading = false }: UserDropdownProps) {
   // Translation
@@ -31,20 +31,20 @@ export function UserDropdown({ trigger, onDelete, deleteLoading = false }: UserD
       <DropdownMenu>
         <DropdownMenuTrigger render={trigger as React.ReactElement} />
         <DropdownMenuContent align="end" sideOffset={8} className="min-w-40 bg-bg-plain">
-          <DropdownMenuItem className="text-text-info [&_svg]:text-bg-info ">
-            <Link href={'/dashboard/account'} className="flex gap-1.5">
-              <Pencil size={16} />
-              {t('edit-button')}
+          <DropdownMenuItem className="text-text-plain [&_svg]:text-bg-black ">
+            <Link href={'/dashboard/account'} className="flex gap-1.5 ">
+              <User size={16} />
+              {t('account-button')}
             </Link>
           </DropdownMenuItem>
           {!(session?.data?.user.role == 'SUPER_ADMIN') && (
             <DropdownMenuItem
               variant="destructive"
-              onClick={() => setDeleteOpen(true)}
-              className="text-text-danger flex gap-1.5"
+              onClick={() => signOut({ callbackUrl: '/login' })}
+              className="text-text-plain flex gap-1.5 hover:text-text-danger"
             >
-              <Trash2 size={16} />
-              {t('delete-button')}
+              <LogOut size={16} />
+              {t('logout-button')}
             </DropdownMenuItem>
           )}
         </DropdownMenuContent>

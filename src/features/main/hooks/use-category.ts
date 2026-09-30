@@ -1,8 +1,8 @@
+import { createCategoryAction } from '@/features/dashboard/actions/categories/create-category.action';
+import { deleteCategoryAction } from '@/features/dashboard/actions/categories/delete-category.action';
+import { updateCategoryAction } from '@/features/dashboard/actions/categories/update-category.action';
+import { CreateCategoryType } from '@/features/dashboard/types/categories/categories';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { CreateCategoryType } from '../types/categories/categories';
-import { createCategoryAction } from '../actions/categories/create-category.action';
-import { updateCategoryAction } from '../actions/categories/update-category.action';
-import { deleteCategoryAction } from '../actions/categories/delete-category.action';
 
 export function useCategory() {
   const queryClient = useQueryClient();

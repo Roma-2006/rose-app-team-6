@@ -5,6 +5,7 @@ export default function GuestGatedIcon({ children, badgeCount, href }: TGuestGat
   return (
     <Link href={href} className="relative">
       {children}
+
       {badgeCount !== undefined && badgeCount > 0 && (
         <Badge className="absolute -right-3 -top-3">{badgeCount}</Badge>
       )}

@@ -22,7 +22,6 @@ export const notificationsKeys = {
 };
 
 // ---------- Notifications list ----------
-
 export function useNotificationsList(
   params: Omit<GetNotificationsParams, 'page'> = {},
   token: string
@@ -36,6 +35,8 @@ export function useNotificationsList(
         ? lastPage.metadata.page + 1
         : undefined,
     enabled: !!token,
+    refetchInterval: 30_000,
+    refetchIntervalInBackground: false,
   });
 }
 
@@ -191,7 +192,7 @@ export function useNotifications() {
     deleteNotificationsAsync: deleteNotification.mutateAsync,
     isDeleting: deleteNotification.isPending,
 
-    deleteAllNotification: deleteAllNotifications.mutate,
+    deleteAllNotifications: deleteAllNotifications.mutate,
     deleteAllNotificationsAsync: deleteAllNotifications.mutateAsync,
     isDeletingAll: deleteAllNotifications.isPending,
 

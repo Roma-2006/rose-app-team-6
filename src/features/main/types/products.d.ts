@@ -30,6 +30,9 @@ export type Product = {
   };
 
   occasions: ProductOccasion[];
+  category?: {
+    id: string;
+  };
 };
 
 //productPage

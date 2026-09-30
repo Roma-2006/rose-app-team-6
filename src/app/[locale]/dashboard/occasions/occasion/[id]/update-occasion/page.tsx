@@ -7,7 +7,7 @@ import CustomInput from '@/shared/components/custom-input';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/shared/components/ui/button';
 import { getOccasionByIdAction } from '@/features/dashboard/actions/occasions/get-occasion-by-id.action';
-import { useOccasion } from '@/features/dashboard/hooks/use-occasion';
+import { useOccasion } from '@/features/main/hooks/use-occasion';
 
 // Strong type structure configuration mapping raw server responses cleanly without any
 interface ServerOccasionInfo {

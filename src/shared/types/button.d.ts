@@ -18,6 +18,7 @@ export type TBaseButtonProps = {
     | 'blue'
     | 'ghostBlue'
     | 'ghostDanger'
+    | 'account'
     | null
     | undefined;
 };

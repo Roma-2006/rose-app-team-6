@@ -2,13 +2,12 @@
 
 import React, { useState, useRef, ChangeEvent, FormEvent, KeyboardEvent } from 'react';
 import { useRouter } from '@/i18n/navigation';
-import { useCategory } from '@/features/dashboard/hooks/use-category';
-import { Upload } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import { CreateCategoryType } from '@/features/dashboard/types/categories/categories';
 import { useTranslations } from 'next-intl';
 import CustomInput from '@/shared/components/custom-input';
 import { Button } from '@/shared/components/ui/button';
+import { useCategory } from '@/features/main/hooks/use-category';
 
 interface SwaggerUploadSuccessPayload {
   status: boolean;

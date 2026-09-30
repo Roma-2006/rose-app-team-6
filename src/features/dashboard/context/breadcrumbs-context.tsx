@@ -6,7 +6,7 @@ import { createContext, useContext, useState, type ReactNode } from 'react';
 import {
   BreadcrumbContextValue,
   BreadcrumbOverrideItem,
-} from '@/features/dashboard/types/layout/breadcrumb';
+} from '@/features/main/types/layout/breadcrumb';
 
 // CONST
 const BreadcrumbContext = createContext<BreadcrumbContextValue | null>(null);

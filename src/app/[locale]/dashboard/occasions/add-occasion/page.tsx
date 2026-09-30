@@ -6,8 +6,8 @@ import { useSession } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
 import CustomInput from '@/shared/components/custom-input';
 import { Button } from '@/shared/components/ui/button';
-import { useOccasion } from '@/features/dashboard/hooks/use-occasion';
 import { CreateOccasionType } from '@/features/dashboard/types/occasions/occasions';
+import { useOccasion } from '@/features/main/hooks/use-occasion';
 
 interface SwaggerUploadSuccessPayload {
   status: boolean;

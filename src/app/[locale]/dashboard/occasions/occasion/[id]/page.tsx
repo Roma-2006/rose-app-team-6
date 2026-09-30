@@ -15,7 +15,7 @@ interface PageProps {
 
 export default async function OccasionsPage({ searchParams }: PageProps) {
   //Translation
-  const tDashboard = await getTranslations('dashboard.Occasions');
+  const tDashboard = await getTranslations('dashboard.occasions');
 
   //Variables
   const params = await searchParams;
@@ -30,7 +30,7 @@ export default async function OccasionsPage({ searchParams }: PageProps) {
         <h2 className=" text-xl  md:text-2xl pt-1 font-semibold text-text-plain">
           {tDashboard('all-occasions')}
         </h2>
-        <Link href="/dashboard/occasions/ocassion/[id]/add-occasion">
+        <Link href="/dashboard/occasions/add-occasion">
           <Button
             buttonVariant="text"
             variant="primary"

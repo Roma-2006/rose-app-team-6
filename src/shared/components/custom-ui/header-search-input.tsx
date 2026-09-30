@@ -1,9 +1,10 @@
+'use client';
 import { useTranslations } from 'next-intl';
 import CustomInput from '../custom-input';
 import ProductItem from './product-item';
 import { useEffect, useRef, useState } from 'react';
 import useAllProducts from '@/features/main/hooks/use-all-products';
-import ProductItemSkeleton from '../../../features/main/components/skeleton/product-item-skeleton';
+import ProductItemSkeleton from '@/features/main/components/skeleton/product-item-skeleton';
 
 export default function HeaderSearchInput() {
   const t = useTranslations();

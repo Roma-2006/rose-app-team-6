@@ -6,8 +6,8 @@ import { MoreVertical, CircleUserRound } from 'lucide-react';
 
 import { cn } from '@/shared/lib/utils/tailwind-cn';
 import { UserDropdown } from './user-dropdown';
-import { UserProfileSectionProps } from '../../types/layout/account';
-import { useDeleteAccount } from '../../hooks/use-delete-account';
+import { UserProfileSectionProps } from '@/features/main/types/layout/account';
+import { useDeleteAccount } from '@/features/main/hooks/use-delete-account';
 
 export function UserProfileSection({ className }: UserProfileSectionProps) {
   // State
@@ -48,7 +48,7 @@ export function UserProfileSection({ className }: UserProfileSectionProps) {
           <button
             type="button"
             aria-label="user-menu"
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-border-soft text-text-soft transition-colors"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-border-soft text-text-soft transition-colors "
           >
             <MoreVertical size={20} />
           </button>

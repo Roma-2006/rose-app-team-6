@@ -1,8 +1,8 @@
 export const ProductCardSkeleton = () => {
   return (
-    <div className="w-full h-108 rounded-2xl bg-bg-plain border border-border-subtle dark:border-border-muted overflow-hidden shadow-sm animate-pulse">
+    <div className="w-72 h-96 rounded-2xl bg-bg-plain border border-border-subtle dark:border-border-muted overflow-hidden shadow-sm animate-pulse">
       {/* 1. Image */}
-      <div className="relative aspect-square bg-bg-soft" />
+      <div className="h-64 bg-bg-soft" />
       {/* 2. Content Area */}
       <div className="p-4 space-y-3">
         {/* Title  */}

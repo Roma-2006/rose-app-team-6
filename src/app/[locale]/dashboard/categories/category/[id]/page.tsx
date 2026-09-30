@@ -30,7 +30,7 @@ export default async function CategoriesPage({ searchParams }: PageProps) {
         <h2 className=" text-xl  md:text-2xl pt-1 font-semibold text-text-plain">
           {tDashboard('all-categories')}
         </h2>
-        <Link href="/dashboard/categories/category/[id]/add-category">
+        <Link href="/dashboard/categories/add-category">
           <Button
             buttonVariant="text"
             variant="primary"

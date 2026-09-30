@@ -1,17 +1,16 @@
 'use client';
 
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
-// 🛠️ FIX: Restored strict next/navigation pathing definitions to solve the (void 0) function crash
 import { useRouter, useParams } from 'next/navigation';
 import { Eye } from 'lucide-react';
-import { useCategory } from '@/features/dashboard/hooks/use-category';
 import CustomInput from '@/shared/components/custom-input';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/shared/components/ui/button';
+import { useCategory } from '@/features/main/hooks/use-category';
 import { getCategoryByIdAction } from '@/features/dashboard/actions/categories/get-category-by-id.action';
 
 // Strong type structure configuration mapping raw server responses cleanly without any
-interface ServerCategoryInfo {
+interface ServerOccasionInfo {
   id?: string;
   title?: string;
   description?: string;
@@ -19,7 +18,7 @@ interface ServerCategoryInfo {
 }
 
 interface ServerPayloadWrapper {
-  category?: ServerCategoryInfo;
+  occasion?: ServerOccasionInfo;
 }
 
 export default function UpdateCategoryPage() {
@@ -52,17 +51,17 @@ export default function UpdateCategoryPage() {
 
         if (isMounted && res.success && res.data) {
           const wrappedData = res.data as ServerPayloadWrapper;
-          const activeOccasion = wrappedData?.category;
+          const activeOccasion = wrappedData?.occasion;
 
-          const OccasionTitle = activeOccasion?.title || '';
-          const OccasionImage = activeOccasion?.image || '';
+          const occasionTitle = activeOccasion?.title || '';
+          const occasionImage = activeOccasion?.image || '';
 
-          if (OccasionTitle) {
-            setName(OccasionTitle);
-            setDisplayName(OccasionTitle);
+          if (occasionTitle) {
+            setName(occasionTitle);
+            setDisplayName(occasionTitle);
           }
-          if (OccasionImage) {
-            setImageUrl(OccasionImage);
+          if (occasionImage) {
+            setImageUrl(occasionImage);
           }
         } else if (isMounted && !res.success) {
           setLocalError(res.message || 'Failed to fetch occasion data.');

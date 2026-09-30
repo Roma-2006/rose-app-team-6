@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
+
 const logos = [
   { name: 'Coconut', src: '/assets/partners-images/partner-image6.png' },
   { name: 'Ginyard', src: '/assets/partners-images/partner-image5.png' },
@@ -19,6 +20,7 @@ export default async function PartnersSection() {
     <section className="py-10 h-51.5 w-full bg-bg-primary-fade rounded-xl gap-10 flex flex-col items-center justify-center overflow-hidden">
       {/* Partners Header */}
       <header className="Partners-header text-center px-4">
+        {/* Parteners Header */}
         <h3 className="text-3xl font-bold text-text-primary">
           {tPartners('title.part1')}{' '}
           <span className="text-text-secondary">{tPartners('title.part2')}</span>{' '}

@@ -34,8 +34,8 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
             aria-invalid={!!error}
             className={cn(
               'field-sizing-content min-h-24 w-full resize-none rounded-lg border border-border-soft bg-bg-plain px-3 py-3 text-sm outline-none transition-all',
-              'hover:border-border-default focus-visible:border-border-primary focus-visible:ring-3 focus-visible:ring-ring-default',
-              'aria-invalid:border-border-danger aria-invalid:ring-3 aria-invalid:ring-ring-danger',
+              'hover:border-border-default focus-visible:border-border-primary focus-visible:ring-3 focus-visible:ring-col-ring-default',
+              'aria-invalid:border-border-danger aria-invalid:ring-3 aria-invalid:ring-col-ring-danger',
               'disabled:bg-bg-muted disabled:text-text-muted disabled:cursor-not-allowed placeholder:text-text-muted',
               className
             )}

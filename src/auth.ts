@@ -26,7 +26,6 @@ export const authOptions: NextAuthOptions = {
           password: credentials?.password,
           rememberMe: isRememberMe,
         });
-
         if (!result.success) {
           console.error('❌ Zod Validation Failed:', result.error.format());
           return null;
@@ -34,7 +33,6 @@ export const authOptions: NextAuthOptions = {
 
         try {
           const data = await login(result.data);
-
           if (!data.status) {
             throw new Error(data.message || 'Login failed');
           }
@@ -61,13 +59,18 @@ export const authOptions: NextAuthOptions = {
   ],
 
   callbacks: {
-    jwt: ({ token, user }) => {
+    jwt: ({ token, user, trigger, session }) => {
       if (user) {
         token.user = user.user;
         token.token = user.token;
         token.rememberMe = user.rememberMe;
       }
-
+      if (trigger === 'update' && session) {
+        token.user = {
+          ...token.user,
+          ...session,
+        };
+      }
       if (token.rememberMe) {
         token.exp = Math.floor(Date.now() / 1000) + 30 * 24 * 60 * 60;
       } else if (!token.exp) {
