@@ -12,6 +12,8 @@ import { useCreateOrder } from '@/features/main/hooks/use-payment';
 import { Button } from '@/shared/components/ui/button';
 import { PaymentMethodOption } from './PaymentMethodOption';
 
+import { useCart } from '@/features/main/hooks/use-cart';
+
 interface CheckoutPaymentStepProps {
   selectedAddressId: string | null;
   couponCode?: string;
@@ -25,7 +27,7 @@ export function CheckoutPaymentStep({
 }: CheckoutPaymentStepProps) {
   const router = useRouter();
   const t = useTranslations('checkout');
-
+  const { clearCart } = useCart();
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod | null>(null);
 
   function handlePaymentMethodChange(method: PaymentMethod) {
@@ -55,6 +57,10 @@ export function CheckoutPaymentStep({
         ...(couponCode && { couponCode }),
       });
 
+      //clearCart
+
+      await clearCart();
+
       if (paymentMethod === 'CREDIT_CARD') {
         if (order.checkout?.checkoutUrl) {
           window.location.href = order.checkout.checkoutUrl;
@@ -66,6 +72,7 @@ export function CheckoutPaymentStep({
       } else {
         router.push(`/orders`);
       }
+
       toast.success(t('orderSuccess'));
     } catch (err) {
       console.error('[Checkout] Order failed:', err);
