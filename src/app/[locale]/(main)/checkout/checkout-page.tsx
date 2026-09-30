@@ -6,14 +6,15 @@ import ProductsYouMayLike from '@/features/main/components/products/products-you
 import { authOptions } from '@/auth';
 import { getAddresses } from '@/features/main/api/address.api';
 import CheckoutSteps from '@/features/main/components/checkout/checkout-steps';
-
+import type { GetCartResponse } from '@/features/main/types/server-cart';
 import type { Product } from '@/features/main/types/products';
 
 interface CartPageProps {
   suggestedProducts: Product[];
+  initialCart: GetCartResponse;
 }
 
-export default async function CheckoutPage({ suggestedProducts }: CartPageProps) {
+export default async function CheckoutPage({ suggestedProducts, initialCart }: CartPageProps) {
   // Auth
   const session = await getServerSession(authOptions);
 
@@ -48,6 +49,7 @@ export default async function CheckoutPage({ suggestedProducts }: CartPageProps)
       <CheckoutSteps
         initialAddresses={initialAddresses}
         initialAddressesError={initialAddressesError}
+        initialCart={initialCart}
       />
 
       {/* Products You May Like */}

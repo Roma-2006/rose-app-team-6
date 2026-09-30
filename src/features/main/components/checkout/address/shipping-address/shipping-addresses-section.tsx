@@ -1,13 +1,12 @@
 'use client';
 
+import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
 import { ShippingAddressSectionProps } from '@/features/main/types/address.d';
 import { Button } from '@/shared/components/ui/button';
 import AddressList from './address-list';
-
 import { AddressBookModal } from '../../../address/address-model';
-import { useState } from 'react';
 import AddressListSkeleton from './../../../skeleton/address-list-skeleton';
 
 const ShippingAddressesSection = ({
@@ -16,10 +15,11 @@ const ShippingAddressesSection = ({
   isError = false,
   selectedAddressId,
   onSelectAddress,
-  onAddNewAddress,
 }: ShippingAddressSectionProps) => {
   const t = useTranslations('checkout.shipping-address');
+
   const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
+
   return (
     <div className="flex flex-col gap-3 w-full justify-center">
       <h2 className="font-semibold text-text-plain text-3xl text-start">{t('title')}</h2>
@@ -27,16 +27,17 @@ const ShippingAddressesSection = ({
       {isLoading && <AddressListSkeleton />}
 
       {!isLoading && isError && (
-        <p className="text-text-danger text-lg py-6 text-center">{t('load-error ')}</p>
+        <p className="text-text-danger text-lg py-6 text-center">{t('load-error')}</p>
       )}
 
       {!isLoading && !isError && addresses.length === 0 && (
         <div className="flex flex-col items-center gap-4 py-6">
           <p className="text-text-soft text-lg text-center">{t('no-addresses-error')}</p>
+
           <Button
             variant="primary"
             buttonVariant="text"
-            onClick={onAddNewAddress}
+            onClick={() => setIsAddressModalOpen(true)}
             title={t('add-new-address')}
           />
         </div>
@@ -59,9 +60,10 @@ const ShippingAddressesSection = ({
             title={t('add-new-address')}
             className="self-center w-full text-center"
           />
-          <AddressBookModal isOpen={isAddressModalOpen} onOpenChange={setIsAddressModalOpen} />
         </>
       )}
+
+      <AddressBookModal isOpen={isAddressModalOpen} onOpenChange={setIsAddressModalOpen} />
     </div>
   );
 };

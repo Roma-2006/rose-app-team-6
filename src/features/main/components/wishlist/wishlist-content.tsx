@@ -32,9 +32,8 @@ export default function WishlistContent({ wishlist, isAuthenticated }: WishlistC
       <div className="flex flex-wrap gap-2 justify-between items-center">
         <h1 className="font-bold text-5xl text-text-plain flex items-end gap-3.75">
           <FolderHeart size={60} />
-          {t('wishlist.title')}{' '}
+          {t('wishlist.title')}
           <span className="text-base font-normal text-text-muted ">
-            {' '}
             {t('wishlist.items-count', { count: wishlistCount })}
           </span>
         </h1>
