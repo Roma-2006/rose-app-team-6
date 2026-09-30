@@ -23,5 +23,5 @@ export default async function Page() {
     // Guests have no server cart; the client falls back to the localStorage cart.
   }
 
-  return <CheckoutPage suggestedProducts={products?.data ?? []} />;
+  return <CheckoutPage suggestedProducts={products?.data ?? []} initialCart={initialCart} />;
 }

@@ -368,8 +368,11 @@
   },
   "checkout": {
     "shipping-address": {
+      "title": "Shipping Address",
       "add-new-address": "Add New Address",
-      "or": "OR"
+      "or": "OR",
+      "load-error ": "Failed to load addresses.",
+      "no-addresses-error": "Add your first address to continue"
     },
     "step2Title": "Payment Method",
     "cashOnDelivery": "Cash on Delivery",

@@ -11,7 +11,7 @@ export default async function AboutSection() {
   return (
     <section className="max-w-7xl   h-97.5 w-full mx-auto flex items-center justify-center gap-19  my-16 mb-33.5">
       {/* About Images */}
-      <div className="about-images grid grid-cols-12 gap-3 w-full h-full    items-center">
+      <div className="about-images grid grid-cols-12 gap-10 w-full h-full    items-center">
         <div className="relative col-span-7 aspect-[4/5]  w-full">
           <svg
             className="absolute inset-0 w-full h-full pointer-events-none scale-[1.1] -translate-x-[14px] -translate-y-[8px] z-0"

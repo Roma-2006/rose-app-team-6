@@ -20,8 +20,14 @@ import ShippingAddressStep from './address/shipping-address/shipping-address-ste
 import { CheckoutPaymentStep } from './payment/payment';
 import OrderSummaryPanel from '../order-summary/order-summary-panel';
 import { CouponBackendResponse } from '../../types/order-summary';
+import type { GetCartResponse } from '@/features/main/types/server-cart';
+import { useCart } from '../../hooks/use-cart';
 
-const CheckoutSteps = ({ initialAddresses, initialAddressesError }: CheckoutStepsProps) => {
+const CheckoutSteps = ({
+  initialAddresses,
+  initialAddressesError,
+  initialCart,
+}: CheckoutStepsProps) => {
   // Translations
   const t = useTranslations('checkout');
 
@@ -37,8 +43,16 @@ const CheckoutSteps = ({ initialAddresses, initialAddressesError }: CheckoutStep
   const [addresses, setAddresses] = useState<Address[]>(initialAddresses);
   const [selectedAddressId, setSelectedAddressId] = useState<string | null>(addressIdFromUrl);
   const [appliedCoupons, setAppliedCoupons] = useState<CouponBackendResponse[]>([]);
-  // Functions
 
+  const { cartItems, isLoading: isCartLoading } = useCart({
+    initialItems: initialCart,
+  });
+  // Functions
+  const subtotal = cartItems.reduce((total, item) => {
+    const price = Number(item.product?.price ?? 0);
+
+    return total + price * item.quantity;
+  }, 0);
   const handleAddressAdded = (newAddress: Address) => {
     setAddresses((prev) => [...prev, newAddress]);
     setSelectedAddressId(newAddress.id);
@@ -88,7 +102,7 @@ const CheckoutSteps = ({ initialAddresses, initialAddressesError }: CheckoutStep
       </div>
 
       <OrderSummaryPanel
-        subtotal={500}
+        subtotal={subtotal}
         appliedCoupons={appliedCoupons}
         onApplyCoupon={handleApplyCoupon}
         onRemoveCoupon={handleRemoveCoupon}
