@@ -12,14 +12,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import ErrorAlert from './error-alert';
 export type TInputValue = string | number | File[] | FileList | null;
 export type TInputVariant =
-  | 'default'
-  | 'number'
-  | 'search'
-  | 'password'
-  | 'otp'
-  | 'file'
-  | 'phone'
-  | 'email';
+  'default' | 'number' | 'search' | 'password' | 'otp' | 'file' | 'phone' | 'email';
 
 interface InputProps {
   variant: TInputVariant;
@@ -74,8 +67,10 @@ export default function CustomInput({
       defaultLabel = tInput(`default.${subVariant}.label`);
       defaultPlaceholder = tInput(`default.${subVariant}.placeholder`);
     } else {
-      defaultLabel = tInput.has('default.label') ? tInput('default.label') : '';
-      defaultPlaceholder = tInput.has('default.placeholder') ? tInput('default.placeholder') : '';
+      defaultLabel = tInput.has(`${variant}.label`) ? tInput(`${variant}.label`) : '';
+      defaultPlaceholder = tInput.has(`${variant}.placeholder`)
+        ? tInput(`${variant}.placeholder`)
+        : '';
     }
   } else if (variant === 'password') {
     if (subVariant) {

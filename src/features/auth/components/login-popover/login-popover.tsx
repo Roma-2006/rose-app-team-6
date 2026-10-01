@@ -9,11 +9,11 @@ export default function LoginPopover() {
   const t = useTranslations();
 
   return (
-    <div className="group relative inline-block">
+    <div className="group relative inline-block w-fit p-1">
       {/* Trigger */}
       <Link
         href="/login"
-        className="mt-4 flex cursor-pointer items-center gap-1.5 text-foreground transition-colors hover:text-primary"
+        className="m-4 flex cursor-pointer items-center gap-1.5 text-foreground transition-colors hover:text-primary"
       >
         <User size={20} />
         <span>{t('header.login')}</span>
