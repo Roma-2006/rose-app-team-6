@@ -20,12 +20,10 @@ export default function useDeleteProfile() {
         await signOut({ redirect: false });
         router.replace('/login');
       }
-      console.log(data, 's');
       toast.success(t('account-settings.profile.delete-success'));
     },
     onError: (error) => {
-      console.log(error, 'e');
-      toast.success(t('account-settings.profile.delete-error'));
+      toast.error(t('account-settings.profile.delete-error'));
     },
   });
 }

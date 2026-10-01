@@ -6,23 +6,21 @@ import React, { useState } from 'react';
 import { useRouter, usePathname } from '@/i18n/navigation';
 import { useSearchParams } from 'next/navigation';
 
-// lib
-import { useTranslations } from 'next-intl';
-
 // relatives
 
 import { CheckoutStepsProps } from '@/features/main/types/checkout.d';
 import { Address } from '@/features/main/types/address.d';
-import { CouponBackendResponse } from '@/features/main/types/order-summary';
+
 import Stepper from '@/shared/components/custom-ui/stepper';
 
 import ShippingAddressStep from './address/shipping-address/shipping-address-step';
 import { CheckoutPaymentStep } from './payment/payment';
 import OrderSummaryPanel from '../order-summary/order-summary-panel';
+import { CouponBackendResponse } from '../../types/order-summary';
 
 const CheckoutSteps = ({ initialAddresses, initialAddressesError }: CheckoutStepsProps) => {
   // Translations
-  const t = useTranslations('checkout');
+  // const t = useTranslations('checkout');
 
   // Navigation
   const router = useRouter();
@@ -30,18 +28,13 @@ const CheckoutSteps = ({ initialAddresses, initialAddressesError }: CheckoutStep
   const searchParams = useSearchParams();
 
   const addressIdFromUrl = searchParams.get('addressId');
-  const step = Number(searchParams.get('step') ?? 1);
+  const currentStep = Number(searchParams.get('step') ?? 1);
 
   // State
   const [addresses, setAddresses] = useState<Address[]>(initialAddresses);
   const [selectedAddressId, setSelectedAddressId] = useState<string | null>(addressIdFromUrl);
-  const [currentStep, setCurrentStep] = useState<number>(step);
   const [appliedCoupons, setAppliedCoupons] = useState<CouponBackendResponse[]>([]);
-
-  // const [selectedAddressId, setSelectedAddressId] = useState<string | null>(() => {
-  //   const primary = initialAddresses.find((address) => address.isPrimary);
-  //   return primary?.id ?? initialAddresses[0]?.id ?? null;
-  // });
+  // Functions
 
   const handleAddressAdded = (newAddress: Address) => {
     setAddresses((prev) => [...prev, newAddress]);

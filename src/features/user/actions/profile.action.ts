@@ -31,7 +31,6 @@ export async function deleteProfileAction() {
     },
   });
   const payload = await response.json();
-  console.log(payload, 'delete');
   if (!payload.status) {
     return { status: payload.status, message: payload.message, errors: payload.errors };
   }

@@ -55,7 +55,6 @@ export default function ProfilePhotoField({ setPreview, setIsUploading }: Profil
     });
     return () => unSubscribe();
   }, [form, profileForm, uploadPhoto, setPreview]);
-  console.log(form.formState.errors);
   return (
     <Controller
       name="photo"

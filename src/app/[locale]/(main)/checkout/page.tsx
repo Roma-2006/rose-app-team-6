@@ -1,45 +1,27 @@
-import { getServerSession } from 'next-auth';
-import { getLocale } from 'next-intl/server';
-import { redirect } from '@/i18n/navigation';
+import { getProducts } from '@/features/main/api/product.api';
+import { getAuthToken } from '@/features/main/lib/get-auth-token';
+import { getCart } from '@/features/main/api/cart';
+import type { GetCartResponse } from '@/features/main/types/server-cart';
+import CheckoutPage from './checkout-page';
 
-import { authOptions } from '@/auth';
-import { getAddresses } from '@/features/main/api/address.api';
-import CheckoutSteps from '@/features/main/components/checkout/checkout-steps';
-import OrderSummaryPanel from '@/features/main/components/order-summary/order-summary-panel';
+export default async function Page() {
+  const products = await getProducts({
+    limit: 6,
+    sortBy: 'bestSelling',
+    sortOrder: 'desc',
+  });
 
-export default async function CheckoutPage() {
-  // Auth
-  const session = await getServerSession(authOptions);
-
-  // Locale
-  const locale = await getLocale();
-
-  if (!session) {
-    redirect({
-      href: {
-        pathname: '/login',
-        query: {
-          callbackUrl: '/checkout',
-        },
-      },
-      locale,
-    });
-  }
-
-  // Addresses
-  let initialAddresses: Awaited<ReturnType<typeof getAddresses>> = [];
-  let initialAddressesError = false;
-
+  let initialCart: GetCartResponse = {
+    payload: {
+      cartItems: [],
+    },
+  };
   try {
-    initialAddresses = await getAddresses(session?.token as string);
+    const token = await getAuthToken();
+    initialCart = await getCart(token);
   } catch {
-    initialAddressesError = true;
+    // Guests have no server cart; the client falls back to the localStorage cart.
   }
 
-  return (
-    <CheckoutSteps
-      initialAddresses={initialAddresses}
-      initialAddressesError={initialAddressesError}
-    />
-  );
+  return <CheckoutPage suggestedProducts={products?.data ?? []} />;
 }

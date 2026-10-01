@@ -6,8 +6,8 @@ import { useLocale, useTranslations } from 'next-intl';
 import { Button } from '@/shared/components/ui/button';
 
 import { ProductCard } from './Product-card';
-import { Product } from '@/features/main/types/products';
 import { Carousel } from '../../shared/carousel';
+import { Product } from '@/features/main/types/products';
 
 interface BestSellingSectionClientProps {
   products?: Product[];

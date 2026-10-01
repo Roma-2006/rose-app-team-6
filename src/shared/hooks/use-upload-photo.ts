@@ -9,8 +9,5 @@ export default function useUploadPhoto() {
       formData.append('image', fields.photo);
       return uploadPhotoAction(formData);
     },
-    onSuccess: (data) => {
-      console.log(data, 'upload success');
-    },
   });
 }

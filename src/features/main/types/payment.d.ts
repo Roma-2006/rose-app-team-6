@@ -3,6 +3,7 @@ export interface ICreateOrderPayload {
   addressId: string;
   paymentMethod: PaymentMethod;
   couponCode?: string;
+  successUrl?: string;
 }
 
 export interface IOrder {

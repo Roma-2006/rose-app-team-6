@@ -17,6 +17,7 @@ export async function createOrder(payload: ICreateOrderPayload) {
   if (!response.ok || !result.status) {
     throw new Error(result.message || 'Order failed');
   }
+  console.log(result);
 
   return result.payload;
 }

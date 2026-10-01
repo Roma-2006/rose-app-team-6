@@ -3,7 +3,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
 import { useSyncExternalStore, useCallback } from 'react';
-
+import { toast } from 'sonner';
 import {
   getLocalCartSnapshot,
   addToLocalCart,
@@ -126,6 +126,7 @@ export const useCart = ({ initialItems }: UseCartOptions = {}) => {
     onSuccess: async () => {
       if (!isGuest) {
         await queryClient.invalidateQueries({ queryKey: ['cart'] });
+        toast.success('remove item successfully');
       }
     },
   });

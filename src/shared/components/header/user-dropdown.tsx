@@ -29,8 +29,6 @@ const UserDropdown = ({ user }: userMenuProps) => {
   const handleSignout = () => {
     signOut();
   };
-  console.log('HEADER USER:', user);
-  console.log('HEADER PHOTO:', user.photo);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
@@ -58,9 +56,9 @@ const UserDropdown = ({ user }: userMenuProps) => {
           </DropdownMenuItem>
           <DropdownMenuSeparator className="bg-bg-muted"></DropdownMenuSeparator>
 
-          <DropdownMenuItem>
+          {/* <DropdownMenuItem>
             <Link
-              href={`/addresses`}
+              href={`/address`}
               className="flex gap-2 w-full text-text-plain font-medium text-sm"
             >
               <MapPinHouse className="size-4" />
@@ -78,7 +76,7 @@ const UserDropdown = ({ user }: userMenuProps) => {
               {t('orders')}
             </Link>
           </DropdownMenuItem>
-          <DropdownMenuSeparator className="bg-bg-muted"></DropdownMenuSeparator>
+          <DropdownMenuSeparator className="bg-bg-muted"></DropdownMenuSeparator> */}
 
           {!(user.role == 'USER') && (
             <DropdownMenuItem>

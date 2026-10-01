@@ -26,7 +26,7 @@ import { usePathname } from 'next/navigation';
 
 export default function ProfileView({ user }: { user: TUser }) {
   //Translations
-  const t = useTranslations();
+  const t = useTranslations('account-settings.profile');
   const pathname = usePathname();
 
   //State
@@ -54,7 +54,7 @@ export default function ProfileView({ user }: { user: TUser }) {
   //Functions
   const onSubmit: SubmitHandler<ProfileFields> = (values) => {
     if (!form.formState.isDirty) {
-      toast.warning(t('account-settings.profile.no-changes'));
+      toast.warning(t('no-changes'));
       return;
     }
     setErrors([]);
@@ -78,7 +78,6 @@ export default function ProfileView({ user }: { user: TUser }) {
       phone: user.phone ?? '',
     });
   }, [user]);
-
   return (
     <FormProvider {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 ">
@@ -100,10 +99,10 @@ export default function ProfileView({ user }: { user: TUser }) {
           <ProfilePhotoField setPreview={setPreview} setIsUploading={setIsUploading} />
           <div className="grow">
             <h2 className="font-semibold text-lg sm:text-xl text-text-plain">
-              {t('account-settings.profile.upload-photo')}
+              {t('upload-photo')}
             </h2>
             <p className="text-text-muted text-sm sm:text-base font-normal mt-1">
-              {t('account-settings.profile.upload-photo-description')}
+              {t('upload-photo-description')}
             </p>
           </div>
         </div>
@@ -123,7 +122,7 @@ export default function ProfileView({ user }: { user: TUser }) {
                     aria-invalid={fieldState.invalid}
                     variant="default"
                     subVariant="first-name"
-                    label={t('account-settings.profile.first-name')}
+                    label={t('first-name')}
                     error={fieldState.invalid || !!getBackendError('firstName')}
                   />
                   {(fieldState.error || getBackendError('firstName')) && (
@@ -148,7 +147,7 @@ export default function ProfileView({ user }: { user: TUser }) {
                     aria-invalid={fieldState.invalid}
                     variant="default"
                     subVariant="last-name"
-                    label={t('account-settings.profile.last-name')}
+                    label={t('last-name')}
                     error={fieldState.invalid || !!getBackendError('lastName')}
                   />
                   {(fieldState.error || getBackendError('lastName')) && (
@@ -168,7 +167,7 @@ export default function ProfileView({ user }: { user: TUser }) {
             value={user?.email ?? ''}
             variant="email"
             subVariant="email"
-            label={t('account-settings.profile.email')}
+            label={t('email')}
             disabled
           />
 
@@ -183,7 +182,7 @@ export default function ProfileView({ user }: { user: TUser }) {
                   aria-invalid={fieldState.invalid}
                   variant="phone"
                   subVariant="phone"
-                  label={t('account-settings.profile.phone')}
+                  label={t('phone')}
                   error={fieldState.invalid || !!getBackendError('phone')}
                 />
                 {(fieldState.error || getBackendError('phone')) && (
@@ -220,8 +219,8 @@ export default function ProfileView({ user }: { user: TUser }) {
                 <ClearConfirmation
                   onClick={handleDeleteAccount}
                   icon={<Trash size={29} />}
-                  title={t('account-settings.profile.delete-account-confirmation')}
-                  subTitle={t('account-settings.profile.permanent-warning')}
+                  title={t('delete-account-confirmation')}
+                  subTitle={t('permanent-warning')}
                   cancelButtonTitle="button.account-cancel"
                   confirmButtonTitle="button.account-confirm"
                   loading={deleteLoading}

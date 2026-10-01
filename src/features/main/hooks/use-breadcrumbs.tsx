@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 
 // Relatives
 import { useBreadcrumbContext } from '@/features/dashboard/context/breadcrumbs-context';
+
 import { BreadcrumbOverrideItem } from '../types/layout/breadcrumb';
 
 export function useBreadcrumbOverride(items: BreadcrumbOverrideItem[]) {

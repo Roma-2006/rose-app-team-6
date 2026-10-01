@@ -24,7 +24,6 @@ export default function useUpdateProfile(setErrors: (errors: ValidationError[]) 
       toast.success(t('account-settings.profile.update-success'));
     },
     onError: (data) => {
-      console.log(data, 'eeeeeeeeeee');
       if (Array.isArray(data)) {
         setErrors(data);
       } else if (typeof data === 'string') {
