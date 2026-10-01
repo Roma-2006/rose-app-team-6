@@ -661,25 +661,7 @@
       }
     }
   },
-  "change-password": {
-    "sidebar": {
-      "profile-tab": "الملف الشخصي",
-      "password-tab": "تغيير كلمة المرور",
-      "logout": "تسجيل الخروج"
-    },
-    "old-password": "كلمة المرور الحالية",
-    "new-password": "كلمة المرور الجديدة",
-    "confirm-password": "تأكيد كلمة المرور الجديدة",
-    "submit-button": "تغيير كلمة المرور",
-    "success-message": "تم تغيير كلمة المرور بنجاح.",
-    "error-message": "فشل تغيير كلمة المرور. يرجى المحاولة مرة أخرى.",
-    "validation": {
-      "old-password-required": "كلمة المرور القديمة مطلوبة.",
-      "new-password-required": "كلمة المرور الجديدة مطلوبة.",
-      "confirm-password-required": "تأكيد كلمة المرور مطلوب.",
-      "passwords-do-not-match": "كلمة المرور الجديدة وتأكيد كلمة المرور غير متطابقين."
-    }
-  },
+ 
   "cart": {
     "title": "سلة التسوق",
     "title-2": " منتجات قد تعجبك",
@@ -768,7 +750,20 @@
       "password-tab": "تغيير كلمة المرور",
       "logout": "تسجيل الخروج"
     },
-     
+   "change-password": {
+    "old-password": "كلمة المرور الحالية",
+    "new-password": "كلمة المرور الجديدة",
+    "confirm-password": "تأكيد كلمة المرور الجديدة",
+    "submit-button": "تغيير كلمة المرور",
+    "success-message": "تم تغيير كلمة المرور بنجاح.",
+    "error-message": "فشل تغيير كلمة المرور. يرجى المحاولة مرة أخرى.",
+    "validation": {
+      "old-password-required": "كلمة المرور القديمة مطلوبة.",
+      "new-password-required": "كلمة المرور الجديدة مطلوبة.",
+      "confirm-password-required": "تأكيد كلمة المرور مطلوب.",
+      "passwords-do-not-match": "كلمة المرور الجديدة وتأكيد كلمة المرور غير متطابقين."
+    }
+  },
     "profile": {
       "upload-photo": "رفع صورة",
       "upload-photo-description": "يمكنك رفع صورة بصيغة .jpg أو .png أو .gif، بحد أقصى 5 ميجابايت.",
@@ -798,4 +793,6 @@
     }
   }
 }
+
+
 
