@@ -1,7 +1,7 @@
 'server-only';
 
 import { getAuthToken } from '@/features/main/lib/get-auth-token';
-import { AdminStatisticsResponse } from '@/features/main/types/statistics';
+import { AdminStatisticsResponse } from '../types/statistics';
 
 export type RevenuePeriod = 'monthly' | 'week';
 

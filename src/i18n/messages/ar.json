@@ -1,5 +1,7 @@
 {
   "app-title": "تطبيق روز",
+  "Explore gifts": "Explore Gifts",
+
   "HomePage": {
     "title": "مرحبا بك في تطبيق روز"
   },
@@ -13,6 +15,7 @@
     "next": "التالي",
     "add-review": "أضف تقييمًا",
     "adding": "إضافة...",
+    "edit": "تعديل",
     "preview-website": "عرض الصفحة",
     "retry": "إعادة المحاولة",
     "account-confirm": "نعم، احذف",
@@ -32,7 +35,7 @@
   "header": {
     "search-placeholder": "ما الهدية المميزة التي تبحث عنها؟",
     "login": "تسجيل الدخول",
-     "register": "إنشاء حساب",
+    "register": "إنشاء حساب",
     "search-default": "منتجات قد تعجبك",
     "search-empty": "لا توجد منتجات",
     "search-error": "فشل البحث. حاول مجدداً.",
@@ -494,16 +497,38 @@
   "grid": {
     "product-empty": "لا توجد منتجات تطابق خيارات البحث."
   },
-"dashboard": {
+  "dashboard": {
     "notFound": {
-      "title": "هذه الصفحة غير موجودة.",
-      "description": "لا يمكن إيجاد هذه الصفحة، تأكد أنك على المسار الصحيح.",
-      "action": "الذهاب للوحة التحكم"
+      "title": "هذه الصفحة غير موجودة",
+      "description": "لا يمكن ايجاد هذه الصفحة ، تأكد انك على المسار الصحيح",
+      "action": " الذهاب للوحة التحكم"
     },
     "unauthorized": {
-      "title": "لا يمكنك الوصول لتلك الصفحة.",
-      "description": "إذا كان هناك خطأ ما، تواصل مع فريق الدعم الفني.",
+      "title": "لا يمكنك الوصول لتلك الصفحة",
+      "description": "إذا كان هناك خطأ ما ، تواصل مع فريق الدعم الفني",
       "action": "الذهاب للصفحة الرئيسية"
+    },
+    "error": {
+      "title": "للأسف حدث خطأ ما ",
+      "description": "نحن نعمل على حلها ، بالرجاء المحاولة مرة اخرى ",
+      "action": "حاول مرة اخرى"
+
+    },
+    "products":{
+      "title":"كل المنتجات",
+      "add-product":"إضافة منتج جديد",
+      "delete-success": "تم حذف المنتج بنجاح.",
+      "delete-error": "حدث خطأ أثناء حذف المنتج.",
+      "currency": {
+        "egp": "جنيه مصري"
+       },
+      "table": {
+        "name": "الاسم",
+        "price": "السعر",
+        "stock": "المخزون",
+        "sales": "المبيعات",
+        "ratings": "التقييمات"
+      }
     },
     "error": {
       "title": "للأسف حدث خطأ ما!",
@@ -548,6 +573,54 @@
         "units": "مبيعات"
       }
     },
+    "categories": {
+      "all-categories": "جميع الفئات",
+      "add-new-category": "أضف فئة جديدة",
+      "name": "الاسم *",
+      "name*": "Name",
+      "products": "المنتجات",
+      "categories-not-found": "لم يتم العثور على أي فئات مطابقة للبحث.",
+      "num-products": "منتجات",
+      "edit": "تعديل",
+      "delete": "حذف",
+      "category-image": "صورة الفئة *",
+      "view-category-image": "عرض صورة الفئة",
+      "add-category": "إضافة فئة",
+      "update-category": "تحديث الفئة",
+      "add-category-placeholder": "ادخل اسم الفئة"
+    },
+    "occasions": {
+      "all-occasions": "جميع المناسبات",
+      "add-new-occasion": "أضف مناسبة جديدة",
+      "name": "الاسم *",
+      "name*": "Name",
+      "products": "المنتجات",
+      "occasions-not-found": "لم يتم العثور على أي مناسبات مطابقة للبحث.",
+      "num-products": "منتجات",
+      "edit": "تعديل",
+      "delete": "حذف",
+      "occasion-image": "صورة المناسبة *",
+      "view-occasion-image": "عرض صورة المناسبة",
+      "add-occasion": "إضافة مناسبة",
+      "update-occasion": "تحديث المناسبة",
+      "add-occasion-placeholder": "ادخل اسم المناسبة"
+    },
+    "products": {
+      "title": "كل المنتجات",
+      "add-product": "إضافة منتج جديد",
+      "delete-success": "تم حذف المنتج بنجاح.",
+      "delete-error": "حدث خطأ أثناء حذف المنتج.",
+      "currency": {
+        "egp": "جنيه مصري"
+      },
+      "table": {
+        "name": "الاسم",
+        "price": "السعر",
+        "stock": "المخزون",
+        "sales": "المبيعات",
+        "ratings": "التقييمات"
+      }
+    },
     "account": {
       "change-password": {
         "title": "تغيير كلمة المرور",
@@ -587,24 +660,41 @@
         "delete-button": "حذف"
       }
     }
-  } 
-  ,
- 
+  },
+  "change-password": {
+    "sidebar": {
+      "profile-tab": "الملف الشخصي",
+      "password-tab": "تغيير كلمة المرور",
+      "logout": "تسجيل الخروج"
+    },
+    "old-password": "كلمة المرور الحالية",
+    "new-password": "كلمة المرور الجديدة",
+    "confirm-password": "تأكيد كلمة المرور الجديدة",
+    "submit-button": "تغيير كلمة المرور",
+    "success-message": "تم تغيير كلمة المرور بنجاح.",
+    "error-message": "فشل تغيير كلمة المرور. يرجى المحاولة مرة أخرى.",
+    "validation": {
+      "old-password-required": "كلمة المرور القديمة مطلوبة.",
+      "new-password-required": "كلمة المرور الجديدة مطلوبة.",
+      "confirm-password-required": "تأكيد كلمة المرور مطلوب.",
+      "passwords-do-not-match": "كلمة المرور الجديدة وتأكيد كلمة المرور غير متطابقين."
+    }
+  },
   "cart": {
     "title": "سلة التسوق",
-     "title-2": " منتجات قد تعجبك",
-     "couponPlaceholder":"رمز الكوبون",
-   "couponLabel":"",
-    "invalidCoupon":"كوبون غير صالح أو منتهي الصلاحية",
-    "couponApplied":"تم تطبيق الكوبون!",
-    "NocouponApplied":"لم يتم تطبيق أي كوبونات",
-    "couponAlreadyApplied":"تم تطبيق الكوبون بالفعل",
-    "summary":"الموجز",
-    "subtotal":"المجموع الفرعي",
-    "total":"الإجمالي",
-    "applyCoupon":"تطبيق الكوبون",
-  "checkout":"المتابعة للدفع",
-    "products":"منتجات",
+    "title-2": " منتجات قد تعجبك",
+    "couponPlaceholder": "رمز الكوبون",
+    "couponLabel": "",
+    "invalidCoupon": "كوبون غير صالح أو منتهي الصلاحية",
+    "couponApplied": "تم تطبيق الكوبون!",
+    "NocouponApplied": "لم يتم تطبيق أي كوبونات",
+    "couponAlreadyApplied": "تم تطبيق الكوبون بالفعل",
+    "summary": "الموجز",
+    "subtotal": "المجموع الفرعي",
+    "total": "الإجمالي",
+    "applyCoupon": "تطبيق الكوبون",
+    "checkout": "المتابعة للدفع",
+    "products": "منتجات",
     "clearCart": "إفراغ السلة",
     "confirmClear": "هل أنت متأكد من إفراغ السلة؟",
     "empty": "سلتك فارغة",
@@ -615,13 +705,12 @@
     "ratings": "تقييمات",
     "rating": "التقييم"
   },
-
   "checkout": {
     "shipping-address": {
       "title": "عنوان الشحن",
       "add-new-address": "إضافة عنوان جديد",
       "or": "أو",
-      "load-error ": "فشل تحميل العناوين.",
+      "load-error": "فشل تحميل العناوين.",
       "no-addresses-error": "أضف عنوانك الأول للمتابعة"
     },
     "step2Title": "طريقة الدفع",
@@ -672,7 +761,6 @@
     "cancel": "إلغاء",
     "confirm": "تأكيد"
   },
- 
   "account-settings": {
     "title": "إعدادات الحساب",
     "sidebar": {
@@ -680,20 +768,7 @@
       "password-tab": "تغيير كلمة المرور",
       "logout": "تسجيل الخروج"
     },
-     "change-password": {
-    "old-password": "كلمة المرور الحالية",
-    "new-password": "كلمة المرور الجديدة",
-    "confirm-password": "تأكيد كلمة المرور الجديدة",
-    "submit-button": "تغيير كلمة المرور",
-    "success-message": "تم تغيير كلمة المرور بنجاح.",
-    "error-message": "فشل تغيير كلمة المرور. يرجى المحاولة مرة أخرى.",
-    "validation": {
-      "old-password-required": "كلمة المرور القديمة مطلوبة.",
-      "new-password-required": "كلمة المرور الجديدة مطلوبة.",
-      "confirm-password-required": "تأكيد كلمة المرور مطلوب.",
-      "passwords-do-not-match": "كلمة المرور الجديدة وتأكيد كلمة المرور غير متطابقين."
-    }
-  },
+     
     "profile": {
       "upload-photo": "رفع صورة",
       "upload-photo-description": "يمكنك رفع صورة بصيغة .jpg أو .png أو .gif، بحد أقصى 5 ميجابايت.",
@@ -722,5 +797,5 @@
       }
     }
   }
-
 }
+

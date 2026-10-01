@@ -2,7 +2,6 @@
 
 import { useTranslations } from 'next-intl';
 import { Cell, Pie, PieChart } from 'recharts';
-
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/shared/components/ui/chart';
 import { DashboardTitle } from '../../shared/dashboard-title';
 import {

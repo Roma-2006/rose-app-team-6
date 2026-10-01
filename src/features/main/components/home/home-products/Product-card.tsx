@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
-import { ShoppingCart, Star, HeartPlus, HeartMinus } from 'lucide-react';
+import { ShoppingCart, HeartPlus, HeartMinus } from 'lucide-react';
 import { calculateDiscountedPrice } from '../../../utils/calculate-discount';
 import { useTranslations } from 'next-intl';
 import { useProductActions } from '../../../hooks/use-product-actions';

@@ -12,7 +12,14 @@ import { useTranslations, useLocale } from 'next-intl';
 import ErrorAlert from './error-alert';
 export type TInputValue = string | number | File[] | FileList | null;
 export type TInputVariant =
-  'default' | 'number' | 'search' | 'password' | 'otp' | 'file' | 'phone' | 'email';
+  | 'default'
+  | 'number'
+  | 'search'
+  | 'password'
+  | 'otp'
+  | 'file'
+  | 'phone'
+  | 'email';
 
 interface InputProps {
   variant: TInputVariant;

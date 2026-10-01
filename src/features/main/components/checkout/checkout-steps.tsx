@@ -6,9 +6,6 @@ import React, { useState } from 'react';
 import { useRouter, usePathname } from '@/i18n/navigation';
 import { useSearchParams } from 'next/navigation';
 
-// lib
-import { useTranslations } from 'next-intl';
-
 // relatives
 
 import { CheckoutStepsProps } from '@/features/main/types/checkout.d';
@@ -29,7 +26,7 @@ const CheckoutSteps = ({
   initialCart,
 }: CheckoutStepsProps) => {
   // Translations
-  const t = useTranslations('checkout');
+  // const t = useTranslations('checkout');
 
   // Navigation
   const router = useRouter();

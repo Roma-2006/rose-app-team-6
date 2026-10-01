@@ -1,10 +1,10 @@
 'use server';
 
+import { getAuthToken } from '@/features/main/lib/get-auth-token';
 import { ChangePasswordRequest } from '@/features/main/types/auth';
-import { cookies } from 'next/headers';
 
 export async function changePassword(data: ChangePasswordRequest) {
-  const token = (await cookies()).get('accessToken')?.value;
+  const token = await getAuthToken();
 
   if (!token) {
     throw new Error('Unauthorized');

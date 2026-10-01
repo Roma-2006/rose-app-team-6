@@ -25,8 +25,17 @@ export default function useLogin() {
     } else {
       router.push('/');
     }
-  }, [status, session?.token, session?.user?.role, queryClient, router]);
+  }, [status, session?.token, session?.user?.role, session, queryClient, router]);
 
+  useEffect(() => {
+    if (status !== 'authenticated' || !session?.token) return;
+    syncGuestDataToServer(session.token, queryClient);
+    if (session.user?.role === 'ADMIN') {
+      router.push('/dashboard');
+    } else {
+      router.push('/');
+    }
+  }, [status, session?.token, session?.user?.role, queryClient, router]);
   const tLogin = useTranslations('auth.login');
 
   // handleLogin

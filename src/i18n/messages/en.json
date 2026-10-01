@@ -1,8 +1,12 @@
 {
   "app-title": "Rose App",
+    "Explore gifts": "Explore Gifts",
+
   "HomePage": {
     "title": "Welcome to Rose App"
   },
+
+
   "button": {
     "loading": "Loading...",
     "submit": "Submit",
@@ -13,8 +17,9 @@
     "next": "Next",
     "add-review": "Add Review",
     "adding": "Adding...",
+    "edit":"Edit",
     "preview-website": "Preview Website",
-    "retry": "Retry",
+    "retry":"Retry",
     "account-confirm": "Yes, delete",
     "account-cancel": "Nope, not doing it"
   },
@@ -521,6 +526,90 @@
       "description": "We're working to get this fixed. Please refresh or try again shortly.",
       "action": "Try again"
     },
+
+    "categories":{
+      "all-categories":"All Categories",
+      "add-new-category":"Add a new category",
+      "name":"Name *",
+      "name*":"Name",
+      "products":"Products",
+      "categories-not-found":"No categories found matching filters.",
+       "num-products":"Products",
+      "edit":"Edit",
+      "delete":"Delete",
+      "category-image":"Category image *",
+      "view-category-image":"View category image",
+      "add-category":"Add Category",
+      "update-category":"Update Category",
+      "add-category-placeholder":"Enter category name"
+    },
+    "occasions":{
+      "all-occasions":"All Occasions",
+      "add-new-occasion":"Add a new occasion",
+      "name":"Name *",
+      "name*":"Name",
+      "products":"Products",
+      "occasions-not-found":"No occasions found matching filters.",
+       "num-products":"Products",
+      "edit":"Edit",
+      "delete":"Delete",
+      "occasion-image":"Occasion image *",
+      "view-occasion-image":"View occasion image",
+      "add-occasion":"Add Occasion",
+      "update-occasion":"Update Occasion",
+      "add-occasion-placeholder":"Enter occasion name"
+    },
+    "products":{
+      "title":"All Products",
+      "add-product":"Add a new product",
+      "delete-success": "Product deleted successfully.",
+      "delete-error": "Failed to delete product.",
+      "currency": {
+        "egp": "EGP"
+      },
+      "table":{
+        "name":"Name",
+        "price":"Price",
+        "stock":"Stock",
+        "sales":"Sales",
+        "ratings":"Ratings"
+      }},
+    "account" : {
+      "delete-popover" : {
+        "title" : "Are you sure you want to delete your account?",
+        "description" : "This action is permanent and cannot be undone.",
+        "cancel-button" : "Nope, not doing it",
+        "confirm-button" : "Yes, delete",
+        "loading-button" : "Loading..."
+      },
+      "menu": {
+        "edit-button" : "Edit",
+        "delete-button" : "Delete"
+      }
+    }
+  },
+
+  
+  "cart": {
+    "title": " Shopping Cart",
+    "title-2": " Products You May Like",
+    "summary":"Summary",
+    "couponPlaceholder":"Coupon Code",
+    "couponLabel":"",
+    "invalidCoupon":"Invalid or expired coupon",
+    "couponApplied":"Coupon applied",
+    "NocouponApplied":"No coupons applied",
+    "couponAlreadyApplied":"Coupon already applied",
+    "subtotal":"Subtotal",
+    "total":"Total",
+    "applyCoupon":"Apply Coupon",
+    "checkout":"Checkout",
+    "products":"products",
+    "clearCart": "Clear Cart",
+    "confirmClear": " Are you sure you want to clear your cart?",
+    "emptyDescription": "You haven't added any products to your shopping cart yet.",
+    "continueShopping": "Continue Shopping",
+     "empty": "Your cart is empty",
     "dashboard-chart-title": {
       "ordersStatus": "Orders Status",
       "revenue": "Revenue",
@@ -591,15 +680,127 @@
         "confirm-button": "Yes, delete",
         "loading-button": "Loading..."
       },
+"products": {
+  "title": "All Products",
+  "add-product": "Add a new product",
+  "delete-success": "Product deleted successfully.",
+  "delete-error": "Failed to delete product.",
+  "currency": {
+    "egp": "EGP"
+  },
+  "table": {
+    "name": "Name",
+    "price": "Price",
+    "stock": "Stock",
+    "sales": "Sales",
+    "ratings": "Ratings"
+  }
+},
+"dashboard-chart-title": {
+  "ordersStatus": "Orders Status",
+  "revenue": "Revenue",
+  "lastweek": "Last Week",
+  "monthly": "Monthly",
+  "EGP": "EGP",
+  "completed": "Completed",
+  "inProgress": "In progress",
+  "canceled": "Canceled"
+},
+"dashboard-title": {
+  "ordersStatus": "Orders Status",
+  "revenue": "Revenue"
+},
+"statistics": {
+  "low-stock": {
+    "title": "Low Stock Products",
+    "empty": "No low-stock products found.",
+    "units": "Products"
+  },
+  "stats": {
+    "products": "Total products",
+    "orders": "Total orders",
+    "categories": "Total categories",
+    "revenue": "Total revenue"
+  },
+  "categories": {
+    "title": "All Categories",
+    "empty": "No categories found.",
+    "units": "Products"
+  },
+  "top-selling": {
+    "title": "Top Selling Products",
+    "empty": "No sales data found.",
+    "currency": "EGP",
+    "units": "Sales"
+  }
+},
+"account": {
+  "change-password": {
+    "title": "Change Password",
+    "button": "Change Password",
+    "currentPassword": "Old Password",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm New Password",
+    "placeholders": {
+      "currentPassword": "Enter your current password",
+      "newPassword": "Enter your new password",
+      "confirmPassword": "Confirm your new password"
+    },
+    "success": "Password changed successfully",
+    "errors": {
+      "something-went-wrong": "Something went wrong. Please try again.",
+      "current-password-required": "Current password is required",
+      "password-min-length": "Password must be at least 8 characters",
+      "password-uppercase": "Password must contain an uppercase letter",
+      "password-lowercase": "Password must contain a lowercase letter",
+      "password-number": "Password must contain a number",
+      "password-special": "Password must contain a special character",
+      "confirm-password": "Please confirm your password",
+      "passwords-do-not-match": "Passwords do not match"
+    }
+  },
+  "delete-popover": {
+    "title": "Are you sure you want to delete your account?",
+    "description": "This action is permanent and cannot be undone.",
+    "cancel-button": "Nope, not doing it",
+    "confirm-button": "Yes, delete",
+    "loading-button": "Loading..."
+  }
+},
+"menu": {
+  "account-button": "Account",
+  "logout-button": "Log Out",
+  "edit-button": "Edit",
+  "delete-button": "Delete"
+}
+      },
       "menu": {
         "account-button": "Account",
         "logout-button": "Log Out",
         "edit-button": "Edit",
         "delete-button": "Delete"
       }
+    },
+  
+  "change-password": {
+    "sidebar": {
+      "profile-tab": "Profile",
+      "password-tab": "Change Password",
+      "logout": "Logout"
+    },
+    "old-password": "Current Password",
+    "new-password": "New Password",
+    "confirm-password": "Confirm New Password",
+    "submit-button": "Change Password",
+    "success-message": "Password changed successfully.",
+    "error-message": "Failed to change password. Please try again.",
+    "validation": {
+      "old-password-required": "Old password is required.",
+      "new-password-required": "New password is required.",
+      "confirm-password-required": "Confirm password is required.",
+      "passwords-do-not-match": "New password and confirm password do not match."
     }
   },
-  
   "cart": {
     "title": "Shopping Cart",
     "title-2": "Products You May Like",
@@ -629,6 +830,11 @@
     "cancel": "Cancel",
     "confirm": "Confirm"
   },
+
+
+
+
+  
   "account-settings": {
     "title": "Account Settings",
     "sidebar": {
@@ -636,21 +842,7 @@
       "password-tab": "Change Password",
       "logout": "Logout"
     },
-    "change-password": {
-   
-    "old-password": "Current Password",
-    "new-password": "New Password",
-    "confirm-password": "Confirm New Password",
-    "submit-button": "Change Password",
-    "success-message": "Password changed successfully.",
-    "error-message": "Failed to change password. Please try again.",
-    "validation": {
-      "old-password-required": "Old password is required.",
-      "new-password-required": "New password is required.",
-      "confirm-password-required": "Confirm password is required.",
-      "passwords-do-not-match": "New password and confirm password do not match."
-    }
-  },
+    
     "profile": {
       "upload-photo": "Upload Photo",
       "upload-photo-description": "You can upload a .jpg, .png, or .gif photo with max size of 5MB.",
@@ -709,4 +901,5 @@
       "CANCELED": "Canceled"
     }
   }
-}
+  }
+
