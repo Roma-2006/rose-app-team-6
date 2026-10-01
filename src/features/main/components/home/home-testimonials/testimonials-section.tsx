@@ -17,11 +17,11 @@ export default async function TestimonialsSection() {
         <SecTitle text={tTistimonial('title')} className="pb-11.5" />
       </header>
 
-      <div className=" testimonials-content   w-full h-full max-h-137.5 bg-bg-primary-fade  flex  justify-around items-center">
+      <div className=" testimonials-content   w-full h-full max-h-137.5 bg-bg-primary-fade  flex  justify-around items-center ">
         {testimonials.map((item) => (
           <div
             key={item.id}
-            className="card  px-5 h-65 mx-7.5 gap-2.5 relative bg-white rounded-3xl  flex flex-col items-center text-center shadow-[0_10px_30px_rgba(0,0,0,0.04)]"
+            className="card  px-5 h-65 mx-7.5 gap-2.5 relative bg-white rounded-3xl  flex flex-col items-center text-center shadow-[0_10px_30px_rgba(0,0,0,0.04)] animate-marquee hover:[animation-play-state:paused]"
           >
             {/* Circular image */}
 
