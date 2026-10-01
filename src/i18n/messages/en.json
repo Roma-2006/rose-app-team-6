@@ -373,8 +373,11 @@
   },
   "checkout": {
     "shipping-address": {
+      "title": "Shipping Address",
       "add-new-address": "Add New Address",
-      "or": "OR"
+      "or": "OR",
+      "load-error ": "Failed to load addresses.",
+      "no-addresses-error": "Add your first address to continue"
     },
     "step2Title": "Payment Method",
     "cashOnDelivery": "Cash on Delivery",
@@ -839,6 +842,7 @@
       "password-tab": "Change Password",
       "logout": "Logout"
     },
+    
     "profile": {
       "upload-photo": "Upload Photo",
       "upload-photo-description": "You can upload a .jpg, .png, or .gif photo with max size of 5MB.",

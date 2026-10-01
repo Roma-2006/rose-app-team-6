@@ -42,13 +42,17 @@ const OccasionItem = ({ occasion }: OccasionItemProps) => {
         isActive ? 'ring-2 ring-primary' : 'ring-transparent '
       )}
     >
-      <Image
-        src={occasion.image || ''}
-        alt={occasion.title}
-        fill
-        sizes="(max-width:768px) 50vw, 200px"
-        className="object-cover transition-transform duration-300 group-hover:scale-105 bg-bg-muted"
-      />
+      {occasion.image ? (
+        <Image
+          src={occasion.image}
+          alt={occasion.title}
+          fill
+          sizes="(max-width:768px) 50vw, 200px"
+          className="object-cover transition-transform duration-300 group-hover:scale-105"
+        />
+      ) : (
+        <div className="absolute inset-0 bg-bg-muted" aria-hidden="true" />
+      )}
 
       {/* Dark overlay */}
       {!isActive && <div className="absolute inset-0 bg-bg-overlay hover:bg-bg-elevated" />}

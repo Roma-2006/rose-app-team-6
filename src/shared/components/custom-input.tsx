@@ -74,8 +74,10 @@ export default function CustomInput({
       defaultLabel = tInput(`default.${subVariant}.label`);
       defaultPlaceholder = tInput(`default.${subVariant}.placeholder`);
     } else {
-      defaultLabel = tInput.has('default.label') ? tInput('default.label') : '';
-      defaultPlaceholder = tInput.has('default.placeholder') ? tInput('default.placeholder') : '';
+      defaultLabel = tInput.has(`${variant}.label`) ? tInput(`${variant}.label`) : '';
+      defaultPlaceholder = tInput.has(`${variant}.placeholder`)
+        ? tInput(`${variant}.placeholder`)
+        : '';
     }
   } else if (variant === 'password') {
     if (subVariant) {

@@ -93,7 +93,7 @@ export default function CouponForm({
   };
 
   return (
-    <form onSubmit={handleApplyCoupon} className="flex gap-2.5 w-106.5 w-full justify-between">
+    <form onSubmit={handleApplyCoupon} className="flex gap-2.5 w-full justify-between">
       <CustomInput
         className=" w-77 h-9 mt-0.5"
         variant="default"
@@ -114,7 +114,7 @@ export default function CouponForm({
         title="cart.applyCoupon"
         leftIcon={<TicketPercent size={20} />}
         loading={isButtonLoading}
-        className="w-27 text-xs   py-3.5"
+        className="w-fit text-xs   p-3.5 "
         aria-label={tForm('applyCoupon')}
       />
     </form>

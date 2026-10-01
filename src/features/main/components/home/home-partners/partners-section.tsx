@@ -22,8 +22,8 @@ export default async function PartnersSection() {
       <header className="Partners-header text-center px-4">
         {/* Parteners Header */}
         <h3 className="text-3xl font-bold text-text-primary">
-          {tPartners('title.part1')}{' '}
-          <span className="text-text-secondary">{tPartners('title.part2')}</span>{' '}
+          {tPartners('title.part1')}
+          <span className="text-text-secondary">{tPartners('title.part2')}</span>
           {tPartners('title.part3')}
         </h3>
       </header>

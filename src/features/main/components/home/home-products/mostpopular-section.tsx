@@ -2,14 +2,13 @@ import { Suspense } from 'react';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { ArrowRight } from 'lucide-react';
+
 import { ProductCard } from './Product-card';
 import { getProducts } from '@/features/main/api/product.api';
 import type { Product } from '@/features/main/types/products';
 import MostPopularSectionLoading from './mostpopular-loading';
 import SectionTitle from '@/shared/components/custom-ui/section-heading';
 import { getOccasions } from '@/features/main/api/occasion.api';
-
-const HOME_OCCASIONS = ['Wedding', 'Anniversary', 'Birthday', 'Engagement'];
 
 interface MostPopularSectionProps {
   occasionId?: string;
@@ -29,8 +28,12 @@ const MostPopularSectionContent = async ({ occasionId }: MostPopularSectionProps
       occasionId,
     });
 
+    console.log('occasionId:', occasionId);
+    console.log('productsResult:', productsResult);
+
     products = productsResult?.data;
-  } catch {
+  } catch (error) {
+    console.error('PRODUCTS ERROR:', error);
     hasError = true;
   }
 
@@ -54,8 +57,10 @@ export const MostPopularSection = async ({ occasionId }: MostPopularSectionProps
 
   try {
     const occasions = await getOccasions();
-    visibleOccasions = occasions?.filter((occ) => HOME_OCCASIONS.includes(occ.title)) ?? [];
-  } catch {
+
+    visibleOccasions = occasions?.filter((occ) => occ.title?.trim()) ?? [];
+  } catch (error) {
+    console.error('OCCASIONS ERROR:', error);
     visibleOccasions = [];
   }
 
@@ -63,7 +68,8 @@ export const MostPopularSection = async ({ occasionId }: MostPopularSectionProps
     <section className="w-full mt-16">
       <div className="flex justify-between items-end pb-10">
         <SectionTitle title={t('mostPopular')} />
-        {/* Right Side: Occasion Tabs */}
+
+        {/* Occasion Tabs */}
         <div className="flex items-center gap-6">
           {visibleOccasions.map((occ) => (
             <Link
@@ -74,18 +80,18 @@ export const MostPopularSection = async ({ occasionId }: MostPopularSectionProps
                 occasionId === occ.id ? 'text-text-primary' : 'text-text-soft hover:text-text-plain'
               }`}
             >
-              {occ.title}
+              {occ.title.trim()}
             </Link>
           ))}
         </div>
       </div>
 
-      {/* Products Grid  */}
+      {/* Products Grid */}
       <Suspense fallback={<MostPopularSectionLoading />}>
         <MostPopularSectionContent occasionId={occasionId} />
       </Suspense>
 
-      {/* View More at the bottom right */}
+      {/* View More */}
       <div className="self-stretch flex justify-end items-center gap-2.5">
         <Link
           href="/products"

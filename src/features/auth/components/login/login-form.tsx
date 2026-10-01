@@ -126,11 +126,12 @@ export default function LoginForm({ variant = 'page' }: LoginFormProps) {
             type="submit"
             variant="primary"
             className={isPopover ? 'mt-2 h-11 w-full ' : 'mt-9 w-full'}
-            title={tLogin('button')}
             buttonVariant="text"
             loading={isLoading}
             disabled={isLoading}
-          />
+          >
+            {tLogin('button')}
+          </Button>
         </form>
       )}
     </>
