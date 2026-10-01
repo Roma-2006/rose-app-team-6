@@ -86,9 +86,15 @@ export default function AddCategoryPage() {
       const formData = new FormData();
       formData.append('image', imageFile);
 
+      // Explicitly separate headers without manually appending content-type configurations
+      const headers: Record<string, string> = {};
+      if (session?.token) {
+        headers['Authorization'] = `Bearer ${session.token}`;
+      }
+
       const uploadResponse = await fetch(`${API_BASE_URL}/upload`, {
         method: 'POST',
-        headers: session?.token ? { Authorization: `Bearer ${session.token}` } : {},
+        headers: headers,
         body: formData,
       });
 
@@ -115,7 +121,7 @@ export default function AddCategoryPage() {
 
       await createCategory(payload);
       router.refresh();
-      router.push('/dashboard/categories/catergory/[id]');
+      router.push('/dashboard/categories');
     } catch (err: unknown) {
       console.error('Category Creation Flow Error:', err);
       setLocalError(err instanceof Error ? err.message : 'An unexpected runtime error occurred.');
@@ -131,12 +137,6 @@ export default function AddCategoryPage() {
       </h1>
 
       <form onSubmit={handleSubmit} className="flex-1 flex flex-col p-4 md:p-8 space-y-5 ">
-        {localError && (
-          <div className="p-4 md:text-sm text-xs font-semibold text-text-danger bg-bg-danger border border-border-danger  rounded-xl">
-            {localError}
-          </div>
-        )}
-
         <div>
           <CustomInput
             variant="default"
@@ -161,6 +161,11 @@ export default function AddCategoryPage() {
           />
         </div>
 
+        {localError && (
+          <div className="p-4 text-center md:text-sm text-xs font-semibold text-text-danger  border border-border-danger  rounded-xl">
+            {localError}
+          </div>
+        )}
         <Button
           type="submit"
           buttonVariant="text"

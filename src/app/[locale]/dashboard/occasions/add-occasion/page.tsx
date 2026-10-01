@@ -131,12 +131,6 @@ export default function AddOccasionPage() {
       </h1>
 
       <form onSubmit={handleSubmit} className="flex-1 flex flex-col p-4 md:p-8 space-y-5 ">
-        {localError && (
-          <div className="p-4 md:text-sm text-xs font-semibold text-text-danger bg-bg-danger border border-border-danger  rounded-xl">
-            {localError}
-          </div>
-        )}
-
         <div>
           <CustomInput
             variant="default"
@@ -160,7 +154,11 @@ export default function AddOccasionPage() {
             className="w-full placeholder: md:text-lg text-xs"
           />
         </div>
-
+        {localError && (
+          <div className="p-4 md:text-sm text-center text-xs font-semibold text-text-danger  border border-border-danger  rounded-xl">
+            {localError}
+          </div>
+        )}
         <Button
           type="submit"
           buttonVariant="text"
