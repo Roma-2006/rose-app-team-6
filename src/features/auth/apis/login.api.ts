@@ -16,7 +16,6 @@ export const login = async (loginFields: TLoginData): Promise<Response<LoginResp
     body: JSON.stringify(body),
   });
   const payload = await response.json();
-
   if (!response.ok) {
     throw new Error(payload.message || 'Login failed');
   }
