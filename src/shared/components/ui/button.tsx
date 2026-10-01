@@ -114,7 +114,9 @@ function Button(props: ButtonPrimitive.Props & VariantProps<typeof buttonVariant
           {isIcon ? (
             props.iconOnly
           ) : isText ? (
-            isResponsiveIconOnly ? (
+            props.children ? (
+              props.children
+            ) : isResponsiveIconOnly ? (
               <span className="max-sm:hidden">{t(props.title!)}</span>
             ) : (
               t(props.title!)
